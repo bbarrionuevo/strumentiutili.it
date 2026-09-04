@@ -22,9 +22,37 @@
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Script e CSS -->
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <!-- Script AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="/css/styles.css">
 
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
@@ -56,7 +84,7 @@
   }
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28" data-f24-model="elide">
+<body class="bg-gray-50 text-gray-800 pb-28 block" data-f24-model="elide">
 
   <!-- Header Navigazione Principale -->
   <header class="bg-white shadow sticky top-0 z-50">
@@ -68,7 +96,6 @@
           <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
         </div>
       </div>
-
       <nav class="text-sm hidden lg:flex items-center gap-4">
         <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
         <a href="/burocrazia/" class="text-indigo-600 font-semibold">🏛️ Fiscalità</a>
@@ -80,21 +107,20 @@
     </div>
   </header>
 
-  <!-- Contenitore Principale a Due Colonne -->
-  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
     
     <!-- COLONNA SINISTRA: Strumento F24 ELIDE -->
-    <main class="w-full lg:w-8/12 xl:w-9/12">
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
       
       <!-- Pubblicità Above the Fold -->
-      <div class="ad-skeleton-horizontal mb-6">
+      <div class="su-ad mb-6 w-full text-center">
         <ins class="adsbygoogle"
-             style="display:block"
+             style="display:block;width:100%;min-width:0;"
              data-ad-client="ca-pub-9434300808171957"
              data-ad-slot="9606012335"
              data-ad-format="horizontal"
              data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
       <a href="/burocrazia/f24-editabile/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla Suite F24 Editabile</a>
@@ -167,9 +193,69 @@
         </div>
 
       </div>
+    </main>
 
-      <!-- Bloque SEO Informativo -->
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+    <!-- COLONNA DESTRA: Sidebar Fissa -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <!-- RIEPILOGO TOTALE E DOWNLOAD -->
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Riepilogo Matematico</h3>
+            <span id="active-model-badge" class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">ELIDE</span>
+          </div>
+          <div id="panel-totali-f24" class="space-y-3 border-b border-gray-800 pb-4 text-sm">
+            <div class="flex justify-between text-rose-300">
+              <span>Totale Debiti (+):</span>
+              <span id="tot-debiti" class="font-bold font-mono">0,00 €</span>
+            </div>
+          </div>
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Saldo Finale da Versare</span>
+            <span id="tot-saldo" class="text-3xl font-extrabold text-amber-400 font-mono tracking-tight">0,00 €</span>
+            <div id="saldo-warning" class="text-[10px] text-rose-400 mt-2 font-semibold hidden"></div>
+          </div>
+          <div class="pt-4 space-y-2">
+            <button id="btn-generate-pdf" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>📄</span> Genera PDF Conforme
+            </button>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">
+              Il PDF generato rispetta il formato ufficiale ELIDE e i parametri ISO.
+            </p>
+          </div>
+        </div>
+
+        <!-- INTERLINKING SILO -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Suite Modelli F24 / F23</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/burocrazia/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> F24 Ordinario</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📄</span> F24 Semplificato</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-elide/" class="text-indigo-600 flex items-center gap-2"><span>🔑</span> F24 Elide</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🛢️</span> F24 Accise</a></li>
+            <li><a href="/burocrazia/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Modello F23</a></li>
+          </ul>
+        </div>
+
+        <!-- Pubblicità Verticale Sticky Desktop -->
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">A cosa serve il Modello F24 ELIDE?</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-4">
           Il modello <strong>F24 ELIDE</strong> (sigla per <em>ELementi IDEntificativi</em>) si utilizza quando il pagamento di una tassa o tributo richiede l'indicazione obbligatoria di informazioni aggiuntive (come il codice identificativo del contratto di locazione o il codice ufficio dell'Agenzia delle Entrate).
@@ -187,84 +273,31 @@
       </section>
 
       <!-- Pubblicità Extra per Dispositivi Mobili -->
-      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
 
-    </main>
-
-    <!-- COLONNA DESTRA: Sidebar Fissa e Navigazione Silo -->
-    <aside class="w-full lg:w-4/12 xl:w-3/12">
-      <div class="sticky-sidebar space-y-6">
-        
-        <!-- RIEPILOGO TOTALE E DOWNLOAD -->
-        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
-          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Riepilogo Matematico</h3>
-            <span id="active-model-badge" class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">ELIDE</span>
-          </div>
-
-          <div id="panel-totali-f24" class="space-y-3 border-b border-gray-800 pb-4 text-sm">
-            <div class="flex justify-between text-rose-300">
-              <span>Totale Debiti (+):</span>
-              <span id="tot-debiti" class="font-bold font-mono">0,00 €</span>
-            </div>
-          </div>
-
-          <div class="pt-2">
-            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Saldo Finale da Versare</span>
-            <span id="tot-saldo" class="text-3xl font-extrabold text-amber-400 font-mono tracking-tight">0,00 €</span>
-            <div id="saldo-warning" class="text-[10px] text-rose-400 mt-2 font-semibold hidden"></div>
-          </div>
-
-          <div class="pt-4 space-y-2">
-            <button id="btn-generate-pdf" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
-              <span>📄</span> Genera PDF Conforme
-            </button>
-            <p class="text-[10px] text-gray-400 text-center leading-tight">
-              Il PDF generato rispetta il formato ufficiale ELIDE e i parametri ISO.
-            </p>
-          </div>
-        </div>
-
-        <!-- INTERLINKING SILO MODELLI F24/F23 -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Suite Modelli F24 / F23</h3>
-          <ul class="space-y-3 text-sm font-bold text-gray-600">
-            <li><a href="/burocrazia/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> F24 Ordinario</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📄</span> F24 Semplificato</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-elide/" class="text-indigo-600 flex items-center gap-2"><span>🔑</span> F24 Elide</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🛢️</span> F24 Accise</a></li>
-            <li><a href="/burocrazia/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Modello F23</a></li>
-          </ul>
-        </div>
-
-        <!-- Pubblicità Verticale Sticky Desktop -->
-        <div class="hidden lg:block">
-          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
-          <div class="ad-skeleton-vertical">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9434300808171957"
-                 data-ad-slot="9606012335"
-                 data-ad-format="vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-          </div>
-        </div>
-        
-      </div>
-    </aside>
+    </div>
 
   </div>
 
   <!-- Footer con Pagine Legali -->
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -284,5 +317,84 @@
 
   <script src="/js/main.js"></script>
   <script src="/js/f24.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
 </body>
 </html>
