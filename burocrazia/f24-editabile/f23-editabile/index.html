@@ -22,7 +22,7 @@
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- REGLAS CSS NATIVAS PARA ADSENSE (Protección contra availableWidth=0) -->
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
   <style>
     .ad-slot-desktop { display: none !important; }
     .ad-slot-mobile { display: block !important; }
@@ -40,20 +40,6 @@
 
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
   <script src="/js/codice-fiscale.js"></script>
-
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
-      { "@type": "ListItem", "position": 2, "name": "Fiscalità", "item": "https://strumentiutili.it/burocrazia/" },
-      { "@type": "ListItem", "position": 3, "name": "Suite F24 Editabile", "item": "https://strumentiutili.it/burocrazia/f24-editabile/" },
-      { "@type": "ListItem", "position": 4, "name": "Modello F23", "item": "https://strumentiutili.it/burocrazia/f24-editabile/f23-editabile/" }
-    ]
-  }
-  </script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28" data-f24-model="f23">
 
@@ -67,7 +53,6 @@
           <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
         </div>
       </div>
-
       <nav class="text-sm hidden lg:flex items-center gap-4">
         <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
         <a href="/burocrazia/" class="text-indigo-600 font-semibold">🏛️ Fiscalità</a>
@@ -79,13 +64,12 @@
     </div>
   </header>
 
-  <!-- Contenitore Principale a Due Colonne -->
-  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+  <!-- CONTENITORE PRINCIPALE: Flex su Mobile, Grid 12-colonne su Desktop -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 flex-1">
     
-    <!-- COLONNA SINISTRA: Strumento F23 -->
-    <main class="w-full lg:w-8/12 xl:w-9/12">
+    <!-- ORDINE 1 DOM: Strumento F23 (Desktop: Sinistra, Riga 1) -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1">
       
-      <!-- Pubblicità Above the Fold -->
       <div class="mb-6 w-full overflow-hidden flex justify-center">
         <ins class="adsbygoogle"
              style="display:block"
@@ -113,9 +97,7 @@
         </div>
       </section>
 
-      <!-- Form Compilazione Modello F23 -->
       <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-6">
-        
         <div class="space-y-4">
           <h3 class="text-md font-bold text-gray-900 border-b border-gray-200 pb-2">Dati Anagrafici (Richiedente / Parte 1)</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -158,66 +140,35 @@
               <input type="text" id="f23-estremi" placeholder="Numero Verbale o Atto" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm uppercase focus:ring-2 focus:ring-indigo-500 outline-none" />
             </div>
           </div>
-
           <div class="flex justify-between items-center mb-3">
             <h4 class="text-sm font-semibold text-gray-800">Codici Tributo (Max 4 righe)</h4>
             <button type="button" class="btn-add-riga text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold px-3 py-1.5 rounded-md transition" data-target="container-f23-righe">+ Riga F23</button>
           </div>
           <div id="container-f23-righe" class="space-y-3"></div>
         </div>
-
       </div>
-
-      <!-- Bloque SEO Informativo -->
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Differenza tra Modello F24 e Modello F23</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-4">
-          Nonostante entrambi siano modelli di pagamento tributario, l'<strong>F23</strong> viene utilizzato principalmente per i versamenti dovuti ad enti giudiziari o uffici territoriali dell'Agenzia delle Entrate (come sanzioni amministrative, diritti di cancelleria, imposte di successione, donazioni o contratti relativi a contenziosi), mentre l’F24 copre la fiscalità generale e previdenziale.
-        </p>
-
-        <h3 class="text-lg font-bold text-indigo-800 mb-2">Presenza della Controparte</h3>
-        <p class="text-sm text-gray-700 leading-relaxed">
-          Una delle caratteristiche principali del Modello F23 è la necessità di specificare sia la "Parte 1" (il soggetto che effettua il versamento o il richiedente) sia la "Parte 2" (la controparte, l'ente emittente o l'ufficio destinatario del tributo).
-        </p>
-      </section>
-
-      <!-- Pubblicità Extra per Dispositivi Mobili (Oculto en desktop usando ad-slot-mobile nativo) -->
-      <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100 w-full flex justify-center ad-slot-mobile">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9434300808171957"
-             data-ad-slot="9606012335"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
     </main>
 
-    <!-- COLONNA DESTRA: Sidebar Fissa e Navigazione Silo -->
-    <aside class="w-full lg:w-4/12 xl:w-3/12">
+    <!-- ORDINE 2 DOM: Sidebar (Mobile: Appare sotto al form / Desktop: Destra, si estende su due righe) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2">
       <div class="sticky-sidebar space-y-6">
         
-        <!-- RIEPILOGO TOTALE E DOWNLOAD -->
         <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
             <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Riepilogo Matematico</h3>
             <span id="active-model-badge" class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">F23</span>
           </div>
-
           <div id="panel-totali-f24" class="space-y-3 border-b border-gray-800 pb-4 text-sm">
             <div class="flex justify-between text-rose-300">
               <span>Totale Importi (+):</span>
               <span id="tot-debiti" class="font-bold font-mono">0,00 €</span>
             </div>
           </div>
-
           <div class="pt-2">
             <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Saldo Finale da Versare</span>
             <span id="tot-saldo" class="text-3xl font-extrabold text-amber-400 font-mono tracking-tight">0,00 €</span>
             <div id="saldo-warning" class="text-[10px] text-rose-400 mt-2 font-semibold hidden"></div>
           </div>
-
           <div class="pt-4 space-y-2">
             <button id="btn-generate-pdf" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span>📄</span> Genera PDF Conforme
@@ -228,7 +179,6 @@
           </div>
         </div>
 
-        <!-- INTERLINKING SILO MODELLI F24/F23 -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Suite Modelli F24 / F23</h3>
           <ul class="space-y-3 text-sm font-bold text-gray-600">
@@ -240,7 +190,7 @@
           </ul>
         </div>
 
-        <!-- Pubblicità Verticale Sticky Desktop (Oculto en móvil usando ad-slot-desktop nativo) -->
+        <!-- Pubblicità Desktop Protetta -->
         <div class="w-full overflow-hidden flex flex-col items-center ad-slot-desktop">
           <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
           <ins class="adsbygoogle"
@@ -249,19 +199,47 @@
                data-ad-slot="9606012335"
                data-ad-format="vertical"
                data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          <script>
+            // Solo carga en pantallas de PC para evitar errores TagError
+            if (window.innerWidth >= 1024) { (adsbygoogle = window.adsbygoogle || []).push({}); }
+          </script>
         </div>
         
       </div>
     </aside>
 
+    <!-- ORDINE 3 DOM: Blocco SEO e Ad Mobile (Mobile: Appare a fine pagina / Desktop: Sinistra, Riga 2) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1">
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Differenza tra Modello F24 e Modello F23</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          Nonostante entrambi siano modelli di pagamento tributario, l'<strong>F23</strong> viene utilizzato principalmente per i versamenti dovuti ad enti giudiziari o uffici territoriali dell'Agenzia delle Entrate (come sanzioni amministrative, diritti di cancelleria, imposte di successione, donazioni o contratti relativi a contenziosi), mentre l’F24 copre la fiscalità generale e previdenziale.
+        </p>
+        <h3 class="text-lg font-bold text-indigo-800 mb-2">Presenza della Controparte</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Una delle caratteristiche principali del Modello F23 è la necessità di specificare sia la "Parte 1" (il soggetto che effettua il versamento o il richiedente) sia la "Parte 2" (la controparte, l'ente emittente o l'ufficio destinatario del tributo).
+        </p>
+      </section>
+
+      <!-- Pubblicità Mobile Protetta -->
+      <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100 w-full flex justify-center ad-slot-mobile">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          // Solo carga en pantallas moviles para evitar errores TagError
+          if (window.innerWidth < 1024) { (adsbygoogle = window.adsbygoogle || []).push({}); }
+        </script>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Footer con Pagine Legali -->
   <footer class="bg-white border-t mt-12">
     <div class="container mx-auto px-4 py-8">
-      
-      <!-- Publicidad Footer -->
       <div class="w-full text-center overflow-hidden mb-8 flex justify-center">
         <ins class="adsbygoogle"
              style="display:block"
@@ -271,13 +249,11 @@
              data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-center md:text-left">
           <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
           <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
         </div>
-        
         <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
           <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
           <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
