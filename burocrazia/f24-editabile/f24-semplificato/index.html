@@ -397,7 +397,7 @@
   <script src="/js/main.js"></script>
   <script src="/js/f24.js"></script>
 
- <!-- SCRIPT PONTE: Dal Calcolatore IMU alla riga F24 Semplificato -->
+  <!-- SCRIPT PONTE CORRETTO CON SETTIMEOUT -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const btnAutoImu = document.getElementById('btn-auto-imu');
@@ -421,12 +421,11 @@
             return;
           }
 
-          // Clicca automaticamente il bottone per aggiungere una riga al Semplificato
           const btnAddRiga = document.querySelector('button[data-target="container-semplificato-righe"]');
           if (btnAddRiga) {
             btnAddRiga.click();
             
-            // Pausa di 50ms per permettere a f24.js di renderizzare il DOM
+            // Pausa vitale per consentire al DOM di renderizzare la nuova riga creata da f24.js
             setTimeout(() => {
               const container = document.getElementById('container-semplificato-righe');
               const righe = container.querySelectorAll('.riga-f24');
@@ -434,14 +433,13 @@
               if (righe.length > 0) {
                 const ultimaRiga = righe[righe.length - 1];
                 
-                // 1. Forza la Sezione (Select) su "EL"
+                // Forza la select della Sezione
                 const selectSez = ultimaRiga.querySelector('select');
                 if (selectSez) {
                   selectSez.value = 'EL';
-                  selectSez.dispatchEvent(new Event('change', { bubbles: true }));
                 }
                 
-                // 2. Compila gli input (Codice Tributo, Anno, Debito)
+                // Mappa gli input tramite placeholder per non dipendere dall'ordine
                 const inputs = ultimaRiga.querySelectorAll('input');
                 inputs.forEach(input => {
                   const ph = (input.placeholder || '').toLowerCase();
@@ -449,13 +447,13 @@
                   if (ph.includes('trib')) {
                     input.value = calc.codiceTributo;
                   }
-                  if (ph.includes('anno') || ph.includes('aaaa')) {
+                  else if (ph.includes('anno') || ph.includes('aaaa')) {
                     input.value = new Date().getFullYear();
                   }
-                  if (ph.includes('debito') || ph.includes('importo')) {
+                  else if (ph.includes('debito') || ph.includes('importo')) {
                     input.value = calc.impostaAnnua.toFixed(2);
                     
-                    // Forza l'aggiornamento dei totali (Riepilogo Matematico) in f24.js
+                    // Dispara gli eventi in modo che f24.js intercetti e aggiorni il Riepilogo
                     input.dispatchEvent(new Event('input', { bubbles: true }));
                     input.dispatchEvent(new Event('blur', { bubbles: true }));
                   }
@@ -463,7 +461,7 @@
                 
                 alert(`Calcolo IMU completato!\nBase Imponibile: ${calc.baseImponibile.toFixed(2)} €\nImposta Arrotondata: ${calc.impostaAnnua} €\nCodice Tributo: ${calc.codiceTributo}\n\nDati inseriti con successo nel modello.`);
               }
-            }, 50);
+            }, 100); // Aumentato a 100ms per massima stabilità
           }
         });
       }
