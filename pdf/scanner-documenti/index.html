@@ -25,8 +25,45 @@
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
 
   <link rel="manifest" href="/manifest.json">
+
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+
+    #drop-zone { -webkit-tap-highlight-color: transparent; user-select: none; }
+    #preview-grid canvas { width: 100%; height: 100%; object-fit: contain; }
+    #crop-modal, #crop-container { overscroll-behavior: none; }
+    #crop-canvas { display: block; max-width: 100%; max-height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+    .scanner-no-touch { touch-action: none; }
+    #crop-container::-webkit-scrollbar { width: 6px; height: 6px; }
+    #crop-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.25); border-radius: 999px; }
+  </style>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="/css/styles.css">
 
   <script type="application/ld+json">
@@ -48,23 +85,13 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
-      { "@type": "ListItem", "position": 2, "name": "Strumenti PDF", "item": "https://strumentiutili.it/#pdf" },
+      { "@type": "ListItem", "position": 2, "name": "Strumenti PDF", "item": "https://strumentiutili.it/pdf/" },
       { "@type": "ListItem", "position": 3, "name": "Scanner Documenti", "item": "https://strumentiutili.it/pdf/scanner-documenti/" }
     ]
   }
   </script>
-
-  <style>
-    #drop-zone { -webkit-tap-highlight-color: transparent; user-select: none; }
-    #preview-grid canvas { width: 100%; height: 100%; object-fit: contain; }
-    #crop-modal, #crop-container { overscroll-behavior: none; }
-    #crop-canvas { display: block; max-width: 100%; max-height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
-    .scanner-no-touch { touch-action: none; }
-    #crop-container::-webkit-scrollbar { width: 6px; height: 6px; }
-    #crop-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.25); border-radius: 999px; }
-  </style>
 </head>
-<body class="bg-gray-50 min-h-screen text-gray-800 pb-28">
+<body class="bg-gray-50 text-gray-800 pb-28 block">
 
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
@@ -77,25 +104,40 @@
       </div>
 
       <nav class="text-sm hidden lg:flex items-center gap-4">
-        <a href="/#lavoro" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
-        <a href="/#fiscale" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
-        <a href="/#finanza" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
-        <a href="/#pdf" class="text-indigo-600 font-semibold">📄 PDF &amp; Scanner</a>
-        <a href="/#ia" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8">
-    <a href="/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla home</a>
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
 
-    <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
-      <div class="max-w-3xl">
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
           <span>📄</span> Scanner documenti
         </div>
         <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Scanner Documenti IA (Crea PDF da Foto)</h1>
-        <p class="text-gray-600 mt-3 text-base leading-relaxed">
+        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
           Trasforma foto di carte d'identità (CIE), contratti e ricevute in PDF multipagina direttamente dal tuo browser.
         </p>
 
@@ -108,104 +150,145 @@
             </p>
           </div>
         </div>
+      </section>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <!-- Controlli e Upload -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-1 h-fit">
+          <h2 class="text-xl font-bold text-gray-900 mb-1">1. Carica le foto</h2>
+          <p class="text-sm text-gray-500 mb-5">Scatta una foto o seleziona immagini esistenti.</p>
+
+          <input id="img-upload" type="file" accept="image/*" multiple capture="environment" class="hidden">
+
+          <div id="drop-zone" role="button" tabindex="0" aria-label="Scatta una foto o seleziona immagini" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors p-7 text-center rounded-xl cursor-pointer select-none">
+            <div class="text-4xl mb-3">📸</div>
+            <div class="text-sm font-medium text-gray-700">Scatta foto o seleziona immagini</div>
+            <div class="text-xs text-indigo-600 font-bold mt-2">Clicca qui per iniziare</div>
+          </div>
+
+          <div class="mt-6">
+            <label for="scan-filter" class="block text-sm font-bold text-gray-800 mb-2">Filtro scansione</label>
+            <select id="scan-filter" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+              <option value="color" selected>A colori — Migliorato</option>
+              <option value="bw">Bianco e nero — Testo nitido</option>
+              <option value="grayscale">Scala di grigi</option>
+            </select>
+          </div>
+
+          <div class="mt-5 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input id="auto-crop" type="checkbox" checked class="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+              <span>
+                <span class="block text-sm font-bold text-indigo-900">Ritaglio automatico (IA)</span>
+                <span class="block text-xs text-indigo-700 mt-0.5">Rileva e raddrizza automaticamente i bordi del documento.</span>
+              </span>
+            </label>
+          </div>
+
+          <div id="status-msg" class="mt-5 text-sm font-bold text-amber-600">
+            Caricamento motore IA (Computer Vision) in corso... Attendi.
+          </div>
+
+          <button id="generate-pdf" type="button" disabled class="mt-6 w-full bg-indigo-600 text-white font-bold px-4 py-3.5 rounded-lg hover:bg-indigo-700 active:bg-indigo-800 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            <span>📄</span> Genera PDF
+          </button>
+        </section>
+
+        <!-- Anteprima -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-2">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">2. Anteprima documenti</h2>
+              <p class="text-sm text-gray-500 mt-1">Usa l'icona della matita ✏️ sulla miniatura per aggiustare manualmente i bordi.</p>
+            </div>
+          </div>
+
+          <div id="empty-state" class="border-2 border-dashed border-gray-200 bg-gray-50 rounded-xl min-h-[300px] flex items-center justify-center text-center p-8">
+            <div>
+              <div class="text-5xl mb-4">📄</div>
+              <div class="font-bold text-gray-800">Nessun documento caricato</div>
+              <p class="text-sm text-gray-500 mt-1 max-w-sm mx-auto">Scatta una foto o carica un'immagine per iniziare a creare il tuo PDF locale.</p>
+            </div>
+          </div>
+
+          <div id="preview-grid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Le immagini scansionate verranno iniettate qui -->
+          </div>
+        </section>
       </div>
-    </section>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-      <!-- Controlli e Upload -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:col-span-1 h-fit">
-        <h2 class="text-xl font-bold text-gray-900 mb-1">1. Carica le foto</h2>
-        <p class="text-sm text-gray-500 mb-5">Scatta una foto o seleziona immagini esistenti.</p>
+    </main>
 
-        <input id="img-upload" type="file" accept="image/*" multiple capture="environment" class="hidden">
-
-        <div id="drop-zone" role="button" tabindex="0" aria-label="Scatta una foto o seleziona immagini" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors p-7 text-center rounded-xl cursor-pointer select-none">
-          <div class="text-4xl mb-3">📸</div>
-          <div class="text-sm font-medium text-gray-700">Scatta foto o seleziona immagini</div>
-          <div class="text-xs text-indigo-600 font-bold mt-2">Clicca qui per iniziare</div>
-        </div>
-
-        <div class="mt-6">
-          <label for="scan-filter" class="block text-sm font-bold text-gray-800 mb-2">Filtro scansione</label>
-          <select id="scan-filter" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
-            <option value="color" selected>A colori — Migliorato</option>
-            <option value="bw">Bianco e nero — Testo nitido</option>
-            <option value="grayscale">Scala di grigi</option>
-          </select>
-        </div>
-
-        <div class="mt-5 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
-          <label class="flex items-start gap-3 cursor-pointer">
-            <input id="auto-crop" type="checkbox" checked class="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
-            <span>
-              <span class="block text-sm font-bold text-indigo-900">Ritaglio automatico (IA)</span>
-              <span class="block text-xs text-indigo-700 mt-0.5">Rileva e raddrizza automaticamente i bordi del documento.</span>
-            </span>
-          </label>
-        </div>
-
-        <div id="status-msg" class="mt-5 text-sm font-bold text-amber-600">
-          Caricamento motore IA (Computer Vision) in corso... Attendi.
-        </div>
-
-        <button id="generate-pdf" type="button" disabled class="mt-6 w-full bg-indigo-600 text-white font-bold px-4 py-3.5 rounded-lg hover:bg-indigo-700 active:bg-indigo-800 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-          <span>📄</span> Genera PDF
-        </button>
-      </section>
-
-      <!-- Anteprima -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:col-span-2">
-        <div class="flex items-start justify-between gap-4 mb-5">
-          <div>
-            <h2 class="text-xl font-bold text-gray-900">2. Anteprima documenti</h2>
-            <p class="text-sm text-gray-500 mt-1">Usa l'icona della matita ✏️ sulla miniatura per aggiustare manualmente i bordi.</p>
-          </div>
-        </div>
-
-        <div id="empty-state" class="border-2 border-dashed border-gray-200 bg-gray-50 rounded-xl min-h-[300px] flex items-center justify-center text-center p-8">
-          <div>
-            <div class="text-5xl mb-4">📄</div>
-            <div class="font-bold text-gray-800">Nessun documento caricato</div>
-            <p class="text-sm text-gray-500 mt-1 max-w-sm mx-auto">Scatta una foto o carica un'immagine per iniziare a creare il tuo PDF locale.</p>
-          </div>
-        </div>
-
-        <div id="preview-grid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
-          <!-- Le immagini scansionate verranno iniettate qui -->
-        </div>
-      </section>
-    </div>
-
-    <!-- Blocco SEO -->
-    <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Trasforma il tuo Smartphone in uno Scanner Professionale</h2>
-      <p class="text-gray-700 leading-relaxed mb-6">
-        Scattare una semplice foto a un foglio, una patente o alla propria Carta d'Identità Elettronica (CIE) spesso produce risultati difficili da leggere: prospettive storte e ombre fastidiose. Il nostro strumento applica algoritmi avanzati di Computer Vision direttamente nel tuo browser[cite: 19].
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
-          <h3 class="text-lg font-bold text-indigo-700 mb-2">Ritaglio Automatico (Deskewing)</h3>
-          <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
-            <li><strong>Rilevamento Bordi:</strong> Algoritmo di Canny e filtraggio mediano per individuare i contorni netti[cite: 19].</li>
-            <li><strong>Trasformazione Prospettica:</strong> Raddrizza l'immagine simulando uno scanner piano (Warp Perspective)[cite: 19].</li>
-            <li><strong>Normalizzazione:</strong> Elimina gradienti di luce e ombre, restituendo un documento nitido[cite: 19].</li>
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti PDF</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📂</span> Unisci e Dividi</a></li>
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🗜️</span> Comprimi e Converti</a></li>
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Firma PDF</a></li>
+            <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Anonimizza (Redact)</a></li>
+            <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Validatore PDF/A</a></li>
+            <li><a href="/pdf/scanner-documenti/" class="text-indigo-600 flex items-center gap-2"><span>📄</span> Scanner Documenti</a></li>
           </ul>
         </div>
-        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
-          <h3 class="text-lg font-bold text-indigo-700 mb-2">Sicurezza CIE (Zero-Upload)</h3>
-          <p class="text-sm text-gray-700 leading-relaxed">
-            Inviare documenti sensibili a server cloud sconosciuti comporta grandi rischi. Questo Scanner sfrutta WebAssembly (OpenCV.js) per eseguire l'intera elaborazione <strong>esclusivamente nella RAM del tuo dispositivo</strong>. Le foto non abbandonano mai il tuo telefono/PC[cite: 19].
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded p-2">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Blocco SEO -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Trasforma il tuo Smartphone in uno Scanner Professionale</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Scattare una semplice foto a un foglio, una patente o alla propria Carta d'Identità Elettronica (CIE) spesso produce risultati difficili da leggere: prospettive storte e ombre fastidiose. Il nostro strumento applica algoritmi avanzati di Computer Vision direttamente nel tuo browser.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-700 mb-2">Ritaglio Automatico (Deskewing)</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li><strong>Rilevamento Bordi:</strong> Algoritmo di Canny e filtraggio mediano per individuare i contorni netti.</li>
+              <li><strong>Trasformazione Prospettica:</strong> Raddrizza l'immagine simulando uno scanner piano (Warp Perspective).</li>
+              <li><strong>Normalizzazione:</strong> Elimina gradienti di luce e ombre, restituendo un documento nitido.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-700 mb-2">Sicurezza CIE (Zero-Upload)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Inviare documenti sensibili a server cloud sconosciuti comporta grandi rischi. Questo Scanner sfrutta WebAssembly (OpenCV.js) per eseguire l'intera elaborazione <strong>esclusivamente nella RAM del tuo dispositivo</strong>. Le foto non abbandonano mai il tuo telefono/PC.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
     </div>
-  </main>
+
+  </div>
 
   <!-- Modale di Ritaglio Manuale -->
   <div id="crop-modal" class="fixed inset-0 bg-gray-950/95 hidden z-[60] flex flex-col touch-none" role="dialog" aria-modal="true" aria-labelledby="crop-title">
@@ -228,11 +311,18 @@
     </div>
   </div>
 
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -251,7 +341,7 @@
   </footer>
 
   <!-- Librerie e Script -->
-  <script src="https://docs.opencv.org/4.8.0/opencv.js" async></script>
+  <script src="https://docs.opencv.org/4.8.0/opencv.js" defer></script>
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
   <script src="/js/main.js"></script>
   <script src="/js/scanner.js"></script>
@@ -268,6 +358,85 @@
       observer.observe(grid, { childList: true });
       empty.style.display = grid.children.length === 0 ? 'flex' : 'none';
     });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
   </script>
 </body>
 </html>

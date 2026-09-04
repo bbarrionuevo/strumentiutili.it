@@ -13,14 +13,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Politica sulla privacy — StrumentiUtili.it</title>
   <meta name="description" content="Politica sulla privacy di StrumentiUtili.it. Tutte le elaborazioni sono eseguite nel browser, nessun dato inviato a server esterni.">
+  
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+  </style>
+
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "WebPage", "name": "Politica sulla privacy", "url": "https://strumentiutili.it/politica-sulla-privacy.html", "image": "https://strumentiutili.it/assets/og-image.png" }
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="bg-gray-50 min-h-screen text-gray-800 pb-28 flex flex-col">
+<body class="bg-gray-50 text-gray-800 pb-28 block">
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
       <div class="flex items-center gap-3">
@@ -42,7 +56,7 @@
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-1">
+  <main class="max-w-4xl mx-auto px-4 py-8 block min-h-screen">
     <a href="/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium">← Torna alla home</a>
     <h1 class="text-2xl font-bold text-gray-900 mt-4">Politica sulla privacy</h1>
     <p class="mt-4 text-gray-700 leading-relaxed">StrumentiUtili.it è un portale di micro-strumenti che esegue tutta l'elaborazione dei dati direttamente nel browser dell'utente. Non vengono inviati file o testo a server remoti, a meno che non sia esplicitamente indicato. Questo sito rispetta i princìpi di minimizzazione dei dati e la conformità al Regolamento Generale sulla Protezione dei Dati (RGPD) per l'UE.</p>
@@ -59,11 +73,18 @@
     <p class="mt-6 text-sm text-gray-500 font-medium">Ultimo aggiornamento: 2026-09-03</p>
   </main>
 
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -80,5 +101,84 @@
       </div>
     </div>
   </footer>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
 </body>
 </html>

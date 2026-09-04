@@ -26,8 +26,36 @@
   <meta name="twitter:description" content="Simulatore stipendio 2026 100% client-side con privacy totale.">
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
 
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="/css/styles.css">
 
   <script type="application/ld+json">
@@ -60,7 +88,7 @@
   }
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+<body class="bg-gray-50 text-gray-800 pb-28 block">
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
       <div class="flex items-center gap-3">
@@ -82,21 +110,20 @@
     </div>
   </header>
 
-  <!-- Contenedor Principal Dividido -->
-  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
     
-    <!-- COLUMNA IZQUIERDA: Herramienta -->
-    <main class="w-full lg:w-8/12 xl:w-9/12">
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
       
-      <!-- Anuncio 'Above the Fold' -->
-      <div class="ad-skeleton-horizontal mb-6">
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
         <ins class="adsbygoogle"
-             style="display:block"
+             style="display:block;width:100%;min-width:0;"
              data-ad-client="ca-pub-9434300808171957"
              data-ad-slot="9606012335"
              data-ad-format="horizontal"
              data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
       <a href="/lavoro/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Lavoro</a>
@@ -204,67 +231,80 @@
           </div>
         </section>
       </div>
+    </main>
 
-      <!-- SEO Block -->
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar">
+        
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Come funziona il calcolo (Regole 2026)</h2>
         <p class="text-sm text-gray-700 mt-3 leading-relaxed">
-          Lo strumento parte dalla RAL e calcola prima i contributi INPS del lavoratore dipendente con aliquota del 9,19%, applicando il massimale previdenziale di € 119.000. L'importo che resta costituisce l'imponibile IRPEF su cui vengono applicati i tre scaglioni 2026: <strong>23% fino a € 28.000, 33% sulla fascia intermedia fino a € 50.000 e 43% oltre tale soglia</strong>. Su questa IRPEF lorda si innestano poi le detrazioni da lavoro dipendente dell'articolo 13 TUIR, con il meccanismo a rapporto e la maggiorazione di € 65 nella fascia da € 25.000 a € 35.000.
+          Lo strumento parte dalla RAL e calcola prima i contributi INPS del lavoratore dipendente con aliquota del 9,19%, applicando il massimale previdenziale di € 119.000[cite: 21]. L'importo che resta costituisce l'imponibile IRPEF su cui vengono applicati i tre scaglioni 2026: <strong>23% fino a € 28.000, 33% sulla fascia intermedia fino a € 50.000 e 43% oltre tale soglia</strong>[cite: 21]. Su questa IRPEF lorda si innestano poi le detrazioni da lavoro dipendente dell'articolo 13 TUIR, con il meccanismo a rapporto e la maggiorazione di € 65 nella fascia da € 25.000 a € 35.000[cite: 21].
         </p>
         <p class="text-sm text-gray-700 mt-4 leading-relaxed">
-          Il calcolo recepisce anche il <strong>nuovo cuneo fiscale strutturale 2026</strong>. Per i redditi inferiori a € 20.000 viene riconosciuto un bonus diretto sul netto, calcolato in percentuale sull'imponibile. Tra € 20.000 e € 40.000 viene invece applicata una detrazione ulteriore che abbatte direttamente l'IRPEF lorda. Le addizionali regionale e comunale restano configurabili, perché variano in base al territorio e alle delibere locali.
+          Il calcolo recepisce anche il <strong>nuovo cuneo fiscale strutturale 2026</strong>[cite: 21]. Per i redditi inferiori a € 20.000 viene riconosciuto un bonus diretto sul netto, calcolato in percentuale sull'imponibile[cite: 21]. Tra € 20.000 e € 40.000 viene invece applicata una detrazione ulteriore che abbatte direttamente l'IRPEF lorda[cite: 21]. Le addizionali regionale e comunale restano configurabili, perché variano in base al territorio e alle delibere locali[cite: 21].
         </p>
 
         <h3 class="mt-8 text-lg font-bold text-gray-900 border-b border-gray-200 pb-2">FAQ</h3>
         <dl class="text-sm text-gray-700 space-y-4 mt-4">
           <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
             <dt class="font-bold text-indigo-800 mb-1">Il netto coincide con la busta paga reale?</dt>
-            <dd class="leading-relaxed">No, perché mancano variabili come welfare, premi, familiari a carico, detrazioni aggiuntive e trattenute locali effettive del tuo comune o della tua regione.</dd>
+            <dd class="leading-relaxed">No, perché mancano variabili come welfare, premi, familiari a carico, detrazioni aggiuntive e trattenute locali effettive del tuo comune o della tua regione[cite: 21].</dd>
           </div>
           <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
             <dt class="font-bold text-indigo-800 mb-1">Il bonus cuneo viene sommato o sottratto?</dt>
-            <dd class="leading-relaxed">Sotto i € 20.000 viene aggiunto direttamente al netto; fra € 20.000 e € 40.000 si traduce invece in una detrazione ulteriore che riduce l'IRPEF dovuta.</dd>
+            <dd class="leading-relaxed">Sotto i € 20.000 viene aggiunto direttamente al netto; fra € 20.000 e € 40.000 si traduce invece in una detrazione ulteriore che riduce l'IRPEF dovuta[cite: 21].</dd>
           </div>
           <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
             <dt class="font-bold text-indigo-800 mb-1">Posso disattivare le detrazioni?</dt>
-            <dd class="leading-relaxed">Sì, puoi togliere la spunta dedicata se vuoi vedere il carico fiscale lordo prima delle detrazioni da lavoro dipendente.</dd>
+            <dd class="leading-relaxed">Sì, puoi togliere la spunta dedicata se vuoi vedere il carico fiscale lordo prima delle detrazioni da lavoro dipendente[cite: 21].</dd>
           </div>
         </dl>
       </section>
 
-      <!-- Anuncio extra para móviles -->
-      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
 
-    </main>
-
-    <!-- COLUMNA DERECHA: Sticky Sidebar -->
-    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
-      <div class="sticky-sidebar">
-        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
-        
-        <!-- Anuncio 'Sticky' Vertical -->
-        <div class="ad-skeleton-vertical">
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-9434300808171957"
-               data-ad-slot="9606012335"
-               data-ad-format="vertical"
-               data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-      </div>
-    </aside>
+    </div>
 
   </div>
 
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -284,5 +324,84 @@
 
   <script src="/js/main.js"></script>
   <script src="/js/stipendio-netto.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
 </body>
 </html>

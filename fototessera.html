@@ -7,12 +7,10 @@
   <meta name="description" content="Crea fototessere per Passaporto, Carta d'Identità (CIE) e Patente online. Rimozione sfondo IA Alta Qualità, ridimensionamento 35x45mm e PDF 10x15cm." />
   <link rel="canonical" href="https://strumentiutili.it/fototessera.html" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
   <link rel="apple-touch-icon" href="/assets/icon.png" />
 
-  <!-- Open Graph -->
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Generatore Fototessera Biometrica ICAO/CIE — StrumentiUtili.it" />
@@ -21,11 +19,39 @@
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
 
   <link rel="manifest" href="/manifest.json">
+
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- PDF-Lib e imgly Background Removal -->
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@imgly/background-removal@1.4.3/dist/browser/imgly-background-removal.js" crossorigin="anonymous"></script>
 
@@ -40,50 +66,62 @@
   }
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+<body class="bg-gray-50 text-gray-800 pb-28 block">
 
-  <!-- Header Fisso -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
       <div class="flex items-center gap-3">
-        <a href="index.html" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
         <div>
-          <a href="index.html" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
           <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
         </div>
       </div>
 
       <nav class="text-sm hidden lg:flex items-center gap-4">
-        <a href="index.html#lavoro" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
-        <a href="index.html#fiscale" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
-        <a href="index.html#finanza" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
-        <a href="index.html#pdf" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
-        <a href="index.html#ia" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
-        <a href="index.html#media" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+        <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8 flex-1 max-w-5xl">
-    <a href="index.html" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla home</a>
-
-    <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
-        <span>📸</span> Grafica &amp; Documenti Biometrici
-      </div>
-      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Generatore Fototessera Biometrica (35x45 mm)</h1>
-      <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-        Crea foto tessere conformi allo standard <strong>ICAO/OACI</strong> per Passaporto, Carta d'Identità Elettronica (CIE) e Patente. La rimozione dello sfondo avviene con IA ad alta definizione nel browser.
-      </p>
-      <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit">
-        <span>🔒 Privacy Totale:</span> L'elaborazione e il ritaglio operano al 100% sul tuo dispositivo senza invio cloud.
-      </div>
-    </section>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
       
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla home</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📸</span> Grafica &amp; Documenti Biometrici
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Generatore Fototessera Biometrica (35x45 mm)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Crea foto tessere conformi allo standard <strong>ICAO/OACI</strong> per Passaporto, Carta d'Identità Elettronica (CIE) e Patente. La rimozione dello sfondo avviene con IA ad alta definizione nel browser.
+        </p>
+        <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit">
+          <span>🔒 Privacy Totale:</span> L'elaborazione e il ritaglio operano al 100% sul tuo dispositivo senza invio cloud.
+        </div>
+      </section>
+
       <!-- EDITOR GRAFICO E INPUT -->
-      <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
         
         <h2 class="text-lg font-bold text-gray-900 border-b pb-2">1. Carica la foto</h2>
 
@@ -109,7 +147,6 @@
           </div>
 
           <div class="relative w-full max-w-[350px] mx-auto bg-gray-900 rounded-xl overflow-hidden shadow-inner flex items-center justify-center p-2">
-            
             <canvas id="photo-canvas" width="413" height="531" class="w-[280px] h-[360px] border border-gray-700 rounded shadow-md bg-white cursor-move touch-none"></canvas>
             
             <!-- Maschera guida biometrica ICAO overlay -->
@@ -152,10 +189,15 @@
 
       </div>
 
-      <!-- ANTEPRIMA E ESPORTAZIONE -->
-      <div class="lg:col-span-5 space-y-6">
-        <div class="bg-indigo-900 text-white rounded-xl p-6 shadow-md space-y-5 sticky top-24">
-          <h3 class="text-xs font-semibold tracking-wider uppercase text-indigo-300">Esito &amp; Download</h3>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <!-- ANTEPRIMA E ESPORTAZIONE -->
+        <div class="bg-indigo-900 text-white rounded-xl p-6 shadow-md space-y-5">
+          <h3 class="text-xs font-semibold tracking-wider uppercase text-indigo-300 border-b border-indigo-800 pb-2">Esito &amp; Download</h3>
 
           <div class="bg-indigo-950/80 p-4 rounded-lg border border-indigo-800 space-y-2 text-xs">
             <div class="flex justify-between">
@@ -182,37 +224,64 @@
             </button>
           </div>
         </div>
+
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- SEO BLOCK -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Requisiti Ufficiali delle Fototessere per Documenti Italiani</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Le foto tessere per la Carta d'Identità Elettronica (CIE), il Passaporto e la Patente di guida in Italia devono rispettare rigorosamente le specifiche biometriche dettate dal Ministero dell'Interno e dall'organizzazione ICAO.
+        </p>
+
+        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-2">Regole Biometriche Principali</h3>
+        <ul class="list-disc pl-6 text-gray-700 mb-4 space-y-2 text-sm">
+          <li><strong>Proporzioni del Volto:</strong> Il viso deve occupare tra il 70% e l'80% della foto (altezza della testa compresa tra 29 mm e 34 mm).</li>
+          <li><strong>Inquadratura:</strong> Lo sguardo deve essere rivolto frontalmente verso la fotocamera con un'espressione neutrale e bocca chiusa.</li>
+          <li><strong>Sfondo e Illuminazione:</strong> Lo sfondo deve essere di colore chiaro e uniforme (preferibilmente bianco), privo di ombre o riflessi.</li>
+        </ul>
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
 
     </div>
 
-    <!-- SEO BLOCK -->
-    <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Requisiti Ufficiali delle Fototessere per Documenti Italiani</h2>
-      <p class="text-gray-700 leading-relaxed mb-4">
-        Le foto tessere per la Carta d'Identità Elettronica (CIE), il Passaporto e la Patente di guida in Italia devono rispettare rigorosamente le specifiche biometriche dettate dal Ministero dell'Interno e dall'organizzazione ICAO.
-      </p>
+  </div>
 
-      <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-2">Regole Biometriche Principali</h3>
-      <ul class="list-disc pl-6 text-gray-700 mb-4 space-y-2 text-sm">
-        <li><strong>Proporzioni del Volto:</strong> Il viso deve occupare tra il 70% e l'80% della foto (altezza della testa compresa tra 29 mm e 34 mm).</li>
-        <li><strong>Inquadratura:</strong> Lo sguardo deve essere rivolto frontalmente verso la fotocamera con un'espressione neutrale e bocca chiusa.</li>
-        <li><strong>Sfondo e Illuminazione:</strong> Lo sfondo deve essere di colore chiaro e uniforme (preferibilmente bianco), privo di ombre o riflessi.</li>
-      </ul>
-    </section>
-
-    <!-- BANNER ADSENSE FINE MAIN -->
-    <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded p-2">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-  </main>
-
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -222,9 +291,9 @@
         </div>
         
         <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
-          <a href="contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
-          <a href="politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
-          <a href="avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
         </div>
       </div>
     </div>
@@ -232,5 +301,84 @@
 
   <script src="js/main.js"></script>
   <script src="js/fototessera.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
 </body>
 </html>
