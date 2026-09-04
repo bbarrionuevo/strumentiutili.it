@@ -140,6 +140,53 @@
         </div>
       </section>
 
+      <!-- INTEGRAZIONE MOTORE IMU 2026 -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 shadow-sm mb-6">
+        <h3 class="text-lg font-bold text-indigo-900 mb-2 flex items-center gap-2"><span>🏠</span> Calcolatore Rapido IMU 2026</h3>
+        <p class="text-xs text-indigo-700 mb-4">Calcola l'imposta applicando i moltiplicatori catastali e inserisci automaticamente il risultato nel modello F24 (con arrotondamento legale all'unità di euro).</p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+          <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+            <label class="block text-xs font-bold text-indigo-900 mb-1">Rendita (€)</label>
+            <input type="number" id="imu-rendita" placeholder="450.50" class="w-full px-3 py-2 border border-indigo-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+          <div class="col-span-2 sm:col-span-2 lg:col-span-1">
+            <label class="block text-xs font-bold text-indigo-900 mb-1">Categoria</label>
+            <select id="imu-categoria" class="w-full px-3 py-2 border border-indigo-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="A/2">A/2 - Abitazione civile</option>
+              <option value="A/1">A/1 - Lusso</option>
+              <option value="C/1">C/1 - Negozi</option>
+              <option value="C/2">C/2 - Cantine</option>
+              <option value="C/6">C/6 - Box auto</option>
+              <option value="D/5">D/5 - Credito</option>
+              <option value="TERRENO">Terreno Agr.</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-indigo-900 mb-1">Aliquota (‰)</label>
+            <input type="number" id="imu-aliquota" value="10.6" step="0.1" class="w-full px-3 py-2 border border-indigo-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-indigo-900 mb-1">Possesso (%)</label>
+            <input type="number" id="imu-quota" value="100" max="100" class="w-full px-3 py-2 border border-indigo-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-indigo-900 mb-1">Mesi</label>
+            <input type="number" id="imu-mesi" value="12" min="1" max="12" class="w-full px-3 py-2 border border-indigo-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 mb-4 text-xs font-medium text-indigo-800">
+          <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="imu-storico" class="rounded text-indigo-600 focus:ring-indigo-500"> Immobile Storico/Inagibile (-50%)</label>
+          <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="imu-comodato" class="rounded text-indigo-600 focus:ring-indigo-500"> Comodato a parenti (-50%)</label>
+          <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="imu-concordato" class="rounded text-indigo-600 focus:ring-indigo-500"> Canone Concordato (-25%)</label>
+        </div>
+
+        <button type="button" id="btn-auto-imu" class="bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold px-4 py-2 rounded-lg text-sm transition shadow-sm">
+          Calcola e Aggiungi al F24
+        </button>
+      </div>
+
       <!-- Form Compilazione Modello F24 Semplificato -->
       <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-6">
         
@@ -280,7 +327,12 @@
           L'<strong>F24 Semplificato</strong> è stato introdotto dall'Agenzia delle Entrate per agevolare i contribuenti nel pagamento delle imposte erariali, regionali e comunali. A differenza del modello Ordinario composto da più sezioni distinte, il Semplificato adotta un'unica griglia unificata.
         </p>
 
-        <h3 class="text-lg font-bold text-indigo-800 mb-2">Quando si usa l'F24 Semplificato?</h3>
+        <h3 class="text-lg font-bold text-indigo-800 mb-2 mt-6">Regole di Arrotondamento per i Tributi Locali (IMU)</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          A differenza delle imposte erariali (dove gli importi vanno indicati al centesimo), la normativa impone che i tributi locali come <strong>l'IMU debbano essere arrotondati all'unità di euro</strong>. Il nostro Calcolatore Rapido applica automaticamente la rivalutazione (del 5% o 25%), moltiplica per i coefficienti catastali corretti, e arrotonda l'imposta finale per difetto (sotto i 50 cent) o eccesso prima di inserirla nel modello F24.
+        </p>
+
+        <h3 class="text-lg font-bold text-indigo-800 mb-2 mt-6">Quando si usa l'F24 Semplificato?</h3>
         <p class="text-sm text-gray-700 leading-relaxed mb-4">
           È la scelta ideale per pagare tributi locali come <strong>IMU, TARI, TASI, IMI e Imposta di Soggiorno</strong>, oltre alle imposte erariali di base (IRPEF, cedolare secca). Nella colonna "Sezione" della griglia occorre indicare la sigla dell'ente di destinazione:
         </p>
@@ -290,9 +342,9 @@
           <li><strong>EL:</strong> Enti Locali (IMU, TARI, addizionali comunali)</li>
         </ul>
 
-        <h3 class="text-lg font-bold text-indigo-800 mb-2">Limitazioni del modello Semplificato</h3>
+        <h3 class="text-lg font-bold text-indigo-800 mb-2">Limitazioni e Saldo Zero</h3>
         <p class="text-sm text-gray-700 leading-relaxed">
-          Il modello Semplificato <strong>non può essere utilizzato</strong> per i versamenti verso l'INPS, INAIL, ENPALS o per tributi che richiedono la sezione Accise o la presenza di dati identificativi specifici (per cui occorre l'F24 ELIDE).
+          Il modello Semplificato <strong>non può essere utilizzato</strong> per i versamenti verso l'INPS, INAIL, ENPALS o per tributi che richiedono dati identificativi specifici (per cui occorre l'F24 ELIDE). Inoltre, qualora la compensazione tra crediti e debiti generi un <strong>Saldo Zero</strong>, il modello non può essere pagato in banca ma deve essere trasmesso unicamente per via telematica tramite i canali dell'Agenzia delle Entrate.
         </p>
       </section>
 
@@ -339,8 +391,67 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
+  <script src="/js/codice-fiscale.js"></script>
+  <script src="/js/imu.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/f24.js"></script>
+
+  <!-- SCRIPT PONTE: Dal Calcolatore IMU alla riga F24 Semplificato -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnAutoImu = document.getElementById('btn-auto-imu');
+      if (btnAutoImu && window.IMUCalculator) {
+        btnAutoImu.addEventListener('click', () => {
+          const data = {
+            rendita: document.getElementById('imu-rendita').value,
+            categoria: document.getElementById('imu-categoria').value,
+            aliquota: document.getElementById('imu-aliquota').value,
+            quota: document.getElementById('imu-quota').value,
+            mesi: document.getElementById('imu-mesi').value,
+            isStorico: document.getElementById('imu-storico').checked,
+            isComodato: document.getElementById('imu-comodato').checked,
+            isConcordato: document.getElementById('imu-concordato').checked
+          };
+
+          const calc = window.IMUCalculator.calcola(data);
+          
+          if (calc.impostaAnnua <= 0) {
+            alert('L\'imposta IMU calcolata è zero. Controlla i dati inseriti.');
+            return;
+          }
+
+          // Nel Semplificato il container si chiama 'container-semplificato-righe'
+          const btnAddRiga = document.querySelector('button[data-target="container-semplificato-righe"]');
+          if (btnAddRiga) {
+            btnAddRiga.click();
+            
+            // Trova l'ultima riga aggiunta nel container
+            const container = document.getElementById('container-semplificato-righe');
+            const righe = container.querySelectorAll('.riga-f24');
+            if (righe.length > 0) {
+              const ultimaRiga = righe[righe.length - 1];
+              const inputs = ultimaRiga.querySelectorAll('input');
+              
+              Array.from(inputs).forEach(input => {
+                const ph = (input.placeholder || '').toLowerCase();
+                if (ph.includes('sez') || ph.includes('el')) input.value = 'EL';
+                if (ph.includes('codice')) input.value = calc.codiceTributo;
+                if (ph.includes('anno') || ph.includes('aaaa')) input.value = new Date().getFullYear();
+                if (ph.includes('debito') || ph.includes('importo')) input.value = calc.impostaAnnua.toFixed(2); // Inserimento stringa decimale per il form
+              });
+              
+              // Forza il ricalcolo totale simulando un input
+              const event = new Event('input', { bubbles: true });
+              inputs[inputs.length - 1].dispatchEvent(event);
+              
+              alert(`Calcolo completato! Imposta arrotondata di ${calc.impostaAnnua}€ (Cod. ${calc.codiceTributo}) aggiunta come nuova riga al modello.`);
+            }
+          }
+        });
+      }
+    });
+  </script>
 
   <!-- GESTOR CENTRALIZADO DE ADSENSE -->
   <script>
