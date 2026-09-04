@@ -1,23 +1,23 @@
-(() => {
+(function () {
 'use strict';
 
 ```
 document.addEventListener('DOMContentLoaded', initScanner);
 
 function initScanner() {
-    const uploadInput = document.getElementById('img-upload');
-    const dropZone = document.getElementById('drop-zone');
-    const previewGrid = document.getElementById('preview-grid');
-    const btnGeneratePdf = document.getElementById('generate-pdf');
-    const statusMsg = document.getElementById('status-msg');
-    const filterSelect = document.getElementById('scan-filter');
-    const chkAutoCrop = document.getElementById('auto-crop');
+    var uploadInput = document.getElementById('img-upload');
+    var dropZone = document.getElementById('drop-zone');
+    var previewGrid = document.getElementById('preview-grid');
+    var btnGeneratePdf = document.getElementById('generate-pdf');
+    var statusMsg = document.getElementById('status-msg');
+    var filterSelect = document.getElementById('scan-filter');
+    var chkAutoCrop = document.getElementById('auto-crop');
 
-    const cropModal = document.getElementById('crop-modal');
-    const cropCanvas = document.getElementById('crop-canvas');
-    const cropContainer = document.getElementById('crop-container');
-    const btnCancelCrop = document.getElementById('btn-cancel-crop');
-    const btnApplyCrop = document.getElementById('btn-apply-crop');
+    var cropModal = document.getElementById('crop-modal');
+    var cropCanvas = document.getElementById('crop-canvas');
+    var cropContainer = document.getElementById('crop-container');
+    var btnCancelCrop = document.getElementById('btn-cancel-crop');
+    var btnApplyCrop = document.getElementById('btn-apply-crop');
 
     if (
         !uploadInput ||
@@ -33,60 +33,40 @@ function initScanner() {
         !btnCancelCrop ||
         !btnApplyCrop
     ) {
-        console.error('[Scanner] Faltan elementos necesarios del DOM.');
+        console.error('[Scanner] Faltan elementos del HTML.');
         return;
     }
 
-    const ctxCrop = cropCanvas.getContext('2d', {
-        alpha: false
-    });
+    var cropContext = cropCanvas.getContext('2d');
 
-    let cvReady = false;
-    let documentIdCounter = 1;
-    let documentsState = [];
-    let currentEditingId = null;
+    if (!cropContext) {
+        console.error('[Scanner] No se pudo obtener el contexto 2D.');
+        return;
+    }
 
-    let dragPointIndex = -1;
-    let imgDisplayScale = 1;
+    var cvReady = false;
+    var documents = [];
+    var nextDocumentId = 1;
 
-    // ==========================================================
-    // CONFIGURACIÓN
-    // ==========================================================
+    var currentEditingId = null;
+    var draggedPointIndex = -1;
+    var displayScale = 1;
 
-    const CONFIG = {
-        detectionMaxDimension: 1100,
+    var CONFIG = {
+        detectionMaxDimension: 1200,
 
-        // Área mínima del documento respecto de la imagen.
-        minDocumentAreaRatio: 0.12,
+        minAreaRatio: 0.08,
+        maxAreaRatio: 0.985,
 
-        // Evita aceptar un contorno que sea prácticamente
-        // toda la fotografía.
-        maxDocumentAreaRatio: 0.985,
+        minSideLength: 40,
 
-        // Distancia mínima entre un vértice y otro.
-        minSideLength: 35,
-
-        // Permite detectar documentos con perspectiva.
-        maxAngleCosine: 0.55,
-
-        // Evita depender de un único Canny.
-        cannyPairs: [
-            [40, 120],
-            [60, 160],
-            [80, 180],
-            [100, 220]
-        ],
-
-        // Candidatos máximos a conservar.
-        maxCandidates: 40,
-
-        // JPEG del PDF.
-        jpegQuality: 0.94,
-
-        // Dimensiones máximas de salida.
         maxOutputWidth: 3000,
-        maxOutputHeight: 4000
+        maxOutputHeight: 4000,
+
+        jpegQuality: 0.94
     };
+
+    console.log('[Scanner] Inicializando...');
 
     // ==========================================================
     // OPEN CV
@@ -95,13 +75,15 @@ function initScanner() {
     waitForOpenCV();
 
     function waitForOpenCV() {
-        statusMsg.textContent = 'Caricamento motore IA...';
-        statusMsg.className = 'mt-4 text-sm font-medium text-amber-600';
+        var attempts = 0;
 
-        let attempts = 0;
+        setStatus(
+            'Caricamento motore IA (Computer Vision) in corso... Attendi.',
+            'amber'
+        );
 
-        const timer = setInterval(() => {
-            attempts++;
+        var timer = setInterval(function () {
+            attempts += 1;
 
             try {
                 if (
@@ -114,64 +96,103 @@ function initScanner() {
 
                     cvReady = true;
 
-                    statusMsg.textContent =
-                        'Motore IA pronto. Carica i tuoi documenti.';
+                    setStatus(
+                        'Motore IA pronto. Carica i tuoi documenti.',
+                        'green'
+                    );
 
-                    statusMsg.className =
-                        'mt-4 text-sm font-medium text-emerald-600';
-
-                    console.info('[Scanner] OpenCV pronto.');
+                    console.log('[Scanner] OpenCV pronto.');
+                    return;
                 }
             } catch (error) {
-                console.warn('[Scanner] OpenCV non ancora pronto.', error);
+                console.warn(
+                    '[Scanner] Errore durante verifica OpenCV:',
+                    error
+                );
             }
 
-            if (attempts >= 160) {
+            if (attempts >= 120) {
                 clearInterval(timer);
 
                 cvReady = false;
 
-                statusMsg.textContent =
-                    'Errore di caricamento del motore IA. Ricarica la pagina.';
+                setStatus(
+                    'Errore nel caricamento del motore IA. Controlla la console.',
+                    'red'
+                );
 
-                statusMsg.className =
-                    'mt-4 text-sm font-medium text-red-600';
-
-                console.error('[Scanner] OpenCV timeout.');
+                console.error(
+                    '[Scanner] Timeout caricamento OpenCV.'
+                );
             }
         }, 250);
     }
 
+    function setStatus(message, type) {
+        statusMsg.textContent = message;
+
+        if (type === 'green') {
+            statusMsg.className =
+                'mt-5 text-sm font-medium text-emerald-600';
+            return;
+        }
+
+        if (type === 'red') {
+            statusMsg.className =
+                'mt-5 text-sm font-medium text-red-600';
+            return;
+        }
+
+        if (type === 'indigo') {
+            statusMsg.className =
+                'mt-5 text-sm font-medium text-indigo-600';
+            return;
+        }
+
+        statusMsg.className =
+            'mt-5 text-sm font-medium text-amber-600';
+    }
+
     // ==========================================================
-    // EVENTI UPLOAD
+    // UPLOAD
     // ==========================================================
 
-    dropZone.addEventListener('click', () => {
+    dropZone.addEventListener('click', function () {
         uploadInput.value = '';
         uploadInput.click();
     });
 
-    dropZone.addEventListener('keydown', (event) => {
+    dropZone.addEventListener('keydown', function (event) {
         if (
             event.key === 'Enter' ||
             event.key === ' '
         ) {
             event.preventDefault();
+
             uploadInput.value = '';
             uploadInput.click();
         }
     });
 
-    uploadInput.addEventListener('change', (event) => {
-        const files = Array.from(event.target.files || []);
+    uploadInput.addEventListener('change', function (event) {
+        var files = Array.prototype.slice.call(
+            event.target.files || []
+        );
 
-        if (files.length > 0) {
-            handleFiles(files);
+        console.log(
+            '[Scanner] Input change. Files:',
+            files.length
+        );
+
+        if (!files.length) {
+            return;
         }
+
+        handleFiles(files);
     });
 
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, event => {
+    ['dragenter', 'dragover'].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -182,8 +203,8 @@ function initScanner() {
         });
     });
 
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, event => {
+    ['dragleave', 'drop'].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -197,173 +218,229 @@ function initScanner() {
                 event.dataTransfer &&
                 event.dataTransfer.files
             ) {
-                const files = Array.from(
+                var files = Array.prototype.slice.call(
                     event.dataTransfer.files
                 );
 
-                if (files.length > 0) {
+                if (files.length) {
                     handleFiles(files);
                 }
             }
         });
     });
 
-    filterSelect.addEventListener('change', async () => {
-        if (!documentsState.length) {
+    // ==========================================================
+    // FILTRO
+    // ==========================================================
+
+    filterSelect.addEventListener('change', function () {
+        reprocessAllDocuments();
+    });
+
+    async function reprocessAllDocuments() {
+        if (!documents.length) {
             return;
         }
 
-        const selectedFilter = filterSelect.value;
+        setStatus(
+            'Aggiornamento delle scansioni...',
+            'indigo'
+        );
 
-        statusMsg.textContent =
-            'Aggiornamento delle scansioni...';
+        for (var i = 0; i < documents.length; i++) {
+            documents[i].filter = filterSelect.value;
 
-        statusMsg.className =
-            'mt-4 text-sm font-medium text-indigo-600';
-
-        for (const doc of documentsState) {
-            doc.filter = selectedFilter;
-
-            await processDocument(doc);
+            await processDocument(
+                documents[i]
+            );
         }
 
         updatePreviewGrid();
 
-        statusMsg.textContent =
-            'Filtro applicato correttamente.';
-
-        statusMsg.className =
-            'mt-4 text-sm font-medium text-emerald-600';
-    });
+        setStatus(
+            'Filtro applicato correttamente.',
+            'green'
+        );
+    }
 
     // ==========================================================
-    // FILES
+    // HANDLE FILES
     // ==========================================================
 
     async function handleFiles(files) {
         if (!cvReady) {
             alert(
-                'Attendi il caricamento del motore di visione.'
+                'Il motore IA non è ancora pronto. Attendi qualche secondo.'
             );
+
             return;
         }
 
-        const imageFiles = files.filter(file =>
-            file &&
-            typeof file.type === 'string' &&
-            file.type.startsWith('image/')
-        );
+        var imageFiles = files.filter(function (file) {
+            return (
+                file &&
+                typeof file.type === 'string' &&
+                file.type.indexOf('image/') === 0
+            );
+        });
 
         if (!imageFiles.length) {
-            alert('Seleziona almeno un file immagine.');
+            alert(
+                'Nessuna immagine valida trovata.'
+            );
+
             return;
         }
 
-        statusMsg.textContent =
-            `Elaborazione di ${imageFiles.length} documento/i...`;
+        console.log(
+            '[Scanner] Immagini da elaborare:',
+            imageFiles.length
+        );
 
-        statusMsg.className =
-            'mt-4 text-sm font-medium text-indigo-600';
+        setStatus(
+            'Elaborazione di ' +
+            imageFiles.length +
+            ' documento/i...',
+            'indigo'
+        );
 
-        for (const file of imageFiles) {
+        for (
+            var i = 0;
+            i < imageFiles.length;
+            i++
+        ) {
+            var file = imageFiles[i];
+
             try {
-                const img = await loadImageFromFile(file);
+                console.log(
+                    '[Scanner] Caricamento:',
+                    file.name
+                );
 
-                let detectedPoints = null;
+                var image =
+                    await loadImageFromFile(file);
+
+                console.log(
+                    '[Scanner] Immagine caricata:',
+                    image.naturalWidth,
+                    'x',
+                    image.naturalHeight
+                );
+
+                var detectedPoints = null;
 
                 if (chkAutoCrop.checked) {
                     detectedPoints =
-                        detectDocumentCorners(img);
+                        detectDocumentCorners(
+                            image
+                        );
                 }
 
-                const points =
-                    isValidQuad(detectedPoints, img.width, img.height)
-                        ? orderPoints(detectedPoints)
-                        : getSafeDefaultCorners(
-                            img.width,
-                            img.height
+                var autoDetected =
+                    isValidQuad(
+                        detectedPoints,
+                        image.naturalWidth,
+                        image.naturalHeight
+                    );
+
+                var points;
+
+                if (autoDetected) {
+                    points =
+                        orderPoints(
+                            detectedPoints
                         );
 
-                const doc = {
-                    id: documentIdCounter++,
-                    file,
-                    imgElement: img,
-                    points,
+                    console.log(
+                        '[Scanner] Documento rilevato automaticamente.'
+                    );
+                } else {
+                    points =
+                        getDefaultCorners(
+                            image.naturalWidth,
+                            image.naturalHeight
+                        );
+
+                    console.log(
+                        '[Scanner] Rilevamento automatico non affidabile; uso fallback.'
+                    );
+                }
+
+                var documentItem = {
+                    id: nextDocumentId++,
+                    file: file,
+                    imgElement: image,
+                    points: points,
                     filter: filterSelect.value,
                     processedCanvas: null,
-                    detectedAutomatically:
-                        isValidQuad(
-                            detectedPoints,
-                            img.width,
-                            img.height
-                        ),
-                    detectionConfidence:
-                        detectedPoints &&
-                        typeof detectedPoints.confidence === 'number'
-                            ? detectedPoints.confidence
-                            : 0
+                    detectedAutomatically: autoDetected
                 };
 
-                documentsState.push(doc);
+                documents.push(
+                    documentItem
+                );
 
-                await processDocument(doc);
+                await processDocument(
+                    documentItem
+                );
 
-                /*
-                 * Actualizamos inmediatamente para que el usuario
-                 * vea cada documento a medida que se procesa.
-                 */
                 updatePreviewGrid();
 
             } catch (error) {
                 console.error(
-                    '[Scanner] Error procesando imagen:',
+                    '[Scanner] Errore elaborazione file:',
+                    file.name,
                     error
                 );
             }
         }
 
-        statusMsg.textContent =
-            'Elaborazione completata. Controlla i bordi rilevati.';
-
-        statusMsg.className =
-            'mt-4 text-sm font-medium text-emerald-600';
+        setStatus(
+            'Elaborazione completata.',
+            'green'
+        );
 
         updatePreviewGrid();
     }
 
     function loadImageFromFile(file) {
-        return new Promise((resolve, reject) => {
-            const objectUrl =
+        return new Promise(function (resolve, reject) {
+            var url =
                 URL.createObjectURL(file);
 
-            const img = new Image();
+            var image =
+                new Image();
 
-            img.onload = () => {
-                URL.revokeObjectURL(objectUrl);
+            image.onload = function () {
+                URL.revokeObjectURL(url);
 
-                if (!img.naturalWidth || !img.naturalHeight) {
+                if (
+                    !image.naturalWidth ||
+                    !image.naturalHeight
+                ) {
                     reject(
                         new Error(
-                            'Immagine senza dimensioni valide.'
+                            'L immagine non ha dimensioni valide.'
                         )
                     );
+
                     return;
                 }
 
-                resolve(img);
+                resolve(image);
             };
 
-            img.onerror = () => {
-                URL.revokeObjectURL(objectUrl);
+            image.onerror = function () {
+                URL.revokeObjectURL(url);
 
                 reject(
                     new Error(
-                        'Errore durante il caricamento dell’immagine.'
+                        'Impossibile caricare l immagine.'
                     )
                 );
             };
 
-            img.src = objectUrl;
+            image.src = url;
         });
     }
 
@@ -371,58 +448,63 @@ function initScanner() {
     // FALLBACK
     // ==========================================================
 
-    function getSafeDefaultCorners(width, height) {
-        const marginX = width * 0.035;
-        const marginY = height * 0.035;
+    function getDefaultCorners(
+        width,
+        height
+    ) {
+        var marginX =
+            width * 0.03;
+
+        var marginY =
+            height * 0.03;
 
         return [
-            { x: marginX, y: marginY },
-            { x: width - marginX, y: marginY },
-            { x: width - marginX, y: height - marginY },
-            { x: marginX, y: height - marginY }
+            {
+                x: marginX,
+                y: marginY
+            },
+            {
+                x: width - marginX,
+                y: marginY
+            },
+            {
+                x: width - marginX,
+                y: height - marginY
+            },
+            {
+                x: marginX,
+                y: height - marginY
+            }
         ];
     }
 
     // ==========================================================
-    // AUTO CROP
-    //
-    // Strategia:
-    //
-    // 1. riduzione immagine
-    // 2. scala di grigi
-    // 3. riduzione rumore
-    // 4. diversi Canny
-    // 5. dilatazione
-    // 6. threshold adattivo
-    // 7. ricerca contorni
-    // 8. approxPolyDP
-    // 9. validazione quadrilatero
-    // 10. scoring
+    // AUTO DETECTION
     // ==========================================================
 
-    function detectDocumentCorners(img) {
-        let src = null;
-        let resized = null;
-        let gray = null;
-        let blurred = null;
+    function detectDocumentCorners(image) {
+        var src = null;
+        var small = null;
+        var gray = null;
+        var blurred = null;
 
-        const allCandidates = [];
+        var candidates = [];
 
         try {
-            src = cv.imread(img);
+            src =
+                cv.imread(image);
 
             if (!src || src.empty()) {
                 return null;
             }
 
-            const originalWidth = src.cols;
-            const originalHeight = src.rows;
+            var originalWidth =
+                src.cols;
 
-            /*
-             * Le immagini delle fotocamere possono essere enormi.
-             * 1100 px è un buon compromesso qualità/prestazioni.
-             */
-            const scale =
+            var originalHeight =
+                src.rows;
+
+            var scale =
                 Math.min(
                     1,
                     CONFIG.detectionMaxDimension /
@@ -432,254 +514,190 @@ function initScanner() {
                     )
                 );
 
-            const resizedWidth =
+            var width =
                 Math.max(
                     1,
                     Math.round(
-                        originalWidth * scale
+                        originalWidth *
+                        scale
                     )
                 );
 
-            const resizedHeight =
+            var height =
                 Math.max(
                     1,
                     Math.round(
-                        originalHeight * scale
+                        originalHeight *
+                        scale
                     )
                 );
 
-            resized = new cv.Mat();
+            small =
+                new cv.Mat();
 
             cv.resize(
                 src,
-                resized,
+                small,
                 new cv.Size(
-                    resizedWidth,
-                    resizedHeight
+                    width,
+                    height
                 ),
                 0,
                 0,
                 cv.INTER_AREA
             );
 
-            gray = new cv.Mat();
+            gray =
+                new cv.Mat();
 
-            /*
-             * cv.imread() normalmente devuelve RGBA.
-             */
-            if (resized.channels() === 4) {
+            if (small.channels() === 4) {
                 cv.cvtColor(
-                    resized,
+                    small,
                     gray,
                     cv.COLOR_RGBA2GRAY
                 );
-            } else if (resized.channels() === 3) {
+            } else if (small.channels() === 3) {
                 cv.cvtColor(
-                    resized,
+                    small,
                     gray,
                     cv.COLOR_RGB2GRAY
                 );
             } else {
-                resized.copyTo(gray);
+                small.copyTo(gray);
             }
 
-            /*
-             * Suavizado para quitar ruido de cámara.
-             */
-            blurred = new cv.Mat();
+            blurred =
+                new cv.Mat();
 
             cv.GaussianBlur(
                 gray,
                 blurred,
-                new cv.Size(5, 5),
+                new cv.Size(
+                    5,
+                    5
+                ),
                 0,
                 0,
                 cv.BORDER_DEFAULT
             );
 
             // --------------------------------------------------
-            // PASADAS CANNY
+            // CANNY 1
             // --------------------------------------------------
 
-            for (
-                const [low, high]
-                of CONFIG.cannyPairs
-            ) {
-                let edges = null;
-                let dilated = null;
-                let kernel = null;
-
-                try {
-                    edges = new cv.Mat();
-
-                    cv.Canny(
-                        blurred,
-                        edges,
-                        low,
-                        high,
-                        3,
-                        false
-                    );
-
-                    kernel =
-                        cv.Mat.ones(
-                            3,
-                            3,
-                            cv.CV_8U
-                        );
-
-                    dilated = new cv.Mat();
-
-                    cv.dilate(
-                        edges,
-                        dilated,
-                        kernel
-                    );
-
-                    collectContourCandidates(
-                        dilated,
-                        resizedWidth,
-                        resizedHeight,
-                        scale,
-                        allCandidates
-                    );
-
-                } finally {
-                    if (edges) edges.delete();
-                    if (dilated) dilated.delete();
-                    if (kernel) kernel.delete();
-                }
-            }
-
-            // --------------------------------------------------
-            // PASADA THRESHOLD ADAPTIVO
-            //
-            // Muy útil en fotos con iluminación irregular.
-            // --------------------------------------------------
-
-            {
-                let adaptive = null;
-
-                try {
-                    adaptive = new cv.Mat();
-
-                    cv.adaptiveThreshold(
-                        blurred,
-                        adaptive,
-                        255,
-                        cv.ADAPTIVE_THRESH_GAUSSIAN_C,
-                        cv.THRESH_BINARY,
-                        21,
-                        7
-                    );
-
-                    /*
-                     * Invertimos para que bordes oscuros queden
-                     * mejor representados.
-                     */
-                    cv.bitwise_not(
-                        adaptive,
-                        adaptive
-                    );
-
-                    collectContourCandidates(
-                        adaptive,
-                        resizedWidth,
-                        resizedHeight,
-                        scale,
-                        allCandidates
-                    );
-
-                } finally {
-                    if (adaptive) adaptive.delete();
-                }
-            }
-
-            // --------------------------------------------------
-            // PASADA OTSU
-            // --------------------------------------------------
-
-            {
-                let threshold = null;
-
-                try {
-                    threshold = new cv.Mat();
-
-                    cv.threshold(
-                        blurred,
-                        threshold,
-                        0,
-                        255,
-                        cv.THRESH_BINARY +
-                        cv.THRESH_OTSU
-                    );
-
-                    cv.bitwise_not(
-                        threshold,
-                        threshold
-                    );
-
-                    collectContourCandidates(
-                        threshold,
-                        resizedWidth,
-                        resizedHeight,
-                        scale,
-                        allCandidates
-                    );
-
-                } finally {
-                    if (threshold) threshold.delete();
-                }
-            }
-
-            if (!allCandidates.length) {
-                return null;
-            }
-
-            /*
-             * Ordenamos por score.
-             */
-            allCandidates.sort(
-                (a, b) =>
-                    b.score - a.score
+            runCannyPass(
+                blurred,
+                30,
+                100,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
             );
 
-            const best =
-                allCandidates[0];
+            // --------------------------------------------------
+            // CANNY 2
+            // --------------------------------------------------
 
-            if (!best) {
+            runCannyPass(
+                blurred,
+                50,
+                150,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+            // --------------------------------------------------
+            // CANNY 3
+            // --------------------------------------------------
+
+            runCannyPass(
+                blurred,
+                70,
+                180,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+            // --------------------------------------------------
+            // CANNY 4
+            // --------------------------------------------------
+
+            runCannyPass(
+                blurred,
+                90,
+                220,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+            // --------------------------------------------------
+            // ADAPTIVE THRESHOLD
+            // --------------------------------------------------
+
+            runAdaptivePass(
+                blurred,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+            // --------------------------------------------------
+            // OTSU
+            // --------------------------------------------------
+
+            runOtsuPass(
+                blurred,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+            if (!candidates.length) {
                 return null;
             }
+
+            candidates.sort(
+                function (a, b) {
+                    return (
+                        b.score -
+                        a.score
+                    );
+                }
+            );
+
+            console.log(
+                '[Scanner] Candidati:',
+                candidates.length,
+                'Best score:',
+                candidates[0].score
+            );
 
             /*
-             * Exigimos una confianza mínima.
-             * Evita recortar basura en fotografías
-             * donde claramente no existe un documento.
+             * Umbral relativamente basso:
+             * preferimos un detector conservador
+             * a inventar un recorte absurdo.
              */
-            if (best.score < 0.18) {
+            if (
+                candidates[0].score <
+                0.22
+            ) {
                 return null;
             }
 
-            const confidence =
-                Math.min(
-                    1,
-                    Math.max(
-                        0,
-                        best.score
-                    )
-                );
-
-            return {
-                ...best.points.map(point => ({
-                    x: point.x,
-                    y: point.y
-                })),
-                confidence
-            };
+            return candidates[0].points;
 
         } catch (error) {
-            console.warn(
-                '[Scanner] Auto-crop fallido:',
+            console.error(
+                '[Scanner] Errore auto detection:',
                 error
             );
 
@@ -687,29 +705,176 @@ function initScanner() {
 
         } finally {
             if (src) src.delete();
-            if (resized) resized.delete();
+            if (small) small.delete();
             if (gray) gray.delete();
             if (blurred) blurred.delete();
         }
     }
 
     // ==========================================================
-    // CANDIDATOS
+    // CANNY
     // ==========================================================
 
-    function collectContourCandidates(
-        binary,
-        width,
-        height,
+    function runCannyPass(
+        gray,
+        lowThreshold,
+        highThreshold,
         scale,
+        originalWidth,
+        originalHeight,
         candidates
     ) {
-        let contours = null;
-        let hierarchy = null;
+        var edges = null;
+        var dilated = null;
+        var kernel = null;
 
         try {
-            contours = new cv.MatVector();
-            hierarchy = new cv.Mat();
+            edges =
+                new cv.Mat();
+
+            cv.Canny(
+                gray,
+                edges,
+                lowThreshold,
+                highThreshold,
+                3,
+                false
+            );
+
+            kernel =
+                cv.Mat.ones(
+                    3,
+                    3,
+                    cv.CV_8U
+                );
+
+            dilated =
+                new cv.Mat();
+
+            cv.dilate(
+                edges,
+                dilated,
+                kernel
+            );
+
+            collectCandidates(
+                dilated,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+        } finally {
+            if (edges) edges.delete();
+            if (dilated) dilated.delete();
+            if (kernel) kernel.delete();
+        }
+    }
+
+    // ==========================================================
+    // ADAPTIVE
+    // ==========================================================
+
+    function runAdaptivePass(
+        gray,
+        scale,
+        originalWidth,
+        originalHeight,
+        candidates
+    ) {
+        var threshold = null;
+
+        try {
+            threshold =
+                new cv.Mat();
+
+            cv.adaptiveThreshold(
+                gray,
+                threshold,
+                255,
+                cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+                cv.THRESH_BINARY_INV,
+                31,
+                8
+            );
+
+            collectCandidates(
+                threshold,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+        } finally {
+            if (threshold) {
+                threshold.delete();
+            }
+        }
+    }
+
+    // ==========================================================
+    // OTSU
+    // ==========================================================
+
+    function runOtsuPass(
+        gray,
+        scale,
+        originalWidth,
+        originalHeight,
+        candidates
+    ) {
+        var threshold = null;
+
+        try {
+            threshold =
+                new cv.Mat();
+
+            cv.threshold(
+                gray,
+                threshold,
+                0,
+                255,
+                cv.THRESH_BINARY_INV +
+                cv.THRESH_OTSU
+            );
+
+            collectCandidates(
+                threshold,
+                scale,
+                originalWidth,
+                originalHeight,
+                candidates
+            );
+
+        } finally {
+            if (threshold) {
+                threshold.delete();
+            }
+        }
+    }
+
+    // ==========================================================
+    // CANDIDATES
+    // ==========================================================
+
+    function collectCandidates(
+        binary,
+        scale,
+        originalWidth,
+        originalHeight,
+        candidates
+    ) {
+        var contours = null;
+        var hierarchy = null;
+
+        try {
+            contours =
+                new cv.MatVector();
+
+            hierarchy =
+                new cv.Mat();
 
             cv.findContours(
                 binary,
@@ -719,57 +884,60 @@ function initScanner() {
                 cv.CHAIN_APPROX_SIMPLE
             );
 
-            const imageArea =
-                width * height;
+            var imageArea =
+                binary.cols *
+                binary.rows;
 
             for (
-                let i = 0;
+                var i = 0;
                 i < contours.size();
                 i++
             ) {
-                const contour =
+                var contour =
                     contours.get(i);
 
                 try {
-                    const contourArea =
+                    var contourArea =
                         Math.abs(
                             cv.contourArea(
                                 contour
                             )
                         );
 
-                    const areaRatio =
+                    var areaRatio =
                         contourArea /
                         imageArea;
 
                     if (
                         areaRatio <
-                        CONFIG.minDocumentAreaRatio
+                        CONFIG.minAreaRatio
                     ) {
                         continue;
                     }
 
                     if (
                         areaRatio >
-                        CONFIG.maxDocumentAreaRatio
+                        CONFIG.maxAreaRatio
                     ) {
                         continue;
                     }
 
-                    const perimeter =
+                    var perimeter =
                         cv.arcLength(
                             contour,
                             true
                         );
 
-                    if (!Number.isFinite(perimeter) || perimeter <= 0) {
+                    if (
+                        !Number.isFinite(
+                            perimeter
+                        ) ||
+                        perimeter <= 0
+                    ) {
                         continue;
                     }
 
-                    /*
-                     * Probamos varias tolerancias de aproximación.
-                     */
-                    const epsilonFactors = [
+                    var epsilons = [
                         0.015,
                         0.02,
                         0.025,
@@ -778,17 +946,19 @@ function initScanner() {
                     ];
 
                     for (
-                        const factor
-                        of epsilonFactors
+                        var e = 0;
+                        e < epsilons.length;
+                        e++
                     ) {
-                        const approx =
+                        var approx =
                             new cv.Mat();
 
                         try {
                             cv.approxPolyDP(
                                 contour,
                                 approx,
-                                factor * perimeter,
+                                perimeter *
+                                epsilons[e],
                                 true
                             );
 
@@ -806,43 +976,50 @@ function initScanner() {
                                 continue;
                             }
 
-                            const points =
-                                matToPoints(
-                                    approx
+                            var points = [];
+
+                            for (
+                                var p = 0;
+                                p < 4;
+                                p++
+                            ) {
+                                points.push({
+                                    x:
+                                        approx.data32S[
+                                            p * 2
+                                        ] /
+                                        scale,
+
+                                    y:
+                                        approx.data32S[
+                                            p * 2 + 1
+                                        ] /
+                                        scale
+                                });
+                            }
+
+                            points =
+                                orderPoints(
+                                    points
                                 );
 
-                            const originalPoints =
-                                points.map(
-                                    point => ({
-                                        x:
-                                            point.x /
-                                            scale,
-                                        y:
-                                            point.y /
-                                            scale
-                                    })
+                            var metrics =
+                                evaluateQuadrilateral(
+                                    points,
+                                    originalWidth,
+                                    originalHeight
                                 );
 
-                            const metrics =
-                                evaluateQuad(
-                                    originalPoints,
-                                    width /
-                                    scale,
-                                    height /
-                                    scale
-                                );
-
-                            if (!metrics.valid) {
+                            if (
+                                !metrics.valid
+                            ) {
                                 continue;
                             }
 
-                            /*
-                             * Evitamos duplicados prácticamente iguales.
-                             */
                             if (
-                                isSimilarCandidate(
+                                hasSimilarCandidate(
                                     candidates,
-                                    originalPoints
+                                    points
                                 )
                             ) {
                                 continue;
@@ -850,7 +1027,8 @@ function initScanner() {
 
                             candidates.push({
                                 points:
-                                    originalPoints,
+                                    points,
+
                                 score:
                                     metrics.score
                             });
@@ -859,82 +1037,33 @@ function initScanner() {
                             approx.delete();
                         }
                     }
-
                 } finally {
                     contour.delete();
                 }
             }
 
-            /*
-             * Evita crecimiento excesivo.
-             */
-            if (
-                candidates.length >
-                CONFIG.maxCandidates
-            ) {
-                candidates.sort(
-                    (a, b) =>
-                        b.score - a.score
-                );
-
-                candidates.length =
-                    CONFIG.maxCandidates;
+        } finally {
+            if (contours) {
+                contours.delete();
             }
 
-        } catch (error) {
-            console.warn(
-                '[Scanner] Errore durante ricerca contorni:',
-                error
-            );
-
-        } finally {
-            if (contours) contours.delete();
-            if (hierarchy) hierarchy.delete();
+            if (hierarchy) {
+                hierarchy.delete();
+            }
         }
     }
 
     // ==========================================================
-    // MAT -> POINTS
+    // QUADRILATERAL
     // ==========================================================
 
-    function matToPoints(mat) {
-        const points = [];
-
-        for (
-            let i = 0;
-            i < mat.rows;
-            i++
-        ) {
-            /*
-             * approxPolyDP con CV_32S normalmente
-             * utilizza data32S.
-             */
-            const x =
-                mat.data32S[i * 2];
-
-            const y =
-                mat.data32S[i * 2 + 1];
-
-            points.push({
-                x,
-                y
-            });
-        }
-
-        return orderPoints(points);
-    }
-
-    // ==========================================================
-    // VALIDACIÓN DEL QUAD
-    // ==========================================================
-
-    function evaluateQuad(
+    function evaluateQuadrilateral(
         points,
         imageWidth,
         imageHeight
     ) {
         if (
-            !Array.isArray(points) ||
+            !points ||
             points.length !== 4
         ) {
             return {
@@ -943,31 +1072,31 @@ function initScanner() {
             };
         }
 
-        const ordered =
+        var ordered =
             orderPoints(points);
 
-        const [
-            tl,
-            tr,
-            br,
-            bl
-        ] = ordered;
+        var tl = ordered[0];
+        var tr = ordered[1];
+        var br = ordered[2];
+        var bl = ordered[3];
 
-        const imageArea =
-            imageWidth * imageHeight;
+        var area =
+            polygonArea(
+                ordered
+            );
 
-        const quadArea =
-            polygonArea(ordered);
-
-        const areaRatio =
-            quadArea / imageArea;
+        var ratio =
+            area /
+            (
+                imageWidth *
+                imageHeight
+            );
 
         if (
-            !Number.isFinite(areaRatio) ||
-            areaRatio <
-            CONFIG.minDocumentAreaRatio ||
-            areaRatio >
-            CONFIG.maxDocumentAreaRatio
+            ratio <
+            CONFIG.minAreaRatio ||
+            ratio >
+            CONFIG.maxAreaRatio
         ) {
             return {
                 valid: false,
@@ -975,28 +1104,42 @@ function initScanner() {
             };
         }
 
-        const widthTop =
-            distance(tl, tr);
+        var top =
+            distance(
+                tl,
+                tr
+            );
 
-        const widthBottom =
-            distance(bl, br);
+        var right =
+            distance(
+                tr,
+                br
+            );
 
-        const heightLeft =
-            distance(tl, bl);
+        var bottom =
+            distance(
+                bl,
+                br
+            );
 
-        const heightRight =
-            distance(tr, br);
+        var left =
+            distance(
+                tl,
+                bl
+            );
 
-        const minSide =
+        var minSide =
             Math.min(
-                widthTop,
-                widthBottom,
-                heightLeft,
-                heightRight
+                top,
+                right,
+                bottom,
+                left
             );
 
         if (
-            !Number.isFinite(minSide) ||
+            !Number.isFinite(
+                minSide
+            ) ||
             minSide <
             CONFIG.minSideLength
         ) {
@@ -1006,241 +1149,336 @@ function initScanner() {
             };
         }
 
-        /*
-         * Ángulos.
-         *
-         * Un documento real puede tener perspectiva,
-         * por lo que no exigimos 90 grados perfectos.
-         */
-        const angleCosines = [
-            angleCosine(
-                bl,
-                tl,
-                tr
-            ),
-            angleCosine(
-                tl,
-                tr,
-                br
-            ),
-            angleCosine(
-                tr,
-                br,
-                bl
-            ),
-            angleCosine(
-                br,
-                bl,
-                tl
-            )
-        ];
-
-        const maxAbsCos =
-            Math.max(
-                ...angleCosines.map(
-                    value =>
-                        Math.abs(value)
-                )
-            );
-
-        if (
-            maxAbsCos >
-            CONFIG.maxAngleCosine
-        ) {
-            return {
-                valid: false,
-                score: 0
-            };
-        }
-
-        /*
-         * Relación entre lados opuestos.
-         *
-         * Evita aceptar cuadriláteros muy deformes.
-         */
-        const widthBalance =
+        var widthBalance =
             Math.min(
-                widthTop,
-                widthBottom
+                top,
+                bottom
             ) /
             Math.max(
-                widthTop,
-                widthBottom
+                top,
+                bottom
             );
 
-        const heightBalance =
+        var heightBalance =
             Math.min(
-                heightLeft,
-                heightRight
+                left,
+                right
             ) /
             Math.max(
-                heightLeft,
-                heightRight
+                left,
+                right
             );
 
-        /*
-         * Coherencia geométrica.
-         */
-        const geometryScore =
+        var geometryScore =
             (
                 widthBalance +
                 heightBalance
             ) / 2;
 
+        var cornerScore =
+            calculateCornerScore(
+                ordered
+            );
+
+        var areaScore =
+            Math.min(
+                1,
+                Math.max(
+                    0,
+                    (
+                        ratio -
+                        0.05
+                    ) /
+                    0.75
+                )
+            );
+
         /*
-         * Penalización por esquinas pegadas al borde.
-         *
-         * No eliminamos esos candidatos, sólo reducimos
-         * ligeramente su score.
+         * Penalización leve si el cuadrilátero
+         * se parece demasiado a toda la imagen.
          */
-        const marginScore =
-            calculateMarginScore(
+        var borderScore =
+            calculateBorderScore(
                 ordered,
                 imageWidth,
                 imageHeight
             );
 
-        /*
-         * Ratio de área:
-         *
-         * 0.12 -> débil
-         * 0.50 -> bueno
-         * 0.80 -> excelente
-         */
-        const areaScore =
-            Math.min(
-                1,
-                Math.max(
-                    0,
-                    (areaRatio - 0.08) /
-                    0.72
-                )
-            );
-
-        /*
-         * Rectangularidad aproximada.
-         */
-        const rectangleScore =
-            calculateRectangleScore(
-                ordered
-            );
-
-        /*
-         * Score final.
-         */
-        const score =
-            (
-                areaScore * 0.45 +
-                geometryScore * 0.22 +
-                rectangleScore * 0.23 +
-                marginScore * 0.10
-            );
+        var score =
+            areaScore * 0.48 +
+            geometryScore * 0.22 +
+            cornerScore * 0.20 +
+            borderScore * 0.10;
 
         return {
             valid: true,
-            score
+            score: score
         };
     }
 
-    // ==========================================================
-    // GEOMETRÍA
-    // ==========================================================
-
-    function orderPoints(points) {
-        if (!points || points.length !== 4) {
-            return points || [];
-        }
-
-        const pts = [...points];
-
-        /*
-         * Utilizamos centroide + atan2.
-         *
-         * Es más robusto que depender exclusivamente de:
-         * x+y / x-y
-         */
-        const cx =
-            pts.reduce(
-                (sum, p) => sum + p.x,
-                0
-            ) / pts.length;
-
-        const cy =
-            pts.reduce(
-                (sum, p) => sum + p.y,
-                0
-            ) / pts.length;
-
-        pts.sort(
-            (a, b) =>
-                Math.atan2(
-                    a.y - cy,
-                    a.x - cx
-                ) -
-                Math.atan2(
-                    b.y - cy,
-                    b.x - cx
-                )
-        );
-
-        /*
-         * Encontramos TL:
-         * menor x+y.
-         */
-        let topLeftIndex = 0;
-        let minSum =
-            Infinity;
+    function calculateCornerScore(points) {
+        var scores = [];
 
         for (
-            let i = 0;
-            i < pts.length;
+            var i = 0;
+            i < 4;
             i++
         ) {
-            const sum =
-                pts[i].x +
-                pts[i].y;
+            var previous =
+                points[
+                    (i + 3) % 4
+                ];
 
-            if (sum < minSum) {
-                minSum = sum;
-                topLeftIndex = i;
+            var current =
+                points[i];
+
+            var next =
+                points[
+                    (i + 1) % 4
+                ];
+
+            var cosine =
+                Math.abs(
+                    cosineAngle(
+                        previous,
+                        current,
+                        next
+                    )
+                );
+
+            /*
+             * 90 grados => coseno 0
+             */
+            scores.push(
+                Math.max(
+                    0,
+                    1 - cosine
+                )
+            );
+        }
+
+        return (
+            scores[0] +
+            scores[1] +
+            scores[2] +
+            scores[3]
+        ) / 4;
+    }
+
+    function calculateBorderScore(
+        points,
+        width,
+        height
+    ) {
+        var marginX =
+            width * 0.02;
+
+        var marginY =
+            height * 0.02;
+
+        var nearBorderCount = 0;
+
+        for (
+            var i = 0;
+            i < points.length;
+            i++
+        ) {
+            var p = points[i];
+
+            if (
+                p.x <= marginX ||
+                p.y <= marginY ||
+                p.x >= width - marginX ||
+                p.y >= height - marginY
+            ) {
+                nearBorderCount++;
             }
         }
 
-        const rotated = [
-            ...pts.slice(topLeftIndex),
-            ...pts.slice(0, topLeftIndex)
-        ];
+        /*
+         * No eliminamos el candidato.
+         * Sólo lo penalizamos levemente.
+         */
+        return Math.max(
+            0,
+            1 -
+            (
+                nearBorderCount *
+                0.15
+            )
+        );
+    }
+
+    function cosineAngle(
+        previous,
+        current,
+        next
+    ) {
+        var aX =
+            previous.x -
+            current.x;
+
+        var aY =
+            previous.y -
+            current.y;
+
+        var bX =
+            next.x -
+            current.x;
+
+        var bY =
+            next.y -
+            current.y;
+
+        var lengthA =
+            Math.hypot(
+                aX,
+                aY
+            );
+
+        var lengthB =
+            Math.hypot(
+                bX,
+                bY
+            );
+
+        if (
+            lengthA === 0 ||
+            lengthB === 0
+        ) {
+            return 1;
+        }
+
+        return (
+            (
+                aX * bX +
+                aY * bY
+            ) /
+            (
+                lengthA *
+                lengthB
+            )
+        );
+    }
+
+    // ==========================================================
+    // POINT ORDER
+    // ==========================================================
+
+    function orderPoints(points) {
+        if (
+            !points ||
+            points.length !== 4
+        ) {
+            return points || [];
+        }
+
+        var pts =
+            points.slice();
+
+        var centerX = 0;
+        var centerY = 0;
+
+        for (
+            var i = 0;
+            i < pts.length;
+            i++
+        ) {
+            centerX += pts[i].x;
+            centerY += pts[i].y;
+        }
+
+        centerX /=
+            pts.length;
+
+        centerY /=
+            pts.length;
+
+        pts.sort(
+            function (a, b) {
+                var angleA =
+                    Math.atan2(
+                        a.y - centerY,
+                        a.x - centerX
+                    );
+
+                var angleB =
+                    Math.atan2(
+                        b.y - centerY,
+                        b.x - centerX
+                    );
+
+                return (
+                    angleA -
+                    angleB
+                );
+            }
+        );
+
+        var startIndex = 0;
+        var minSum = Infinity;
+
+        for (
+            var j = 0;
+            j < pts.length;
+            j++
+        ) {
+            var sum =
+                pts[j].x +
+                pts[j].y;
+
+            if (sum < minSum) {
+                minSum = sum;
+                startIndex = j;
+            }
+        }
+
+        var ordered = [];
+
+        for (
+            var k = 0;
+            k < 4;
+            k++
+        ) {
+            ordered.push(
+                pts[
+                    (
+                        startIndex +
+                        k
+                    ) % 4
+                ]
+            );
+        }
 
         /*
-         * Después del giro:
+         * Debe quedar:
          *
-         * TL → TR → BR → BL
-         *
-         * comprobamos orientación.
+         * TL -> TR -> BR -> BL
          */
-        const [tl, p1, p2, p3] =
-            rotated;
-
-        const cross =
+        var cross =
             crossProduct(
-                tl,
-                p1,
-                p2
+                ordered[0],
+                ordered[1],
+                ordered[2]
             );
 
         if (cross > 0) {
             return [
-                tl,
-                p3,
-                p2,
-                p1
+                ordered[0],
+                ordered[3],
+                ordered[2],
+                ordered[1]
             ];
         }
 
-        return rotated;
+        return ordered;
     }
 
-    function crossProduct(a, b, c) {
+    function crossProduct(
+        a,
+        b,
+        c
+    ) {
         return (
             (b.x - a.x) *
             (c.y - a.y) -
@@ -1250,15 +1488,17 @@ function initScanner() {
     }
 
     function polygonArea(points) {
-        let area = 0;
+        var area = 0;
 
         for (
-            let i = 0;
+            var i = 0;
             i < points.length;
             i++
         ) {
-            const next =
-                (i + 1) %
+            var next =
+                (
+                    i + 1
+                ) %
                 points.length;
 
             area +=
@@ -1278,120 +1518,6 @@ function initScanner() {
         );
     }
 
-    function angleCosine(
-        previous,
-        current,
-        next
-    ) {
-        const v1 = {
-            x: previous.x - current.x,
-            y: previous.y - current.y
-        };
-
-        const v2 = {
-            x: next.x - current.x,
-            y: next.y - current.y
-        };
-
-        const mag1 =
-            Math.hypot(
-                v1.x,
-                v1.y
-            );
-
-        const mag2 =
-            Math.hypot(
-                v2.x,
-                v2.y
-            );
-
-        if (
-            mag1 === 0 ||
-            mag2 === 0
-        ) {
-            return 1;
-        }
-
-        return (
-            (
-                v1.x * v2.x +
-                v1.y * v2.y
-            ) /
-            (mag1 * mag2)
-        );
-    }
-
-    function calculateRectangleScore(points) {
-        const [
-            tl,
-            tr,
-            br,
-            bl
-        ] = points;
-
-        const top =
-            distance(tl, tr);
-
-        const bottom =
-            distance(bl, br);
-
-        const left =
-            distance(tl, bl);
-
-        const right =
-            distance(tr, br);
-
-        const widthBalance =
-            Math.min(top, bottom) /
-            Math.max(top, bottom);
-
-        const heightBalance =
-            Math.min(left, right) /
-            Math.max(left, right);
-
-        /*
-         * Cuanto más equilibrados son los cuatro lados,
-         * mejor candidato.
-         */
-        return (
-            widthBalance *
-            heightBalance
-        );
-    }
-
-    function calculateMarginScore(
-        points,
-        width,
-        height
-    ) {
-        const marginThreshold =
-            Math.min(
-                width,
-                height
-            ) * 0.025;
-
-        let nearEdges = 0;
-
-        for (const p of points) {
-            if (
-                p.x <= marginThreshold ||
-                p.y <= marginThreshold ||
-                p.x >= width - marginThreshold ||
-                p.y >= height - marginThreshold
-            ) {
-                nearEdges++;
-            }
-        }
-
-        /*
-         * No penalizamos demasiado.
-         */
-        return Math.max(
-            0,
-            1 - nearEdges * 0.12
-        );
-    }
-
     function isValidQuad(
         points,
         width,
@@ -1404,65 +1530,82 @@ function initScanner() {
             return false;
         }
 
-        const normalized =
-            points.map(p => ({
-                x: Number(p.x),
-                y: Number(p.y)
-            }));
-
-        if (
-            normalized.some(
-                p =>
-                    !Number.isFinite(p.x) ||
-                    !Number.isFinite(p.y)
-            )
+        for (
+            var i = 0;
+            i < points.length;
+            i++
         ) {
-            return false;
+            if (
+                !Number.isFinite(
+                    points[i].x
+                ) ||
+                !Number.isFinite(
+                    points[i].y
+                )
+            ) {
+                return false;
+            }
+
+            if (
+                points[i].x < 0 ||
+                points[i].y < 0 ||
+                points[i].x > width ||
+                points[i].y > height
+            ) {
+                return false;
+            }
         }
 
-        const metrics =
-            evaluateQuad(
-                normalized,
-                width,
-                height
-            );
-
-        return metrics.valid;
+        return evaluateQuadrilateral(
+            points,
+            width,
+            height
+        ).valid;
     }
 
-    function isSimilarCandidate(
+    function hasSimilarCandidate(
         candidates,
         points
     ) {
-        const newCenter =
-            calculateCenter(points);
+        var center =
+            calculateCenter(
+                points
+            );
 
-        for (const candidate of candidates) {
-            const center =
+        var diagonal =
+            Math.max(
+                distance(
+                    points[0],
+                    points[2]
+                ),
+                distance(
+                    points[1],
+                    points[3]
+                )
+            );
+
+        for (
+            var i = 0;
+            i < candidates.length;
+            i++
+        ) {
+            var otherCenter =
                 calculateCenter(
-                    candidate.points
+                    candidates[i].points
                 );
 
-            const diagonal =
-                Math.hypot(
-                    points[2].x -
-                    points[0].x,
-                    points[2].y -
-                    points[0].y
-                );
-
-            const distanceBetweenCenters =
+            var d =
                 Math.hypot(
                     center.x -
-                    newCenter.x,
+                    otherCenter.x,
+
                     center.y -
-                    newCenter.y
+                    otherCenter.y
                 );
 
             if (
-                diagonal > 0 &&
-                distanceBetweenCenters <
-                diagonal * 0.03
+                d <
+                diagonal * 0.025
             ) {
                 return true;
             }
@@ -1472,37 +1615,44 @@ function initScanner() {
     }
 
     function calculateCenter(points) {
+        var x = 0;
+        var y = 0;
+
+        for (
+            var i = 0;
+            i < points.length;
+            i++
+        ) {
+            x += points[i].x;
+            y += points[i].y;
+        }
+
         return {
             x:
-                points.reduce(
-                    (sum, p) =>
-                        sum + p.x,
-                    0
-                ) / points.length,
+                x / points.length,
 
             y:
-                points.reduce(
-                    (sum, p) =>
-                        sum + p.y,
-                    0
-                ) / points.length
+                y / points.length
         };
     }
 
     // ==========================================================
-    // WARP PERSPECTIVE
+    // PERSPECTIVE WARP
     // ==========================================================
 
     async function processDocument(doc) {
-        if (!doc || !cvReady) {
+        if (
+            !doc ||
+            !cvReady
+        ) {
             return;
         }
 
-        let src = null;
-        let dst = null;
-        let srcTri = null;
-        let dstTri = null;
-        let M = null;
+        var src = null;
+        var dst = null;
+        var sourcePoints = null;
+        var destinationPoints = null;
+        var transform = null;
 
         try {
             src =
@@ -1510,121 +1660,99 @@ function initScanner() {
                     doc.imgElement
                 );
 
-            if (!src || src.empty()) {
+            if (
+                !src ||
+                src.empty()
+            ) {
                 throw new Error(
                     'Immagine sorgente non valida.'
                 );
             }
 
-            const points =
+            var points =
                 orderPoints(
                     doc.points
                 );
 
             if (
-                !isValidQuad(
-                    points,
-                    src.cols,
-                    src.rows
-                )
+                points.length !== 4
             ) {
                 throw new Error(
-                    'Punti di ritaglio non validi.'
+                    'Quattro punti richiesti.'
                 );
             }
 
-            const [
-                tl,
-                tr,
-                br,
-                bl
-            ] = points;
+            var tl =
+                points[0];
 
-            const widthTop =
+            var tr =
+                points[1];
+
+            var br =
+                points[2];
+
+            var bl =
+                points[3];
+
+            var widthTop =
                 distance(
                     tl,
                     tr
                 );
 
-            const widthBottom =
+            var widthBottom =
                 distance(
                     bl,
                     br
                 );
 
-            const heightLeft =
+            var heightLeft =
                 distance(
                     tl,
                     bl
                 );
 
-            const heightRight =
+            var heightRight =
                 distance(
                     tr,
                     br
                 );
 
-            const maxWidth =
-                Math.max(
-                    widthTop,
-                    widthBottom
-                );
-
-            const maxHeight =
-                Math.max(
-                    heightLeft,
-                    heightRight
-                );
-
-            let outputWidth =
+            var outputWidth =
                 Math.round(
-                    maxWidth
+                    Math.max(
+                        widthTop,
+                        widthBottom
+                    )
                 );
 
-            let outputHeight =
+            var outputHeight =
                 Math.round(
-                    maxHeight
+                    Math.max(
+                        heightLeft,
+                        heightRight
+                    )
                 );
 
             outputWidth =
                 Math.min(
+                    CONFIG.maxOutputWidth,
                     Math.max(
-                        outputWidth,
-                        300
-                    ),
-                    CONFIG.maxOutputWidth
+                        300,
+                        outputWidth
+                    )
                 );
 
             outputHeight =
                 Math.min(
+                    CONFIG.maxOutputHeight,
                     Math.max(
-                        outputHeight,
-                        300
-                    ),
-                    CONFIG.maxOutputHeight
+                        300,
+                        outputHeight
+                    )
                 );
 
-            /*
-             * Aseguramos que no se genere una imagen
-             * extremadamente alargada por un detector erróneo.
-             */
-            const aspectRatio =
-                outputWidth /
-                outputHeight;
-
-            if (
-                !Number.isFinite(
-                    aspectRatio
-                ) ||
-                aspectRatio < 0.20 ||
-                aspectRatio > 5
-            ) {
-                throw new Error(
-                    'Proporzione documento non plausibile.'
-                );
-            }
-
-            srcTri =
+            sourcePoints =
                 cv.matFromArray(
                     4,
                     1,
@@ -1644,7 +1772,7 @@ function initScanner() {
                     ]
                 );
 
-            dstTri =
+            destinationPoints =
                 cv.matFromArray(
                     4,
                     1,
@@ -1664,10 +1792,10 @@ function initScanner() {
                     ]
                 );
 
-            M =
+            transform =
                 cv.getPerspectiveTransform(
-                    srcTri,
-                    dstTri
+                    sourcePoints,
+                    destinationPoints
                 );
 
             dst =
@@ -1676,7 +1804,7 @@ function initScanner() {
             cv.warpPerspective(
                 src,
                 dst,
-                M,
+                transform,
                 new cv.Size(
                     outputWidth,
                     outputHeight
@@ -1691,15 +1819,12 @@ function initScanner() {
                 )
             );
 
-            /*
-             * Procesamiento visual.
-             */
             applyFilter(
                 dst,
                 doc.filter
             );
 
-            const canvas =
+            var canvas =
                 document.createElement(
                     'canvas'
                 );
@@ -1709,116 +1834,99 @@ function initScanner() {
                 dst
             );
 
-            /*
-             * Canvas con fondo blanco.
-             */
-            canvas.style.display = 'block';
-
             doc.processedCanvas =
                 canvas;
 
         } catch (error) {
             console.error(
-                '[Scanner] Errore ritaglio/filtro:',
+                '[Scanner] Errore perspective/filter:',
                 error
             );
 
             /*
-             * Como fallback, mostramos la imagen original
-             * en vez de dejar una miniatura rota.
+             * Fallback: mostra l'immagine originale.
              */
-            try {
-                const fallback =
-                    document.createElement(
-                        'canvas'
-                    );
-
-                fallback.width =
-                    doc.imgElement.naturalWidth ||
-                    doc.imgElement.width;
-
-                fallback.height =
-                    doc.imgElement.naturalHeight ||
-                    doc.imgElement.height;
-
-                const fallbackCtx =
-                    fallback.getContext('2d');
-
-                fallbackCtx.drawImage(
-                    doc.imgElement,
-                    0,
-                    0,
-                    fallback.width,
-                    fallback.height
+            var fallback =
+                document.createElement(
+                    'canvas'
                 );
 
-                doc.processedCanvas =
-                    fallback;
+            fallback.width =
+                doc.imgElement.naturalWidth;
 
-            } catch (fallbackError) {
-                console.error(
-                    '[Scanner] Fallback fallido:',
-                    fallbackError
+            fallback.height =
+                doc.imgElement.naturalHeight;
+
+            var fallbackContext =
+                fallback.getContext(
+                    '2d'
                 );
-            }
 
+            fallbackContext.drawImage(
+                doc.imgElement,
+                0,
+                0,
+                fallback.width,
+                fallback.height
+            );
+
+            doc.processedCanvas =
+                fallback;
         } finally {
             if (src) src.delete();
             if (dst) dst.delete();
-            if (srcTri) srcTri.delete();
-            if (dstTri) dstTri.delete();
-            if (M) M.delete();
+            if (sourcePoints) sourcePoints.delete();
+            if (destinationPoints) destinationPoints.delete();
+            if (transform) transform.delete();
         }
-
-        updatePreviewGrid();
     }
 
     // ==========================================================
-    // FILTROS
+    // FILTERS
     // ==========================================================
 
-    function applyFilter(mat, filter) {
+    function applyFilter(
+        mat,
+        filter
+    ) {
         if (
-            !mat ||
-            mat.empty()
+            filter === 'bw'
         ) {
+            applyBlackWhite(
+                mat
+            );
+
             return;
         }
 
-        if (filter === 'grayscale') {
-            applyGrayscaleFilter(mat);
+        if (
+            filter === 'grayscale'
+        ) {
+            applyGrayscale(
+                mat
+            );
+
             return;
         }
 
-        if (filter === 'bw') {
-            applyBlackWhiteFilter(mat);
-            return;
-        }
-
-        applyColorFilter(mat);
+        applyColor(
+            mat
+        );
     }
 
-    // ----------------------------------------------------------
-    // GRAYSCALE
-    // ----------------------------------------------------------
-
-    function applyGrayscaleFilter(mat) {
-        let gray = null;
-        let bg = null;
-        let flat = null;
-        let normalized = null;
+    function applyGrayscale(mat) {
+        var gray = null;
+        var background = null;
+        var flat = null;
 
         try {
             gray =
                 new cv.Mat();
 
-            bg =
+            background =
                 new cv.Mat();
 
             flat =
-                new cv.Mat();
-
-            normalized =
                 new cv.Mat();
 
             convertToGray(
@@ -1828,29 +1936,24 @@ function initScanner() {
 
             cv.GaussianBlur(
                 gray,
-                bg,
+                background,
                 new cv.Size(
                     51,
                     51
                 ),
-                0,
-                0,
-                cv.BORDER_DEFAULT
+                0
             );
 
-            /*
-             * Normalización suave de iluminación.
-             */
             cv.divide(
                 gray,
-                bg,
+                background,
                 flat,
-                235.0
+                235
             );
 
             cv.normalize(
                 flat,
-                normalized,
+                flat,
                 0,
                 255,
                 cv.NORM_MINMAX,
@@ -1858,36 +1961,30 @@ function initScanner() {
             );
 
             cv.cvtColor(
-                normalized,
+                flat,
                 mat,
                 cv.COLOR_GRAY2RGBA
             );
 
         } finally {
             if (gray) gray.delete();
-            if (bg) bg.delete();
+            if (background) background.delete();
             if (flat) flat.delete();
-            if (normalized) normalized.delete();
         }
     }
 
-    // ----------------------------------------------------------
-    // BLACK & WHITE
-    // ----------------------------------------------------------
-
-    function applyBlackWhiteFilter(mat) {
-        let gray = null;
-        let bg = null;
-        let flat = null;
-        let normalized = null;
-        let threshold = null;
-        let sharpened = null;
+    function applyBlackWhite(mat) {
+        var gray = null;
+        var background = null;
+        var flat = null;
+        var normalized = null;
+        var result = null;
 
         try {
             gray =
                 new cv.Mat();
 
-            bg =
+            background =
                 new cv.Mat();
 
             flat =
@@ -1896,10 +1993,7 @@ function initScanner() {
             normalized =
                 new cv.Mat();
 
-            threshold =
-                new cv.Mat();
-
-            sharpened =
+            result =
                 new cv.Mat();
 
             convertToGray(
@@ -1907,26 +2001,21 @@ function initScanner() {
                 gray
             );
 
-            /*
-             * Eliminación de gradientes de iluminación.
-             */
             cv.GaussianBlur(
                 gray,
-                bg,
+                background,
                 new cv.Size(
                     51,
                     51
                 ),
-                0,
-                0,
-                cv.BORDER_DEFAULT
+                0
             );
 
             cv.divide(
                 gray,
-                bg,
+                background,
                 flat,
-                240.0
+                240
             );
 
             cv.normalize(
@@ -1938,13 +2027,9 @@ function initScanner() {
                 cv.CV_8U
             );
 
-            /*
-             * Umbral adaptativo:
-             * mejor para documentos fotografiados.
-             */
             cv.adaptiveThreshold(
                 normalized,
-                threshold,
+                result,
                 255,
                 cv.ADAPTIVE_THRESH_GAUSSIAN_C,
                 cv.THRESH_BINARY,
@@ -1952,52 +2037,32 @@ function initScanner() {
                 10
             );
 
-            /*
-             * Suavizamos ligeramente los bordes.
-             */
-            cv.GaussianBlur(
-                threshold,
-                sharpened,
-                new cv.Size(
-                    3,
-                    3
-                ),
-                0,
-                0,
-                cv.BORDER_DEFAULT
-            );
-
             cv.cvtColor(
-                sharpened,
+                result,
                 mat,
                 cv.COLOR_GRAY2RGBA
             );
 
         } finally {
             if (gray) gray.delete();
-            if (bg) bg.delete();
+            if (background) background.delete();
             if (flat) flat.delete();
             if (normalized) normalized.delete();
-            if (threshold) threshold.delete();
-            if (sharpened) sharpened.delete();
+            if (result) result.delete();
         }
     }
 
-    // ----------------------------------------------------------
-    // COLOR
-    // ----------------------------------------------------------
-
-    function applyColorFilter(mat) {
-        let rgb = null;
-        let ycrcb = null;
-        let channels = null;
-        let Y = null;
-        let Cr = null;
-        let Cb = null;
-        let bg = null;
-        let YFlat = null;
-        let YSharp = null;
-        let blurred = null;
+    function applyColor(mat) {
+        var rgb = null;
+        var ycrcb = null;
+        var channels = null;
+        var luminance = null;
+        var chromaRed = null;
+        var chromaBlue = null;
+        var background = null;
+        var flat = null;
+        var blurred = null;
+        var sharp = null;
 
         try {
             rgb =
@@ -2009,16 +2074,16 @@ function initScanner() {
             channels =
                 new cv.MatVector();
 
-            bg =
+            background =
                 new cv.Mat();
 
-            YFlat =
-                new cv.Mat();
-
-            YSharp =
+            flat =
                 new cv.Mat();
 
             blurred =
+                new cv.Mat();
+
+            sharp =
                 new cv.Mat();
 
             cv.cvtColor(
@@ -2038,74 +2103,63 @@ function initScanner() {
                 channels
             );
 
-            Y =
+            luminance =
                 channels.get(0);
 
-            Cr =
+            chromaRed =
                 channels.get(1);
 
-            Cb =
+            chromaBlue =
                 channels.get(2);
 
-            /*
-             * Trabajamos sólo con luminancia.
-             * Los colores del documento se conservan.
-             */
             cv.GaussianBlur(
-                Y,
-                bg,
+                luminance,
+                background,
                 new cv.Size(
                     51,
                     51
                 ),
-                0,
-                0,
-                cv.BORDER_DEFAULT
+                0
             );
 
             cv.divide(
-                Y,
-                bg,
-                YFlat,
-                235.0
+                luminance,
+                background,
+                flat,
+                235
             );
 
             cv.normalize(
-                YFlat,
-                YFlat,
+                flat,
+                flat,
                 0,
                 255,
                 cv.NORM_MINMAX,
                 cv.CV_8U
             );
 
-            /*
-             * Unsharp mask suave.
-             */
             cv.GaussianBlur(
-                YFlat,
+                flat,
                 blurred,
                 new cv.Size(
                     0,
                     0
                 ),
-                1.6,
-                1.6,
-                cv.BORDER_DEFAULT
+                1.5
             );
 
             cv.addWeighted(
-                YFlat,
-                1.25,
+                flat,
+                1.20,
                 blurred,
-                -0.25,
+                -0.20,
                 0,
-                YSharp
+                sharp
             );
 
             channels.set(
                 0,
-                YSharp
+                sharp
             );
 
             cv.merge(
@@ -2129,27 +2183,31 @@ function initScanner() {
             if (rgb) rgb.delete();
             if (ycrcb) ycrcb.delete();
             if (channels) channels.delete();
-            if (Y) Y.delete();
-            if (Cr) Cr.delete();
-            if (Cb) Cb.delete();
-            if (bg) bg.delete();
-            if (YFlat) YFlat.delete();
-            if (YSharp) YSharp.delete();
+            if (luminance) luminance.delete();
+            if (chromaRed) chromaRed.delete();
+            if (chromaBlue) chromaBlue.delete();
+            if (background) background.delete();
+            if (flat) flat.delete();
             if (blurred) blurred.delete();
+            if (sharp) sharp.delete();
         }
     }
 
-    function convertToGray(src, dst) {
-        const channels =
-            src.channels();
-
-        if (channels === 4) {
+    function convertToGray(
+        src,
+        dst
+    ) {
+        if (
+            src.channels() === 4
+        ) {
             cv.cvtColor(
                 src,
                 dst,
                 cv.COLOR_RGBA2GRAY
             );
-        } else if (channels === 3) {
+        } else if (
+            src.channels() === 3
+        ) {
             cv.cvtColor(
                 src,
                 dst,
@@ -2161,21 +2219,30 @@ function initScanner() {
     }
 
     // ==========================================================
-    // PREVIEW GRID
+    // PREVIEW
     // ==========================================================
 
     function updatePreviewGrid() {
         previewGrid.innerHTML = '';
 
         btnGeneratePdf.disabled =
-            documentsState.length === 0;
+            documents.length === 0;
 
-        for (const doc of documentsState) {
-            if (!doc.processedCanvas) {
+        for (
+            var i = 0;
+            i < documents.length;
+            i++
+        ) {
+            var doc =
+                documents[i];
+
+            if (
+                !doc.processedCanvas
+            ) {
                 continue;
             }
 
-            const wrapper =
+            var wrapper =
                 document.createElement(
                     'div'
                 );
@@ -2190,10 +2257,7 @@ function initScanner() {
                 doc.processedCanvas
             );
 
-            /*
-             * Badge.
-             */
-            const badge =
+            var badge =
                 document.createElement(
                     'div'
                 );
@@ -2201,105 +2265,93 @@ function initScanner() {
             badge.className =
                 'absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded';
 
-            if (
+            badge.textContent =
                 doc.detectedAutomatically
-            ) {
-                const confidence =
-                    Math.round(
-                        (doc.detectionConfidence || 0) *
-                        100
-                    );
-
-                badge.textContent =
-                    confidence > 0
-                        ? `✓ Auto ${confidence}%`
-                        : '✓ Auto';
-            } else {
-                badge.textContent =
-                    'Manuale';
-            }
+                    ? '✓ Auto'
+                    : 'Manuale';
 
             wrapper.appendChild(
                 badge
             );
 
-            /*
-             * Remove.
-             */
-            const btnRemove =
+            var removeButton =
                 document.createElement(
                     'button'
                 );
 
-            btnRemove.type =
+            removeButton.type =
                 'button';
 
-            btnRemove.className =
+            removeButton.className =
                 'absolute top-2 right-2 bg-red-500 text-white rounded-full w-9 h-9 flex items-center justify-center font-bold shadow hover:bg-red-600 transition z-10';
 
-            btnRemove.setAttribute(
+            removeButton.textContent =
+                '×';
+
+            removeButton.setAttribute(
                 'aria-label',
                 'Rimuovi documento'
             );
 
-            btnRemove.innerHTML =
-                '×';
-
-            btnRemove.addEventListener(
+            removeButton.addEventListener(
                 'click',
-                event => {
-                    event.stopPropagation();
+                (function (id) {
+                    return function (event) {
+                        event.stopPropagation();
 
-                    documentsState =
-                        documentsState.filter(
-                            item =>
-                                item.id !==
-                                doc.id
-                        );
+                        documents =
+                            documents.filter(
+                                function (item) {
+                                    return (
+                                        item.id !==
+                                        id
+                                    );
+                                }
+                            );
 
-                    updatePreviewGrid();
-                }
+                        updatePreviewGrid();
+                    };
+                })(doc.id)
             );
 
-            /*
-             * Edit.
-             */
-            const btnEdit =
+            var editButton =
                 document.createElement(
                     'button'
                 );
 
-            btnEdit.type =
+            editButton.type =
                 'button';
 
-            btnEdit.className =
+            editButton.className =
                 'absolute top-2 left-2 bg-indigo-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow hover:bg-indigo-700 transition z-10';
 
-            btnEdit.setAttribute(
+            editButton.textContent =
+                '✏️';
+
+            editButton.setAttribute(
                 'aria-label',
                 'Modifica ritaglio'
             );
 
-            btnEdit.innerHTML =
-                '✏️';
-
-            btnEdit.addEventListener(
+            editButton.addEventListener(
                 'click',
-                event => {
-                    event.stopPropagation();
+                (function (id) {
+                    return function (event) {
+                        event.stopPropagation();
 
-                    openCropModal(
-                        doc.id
-                    );
-                }
+                        openCropModal(
+                            id
+                        );
+                    };
+                })(doc.id)
             );
 
             wrapper.appendChild(
-                btnRemove
+                removeButton
             );
 
             wrapper.appendChild(
-                btnEdit
+                editButton
             );
 
             previewGrid.appendChild(
@@ -2309,74 +2361,72 @@ function initScanner() {
     }
 
     // ==========================================================
-    // MODAL CROP MANUAL
+    // CROP MODAL
     // ==========================================================
 
     function openCropModal(id) {
-        currentEditingId = id;
-
-        const doc =
-            documentsState.find(
-                item =>
-                    item.id === id
-            );
+        var doc =
+            findDocument(id);
 
         if (!doc) {
-            currentEditingId = null;
             return;
         }
+
+        currentEditingId =
+            id;
 
         cropModal.classList.remove(
             'hidden'
         );
 
-        /*
-         * Impedimos scroll del body mientras el modal está abierto.
-         */
         document.body.style.overflow =
             'hidden';
 
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                renderCropCanvas(doc);
-            });
-        });
+        requestAnimationFrame(
+            function () {
+                requestAnimationFrame(
+                    function () {
+                        renderCropCanvas(
+                            doc
+                        );
+                    }
+                );
+            }
+        );
     }
 
     function renderCropCanvas(doc) {
-        if (!doc || !doc.imgElement) {
-            return;
-        }
-
-        const img =
-            doc.imgElement;
-
-        const containerWidth =
-            cropContainer.clientWidth;
-
-        const containerHeight =
-            cropContainer.clientHeight;
-
         if (
-            containerWidth <= 0 ||
-            containerHeight <= 0
+            !doc ||
+            !doc.imgElement
         ) {
             return;
         }
 
-        const availableWidth =
-            Math.max(
-                100,
-                containerWidth - 32
-            );
+        var img =
+            doc.imgElement;
 
-        const availableHeight =
-            Math.max(
-                100,
-                containerHeight - 32
-            );
+        var availableWidth =
+            cropContainer.clientWidth -
+            32;
 
-        imgDisplayScale =
+        var availableHeight =
+            cropContainer.clientHeight -
+            32;
+
+        if (
+            availableWidth < 100
+        ) {
+            availableWidth = 100;
+        }
+
+        if (
+            availableHeight < 100
+        ) {
+            availableHeight = 100;
+        }
+
+        displayScale =
             Math.min(
                 availableWidth /
                 img.naturalWidth,
@@ -2389,11 +2439,11 @@ function initScanner() {
 
         if (
             !Number.isFinite(
-                imgDisplayScale
+                displayScale
             ) ||
-            imgDisplayScale <= 0
+            displayScale <= 0
         ) {
-            imgDisplayScale = 1;
+            displayScale = 1;
         }
 
         cropCanvas.width =
@@ -2401,7 +2451,7 @@ function initScanner() {
                 1,
                 Math.round(
                     img.naturalWidth *
-                    imgDisplayScale
+                    displayScale
                 )
             );
 
@@ -2410,7 +2460,7 @@ function initScanner() {
                 1,
                 Math.round(
                     img.naturalHeight *
-                    imgDisplayScale
+                    displayScale
                 )
             );
 
@@ -2418,17 +2468,17 @@ function initScanner() {
     }
 
     function drawCropState(doc) {
-        const img =
+        var img =
             doc.imgElement;
 
-        ctxCrop.clearRect(
+        cropContext.clearRect(
             0,
             0,
             cropCanvas.width,
             cropCanvas.height
         );
 
-        ctxCrop.drawImage(
+        cropContext.drawImage(
             img,
             0,
             0,
@@ -2436,141 +2486,135 @@ function initScanner() {
             cropCanvas.height
         );
 
-        const pts =
+        var points =
             orderPoints(
                 doc.points
-            ).map(point => ({
-                x:
-                    point.x *
-                    imgDisplayScale,
+            ).map(
+                function (point) {
+                    return {
+                        x:
+                            point.x *
+                            displayScale,
 
-                y:
-                    point.y *
-                    imgDisplayScale
-            }));
+                        y:
+                            point.y *
+                            displayScale
+                    };
+                }
+            );
 
-        /*
-         * Overlay oscuro.
-         */
-        ctxCrop.save();
+        cropContext.save();
 
-        ctxCrop.fillStyle =
+        cropContext.fillStyle =
             'rgba(0,0,0,0.60)';
 
-        ctxCrop.beginPath();
+        cropContext.beginPath();
 
-        ctxCrop.rect(
+        cropContext.rect(
             0,
             0,
             cropCanvas.width,
             cropCanvas.height
         );
 
-        ctxCrop.moveTo(
-            pts[0].x,
-            pts[0].y
+        cropContext.moveTo(
+            points[0].x,
+            points[0].y
         );
 
         for (
-            let i = 1;
-            i < pts.length;
+            var i = 1;
+            i < points.length;
             i++
         ) {
-            ctxCrop.lineTo(
-                pts[i].x,
-                pts[i].y
+            cropContext.lineTo(
+                points[i].x,
+                points[i].y
             );
         }
 
-        ctxCrop.closePath();
+        cropContext.closePath();
 
-        ctxCrop.fill(
+        cropContext.fill(
             'evenodd'
         );
 
-        ctxCrop.restore();
+        cropContext.restore();
 
-        /*
-         * Línea.
-         */
-        ctxCrop.strokeStyle =
+        cropContext.strokeStyle =
             '#6366f1';
 
-        ctxCrop.lineWidth =
-            Math.max(
-                3,
-                3 *
-                window.devicePixelRatio
-            );
+        cropContext.lineWidth =
+            3;
 
-        ctxCrop.beginPath();
+        cropContext.beginPath();
 
-        ctxCrop.moveTo(
-            pts[0].x,
-            pts[0].y
+        cropContext.moveTo(
+            points[0].x,
+            points[0].y
         );
 
         for (
-            let i = 1;
-            i < pts.length;
-            i++
+            var j = 1;
+            j < points.length;
+            j++
         ) {
-            ctxCrop.lineTo(
-                pts[i].x,
-                pts[i].y
+            cropContext.lineTo(
+                points[j].x,
+                points[j].y
             );
         }
 
-        ctxCrop.closePath();
+        cropContext.closePath();
 
-        ctxCrop.stroke();
+        cropContext.stroke();
 
-        /*
-         * Puntos.
-         */
-        pts.forEach(point => {
-            ctxCrop.beginPath();
+        for (
+            var p = 0;
+            p < points.length;
+            p++
+        ) {
+            cropContext.beginPath();
 
-            ctxCrop.arc(
-                point.x,
-                point.y,
-                12,
+            cropContext.arc(
+                points[p].x,
+                points[p].y,
+                14,
                 0,
                 Math.PI * 2
             );
 
-            ctxCrop.fillStyle =
+            cropContext.fillStyle =
                 '#ffffff';
 
-            ctxCrop.fill();
+            cropContext.fill();
 
-            ctxCrop.lineWidth = 3;
-
-            ctxCrop.strokeStyle =
+            cropContext.strokeStyle =
                 '#4f46e5';
 
-            ctxCrop.stroke();
-        });
+            cropContext.lineWidth =
+                3;
+
+            cropContext.stroke();
+        }
     }
 
     // ==========================================================
-    // POINTER EVENTS
+    // POINTERS
     // ==========================================================
 
     cropCanvas.addEventListener(
         'pointerdown',
-        event => {
+        function (event) {
             if (
                 currentEditingId === null
             ) {
                 return;
             }
 
-            const doc =
-                documentsState.find(
-                    item =>
-                        item.id ===
-                        currentEditingId
+            var doc =
+                findDocument(
+                    currentEditingId
                 );
 
             if (!doc) {
@@ -2579,7 +2623,7 @@ function initScanner() {
 
             event.preventDefault();
 
-            const rect =
+            var rect =
                 cropCanvas.getBoundingClientRect();
 
             if (
@@ -2589,90 +2633,81 @@ function initScanner() {
                 return;
             }
 
-            const position =
-                canvasEventPosition(
-                    event,
-                    rect
+            var x =
+                (
+                    event.clientX -
+                    rect.left
+                ) *
+                (
+                    cropCanvas.width /
+                    rect.width
                 );
 
-            const scaledPoints =
+            var y =
+                (
+                    event.clientY -
+                    rect.top
+                ) *
+                (
+                    cropCanvas.height /
+                    rect.height
+                );
+
+            var points =
                 orderPoints(
                     doc.points
-                ).map(
-                    point => ({
-                        x:
-                            point.x *
-                            imgDisplayScale,
-
-                        y:
-                            point.y *
-                            imgDisplayScale
-                    })
                 );
 
-            /*
-             * Área de captura mayor para mobile.
-             */
-            const hitRadius =
-                Math.max(
-                    32,
-                    44 *
-                    Math.min(
-                        window.devicePixelRatio ||
-                        1,
-                        2
-                    )
+            var scaled =
+                points.map(
+                    function (point) {
+                        return {
+                            x:
+                                point.x *
+                                displayScale,
+
+                            y:
+                                point.y *
+                                displayScale
+                        };
+                    }
                 );
 
-            dragPointIndex =
-                scaledPoints.findIndex(
-                    point =>
-                        Math.hypot(
-                            point.x -
-                            position.x,
-
-                            point.y -
-                            position.y
-                        ) <
-                        hitRadius
+            draggedPointIndex =
+                findNearestPoint(
+                    scaled,
+                    x,
+                    y
                 );
 
             if (
-                dragPointIndex !== -1
+                draggedPointIndex !== -1
             ) {
+                doc.points =
+                    points;
+
                 try {
                     cropCanvas.setPointerCapture(
                         event.pointerId
                     );
-                } catch (_) {}
-
-                /*
-                 * Convertimos el índice al array original
-                 * manteniendo el orden TL/TR/BR/BL.
-                 */
-                doc.points =
-                    orderPoints(
-                        doc.points
-                    );
+                } catch (error) {}
             }
         }
     );
 
     cropCanvas.addEventListener(
         'pointermove',
-        event => {
+        function (event) {
             if (
-                dragPointIndex === -1 ||
+                draggedPointIndex === -1 ||
                 currentEditingId === null
             ) {
                 return;
             }
 
-            const doc =
-                documentsState.find(
-                    item =>
-                        item.id ===
-                        currentEditingId
+            var doc =
+                findDocument(
+                    currentEditingId
                 );
 
             if (!doc) {
@@ -2681,112 +2716,117 @@ function initScanner() {
 
             event.preventDefault();
 
-            const rect =
+            var rect =
                 cropCanvas.getBoundingClientRect();
 
-            if (
-                rect.width <= 0 ||
-                rect.height <= 0
-            ) {
-                return;
-            }
-
-            const position =
-                canvasEventPosition(
-                    event,
-                    rect
+            var x =
+                (
+                    event.clientX -
+                    rect.left
+                ) *
+                (
+                    cropCanvas.width /
+                    rect.width
                 );
 
-            const x =
+            var y =
+                (
+                    event.clientY -
+                    rect.top
+                ) *
+                (
+                    cropCanvas.height /
+                    rect.height
+                );
+
+            var imageX =
                 clamp(
-                    position.x /
-                    imgDisplayScale,
-
+                    x /
+                    displayScale,
                     0,
-
                     doc.imgElement.naturalWidth
                 );
 
-            const y =
+            var imageY =
                 clamp(
-                    position.y /
-                    imgDisplayScale,
-
+                    y /
+                    displayScale,
                     0,
-
                     doc.imgElement.naturalHeight
                 );
 
             doc.points[
-                dragPointIndex
+                draggedPointIndex
             ] = {
-                x,
-                y
+                x: imageX,
+                y: imageY
             };
 
             drawCropState(doc);
         }
     );
 
-    const endDrag = event => {
-        dragPointIndex = -1;
-
-        try {
-            if (
-                event &&
-                event.pointerId !== undefined
-            ) {
-                cropCanvas.releasePointerCapture(
-                    event.pointerId
-                );
-            }
-        } catch (_) {}
-    };
-
     cropCanvas.addEventListener(
         'pointerup',
-        endDrag
+        finishPointer
     );
 
     cropCanvas.addEventListener(
         'pointercancel',
-        endDrag
+        finishPointer
     );
 
-    cropCanvas.addEventListener(
-        'pointerleave',
-        event => {
-            /*
-             * No cancelamos el drag:
-             * setPointerCapture debería mantenerlo.
-             */
-        }
-    );
+    function finishPointer(event) {
+        draggedPointIndex = -1;
 
-    function canvasEventPosition(
-        event,
-        rect
-    ) {
-        return {
-            x:
-                (event.clientX -
-                    rect.left) *
-                (
-                    cropCanvas.width /
-                    rect.width
-                ),
-
-            y:
-                (event.clientY -
-                    rect.top) *
-                (
-                    cropCanvas.height /
-                    rect.height
-                )
-        };
+        try {
+            cropCanvas.releasePointerCapture(
+                event.pointerId
+            );
+        } catch (error) {}
     }
 
-    function clamp(value, min, max) {
+    function findNearestPoint(
+        points,
+        x,
+        y
+    ) {
+        var bestIndex = -1;
+        var bestDistance = Infinity;
+
+        for (
+            var i = 0;
+            i < points.length;
+            i++
+        ) {
+            var d =
+                Math.hypot(
+                    points[i].x - x,
+                    points[i].y - y
+                );
+
+            if (
+                d <
+                60 &&
+                d <
+                bestDistance
+            ) {
+                bestDistance =
+                    d;
+
+                bestIndex =
+                    i;
+            }
+        }
+
+        return bestIndex;
+    }
+
+    function clamp(
+        value,
+        min,
+        max
+    ) {
         return Math.min(
             max,
             Math.max(
@@ -2796,29 +2836,19 @@ function initScanner() {
         );
     }
 
-    // ==========================================================
-    // CANCEL
-    // ==========================================================
-
     btnCancelCrop.addEventListener(
         'click',
-        () => {
+        function () {
             closeCropModal();
         }
     );
 
-    // ==========================================================
-    // APPLY
-    // ==========================================================
-
     btnApplyCrop.addEventListener(
         'click',
-        async () => {
-            const doc =
-                documentsState.find(
-                    item =>
-                        item.id ===
-                        currentEditingId
+        async function () {
+            var doc =
+                findDocument(
+                    currentEditingId
                 );
 
             if (!doc) {
@@ -2826,10 +2856,7 @@ function initScanner() {
                 return;
             }
 
-            /*
-             * Validamos antes de aplicar.
-             */
-            const points =
+            var points =
                 orderPoints(
                     doc.points
                 );
@@ -2842,8 +2869,9 @@ function initScanner() {
                 )
             ) {
                 alert(
-                    'I quattro angoli non formano un documento valido.'
+                    'I quattro punti non formano un ritaglio valido.'
                 );
+
                 return;
             }
 
@@ -2853,16 +2881,12 @@ function initScanner() {
             doc.detectedAutomatically =
                 false;
 
-            doc.detectionConfidence =
-                0;
-
             closeCropModal();
 
-            statusMsg.textContent =
-                'Applicazione del ritaglio...';
-
-            statusMsg.className =
-                'mt-4 text-sm font-medium text-indigo-600';
+            setStatus(
+                'Applicazione del ritaglio...',
+                'indigo'
+            );
 
             await processDocument(
                 doc
@@ -2870,11 +2894,10 @@ function initScanner() {
 
             updatePreviewGrid();
 
-            statusMsg.textContent =
-                'Ritaglio applicato.';
-
-            statusMsg.className =
-                'mt-4 text-sm font-medium text-emerald-600';
+            setStatus(
+                'Ritaglio applicato correttamente.',
+                'green'
+            );
         }
     );
 
@@ -2889,58 +2912,61 @@ function initScanner() {
         currentEditingId =
             null;
 
-        dragPointIndex =
+        draggedPointIndex =
             -1;
     }
 
-    // ==========================================================
-    // WINDOW RESIZE
-    // ==========================================================
-
-    let resizeTimer = null;
-
     window.addEventListener(
         'resize',
-        () => {
-            clearTimeout(
-                resizeTimer
-            );
+        function () {
+            if (
+                currentEditingId ===
+                null
+            ) {
+                return;
+            }
 
-            resizeTimer =
-                setTimeout(() => {
-                    if (
-                        currentEditingId !==
-                        null
-                    ) {
-                        const doc =
-                            documentsState.find(
-                                item =>
-                                    item.id ===
-                                    currentEditingId
-                            );
+            var doc =
+                findDocument(
+                    currentEditingId
+                );
 
-                        if (doc) {
-                            renderCropCanvas(
-                                doc
-                            );
-                        }
-                    }
-                }, 100);
+            if (doc) {
+                renderCropCanvas(
+                    doc
+                );
+            }
         },
         {
             passive: true
         }
     );
 
+    function findDocument(id) {
+        for (
+            var i = 0;
+            i < documents.length;
+            i++
+        ) {
+            if (
+                documents[i].id === id
+            ) {
+                return documents[i];
+            }
+        }
+
+        return null;
+    }
+
     // ==========================================================
-    // PDF GENERATION
+    // PDF
     // ==========================================================
 
     btnGeneratePdf.addEventListener(
         'click',
-        async () => {
+        async function () {
             if (
-                documentsState.length === 0
+                !documents.length
             ) {
                 return;
             }
@@ -2952,6 +2978,7 @@ function initScanner() {
                 alert(
                     'La libreria PDF non è disponibile.'
                 );
+
                 return;
             }
 
@@ -2962,19 +2989,19 @@ function initScanner() {
                 '<span>⏳</span> Creazione PDF in corso...';
 
             try {
-                const pdfDoc =
+                var pdfDocument =
                     await PDFLib.PDFDocument.create();
 
-                let pageCount = 0;
+                var pages =
+                    0;
 
                 for (
-                    let i = 0;
-                    i <
-                    documentsState.length;
+                    var i = 0;
+                    i < documents.length;
                     i++
                 ) {
-                    const doc =
-                        documentsState[i];
+                    var doc =
+                        documents[i];
 
                     if (
                         !doc.processedCanvas
@@ -2982,7 +3009,7 @@ function initScanner() {
                         continue;
                     }
 
-                    const blob =
+                    var blob =
                         await canvasToBlob(
                             doc.processedCanvas,
                             'image/jpeg',
@@ -2993,89 +3020,89 @@ function initScanner() {
                         continue;
                     }
 
-                    const bytes =
+                    var bytes =
                         await blob.arrayBuffer();
 
-                    const image =
-                        await pdfDoc.embedJpg(
+                    var image =
+                        await pdfDocument.embedJpg(
                             bytes
                         );
 
-                    const isLandscape =
+                    var landscape =
                         image.width >
                         image.height;
 
-                    const A4_W =
-                        isLandscape
+                    var pageWidth =
+                        landscape
                             ? 841.89
                             : 595.28;
 
-                    const A4_H =
-                        isLandscape
+                    var pageHeight =
+                        landscape
                             ? 595.28
                             : 841.89;
 
-                    const ratio =
+                    var scale =
                         Math.min(
-                            A4_W /
+                            pageWidth /
                             image.width,
 
-                            A4_H /
+                            pageHeight /
                             image.height
                         );
 
-                    const pW =
+                    var drawWidth =
                         image.width *
-                        ratio;
+                        scale;
 
-                    const pH =
+                    var drawHeight =
                         image.height *
-                        ratio;
+                        scale;
 
-                    const page =
-                        pdfDoc.addPage([
-                            A4_W,
-                            A4_H
-                        ]);
+                    var page =
+                        pdfDocument.addPage(
+                            [
+                                pageWidth,
+                                pageHeight
+                            ]
+                        );
 
                     page.drawImage(
                         image,
                         {
                             x:
                                 (
-                                    A4_W -
-                                    pW
+                                    pageWidth -
+                                    drawWidth
                                 ) / 2,
 
                             y:
                                 (
-                                    A4_H -
-                                    pH
+                                    pageHeight -
+                                    drawHeight
                                 ) / 2,
 
                             width:
-                                pW,
+                                drawWidth,
 
                             height:
-                                pH
+                                drawHeight
                         }
                     );
 
-                    pageCount++;
+                    pages++;
                 }
 
-                if (
-                    pageCount === 0
-                ) {
+                if (!pages) {
                     throw new Error(
-                        'Nessuna pagina disponibile.'
+                        'Nessuna pagina da esportare.'
                     );
                 }
 
-                const pdfBytes =
-                    await pdfDoc.save();
+                var pdfBytes =
+                    await pdfDocument.save();
 
-                const blob =
+                var pdfBlob =
                     new Blob(
                         [pdfBytes],
                         {
@@ -3084,12 +3111,12 @@ function initScanner() {
                         }
                     );
 
-                const url =
+                var url =
                     URL.createObjectURL(
-                        blob
+                        pdfBlob
                     );
 
-                const link =
+                var link =
                     document.createElement(
                         'a'
                     );
@@ -3098,7 +3125,9 @@ function initScanner() {
                     url;
 
                 link.download =
-                    `Documento_Scansionato_${Date.now()}.pdf`;
+                    'Documento_Scansionato_' +
+                    Date.now() +
+                    '.pdf';
 
                 document.body.appendChild(
                     link
@@ -3108,15 +3137,18 @@ function initScanner() {
 
                 link.remove();
 
-                setTimeout(() => {
-                    URL.revokeObjectURL(
-                        url
-                    );
-                }, 1500);
+                setTimeout(
+                    function () {
+                        URL.revokeObjectURL(
+                            url
+                        );
+                    },
+                    1500
+                );
 
             } catch (error) {
                 console.error(
-                    '[Scanner] PDF error:',
+                    '[Scanner] Errore generazione PDF:',
                     error
                 );
 
@@ -3126,8 +3158,7 @@ function initScanner() {
 
             } finally {
                 btnGeneratePdf.disabled =
-                    documentsState.length ===
-                    0;
+                    documents.length === 0;
 
                 btnGeneratePdf.innerHTML =
                     '<span>📄</span> Genera PDF multipagina';
@@ -3135,17 +3166,13 @@ function initScanner() {
         }
     );
 
-    // ==========================================================
-    // CANVAS -> BLOB
-    // ==========================================================
-
     function canvasToBlob(
         canvas,
         type,
         quality
     ) {
         return new Promise(
-            resolve => {
+            function (resolve) {
                 canvas.toBlob(
                     resolve,
                     type,
@@ -3154,6 +3181,14 @@ function initScanner() {
             }
         );
     }
+
+    // ==========================================================
+    // DEBUG
+    // ==========================================================
+
+    console.log(
+        '[Scanner] Event listeners registrati correttamente.'
+    );
 }
 ```
 
