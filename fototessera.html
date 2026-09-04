@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore Fototessera Online Gratis (Standard ICAO/CIE) — StrumentiUtili.it</title>
+  <meta name="description" content="Crea fototessere per Passaporto, Carta d'Identità (CIE) e Patente online. Rimozione sfondo IA Alta Qualità, ridimensionamento 35x45mm e PDF 10x15cm." />
+  <link rel="canonical" href="https://strumentiutili.it/fototessera.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generatore Fototessera Biometrica ICAO/CIE — StrumentiUtili.it" />
+  <meta property="og:description" content="Crea fototessere ufficiali 35x45mm con rimozione sfondo IA ad alta definizione e foglio di stampa 10x15cm in PDF." />
+  <meta property="og:url" content="https://strumentiutili.it/fototessera.html" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="manifest" href="/manifest.json">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- PDF-Lib e imgly Background Removal -->
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@imgly/background-removal@1.4.3/dist/browser/imgly-background-removal.js" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Generatore Fototessera ICAO", "item": "https://strumentiutili.it/fototessera.html" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+
+  <!-- Header Fisso -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="index.html" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-4">
+        <a href="index.html#lavoro" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="index.html#fiscale" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="index.html#finanza" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="index.html#pdf" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="index.html#ia" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="index.html#media" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 flex-1 max-w-5xl">
+    <a href="index.html" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla home</a>
+
+    <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+        <span>📸</span> Grafica &amp; Documenti Biometrici
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Generatore Fototessera Biometrica (35x45 mm)</h1>
+      <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+        Crea foto tessere conformi allo standard <strong>ICAO/OACI</strong> per Passaporto, Carta d'Identità Elettronica (CIE) e Patente. La rimozione dello sfondo avviene con IA ad alta definizione nel browser.
+      </p>
+      <div class="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit">
+        <span>🔒 Privacy Totale:</span> L'elaborazione e il ritaglio operano al 100% sul tuo dispositivo senza invio cloud.
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- EDITOR GRAFICO E INPUT -->
+      <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+        
+        <h2 class="text-lg font-bold text-gray-900 border-b pb-2">1. Carica la foto</h2>
+
+        <div id="upload-box">
+          <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" class="hidden" />
+          <div id="drop-zone" role="button" tabindex="0" class="border-2 border-dashed border-gray-300 hover:border-indigo-500 bg-gray-50 hover:bg-indigo-50/50 transition-colors rounded-xl p-8 text-center cursor-pointer select-none">
+            <div class="text-4xl mb-2">📸</div>
+            <div class="text-sm font-medium text-gray-700">Scatta o trascina qui un ritratto oppure <span class="text-indigo-600 font-semibold">clicca per selezionarlo</span></div>
+            <div class="text-xs text-gray-400 mt-1">L'IA rimuoverà lo sfondo rispettando dettagli come i capelli.</div>
+          </div>
+        </div>
+
+        <!-- CANVAS EDITOR INTERATTIVO -->
+        <div id="editor-container" class="hidden space-y-4">
+          <div class="flex flex-wrap items-center justify-between border-b pb-3 gap-2">
+            <div id="ai-badge-status" class="flex items-center gap-2 text-xs font-semibold text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+              <span id="ai-spinner" class="animate-spin">⏳</span>
+              <span id="ai-status-text">Analisi IA HD in corso (attendi qualche secondo)...</span>
+            </div>
+            <button id="btn-toggle-bg" type="button" class="text-xs text-gray-500 hover:text-indigo-600 font-medium underline">
+              Mostra/Nascondi sfondo originale
+            </button>
+          </div>
+
+          <div class="relative w-full max-w-[350px] mx-auto bg-gray-900 rounded-xl overflow-hidden shadow-inner flex items-center justify-center p-2">
+            
+            <canvas id="photo-canvas" width="413" height="531" class="w-[280px] h-[360px] border border-gray-700 rounded shadow-md bg-white cursor-move touch-none"></canvas>
+            
+            <!-- Maschera guida biometrica ICAO overlay -->
+            <div id="biometric-guide" class="absolute pointer-events-none inset-0 flex flex-col items-center justify-center">
+              <div class="w-[280px] h-[360px] relative border-2 border-indigo-400/80 rounded">
+                <div class="absolute top-[18%] left-1/2 -translate-x-1/2 w-[160px] h-[210px] border-2 border-dashed border-emerald-400/90 rounded-full flex items-center justify-center">
+                  <span class="text-[10px] font-bold text-emerald-300 bg-black/60 px-1.5 py-0.5 rounded -mt-2">Posiziona la testa qui</span>
+                </div>
+                <div class="absolute top-[42%] left-0 right-0 border-b border-indigo-300/60 text-right pr-2">
+                  <span class="text-[9px] text-indigo-200 bg-black/50 px-1 rounded">Linea Occhi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTROLLI ZOOM / SPOSTAMENTO -->
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3">
+            <h3 class="text-xs font-semibold text-gray-700 uppercase tracking-wider">Regolazione Biometrica</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="zoom-slider" class="block text-xs font-medium text-gray-600 mb-1">Dimensione Volto (Zoom)</label>
+                <input id="zoom-slider" type="range" min="0.2" max="3" step="0.01" value="1" class="w-full accent-indigo-600 cursor-pointer" />
+              </div>
+              <div>
+                <label for="bg-color" class="block text-xs font-medium text-gray-600 mb-1">Colore Sfondo</label>
+                <select id="bg-color" class="w-full px-2 py-1.5 border border-gray-300 rounded text-xs bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <option value="#FFFFFF" selected>⚪ Bianco Puro (#FFFFFF - ICAO)</option>
+                  <option value="#F3F4F6">🔘 Grigio Chiaro (#F3F4F6)</option>
+                  <option value="#E0F2FE">🔵 Azzurro Tenue (#E0F2FE)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="text-xs text-gray-500 text-center pt-1">
+              💡 <strong>Libertà di posizionamento:</strong> Trascina la foto liberamente in alto o in basso per allineare gli occhi alla guida.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ANTEPRIMA E ESPORTAZIONE -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-indigo-900 text-white rounded-xl p-6 shadow-md space-y-5 sticky top-24">
+          <h3 class="text-xs font-semibold tracking-wider uppercase text-indigo-300">Esito &amp; Download</h3>
+
+          <div class="bg-indigo-950/80 p-4 rounded-lg border border-indigo-800 space-y-2 text-xs">
+            <div class="flex justify-between">
+              <span class="text-indigo-300">Standard:</span>
+              <span class="font-bold text-white">ICAO / OACI (Doc 9303)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-indigo-300">Dimensioni Stampa:</span>
+              <span class="font-bold text-white">35 x 45 mm</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-indigo-300">Risoluzione:</span>
+              <span class="font-bold text-emerald-400">413 x 531 px (300 DPI)</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <button id="btn-download-single" type="button" disabled class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-950 disabled:text-indigo-700 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>🖼️</span> Scarica Singola Foto (PNG 300DPI)
+            </button>
+
+            <button id="btn-download-pdf-grid" type="button" disabled class="w-full bg-emerald-500 hover:bg-emerald-600 disabled:bg-indigo-950 disabled:text-indigo-700 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>📄</span> Scarica Foglio Stampa PDF (10x15cm)
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO BLOCK -->
+    <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Requisiti Ufficiali delle Fototessere per Documenti Italiani</h2>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Le foto tessere per la Carta d'Identità Elettronica (CIE), il Passaporto e la Patente di guida in Italia devono rispettare rigorosamente le specifiche biometriche dettate dal Ministero dell'Interno e dall'organizzazione ICAO.
+      </p>
+
+      <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-2">Regole Biometriche Principali</h3>
+      <ul class="list-disc pl-6 text-gray-700 mb-4 space-y-2 text-sm">
+        <li><strong>Proporzioni del Volto:</strong> Il viso deve occupare tra il 70% e l'80% della foto (altezza della testa compresa tra 29 mm e 34 mm).</li>
+        <li><strong>Inquadratura:</strong> Lo sguardo deve essere rivolto frontalmente verso la fotocamera con un'espressione neutrale e bocca chiusa.</li>
+        <li><strong>Sfondo e Illuminazione:</strong> Lo sfondo deve essere di colore chiaro e uniforme (preferibilmente bianco), privo di ombre o riflessi.</li>
+      </ul>
+    </section>
+
+    <!-- BANNER ADSENSE FINE MAIN -->
+    <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded p-2">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="w-full text-center overflow-hidden mb-8">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/fototessera.js"></script>
+</body>
+</html>

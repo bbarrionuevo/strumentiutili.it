@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Riassunto Testo IA e Documenti (Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Crea riassunti automatici da testo, PDF, Word (DOCX) e immagini con OCR integrato 100% nel browser. Genera PDF del riassunto in totale privacy." />
+  <link rel="canonical" href="https://strumentiutili.it/ia/riassunto-testo/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Riassunto Testo e Documenti IA (Offline) — StrumentiUtili.it" />
+  <meta property="og:description" content="Riassumi testi, PDF, DOCX e immagini scannerizzate con OCR locale. Genera e scarica il PDF del riassunto." />
+  <meta property="og:url" content="https://strumentiutili.it/ia/riassunto-testo/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Riassunto Testo IA",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "url": "https://strumentiutili.it/ia/riassunto-testo/",
+    "description": "Riassumi PDF, DOCX e foto con NLP e OCR in locale nel browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "IA Locale", "item": "https://strumentiutili.it/ia/" },
+      { "@type": "ListItem", "position": 3, "name": "Riassunto Testo", "item": "https://strumentiutili.it/ia/riassunto-testo/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-4">
+        <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-indigo-600 font-semibold">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Nuevo Contenedor Principal Dividido -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+    
+    <!-- COLUMNA IZQUIERDA: Herramienta -->
+    <main class="w-full lg:w-8/12 xl:w-9/12">
+      
+      <!-- 1. Anuncio 'Above the Fold' -->
+      <div class="ad-skeleton-horizontal mb-6">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <a href="/ia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria IA Locale</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🤖</span> IA Locale &amp; NLP
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Riassunto Testo e Documenti (con OCR)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Incolla un testo oppure carica file <strong>PDF, Word (DOCX), TXT o Immagini</strong>. Se il documento è scansionato, il sistema applicherà l'OCR automatico per estrarre il testo prima di generare la sintesi.
+        </p>
+        <div class="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg w-fit shadow-sm">
+          <span>🔒 100% Privacy:</span> Nessun file o testo viene inviato a server esterni.
+        </div>
+      </section>
+
+      <!-- Main Tool Container -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+        
+        <div>
+          <label class="block text-sm font-bold text-gray-800 mb-2">Carica un documento (PDF, DOCX, TXT, PNG, JPG)</label>
+          <input id="file-input" type="file" accept=".txt,.docx,.pdf,image/png,image/jpeg,image/webp" class="hidden">
+          
+          <div id="drop-zone" role="button" tabindex="0" class="border-2 border-dashed border-indigo-200 hover:border-indigo-400 bg-gray-50 hover:bg-indigo-50 transition-colors rounded-xl p-8 text-center cursor-pointer select-none">
+            <div class="text-4xl mb-3">📁</div>
+            <div class="text-sm font-medium text-gray-700">Trascina qui il tuo file oppure <span class="text-indigo-600 font-bold">clicca per selezionarlo</span></div>
+            <div class="text-xs text-gray-500 mt-2 font-medium">Supporta PDF (anche scansionati), Word, Testo e Immagini</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="source-text" class="text-sm font-bold text-gray-800">Oppure incolla/modifica il testo qui sotto:</label>
+            <span id="char-count" class="text-xs font-mono bg-gray-100 px-2 py-1 rounded text-gray-600">0 caratteri</span>
+          </div>
+          <textarea id="source-text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all h-48 text-sm leading-relaxed" placeholder="Incolla qui il testo da riassumere..."></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 p-5 rounded-xl border border-gray-200">
+          <div>
+            <label for="summary-length" class="block text-sm font-bold text-gray-800 mb-1">Lunghezza del riassunto</label>
+            <select id="summary-length" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="short">Breve (~15% del testo)</option>
+              <option value="medium" selected>Medio (~30% del testo)</option>
+              <option value="long">Dettagliato (~50% del testo)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="summary-format" class="block text-sm font-bold text-gray-800 mb-1">Formato di output</label>
+            <select id="summary-format" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="bullets" selected>Punti chiave (Bullet points)</option>
+              <option value="paragraph">Discorsivo (Paragrafi)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button id="summarize" type="button" class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold px-6 py-3 rounded-lg text-sm transition shadow-sm flex items-center justify-center gap-2">
+            <span>✨</span> Genera Riassunto
+          </button>
+          <button id="summ-clear" type="button" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg text-sm transition">
+            Pulisci
+          </button>
+        </div>
+
+        <div id="summary-progress" class="text-sm font-bold text-indigo-700 hidden flex items-center gap-2 bg-indigo-50 p-3 rounded-lg border border-indigo-100 w-fit">
+          <span class="animate-spin">⏳</span> <span id="progress-text">Elaborazione in corso...</span>
+        </div>
+
+        <div id="result-container" class="hidden space-y-4 border-t border-gray-200 pt-6">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-gray-600">Anteprima Riassunto</h3>
+            <div class="flex gap-2">
+              <button id="btn-copy" type="button" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300 px-4 py-2 rounded-lg font-bold transition shadow-sm">📋 Copia Testo</button>
+              <button id="btn-download-pdf" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold transition shadow-sm">📄 Scarica PDF</button>
+            </div>
+          </div>
+
+          <div id="summary-result" class="bg-gray-50 border border-gray-300 p-6 rounded-xl text-gray-900 text-sm leading-relaxed min-h-[150px] whitespace-pre-line shadow-inner font-serif"></div>
+        </div>
+      </div>
+
+      <!-- SEO Explanation Block -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Algoritmi di Sintesi ed Estrazione Testo (NLP Locale + OCR)</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Ridurre lunghi contratti, appunti universitari o report aziendali in sintesi chiare richiede algoritmi avanzati di Natural Language Processing (NLP). Questo strumento combina la lettura diretta di documenti digitali con il riconoscimento ottico dei caratteri (OCR).
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">La pipeline Client-Side</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li><strong>Estrazione Vettoriale:</strong> Per file PDF nativi e DOCX, il browser estrae il testo strutturato.</li>
+              <li><strong>OCR Integrato:</strong> Per le scansioni, interviene Tesseract.js che riconosce il testo direttamente nella RAM.</li>
+              <li><strong>Sintesi Ponderata:</strong> L'algoritmo TF-IDF assegna un punteggio di rilevanza alle frasi.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">Sicurezza e Riservatezza</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Caricare documenti riservati su servizi cloud esterni espone i tuoi dati al rischio di archiviazione. Eseguendo l'intera elaborazione nel tuo browser, i tuoi file non lasciano mai il dispositivo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anuncio extra para móviles -->
+      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+    </main>
+
+    <!-- COLUMNA DERECHA: Sticky Sidebar -->
+    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
+      <div class="sticky-sidebar space-y-6">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti IA Locale</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/ia/traduttore/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🌐</span> Traduttore IA</a></li>
+            <li><a href="/ia/riassunto-testo/" class="text-indigo-600 flex items-center gap-2"><span>📝</span> Riassunto Testo</a></li>
+            <li><a href="/ia/ocr-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔍</span> OCR Immagini</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <div class="ad-skeleton-vertical">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9434300808171957"
+                 data-ad-slot="9606012335"
+                 data-ad-format="vertical"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="w-full text-center overflow-hidden mb-8">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/riassunto.js"></script>
+</body>
+</html>
