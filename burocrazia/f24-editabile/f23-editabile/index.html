@@ -64,13 +64,13 @@
     </div>
   </header>
 
-  <!-- CONTENITORE PRINCIPALE: Flex su Mobile, Grid 12-colonne su Desktop -->
+  <!-- CONTENITORE PRINCIPALE -->
   <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 flex-1">
     
-    <!-- ORDINE 1 DOM: Strumento F23 (Desktop: Sinistra, Riga 1) -->
     <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1">
       
-      <div class="mb-6 w-full overflow-hidden flex justify-center">
+      <!-- FIX: Eliminado flex justify-center, cambiado a text-center -->
+      <div class="mb-6 w-full overflow-hidden text-center">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9434300808171957"
@@ -149,7 +149,6 @@
       </div>
     </main>
 
-    <!-- ORDINE 2 DOM: Sidebar (Mobile: Appare sotto al form / Desktop: Destra, si estende su due righe) -->
     <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2">
       <div class="sticky-sidebar space-y-6">
         
@@ -190,8 +189,8 @@
           </ul>
         </div>
 
-        <!-- Pubblicità Desktop Protetta -->
-        <div class="w-full overflow-hidden flex flex-col items-center ad-slot-desktop">
+        <!-- FIX: Eliminado flex col items-center -->
+        <div class="w-full overflow-hidden text-center ad-slot-desktop">
           <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
           <ins class="adsbygoogle"
                style="display:block"
@@ -200,7 +199,6 @@
                data-ad-format="vertical"
                data-full-width-responsive="true"></ins>
           <script>
-            // Solo carga en pantallas de PC para evitar errores TagError
             if (window.innerWidth >= 1024) { (adsbygoogle = window.adsbygoogle || []).push({}); }
           </script>
         </div>
@@ -208,7 +206,6 @@
       </div>
     </aside>
 
-    <!-- ORDINE 3 DOM: Blocco SEO e Ad Mobile (Mobile: Appare a fine pagina / Desktop: Sinistra, Riga 2) -->
     <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1">
       <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Differenza tra Modello F24 e Modello F23</h2>
@@ -221,8 +218,8 @@
         </p>
       </section>
 
-      <!-- Pubblicità Mobile Protetta -->
-      <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100 w-full flex justify-center ad-slot-mobile">
+      <!-- FIX: Eliminado flex justify-center -->
+      <div class="mt-8 text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100 w-full ad-slot-mobile">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9434300808171957"
@@ -230,7 +227,6 @@
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>
-          // Solo carga en pantallas moviles para evitar errores TagError
           if (window.innerWidth < 1024) { (adsbygoogle = window.adsbygoogle || []).push({}); }
         </script>
       </div>
@@ -240,7 +236,9 @@
 
   <footer class="bg-white border-t mt-12">
     <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8 flex justify-center">
+      
+      <!-- FIX: Eliminado flex justify-center -->
+      <div class="w-full text-center overflow-hidden mb-8">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9434300808171957"
@@ -249,6 +247,7 @@
              data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
+      
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-center md:text-left">
           <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
