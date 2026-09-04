@@ -22,9 +22,37 @@
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Script e CSS -->
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <!-- Script AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="stylesheet" href="/css/styles.css">
 
   <!-- Schema.org Structured Data -->
@@ -40,7 +68,7 @@
   }
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+<body class="bg-gray-50 text-gray-800 pb-28 block">
 
   <!-- Header Navigazione Principale -->
   <header class="bg-white shadow sticky top-0 z-50">
@@ -64,20 +92,20 @@
     </div>
   </header>
 
-  <!-- Contenitore Principale Hub -->
-  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
     
-    <main class="w-full lg:w-8/12 xl:w-9/12">
+    <!-- COLONNA SINISTRA: Griglia Modelli -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
       
       <!-- Pubblicità Above the Fold -->
-      <div class="ad-skeleton-horizontal mb-6">
+      <div class="su-ad mb-6 w-full text-center">
         <ins class="adsbygoogle"
-             style="display:block"
+             style="display:block;width:100%;min-width:0;"
              data-ad-client="ca-pub-9434300808171957"
              data-ad-slot="9606012335"
              data-ad-format="horizontal"
              data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
       <a href="/burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Fiscalità</a>
@@ -170,9 +198,41 @@
         </article>
 
       </div>
+    </main>
 
-      <!-- SEO Block Hub -->
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+    <!-- COLONNA DESTRA: Sticky Sidebar -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Suite Modelli F24 / F23</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/burocrazia/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> F24 Ordinario</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📄</span> F24 Semplificato</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔑</span> F24 Elide</a></li>
+            <li><a href="/burocrazia/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🛢️</span> F24 Accise</a></li>
+            <li><a href="/burocrazia/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Modello F23</a></li>
+          </ul>
+        </div>
+
+        <!-- Pubblicità Verticale Sticky Desktop -->
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Quale Modello F24 o F23 scegliere?</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-4">
           La scelta del modello corretto garantisce la regolare registrazione del tributo da parte dell'Agenzia delle Entrate e previene l'emissione di cartelle esattoriali per errata imputazione.
@@ -187,52 +247,31 @@
       </section>
 
       <!-- Pubblicità Extra per Dispositivi Mobili -->
-      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
 
-    </main>
-
-    <!-- COLONNA DESTRA: Sticky Sidebar -->
-    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
-      <div class="sticky-sidebar space-y-6">
-        
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Suite Modelli F24 / F23</h3>
-          <ul class="space-y-3 text-sm font-bold text-gray-600">
-            <li><a href="/burocrazia/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> F24 Ordinario</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📄</span> F24 Semplificato</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔑</span> F24 Elide</a></li>
-            <li><a href="/burocrazia/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🛢️</span> F24 Accise</a></li>
-            <li><a href="/burocrazia/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Modello F23</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
-          <div class="ad-skeleton-vertical">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9434300808171957"
-                 data-ad-slot="9606012335"
-                 data-ad-format="vertical"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-          </div>
-        </div>
-
-      </div>
-    </aside>
+    </div>
 
   </div>
 
   <!-- Footer con Pagine Legali -->
-  <footer class="bg-white border-t mt-12">
-    <div class="container mx-auto px-4 py-8">
-      <div class="w-full text-center overflow-hidden mb-8">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -250,5 +289,83 @@
     </div>
   </footer>
 
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
 </body>
 </html>
