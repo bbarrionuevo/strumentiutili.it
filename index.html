@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth scroll-pt-24">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StrumentiUtili.it — Micro-strumenti gratuiti 100% client-side</title>
+  <meta name="description" content="L'ecosistema definitivo di micro-strumenti per l'Italia. Calcolatori fiscali 2026, ammortamenti, PDF e IA. Zero-Backend: privacy assoluta nel browser." />
+  <link rel="canonical" href="https://strumentiutili.it/" />
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="StrumentiUtili.it — Ecosistema Tool Client-Side" />
+  <meta property="og:description" content="Strumenti utili per lavoro, fiscalità, finanza, PDF e IA locale. Tutto elaborato direttamente nel browser per la privacy totale." />
+  <meta property="og:url" content="https://strumentiutili.it/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+    .hero-privacy { background: #eef2ff; border-left: 4px solid #4f46e5; padding: 12px; border-radius: 6px; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "StrumentiUtili.it",
+    "url": "https://strumentiutili.it/",
+    "description": "Micro-strumenti gratuiti italiani per lavoro, fiscalità, finanza, PDF, IA locale e grafica.",
+    "inLanguage": "it-IT"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Suite StrumentiUtili.it",
+    "url": "https://strumentiutili.it/",
+    "applicationCategory": "BusinessApplication, FinanceApplication, LegalApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires HTML5, WebAssembly, and WebGPU support.",
+    "description": "Piattaforma di calcolo fiscale, finanziario e manipolazione PDF 100% client-side con architettura Zero-Backend per la massima conformità GDPR."
+  }
+  </script>
+  
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  
+  <!-- Header & Nav -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="#fisco-professioni" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+        <a href="#cittadino-tasse" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+        <a href="#lavoro-contratti" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro &amp; Contratti</a>
+        <a href="#identita-burocrazia" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+        <a href="#pdf-ia" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF &amp; IA</a>
+        <a href="#utilita" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+      </nav>
+      <!-- Search Bar dinamica (Auto-Scroll) -->
+      <div class="w-full md:w-auto md:ml-4 mt-2 md:mt-0 order-last md:order-none">
+        <input id="search" type="search" placeholder="🔍 Cerca e vai allo strumento..." class="w-full md:w-64 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 block">
+    
+    <!-- Hero Section -->
+    <section class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 mb-8 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+      <div class="lg:col-span-2">
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">L'ecosistema definitivo di micro-strumenti gratuiti (100% Client-Side)</h1>
+        <p class="mt-3 text-gray-700">Calcolatori fiscali 2026, ammortamenti finanziari, editor PDF e intelligenza artificiale locale. Tutto il codice viene eseguito nel tuo browser.</p>
+        <div class="mt-4 hero-privacy">
+          <strong class="mr-2">🔒 Nessun Server, Nessun Tracciamento (Zero-Backend):</strong>
+          <span>I tuoi documenti (XML, PDF) e i tuoi dati reddituali e patrimoniali non lasciano mai il tuo PC.</span>
+        </div>
+        <div class="mt-4 flex gap-3">
+          <a href="/cittadino-tasse/f24-editabile/" class="bg-indigo-600 text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition hover:bg-indigo-700 shadow-sm">Genera F24 Editabile</a>
+          <a href="#fisco-professioni" class="border border-gray-300 font-medium px-4 py-2.5 rounded-lg text-sm transition hover:bg-gray-50">Esplora Suite</a>
+        </div>
+      </div>
+      <div class="su-ad lg:col-span-1 text-center bg-gray-50 rounded-lg p-2 border border-gray-100 w-full">
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider block text-center font-semibold mb-1">Pubblicità</span>
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </section>
+
+    <!-- 1. FISCO E PROFESSIONI (Business Hub) -->
+    <section id="fisco-professioni" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">💼 Fisco &amp; Professioni (Business Hub)</h2>
+        <a href="/fisco-professioni/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Simulatore Rata Mutuo e TAEG</h3>
+            <p class="text-sm text-gray-600 mt-2">Sviluppo ammortamento francese, integrazione costi bancari e Imposta Sostitutiva (0.25% - 2%).</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/calcolo-rata-mutuo/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Rivalutazione ISTAT FOI</h3>
+            <p class="text-sm text-gray-600 mt-2">Aggiornamento canoni e calcolo interessi legali civili 2026 (1,60%) pro rata temporis.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/rivalutazione-istat/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-bold mb-2 inline-block">Aggiornato 2026</span>
+            <h3 class="font-bold text-gray-900 text-lg">Partita IVA Forfettaria</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcolo netto, cassa INPS e imposta sostitutiva. Alert per sforo oltre gli 85.000€.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/partita-iva/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo Parcella Avvocato</h3>
+            <p class="text-sm text-gray-600 mt-2">Proforma legale, CPA 4% e scorporo inverso automatico dal compenso netto.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/parcella-avvocato/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Contributo Unificato</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcola le spese di giustizia (D.P.R. 115/2002) per i procedimenti civili e Appello.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/contributo-unificato/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Interessi Moratori (B2B)</h3>
+            <p class="text-sm text-gray-600 mt-2">Penali per ritardati pagamenti commerciali con storico tassi BCE maggiorato (D.Lgs. 231).</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/interessi-moratori/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-indigo-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-bold mb-2 inline-block">🔒 Privacy 100%</span>
+            <h3 class="font-bold text-gray-900 text-lg">Visualizzatore Fattura XML</h3>
+            <p class="text-sm text-gray-600 mt-2">Apri XML e file .p7m (firmati) in locale senza inviare dati al server.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/fattura-elettronica/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Ravvedimento Operoso</h3>
+            <p class="text-sm text-gray-600 mt-2">Sanzioni ridotte per sanare imposte versate in ritardo (D.Lgs. 87/2024).</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/ravvedimento-operoso/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <!-- Strumenti Nascosti di Fisco -->
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo IVA (Scorporo)</h3>
+            <p class="text-sm text-gray-600 mt-2">Aggiungi o scorpora l'IVA da qualsiasi importo commerciale.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/calcolo-iva/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Usufrutto e Nuda Proprietà</h3>
+            <p class="text-sm text-gray-600 mt-2">Valutazione fiscale dei diritti immobiliari applicando il tasso T.U.R.</p>
+          </div>
+          <div class="mt-4"><a href="/fisco-professioni/usufrutto/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BANNER ADSENSE INTERMEDIO -->
+    <div class="su-ad my-10 text-center bg-gray-50 rounded-xl p-3 border border-gray-100 w-full">
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- 2. CITTADINO E TASSE (Welfare Hub) -->
+    <section id="cittadino-tasse" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">🏛️ Cittadino &amp; Tasse (Welfare Hub)</h2>
+        <a href="/cittadino-tasse/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Imposte Acquisto Casa</h3>
+            <p class="text-sm text-gray-600 mt-2">Simula il regime "Prezzo-Valore" (Registro 2%-9%) o l'IVA costruttore.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/imposte-acquisto-casa/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Calcolo Bollo Auto</h3>
+            <p class="text-sm text-gray-600 mt-2">Tariffe 2026 per Regione (kW/Euro) e Superbollo decrescente.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/calcolo-bollo-auto/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Passaggio Proprietà (IPT)</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcola i costi PRA e l'Imposta Provinciale (maggiorazioni fino al +30%).</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/passaggio-di-proprieta/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-indigo-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Suite Modelli F24 in PDF</h3>
+            <p class="text-sm text-gray-600 mt-2">Compila F24 Semplificato, Ordinario e F23 in un file PDF/A valido per le banche.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/f24-editabile/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Simulatore ISEE Ordinario</h3>
+            <p class="text-sm text-gray-600 mt-2">Estima ISR e patrimonio immobiliare escludendo i Titoli di Stato.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/simulatore-isee/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo IMU 2026</h3>
+            <p class="text-sm text-gray-600 mt-2">Determina le quote di Acconto e Saldo applicando i moltiplicatori catastali.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/calcolo-imu/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+        
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Aliquote IRPEF 2026</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcolatore progressivo (23%, 33%, 43%) con sterilizzazione redditi alti.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/aliquote-irpef/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Assegno Unico INPS</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcola l'importo mensile in base all'ISEE e alle maggiorazioni previste.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/assegno-unico/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <!-- Strumenti Nascosti di Cittadino -->
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Cedolare Secca vs Registro</h3>
+            <p class="text-sm text-gray-600 mt-2">Confronta la tassa piatta con il regime ordinario per le locazioni.</p>
+          </div>
+          <div class="mt-4"><a href="/cittadino-tasse/imposta-registro-locazioni/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 3. LAVORO E CONTRATTI -->
+    <section id="lavoro-contratti" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">🤝 Lavoro &amp; Contratti</h2>
+        <a href="/lavoro-contratti/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Simulatore NASpI 2026</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcola l'indennità INPS e il Décalage del 3% per Under 55 e Over 55.</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/calcolo-naspi/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Stipendio Netto (RAL)</h3>
+            <p class="text-sm text-gray-600 mt-2">Stima la busta paga con il nuovo Cuneo Fiscale Strutturale (L. 207/2024).</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/stipendio-netto/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo TFR (Liquidazione)</h3>
+            <p class="text-sm text-gray-600 mt-2">Scorpora rivalutazione e tassazione separata dal Trattamento di Fine Rapporto.</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/calcolo-tfr/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Prestazione Occasionale</h3>
+            <p class="text-sm text-gray-600 mt-2">Crea la ricevuta con Ritenuta d'Acconto 20% ed evasione soglia INPS (5000€).</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Ritenuta d'Acconto</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcolo da lordo a netto e viceversa per i compensi autonomi.</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/ritenuta-acconto/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Giorni Lavorativi</h3>
+            <p class="text-sm text-gray-600 mt-2">Calcola i giorni lavorativi tra due date escludendo weekend e festività mobili (Pasquetta).</p>
+          </div>
+          <div class="mt-4"><a href="/lavoro-contratti/giorni-lavorativi/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. IDENTITÀ, FINANZA E BUROCRAZIA -->
+    <section id="identita-burocrazia" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">🪪 Identità &amp; Burocrazia</h2>
+        <a href="/identita-burocrazia/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2 inline-block">✨ Nuovo</span>
+            <h3 class="font-bold text-gray-900 text-lg">Calcolo Quote Ereditarie</h3>
+            <p class="text-sm text-gray-600 mt-2">Esegui la riunione fittizia e calcola le quote di legittima o testamentarie.</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Validatore IBAN (ISO 7064)</h3>
+            <p class="text-sm text-gray-600 mt-2">Controllo algoritmico Modulo 97 senza trasmettere coordinate in rete.</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/validatore-iban/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Codice Fiscale e Omocodia</h3>
+            <p class="text-sm text-gray-600 mt-2">Estrai il CF anagrafico e risolvi i codici catastali omocodici in locale.</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/codice-fiscale/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Fototessera ICAO (CIE)</h3>
+            <p class="text-sm text-gray-600 mt-2">Adatta la tua foto al formato CIE (35x45mm) senza cloud o app esterne.</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/fototessera/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+        
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Autocertificazione</h3>
+            <p class="text-sm text-gray-600 mt-2">Genera la Dichiarazione Sostitutiva pronta da firmare (D.P.R. 445/2000).</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/autocertificazione/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Generatore Password Sicure</h3>
+            <p class="text-sm text-gray-600 mt-2">Sfrutta la WebCrypto API per password offline crittografiche.</p>
+          </div>
+          <div class="mt-4"><a href="/identita-burocrazia/generatore-password/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 5. PDF E IA -->
+    <section id="pdf-ia" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">📄 PDF, Scanner &amp; IA Locale</h2>
+        <a href="/pdf/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><span class="text-xs px-2 py-1 bg-rose-100 text-rose-700 rounded-full font-bold mb-2 inline-block">Zero-Leak</span>
+            <h3 class="font-bold text-gray-900 text-lg">Anonimizza PDF (Redact)</h3>
+            <p class="text-sm text-gray-600 mt-2">Distruggi permanentemente i layer di testo sensibili dai PDF.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/anonimizza/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Convertitore PDF/A</h3>
+            <p class="text-sm text-gray-600 mt-2">Conforma i documenti allo standard ISO 19005 richiesto dal PCT legale.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/convertitore-pdfa/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Scanner Documenti (CIE)</h3>
+            <p class="text-sm text-gray-600 mt-2">Rileva bordi e raddrizza scontrini o ID tramite Computer Vision locale.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/scanner-documenti/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Trascrizione IA (Whisper)</h3>
+            <p class="text-sm text-gray-600 mt-2">Sbobina file audio/video utilizzando il modello neurale nella GPU del browser.</p>
+          </div>
+          <div class="mt-4"><a href="/ia/trascrizione-audio/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Firma PDF Locale</h3>
+            <p class="text-sm text-gray-600 mt-2">Disegna o inserisci la tua firma autografa nei contratti PDF senza caricare nulla.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/firma/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Unisci e Dividi PDF</h3>
+            <p class="text-sm text-gray-600 mt-2">Combina più file o estrai singole pagine processando i binari nella RAM.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/unisci-dividi/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Comprimi PDF</h3>
+            <p class="text-sm text-gray-600 mt-2">Riduci il peso dei documenti PDF ottimizzando file per invio via PEC.</p>
+          </div>
+          <div class="mt-4"><a href="/pdf/comprimi-converti/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+        
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Estrazione OCR Immagini</h3>
+            <p class="text-sm text-gray-600 mt-2">Estrai il testo (Tesseract.js) da foto o screenshot senza inviarle a server terzi.</p>
+          </div>
+          <div class="mt-4"><a href="/ia/ocr-immagini/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <!-- Strumenti Nascosti IA -->
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Traduttore Neurale</h3>
+            <p class="text-sm text-gray-600 mt-2">Traduci testi sensibili offline in tempo reale sfruttando WebGPU.</p>
+          </div>
+          <div class="mt-4"><a href="/ia/traduttore/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Riassunto Testo IA</h3>
+            <p class="text-sm text-gray-600 mt-2">Sintetizza lunghi documenti estraendo i concetti chiave (LLM locale).</p>
+          </div>
+          <div class="mt-4"><a href="/ia/riassunto-testo/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. UTILITÀ, MATEMATICA E WEB -->
+    <section id="utilita" class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">🛠️ Utilità, Matematica &amp; Web</h2>
+        <a href="/utilita-web/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo Percentuali</h3>
+            <p class="text-sm text-gray-600 mt-2">Sconti, variazioni, ricarichi e incidenze in un calcolatore istantaneo.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/calcolo-percentuale/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Interessi Composti</h3>
+            <p class="text-sm text-gray-600 mt-2">Simula la crescita finanziaria dei tuoi investimenti con PAC mensile.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/interessi-composti/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Generatore Codice QR</h3>
+            <p class="text-sm text-gray-600 mt-2">Crea QR code vettoriali per menù, Wi-Fi o biglietti da visita.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/generatore-qr/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Convertitore Immagini</h3>
+            <p class="text-sm text-gray-600 mt-2">Converti foto da HEIC o WebP a JPG/PNG in blocco nel tuo browser.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/convertitore-immagini/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <!-- Strumenti Nascosti Utilità -->
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Contaparole</h3>
+            <p class="text-sm text-gray-600 mt-2">Analizza testi, caratteri, keyword e calcola il tempo di lettura stimato.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/contaparole/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Acortador URL (Shortener)</h3>
+            <p class="text-sm text-gray-600 mt-2">Accorcia link lunghi per renderli più leggibili nei tuoi post.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/acortador-url/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Media Universitaria</h3>
+            <p class="text-sm text-gray-600 mt-2">Gestisci il libretto esami e stima il tuo voto di laurea base.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/media-universitaria/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+        <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+          <div><h3 class="font-bold text-gray-900 text-lg">Calcolo Metabolico BMR</h3>
+            <p class="text-sm text-gray-600 mt-2">Scopri il tuo metabolismo basale e TDEE con la formula Mifflin-St Jeor.</p>
+          </div>
+          <div class="mt-4"><a href="/utilita-web/calcolo-bmr/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BLOQUE SEO EXPANSO: IL MANIFESTO DELLA PIATTAFORMA ED E-E-A-T -->
+    <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-12">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-6">StrumentiUtili.it: L'Ecosistema Client-Side per la Fiscalità, il Lavoro e la Burocrazia in Italia</h2>
+      <p class="text-base text-gray-700 leading-relaxed mb-8">
+        La digitalizzazione dei processi burocratici e fiscali in Italia impone ai cittadini e ai professionisti sfide operative quotidiane. <strong>StrumentiUtili.it</strong> è la piattaforma definitiva che ti permette di generare, calcolare, validare e scaricare documenti legali e modelli tributari operando esclusivamente all'interno del tuo browser. Adottando una rigorosa architettura <em>Zero-Backend</em>, l'utente può compilare modelli F24, analizzare buste paga, estrarre fatture XML ed eseguire manipolazioni PDF senza mai caricare alcun dato sensibile su server cloud esterni. L'esecuzione in locale garantisce la piena conformità all'Articolo 25 del GDPR (Privacy by Design), esonerando i professionisti dalla nomina di Responsabili del Trattamento (Data Processors). Di seguito, esploriamo le capacità operative, le formule matematiche e il fondamento giuridico (E-E-A-T) di tutti i nostri micro-strumenti aggiornati al 2026.
+      </p>
+
+      <div class="space-y-4">
+        
+        <!-- 1. MODELLI FISCALI E COMPILAZIONE ATTIVA -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>📜</span> Compilazione Modelli F24 e F23: Editor PDF/A, Compensazioni e Saldo Zero</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> La piattaforma ti permette di compilare moduli interattivi per generare modelli <strong>F24 Ordinario, F24 Semplificato, F24 Elide, F24 Accise e F23</strong>. Il sistema esegue i calcoli di totalizzazione in tempo reale e ti consente di scaricare istantaneamente il documento nel formato conforme <strong>PDF/A (ISO 19005)</strong>, pronto per essere caricato sull'home banking aziendale o stampato per il pagamento fisico.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Integrità Tipografica e Dimensionale:</strong> L'algoritmo di generazione rispetta le specifiche della Agenzia delle Entrate, renderizzando i dati variabili esclusivamente in formato "Courier" a passo fisso (10 cpi orizzontale, 6 lpi verticale) e forzando l'area di stampa tra 19,5 e 21,5 cm di larghezza per superare i controlli OCR bancari.</li>
+              <li><strong>Compensazione Orizzontale e Saldo Zero:</strong> Il motore algebrico incrocia i debiti e i crediti inseriti: $Saldo_{F24} = \sum Debiti - \sum Crediti$. Il software integra una regola bloccante inderogabile: il saldo finale non può mai essere negativo ($S \ge 0$). Se i crediti superano i debiti, il modello viene generato a "Saldo Zero" e il sistema emette un alert ricordando che tali modelli devono essere trasmessi esclusivamente tramite i canali telematici Entratel o Fisconline.</li>
+              <li><strong>Dinamiche F24 Elide:</strong> Per la registrazione di contratti e locazioni, l'F24 Elide viene pre-compilato con i codici tributo aggiornati (es. 1550 per registro, 1552 per bollo) e integra il campo "Codice Identificativo 63" per la controparte contrattuale.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 2. FISCO, B2B E PARTITA IVA -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>💼</span> Fisco & B2B: Lettore FatturaPA, Parcella Avvocato e Ravvedimento 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Professionisti e PMI possono calcolare le imposte della <strong>Partita IVA Forfettaria</strong>, estrarre il netto di una <strong>Parcella Avvocato</strong> tramite scorporo inverso, calcolare le sanzioni del <strong>Ravvedimento Operoso</strong>, o trascinare file XML e .p7m crittografati per visualizzare le Fatture Elettroniche in locale.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Lettore Fatture CAdES (.p7m):</strong> Sfruttando le librerie <code>asn1js</code> e <code>pkijs</code>, il browser decodifica l'involucro crittografico PKCS#7 in locale, estraendo il payload XML originale senza inviare la fattura a server di terze parti. Il parsing supporta nativamente lo schema FatturaPA v1.9.1 (incluso il Tipo Documento TD29).</li>
+              <li><strong>Scorporo Parcella Legale:</strong> Il calcolatore permette di inserire un "Totale Netto" e retrocedere all'onorario lordo risolvendo polinomi complessi. Se il cliente è sostituto d'imposta, l'imponibile si ottiene dividendo il netto concordato per il coefficiente costante di <code>1.0688</code> (che sintetizza IVA al 22%, CPA al 4% e Ritenuta al 20%).</li>
+              <li><strong>Ravvedimento Operoso (D.Lgs. 87/2024):</strong> Il simulatore applica il nuovo regime sanzionatorio. La sanzione base per omesso versamento è scesa al 25%. Il sistema calcola frazioni dinamiche: 1/15 per giorno nel ravvedimento Sprint, fino a 1/7 per ritardi annuali. Gli interessi legali sono calcolati <em>pro-rata temporis</em> all'1,60% per il 2026.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 3. IMMOBILI E FINANZA -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>🏠</span> Finanza & Immobili: Ammortamento Mutui, Prezzo-Valore e IMU</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Sviluppare il piano di ammortamento mensile per <strong>Mutui Ipotecari</strong> con stima del TAEG, calcolare le quote <strong>IMU 2026</strong> per acconto e saldo, e simulare le imposte notarili per l'<strong>Acquisto di Prima e Seconda Casa</strong> confrontando privato e costruttore.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Newton-Raphson per il TAEG Mutuo:</strong> La rata si ottiene dalla formula $R = C \cdot \frac{i(1+i)^n}{(1+i)^n-1}$. Poiché il TAEG non ammette risoluzione algebrica lineare, il motore iterativo in JS sfrutta il metodo di Newton-Raphson per azzerare il Valore Attuale Netto (VAN) integrando le perizie e l'imposta sostitutiva (0,25% o 2,00%).</li>
+              <li><strong>Regola del Prezzo-Valore (L. 266/2005):</strong> Nel calcolo delle Imposte per l'Acquisto Casa tra privati, la base imponibile ignora il prezzo reale e revalorizza la Rendita Catastale moltiplicandola per 1,05 e poi per il coefficiente di 110 (Prima Casa) o 120 (Seconda Casa). Il software livella l'Imposta di Registro all'inderogabile minimale di 1.000,00 €.</li>
+              <li><strong>IMU e Bollo Auto:</strong> Il calcolo IMU incrocia il moltiplicatore (es. 160 per cat. A) con le quote di possesso, applicando la "regola del mese commerciale" (valido se posseduto $> 15$ gg). Per i veicoli, il Bollo Auto tronca matematicamente i kW (<code>Math.floor</code>) ed esegue il <em>décalage</em> progressivo decennale del Superbollo erariali (fino all'azzeramento al 20° anno).</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 4. LAVORO E WELFARE -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>🤝</span> Lavoro & INPS: Simulazione NASpI, Calcolo TFR e Stipendio Netto</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Tracciare il calendario dei pagamenti <strong>NASpI</strong> (Disoccupazione INPS), calcolare la liquidazione del <strong>TFR</strong> con le quote di rivalutazione, stimare lo <strong>Stipendio Netto</strong> partendo dalla RAL, ed emettere ricevute per <strong>Prestazioni Occasionali</strong>.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Algoritmo NASpI e Décalage:</strong> Determina la Retribuzione Media Mensile moltiplicando l'imponibile per 4,33. L'ingegneria del software traccia il <em>Décalage</em> INPS: l'assegno subisce una decurtazione del 3% mensile a partire dal 6° mese per gli Under 55, o dall'8° mese per gli Over 55.</li>
+              <li><strong>Trattamento di Fine Rapporto (TFR):</strong> L'accantonamento annuo si estrae dividendo la RAL per il coefficiente 13,5, decurtando lo 0,50% di rivalsa INPS. Sulla rivalutazione incide la flat tax del 17%, mentre il capitale subisce il regime agevolato della Tassazione Separata TUIR.</li>
+              <li><strong>Simulatore ISEE e Titoli di Stato:</strong> Estrapola l'ISE (Indicatore Situazione Economica) sommando redditi (ISR) e il 20% del patrimonio (ISP). L'algoritmo 2026 incorpora le franchigie immobiliari (es. 91.500 €) ed esclude tassativamente Titoli di Stato e BTP fino alla soglia limite di 50.000 €.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 5. SUCCESSIONI E CALENDARI -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>⚖️</span> Diritto Civile: Eredità (Riunione Fittizia), ISTAT e Algoritmo di Gauss</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Distribuire le <strong>Quote Ereditarie</strong> determinando la massa legittima e testamentaria, ricalcolare gli affitti tramite l'<strong>Indice ISTAT FOI</strong>, e conteggiare i <strong>Giorni Lavorativi</strong> tra due date scartando le festività mobili.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Riunione Fittizia (Art. 556 c.c.):</strong> La massa ereditaria calcola $Massa = \max(0, Relictum - Debiti) + Donatum$. Il motore impedisce matematicamente che debiti eccedenti il relictum vadano ad erodere il valore delle donazioni in vita, restituendo le frazioni perfette di legittima per coniuge e figli.</li>
+              <li><strong>Rivalutazione ISTAT e Blocco Deflazione:</strong> Calcola la variazione percentuale degli indici FOI. Aderendo alla giurisprudenza civile, il tool neutralizza le percentuali negative in caso di deflazione, impedendo che i canoni di locazione vengano abbassati nominalmente sotto la soglia base pattuita.</li>
+              <li><strong>Algoritmo di Gauss per Pasquetta:</strong> Nel tool dei giorni lavorativi, l'esclusione delle festività mobili richiede precisione. Il sistema adotta il Computus Ecclesiastico di Gauss per calcolare le epatti e il ciclo lunare aureo, individuando matematicamente la Domenica di Pasqua ed estraendo il Lunedì dell'Angelo per qualsiasi anno solare immesso.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 6. LEGAL TECH E PDF -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>📑</span> Legal Tech & IA: Anonimizzazione PDF, Standard ISO 19005 e Whisper</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Convertire i tuoi file in <strong>PDF/A</strong> per il deposito in tribunale, <strong>Anonimizzare</strong> (censurare) documenti legali oscurandoli in maniera irreversibile, ed eseguire <strong>Trascrizioni Audio AI</strong> sbobinando registrazioni confidenziali offline tramite la GPU del tuo computer.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Il "Caso Manafort" e la Vera Redazione:</strong> Molti software si limitano ad applicare rettangoli neri sui PDF senza eliminare il livello di testo sottostante, esponendo le informazioni a un semplice "copia-incolla" (come avvenne disastrosamente nel caso giudiziario di Paul Manafort). Il nostro tool distrugge i flussi vettoriali e i dizionari XMP associati ai testi, rendendo l'anonimizzazione matematicamente impenetrabile.</li>
+              <li><strong>Convertitore PDF/A (Processo Civile Telematico):</strong> Il deposito atti (PCT) impone lo standard ISO 19005. Il parser WebAssembly riscrive il documento, incorpora i profili colore sRGB, incorpora l'intero set di font tipografici e rimuove script dinamici attivi, garantendo l'archiviazione a lungo termine.</li>
+              <li><strong>Intelligenza Artificiale Quantizzata (WebGPU):</strong> Il modello di trascrizione neurale (OpenAI Whisper) viene eseguito localmente in formato INT8. Sfruttando la pipeline WebGPU, le moltiplicazioni matriciali vengono scaricate sulla scheda video dell'utente, offrendo prestazioni paritetiche alle app native senza inviare dialoghi privati a reti neurali esterne.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 7. IDENTITÀ E BIOMETRIA -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl text-lg">
+            <span class="flex items-center gap-3"><span>🪪</span> Identità e Sicurezza: Validazione IBAN (Mod 97), Omocodia e ICAO</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-6 border-t border-indigo-100 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              <strong>Cosa puoi fare:</strong> Generare e decodificare <strong>Codici Fiscali</strong>, validare l'autenticità formale di un <strong>IBAN</strong> bancario internazionale, creare <strong>Password Sicure</strong> e adattare la tua fotografia per ottenere una <strong>Fototessera Biometrica</strong> valida per documenti d'identità.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Risoluzione Omocodia Codice Fiscale:</strong> Oltre al classico algoritmo consonantico e al controllo checksum Modulo 26, il decodificatore supporta l'Omocodia, eseguendo l'ingegneria inversa sui codici alterati per risalire alla data di nascita originale.</li>
+              <li><strong>Validatore IBAN (ISO 7064 Modulo 97-10):</strong> L'algoritmo converte i caratteri in un intero a 30 cifre. Utilizzando l'interfaccia <code>BigInt</code> di JavaScript per eludere i limiti di allocazione a 64-bit, esegue l'operazione $Numero\_IBAN \pmod{97} \equiv 1$, garantendo l'integrità del dato contro frodi bancarie e transizioni errate.</li>
+              <li><strong>Biometria ICAO Doc 9303:</strong> Il generatore di fototessere sfrutta modelli di <em>Face Detection</em> per tracciare la geometria cranio-facciale. Scala matematicamente l'immagine in modo che l'asse verticale del volto occupi esattamente tra il 70% e l'80% dell'inquadratura (35x45 mm), tutelando il dato biometrico (Art. 9 GDPR) processandolo interamente senza upload in cloud.</li>
+              <li><strong>Entropia Crittografica WebCrypto:</strong> Il generatore di password ignora vulnerabili routine come <code>Math.random()</code> e utilizza nativamente <code>window.crypto.getRandomValues()</code>. Interrogando il CSPRNG hardware del sistema operativo, produce chiavi d'accesso impenetrabili ad attacchi bruteforce.</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- DISCLAIMER FINALE E-E-A-T -->
+      <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl mt-8">
+        <h3 class="text-lg font-bold text-amber-900 mb-2">Impegno per l'Affidabilità e Trasparenza (Policy YMYL)</h3>
+        <p class="text-sm text-amber-800 leading-relaxed">
+          I calcolatori finanziari, tributari e previdenziali messi a disposizione da StrumentiUtili.it costituiscono strumenti di simulazione matematica di altissima qualità, sviluppati analizzando il quadro normativo vigente (D.Lgs. 87/2024, TUIR, L. 207/2024). Operando in categorie sensibili classificate come YMYL (Your Money or Your Life), dichiariamo esplicitamente che i risultati generati <strong>non costituiscono una liquidazione tributaria vincolante, una busta paga ufficiale o un parere legale sostitutivo della prestazione professionale</strong>. Le dinamiche giurisprudenziali locali e le delibere esecutive dell'Agenzia delle Entrate possono alterare il risultato su casistiche complesse. Invitiamo i cittadini a far validare i modelli F24 e le pianificazioni patrimoniali presso un Dottore Commercialista, Consulente del Lavoro o Notaio abilitato.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script defer src="/js/main.js"></script>
+  
+  <!-- JAVASCRIPT AVANZATO PER SEARCH BAR E AUTO-SCROLL (UI/UX) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search');
+      const articles = document.querySelectorAll('main article');
+      const sections = document.querySelectorAll('main section[id]');
+      const header = document.querySelector('header');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const term = e.target.value.toLowerCase().trim();
+          let firstVisibleSection = null;
+
+          // SE IL TERMINE È VUOTO: Ripristina la vista originale
+          if (term === '') {
+            sections.forEach(section => {
+              section.style.display = '';
+            });
+            articles.forEach(article => {
+              article.style.display = ''; 
+              // Ripristina lo stato compresso delle card in base alla classe 'default-hidden'
+              if (article.classList.contains('default-hidden')) {
+                article.classList.add('hidden');
+              }
+            });
+            return;
+          }
+
+          // SE L'UTENTE CERCA: Filtra le card e forza la visibilità
+          articles.forEach(article => {
+            const text = article.textContent.toLowerCase();
+            if (text.includes(term)) {
+              article.style.display = 'flex'; // Forza display flex
+              // Rimuove QUALSIASI classe che possa nasconderla
+              article.classList.remove('hidden', 'default-hidden', 'md:hidden', 'lg:hidden', 'xl:hidden');
+            } else {
+              article.style.display = 'none'; // Nasconde la card non pertinente
+            }
+          });
+
+          // Gestione delle Sezioni (Categorie)
+          sections.forEach(section => {
+            if (section.id === 'seo-block') return; // Ignora il blocco SEO
+            
+            const sectionArticles = section.querySelectorAll('article');
+            if (sectionArticles.length > 0) {
+              const visibleArticles = Array.from(sectionArticles).filter(a => a.style.display !== 'none');
+              
+              if (visibleArticles.length === 0) {
+                section.style.display = 'none'; // Nascondi intera categoria
+              } else {
+                section.style.display = 'block'; // Mostra categoria
+                
+                // Rimuovi eventuali griglie nascoste
+                const gridContainer = section.querySelector('.grid');
+                if (gridContainer && gridContainer.classList.contains('hidden-grid')) {
+                  gridContainer.classList.remove('hidden-grid');
+                }
+
+                // Cattura la PRIMA sezione visibile per lo scroll
+                if (!firstVisibleSection) {
+                  firstVisibleSection = section;
+                }
+              }
+            }
+          });
+
+          // AUTO-SCROLL CORRETTO (Verso il titolo della Categoria, NON la card)
+          if (firstVisibleSection && term.length >= 3) {
+            // Misura dinamicamente l'altezza dell'header sticky + un margine di respiro (es. 24px)
+            const headerHeight = header ? header.offsetHeight : 90;
+            const offsetMargin = 24; 
+            
+            // Calcola la posizione della sezione rispetto al documento
+            const sectionTop = firstVisibleSection.getBoundingClientRect().top + window.pageYOffset;
+            
+            // Applica lo scroll sottraendo l'ingombro dell'header
+            window.scrollTo({
+              top: sectionTop - headerHeight - offsetMargin,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+    });
+
+    // GESTORE ADSENSE (Zero CLS)
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+</body>
+</html>

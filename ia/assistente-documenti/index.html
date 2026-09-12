@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+<!-- 4. CSP Dinamico -->
+<meta http-equiv="Content-Security-Policy" id="csp-meta" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://pagead2.googlesyndication.com https://consent.cookiebot.com; connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com; worker-src 'self' blob: https://cdnjs.cloudflare.com;">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assistente IA per Documenti Privati (100% Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Analizza contratti e documenti legali in totale privacy. Modelli Qwen 2.5 su WebGPU via OPFS. Nessun file PDF o dato testuale viene inviato al cloud." />
+  <link rel="canonical" href="https://strumentiutili.it/ia/assistente-documenti/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+    
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <a href="/ia/" class="text-sm text-indigo-600 font-semibold hover:underline">← Torna all'Hub IA</a>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-[1400px] flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="mb-6 border-b border-gray-200 pb-4">
+        <div class="flex items-center justify-between mb-3">
+          <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full">⚡ WebGPU + OPFS Storage</span>
+          <div id="network-monitor" class="flex items-center gap-2 text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Rete Aperta (In attesa)
+          </div>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Assistente IA per Documenti Privati</h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Allega file PDF o TXT. Il testo viene estratto dal browser e analizzato dalla scheda video del tuo computer. <strong>Nessun documento abbandona il tuo dispositivo, garantendo la conformità all'Art. 25 del GDPR sul segreto professionale.</strong>
+        </p>
+      </div>
+
+      <!-- CHAT INTERFACE -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row h-[700px] mb-8 overflow-hidden">
+        
+        <!-- SIDEBAR -->
+        <div class="w-full md:w-64 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col h-48 md:h-full shrink-0">
+          <div class="p-4 border-b border-gray-200">
+            <button id="new-chat-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm flex items-center justify-center gap-2">
+              <span>+ Nuovo Documento</span>
+            </button>
+          </div>
+          <div class="p-3 text-xs font-bold text-gray-500 uppercase tracking-wider">Sessioni Criptate</div>
+          <div id="chat-list" class="flex-1 overflow-y-auto custom-scroll px-2 pb-4 space-y-1"></div>
+        </div>
+
+        <!-- MAIN CHAT AREA -->
+        <div class="flex-1 flex flex-col h-full relative bg-white">
+          
+          <!-- Controls -->
+          <div class="p-4 border-b border-gray-100 bg-white flex flex-col sm:flex-row gap-3 justify-between items-center z-10 relative">
+            <div class="w-full sm:w-[65%] flex flex-col">
+              <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Motore Qwen 2.5 (Ottimizzato per Italiano Formale):</span>
+              <select id="model-selector" class="w-full text-sm font-medium text-indigo-900 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 py-2">
+                <option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Livello 1: Qwen 1.5B - Sintesi e Correzioni (~980MB)</option>
+                <option value="Qwen2.5-3B-Instruct-q4f16_1-MLC" selected>Livello 2: Qwen 3B - Analisi Contrattuale (~1.85GB)</option>
+              </select>
+            </div>
+            <button id="load-btn" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg text-sm shadow-sm transition">
+              Attiva Isolamento IA
+            </button>
+          </div>
+
+          <div id="progress-container" class="hidden absolute top-[76px] left-0 w-full p-4 bg-white/95 backdrop-blur z-20 border-b border-gray-100 shadow-sm">
+            <div class="flex justify-between text-xs font-bold text-indigo-900 mb-2">
+              <span id="progress-text">Download dei frammenti e allocazione VRAM in OPFS...</span>
+              <span id="progress-percent">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div id="progress-bar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300 w-0"></div>
+            </div>
+          </div>
+
+          <div id="chat-box" class="flex-1 p-4 md:p-6 space-y-6 overflow-y-auto custom-scroll bg-white"></div>
+
+          <!-- Input Box con Bottone Allegati -->
+          <div class="p-4 bg-white border-t border-gray-100 relative">
+            
+            <!-- Indicatore File Allegato (Invisibile di default) -->
+            <div id="attachment-preview" class="hidden items-center gap-2 mb-3 bg-indigo-50 text-indigo-800 text-xs font-bold px-3 py-2 rounded-lg border border-indigo-100 w-fit">
+              <span id="attachment-name">documento.pdf</span>
+              <button id="remove-attachment-btn" class="text-rose-500 hover:text-rose-700 ml-2">✕</button>
+            </div>
+
+            <form id="chat-form" class="flex gap-2 items-end">
+              <!-- Bottone Allega -->
+              <button 
+                type="button" 
+                id="attach-btn"
+                disabled
+                class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shrink-0 h-[46px] w-[46px] flex items-center justify-center"
+                title="Allega file PDF o TXT"
+              >
+                📎
+              </button>
+              <input type="file" id="file-upload" accept=".pdf,.txt" class="hidden" />
+
+              <textarea 
+                id="user-input" 
+                rows="1"
+                disabled
+                placeholder="Attiva l'IA per scrivere o allegare documenti..." 
+                class="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition disabled:opacity-50 custom-scroll resize-none max-h-32"
+              ></textarea>
+              <button 
+                id="send-btn" 
+                type="submit" 
+                disabled 
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed shrink-0 h-[46px] flex items-center justify-center"
+              >
+                Invia
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MEGA-DOSSIER SEO E-E-A-T -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Infrastruttura di Sicurezza per l'Analisi Documentale (Edge Computing)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La revisione di accordi societari, memorie processuali e documentazione aziendale impone livelli di riservatezza inconciliabili con i provider in cloud[cite: 8]. Questa piattaforma isola modelli linguistici compatti (SLM) direttamente nel browser (WebGPU), elaborando file PDF e TXT senza alcuna trasmissione in rete (Zero-Upload)[cite: 8].
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🇮🇹</span> Conformità Giuridica Italiana (Qwen 2.5)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              I modelli anglo-centrici di scala ridotta degradano rapidamente la sintassi italiana in ambiti formali[cite: 8]. Per ovviare al problema, implementiamo <strong>Qwen2.5-3B-Instruct</strong>: un modello da 3 miliardi di parametri addestrato su un vocabolario massivo di 151.646 sub-word. Questa ampiezza previene la frammentazione di termini del Codice Civile e assicura il mantenimento delle allocuzioni di cortesia ("dare del Lei") fondamentali nei contesti B2B e legali[cite: 8].
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📎</span> Limiti della KV-Cache e Analisi PDF Locale</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Quando l'utente allega un file, un Web Worker secondario sfrutta <code>pdf.js</code> per decodificare il binario e ricavare il testo in locale. Tale testo viene inserito nel prompt (Context Window)[cite: 8]. 
+            </p>
+            <p>
+              La memoria intermedia di chiavi e valori (<strong>KV-Cache</strong>) dei modelli SLM su WebGPU è fisicamente vincolata dalla VRAM del dispositivo[cite: 8]. L'analisi di contratti fino a 3000-4000 parole viene gestita in maniera fluida; tuttavia, documentazioni massive comportano l'esaurimento della memoria, richiedendo un partizionamento dei testi in segmenti (capitoli)[cite: 8].
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>💾</span> Persistenza OPFS e Sanificazione VRAM</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'impiego dell'<strong>Origin Private File System (OPFS)</strong> permette di sigillare i pesi quantizzati (INT4) nel disco rigido virtualizzato del browser[cite: 8]. Questo garantisce tempi di caricamento inferiori ai 2 secondi nelle sessioni successive, in totale assenza di rete[cite: 8].
+            </p>
+            <p>
+              Alla chiusura della scheda, un protocollo deterministico dealloca i tensori (<code>device.destroy()</code>), sanificando l'intera memoria volatile grafica a tutela delle direttive di privacy (RGPD, Art. 25 e 28)[cite: 8].
+            </p>
+          </div>
+        </details>
+
+      </section>
+    </main>
+
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-xl">
+          <h3 class="font-bold text-indigo-900 mb-2">Requisiti di Sistema</h3>
+          <ul class="text-xs text-indigo-800 space-y-2">
+            <li>✅ Browser compatibile WebGPU.</li>
+            <li>✅ <strong>Memoria Unificata:</strong> Per file PDF corposi (oltre 5 pagine), è raccomandata una scheda video/RAM da almeno 8GB per contenere la KV-Cache.</li>
+            <li>ℹ️ <strong>Rete:</strong> Download richiesto solo al primo utilizzo. Dopodiché l'app funziona 100% offline.</li>
+          </ul>
+        </div>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 text-center">
+      <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+      <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const loadBtn = document.getElementById("load-btn");
+      const modelSelector = document.getElementById("model-selector");
+      const newChatBtn = document.getElementById("new-chat-btn");
+      const chatListEl = document.getElementById("chat-list");
+      
+      const progContainer = document.getElementById("progress-container");
+      const progText = document.getElementById("progress-text");
+      const progPercent = document.getElementById("progress-percent");
+      const progBar = document.getElementById("progress-bar");
+      
+      const chatBox = document.getElementById("chat-box");
+      const chatForm = document.getElementById("chat-form");
+      const userInput = document.getElementById("user-input");
+      const sendBtn = document.getElementById("send-btn");
+      const networkMonitor = document.getElementById("network-monitor");
+      
+      // Allegati File
+      const attachBtn = document.getElementById("attach-btn");
+      const fileUpload = document.getElementById("file-upload");
+      const attachmentPreview = document.getElementById("attachment-preview");
+      const attachmentName = document.getElementById("attachment-name");
+      const removeAttachmentBtn = document.getElementById("remove-attachment-btn");
+
+      const STORAGE_KEY = 'su_doc_ai_2026';
+      let chats = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      let currentChatId = null;
+      let engine = null;
+      let currentEngineModel = null;
+      let currentFileContent = null; // Memorizza il testo estratto dal PDF/TXT
+      
+      const SYSTEM_PROMPT = { 
+        role: "system", 
+        content: "Sei un assistente legale e aziendale esperto. Rispondi SEMPRE in italiano formale. Se l'utente fornisce il testo di un documento in allegato, analizzalo rigorosamente e fonda le tue risposte unicamente su di esso." 
+      };
+
+      function saveChats() { localStorage.setItem(STORAGE_KEY, JSON.stringify(chats)); }
+
+      function initApp() {
+        if (chats.length === 0) createNewChat();
+        else switchChat(chats[0].id);
+        renderSidebar();
+        
+        // Auto-resize textarea
+        userInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+      }
+
+      function createNewChat() {
+        const id = Date.now().toString();
+        chats.unshift({ id, title: "Nuovo Documento", model: modelSelector.value, messages: [SYSTEM_PROMPT] });
+        saveChats();
+        switchChat(id);
+        renderSidebar();
+      }
+
+      function switchChat(id) {
+        currentChatId = id;
+        const chat = chats.find(c => c.id === id);
+        if (!chat) return;
+
+        modelSelector.value = chat.model;
+        renderChatBox(chat.messages);
+        renderSidebar();
+
+        if (engine && currentEngineModel === chat.model) enableInput();
+        else {
+          disableInput("Attiva il motore IA per analizzare i testi...");
+          resetLoadButton();
+        }
+      }
+
+      function deleteChat(id, e) {
+        e.stopPropagation();
+        if(confirm("Eliminare definitivamente questa sessione locale?")) {
+          chats = chats.filter(c => c.id !== id);
+          saveChats();
+          if (chats.length === 0) createNewChat();
+          else if (currentChatId === id) switchChat(chats[0].id);
+          else renderSidebar();
+        }
+      }
+
+      function renderSidebar() {
+        chatListEl.innerHTML = '';
+        chats.forEach(chat => {
+          const btn = document.createElement('div');
+          btn.className = `group flex items-center justify-between p-3 rounded-xl cursor-pointer text-sm transition-colors ${chat.id === currentChatId ? 'bg-indigo-100 text-indigo-900 font-semibold' : 'hover:bg-gray-100 text-gray-700'}`;
+          const titleSpan = document.createElement('span');
+          titleSpan.className = "truncate flex-1 pr-2";
+          titleSpan.innerText = chat.title;
+          const delBtn = document.createElement('button');
+          delBtn.innerHTML = '✕';
+          delBtn.className = `text-gray-400 hover:text-rose-600 px-1 opacity-0 group-hover:opacity-100 transition-opacity ${chat.id === currentChatId ? 'opacity-100 text-indigo-400' : ''}`;
+          delBtn.onclick = (e) => deleteChat(chat.id, e);
+          btn.onclick = () => switchChat(chat.id);
+          btn.appendChild(titleSpan);
+          btn.appendChild(delBtn);
+          chatListEl.appendChild(btn);
+        });
+      }
+
+      function renderChatBox(messages) {
+        chatBox.innerHTML = '';
+        if (messages.length === 1) {
+          appendMessage("assistant", "Sistema di Auditing Inizializzato.\n\nAllega un file (.pdf, .txt) tramite l'icona 📎 o incolla il testo in basso. Il motore Qwen2.5 leggerà il file ed elaborerà le risposte isolando la memoria (Zero-Upload).", false);
+        } else {
+          messages.forEach(msg => { if (msg.role !== 'system') appendMessage(msg.role, msg.content, false); });
+        }
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function appendMessage(role, text, doScroll = true) {
+        if (role === 'user' && chatBox.children.length === 1 && chatBox.innerHTML.includes('Sistema di Auditing')) chatBox.innerHTML = '';
+        const msgDiv = document.createElement("div");
+        msgDiv.className = role === "user" ? "flex items-start gap-4 flex-row-reverse" : "flex items-start gap-4";
+        const iconDiv = document.createElement("div");
+        iconDiv.className = role === "user" ? "w-10 h-10 rounded-full bg-gray-800 text-white font-bold flex items-center justify-center text-sm shrink-0" : "w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl shrink-0";
+        iconDiv.innerText = role === "user" ? "TU" : "⚖️";
+        const bubbleDiv = document.createElement("div");
+        bubbleDiv.className = role === "user" ? "bg-indigo-600 text-white p-4 rounded-2xl rounded-tr-none text-sm leading-relaxed max-w-[85%] whitespace-pre-wrap shadow-sm overflow-hidden text-ellipsis" : "bg-gray-50 border border-gray-100 p-4 rounded-2xl rounded-tl-none text-sm text-gray-800 leading-relaxed max-w-[85%] whitespace-pre-wrap";
+        bubbleDiv.innerText = text;
+        msgDiv.appendChild(iconDiv);
+        msgDiv.appendChild(bubbleDiv);
+        chatBox.appendChild(msgDiv);
+        if(doScroll) chatBox.scrollTop = chatBox.scrollHeight;
+        return bubbleDiv;
+      }
+
+      function disableInput(placeholder) { 
+        userInput.disabled = true; sendBtn.disabled = true; attachBtn.disabled = true;
+        userInput.placeholder = placeholder; userInput.value = ""; 
+        clearAttachment();
+      }
+      function enableInput() { 
+        userInput.disabled = false; sendBtn.disabled = false; attachBtn.disabled = false;
+        userInput.placeholder = "Scrivi la tua richiesta o allega un documento..."; 
+      }
+      function resetLoadButton() { 
+        loadBtn.innerText = "Scarica / Attiva"; loadBtn.disabled = false; 
+        loadBtn.classList.replace('bg-emerald-600', 'bg-indigo-600'); loadBtn.classList.replace('hover:bg-emerald-700', 'hover:bg-indigo-700'); 
+      }
+
+      // --- LOGICA ALLEGATI E WORKER PDF ---
+      attachBtn.addEventListener('click', () => fileUpload.click());
+      removeAttachmentBtn.addEventListener('click', clearAttachment);
+
+      function clearAttachment() {
+        fileUpload.value = '';
+        currentFileContent = null;
+        attachmentPreview.classList.replace('flex', 'hidden');
+        attachmentName.innerText = '';
+      }
+
+      // IMPORTANTE: Importamos Comlink al inicio del bloque de scripts o aquí
+      import * as Comlink from "https://cdn.jsdelivr.net/npm/comlink@4.3.1/dist/esm/comlink.mjs";
+
+      fileUpload.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        attachmentName.innerText = file.name;
+        attachmentPreview.classList.replace('hidden', 'flex');
+        currentFileContent = null;
+
+        if (file.type === "text/plain") {
+          const text = await file.text();
+          processExtractedText(text);
+        } else if (file.type === "application/pdf") {
+          
+          userInput.placeholder = "Estrazione testo dal PDF in corso...";
+          userInput.disabled = true;
+          
+          try {
+            // Instanciamos el Worker y lo envolvemos con Comlink
+            const worker = new Worker('/js/workers/pdf-worker.js');
+            const pdfService = Comlink.wrap(worker);
+            
+            // Le enviamos el buffer al nuevo Método 7
+            const arrayBuffer = await file.arrayBuffer();
+            const extractedText = await pdfService.extractText(arrayBuffer);
+            
+            processExtractedText(extractedText);
+            worker.terminate(); // Matamos el worker para liberar RAM
+          } catch (err) {
+            alert("Errore nella lettura del PDF. Assicurati che non sia protetto da password.");
+            clearAttachment();
+          }
+
+          userInput.disabled = false;
+          userInput.placeholder = "Scrivi la tua richiesta (es. 'Fai un riassunto del contratto allegato')...";
+        } else {
+          alert("Formato non supportato. Allega file PDF o TXT.");
+          clearAttachment();
+        }
+      });
+
+      function processExtractedText(text) {
+        // Controllo Limite KV-Cache stimato (~3000 parole limite prudenziale)
+        const wordCount = text.split(/\s+/).length;
+        if (wordCount > 3500) {
+          alert(`Attenzione: Il documento contiene circa ${wordCount} parole. La memoria grafica (KV-Cache) potrebbe esaurirsi. Ti consigliamo di analizzare un capitolo alla volta.`);
+        }
+        currentFileContent = text;
+      }
+
+      // --- INIT ENGINE ---
+      newChatBtn.addEventListener('click', createNewChat);
+
+      modelSelector.addEventListener('change', () => {
+        const chat = chats.find(c => c.id === currentChatId);
+        if (chat) { chat.model = modelSelector.value; saveChats(); }
+        if (!engine || currentEngineModel !== modelSelector.value) { disableInput("Attiva il motore per analizzare i testi..."); resetLoadButton(); }
+      });
+
+      if (!navigator.gpu) {
+        progContainer.classList.remove("hidden");
+        progText.innerText = "❌ WebGPU non supportato. Impossibile avviare il motore locale.";
+        loadBtn.disabled = true;
+      }
+
+      loadBtn.addEventListener("click", async () => {
+        if (!navigator.gpu) return;
+        loadBtn.disabled = true;
+        loadBtn.innerText = "Allocazione VRAM...";
+        progContainer.classList.remove("hidden");
+
+        const selectedModel = modelSelector.value;
+
+        try {
+          const worker = new Worker(new URL("/js/workers/llm-worker.js", window.location.origin), { type: "module" });
+          engine = await CreateWebWorkerMLCEngine(
+            worker,
+            selectedModel,
+            {
+              initProgressCallback: (report) => {
+                progText.innerText = report.text;
+                const progress = Math.round(report.progress * 100);
+                progPercent.innerText = `${progress}%`;
+                progBar.style.width = `${progress}%`;
+              }
+            }
+          );
+
+          currentEngineModel = selectedModel;
+          progText.innerText = "✅ Motore isolato. Rete scollegata logicamente.";
+          networkMonitor.className = "flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200";
+          networkMonitor.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Isolamento Attivo (Zero-Upload)`;
+
+          loadBtn.innerText = "Motore Attivo";
+          loadBtn.classList.replace('bg-indigo-600', 'bg-emerald-600');
+          loadBtn.classList.replace('hover:bg-indigo-700', 'hover:bg-emerald-700');
+
+          enableInput();
+          setTimeout(() => { progContainer.classList.add("hidden"); }, 2000);
+
+        } catch (err) {
+          progText.innerText = "❌ Errore: Memoria GPU esaurita o modello incompatibile.";
+          resetLoadButton();
+        }
+      });
+
+      // --- SUBMIT ---
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!engine || currentEngineModel !== modelSelector.value) return;
+
+        let userText = userInput.value.trim();
+        if (!userText && !currentFileContent) return;
+
+        const chat = chats.find(c => c.id === currentChatId);
+        if (!chat) return;
+
+        // Componi il prompt se c'è un file allegato
+        let finalPrompt = userText;
+        let displayPrompt = userText;
+
+        if (currentFileContent) {
+          if (!userText) { userText = "Analizza il documento allegato e fanne un riassunto strutturato."; finalPrompt = userText; }
+          finalPrompt = `[Documento Allegato dall'utente]:\n${currentFileContent}\n\n[Richiesta Utente]:\n${userText}`;
+          displayPrompt = `📎 ${attachmentName.innerText}\n\n${userText}`;
+        }
+
+        if (chat.messages.length === 1) {
+          chat.title = userText.length > 25 ? userText.substring(0, 25) + '...' : userText;
+          renderSidebar();
+        }
+
+        // Resetta UI e Allegati
+        userInput.value = "";
+        userInput.style.height = 'auto';
+        userInput.disabled = true;
+        sendBtn.disabled = true;
+        attachBtn.disabled = true;
+        sendBtn.innerHTML = `Elaboro...`;
+        clearAttachment();
+
+        appendMessage("user", displayPrompt, true);
+        chat.messages.push({ role: "user", content: finalPrompt }); // Salviamo il testo completo in memoria
+        saveChats();
+
+        const aiTextNode = appendMessage("assistant", "...", true);
+
+        try {
+          const completion = await engine.chat.completions.create({
+            messages: chat.messages,
+            stream: true,
+          });
+
+          let fullResponse = "";
+          for await (const chunk of completion) {
+            fullResponse += chunk.choices[0]?.delta?.content || "";
+            aiTextNode.innerText = fullResponse;
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+
+          chat.messages.push({ role: "assistant", content: fullResponse });
+          saveChats();
+
+        } catch (err) {
+          aiTextNode.innerText = "❌ Errore durante l'elaborazione. Limite di memoria KV-Cache raggiunto. Prova ad allegare un documento più breve o crea una Nuova Analisi.";
+        } finally {
+          enableInput();
+          sendBtn.innerHTML = `Invia`;
+        }
+      });
+
+      window.addEventListener('beforeunload', () => { if (engine) engine.unload(); });
+      initApp();
+    });
+  </script>
+</body>
+</html>

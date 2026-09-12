@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Fabbisogno Calorico (TDEE) e Metabolismo Basale (BMR) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il tuo Metabolismo Basale (BMR) e il Fabbisogno Calorico Giornaliero (TDEE) con la formula scientifica di Mifflin-St Jeor. 100% gratuito e istantaneo." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/calcolo-bmr/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolatore Calorie (TDEE) e BMR" />
+  <meta property="og:description" content="Scopri quante calorie bruci ogni giorno in base al tuo stile di vita. Calcolo scientifico istantaneo." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/calcolo-bmr/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- PROTOCOLLO ADS: MARCADOR INERTE LEGALE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+    
+    /* Stile per i box reattivi */
+    .reactive-input:focus-within {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthApplication",
+    "name": "Calcolatore BMR e TDEE",
+    "operatingSystem": "All",
+    "applicationCategory": "HealthApplication",
+    "url": "https://strumentiutili.it/utilita-web/calcolo-bmr/",
+    "description": "Applicativo clinico-informatico client-side per la stima del Metabolismo Basale (BMR) tramite equazione di Mifflin-St Jeor e del Fabbisogno Calorico Giornaliero Totale (TDEE).",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla Home</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Calcolo Metabolismo Basale (BMR) e TDEE</h1>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Inserisci i tuoi dati fisiologici per calcolare quante calorie brucia il tuo corpo a riposo (BMR) e scoprire il tuo fabbisogno calorico giornaliero totale (TDEE) in base al tuo stile di vita.
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- PANNELLO INPUT (SINISTRA) -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+          <h2 class="text-xl font-bold text-gray-900 border-b border-gray-100 pb-2">I tuoi parametri</h2>
+
+          <div class="space-y-4">
+            <!-- Genere Biologico -->
+            <div>
+              <label class="block text-sm font-bold text-gray-800 mb-2">Genere Biologico *</label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center justify-center gap-2 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-indigo-50 transition">
+                  <input type="radio" name="gender" value="male" checked class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" />
+                  <span class="text-sm font-bold text-gray-700">Uomo</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-indigo-50 transition">
+                  <input type="radio" name="gender" value="female" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" />
+                  <span class="text-sm font-bold text-gray-700">Donna</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Età -->
+            <div>
+              <label for="input-age" class="block text-sm font-bold text-gray-800 mb-1">Età (Anni)</label>
+              <input type="number" id="input-age" min="15" max="100" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-lg font-bold text-gray-800 outline-none transition" placeholder="Es. 30" />
+            </div>
+
+            <!-- Altezza -->
+            <div>
+              <label for="input-height" class="block text-sm font-bold text-gray-800 mb-1">Altezza (cm)</label>
+              <input type="number" id="input-height" min="100" max="250" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-lg font-bold text-gray-800 outline-none transition" placeholder="Es. 175" />
+            </div>
+
+            <!-- Peso -->
+            <div>
+              <label for="input-weight" class="block text-sm font-bold text-gray-800 mb-1">Peso (kg)</label>
+              <input type="number" id="input-weight" min="30" max="250" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-lg font-bold text-gray-800 outline-none transition" placeholder="Es. 70" />
+            </div>
+
+            <!-- Livello di Attività (TDEE) -->
+            <div class="pt-2 border-t border-gray-100">
+              <label for="input-activity" class="block text-sm font-bold text-gray-800 mb-1">Livello di Attività Fisica</label>
+              <select id="input-activity" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
+                <option value="1.2">Sedentario (Lavoro d'ufficio, poco/nessun esercizio)</option>
+                <option value="1.375" selected>Poco Attivo (Esercizio leggero 1-3 giorni/settimana)</option>
+                <option value="1.55">Moderatamente Attivo (Esercizio moderato 3-5 giorni/settimana)</option>
+                <option value="1.725">Molto Attivo (Esercizio intenso 6-7 giorni/settimana)</option>
+                <option value="1.9">Extra Attivo (Lavoro fisico pesante o doppi allenamenti)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANNELLO RISULTATI (DESTRA) -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-indigo-600 text-white rounded-xl shadow-sm p-6 flex flex-col justify-center h-full relative overflow-hidden">
+            <!-- Effetto grafico decorativo -->
+            <div class="absolute -right-6 -top-6 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl"></div>
+            
+            <h3 class="text-sm font-bold uppercase tracking-wider text-indigo-200 mb-2">Il tuo Fabbisogno Giornaliero (TDEE)</h3>
+            <div class="flex items-baseline gap-2 mb-1">
+              <span id="res-tdee" class="text-5xl font-extrabold tracking-tight">0</span>
+              <span class="text-xl font-bold text-indigo-300">kcal/giorno</span>
+            </div>
+            <p class="text-sm text-indigo-100 mt-2 leading-relaxed">
+              Queste sono le calorie necessarie per <strong>mantenere</strong> il tuo peso attuale in base al tuo stile di vita.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col justify-center h-full">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-2">Metabolismo Basale (BMR)</h3>
+            <div class="flex items-baseline gap-2 mb-1">
+              <span id="res-bmr" class="text-4xl font-extrabold text-gray-900 tracking-tight">0</span>
+              <span class="text-lg font-bold text-gray-400">kcal/giorno</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+              L'energia pura richiesta dal tuo corpo per le funzioni vitali (respirazione, circolazione) in stato di assoluto riposo.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Utilità &amp; Web</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📉</span> Calcolo Percentuali</a></li>
+        <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> Interessi Composti</a></li>
+        <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Generatore QR</a></li>
+        <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🖼️</span> Converti Immagini</a></li>
+        <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Contaparole</a></li>
+        <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔗</span> URL Shortener</a></li>
+        <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎓</span> Media Universitaria</a></li>
+        <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔬</span> Calcolo BMR</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Clinico: Modelli di Stima Energetica, Equazioni Predittive BMR/TDEE e Tutela dei Dati Biometrici (GDPR)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La determinazione del Metabolismo Basale (BMR - Basal Metabolic Rate o REE - Resting Energy Expenditure) e del Dispendio Energetico Giornaliero Totale (TDEE - Total Daily Energy Expenditure) costituisce il presupposto fisiologico e diagnostico imprescindibile per qualsiasi intervento di pianificazione nutrizionale, ricomposizione corporea o terapia dietetica clinica. La modellizzazione matematica del fabbisogno energetico richiede un'analisi rigorosa delle variabili antropometriche ed etarie. Il seguente trattato disamina l'evoluzione scientifica delle equazioni predittive, la loro accuratezza relativa, la gestione delle casuistiche complesse e l'architettura informatica di isolamento locale adottata per garantire la totale conformità con la normativa europea di protezione dei dati personali e sanitari.
+        </p>
+
+        <!-- Inquadramento Normativo e GDPR -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Inquadramento Normativo: Privacy by Design, Art. 25 e Art. 28 GDPR e Dati Sanitari</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I dati antropometrici (altezza, peso corporeo, età) uniti al genere biologico e al livello di attività fisica costituiscono, dal punto di vista giuridico, informazioni riconducibili alla sfera della salute dell'interessato o comunque parametri biometrici idonei a profilare lo stato di benessere fisio-metabolico dell'individuo. Ai sensi dell'Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679), il trattamento delle "categorie particolari di dati personali" (inclusi i dati relativi alla salute) è severamente vietato in via di principio, salvo l'esplicita adozione di deroghe legali o l'acquisizione di un consenso informato, granulare e dimostrabile.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura software di questo calcolatore risolve alla radice le criticità di compliance mediante l'implementazione del paradigma **Zero-Backend (Serverless Client-Side)**. L'intero ciclo di vita del dato — dalla sua digitazione all'esecuzione delle moltiplicazioni di matrice e polinomiali, fino alla resa visiva dei risultati — avviene esclusivamente all'interno della sandbox del browser dell'utente. Applicando rigorosamente il principio della **Data Protection by Design e by Default** codificato dall'Articolo 25 del GDPR, il software impedisce fisicamente l'esfiltrazione dei dati (Zero-Upload) verso server remoti di terze parti o piattaforme Cloud SaaS. L'informazione risiede unicamente nella memoria RAM volatile del dispositivo dell'utente e viene distrutta dal Garbage Collector del motore JavaScript alla chiusura della scheda.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Questo approccio ingegneristico sterilizza altresì gli obblighi derivanti dall'Articolo 28 del GDPR. Poiché il fornitore dell'applicativo web non riceve, archivia o processa alcun dato personale sui propri server, viene a cadere la qualifica giuridica di "Responsabile del Trattamento" (Data Processor). Di conseguenza, i professionisti dell'ambito sanitario (medici, dietisti, biologi nutrizionisti) che utilizzano il software nel contesto ambulatoriale sono esonerati dalla stipula di complesse Data Processing Agreements (DPA), dalla redazione dei Registri delle Attività di Trattamento (Art. 30) per questo strumento e dall'esecuzione di Valutazioni d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35) relative al trasferimento transfrontaliero verso paesi terzi.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Validazione di Mifflin-St Jeor e Parametri PAL</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il Tasso Metabolico Basale (BMR) sintetizza la quota di energia chimica espressa in kilocalorie (kcal) o megajoule (MJ) indispensabile a garantire l'omeostasi vegetativa e le funzioni fisiologiche di base (attività respiratoria, circolazione cardiaca, ricambio cellulare, sintesi proteica e funzione renale) in un individuo in stato di veglia, a riposo psicofisico assoluto, a digiuno da almeno 12 ore e in ambiente a neutralità termica (20-25 °C).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Storicamente, la stima del BMR si è affidata all'equazione sviluppata nel 1919 da Harris e Benedict, ricalibrata empiricamente nel 1984. Tuttavia, la progressiva transizione demografica, la variazione della composizione corporea media e la diffusione della sedentarietà hanno evidenziato un bias sistemico in tale modello, caratterizzato da una sovrastima costante del 5-7% rispetto alle misurazioni reali ottenute via calorimetria indiretta. L'attuale *gold standard* acclarato dalla letteratura scientifica ed elevato a linea guida primaria dall'Academy of Nutrition and Dietetics (ADA) è l'equazione formulata nel 1990 da Mifflin e St Jeor nello studio *“A predictive equation for resting energy expenditure in healthy individuals”*. Il modello mostra una percentuale di accuratezza compresa tra il 61% e l'82% nel posizionarsi entro uno scarto del 10% dal dispendio reale, superando nettamente sia la Harris-Benedict sia la formula FAO/WHO/UNU (1985).
+            </p>
+            
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Formalizzazione Matematica di Mifflin-St Jeor</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              L'algoritmo estrapola il BMR combinando la massa corporea totale, la statura, l'età anagrafica e un fattore scalare legato al dimorfismo sessuale biologico:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
+              $$\text{BMR}_{\text{Uomo}} = (10 \times \text{Peso}_{\text{kg}}) + (6.25 \times \text{Altezza}_{\text{cm}}) - (5 \times \text{Età}_{\text{anni}}) + 5$$
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
+              $$\text{BMR}_{\text{Donna}} = (10 \times \text{Peso}_{\text{kg}}) + (6.25 \times \text{Altezza}_{\text{cm}}) - (5 \times \text{Età}_{\text{anni}}) - 161$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Nei casi in cui sia nota la composizione corporea mediante bioimpedenziometria (BIA) o densitometria a raggistica X a doppia energia (DXA), lo studio originale di Mifflin e St Jeor ha validato un'equazione alternativa basata sulla Massa Magra (FFM - Fat Free Mass in kg):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
+              $$\text{REE} = (19.7 \times \text{FFM}_{\text{kg}}) + 413$$
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Integrazione del Fattore PAL per la Determinazione del TDEE</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per convertire il BMR nel Dispendio Energetico Giornaliero Totale (TDEE), il valore basale deve essere integrato con il livello di attività fisica (PAL - Physical Activity Level). Il PAL agisce da coefficiente moltiplicativo scalare che ingloba l'Effetto Termico del Cibo (TEF - Thermic Effect of Food, circa il 10% del TDEE), la Termogenesi da Attività Non Legata all'Esercizio (NEAT - Non-Exercise Activity Thermogenesis) e il dispendio legato all'esercizio fisico strutturato (EAT - Exercise Activity Thermogenesis).
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
+              $$\text{TDEE} = \text{BMR} \times \text{PAL}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">Scaglioni di attribuzione standard del parametro PAL:</p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
+              <li><strong>1.20 (Sedentario):</strong> Soggetti dediti a mansioni d'ufficio, privi di attività sportiva e con mobilità ridotta.</li>
+              <li><strong>1.375 (Poco Attivo):</strong> Lavoro d'ufficio integrato con allenamenti leggeri o camminate 1-3 volte a settimana.</li>
+              <li><strong>1.55 (Moderatamente Attivo):</strong> Esercizio di media intensità praticato 3-5 volte a settimana.</li>
+              <li><strong>1.725 (Molto Attivo):</strong> Attività fisica intensa o professionale svolta 6-7 giorni a settimana.</li>
+              <li><strong>1.90 (Extra Attivo):</strong> Lavori manuali logoranti o atleti agonisti soggetti a doppi turni di allenamento.</li>
+            </ul>
+
+            <!-- Tabella Comparativa Equazioni -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-4">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-gray-100 text-gray-800">
+                    <th class="py-2.5 px-3 border-b font-bold">Formula Predittiva</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Popolazione Target Storica</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Caratteristiche e Bias Predittivo</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="py-2 px-3 font-bold">Harris-Benedict (1984)</td>
+                    <td class="py-2 px-3">Campione magro e giovane (inizio '900)</td>
+                    <td class="py-2 px-3">Sovrastima il REE del 5-7% nelle popolazioni moderne.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 font-bold">FAO/WHO/UNU (1985)</td>
+                    <td class="py-2 px-3">Popolazione globale distribuita per età</td>
+                    <td class="py-2 px-3">Bias marcato nei pazienti anziani e nei soggetti con BMI elevato.</td>
+                  </tr>
+                  <tr class="bg-indigo-50/50">
+                    <td class="py-2 px-3 font-bold text-indigo-900">Mifflin-St Jeor (1990)</td>
+                    <td class="py-2 px-3 text-indigo-900">Campione moderno (normopeso, sovrappeso, obesi)</td>
+                    <td class="py-2 px-3 text-indigo-900 font-medium">Massima accuratezza clinica (61-82%). Privilegiata dalle linee guida ADA.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Protocollo Operativo e Risoluzione Passo-Passo</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              A titolo di applicazione clinico-operativa, si valuti la profilazione energetica di un soggetto maschio, impiegato d'ufficio con condotta di vita rigidamente sedentaria (PAL assegnato ex ante = 1.20).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2 font-semibold">Parametri antropometrici di ingresso:</p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
+              <li><strong>Sesso Biologico:</strong> Maschile</li>
+              <li><strong>Età:</strong> 40 anni</li>
+              <li><strong>Statura:</strong> 175 cm</li>
+              <li><strong>Massa Corporea Totale:</strong> 85 kg (Indice di Massa Corporea / BMI = 27.76 kg/m², indicativo di sovrappeso clinico di I grado)</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Risoluzione Algebrica Passo-Passo</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              1. **Impostazione del polinomio di Mifflin-St Jeor per il genere maschile**:
+            </p>
+            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
+              $$\text{BMR} = (10 \times 85) + (6.25 \times 175) - (5 \times 40) + 5$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              2. **Risoluzione dei singoli prodotti aritmetici intermedi**:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-3">
+              <li>Quota Peso: $10 \times 85 = 850$</li>
+              <li>Quota Altezza: $6.25 \times 175 = 1093.75$</li>
+              <li>Quota Età: $5 \times 40 = 200$</li>
+              <li>Costante di Genere Maschile: $+5$</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              3. **Sommatoria algebrica per la determinazione del BMR**:
+            </p>
+            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
+              $$\text{BMR} = 850 + 1093.75 - 200 + 5 = 1748.75\ \text{kcal/giorno}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              4. **Calcolo del Fabbisogno Isocalorico di Mantenimento (TDEE)**:
+            </p>
+            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
+              $$\text{TDEE} = 1748.75 \times 1.20 = 2098.50\ \text{kcal/giorno}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              **Interpretazione Clinico-Nutrizionale:** Il soggetto necessita di introdurre esattamente 2098.50 kcal al giorno per preservare inalterata la propria massa corporea. Qualora l'obiettivo terapeutico concordato con il medico sia il calo ponderale mirato alla riduzione della massa grassa, la pianificazione dietetica dovrà impostare un deficit ipocalorico controllato (tipicamente compreso tra il 15% e il 20% del TDEE), posizionando la quota calorica target a circa 1678-1783 kcal/giorno.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Limiti Clinici ed Errori Procedurali Ricorrenti</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              **Devianza in Popolazioni Estreme (Geriatria e Obesità Severa):** Sebbene l'equazione di Mifflin-St Jeor rappresenti la formula predittiva più solida per contenere i margini di errore, la letteratura clinica evidenzia un crollo dell'indice di accuratezza (accuracy rate inferiore al 60%) quando applicata a pazienti affetti da obesità di III classe ($\text{BMI} > 40\ \text{kg/m}^2$) o in soggetti anziani affetti da grave sarcopenia. In tali quadri patologici, l'aumento sproporzionato del tessuto adiposo metabolicamente poco attivo o la drastica riduzione del tessuto muscolare alterano il rapporto peso/dispendio. Affidarsi ciecamente alla formula per regimi di dimagrimento drastici espone il paziente a rischi di malnutrizione depletiva, rendendo indispensabile il ricorso alla calorimetria indiretta mediante analisi degli scambi gassosi $O_2/CO_2$.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              **Il Paradosso della Conformazione Tissutale (Massa Magra vs Massa Grassa):** L'algoritmo imputa algebricamente il peso corporeo grezzo. Di conseguenza, due soggetti maschi di 100 kg con medesima altezza ed età — uno affetto da adiposità viscerale severa e l'altro atleta ipertrofico da culturismo — riceveranno dal simulatore il medesimo BMR. Trattandosi di fisicità con tassi metabolici diametralmente opposti (poiché la massa magra FFM consuma circa 13 kcal/kg/giorno contro le sole 4.5 kcal/kg/giorno del tessuto adiposo), la stima risulterà sottostimata per l'atleta e sovrastimata per l'obeso. Per ovviare a questo bias nelle fisicità non standard, è necessario valutare la FFM tramite BIA e applicare l'equazione basata sulla massa magra ($\text{REE} = 19.7 \times \text{FFM} + 413$).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              **Inquinamento Volontario del Parametro PAL (Self-Reporting Fallacy):** L'errore comportamentale più diffuso nell'impiego dei simulatori energetici da parte dell'utenza è la "sovrastima psicologica" del livello di attività fisica. Un utente che svolge lavoro d'ufficio sedentario ma si allena disordinatamente 3 ore a settimana tende a selezionale i parametri "Molto Attivo" (PAL 1.725) anziché "Poco Attivo" (PAL 1.375). Questo errore vettoriale inietta nel calcolo finale un surplus matematico compreso tra le 500 e le 700 kcal "fantasma". Quando il piano alimentare sfrutta questo TDEE adulterato, il regime ipocalorico teorico si trasforma in realtà in una dieta normocalorica o ipercalorica, causando il blocco del peso e la frustrazione del percorso riabilitativo.
+            </p>
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+              <p class="text-xs text-amber-900 leading-relaxed font-medium">
+                <strong>Clausola di Esclusione di Responsabilità Medica (YMYL Disclaimer):</strong> Le informazioni e le stime energetiche fornite da questo applicativo hanno finalità esclusivamente informative, educative e tecnico-statistiche. Tali modelli matematici e formule predittive non costituiscono in alcun modo diagnosi, prescrizione medica o consulenza dietetica personalizzata. Per la formulazione di piani alimentari diete-terapici, il trattamento di stati patologici (diabete, sindrome metabolica, disturbi del comportamento alimentare) o la valutazione clinica dello stato di salute, è tassativo e inderogabile rivolgersi a un medico chirurgo, a un dietologo o a un nutrizionista regolarmente iscritto all'ordine professionale.
+              </p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div> <!-- CHIUSURA COLONNA SINISTRA -->
+
+  </div> <!-- CHIUSURA GRID PRINCIPALE -->
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/calcolo-bmr.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+</body>
+</html>

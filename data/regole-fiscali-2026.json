@@ -1,0 +1,475 @@
+{
+  "meta": {
+    "anno": 2026,
+    "versione": "2.3.0",
+    "descrizione": "Configurazione centralizzata parametri fiscali, legali e previdenziali italiani 2026"
+  },
+  "generale": {
+    "marcaDaBollo": {
+      "sogliaEsenzione": 77.47,
+      "importo": 2.00
+    }
+  },
+  "prestazioneOccasionale": {
+    "ritenutaAcconto": 0.20,
+    "sogliaInps": 5000.00,
+    "franchigiaInps": 5000.00,
+    "aliquotaInpsGestioneSeparata": 0.3372,
+    "ripartizioneInps": {
+      "lavoratore": 0.333333333,
+      "committente": 0.666666667
+    }
+  },
+  "ritenutaAcconto": {
+    "aliquotaIrpef": 0.20,
+    "aliquotaInps": 0.04
+  },
+  "partitaIvaForfettario": {
+    "limitiFatturato": {
+      "ordinarioAnnuo": 85000,
+      "uscitaImmediata": 100000
+    },
+    "aliquoteImposta": {
+      "standard": 0.15,
+      "startup": 0.05
+    },
+    "coefficientiAteco": {
+      "PROFESSIONALS_SCIENTIFIC_TECHNICAL": 0.78,
+      "CONSTRUCTION_REAL_ESTATE": 0.86,
+      "COMMERCE_WHOLESALE_RETAIL": 0.40,
+      "OTHER_ACTIVITIES": 0.67
+    },
+    "inps": {
+      "gestioneSeparataAliquota": 0.2607,
+      "massimale2026": 122295,
+      "minimale2026": 18808,
+      "sogliaAliquotaSuperiore": 56224,
+      "artigiani": {
+        "quotaFissaMaternita": 4521.36,
+        "aliquotaFascia1": 0.24,
+        "aliquotaFascia2": 0.25
+      },
+      "commercianti": {
+        "quotaFissaMaternita": 4611.64,
+        "aliquotaFascia1": 0.2448,
+        "aliquotaFascia2": 0.2548
+      }
+    }
+  },
+  "isee": {
+    "scalaEquivalenza": {
+      "componentiBase": [1.00, 1.57, 2.04, 2.46, 2.85],
+      "incrementoOltre5": 0.35
+    },
+    "maggiorazioni": {
+      "figli3": 0.20,
+      "figli4": 0.35,
+      "figli5Plus": 0.50,
+      "genitoriLavoratori": 0.20,
+      "monoparentale": 0.30,
+      "disabilePerCapite": 0.50
+    },
+    "franchigie": {
+      "affittoBase": 7000,
+      "affittoExtraPerFiglioDalTerzo": 500,
+      "mobiliareBase": [6000, 8000, 10000],
+      "mobiliareExtraPerFiglioDalTerzo": 1000,
+      "casaStandard": 91500,
+      "casaDeduzionePerFiglio": 2500
+    },
+    "esenzioneTitoliStato": 50000,
+    "parametroISP": 0.20
+  },
+  "assegnoUnico": {
+    "soglieIsee": { "minima": 17468.51, "massima": 46582.71 },
+    "quotaBaseMinore": { "max": 203.80, "min": 58.30 },
+    "quotaBaseMaggiorenne": { "max": 99.10, "min": 29.10 },
+    "maggiorazioneLavoratori": { "max": 34.90, "min": 0.00 },
+    "maggiorazioneTerzoFiglio": { "max": 96.90, "min": 17.10 },
+    "bonusFlat4Figli": 150.00,
+    "maggiorazioneDisabilitaForfettaria": 110.60
+  },
+  "tfr": {
+    "divisoreFisso": 13.5,
+    "rivalutazioneIstatBase": 0.015,
+    "rivalutazioneIstatProporzionale": 0.75,
+    "impostaSostitutivaRivalutazione": 0.17,
+    "rivalsaInps": 0.005
+  },
+  "imu": {
+    "rivalutazioneRendita": {
+      "fabbricati": 1.05,
+      "terreni": 1.25
+    },
+    "moltiplicatori": {
+      "A": 160, "A/10": 80,
+      "B": 140,
+      "C/1": 55, "C/2": 160, "C/3": 140, "C/4": 140, "C/5": 140, "C/6": 160, "C/7": 160,
+      "D": 65, "D/5": 80,
+      "TERRENO": 135
+    },
+    "riduzioni": {
+      "immobileStoricoInagibile": 0.5,
+      "comodatoParenti": 0.5,
+      "canoneConcordatoImposta": 0.75
+    },
+    "codiciTributo": {
+      "TERRENO": "3914",
+      "FABBRICATO_D": "3925",
+      "ALTRI_FABBRICATI": "3918"
+    }
+  },
+  "parcellaAvvocato": {
+    "speseGeneraliTasso": 0.15,
+    "cassaForenseTasso": 0.04,
+    "ivaOrdinariaTasso": 0.22,
+    "ritenutaAccontoTasso": 0.20,
+    "coeffScorporoSostituto": 1.0688,
+    "coeffScorporoPrivato": 1.2688
+  },
+  "contributoUnificato": {
+    "anticipazioneForfettariaArt30": 27.00,
+    "valoreIndeterminabileBase": 518.00,
+    "scaglioniOrdinari": [
+      { "valoreMax": 1100, "tassaBase": 43.00 },
+      { "valoreMax": 5200, "tassaBase": 98.00 },
+      { "valoreMax": 26000, "tassaBase": 237.00 },
+      { "valoreMax": 52000, "tassaBase": 518.00 },
+      { "valoreMax": 260000, "tassaBase": 759.00 },
+      { "valoreMax": 520000, "tassaBase": 1214.00 },
+      { "valoreMax": null, "tassaBase": 1686.00 }
+    ],
+    "modificatoriProcedura": {
+      "primoGrado": 1.0,
+      "appello": 1.5,
+      "cassazione": 2.0,
+      "decretoIngiuntivo": 0.5
+    }
+  },
+  "interessiMoratori": {
+    "recuperoForfettario": 40.00,
+    "maggiorazioneOrdinaria": 0.08,
+    "maggiorazioneAgroalimentare": 0.12,
+    "storicoTassiBce": [
+      { "inizio": "2026-07-01", "fine": "2026-12-31", "tasso": 0.0240 },
+      { "inizio": "2026-01-01", "fine": "2026-06-30", "tasso": 0.0215 },
+      { "inizio": "2025-07-01", "fine": "2025-12-31", "tasso": 0.0215 },
+      { "inizio": "2025-01-01", "fine": "2025-06-30", "tasso": 0.0315 },
+      { "inizio": "2024-07-01", "fine": "2024-12-31", "tasso": 0.0425 },
+      { "inizio": "2024-01-01", "fine": "2024-06-30", "tasso": 0.0450 },
+      { "inizio": "2023-07-01", "fine": "2023-12-31", "tasso": 0.0400 },
+      { "inizio": "2023-01-01", "fine": "2023-06-30", "tasso": 0.0250 },
+      { "inizio": "2022-07-01", "fine": "2022-12-31", "tasso": 0.0000 },
+      { "inizio": "2022-01-01", "fine": "2022-06-30", "tasso": 0.0000 }
+    ]
+  },
+  "locazioni": {
+    "regimeOrdinario": {
+      "tassoImpostaRegistroBase": 0.02,
+      "sogliaMinimaImpostaEuro": 67.00,
+      "abbattimentoAgevolatoConcordato": 0.70
+    },
+    "regimeCedolareSecca": {
+      "locazioneLungaConcordata": 0.10,
+      "locazioneLungaLibera": 0.21,
+      "locazioniBreviTuristico": [
+        { "immobili": 1, "tasso": 0.21 },
+        { "immobili": 2, "tasso": 0.26 },
+        { "immobili": 3, "tasso": 0.30 },
+        { "immobili": 4, "tasso": 0.30 }
+      ]
+    }
+  },
+  "irpef": {
+    "scaglioni": [
+      { "limite": 28000, "aliquota": 0.23, "base": 0 },
+      { "limite": 50000, "aliquota": 0.33, "base": 6440 },
+      { "limite": null, "aliquota": 0.43, "base": 13700 }
+    ],
+    "meccanismoEsterilizzazione": {
+      "sogliaAttivazioneReddito": 200000,
+      "penalizzazioneDetrazioniEuro": 440
+    },
+    "aliquoteMedieLocali": {
+      "regionale": 0.0173,
+      "comunale": 0.0080
+    },
+    "deduzioniLavoroDipendente": {
+      "baseFino15k": 1955,
+      "salvaguardiaMinimaIndeterminato": 690,
+      "baseFino28k": 1910,
+      "incrementoFino28k": 1190,
+      "correzioneAggiuntiva25k35k": 65
+    },
+    "cuneoFiscale": {
+      "bonusEsente": [
+        { "soglia": 8500, "aliquota": 0.071 },
+        { "soglia": 15000, "aliquota": 0.053 },
+        { "soglia": 20000, "aliquota": 0.048 }
+      ],
+      "detrazioneUlteriore": {
+        "sogliaPiena": 32000,
+        "importoMax": 1000,
+        "sogliaLimite": 40000
+      }
+    },
+    "exBonusRenzi": {
+      "sogliaMinima": 8500,
+      "sogliaMassima": 15000,
+      "importoAnnuo": 1200
+    }
+  },
+  "ravvedimento": {
+    "sanzioneBase": 0.25,
+    "frazioniTemporaliSanzione": [
+      { "tipo": "sprint", "giorniMax": 14, "tassoApplicato": 0.0008333, "logicaIncrementaleGiornaliera": true },
+      { "tipo": "breve", "giorniMax": 30, "tassoApplicato": 0.0125, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "intermedio", "giorniMax": 90, "tassoApplicato": 0.013889, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "lungo", "giorniMax": 365, "tassoApplicato": 0.03125, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "lunghissimo", "giorniMax": null, "tassoApplicato": 0.035714, "logicaIncrementaleGiornaliera": false }
+    ],
+    "tassoInteresseLegaleVigente": 0.016,
+    "tassiStoriciLegali": {
+      "2026": 0.016,
+      "2025": 0.020,
+      "2024": 0.025,
+      "2023": 0.050,
+      "2022": 0.0125,
+      "2021": 0.0001
+    },
+    "codiciTributo": {
+      "IVA": { "sanzione": "8904", "interessi": "1991", "desc": "Sanzione IVA" },
+      "IRPEF": { "sanzione": "8901", "interessi": "1989", "desc": "Sanzione IRPEF/IRES/Ritenute" },
+      "IMU": { "sanzione": "3924", "interessi": "3924", "desc": "Sanzione e Interessi IMU (Cumulativo)" },
+      "ALTRO": { "sanzione": "89xx", "interessi": "19xx", "desc": "Sanzione generica" }
+    }
+  },
+  "usufruttoENudaProprieta": {
+    "tassoFiscaleMinimoTur": 0.025,
+    "matriceDemografica": [
+      { "etaMax": 20, "coeff": 38.0 },
+      { "etaMax": 30, "coeff": 36.0 },
+      { "etaMax": 40, "coeff": 34.0 },
+      { "etaMax": 45, "coeff": 32.0 },
+      { "etaMax": 50, "coeff": 30.0 },
+      { "etaMax": 53, "coeff": 28.0 },
+      { "etaMax": 56, "coeff": 26.0 },
+      { "etaMax": 60, "coeff": 24.0 },
+      { "etaMax": 63, "coeff": 22.0 },
+      { "etaMax": 66, "coeff": 20.0 },
+      { "etaMax": 69, "coeff": 18.0 },
+      { "etaMax": 72, "coeff": 16.0 },
+      { "etaMax": 75, "coeff": 14.0 },
+      { "etaMax": 78, "coeff": 12.0 },
+      { "etaMax": 82, "coeff": 10.0 },
+      { "etaMax": 86, "coeff": 8.0 },
+      { "etaMax": 92, "coeff": 6.0 },
+      { "etaMax": 99, "coeff": 4.0 },
+      { "etaMax": null, "coeff": 2.0 }
+    ]
+  },
+  "bollo_auto_2026": {
+    "superbollo": {
+      "franchigia_kw": 185,
+      "importo_base_kw": 20.0,
+      "scaglioni_riduzione": [
+        { "anni_min": 0, "anni_max": 4, "tariffa_kw": 20.0 },
+        { "anni_min": 5, "anni_max": 9, "tariffa_kw": 12.0 },
+        { "anni_min": 10, "anni_max": 14, "tariffa_kw": 6.0 },
+        { "anni_min": 15, "anni_max": 19, "tariffa_kw": 3.0 },
+        { "anni_min": 20, "anni_max": 999, "tariffa_kw": 0.0 }
+      ]
+    },
+    "regioni": {
+      "nazionale": {
+        "classi_euro": {
+          "euro_0": { "tariffa_base": 3.00, "tariffa_eccedente": 4.50 },
+          "euro_1": { "tariffa_base": 2.90, "tariffa_eccedente": 4.35 },
+          "euro_2": { "tariffa_base": 2.80, "tariffa_eccedente": 4.20 },
+          "euro_3": { "tariffa_base": 2.70, "tariffa_eccedente": 4.05 },
+          "euro_4_5_6": { "tariffa_base": 2.58, "tariffa_eccedente": 3.87 }
+        }
+      },
+      "campania": {
+        "classi_euro": {
+          "euro_0": { "tariffa_base": 3.63, "tariffa_eccedente": 5.45 },
+          "euro_1": { "tariffa_base": 3.51, "tariffa_eccedente": 5.26 },
+          "euro_2": { "tariffa_base": 3.39, "tariffa_eccedente": 5.08 },
+          "euro_3": { "tariffa_base": 3.27, "tariffa_eccedente": 4.90 },
+          "euro_4_5_6": { "tariffa_base": 3.12, "tariffa_eccedente": 4.69 }
+        }
+      },
+      "lazio": {
+        "classi_euro": {
+          "euro_0": { "tariffa_base": 3.30, "tariffa_eccedente": 4.95 },
+          "euro_1": { "tariffa_base": 3.19, "tariffa_eccedente": 4.79 },
+          "euro_2": { "tariffa_base": 3.08, "tariffa_eccedente": 4.62 },
+          "euro_3": { "tariffa_base": 2.97, "tariffa_eccedente": 4.46 },
+          "euro_4_5_6": { "tariffa_base": 2.84, "tariffa_eccedente": 4.26 }
+        }
+      },
+      "toscana": {
+        "classi_euro": {
+          "euro_0": { "tariffa_base": 3.15, "tariffa_eccedente": 4.73 },
+          "euro_1": { "tariffa_base": 3.05, "tariffa_eccedente": 4.57 },
+          "euro_2": { "tariffa_base": 2.94, "tariffa_eccedente": 4.41 },
+          "euro_3": { "tariffa_base": 2.84, "tariffa_eccedente": 4.26 },
+          "euro_4_5_6": { "tariffa_base": 2.71, "tariffa_eccedente": 4.26 }
+        }
+      },
+      "bolzano": {
+        "classi_euro": {
+          "euro_0": { "tariffa_base": 2.70, "tariffa_eccedente": 4.05 },
+          "euro_1": { "tariffa_base": 2.50, "tariffa_eccedente": 3.75 },
+          "euro_2": { "tariffa_base": 2.30, "tariffa_eccedente": 3.45 },
+          "euro_3": { "tariffa_base": 2.10, "tariffa_eccedente": 3.15 },
+          "euro_4_5_6": { "tariffa_base": 1.96, "tariffa_eccedente": 2.94 }
+        }
+      }
+    }
+  },
+  "passaggio_proprieta_2026": {
+    "costi_fissi_ministeriali": {
+      "totale_standard": 85.20
+    },
+    "ipt_parametri_base": {
+      "soglia_potenza_kw": 53,
+      "quota_fissa_nazionale": 150.81,
+      "tariffa_kw_eccedente": 3.5119,
+      "ipt_fissa_moto_max": 26.00
+    },
+    "province_maggiorazioni": {
+      "DEFAULT": 0.30,
+      "AO": 0.00, "TN": 0.00, "BZ": 0.00,
+      "SO": 0.20, "FE": 0.20,
+      "BN": 0.25, "RG": 0.25
+    }
+  },
+  "mutuo_francese_2026": {
+    "imposta_sostitutiva": {
+      "prima_casa": 0.0025,
+      "seconda_casa": 0.0200
+    },
+    "costi_bancari_standard": {
+      "istruttoria": {
+        "percentuale": 0.008,
+        "minimo": 500.0,
+        "massimo": 2000.0
+      },
+      "perizia_fissa": 320.00,
+      "incasso_rata_mensile": 2.50,
+      "assicurazione_antincendio_annua_rate": 0.00035
+    },
+    "vincoli": {
+      "durata_anni_minima": 5,
+      "durata_anni_massima": 40
+    }
+  },
+  "imposte_acquisto_casa_2026": {
+    "privato": {
+      "imposta_registro_minima": 1000.0,
+      "imposta_ipotecaria_fissa": 50.0,
+      "imposta_catastale_fissa": 50.0,
+      "prima_casa": {
+        "aliquota_registro": 0.02,
+        "rivalutazione_rendita": 1.05,
+        "moltiplicatore_catastale": 110,
+        "coefficiente_totale": 115.5
+      },
+      "seconda_casa": {
+        "aliquota_registro": 0.09,
+        "rivalutazione_rendita": 1.05,
+        "moltiplicatore_catastale": 120,
+        "coefficiente_totale": 126.0
+      }
+    },
+    "impresa_costruttrice": {
+      "imposta_registro_fissa": 200.0,
+      "imposta_ipotecaria_fissa": 200.0,
+      "imposta_catastale_fissa": 200.0,
+      "prima_casa": {
+        "aliquota_iva": 0.04
+      },
+      "seconda_casa": {
+        "aliquota_iva_standard": 0.10,
+        "aliquota_iva_lusso": 0.22
+      }
+    },
+    "categorie_escluse_agevolazione": ["A/1", "A/8", "A/9"]
+  },
+  "rivalutazione_interessi_2026": {
+    "interessi_legali": [
+      { "dal": "2021-01-01", "al": "2021-12-31", "tasso": 0.0001, "giorni_anno": 365 },
+      { "dal": "2022-01-01", "al": "2022-12-31", "tasso": 0.0125, "giorni_anno": 365 },
+      { "dal": "2023-01-01", "al": "2023-12-31", "tasso": 0.0500, "giorni_anno": 365 },
+      { "dal": "2024-01-01", "al": "2024-12-31", "tasso": 0.0250, "giorni_anno": 366 },
+      { "dal": "2025-01-01", "al": "2025-12-31", "tasso": 0.0200, "giorni_anno": 365 },
+      { "dal": "2026-01-01", "al": "2026-12-31", "tasso": 0.0160, "giorni_anno": 365 }
+    ],
+   "serie_istat_foi": {
+      "2015": { "01": 107.3, "02": 107.7, "03": 107.8, "04": 108.0, "05": 108.1, "06": 108.3, "07": 108.2, "08": 108.4, "09": 108.0, "10": 108.2, "11": 107.8, "12": 107.8 },
+      "2016": { "01": 107.5, "02": 107.2, "03": 107.3, "04": 107.3, "05": 107.6, "06": 107.8, "07": 108.0, "08": 108.2, "09": 108.0, "10": 108.0, "11": 108.1, "12": 108.4 },
+      "2017": { "01": 108.7, "02": 109.1, "03": 109.1, "04": 109.4, "05": 109.2, "06": 109.1, "07": 109.2, "08": 109.6, "09": 109.3, "10": 109.1, "11": 108.9, "12": 109.2 },
+      "2018": { "01": 109.6, "02": 109.6, "03": 109.9, "04": 109.9, "05": 110.2, "06": 110.4, "07": 110.7, "08": 111.2, "09": 110.9, "10": 110.9, "11": 110.7, "12": 110.6 },
+      "2019": { "01": 110.5, "02": 110.7, "03": 111.0, "04": 111.2, "05": 111.3, "06": 111.3, "07": 111.3, "08": 111.8, "09": 111.2, "10": 111.1, "11": 111.0, "12": 111.2 },
+      "2020": { "01": 111.1, "02": 110.9, "03": 111.0, "04": 110.9, "05": 110.7, "06": 110.9, "07": 110.8, "08": 111.2, "09": 110.5, "10": 110.7, "11": 110.6, "12": 110.9 },
+      "2021": { "01": 111.6, "02": 111.7, "03": 112.0, "04": 112.4, "05": 112.4, "06": 112.6, "07": 112.9, "08": 113.4, "09": 113.3, "10": 114.0, "11": 114.8, "12": 115.2 },
+      "2022": { "01": 117.0, "02": 118.1, "03": 119.3, "04": 119.1, "05": 120.1, "06": 121.5, "07": 122.0, "08": 123.0, "09": 123.4, "10": 127.6, "11": 128.4, "12": 128.8 },
+      "2023": { "01": 128.9, "02": 129.2, "03": 128.7, "04": 129.3, "05": 129.5, "06": 129.5, "07": 129.6, "08": 129.9, "09": 130.2, "10": 130.0, "11": 129.8, "12": 130.1 },
+      "2024": { "01": 130.5, "02": 130.6, "03": 130.7, "04": 130.6, "05": 130.8, "06": 130.9, "07": 131.5, "08": 131.7, "09": 131.6, "10": 131.6, "11": 131.6, "12": 131.8 },
+      "2025": { "01": 132.0, "02": 132.1, "03": 132.2, "04": 132.3, "05": 132.4, "06": 132.5, "07": 132.6, "08": 132.7, "09": 132.8, "10": 132.9, "11": 133.0, "12": 133.1 },
+      "2026": { "01": 133.2, "02": 133.3, "03": 133.4, "04": 133.5 }
+    }
+  },
+  "naspi_parametri_2026": {
+    "soglia_retribuzione_inps": 1456.72,
+    "massimale_mensile_inps": 1584.70,
+    "aliquota_base": 0.75,
+    "aliquota_eccedenza": 0.25,
+    "coefficiente_mensilizzazione": 4.33,
+    "requisiti": {
+      "settimane_minime_richieste": 13,
+      "settimane_massime_fruibili": 104
+    },
+    "decalage": {
+      "percentuale_decurtazione": 0.03,
+      "soglia_eta_anni": 55,
+      "mese_partenza_standard": 6,
+      "mese_partenza_over55": 8
+    }
+  },
+  "successioni_italia_2026": {
+    "regole_legittima_testamento": {
+      "solo_coniuge": {
+        "coniuge_num": 1, "coniuge_den": 2, "figli_totale_num": 0, "figli_totale_den": 1, "ascendenti_num": 0, "ascendenti_den": 1, "disponibile_num": 1, "disponibile_den": 2
+      },
+      "coniuge_un_figlio": {
+        "coniuge_num": 1, "coniuge_den": 3, "figli_totale_num": 1, "figli_totale_den": 3, "ascendenti_num": 0, "ascendenti_den": 1, "disponibile_num": 1, "disponibile_den": 3
+      },
+      "coniuge_due_o_piu_figli": {
+        "coniuge_num": 1, "coniuge_den": 4, "figli_totale_num": 2, "figli_totale_den": 4, "ascendenti_num": 0, "ascendenti_den": 1, "disponibile_num": 1, "disponibile_den": 4
+      },
+      "un_figlio_senza_coniuge": {
+        "coniuge_num": 0, "coniuge_den": 1, "figli_totale_num": 1, "figli_totale_den": 2, "ascendenti_num": 0, "ascendenti_den": 1, "disponibile_num": 1, "disponibile_den": 2
+      },
+      "piu_figli_senza_coniuge": {
+        "coniuge_num": 0, "coniuge_den": 1, "figli_totale_num": 2, "figli_totale_den": 3, "ascendenti_num": 0, "ascendenti_den": 1, "disponibile_num": 1, "disponibile_den": 3
+      },
+      "coniuge_ascendenti": {
+        "coniuge_num": 1, "coniuge_den": 2, "figli_totale_num": 0, "figli_totale_den": 1, "ascendenti_num": 1, "ascendenti_den": 4, "disponibile_num": 1, "disponibile_den": 4
+      },
+      "solo_ascendenti": {
+        "coniuge_num": 0, "coniuge_den": 1, "figli_totale_num": 0, "figli_totale_den": 1, "ascendenti_num": 1, "ascendenti_den": 3, "disponibile_num": 2, "disponibile_den": 3
+      }
+    },
+    "regole_legittima_senza_testamento": {
+      "solo_coniuge": { "coniuge_num": 1, "coniuge_den": 1 },
+      "coniuge_un_figlio": { "coniuge_num": 1, "coniuge_den": 2, "figli_num": 1, "figli_den": 2 },
+      "coniuge_piu_figli": { "coniuge_num": 1, "coniuge_den": 3, "figli_num": 2, "figli_den": 3 },
+      "solo_figli": { "figli_num": 1, "figli_den": 1 },
+      "coniuge_e_ascendenti": { "coniuge_num": 2, "coniuge_den": 3, "ascendenti_num": 1, "ascendenti_den": 3 },
+      "solo_ascendenti": { "ascendenti_num": 1, "ascendenti_den": 1 }
+    }
+  }
+}
+

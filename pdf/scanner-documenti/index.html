@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Scanner Documenti e Carte d'Identità (CIE) — StrumentiUtili.it</title>
+  <meta name="description" content="Scansiona documenti, scontrini, patenti e carte d'identità (CIE) dal tuo browser. Ritaglio automatico IA e salvataggio in PDF 100% privato.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/scanner-documenti/">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Scanner Documenti e Carte d'Identità (CIE) — StrumentiUtili.it">
+  <meta property="og:description" content="Trasforma foto di documenti, ricevute e carte d'identità (CIE) in PDF direttamente dal browser. Nessun upload delle immagini.">
+  <meta property="og:url" content="https://strumentiutili.it/pdf/scanner-documenti/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scanner Documenti e Carte d'Identità (CIE)">
+  <meta name="twitter:description" content="Scanner documenti gratuito direttamente dal browser. 100% Privacy.">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+
+    #drop-zone { -webkit-tap-highlight-color: transparent; user-select: none; }
+    #preview-grid canvas { width: 100%; height: 100%; object-fit: contain; }
+    #crop-modal, #crop-container { overscroll-behavior: none; }
+    #crop-canvas { display: block; max-width: 100%; max-height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+    .scanner-no-touch { touch-action: none; }
+    #crop-container::-webkit-scrollbar { width: 6px; height: 6px; }
+    #crop-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.25); border-radius: 999px; }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Scanner Documenti e Carte d'Identità (CIE) Client-Side",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://strumentiutili.it/pdf/scanner-documenti/",
+    "description": "Applicativo web client-side per la scansione, rettifica prospettica via Computer Vision OpenCV (WASM) e conversione PDF multipagina di documenti e carte d'identità in totale conformità GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires WebAssembly. Requires HTML5 Canvas."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Strumenti PDF", "item": "https://strumentiutili.it/pdf/" },
+      { "@type": "ListItem", "position": 3, "name": "Scanner Documenti", "item": "https://strumentiutili.it/pdf/scanner-documenti/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📄</span> Scanner documenti
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Scanner Documenti IA (Crea PDF da Foto)</h1>
+        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+          Trasforma foto di carte d'identità (CIE), contratti e ricevute in PDF multipagina direttamente dal tuo browser. Modifica l'orientamento delle immagini acquisite e genera il documento in locale.
+        </p>
+
+        <div class="mt-4 flex items-start gap-3 rounded-lg bg-emerald-50 border border-emerald-200 p-4 shadow-sm">
+          <div class="text-xl">🔒</div>
+          <div>
+            <div class="font-semibold text-emerald-900">Privacy Assoluta (Zero-Upload)</div>
+            <p class="text-sm text-emerald-800 mt-1">
+              La fotocamera e l'elaborazione IA operano al 100% offline nella memoria del dispositivo. Ideale per CIE, passaporti e documenti riservati.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <!-- Controlli e Upload -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-1 h-fit">
+          <h2 class="text-xl font-bold text-gray-900 mb-1">1. Carica le foto</h2>
+          <p class="text-sm text-gray-500 mb-5">Scatta una foto, usa la libreria del tuo dispositivo o sfoglia le immagini sul PC.</p>
+
+          <input id="img-upload" type="file" accept="image/*" multiple capture="environment" class="hidden">
+
+          <div id="drop-zone" role="button" tabindex="0" aria-label="Scatta una foto o seleziona immagini" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors p-7 text-center rounded-xl cursor-pointer select-none">
+            <div class="text-4xl mb-3">📸</div>
+            <div class="text-sm font-medium text-gray-700">Scatta foto o seleziona file</div>
+            <div class="text-xs text-indigo-600 font-bold mt-2">Clicca qui per iniziare (attivo da Mobile e PC)</div>
+          </div>
+
+          <div class="mt-6">
+            <label for="scan-filter" class="block text-sm font-bold text-gray-800 mb-2">Filtro scansione</label>
+            <select id="scan-filter" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+              <option value="color" selected>A colori — Migliorato</option>
+              <option value="bw">Bianco e nero — Testo nitido</option>
+              <option value="grayscale">Scala di grigi</option>
+            </select>
+          </div>
+
+          <div class="mt-5 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input id="auto-crop" type="checkbox" checked class="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+              <span>
+                <span class="block text-sm font-bold text-indigo-900">Ritaglio automatico (IA)</span>
+                <span class="block text-xs text-indigo-700 mt-0.5">Rileva e raddrizza automaticamente i bordi del documento.</span>
+              </span>
+            </label>
+          </div>
+
+          <div id="status-msg" class="mt-5 text-sm font-bold text-amber-600">
+            Caricamento motore IA (Computer Vision) in corso... Attendi.
+          </div>
+
+          <button id="generate-pdf" type="button" disabled class="mt-6 w-full bg-indigo-600 text-white font-bold px-4 py-3.5 rounded-lg hover:bg-indigo-700 active:bg-indigo-800 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            <span>📄</span> Genera PDF
+          </button>
+        </section>
+
+        <!-- Anteprima -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-2">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">2. Anteprima documenti</h2>
+              <p class="text-sm text-gray-500 mt-1">Usa l'icona della matita ✏️ sulla miniatura per aggiustare i bordi, e le frecce 🔄 per ruotare l'immagine.</p>
+            </div>
+          </div>
+
+          <div id="empty-state" class="border-2 border-dashed border-gray-200 bg-gray-50 rounded-xl min-h-[300px] flex items-center justify-center text-center p-8">
+            <div>
+              <div class="text-5xl mb-4">📄</div>
+              <div class="font-bold text-gray-800">Nessun documento caricato</div>
+              <p class="text-sm text-gray-500 mt-1 max-w-sm mx-auto">Scatta una foto dal cellulare o seleziona un'immagine per iniziare a creare il tuo PDF locale.</p>
+            </div>
+          </div>
+
+          <div id="preview-grid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Le immagini scansionate verranno iniettate qui -->
+          </div>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti PDF</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📂</span> Unisci e Dividi</a></li>
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🗜️</span> Comprimi e Converti</a></li>
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Firma PDF</a></li>
+            <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Anonimizza (Redact)</a></li>
+            <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Validatore PDF/A</a></li>
+            <li><a href="/pdf/scanner-documenti/" class="text-indigo-600 flex items-center gap-2"><span>📄</span> Scanner Documenti</a></li>
+          </ul>
+        </div>
+
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Blocco SEO -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Visione Artificiale Client-Side, Protocolli Smart Card CIE 3.0 e Compliance GDPR (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La digitalizzazione avanzata dei documenti d'identità fisici, quali la Carta d'Identità Elettronica (CIE 3.0), la patente di guida e il passaporto biometrico, costituisce un'operazione nevralgica per i processi di verifica dell'identità (KYC - Know Your Customer) e adeguata verifica della clientela in ambito antiriciclaggio (AML). L'acquisizione di materiale identitario ad alta risoluzione tramite dispositivi mobili solleva un duplice ordine di problemi: da un lato la necessità di correggere le distorsioni prospettiche della fotocamera e dall'altro l'obbligo di isolare la gestione dei dati sensibili da vettori di esfiltrazione cloud. Il presente trattato disamina l'inquadramento normativo europeo, la formalizzazione algebrica della Computer Vision (OpenCV/WASM), i protocolli hardware di interfacciamento delle Smart Card e la risoluzione delle casuistiche applicative reali in ambito finanziario, sanitario e notarile.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Soppressione del Data Processor (Art. 28) ed Interfacciamento CIE 3.0</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'acquisizione digitale di documenti di riconoscimento personali e attestati di reddito comporta il trattamento di dati anagrafici e biometrici definiti come "categorie particolari di dati" dall'**Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679)**. L'impiego di piattaforme SaaS tradizionali o di API di scansione ospitate su server cloud terzi costringe l'operatore ad inviare l'immagine non rielaborata dell'identità del cliente verso reti esterne, innescando l'obbligo formale di censimento nel Registro delle Attività di Trattamento (Art. 30 GDPR), la redazione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR) e la stipula di un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore cloud.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura **Zero-Backend (Serverless Client-Side)** di questo applicativo incarna in forma algebrica il principio di **Data Protection by Design e by Default (Articolo 25 GDPR)**. Rifiutando qualsiasi trasmissione telematica verso l'esterno (Zero-Upload), le immagini catturate dalla webcam o dalla fotocamera dello smartphone vengono conservate ed elaborate unicamente nella memoria RAM volatile del browser locale. Rifiutando la trasmissione remota, viene a cadere la qualifica giuridica di Data Processor in capo al gestore del sito, sollevando il professionista o l'azienda dagli oneri di auditing e dal rischio di sanzioni amministrative pecuniarie previste dall'Articolo 83 del GDPR (fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per quanto concerne l'interfacciamento hardware con la Carta d'Identità Elettronica (CIE 3.0), le postazioni desktop si affidano allo standard universale **PC/SC (Personal Computer/Smart Card)** tramite lettori fisici USB conformi al protocollo CCID. Poiché i browser classificano le Smart Card come "protected class" (classe USB `0x0B`) per prevenire attacchi malevoli di keylogging, l'architettura sfrutta demoni di sistema intermedi legali (middleware CIE ID). Su ecosistemi mobili Android, l'API native `NDEFReader` dello standard **WebNFC** consente ad una Progressive Web App (PWA) di dialogare direttamente con il microchip crittografico ISO/IEC 14443 affogato nella carta, estraendo i certificati d'identità in modo sicuro all'interno del perimetro isolato del dispositivo.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica Computazionale e Formule: Canny Edge Detection, Matrice di Trasformazione Prospettica 3x3 e V8 Heap Memory</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Isolamento dei Contorni tramite Canny Edge Detector</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il motore matematico compilato in WebAssembly (`OpenCV.js`) analizza il frame acquisito converting preliminarmente l'immagine in scala di grigi. L'algoritmo di **Canny Edge Detection** calcola il gradiente di intensità luminosa $G$ e l'orientamento della direzione $\Theta$ per ogni singolo pixel tramite gli operatori differenziali di Sobel $G_x$ e $G_y$:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$G = \sqrt{G_x^2 + G_y^2}, \quad \Theta = \arctan\left(\frac{G_y}{G_x}\right)$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I contorni estratti vengono filtrati tramite soppressione dei non-massimi e isteresi a doppia soglia per isolare il quadrilatero chiuso avente la maggiore area superficiale nel frame.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Omografia e Matrice di Trasformazione Prospettica 3x3</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Ottenute le coordinate spaziali distorte dei quattro vertici sorgente del documento nel frame $\mathbf{S}_i(x_i, y_i)$ per $i \in \{1,2,3,4\}$, la funzione `cv.getPerspectiveTransform` costruisce la **matrice di omografia prospettica 3x3** ($\mathbf{M}$). La matrice mappa i punti sorgente sulle coordinate rettangolari ideali di destinazione $\mathbf{D}_i(x'_i, y'_i)$ con scala metrica prestabilita:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-xs">
+              $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \mathbf{M} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} m_{00} & m_{01} & m_{02} \\ m_{10} & m_{11} & m_{12} \\ m_{20} & m_{21} & m_{22} \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La trasformazione `cv.warpPerspective` applica la matrice $\mathbf{M}$ interpolando i pixel con algoritmo bilineare, "raddrizzando" e appiattendo visivamente il documento come su un piano ottico planare.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Isolamento Computazionale su Web Workers e V8 Heap Management</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'esecuzione continuativa di algoritmi di visione artificiale su flussi video a 30/60 FPS può provocare il congelamento dell'interfaccia utente ed il rapido surriscaldamento del SoC (*System on a Chip*) con conseguente *Thermal Throttling*. La nostra architettura isola l'istanza WASM di OpenCV all'interno di un **Web Worker** separato. La spola dei frame avviene tramite **Transferable Objects** (`ArrayBuffer`), azzerando le copie byte-by-byte della memoria Heap del motore JavaScript V8 ($M_{\text{alloc}}$) ed alleviando la pressione sul Garbage Collector:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$M_{\text{alloc}} = \mathcal{O}(\text{Frame}_{\text{pixel}} \times \text{Canali})$$
+            </div>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Onboarding KYC/AML Finanziario, Accettazione Ospedaliera e Registrazione Notarile</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Adeguata Verifica della Clientela (KYC/AML) per Consulente Finanziario.</strong><br />
+              Un consulente finanziario deve digitalizzare d'urgenza i documenti d'identità ed i certificati di reddito di un cliente durante un colloquio riservato presso il domicilio di quest'ultimo. Fotografare il passaporto con la fotocamera standard dello smartphone comporterebbe la sincronizzazione automatica della foto sul cloud di Apple o Google, violando le stringenti norme sul segreto finanziario e sulla protezione dei dati.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Invocando lo Scanner Documenti PWA dal browser del proprio notebook in modalità disconnessa, il consulente inquadra il passaporto via webcam. L'algoritmo di omografia raddrizza il documento, applica il filtro "Bianco e Nero" per esaltare i caratteri alfanumerici e genera un fascicolo PDF criptato e firmato che viene salvato direttamente sul disco fisso crittografato del computer aziendale, sigillando la catena di custodia dei dati senza alcun passaggio cloud.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: Accettazione Sanitaria Ospedaliera e Lettura NFC di Tessera Sanitaria / CIE.</strong><br />
+              Un operatore di accettazione in un reparto di pronto soccorso deve registrare le anagrafiche dei pazienti in ingresso per la compilazione della cartella clinica digitale.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Tramite un tablet Android fornito di antenna NFC, l'operatore appoggia la Carta d'Identità Elettronica (CIE 3.0) o la Tessera Sanitaria al retro del dispositivo. L'API `NDEFReader` interroga il chip ISO/IEC 14443, estrae i dati anagrafici esatti e li popola nel form, mentre lo Scanner fotografico riprende il fronte/retro della carta appiattendo i bordi con la matrice 3x3. Il processo annulla gli errori manuali di digitazione ed elimina la dipendenza da API governative remote instabili.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 3: Identificazione delle Parti in Atto Notarile con Lettore USB PC/SC.</strong><br />
+              Un notaio, durante la stipula di un atto di compravendita immobiliare, deve verificare la validità dei documenti d'identità presentati dalle parti comparenti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Collegando un lettore Smart Card USB CCID alla postazione di studio, la PWA dialoga con il certificato della CIE via middleware locale PC/SC, mentre lo scanner acquisisce la copia fotostatica conforme inserendola come allegato immutabile nel fascicolo digitale dell'atto notarile, azzerando le fotocopie cartacee facilmente smarribili.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Risoluzione Anomalie Tecniche: Thermal Throttling, Sfondi Omogenei e Sanzioni GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Fallimento Rilevamento Bordi (Sfondo Omogeneo / Basso Contrasto):</strong><br />
+              L'algoritmo di Canny si basa sui gradienti di intensità luminosa tra il documento ed il piano d'appoggio. Se si fotografa un foglio di carta bianco appoggiato su un tavolo bianco o di colore chiaro, il salto di gradiente risulta insufficiente e l'algoritmo non isola correttamente i quattro vertici. In tali scenari, il sistema attiva un fallback visivo aprendo la Modale di Ritaglio Manuale (`crop-modal`), consentendo all'utente di posizionare trascinando i quattro angoli mediante controllo touch nativo a schermo.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Surriscaldamento e Thermal Throttling su Dispositivi Mobili Datati:</strong><br />
+              L'elaborazione continuativa di matrici di visione artificiale su immagini sature da 24 o 48 Megapixel può sovraccaricare la GPU/CPU dei dispositivi mobili di fascia media, causando il rallentamento del sistema (*Thermal Throttling*). Il nostro scanner pre-ridimensiona lo scatto sorgente ad una risoluzione proxy a basso consumo per ricavare la matrice di trasformazione $3 \times 3$, applicando poi i coefficienti percentuali di ritaglio direttamente sull'immagine nativa, preservando la qualità di stampa a 300 DPI e la carica della batteria.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Sanzioni per Esfiltrazione di Dati d'Identità (Articolo 83 GDPR):</strong><br />
+              Il caricamento sconsiderato di passaporti, carte d'identità o patenti su server cloud non protetti gestiti da soggetti terzi privi di DPA costituisce una violazione sistemica dell'Articolo 9 e dell'Articolo 32 del GDPR. Le sanzioni edittali previste dal Garante Privacy possono raggiungere **20 milioni di euro o fino al 4% del fatturato globale annuo dell'azienda**. L'impiego dello Scanner Client-Side Zero-Backend annulla alla radice il rischio di Data Breach eliminando qualsiasi invio remoto.
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Modale di Ritaglio Manuale -->
+  <div id="crop-modal" class="fixed inset-0 bg-gray-950/95 hidden z-[60] flex flex-col touch-none" role="dialog" aria-modal="true" aria-labelledby="crop-title">
+    <div class="p-4 text-white flex justify-between items-center gap-4 bg-black shadow-md shrink-0">
+      <div>
+        <h3 id="crop-title" class="text-base sm:text-lg font-bold">Regola i bordi</h3>
+        <p class="text-xs text-gray-400 mt-0.5 hidden sm:block">Trascina i quattro angoli del documento.</p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btn-cancel-crop" type="button" class="px-3 sm:px-4 py-2 text-gray-300 hover:text-white font-medium rounded-lg hover:bg-white/10 transition">Annulla</button>
+        <button id="btn-apply-crop" type="button" class="px-3 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg text-white font-semibold transition">Applica</button>
+      </div>
+    </div>
+
+    <div id="crop-container" class="flex-1 relative overflow-hidden flex items-center justify-center p-4 scanner-no-touch">
+      <canvas id="crop-canvas" class="cursor-crosshair shadow-2xl max-w-full max-h-full" style="touch-action:none;"></canvas>
+    </div>
+    <div class="bg-black border-t border-white/10 px-4 py-3 text-center shrink-0">
+      <p class="text-xs font-semibold text-gray-300">💡 Trascina ogni punto sull'angolo reale del documento.</p>
+    </div>
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librerie e Script -->
+<script defer src="https://docs.opencv.org/4.8.0/opencv.js" defer></script>
+<script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+<script defer src="/js/main.js"></script>
+<script defer src="/js/scanner.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('preview-grid');
+      const empty = document.getElementById('empty-state');
+      if (!grid || !empty) return;
+
+      const observer = new MutationObserver(() => {
+        empty.style.display = grid.children.length === 0 ? 'flex' : 'none';
+      });
+      observer.observe(grid, { childList: true });
+      empty.style.display = grid.children.length === 0 ? 'flex' : 'none';
+    });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

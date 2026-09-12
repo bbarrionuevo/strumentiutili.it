@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estrazione Testo da Immagini e PDF (OCR) — StrumentiUtili.it</title>
+  <meta name="description" content="Estrai testo da immagini e PDF (OCR) direttamente nel browser usando Tesseract.js. Privacy 100% Client-side.">
+  <link rel="canonical" href="https://strumentiutili.it/ia/ocr-immagini/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Librerías OCR, PDF y Word -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/docx@7.6.0/build/index.js" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Estrazione Testo da Immagini e PDF (OCR Client-Side)",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "url": "https://strumentiutili.it/ia/ocr-immagini/",
+    "image": "https://strumentiutili.it/assets/og-image.png",
+    "description": "Strumento professionale OCR per l'estrazione automatica di testo da immagini e documenti PDF scansionati tramite Tesseract.js compilato in WebAssembly. Elaborazione 100% Client-Side a norma AgID, CAD (Art. 22) e GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareHelp": "https://strumentiutili.it/contatti.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "IA Locale", "item": "https://strumentiutili.it/ia/" },
+      { "@type": "ListItem", "position": 3, "name": "OCR Immagini", "item": "https://strumentiutili.it/ia/ocr-immagini/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/"text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-indigo-600 font-semibold">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/ia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria IA Locale</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🤖</span> IA Locale
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Estrazione Testo da Immagini e PDF (OCR)</h1>
+        <p class="text-sm text-gray-600 mt-2">Estrai testo da foto o PDF direttamente nel browser con elaborazione 100% privata.</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div class="block">
+          <label for="img-input" class="text-sm font-bold text-gray-800">Carica file (Immagini o PDF)</label>
+          <input id="img-input" type="file" accept="image/*,.pdf" capture="environment" class="hidden" />
+          <div id="drop-img-input" class="mt-3 bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-indigo-200 hover:border-indigo-400 transition-colors p-8 text-center rounded-xl cursor-pointer">
+            <div class="text-sm text-gray-600">Trascina qui il tuo file oppure <span class="text-indigo-600 font-bold cursor-pointer" id="img-browse">sfoglia dal dispositivo</span></div>
+            <div id="img-filename" class="mt-2 text-sm text-gray-500 font-medium"></div>
+          </div>
+        </div>
+
+        <label for="ocr-lang" class="block mt-5">
+          <span class="text-sm font-bold text-gray-800">Lingua del testo</span>
+          <select id="ocr-lang" class="mt-2 w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+            <option value="ita+eng+spa" selected>Italiano + Inglese + Spagnolo</option>
+            <option value="ita">Italiano</option>
+            <option value="eng">Inglese</option>
+            <option value="spa">Spagnolo</option>
+          </select>
+        </label>
+
+        <div class="mt-6 flex gap-3">
+          <button id="start-ocr" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3 rounded-lg shadow-sm transition">Avvia riconoscimento</button>
+          <button id="clear-ocr" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-6 py-3 rounded-lg transition">Pulisci</button>
+        </div>
+
+        <div id="ocr-progress" class="mt-4 text-sm font-bold text-indigo-600 text-center">Pronto.</div>
+
+        <div class="mt-6">
+          <label for="ocr-result" class="block text-sm font-bold text-gray-800 mb-2">Testo Estratto</label>
+          <textarea id="ocr-result" class="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-gray-50 text-gray-800" placeholder="Il testo estratto apparirà qui..."></textarea>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-3 border-t border-gray-100 pt-5">
+          <button id="copy-text" class="flex-1 sm:flex-none px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 text-sm font-bold border border-gray-300 rounded-lg transition shadow-sm">📋 Copia testo</button>
+          <button id="download-txt" class="flex-1 sm:flex-none px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-sm font-bold border border-indigo-200 rounded-lg transition">📄 Scarica .txt</button>
+          <button id="download-docx" class="flex-1 sm:flex-none px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-sm font-bold border border-indigo-200 rounded-lg transition">📝 Scarica .docx</button>
+          <button id="download-pdf" class="flex-1 sm:flex-none px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 text-sm font-bold border border-rose-200 rounded-lg transition">📕 Scarica .pdf</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">IA Locale</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/ia/trascrizione-audio/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎙️</span> Trascrizione Audio</a></li>
+        <li><a href="/ia/ocr-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>👁️</span> OCR Immagini</a></li>
+        <li><a href="/ia/traduttore/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🌍</span> Traduttore IA</a></li>
+        <li><a href="/ia/riassunto-testo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📝</span> Riassunto Testo</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLONNA INFERIORE: Ad Mobile & SEO (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-4">
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Tecnico-Giuridico sull'Estrazione Ottica dei Caratteri (OCR) e Dematerializzazione Documentale</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il processo di digitalizzazione e dematerializzazione dei documenti analogici nell'ordinamento italiano è disciplinato dalle <strong>Linee Guida AgID (Agenzia per l'Italia Digitale)</strong> sulla formazione, gestione e conservazione dei documenti informatici e dall'articolo 22 del <strong>Codice dell'Amministrazione Digitale (CAD - D.Lgs. 82/2005)</strong>. L'estrazione ottica dei caratteri (OCR - Optical Character Recognition) rappresenta l'anello congiungente tra il documento rasterizzato a pixel e la sua rappresentazione vettoriale testuale indicizzabile in formato UTF-8. Questo applicativo integra una pipeline di Intelligenza Artificiale locale compilata in WebAssembly (Tesseract.js), la quale esegue l'intero ciclo di pre-elaborazione grafica, segmentazione e riconoscimento neurale LSTM al 100% all'interno del browser web dell'utente. In piena rispondenza all'Articolo 25 del GDPR (Privacy by Design), nessun documento legale, cartella clinica o bilancio aziendale viene trasmesso a server remoti, garantendo la totale confidenzialità dei dati estratti.
+        </p>
+
+        <!-- ACCORDEON 1: Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo: Valore Legale CAD (Art. 22), DPR 445/2000 e GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Efficacia Probatoria delle Copie Informatiche ex Art. 22 CAD</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'articolo 22, comma 2, del D.Lgs. 82/2005 (CAD) stabilisce che le copie informatiche di documenti analogici hanno la stessa efficacia probatoria degli originali da cui sono tratte se la loro conformità non è espressamente disconosciuta dalla controparte o se la conformità all'originale è attestata da un pubblico ufficiale a ciò autorizzato con firma digitale qualificata o sigillo elettronico. L'estrazione OCR integrata nel documento genera la componente strutturata indispensabile per la ricerca testuale e l'archiviazione sostitutiva a norma ISO 19005 (PDF/A).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Privacy by Design (Art. 25 GDPR) e Trasferimenti Extra-UE</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Utilizzare motori OCR commerciali basati su API Cloud esterne (con server situati in giurisdizioni extra-UE) espone il professionista (avvocato, medico, commercialista) a severe sanzioni amministrative pecuniarie per violazione degli Articoli 28 e 44 del GDPR. La trasmissione di documenti contenenti categorie particolari di dati personali (Art. 9 GDPR) verso API di terzi richiede la stipula di complessi Data Processing Agreements (DPA) e l'esecuzione preventiva di una Valutazione d'Impatto (DPIA ex Art. 35).
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'architettura Zero-Backend di questo strumento elimina alla radice ogni trasferimento di rete. I moduli WebAssembly di Tesseract.js e i pesi delle reti neurali vengono scaricati nella cache locale del browser (Service Worker); la trasformazione dei pixel in testo avviene esclusivamente nella RAM volatile del dispositivo dell'utente, realizzando l'isolamento ermetico dei dati sensibili.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 2: Meccanica e Formule dell'OCR -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Computazionale: Geometria DPI, Binarizzazione Otsu e LSTM</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">A) Risoluzione Spaziale e Geometria dei Pixel (DPI)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                La risoluzione ottica della scansione determina la densità dei campioni per pollice lineare. Per un riconoscimento accurato dei caratteri tipografici con corpo standard (8-12pt), le Linee Guida AgID prescrivono una risoluzione minima di <strong>300 DPI</strong>. La relazione tra dimensione metrica e pixel dell'immagine raster è definita dall'equazione:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                Dimensioni in Pixel = (Dimensione in Millimetri / 25,4) × DPI
+              </div>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                Scansionare al di sotto dei 300 DPI provoca l'innesco di fenomeni di aliasing e la distruzione della Point Spread Function (PSF) dei tratti sottili dei caratteri (es. la differenza tra la lettera 'e' e la 'c').
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">B) Binarizzazione Adattiva di Otsu (Sogliatura del Contrasto)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Prima di inviare i pixel alla rete neurale, l'immagine in scala di grigi deve essere convertita in una matrice binaria mono-bit (0 = testo nero, 1 = sfondo bianco). L'<strong>Algoritmo di Otsu</strong> calcola la soglia ottimale che minimizza la varianza tra i due histogrammi di foreground e background.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">C) Raddrizzamento Geometrico (Deskewing tramite Trasformata di Hough)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Qualora il foglio analogico sia stato scansionato con un'inclinazione, le righe di testo risultano sfasate rispetto agli assi ortogonali. Il sistema applica la <strong>Trasformata di Hough</strong> nello spazio polare per individuare l'angolo di inclinazione predominante e applica una matrice di rotazione affine a interpolazione bilineare per riallineare le righe.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">D) Riconoscimento Neurale LSTM (Long Short-Term Memory)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Tesseract.js impiega un motore di Deep Learning basato su reti neurali ricorrenti LSTM. La rete non riconosce le singole lettere in isolamento, ma analizza le sequenze orizzontali di pixel all'interno della riga, valutando il contesto linguistico del dizionario integrato (es. <code>ita.traineddata</code>). Ogni parola estratta viene corredata da un punteggio di confidenza percentuale.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 3: Casuistica Reale Svolta -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Trascrizione e Digitalizzazione di un Atto Giudiziario Distorto</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Esempio Reale Svolto: Scansione Immagine Ruotata di 3.8° con Ombre e Timbri</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Si supponga di dover convertire la foto di un verbale cartaceo scattata da uno smartphone a 300 DPI, affetta da un'inclinazione prospettica e da una disomogeneità di illuminazione:
+              </p>
+              
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
+                <p><strong>Fase 1: Rasterizzazione e Canvas Scaling:</strong><br>
+                Se l'input è un PDF, <code>pdf.js</code> renderizza la pagina su un canvas HTML5 a un fattore di scala 2.0, garantendo una densità di 300 DPI equivalenti.</p>
+
+                <p><strong>Fase 2: Binarizzazione Adattiva di Otsu e Correzione Deskew:</strong><br>
+                L'algoritmo analizza la matrice dei grigi e individua una soglia di contrasto. La trasformata di Hough calcola l'inclinazione delle linee di testo e riallinea le righe sull'asse orizzontale.</p>
+
+                <p><strong>Fase 3: Passata Neurale LSTM Tesseract.js:</strong><br>
+                La rete neurale analizza i blocchi di testo, ignorando i timbri circolari isolati grazie al filtro di forma basato sui bounding box. Il documento viene estratto e trascritto in puro formato testuale, preservando il significato semantico.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 4: FAQ, Limiti V8 e Sanzioni -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Gestione Memoria Heap V8 e HTR vs OCR</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché le scansioni a 150 DPI causano l'esplosione degli errori di segmentazione nell'OCR?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                A 150 DPI la matrice dei pixel che compone un carattere con corpo di 8 punti conta appena 8-10 pixel in altezza. La sfocatura e l'aliasing della fotocamera fondono i contorni adiacenti, inducendo la rete neurale a commettere errori sistematici di segmentazione: la sequenza di lettere "r" e "n" vicine viene scambiata per una "m", la combinazione "c" e "l" viene letta come "d", e i punti della punteggiatura svaniscono durante la binarizzazione. L'acquisizione a 300 o 600 DPI è la conditio sine qua non per un'accuratezza > 95%.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Qual è la differenza tra OCR (Optical Character Recognition) e HTR (Handwritten Text Recognition)?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'OCR tradizionale è ottimizzato per caratteri a stampa con geometrie e font rigidi (Arial, Times, Courier). La scrittura a mano libera (calligrafia) presenta una variabilità morfologica e un tratto continuo che richiede modelli di HTR (Handwritten Text Recognition) specificamente riaddestrati su grafie fluide. Tesseract.js riconosce con buona precisione il testo in stampatello maiuscolo rigido, ma non è progettato per la decodifica del corsivo manoscritto fluido.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Come viene gestito l'esaurimento della memoria (Out of Memory) per PDF di centinaia di pagine?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il motore JavaScript dei browser (come V8 su Chrome o Edge) alloca una quantità massima di memoria Heap per singola scheda (solitamente 2-4 GB). Rasterizzare simultaneamente 100 pagine di un PDF ad alta risoluzione in ArrayBuffer causa il crash istantaneo della pagina (OOM). Il nostro software è ottimizzato per l'elaborazione di documenti leggeri.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>La copia informatica estratta via OCR ha la stessa valenza probatoria dell'originale analogico?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Sì, ai sensi dell'articolo 22, comma 2, del CAD (D.Lgs. 82/2005), la copia informatica estratta e conservata secondo le regole AgID soddisfa a tutti gli effetti di legge il requisito della forma scritta e ha la medesima efficacia probatoria dell'originale cartaceo, salvo espressa contestazione di conformità che deve comunque essere motivata con elementi circostanziati.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/ocr.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.StrumentiDropzone) {
+        window.StrumentiDropzone.setup({
+          drop: 'drop-img-input',
+          input: 'img-input',
+          browse: 'img-browse',
+          filename: 'img-filename'
+        });
+      }
+    });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

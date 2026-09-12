@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+        // Registramos el interceptor de cabeceras
+        navigator.serviceWorker.register('/sw-headers.js').then(
+            function(registration) {
+                // Si el SW se acaba de instalar, necesitamos recargar la página 
+                // para que las cabeceras COOP/COEP apliquen desde el inicio.
+                if (registration.active && !navigator.serviceWorker.controller) {
+                    window.location.reload();
+                }
+            },
+            function(err) {
+                console.log('Error al registrar el Service Worker COOP/COEP: ', err);
+            }
+        );
+    }
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Intelligenza Artificiale (Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Strumenti IA come traduttore documenti, riassunto testi, OCR e trascrizione audio 100% eseguiti nel browser." />
+  <link rel="canonical" href="https://strumentiutili.it/ia/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Intelligenza Artificiale (Offline)",
+    "url": "https://strumentiutili.it/ia/",
+    "description": "Strumenti IA come traduttore documenti, riassunto testi, OCR e trascrizione audio 100% eseguiti nel browser tramite Edge Computing.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+      <div class="w-full md:w-auto md:ml-4 mt-2 md:mt-0 order-last md:order-none">
+        <input id="search" type="search" placeholder="🔍 Cerca strumenti..." class="w-full md:w-64 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+      </div>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna alla home</a>
+      
+      <div class="mb-8 border-b border-gray-200 pb-4">
+        <h1 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+          🤖 Intelligenza Artificiale Locale
+        </h1>
+        <p class="text-sm text-gray-600 mt-1">Esecuzione IA nel browser: riassunti, traduzioni, OCR e trascrizione voce. 0% Inviato su internet.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Trascrizione Audio a Testo (Sbobinatore)</h3>
+            <p class="text-sm text-gray-600 mb-4">Estrai il testo da file audio o registrazioni (MP3, WAV) usando il modello IA Whisper. Privacy assoluta.</p>
+          </div>
+          <div class="mt-auto pt-4">
+            <a href="/ia/trascrizione-audio/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+          </div>
+        </article>
+
+
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Riassunto Testo IA</h3>
+            <p class="text-sm text-gray-600 mb-4">Riassumi lunghi articoli o documenti estraendo i concetti chiave, 100% offline.</p>
+          </div>
+          <div class="mt-auto pt-4">
+            <a href="/ia/riassunto-testo/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Traduttore Documenti IA</h3>
+            <p class="text-sm text-gray-600 mb-4">Traduci documenti (.txt, .docx, .pdf) in modo sicuro sfruttando modelli NMT in locale.</p>
+          </div>
+          <div class="mt-auto pt-4">
+            <a href="/ia/traduttore/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Estrazione Testo da Immagini (OCR)</h3>
+            <p class="text-sm text-gray-600 mb-4">Riconosci i caratteri all'interno delle foto (ricevute, screenshot) senza caricare file in rete.</p>
+          </div>
+          <div class="mt-auto pt-4">
+            <a href="/ia/ocr-immagini/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+          </div>
+        </article>
+
+      </div>
+
+    </main>
+
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar">
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <details class="group cursor-pointer">
+          <summary class="text-2xl font-bold text-gray-900 mb-3 select-none">
+            La Rivoluzione dell'Edge Computing IA: Conformità, Formule e Casistiche
+          </summary>
+          <div class="text-sm text-gray-700 leading-relaxed mt-4 space-y-6">
+            
+            <h3 class="text-lg font-semibold text-gray-900">Inquadramento Normativo</h3>
+            <p>
+              L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Sfruttando standard avanzati quali WebAssembly (WASM), Web Workers e WebGPU, l'architettura Zero-Backend definisce un ecosistema in cui l'intero ciclo di vita del dato avviene esclusivamente all'interno della sandbox del browser dell'utente. Da un punto di vista normativo, questo approccio rivoluziona radicalmente la gestione della conformità al Regolamento Generale sulla Protezione dei Dati (GDPR). L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure tecniche e organizzative a tutela della privacy siano integrate direttamente nell'architettura del sistema fin dalla fase di progettazione concettuale. L'infrastruttura client-side incarna questo principio applicando impostazioni restrittive in maniera predefinita e impedendo fisicamente l'esfiltrazione dei dati (Zero-Upload), azzerando così il rischio di data breach in transito o a riposo. Inoltre, tale architettura risolve le complessità dell'Articolo 28 del GDPR, il quale disciplina i rapporti tra Data Controller e Data Processor. Con l'elaborazione 100% client-side, il fornitore dell'applicativo fornisce un software eseguibile ma non processa dati sui propri server, facendo decadere la qualifica di Responsabile del Trattamento, esonerando il professionista dall'auditing, dai DPA e dalle complesse Valutazioni d'Impatto (DPIA) richieste per il trasferimento verso paesi terzi (un aspetto critico dopo la sentenza Schrems II).
+            </p>
+
+            <h3 class="text-lg font-semibold text-gray-900">Meccanica e Formule</h3>
+            <p>
+              La capacità di eseguire reti neurali profonde e modelli linguistici (LLM) interamente nel browser si fonda su ecosistemi come Transformers.js e ONNX Runtime Web, che sdoganano l'esecuzione locale attingendo alle risorse delle GPU integrate. Attraverso la libreria <code>onnxruntime-web</code>, i modelli in formato ONNX vengono eseguiti tramite specifiche interfacce hardware (Execution Providers - EP). Tra questi, l'EP WebGPU fornisce ai browser un accesso di basso livello all'hardware grafico, sfruttando i compute shader e la precisione nativa a 16 bit (FP16), accelerando le inferenze dalle 15 alle 19 volte rispetto alla pura esecuzione CPU in WASM.
+              <br><br>
+              L'ostacolo gravoso della larghezza di banda e dei limiti RAM viene superato tramite la <strong>Quantizzazione INT8 post-addestramento</strong>. Questa complessa tecnica matematica converte i pesi dei neuroni dal formato ad alta precisione in virgola mobile a numeri interi con segno:
+              <br>
+              $$FP32 \rightarrow INT8$$
+              <br>
+              Durante la fase di calibrazione, i fattori di offset ottimali vengono calcolati minimizzando l'errore di ricostruzione tramite la divergenza di Kullback-Leibler, riducendo il peso del modello del 75% (es. scendendo da 90 MB a 22 MB) e dividendo per quattro la larghezza di banda necessaria. Ulteriore efficienza è garantita dall'<em>IO Binding</em> in WebGPU, in cui i buffer in uscita sono allocati direttamente in memoria video per i cicli computazionali successivi.
+            </p>
+
+            <h3 class="text-lg font-semibold text-gray-900">Casuistica Reale</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Trascrizione Legale Istruttoria:</strong> Un avvocato necessita di sbobinare rapidamente l'intervista riservata di un testimone. Trascinando il file MP3 nel browser, il modello OpenAI Whisper quantizzato in INT8 analizza le onde sonore in un Web Worker accelerato da WebGPU; la trascrizione testuale avviene in totale isolamento offline, impedendo che capi di imputazione e nomi sensibili fuoriescano dalla RAM del computer.</li>
+              <li><strong>Due Diligence e M&A:</strong> Un team aziendale operativo in fusioni e acquisizioni analizza contratti scansionati mediante OCR locale, inviando le clausole estratte a modelli di traduzione sequence-to-sequence residenti in WebAssembly. La valutazione finanziaria è protetta, evitando reati di insider trading facilitati da leak telematici.</li>
+              <li><strong>Referti Psichiatrici:</strong> Un medico psichiatra elabora lunghi referti narrativi da sedute cliniche. L'analisi semantica per la classificazione dei sintomi viene condotta offline, assicurando che diagnosi e informazioni intime non vengano profilate né ingerite per l'addestramento di algoritmi cloud.</li>
+              <li><strong>Generazione Credenziali Sicure:</strong> Un amministratore IT che genera batch di password ad altissima entropia (24 caratteri) per l'accesso a database sanitari adopera il generatore offline. Sfruttando l'API globale <code>window.crypto.getRandomValues()</code> del protocollo SubtleCrypto, la generazione si affida a entropia a livello kernel (CSPRNG), non intercettabile da proxy firewall, preservando le reti DMZ.</li>
+            </ul>
+
+            <h3 class="text-lg font-semibold text-gray-900">FAQ e Errores</h3>
+            <p>
+              <strong>Quali sono i colli di bottiglia hardware nell'esecuzione di OpenCV.js e modelli Transformer?</strong><br>
+              Il caricamento di modelli non quantizzati FP32 satura rapidamente la memoria RAM/VRAM, inducendo l'interruzione forzata del processo da parte del sistema operativo (OOM - Out of Memory). Inoltre, l'esecuzione ininterrotta di algoritmi pesanti causa il surriscaldamento del SoC (System on a Chip), innescando il thermal throttling e il rapido degrado della batteria. Per evitare che il thread principale si blocchi (congelando l'interfaccia utente), gli algoritmi più onerosi devono essere compartimentati all'interno di Web Workers dedicati.
+              <br><br>
+              <strong>Qual è l'errore di base nei generatori di password comuni?</strong><br>
+              Un difetto critico in numerosi applicativi web è l'utilizzo della funzione pseudocasuale nativa <code>Math.random()</code> per popolare stringhe e codici. Questa formula non offre garanzie di natura crittografica e produce sequenze prevedibili; i sistemi professionali devono implementare il SubtleCrypto per interrogare direttamente il pool entropico del sistema operativo. Infine, è vitale l'implementazione dello <em>Zeroing</em>, ovvero la pratica di sovrascrivere attivamente con zeri i vettori di memoria temporanea immediatamente dopo il trasferimento agli appunti, neutralizzando minacce remote quali i Cold Boot Attacks.
+            </p>
+
+          </div>
+        </details>
+      </section>
+
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <script defer src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search');
+      const articles = document.querySelectorAll('article');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const term = e.target.value.toLowerCase().trim();
+
+          articles.forEach(article => {
+            const text = article.textContent.toLowerCase();
+            if (text.includes(term)) {
+              article.style.display = '';
+            } else {
+              article.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+</body>
+</html>
