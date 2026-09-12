@@ -122,7 +122,7 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Assistente IA per Documenti Privati</h1>
         <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Allega file PDF o TXT. Il testo viene estratto dal browser e analizzato dalla scheda video del tuo computer. <strong>Nessun documento abbandona il tuo dispositivo, garantendo la conformità all'Art. 25 del GDPR sul segreto professionale.</strong>
+          Allega file PDF, DOCX o TXT. Il testo viene estratto dal browser e analizzato dalla scheda video del tuo computer. <strong>Nessun documento abbandona il tuo dispositivo, garantendo la conformità all'Art. 25 del GDPR sul segreto professionale.</strong>
         </p>
       </div>
 
@@ -130,7 +130,7 @@
       <div class="bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row h-[700px] mb-8 overflow-hidden">
         
         <!-- SIDEBAR -->
-        <div class="w-full md:w-64 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col h-48 md:h-full shrink-0">
+        <div id="chat-sidebar" class="w-full md:w-64 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col h-48 md:h-full shrink-0 transition-all">
           <div class="p-4 border-b border-gray-200">
             <button id="new-chat-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-sm flex items-center justify-center gap-2">
               <span>+ Nuovo Documento</span>
@@ -143,21 +143,29 @@
         <!-- MAIN CHAT AREA -->
         <div class="flex-1 flex flex-col h-full relative bg-white min-w-0">
           
-          <!-- Controls (Corregido para evitar desbordamiento) -->
+          <!-- Controls -->
           <div class="p-4 border-b border-gray-100 bg-white flex flex-col xl:flex-row gap-3 justify-between items-center shrink-0">
-            <div class="flex-1 min-w-0 w-full flex flex-col">
-              <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Motore Qwen 2.5 (Ottimizzato per Italiano Formale):</span>
-              <select id="model-selector" class="w-full text-sm font-medium text-indigo-900 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 py-2 truncate">
-                <option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Livello 1: Qwen 1.5B - Sintesi e Correzioni (~980MB)</option>
-                <option value="Qwen2.5-3B-Instruct-q4f16_1-MLC" selected>Livello 2: Qwen 3B - Analisi Contrattuale (~1.85GB)</option>
-              </select>
+            <div class="flex-1 min-w-0 w-full flex gap-3 items-center">
+              
+              <!-- Bottone Toggle Sidebar -->
+              <button id="toggle-sidebar-btn" class="p-2.5 bg-gray-50 border border-gray-200 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition shrink-0" title="Mostra/Nascondi Sessioni">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
+              </button>
+
+              <div class="flex-1 min-w-0 flex flex-col">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 hidden sm:block">Motore Qwen 2.5 (Ottimizzato per Italiano Formale):</span>
+                <select id="model-selector" class="w-full text-sm font-medium text-indigo-900 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 py-2 truncate">
+                  <option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Livello 1: Qwen 1.5B - Sintesi e Correzioni (~980MB)</option>
+                  <option value="Qwen2.5-3B-Instruct-q4f16_1-MLC" selected>Livello 2: Qwen 3B - Analisi Contrattuale (~1.85GB)</option>
+                </select>
+              </div>
             </div>
             <button id="load-btn" class="w-full xl:w-auto shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm shadow-sm transition">
               Attiva Isolamento IA
             </button>
           </div>
 
-          <!-- Progress Bar (Movida al flujo normal, sin absolute) -->
+          <!-- Progress Bar -->
           <div id="progress-container" class="hidden shrink-0 w-full p-4 bg-indigo-50/80 backdrop-blur border-b border-indigo-100">
             <div class="flex justify-between items-start text-xs font-bold text-indigo-900 mb-2 gap-4">
               <span id="progress-text" class="flex-1 line-clamp-2 leading-relaxed">Download dei frammenti e allocazione VRAM in OPFS...</span>
@@ -168,30 +176,29 @@
             </div>
           </div>
 
-          <!-- Chat Box (Añadido min-h-0 para scroll flex) -->
+          <!-- Chat Box -->
           <div id="chat-box" class="flex-1 p-4 md:p-6 space-y-6 overflow-y-auto custom-scroll bg-white min-h-0"></div>
 
           <!-- Input Box con Bottone Allegati -->
           <div class="p-4 bg-white border-t border-gray-100 relative shrink-0">
             
-            <!-- Indicatore File Allegato -->
             <div id="attachment-preview" class="hidden items-center gap-2 mb-3 bg-indigo-50 text-indigo-800 text-xs font-bold px-3 py-2 rounded-lg border border-indigo-100 w-fit max-w-full">
               <span id="attachment-name" class="truncate">documento.pdf</span>
               <button id="remove-attachment-btn" class="text-rose-500 hover:text-rose-700 ml-2 shrink-0">✕</button>
             </div>
 
             <form id="chat-form" class="flex gap-2 items-end">
-              <!-- Bottone Allega -->
               <button 
                 type="button" 
                 id="attach-btn"
                 disabled
                 class="bg-gray-100 hover:bg-gray-200 text-gray-600 p-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shrink-0 h-[46px] w-[46px] flex items-center justify-center"
-                title="Allega file PDF o TXT"
+                title="Allega file PDF, DOCX o TXT"
               >
                 📎
               </button>
               <input type="file" id="file-upload" accept=".pdf,.txt,.docx" class="hidden" />
+
               <textarea 
                 id="user-input" 
                 rows="1"
@@ -212,12 +219,13 @@
 
         </div>
       </div>
+          
 
       <!-- MEGA-DOSSIER SEO E-E-A-T -->
       <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Infrastruttura di Sicurezza per l'Analisi Documentale (Edge Computing)</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La revisione di accordi societari, memorie processuali e documentazione aziendale impone livelli di riservatezza inconciliabili con i provider in cloud[cite: 8]. Questa piattaforma isola modelli linguistici compatti (SLM) direttamente nel browser (WebGPU), elaborando file PDF e TXT senza alcuna trasmissione in rete (Zero-Upload)[cite: 8].
+          La revisione di accordi societari, memorie processuali e documentazione aziendale impone livelli di riservatezza inconciliabili con i provider in cloud[cite: 8]. Questa piattaforma isola modelli linguistici compatti (SLM) direttamente nel browser (WebGPU), elaborando file PDF, DOCX e TXT senza alcuna trasmissione in rete (Zero-Upload)[cite: 8].
         </p>
 
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
@@ -324,6 +332,14 @@
       const sendBtn = document.getElementById("send-btn");
       const networkMonitor = document.getElementById("network-monitor");
       
+      // Sidebar Toggle
+      const chatSidebar = document.getElementById("chat-sidebar");
+      const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
+
+      toggleSidebarBtn.addEventListener("click", () => {
+        chatSidebar.classList.toggle("hidden");
+      });
+      
       // Allegati File
       const attachBtn = document.getElementById("attach-btn");
       const fileUpload = document.getElementById("file-upload");
@@ -414,7 +430,7 @@
       function renderChatBox(messages) {
         chatBox.innerHTML = '';
         if (messages.length === 1) {
-          appendMessage("assistant", "Sistema di Auditing Inizializzato.\n\nAllega un file (.pdf, .txt) tramite l'icona 📎 o incolla il testo in basso. Il motore Qwen2.5 leggerà il file ed elaborerà le risposte isolando la memoria (Zero-Upload).", false);
+          appendMessage("assistant", "Sistema di Auditing Inizializzato.\n\nAllega un file (.pdf, .docx, .txt) tramite l'icona 📎 o incolla il testo in basso. Il motore Qwen2.5 leggerà il file ed elaborerà le risposte isolando la memoria (Zero-Upload).", false);
         } else {
           messages.forEach(msg => { if (msg.role !== 'system') appendMessage(msg.role, msg.content, false); });
         }
