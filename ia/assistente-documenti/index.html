@@ -30,7 +30,7 @@
   default-src 'self'; 
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://pagead2.googlesyndication.com https://consent.cookiebot.com https://partner.googleadservices.com https://tpc.googlesyndication.com; 
   style-src 'self' 'unsafe-inline'; 
-  connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com https://consentcdn.cookiebot.com; 
+  connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com https://consentcdn.cookiebot.com https://ep1.adtrafficquality.google; 
   worker-src 'self' blob: https://cdnjs.cloudflare.com; 
   frame-src 'self' https://consentcdn.cookiebot.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com https://pagead2.googlesyndication.com; 
   img-src 'self' data: https:;
@@ -45,25 +45,45 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
   <link rel="apple-touch-icon" href="/assets/icon.png" />
 
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
   <style>
-    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
-    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
-    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
-    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
-    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
-    
-    .custom-scroll::-webkit-scrollbar { width: 6px; }
-    .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
   </style>
 
   <link rel="stylesheet" href="/css/styles.css">
+
 </head>
 <body class="bg-gray-50 text-gray-800 pb-28 block">
 
   <header class="bg-white shadow sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
       <div class="flex items-center gap-3">
         <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
         <div>
@@ -71,7 +91,16 @@
           <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
         </div>
       </div>
-      <a href="/ia/" class="text-sm text-indigo-600 font-semibold hover:underline">← Torna all'Hub IA</a>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/"text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-indigo-600 font-semibold">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
     </div>
   </header>
 
@@ -244,9 +273,22 @@
             <li>ℹ️ <strong>Rete:</strong> Download richiesto solo al primo utilizzo. Dopodiché l'app funziona 100% offline.</li>
           </ul>
         </div>
-        <div class="su-ad ad-slot-desktop w-full text-center">
-          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
-        </div>
+      
+    
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">IA Locale</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/ia/trascrizione-audio/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎙️</span> Trascrizione Audio</a></li>
+        <li><a href="/ia/ocr-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>👁️</span> OCR Immagini</a></li>
+        <li><a href="/ia/traduttore/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🌍</span> Traduttore IA</a></li>
+        <li><a href="/ia/riassunto-testo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📝</span> Riassunto Testo</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  
       </div>
     </aside>
 
@@ -259,9 +301,10 @@
     </div>
   </footer>
 
+  <!-- SCRIPT DELL'APPLICATIVO IA (LOCALSTORAGE + WEBGPU) -->
   <script type="module">
     import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
-
+    import * as Comlink from "https://cdn.jsdelivr.net/npm/comlink@4.3.1/dist/esm/comlink.mjs";
     document.addEventListener("DOMContentLoaded", () => {
       const loadBtn = document.getElementById("load-btn");
       const modelSelector = document.getElementById("model-selector");
@@ -418,8 +461,7 @@
         attachmentName.innerText = '';
       }
 
-      // IMPORTANTE: Importamos Comlink al inicio del bloque de scripts o aquí
-      import * as Comlink from "https://cdn.jsdelivr.net/npm/comlink@4.3.1/dist/esm/comlink.mjs";
+      
 
       fileUpload.addEventListener('change', async (e) => {
         const file = e.target.files[0];
