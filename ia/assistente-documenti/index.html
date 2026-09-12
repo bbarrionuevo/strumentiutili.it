@@ -25,9 +25,16 @@
 <!-- 3. Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
 
-<!-- 4. CSP Dinamico -->
-<meta http-equiv="Content-Security-Policy" id="csp-meta" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://pagead2.googlesyndication.com https://consent.cookiebot.com; connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com; worker-src 'self' blob: https://cdnjs.cloudflare.com;">
-
+<!-- 4. CSP Dinamico (Permette download modelli, AdSense e Cookiebot) -->
+<meta http-equiv="Content-Security-Policy" id="csp-meta" content="
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://pagead2.googlesyndication.com https://consent.cookiebot.com https://partner.googleadservices.com https://tpc.googlesyndication.com; 
+  style-src 'self' 'unsafe-inline'; 
+  connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com https://consentcdn.cookiebot.com; 
+  worker-src 'self' blob: https://cdnjs.cloudflare.com; 
+  frame-src 'self' https://consentcdn.cookiebot.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com https://pagead2.googlesyndication.com; 
+  img-src 'self' data: https:;
+">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Assistente IA per Documenti Privati (100% Offline) — StrumentiUtili.it</title>
