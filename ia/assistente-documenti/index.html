@@ -191,8 +191,7 @@
               >
                 📎
               </button>
-              <input type="file" id="file-upload" accept=".pdf,.txt" class="hidden" />
-
+              <input type="file" id="file-upload" accept=".pdf,.txt,.docx" class="hidden" />
               <textarea 
                 id="user-input" 
                 rows="1"
@@ -500,8 +499,30 @@
 
           userInput.disabled = false;
           userInput.placeholder = "Scrivi la tua richiesta (es. 'Fai un riassunto del contratto allegato')...";
+        } else if (file.name.endsWith(".docx")) {
+          
+          userInput.placeholder = "Estrazione testo dal file Word in corso...";
+          userInput.disabled = true;
+          
+          try {
+            const worker = new Worker('/js/workers/pdf-worker.js');
+            const pdfService = Comlink.wrap(worker);
+            
+            const arrayBuffer = await file.arrayBuffer();
+            const extractedText = await pdfService.extractWordText(arrayBuffer); // Usamos el nuevo método
+            
+            processExtractedText(extractedText);
+            worker.terminate();
+          } catch (err) {
+            alert("Errore nella lettura del file Word.");
+            clearAttachment();
+          }
+
+          userInput.disabled = false;
+          userInput.placeholder = "Scrivi la tua richiesta (es. 'Fai un riassunto del contratto allegato')...";
+          
         } else {
-          alert("Formato non supportato. Allega file PDF o TXT.");
+          alert("Formato non supportato. Allega file PDF o TXT o docx.");
           clearAttachment();
         }
       });

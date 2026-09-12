@@ -141,6 +141,11 @@ const pdfService = {
     
     return fullText.trim();
   }
+  // 8. Extraer Texto de Word (DOCX)
+  async extractWordText(docxBuffer) {
+    const result = await mammoth.extractRawText({ arrayBuffer: docxBuffer });
+    return result.value || '';
+  }
 };
 
 Comlink.expose(pdfService);
