@@ -419,11 +419,13 @@
           });
 
           page.drawText(`DEBITI: ${outTotDebiti ? outTotDebiti.textContent : '0,00 €'}`, { x: margin + 10, y: y - 12, size: 9, font: fontCourierBold });
-          if (activeModel !== 'f23') {
-            page.drawText(`CREDITI: ${outTotCrediti ? outTotCrediti.textContent : '0,00 €'}`, { x: margin + 150, y: y - 12, size: 9, font: fontCourierBold });
-          }
-          page.drawText(`SALDO FINALE: ${outTotSaldo ? outTotSaldo.textContent : '0,00 €'}`, { x: margin + 320, y: y - 12, size: 11, font: fontCourierBold, color: PDFLib.rgb(0.8, 0.1, 0.1) });
-
+        
+        // Se oculta la impresión de "CREDITI" para los modelos F23 y ELIDE, ya que no admiten compensación horizontal
+        if (activeModel !== 'f23' && activeModel !== 'elide') {
+          page.drawText(`CREDITI: ${outTotCrediti ? outTotCrediti.textContent : '0,00 €'}`, { x: margin + 150, y: y - 12, size: 9, font: fontCourierBold });
+        }
+        
+        page.drawText(`SALDO FINALE: ${outTotSaldo ? outTotSaldo.textContent : '0,00 €'}`, { x: margin + 320, y: y - 12, size: 11, font: fontCourierBold, color: PDFLib.rgb(0.8, 0.1, 0.1) });
           // 5.5 INIEZIONE METADATI ISO PDF/A
           const xmpXml = `<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/">
