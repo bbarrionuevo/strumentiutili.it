@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modello RLI Editabile: Calcolo Imposte e Cedolare Secca — StrumentiUtili.it</title>
+  <meta name="description" content="Genera il Modello RLI per la registrazione, proroga o risoluzione dei contratti di affitto. Calcolo automatico Imposta di Registro e Cedolare Secca." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/modello-rli/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA CENTRALE (APP) -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna a Cittadino &amp; Tasse</a>
+      
+      <div class="mb-6 border-b border-gray-200 pb-4">
+        <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ Privacy Totale - Calcolo nel Browser</span>
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Modello RLI e Calcolo Imposta di Registro</h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Compila i campi per calcolare l'Imposta di Registro, l'Imposta di Bollo o eventuali sanzioni per Ravvedimento Operoso. Genera il Modello RLI per contratti di locazione (opzione Cedolare Secca inclusa).
+        </p>
+      </div>
+
+      <!-- FORM INTERFACCIA RLI -->
+      <form id="rli-form" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-8 space-y-8">
+        
+        <!-- Quadro A: Dati Generali -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Quadro A: Dati Generali Locazione</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Tipologia Contratto (Codice) *</label>
+              <select id="rli-tipo-contratto" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state">
+                <option value="L1">L1 - Locazione abitativa standard (4+4)</option>
+                <option value="L2">L2 - Locazione abitativa agevolata (3+2)</option>
+                <option value="S1">S1 - Locazione immobile uso diverso (Commerciale)</option>
+                <option value="T2">T2 - Affitto fondi rustici</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Canone Annuo (€) *</label>
+              <input type="number" id="rli-canone" step="0.01" min="1" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" placeholder="Es. 12000" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Data Stipula / Decorrenza *</label>
+              <input type="date" id="rli-data-stipula" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Quadro D: Cedolare Secca -->
+        <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-100">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-lg font-bold text-indigo-900">Quadro D: Opzione Cedolare Secca</h2>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="rli-cedolare-secca" class="sr-only peer su-save-state">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+            </label>
+          </div>
+          <p class="text-xs text-indigo-700 leading-relaxed">
+            Attivando la Cedolare Secca, l'Imposta di Registro e l'Imposta di Bollo vengono azzerate. L'imposta sostitutiva verrà calcolata in sede di dichiarazione dei redditi. Disponibile solo per locazioni abitative (L1, L2).
+          </p>
+        </div>
+
+        <!-- Quadro B: Soggetti -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Quadro B: Soggetti (Locatore e Conduttore)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Codice Fiscale Locatore (Proprietario) *</label>
+              <input type="text" id="rli-cf-locatore" maxlength="16" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 uppercase su-save-state" placeholder="16 caratteri alfanumerici" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Codice Fiscale Conduttore (Inquilino) *</label>
+              <input type="text" id="rli-cf-conduttore" maxlength="16" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 uppercase su-save-state" placeholder="16 caratteri alfanumerici" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Opzioni Cartacee -->
+        <div id="sezione-bollo">
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Calcolo Imposta di Bollo (Contratto Cartaceo)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Numero Pagine (1 marca ogni 4 facciate)</label>
+              <input type="number" id="rli-pagine" value="4" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Copie Registrate (Min. 1)</label>
+              <input type="number" id="rli-copie" value="2" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" />
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- COLONNA DESTRA (ASIDE & CALCOLATORE) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <!-- RISULTATO CALCOLO TRIBUTARIO -->
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Prospetto Liquidazione</h3>
+            <span class="text-[10px] font-bold bg-indigo-500 px-2 py-0.5 rounded text-white shadow-sm">RLI 2026</span>
+          </div>
+          
+          <div class="pt-2 flex justify-between items-center">
+            <span class="text-sm text-gray-300">Imposta di Registro</span>
+            <span id="out-registro" class="text-lg font-mono font-bold text-white">€ 0,00</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-gray-300">Imposta di Bollo</span>
+            <span id="out-bollo" class="text-lg font-mono font-bold text-white">€ 0,00</span>
+          </div>
+          <div id="box-sanzioni" class="flex justify-between items-center text-amber-400 hidden">
+            <span class="text-sm font-semibold">Sanzioni (Ravvedimento)</span>
+            <span id="out-sanzioni" class="text-lg font-mono font-bold">€ 0,00</span>
+          </div>
+
+          <div class="pt-2 border-t border-gray-800 mt-2 flex justify-between items-center">
+            <span class="text-sm font-bold text-white uppercase block mt-1">Totale da Versare</span>
+            <span id="out-totale" class="text-2xl font-extrabold text-emerald-400 font-mono tracking-tight">€ 0,00</span>
+          </div>
+          <p class="text-[10px] text-gray-500 leading-tight">Il minimo di legge per l'imposta di registro è di 67,00 euro.</p>
+
+          <div class="pt-4 mt-2">
+            <button id="btn-generate-rli" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>📄</span> Genera Modello PDF
+            </button>
+            <p class="text-[9px] text-gray-500 text-center leading-tight mt-3 mb-4">
+              Tutti i calcoli avvengono localmente. Nessun dato catastale o anagrafico viene trasmesso a terzi.
+            </p>
+            
+            <!-- ACCESO DIRECTO AL F24 ELIDE -->
+            <div class="border-t border-gray-800 pt-4 mt-2">
+              <span class="text-xs text-amber-400 font-semibold block mb-2 text-center">Devi versare queste imposte?</span>
+              <a href="/cittadino-tasse/f24-editabile/f24-elide/" class="w-full bg-transparent hover:bg-gray-800 text-gray-300 border border-gray-700 font-semibold py-2.5 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm">
+                <span>💶</span> Compila l'F24 Elide
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MENU SILO -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Burocrazia &amp; Affitti</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/modello-rli/" class="text-indigo-600 flex items-center gap-2"><span>🏠</span> Modello RLI Editabile</a></li>
+            <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>💶</span> Modello F24 Elide</a></li>
+            <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏦</span> Simulatore Mutuo Casa</a></li>
+            <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📜</span> Calcolo Usufrutto</a></li>
+          </ul>
+        </div>
+
+        <!-- Pubblicità Desktop -->
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+        
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: DOSSIER SEO DESPLEGABLE E-E-A-T (1000+ Parole) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Guida Definitiva al Modello RLI 2026: Registrazione e Calcolo Imposte</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il <strong>Modello RLI (Registrazione Locazioni Immobiliari)</strong> è il documento normativo ed esecutivo esclusivo istituito dall'Agenzia delle Entrate per la gestione integrale dei contratti di affitto in Italia[cite: 1]. La sua compilazione e trasmissione (telematica o cartacea) costituisce un adempimento inderogabile ai sensi del D.P.R. 131/1986. Omettere la registrazione entro la finestra legale di <strong>30 giorni</strong> attiva immediatamente il sistema sanzionatorio amministrativo[cite: 1].
+        </p>
+
+        <!-- ACORDEON 1: Regime Ordinario vs Cedolare Secca -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Regime Ordinario vs. Cedolare Secca: Le Differenze</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Al momento della compilazione del Quadro D del Modello RLI, il locatore deve compiere una scelta che modificherà profondamente la tassazione dell'immobile[cite: 1]:
+            </p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Cedolare Secca:</strong> Imposta sostitutiva (flat tax) esclusiva per le locazioni abitative (A/1-A/11, escluso A/10)[cite: 1]. L'innesco di questa opzione nel Modello RLI funge da <em>trigger</em> fiscale: <strong>azzera immediatamente sia l'Imposta di Registro annuale sia l'Imposta di Bollo</strong>[cite: 1]. L'aliquota è del 21% (canone libero) o del 10% (canone concordato)[cite: 1].</li>
+              <li><strong>Regime Ordinario IRPEF:</strong> Obbligatorio per immobili commerciali (Tipologia S1) o se non si opta per la Cedolare. Il reddito si somma all'IRPEF generale. Richiede il versamento dell'Imposta di Registro (divisa al 50% tra le parti) e dell'Imposta di Bollo (16,00 euro ogni 4 facciate)[cite: 1].</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- ACORDEON 2: Algoritmo di Calcolo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Calcolo Matematico: Imposta di Registro (Minimi Legali)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Se operi in Regime Ordinario, l'aliquota dipende dalla tipologia di contratto indicata nel Quadro A[cite: 1]:
+            </p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Abitativo Standard (L1):</strong> L'imposta di registro è il 2% sull'intero canone annuo[cite: 1].</li>
+              <li><strong>Abitativo Agevolato (L2):</strong> L'aliquota del 2% si applica solo sul 70% del corrispettivo annuo, garantendo uno sconto d'imposta[cite: 1].</li>
+              <li><strong>Commerciale (S1):</strong> Sconta un'aliquota dell'1% se il locatore è soggetto IVA, o del 2% altrimenti[cite: 1].</li>
+            </ul>
+            <div class="p-3 bg-amber-50 border border-amber-100 rounded-lg text-amber-800">
+              <strong>Il Limite Invalicabile:</strong> Indipendentemente dai calcoli percentuali, l'importo minimo da versare all'Erario per la prima annualità non può mai essere inferiore alla quota fissa di <strong>67,00 euro</strong>[cite: 1]. Il nostro algoritmo applica automaticamente questo override.
+            </div>
+          </div>
+        </details>
+
+        <!-- ACORDEON 3: Ravvedimento Operoso -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⏱️</span> Ravvedimento Operoso 2026: Gestione dei Ritardi</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Superati i 30 giorni di legge, scattano le sanzioni del Ravvedimento Operoso. In caso di <strong>Cedolare Secca</strong> (dove l'imposta di registro è nulla), la sanzione non è proporzionale ma fissata in quote assolute: 150€ (ritardi fino a 30gg) o 250€ (ritardi oltre 30gg)[cite: 1].
+            </p>
+            <p>Queste basi vengono poi decurtate in modo frazionario:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>Sprint (entro 14gg):</strong> Sanzione ridotta a 1/10 parametrata giornalmente[cite: 1].</li>
+              <li><strong>Breve (15-30gg):</strong> Riduzione a 1/10 (Multa netta: 15,00€ in Cedolare Secca)[cite: 1].</li>
+              <li><strong>Intermedio (31-90gg):</strong> Riduzione a 1/9 della base di 250€ (Multa netta: 27,78€)[cite: 1].</li>
+              <li><strong>Lungo (fino 1 anno):</strong> Riduzione a 1/8 (Multa netta: 31,25€)[cite: 1].</li>
+              <li><strong>Lunghissimo (fino 2 anni):</strong> Riduzione a 1/7 (Multa netta: 35,71€)[cite: 1].</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- ACORDEON 4: Edge Cases y Omocodia -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔍</span> Edge Cases: Validazione Omocodia e Scarti Telematici</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'invio telematico del Modello RLI è frequentemente bloccato da errori formali non rilevati dai software basici. Il nostro sistema interviene preventivamente sui due <em>edge cases</em> più comuni che generano lo scarto da parte dell'Agenzia delle Entrate[cite: 1]:
+            </p>
+            <ul class="list-disc pl-5 space-y-3">
+              <li>
+                <strong>Validazione Omocodia nel Codice Fiscale:</strong> Quando il Ministero risolve un conflitto tra cittadini nati nello stesso giorno e con nome simile, sostituisce gli ultimi numeri del Codice Fiscale con lettere specifiche (L, M, N, ecc.)[cite: 1]. L'algoritmo JavaScript di <em>StrumentiUtili</em> implementa l'<strong>Espressione Regolare (Regex) ufficiale</strong> in grado di riconoscere e validare queste stringhe complesse, evitando che la pratica venga rifiutata per "formato errato"[cite: 1].
+              </li>
+              <li>
+                <strong>Ordinamento Catastale (Quadro C):</strong> I server statali impongono una gerarchia rigida. È categoricamente vietato inserire un immobile classificato come pertinenza (es. cantina, codice tipologia 2 o 3) se non è cronologicamente preceduto dall'immobile principale (codice tipologia 1)[cite: 1].
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- ACORDEON 5: GDPR -->
+        <details class="bg-emerald-50/50 rounded-xl border border-emerald-100 group">
+          <summary class="font-bold text-emerald-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-emerald-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔒</span> Sicurezza Dati: Perché questo strumento è 100% Privato?</span>
+            <span class="text-emerald-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-emerald-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Il Modello RLI manipola dati patrimoniali e anagrafici sensibili. Inoltrare queste informazioni a server di terze parti configura un massiccio rischio di <em>Data Breach</em> e viola i precetti dell'Art. 28 del GDPR.
+            </p>
+            <p>
+              StrumentiUtili ha implementato un'architettura <strong>Zero-Backend</strong>. L'intero motore di calcolo tributario e la generazione vettoriale del PDF (tramite la libreria <code>pdf-lib</code>) avvengono all'interno del tuo browser[cite: 1]. Non appena scarichi il modello, una procedura di <em>Garbage Collection</em> esegue un "wipe" (pulizia) della RAM locale, distruggendo le Partite IVA e i canoni inseriti[cite: 1].
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/rli.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() { if (!adsenseReady()) return; document.querySelectorAll(AD_SELECTOR).forEach(initAd); }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+</body>
+</html>

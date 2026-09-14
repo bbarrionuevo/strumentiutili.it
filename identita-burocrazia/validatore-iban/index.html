@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Validatore IBAN &amp; BIC/SWIFT — StrumentiUtili.it</title>
+  <meta name="description" content="Verifica IBAN italiani e internazionali con MOD 97 basato su BigInt e controlla la sintassi BIC/SWIFT direttamente nel browser. Nessun dato inviato a server esterni.">
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/validatore-iban/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Validatore IBAN &amp; BIC/SWIFT — StrumentiUtili.it">
+  <meta property="og:description" content="Controllo matematico IBAN e verifica BIC/SWIFT 100% client-side.">
+  <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/validatore-iban/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Marcato Semantico Schema.org (FinanceApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinanceApplication",
+    "name": "Validatore IBAN & BIC/SWIFT",
+    "operatingSystem": "All",
+    "applicationCategory": "FinanceApplication",
+    "url": "https://strumentiutili.it/identita-burocrazia/validatore-iban/",
+    "image": "https://strumentiutili.it/assets/og-image.png",
+    "description": "Applicativo finanziario per la verifica formale e la decodifica delle coordinate bancarie IBAN (ISO 13616) e BIC/SWIFT (ISO 9362). Implementa l'algoritmo matematico MOD 97-10 (ISO 7064) basato su strutture nativamente arbitrarie BigInt per prevenire overflow e garantire l'isolamento dei dati 100% Client-Side a norma GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareHelp": "https://strumentiutili.it/contatti.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Identità & Burocrazia", "item": "https://strumentiutili.it/identita-burocrazia/" },
+      { "@type": "ListItem", "position": 3, "name": "Validatore IBAN & BIC/SWIFT", "item": "https://strumentiutili.it/identita-burocrazia/validatore-iban/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-semibold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/identita-burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Identità &amp; Burocrazia</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏦</span> Finanza &amp; Banche
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Validatore IBAN &amp; BIC/SWIFT</h1>
+        <p class="mt-2 text-sm text-gray-600 leading-relaxed">Controllo matematico locale con <code>BigInt</code> per evitare falsi negativi sui codici lunghi. Verifica in totale privacy la correttezza formale e scopri banca e filiale senza inviare dati a servizi esterni.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        
+        <!-- IBAN Block -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <label class="block">
+            <span class="text-sm font-bold text-gray-800">Inserisci IBAN</span>
+            <input id="iban-input" class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none uppercase font-mono text-lg" placeholder="IT60X0542811101000000123456">
+          </label>
+          <div class="mt-4 flex gap-3">
+            <button id="check-iban" class="flex-1 bg-indigo-600 hover:bg-indigo-700 font-bold text-white px-4 py-2.5 rounded-lg shadow-sm transition">Verifica IBAN</button>
+            <button id="clear-iban" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg transition">Pulisci</button>
+          </div>
+          <div id="iban-result" class="mt-6 flex-1 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm text-gray-700 break-all flex flex-col justify-center">Inserisci un IBAN da controllare.</div>
+        </div>
+
+        <!-- BIC Block -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <label class="block">
+            <span class="text-sm font-bold text-gray-800">Inserisci BIC / SWIFT</span>
+            <input id="bic-input" class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none uppercase font-mono text-lg" placeholder="UNCRITMMXXX">
+          </label>
+          <div class="mt-4 flex gap-3">
+            <button id="check-bic" class="flex-1 bg-indigo-600 hover:bg-indigo-700 font-bold text-white px-4 py-2.5 rounded-lg shadow-sm transition">Verifica BIC</button>
+            <button id="clear-bic" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg transition">Pulisci</button>
+          </div>
+          <div id="bic-result" class="mt-6 flex-1 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm text-gray-700 flex flex-col justify-center">Inserisci un codice BIC / SWIFT.</div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Identità &amp; Burocrazia</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/identita-burocrazia/codice-fiscale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🪪</span> Codice Fiscale</a></li>
+        <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏦</span> Validatore IBAN</a></li>
+        <li><a href="/identita-burocrazia/autocertificazione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Autocertificazione</a></li>
+        <li><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⚖️</span> Calcolo Quote Ereditarie</a></li>
+        <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📸</span> Fototessera ICAO</a></li>
+        <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔑</span> Password Sicure</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <!-- Párrafo introductorio visible -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico, Algoritmi e Guida Normativa alla Validazione IBAN e BIC/SWIFT</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          L'International Bank Account Number (<strong>IBAN</strong>) rappresenta la pietra angolare delle infrastrutture di clearing interbancario nell'Area Unica dei Pagamenti in Euro (SEPA) e nei circuiti finanziari globali, normato dallo standard internazionale <strong>ISO 13616</strong>. La sua validazione formale si basa sull'algoritmo matematico <strong>ISO 7064 Modulo 97-10</strong>, una procedura di verifica algebrica ideata per intercettare gli errori di digitazione, le trasposizioni di cifre e la corruzione dei dati prima dell'istradamento verso la Rete Nazionale Interbancaria (RNI). In combinato con il codice <strong>BIC/SWIFT</strong> (ISO 9362), costituisce la coppia identificativa obbligatoria per il regolamento dei bonifici cross-border e degli addebiti diretti SDD. Il nostro validatore opera secondo l'architettura <strong>100% Client-Side (Zero-Backend)</strong>: la decodifica delle stringhe e la divisione per grandi interi avvengono nella memoria volatile del dispositivo locale, eliminando qualsiasi rischio di esfiltrazione di coordinate bancarie riservate in piena rispondenza all'Articolo 25 del GDPR (Privacy by Design).
+        </p>
+
+        <!-- Bloque de contenuto denso desplegable 1: Inquadramento e Regolamento SEPA -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo, Regolamento SEPA 260/2012 e Divieto di Discriminazione IBAN</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Infrastruttura Armonizzata SEPA e il Regolamento UE n. 260/2012</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'adozione dell'IBAN come identificatore unico di conto corrente ha sostituito le vecchie coordinate nazionali isolando i rischi operativi nei flussi transfrontalieri. Il quadro giuridico comunitario è imperniato sul <strong>Regolamento SEPA (UE) n. 260/2012</strong>, che fissa i requisiti tecnici ed economici per i bonifici e gli addebiti diretti in Euro. L'articolo 9 del suddetto Regolamento codifica il principio del <strong>Divieto di Discriminazione dell'IBAN (IBAN Discrimination)</strong>: è severamente vietato a qualsiasi creditore, ditta commerciale o Pubblica Amministrazione rifiutare un addebito diretto (SDD) o un accredito a causa del Paese europeo di radicamento del conto, purché tale Paese appartenga all'area SEPA.
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Nonostante le severe sanzioni comminate dalle Autorità Nazionali Competenti (in Italia l'Autorità Garante della Concorrenza e del Mercato - AGCM e la Banca d'Italia), molti software legacy o portali aziendali obsoleti rigettano impropriamente input IBAN provenienti dalla Germania (DE, 22 caratteri), dal Belgio (BE, 16 caratteri) o dalla Francia (FR, 27 caratteri) perché rigidi sulla sola lunghezza italiana (27 caratteri). Un validatore professionale moderno deve supportare l'intero spettro delle lunghezze SEPA (da un minimo di 15 caratteri per la Norvegia fino ai 34 caratteri massimi ammessi dalla specifica ISO 13616).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Anatomia del Codice IBAN Italiano (27 Caratteri)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Nell'ordinamento bancario italiano, il Codice Nazionale di Conto è composto da esattamente 27 caratteri alfanumerici, strutturati secondo precise gerarchie della Banca d'Italia e dell'ABI (Associazione Bancaria Italiana):
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Codice Paese (2 lettere):</strong> <code>IT</code> identifica la giurisdizione e la Banca d'Italia come autorità di registro.</li>
+                <li><strong>Cifre di Controllo Internazionali (2 numeri):</strong> Check digit (da 02 a 98) calcolate secondo l'algoritmo Modulo 97-10.</li>
+                <li><strong>CIN Nazionale (1 lettera):</strong> Control Internal Number alfabetico (da A a Z) calcolato sulle coordinate nazionali (ABI + CAB + Conto) tramite l'Algoritmo Modulo 26.</li>
+                <li><strong>Codice ABI (5 numeri):</strong> Identifica l'Istituto di Credito o la Banca (es. 02008 per Unicredit, 03069 per Intesa Sanpaolo).</li>
+                <li><strong>Codice CAB (5 numeri):</strong> Identifica la specifica Filiale, Agenzia o Sportello territoriale.</li>
+                <li><strong>Numero di Conto Corrente (12 caratteri):</strong> L'identificativo alfanumerico interno del cliente, riempito con zeri a sinistra qualora la stringa sia inferiore a 12 cifre.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Lo Standard ISO 9362 (Codice BIC / SWIFT)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Il codice **BIC** (Business Identifier Code) o **SWIFT** è disciplinato dallo standard **ISO 9362** ed è composto da 8 o 11 caratteri alfanumerici:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Codice Banca (4 lettere):</strong> Identifica l'istituto finanziario su scala globale.</li>
+                <li><strong>Codice Paese (2 lettere):</strong> Codice ISO 3166-1 alpha-2 del Paese di residenza bancaria (es. IT per Italia).</li>
+                <li><strong>Codice Sede/Città (2 caratteri alfanumerici):</strong> Identifica la regione o la sede operativa primaria.</li>
+                <li><strong>Codice Filiale (3 caratteri opzionali):</strong> Identifica una specifica branca secondaria. Se colmato con <code>XXX</code> o omesso (8 caratteri), punta direttamente alla sede centrale dell'istituto.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 2: Meccanica Algoritmica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Algoritmica: ISO 7064 Modulo 97-10 e Modulo 26 per il CIN</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Algoritmo Internazionale MOD 97-10 (ISO 7064)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La verifica di validità di un IBAN internazionale non consiste in una semplice ricerca su database, ma nell'esecuzione di un rigido test matematico differenziale definito dalla norma ISO 7064. La procedura impone tre fasi sequenziali inalterabili:
+              </p>
+              <ol class="list-decimal pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Shift Architetturale:</strong> I primi 4 caratteri della sequenza (Codice Paese a 2 lettere e Check Digit a 2 cifre) vengono rimossi dalla testa dell'IBAN e concatenati in coda alla stringa.</li>
+                <li><strong>Traslazione Numerica Base-36:</strong> Ogni lettera alfabetica presente nella stringa rimanente viene tradotta in un intero a due cifre sostituendo la lettera con la sua posizione ordinale estesa (dove $A=10, B=11, C=12, \dots, Z=35$).</li>
+                <li><strong>Controllo Modulare Polinomiale:</strong> Il colossale numero intero risultante (che per un IBAN italiano ammonta a 30 cifre numeriche) viene diviso aritmeticamente per il numero primo 97. L'IBAN è strutturalmente e matematicamente valido condicio sine qua non il resto dell'operazione sia esattamente pari a 1:</li>
+              </ol>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$\text{Stringa}_{\text{Numerica\ Traslata}} \pmod{97} = 1$$
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Algoritmo Modulo 26 per la Determinazione del CIN Italiano</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Prima ancora del checksum internazionale, l'IBAN italiano integra al 15° carattere il CIN (Control Internal Number), una lettera che valida le sole coordinate nazionali (ABI + CAB + Conto Corrente, per un totale di 22 caratteri). La lettera si calcola scomponente la stringa posizionalmente in caratteri PARI e DISPARI, applicando le tabelle di conversione ministeriale dell'ABI:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li>I caratteri nelle posizioni <strong>Dispari</strong> (1°, 3°, 5°, ...) vengono convertiti in valori numerici secondo una mappa asimmetrica ad alto peso (es. A=1, B=0, C=5, D=7, E=9, 0=1, 1=0, 2=5, 3=7...).</li>
+                <li>I caratteri nelle posizioni <strong>Pari</strong> (2°, 4°, 6°, ...) mantengono una conversione lineare semplice (es. A=0, B=1, C=2, 0=0, 1=1, 2=2...).</li>
+                <li>I valori interi ottenuti vengono sommati, e la somma totale viene divisa per 26: $R = \text{Somma} \pmod{26}$. Il resto $R$ (da 0 a 25) mappa direttamente la lettera CIN dell'alfabeto italiano (0=A, 1=B, 2=C, ..., 25=Z).</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 3: Casuistica Reale Svolta -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Validazione Analitica e Decomposizione di un IBAN Italiano</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Esempio Reale Svolto Passo-Passo: IT60 X 02008 05000 000001234567</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Si applichi l'algoritmo di validazione algebrica al codice IBAN di test di una primaria banca italiana:
+              </p>
+              
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
+                <p><strong>Fase 1: Decomposizione delle Coordinate Nazionali:</strong><br>
+                - Paese: <code>IT</code> | Check Digit: <code>60</code> | CIN: <code>X</code><br>
+                - Codice ABI: <code>02008</code> (Unicredit S.p.A.)<br>
+                - Codice CAB: <code>05000</code> (Filiale Milano)<br>
+                - Numero Conto: <code>000001234567</code></p>
+
+                <p><strong>Fase 2: Shift Architetturale (Spostamento dei primi 4 caratteri in coda):</strong><br>
+                Stringa originaria: <code>IT60X0200805000000001234567</code><br>
+                Stringa ruotata: <code>X0200805000000001234567IT60</code></p>
+
+                <p><strong>Fase 3: Traduzione Alfanumerica Base-36:</strong><br>
+                Sostituzione delle lettere: <code>X</code> $\rightarrow$ 33; <code>I</code> $\rightarrow$ 18; <code>T</code> $\rightarrow$ 29.<br>
+                Stringa intera risultante (30 cifre):<br>
+                <code>330200805000000001234567182960</code></p>
+
+                <p><strong>Fase 4: Divisione Modulare per il Numero Primo 97:</strong><br>
+                Trattandosi di un numero gigante che supera il limite di allocazione delle CPU standard (64-bit), la divisione si esegue mediante la struttura <code>BigInt</code> in JavaScript:<br>
+                $$330200805000000001234567182960n \pmod{97n} = \mathbf{1}$$</p>
+
+                <p class="text-emerald-700 font-bold border-t border-gray-200 pt-2">
+                  Esito del Test: Il resto della divisione ammonta esattamente a 1. L'IBAN è strutturalmente e matematicamente VALIDO!
+                </p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 4: FAQ, BigInt, Overflow e Sanzioni -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. Criticità Tecniche, Overflow di Memoria, Errore Transposizione e Sanzioni (YMYL)</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché i validatori online tradizionali generano falsi negativi/positivi con i numeri grandi?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Nei linguaggi di programmazione web, il tipo numerico standard (<code>Number</code> in JavaScript) rispetta la specifica IEEE 754 in virgola mobile a 64 bit, la quale garantisce precisione intera esatta soltanto fino alla soglia limite di <code>Number.MAX_SAFE_INTEGER</code>, pari a $2^{53} - 1 = 9.007.199.254.740.991$ (circa 15-16 cifre decimali). Poiché la stringa numerica convertita di un IBAN conta dai 25 ai 34 caratteri, tentarne la conversione diretta in intero causa il troncatamento catastrofico delle ultime cifre. I software obsoleti tentano il calcolo con funzioni float imprecise, corrompendo l'esito dell'operazione di modulo. La nostra suite risolve il problema adottando il tipo primitivo <strong><code>BigInt</code></strong> (o l'algoritmo di frammentazione a blocchi da 9 cifre), garantendo una precisione matematica arbitraria assoluta ed esente da approssimazioni.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>L'Algoritmo MOD 97-10 è in grado di rilevare qualsiasi errore di digitazione?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'algoritmo ISO 7064 possiede una capacità di rilevamento degli errori eccezionale (pari al 99,99%). Intercetta al 100% l'errata digitazione di un singolo carattere, la quasi totalità delle inversioni di due caratteri adiacenti (trasposizioni semplici) e l'errato inserimento di caratteri alfabetici. Sussiste tuttavia una rarissima vulnerabilità teorica denominata "Transposizione Complessa": qualora l'operatore inverta contemporaneamente due posizioni distanti di $n$ caratteri il cui scarto numerico risulti essere un saggio esatto multiplo di 97, l'algoritmo genererà un falso positivo, reputando matematicamente valido un codice corrotto.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Che cos'è l'errore di Storno RNI per "Coordinate Bancarie Errate / Conto Chiuso"?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                È essenziale comprendere l'ambito d'indagine di un validatore algoritmico: esso certifica unicamente la coerenza sintattica e la regolarità matematica delle cifre di controllo. Un IBAN appartiene a una filiale chiusa per fusione bancaria o a un conto corrente estinto dall'utente supererà eccellentemente il test Modulo 97-10. Tuttavia, una volta inviata la disposizione di pagamento, la Rete Nazionale Interbancaria (RNI) respingerà il bonifico generandone lo storno con addebito delle commissioni per "Conto Inesistente o Non Più Operativo".
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali sono le sanzioni amministrative per chi pratica la Discriminazione IBAN?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                I datori di lavoro, gli enti erogatori di utenze (luce, gas, telefonia) e le aziende che rifiutano l'addebito diretto (SDD) o l'accredito dello stipendio su conti correnti SEPA esteri (es. IBAN tedeschi `DE` o spagnoli `ES`) violano direttamente il Regolamento UE 260/2012. L'Autorità Antitrust (AGCM) e la Banca d'Italia erogano sanzioni pecuniarie amministrative fino a centinaia di migliaia di euro nei confronti degli operatori che non adeguano i propri software alla validazione delle lunghezze internazionali.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/validatore-iban.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

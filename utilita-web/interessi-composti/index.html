@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calcolo Interessi Composti — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il capitale futuro con interessi composti e versamenti periodici. Tutto in locale nel browser.">
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/interessi-composti/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolo Interessi Composti — StrumentiUtili.it" />
+  <meta property="og:description" content="Calcola capitale finale, interessi e versamenti periodici con formule di interesse composto in locale e privato." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/interessi-composti/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinanceApplication",
+    "name": "Simulatore di Calcolo Interessi Composti e PAC",
+    "operatingSystem": "All",
+    "applicationCategory": "FinanceApplication",
+    "url": "https://strumentiutili.it/utilita-web/interessi-composti/",
+    "description": "Simulatore finanziario avanzato per il calcolo della capitalizzazione composta, patti di accumulo (PAC) e stima del capitale futuro. Elaborazione 100% Client-Side a norma GDPR con calcolo della plusvalenza lorda e convenzioni di calcolo.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareHelp": "https://strumentiutili.it/contatti.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Utilità & Web", "item": "https://strumentiutili.it/utilita-web/" },
+      { "@type": "ListItem", "position": 3, "name": "Calcolo Interessi Composti", "item": "https://strumentiutili.it/utilita-web/interessi-composti/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/utilita-web/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Utilità &amp; Web</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🛠️</span> Utilità &amp; Web
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo Interessi Composti (PAC)</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 Elaborazione Locale: stima la crescita del tuo capitale e l'impatto fiscale senza condividere dati finanziari con server esterni.</p>
+      </div>
+
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 mt-6 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        
+        <!-- Formulario -->
+        <form id="compound-form" class="space-y-5">
+          <div>
+            <label class="block text-sm font-bold text-gray-800 mb-1">Capitale iniziale (€)</label>
+            <input id="principal" type="number" min="0" step="0.01" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" value="1000"/>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-800 mb-1">Versamento periodico (€)</label>
+            <input id="contrib" type="number" min="0" step="0.01" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" value="0"/>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-800 mb-1">Interesse annuo stimato (%)</label>
+            <input id="rate" type="number" min="0" step="0.01" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" value="5"/>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-bold text-gray-800 mb-1">Numero anni</label>
+              <input id="years" type="number" min="1" step="1" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" value="10"/>
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-gray-800 mb-1">Versamenti</label>
+              <select id="freq" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+                <option value="12">Mensili</option>
+                <option value="4">Trimestrali</option>
+                <option value="1">Annuali</option>
+              </select>
+            </div>
+          </div>
+          <div class="pt-2">
+            <button type="button" id="calc" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3 rounded-lg shadow-sm transition">Calcola Rendimento</button>
+          </div>
+        </form>
+
+        <!-- Resultados -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center text-center shadow-inner h-full min-h-[250px]">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Capitale Finale Lordo Stimato</h3>
+          <div id="result" class="text-4xl md:text-5xl font-extrabold text-indigo-700 tracking-tight">€ 0,00</div>
+          <div id="result-details" class="mt-6 text-sm text-gray-600 space-y-2">
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Capitale versato:</span>
+              <span class="font-bold text-gray-900" id="res-versato">€ 0,00</span>
+            </div>
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Plusvalenza lorda maturata:</span>
+              <span class="font-bold text-emerald-600" id="res-interessi">€ 0,00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Utilità &amp; Web</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📉</span> Calcolo Percentuali</a></li>
+        <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> Interessi Composti</a></li>
+        <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Generatore QR</a></li>
+        <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🖼️</span> Converti Immagini</a></li>
+        <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Contaparole</a></li>
+        <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔗</span> URL Shortener</a></li>
+        <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎓</span> Media Universitaria</a></li>
+        <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔬</span> Calcolo BMR</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Trattato Tecnico sulla Capitalizzazione Composta, PAC e Tassazione Finanziaria</h2>
+        <p class="text-gray-700 leading-relaxed text-sm mb-6">
+          La pianificazione finanziaria di medio e lungo termine si fonda sul modello algebrico della <strong>capitalizzazione composta</strong> (o interesse composto), definito da Albert Einstein come una delle più potenti forze matematiche dell'universo economico. A differenza del regime a capitalizzazione semplice, in cui gli interessi maturati vengono liquidati ed estromessi dal capitale generatore, la capitalizzazione composta prevede che i rendimenti fruttati al termine di ciascun periodo discreto vengano riassorbiti e reinvestiti all'interno del capitale di partenza, espandendo esponenzialmente la base imponibile per i calcoli dei cicli successivi. Questo simulatore elabora le proiezioni patrimoniali e l'accumulo finanziario in totale isolamento locale (100% Client-Side), garantendo il rispetto rigoroso del Regolamento Generale sulla Protezione dei Dati (GDPR - Reg. UE 2016/679).
+        </p>
+
+        <!-- ACCORDEON 1: Inquadramento Normativo e Tassazione -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo, Anatocismo e Fiscalità Italiana</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">La Disciplina dell'Anatocismo Bancario (Art. 1283 Codice Civile e TUB)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Nel diritto civile italiano, la produzione di interessi su altri interessi già maturati prende il nome di <strong>anatocismo</strong>. L'articolo 1283 del Codice Civile pone un divieto generale all'anatocismo, ammettendolo unicamente dal giorno della domanda giudiziale o per effetto di convenzione posteriore alla loro scadenza, e sempre che si tratti di interessi dovuti per almeno sei mesi. In ambito bancario e creditizio, la materia è regolata dall'articolo 120 del Testo Unico Bancario (TUB - D.Lgs. 385/1993) e dalla Delibera CICR del 22 febbraio 2000. La legge impone che nei rapporti di conto corrente la conteggiazione degli interessi passivi avvenga con la medesima reciprocità e periodicità degli interessi attivi (solitamente annuale al 31 dicembre), vietando tassativamente alle banche la capitalizzazione trimestrale anatocistica unilaterale sui fidi e sugli scoperti di conto.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Convenzioni di Conteggio del Tempo (ISDA Day Count Conventions)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Nei contratti finanziari, nei mutui ipotecari e nei mercati monetari interbancari gestiti dall'ISDA (International Swaps and Derivatives Association), la frazione temporale d'interesse $t$ non è astratta ma viene determinata secondo convenzioni di calcolo rigorose:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Actual/360 (Act/360):</strong> Calcola i giorni solari effettivi al numeratore e assume un anno commerciale di 360 giorni al denominatore. Questa convenzione, diffusissima nel Corporate Banking a breve termine, comprime il divisore ed estrae un extra-profitto algoritmico a favore del creditore.</li>
+                <li><strong>Actual/365 (Act/365):</strong> Utilizza i giorni solari effettivi su un anno civile di 365 giorni (366 nei bisestili), garantendo la corrispondenza perfetta con il tasso annuo nominale (TAN).</li>
+                <li><strong>30/360 (Anno Commerciale):</strong> Considera convenzionalmente ogni mese composto da 30 giorni e l'anno da 360 giorni, tipicamente impiegata nei piani di ammortamento a rata costante alla francese.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Tassazione delle Plusvalenze e Imposta di Bollo (TUIR e D.L. 66/2014)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'incremento di valore generato dalla capitalizzazione composta rappresenta una plusvalenza finanziaria (capital gain) soggetta a tassazione sostitutiva alla fonte all'atto del disinvestimento (D.Lgs. 461/1997 e D.P.R. 917/1986 - TUIR):
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Aliquota Ordinaria (26%):</strong> Si applica sui rendimenti derivanti da azioni, quote di societarie, ETF azionari/obbligazionari corporate, criptovalute, conti deposito e certificati di deposito.</li>
+                <li><strong>Aliquota Agevolata (12,50%):</strong> Riservata in via esclusiva ai rendimenti prodotti da Titoli di Stato italiani (BOT, BTP, CCT, CTZ), buoni fruttiferi postali e titoli emessi da Paesi sovrani inclusi nella <em>White List</em>.</li>
+              </ul>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Sull'intero patrimonio investito grava inoltre l'<strong>Imposta di Bollo sui Dossier Titoli</strong> (Art. 13 della Tariffa allegata al D.P.R. 642/1972), la quale preleva annualmente lo <strong>0,20% (2 per mille)</strong> sul controvalore complessivo del portafoglio valorizzato al 31 dicembre di ogni anno solare.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 2: Meccanica e Formule Matematiche -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Algebrica e Formule della Capitalizzazione Composta</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">A) Formula del Montante a Capitalizzazione Composta Discreta</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Dato un capitale iniziale unico $P$, un tasso di interesse annuo nominale $r$, una frequenza di capitalizzazione $n$ volte all'anno e una durata espressa in anni $t$, il montante futuro $M$ si calcola come:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$M = P \cdot \left(1 + \frac{r}{n}\right)^{n \cdot t}$$
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">B) Formula del Piano di Accumulo (PAC) con Versamenti Periodici Costanti</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Qualora oltre al capitale iniziale vengano effettuati versamenti periodici posticipati costanti $PMT$ a ogni intervallo di capitalizzazione, il valore futuro accumulato dai soli versamenti $FV_{PAC}$ segue la formula della rendita finanziaria:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$FV_{PAC} = PMT \cdot \left[ \frac{\left(1 + \frac{r}{n}\right)^{n \cdot t} - 1}{\frac{r}{n}} \right]$$
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">C) Formula Unificata del Montante Finale Lordo ($FV_{tot}$)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Integrazione algebrica totale applicata dall'algoritmo del simulatore per calcolare la crescita combinata di deposito iniziale e accumulo periodico:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$FV_{tot} = P \cdot \left(1 + \frac{r}{n}\right)^{n \cdot t} + PMT \cdot \left[ \frac{\left(1 + \frac{r}{n}\right)^{n \cdot t} - 1}{\frac{r}{n}} \right]$$
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">D) La Regola del 72 (Approssimazione Logaritmica del Raddoppio)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                In finanza, il tempo esatto $t$ per raddoppiare un capitale con interesse composto si ricava uguagliando il montante a $2P$: $2P = P(1+r)^t \implies t = \frac{\ln(2)}{\ln(1+r)}$. Attraverso lo sviluppo in serie di Taylor per piccoli tassi d'interesse, il tempo si approssima con la celebre <strong>Regola del 72</strong>:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$t_{\text{raddoppio}} \approx \frac{72}{r_{\text{percentuale}}}$$
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 3: Casuistica Reale Completa -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Esempi Pratici e Soluzioni Matematiche Svolte</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 1: Impatto del Divisore Bancario Act/360 vs Act/365 su Scoperto Societario</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Un'impresa ricorre a un anticipo di cassa in bullet di <strong>1.000.000,00 €</strong> per 90 giorni effettivi al tasso nominale del 4,50% annuo:
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p><strong>1. Calcolo con Convenzione Actual/360 (Bancario):</strong><br>
+                $\text{Interesse} = 1.000.000 \times 0,045 \times (90 / 360) = \mathbf{11.250,00\ \text{€}}$</p>
+                <p><strong>2. Calcolo con Convenzione Actual/365 (Civile):</strong><br>
+                $\text{Interesse} = 1.000.000 \times 0,045 \times (90 / 365) = \mathbf{11.095,89\ \text{€}}$</p>
+                <p class="text-rose-700 font-semibold">Differenziale Oneri Occulti: La convenzione Act/360 estrae un extra-costo algoritmico di 154,11 € a sfavore dell'azienda sul singolo trimestre!</p>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 2: Piano di Accumulo (PAC) su ETF Azionario a 15 Anni con Tassazione</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Un privato avvia un PAC investimento con un capitale iniziale $P = 5.000,00\ \text{€}$, versamenti mensili $PMT = 200,00\ \text{€}$ ($n = 12$), tasso annuo lordo stimato $r = 6,00\%$ per una durata $t = 15\ \text{anni}$ ($N = 180\ \text{mesi}$):
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p><strong>Dati:</strong> $i_{\text{mensile}} = 0,06 / 12 = 0,005$; Fattore di crescita $(1,005)^{180} = 2,45409384$.</p>
+                <p><strong>1. Montante da Capitale Iniziale:</strong> $5.000 \times 2,45409384 = \mathbf{12.270,47\ \text{€}}$</p>
+                <p><strong>2. Montante da Versamenti Mensili (PAC):</strong> $200 \times \left[\frac{2,45409384 - 1}{0,005}\right] = 200 \times 290,818768 = \mathbf{58.163,75\ \text{€}}$</p>
+                <p><strong>3. Capitale Finale Lordo Accumulato ($FV_{tot}$):</strong> $12.270,47 + 58.163,75 = \mathbf{70.434,22\ \text{€}}$</p>
+                <p><strong>4. Totale Capitale Effettivamente Versato:</strong> $5.000 + (200 \times 180) = \mathbf{41.000,00\ \text{€}}$</p>
+                <p><strong>5. Plusvalenza Lorda Maturata:</strong> $70.434,22 - 41.000,00 = \mathbf{29.434,22\ \text{€}}$</p>
+                <p><strong>6. Imposta sulle Plusvalenze (Aliquota 26% ETF Azionario):</strong> $29.434,22 \times 0,26 = \mathbf{7.653,90\ \text{€}}$</p>
+                <p class="text-emerald-700 font-bold">Capitale Finale Netto Stimato (al netto del Capital Gain) = 62.780,32 €</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Anatocismo e Rischi di Mercato</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali sono i rischi legali legati all'anatocismo nei contratti finanziari?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La capitalizzazione illegittima degli interessi nei rapporti di conto corrente o nei finanziamenti viola l'articolo 1283 del Codice Civile e la Delibera CICR del 2000. Nei contenziosi giudiziali, la presenza di clausole anatocistiche non reciprocamente pattuite comporta la nullità parziale della clausola degli interessi. I periti del tribunale provvedono alla ricalcolazione dell'intero piano contabile a capitale semplice, costringendo la banca alla restituzione degli interessi indebitamente addebitati.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>In che modo l'inflazione incide sul rendimento reale della capitalizzazione composta?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il simulatore fornisce il rendimento nominale lordo. Per valutare il potere d'acquisto effettivo del capitale futuro occorre convertire il rendimento nominale $r$ in rendimento reale $r_{\text{reale}}$ applicando l'Equazione di Fisher: $(1 + r_{\text{reale}}) = \frac{1 + r_{\text{nominale}}}{1 + i_{\text{inflazione}}}$. Se il capitale cresce a un tasso nominale del 5% in presenza di un'inflazione del 3%, il tasso reale netto di crescita si attesta a circa l'1,94% annuo.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché le operazioni di calcolo vengono elaborate al 100% in locale nel browser?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                In ossequio al principio di <em>Data Protection by Design e by Default</em> sancito dall'Articolo 25 del GDPR (Reg. UE 2016/679), il motore di calcolo opera interamente all'interno della sandbox JavaScript del terminale dell'utente (Zero-Backend). Nessun dato relativo a risparmi, patrimonio investito o pianificazione finanziaria viene trasmesso via rete verso server di terze parti, azzerando i rischi di tracciamento o data breach.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script>
+    function fmt(v){ return v.toLocaleString('it-IT', {style:'currency', currency:'EUR'}); }
+    document.getElementById('calc').addEventListener('click', ()=>{
+      const P = parseFloat(document.getElementById('principal').value) || 0;
+      const C = parseFloat(document.getElementById('contrib').value) || 0;
+      const annualRate = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+      const years = parseInt(document.getElementById('years').value) || 1;
+      const n = parseInt(document.getElementById('freq').value) || 12; 
+
+      const periods = n * years;
+      const ratePeriod = annualRate / n;
+      const compoundFactor = Math.pow(1 + ratePeriod, periods);
+      
+      let fv = P * compoundFactor;
+      if (Math.abs(ratePeriod) < 1e-12) {
+        fv += C * periods;
+      } else {
+        fv += C * ( (compoundFactor - 1) / ratePeriod );
+      }
+      
+      const totaleVersato = P + (C * periods);
+      const interessi = fv - totaleVersato;
+
+      document.getElementById('result').textContent = fmt(Number(fv.toFixed(2)));
+      document.getElementById('res-versato').textContent = fmt(Number(totaleVersato.toFixed(2)));
+      document.getElementById('res-interessi').textContent = fmt(Number(interessi.toFixed(2)));
+    });
+    // Esegui calcolo iniziale
+    document.getElementById('calc').click();
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualizzatore Fattura Elettronica XML / P7M — StrumentiUtili.it</title>
+  <meta name="description" content="Apri e visualizza fatture elettroniche XML e file .p7m direttamente nel browser, con privacy totale e stampa/ PDF locale." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/fattura-elettronica/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Visualizzatore Fattura Elettronica XML / P7M" />
+  <meta property="og:description" content="Visualizza fatture elettroniche e file .p7m relativi a fornitori e clienti senza inviare documenti a server esterni." />
+  <meta property="og:url" content="https://strumentiutili.it/fisco-professioni/fattura-elettronica/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Visualizzatore Fattura Elettronica XML / P7M" />
+  <meta name="twitter:description" content="Fattura elettronica locale e privata: file XML e .p7m visualizzati direttamente nel browser." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+
+    /* STILI FATTURA RIGOROSI (Monospace & Print-Ready) */
+    .invoice-sheet { 
+      background: white; 
+      border: 1px solid #000; 
+      border-radius: 0; 
+      font-family: 'Courier New', Courier, monospace; 
+      color: #000;
+      padding: 2rem;
+    }
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .invoice-table th, .invoice-table td { 
+      border: 1px solid #000; 
+      padding: 0.4rem; 
+      font-size: 0.85rem; 
+    }
+    .invoice-table th {
+      background-color: #f3f4f6; 
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .invoice-label { 
+      font-size: 0.75rem; 
+      text-transform: uppercase; 
+      font-weight: bold;
+      border-bottom: 1px solid #000;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .drop-zone { 
+      border: 2px dashed #4f46e5; 
+      background: #eef2ff; 
+    }
+
+    /* REGOLE DI STAMPA TOTALMENTE RIVISTE (Niente pagine bianche) */
+    @media print {
+      /* 1. Nascondere tutto l'UI e i blocchi non necessari */
+      header, footer, aside, #caricamento-fattura-block, #seo-block, .su-ad, .sticky-sidebar {
+        display: none !important;
+      }
+      
+      /* 2. Nascondere il pulsante "Torna" e il box descrittivo Hero */
+      main > a, main > div.bg-white {
+        display: none !important;
+      }
+      
+      /* 3. Nascondere il contenitore SEO e Ad Mobile finale */
+      .container > div.w-full.mt-4 {
+        display: none !important;
+      }
+
+      /* 4. Reset del layout del body (Rimuove il padding di Tailwind) */
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: white !important;
+      }
+      
+      /* 5. Rompere la griglia di Tailwind (per evitare altezze fisse e blocchi) */
+      .container {
+        display: block !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+      }
+      
+      main {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* 6. Formato fattura pulito */
+      .invoice-sheet {
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Visualizzatore Fattura Elettronica XML / P7M",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "url": "https://strumentiutili.it/fisco-professioni/fattura-elettronica/",
+    "description": "Visualizza fatture elettroniche XML e file .p7m direttamente nel browser. L'elaborazione, inclusa la decodifica dell'involucro crittografico CAdES (PKCS#7), avviene al 100% lato client per garantire la conformità al GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-indigo-600 font-semibold">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Strumento -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/fisco-professioni/" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4 inline-block">← Torna alla categoria Fisco &amp; Professioni</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Visualizzatore Fattura Elettronica XML / P7M</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale &amp; Privata: i tuoi dati e file vengono elaborati interamente sul tuo dispositivo senza upload in cloud.</p>
+      </div>
+
+      <!-- Bloque a ocultar durante la impresión -->
+      <div id="caricamento-fattura-block" class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-semibold text-gray-900 mb-4">Carica la fattura</h2>
+          <div id="drop-xml-file" class="drop-zone p-8 rounded-xl text-center cursor-pointer transition hover:bg-indigo-50">
+            <p class="font-medium text-gray-800">Trascina qui il file XML o .p7m</p>
+            <p class="text-sm text-gray-500 mt-2">oppure <span id="xml-browse" class="text-indigo-600 font-semibold cursor-pointer">sfoglia</span> dal tuo computer</p>
+            <input id="xml-file" type="file" accept=".xml,.p7m" class="hidden" />
+            <div id="xml-filename" class="mt-2 text-sm text-gray-500"></div>
+          </div>
+          <div id="fattura-status" class="mt-4 text-sm font-medium text-indigo-600">Nessun file caricato.</div>
+
+          <button id="print-fattura" class="mt-5 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-lg transition shadow-sm">Stampa / Salva in PDF</button>
+        </section>
+
+        <aside class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-semibold text-gray-900">Anteprima documento</h2>
+          <div id="fattura-meta" class="mt-4 text-sm text-gray-600">Carica un file XML o .p7m per visualizzare i dettagli della fattura. L'elaborazione avverrà istantaneamente offline.</div>
+        </aside>
+      </div>
+
+      <!-- Renderizado de la Factura -->
+      <section class="mt-6 bg-transparent rounded shadow-none p-0">
+        <div id="fattura-render" class="space-y-4"></div>
+      </section>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Fisco &amp; Professioni</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏦</span> Simulatore Rata Mutuo</a></li>
+            <li><a href="/fisco-professioni/rivalutazione-istat/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> ISTAT e Interessi Legali</a></li>
+            <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>💼</span> Partita IVA Forfettaria</a></li>
+            <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⚖️</span> Parcella Avvocato</a></li>
+            <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Contributo Unificato</a></li>
+            <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⏱️</span> Interessi Moratori B2B</a></li>
+            <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏠</span> Usufrutto e Nuda Proprietà</a></li>
+            <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📄</span> Fattura Elettronica</a></li>
+            <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📊</span> Calcolo IVA</a></li>
+          </ul>
+        </div>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa, Privacy e Analisi Tecnica: Fattura Elettronica XML e P7M</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il sistema di interscambio (SdI) dell'Agenzia delle Entrate italiana si fonda sull'utilizzo obbligatorio di file strutturati in formato XML (FatturaPA). L'elaborazione e la visualizzazione di tali documenti elettronici impone rigorosi presidi in materia di riservatezza, data la sensibilità dei dati anagrafici, fiscali e commerciali in essi contenuti. Sfruttando un'infrastruttura di tipo Zero-Backend (Client-Side), questo strumento annulla totalmente l'invio dei file XML o .p7m verso server esterni, allineandosi pienamente ai precetti sanciti dall'Articolo 25 del Regolamento Generale sulla Protezione dei Dati (GDPR) in materia di Data Protection by Design.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> L'Architettura P7M, Crittografia e Sicurezza Zero-Upload</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">La Firma Elettronica e il Formato P7M (CAdES)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Secondo le rigide disposizioni del Codice dell'Amministrazione Digitale (CAD), la fattura elettronica richiede sovente l'apposizione di una firma elettronica avanzata o qualificata per certificarne l'autenticità del mittente, l'integrità del contenuto e assicurarne il non ripudio dinanzi alla giurisprudenza. La generazione di un file con estensione <strong>.p7m</strong> rappresenta l'output tangibile dell'implementazione del protocollo crittografico CAdES (CMS Advanced Electronic Signatures).
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                A livello infrastrutturale, l'apposizione della firma comporta l'esecuzione di una funzione matematica di hashing asimmetrico (frequentemente lo standard SHA-256) che calcola l'impronta univoca del file XML primario. Questa impronta viene poi crittografata tramite la chiave privata del firmatario e inserita, congiuntamente al certificato X.509 pubblico, all'interno di un elaborato involucro crittografico denominato struttura PKCS#7. Di conseguenza, il file XML nativo viene letteralmente "incapsulato" e blindato in una busta crittografica opaca, rendendolo del tutto illeggibile ai convenzionali programmi di visualizzazione testuale o ai lettori PDF.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Decodifica Locale e Conformità al GDPR (Art. 28)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Per esporre in chiaro i dati della fattura (il processo noto come "unwrapping"), è tassativo ricorrere a software capaci di interfacciarsi con l'involucro PKCS#7. Affidare tale decodifica a convertitori web ospitati in cloud innesca criticità legali formidabili. Trasmettendo un file P7M a un server di terze parti per la conversione, l'erogatore del servizio assume la qualifica di Data Processor (Responsabile del Trattamento) ex Articolo 28 del GDPR. Tale qualifica impone la stipulazione di stringenti accordi di elaborazione dei dati (DPA) tra il professionista e il provider, pena pesanti sanzioni pecuniarie per trasferimento illecito di dati personali o sensibili.
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Adottando l'architettura Zero-Backend e sfruttando la potenza nativa del motore JavaScript (e della Web Crypto API) del browser, l'estrazione e il rendering visivo del documento XML avvengono in totale isolamento locale (Zero-Upload). Nessun dato fiscale o anagrafico varca la soglia della rete, esonerando il professionista dall'imposizione di verifiche di conformità verso l'esterno e annullando alla radice le vulnerabilità legate alle esfiltrazioni crittografiche sui server esterni.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Formato XML (FatturaPA) e XAdES</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Quale alternativa procedurale all'ingombrante formato CAdES (.p7m), le fatture elettroniche dirette al Sistema di Interscambio (SdI) possono mantenere l'estensione <strong>.xml</strong> pur risultando digitalmente firmate. Questo avviene mediante l'impiego del protocollo XAdES (XML Advanced Electronic Signatures), che nidifica le chiavi di firma direttamente all'interno della struttura ad albero XML nativa. Tale metodologia previene l'incapsulamento opaco tipico del CAdES, permettendo la parziale leggibilità del file anche con editor basici, pur garantendone l'assoluta validità legale in Europa secondo il regolamento eIDAS.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- PREGUNTAS FRECUENTES -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Risoluzione degli Errori e FAQ Professionali</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché non riesco ad aprire un file .p7m con un normale lettore PDF o editor di testo?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Poiché il formato CAdES (.p7m) agisce strutturalmente come un contenitore crittografico opaco. Il documento fattura originario (XML) è irrevocabilmente blindato insieme ai certificati della firma digitale in una struttura PKCS#7. Il suo contenuto non può essere estrapolato senza l'impiego di applicativi specializzati che attuino un'operazione di "unwrapping" algoritmico del livello di sicurezza crittografico.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>I dati delle fatture caricate nel tool vengono conservati nei server o analizzati?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Tassativamente no. Rispettando il mandato legale della Privacy by Design sancito dal GDPR, questo visualizzatore decostruisce l'involucro P7M ed estrae i metadati del formato XML (FatturaPA) sfruttando meramente l'allocazione della RAM locale all'interno della sandbox del tuo browser web (Zero-Backend). L'assenza di upload azzera ogni rischio di data breach in transito o a riposo.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>È ammesso esportare o stampare una fattura P7M/XML convertita in formato PDF?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'esportazione visiva in formato PDF tramite il visualizzatore è pienamente autorizzata per esigenze gestionali, di consultazione interna o archiviazione ordinata in faldoni. È tuttavia indispensabile comprendere che sotto il profilo prettamente civilistico e probatorio, l'unica entità dotata di valenza giuridica fiscale primaria è il documento XML o P7M intonso, che deve essere meticolosamente preservato attraverso le procedure di conservazione elettronica sostitutiva a norma di legge.
+              </p>
+            </details>
+
+             <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Sussiste una discrepanza legale tra una fattura firmata in .xml (XAdES) e una in .p7m (CAdES)?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Assolutamente nessuna. La prassi governativa e le prescrizioni del Sistema di Interscambio parificano sotto il profilo normativo l'adozione del protocollo XAdES (incorporato nell'estensione .xml) all'adozione del protocollo CAdES (incorporato nell'estensione .p7m). Entrambe le procedure conferiscono l'identica e inoppugnabile validità legale richiesta dall'ordinamento, attestando con certezza la qualifica del mittente e l'intoccabilità del contenuto fatturato.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/fattura.js"></script>
+  
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

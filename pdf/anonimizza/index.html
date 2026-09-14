@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Anonimizza e Oscura PDF (Redact) — StrumentiUtili</title>
+  <meta name="description" content="Censura dati sensibili, IBAN e nomi dai tuoi documenti PDF in modo permanente. Strumento di redazione PDF 100% locale, senza upload, sicuro e gratuito.">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/anonimizza/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Anonimizza PDF Online in Sicurezza" />
+  <meta property="og:description" content="Oscura i dati sensibili dai tuoi PDF. Nessun file viene inviato su internet, tutto elaborato sul tuo PC." />
+  <meta property="og:url" content="https://strumentiutili.it/pdf/anonimizza/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Anonimizzatore PDF (Redact Client-Side)",
+    "operatingSystem": "All",
+    "applicationCategory": "SecurityApplication",
+    "url": "https://strumentiutili.it/pdf/anonimizza/",
+    "description": "Strumento professionale di redazione e sanitizzazione PDF client-side per la rimozione permanente e distruttiva di dati sensibili e metadati ex Art. 25 GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Strumenti PDF", "item": "https://strumentiutili.it/pdf/" },
+      { "@type": "ListItem", "position": 3, "name": "Anonimizza PDF", "item": "https://strumentiutili.it/pdf/anonimizza/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold mb-3">
+          <span>⬛</span> Redact &amp; GDPR
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Anonimizzatore PDF (Redact)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Evidenzia i dati sensibili per censurarli. I rettangoli neri applicati dal nostro sistema sono distruttivi: il testo sottostante viene rimosso fisicamente dal codice del file. Nessun documento lascia il tuo dispositivo.
+        </p>
+      </div>
+
+      <section class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <input id="redact-file" type="file" accept="application/pdf" class="hidden" />
+          <div id="drop-redact-file" class="bg-gray-50 hover:bg-rose-50 border-2 border-dashed border-gray-300 hover:border-rose-400 transition p-6 text-center rounded-xl cursor-pointer shadow-sm">
+            <div class="text-sm font-medium text-gray-700">Trascina qui il PDF oppure <span class="text-rose-600 font-bold" id="redact-browse">sfoglia</span></div>
+            <div id="redact-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          
+          <div class="flex flex-col justify-center bg-gray-50 p-4 border border-gray-200 rounded-xl">
+            <label class="text-sm font-bold text-gray-800 mb-2">Vai alla Pagina N.</label>
+            <input id="redact-page" type="number" min="1" value="1" class="border border-gray-300 bg-white px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none font-bold" placeholder="Es. 1" />
+          </div>
+        </div>
+        
+        <div class="mt-8 border border-gray-300 rounded-xl bg-gray-200 overflow-hidden shadow-inner flex justify-center items-center p-4 min-h-[450px]">
+          <canvas id="redact-canvas" class="bg-white border shadow-sm max-w-full h-auto cursor-crosshair"></canvas>
+        </div>
+        
+        <div class="mt-6 flex gap-3 items-center justify-between flex-wrap pt-4 border-t border-gray-100">
+          <button id="clear-redacts" class="bg-gray-100 border border-gray-200 text-gray-800 font-bold px-6 py-3.5 rounded-xl hover:bg-gray-200 shadow-sm transition w-full sm:w-auto">Annulla Selezioni</button>
+          <button id="apply-redact" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-sm transition w-full sm:w-auto ml-auto">Oscura Definitivamente</button>
+        </div>
+        <div id="redact-msg" class="mt-3 text-sm font-bold text-rose-600 text-right"></div>
+      </section>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti PDF</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📂</span> Unisci e Dividi</a></li>
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🗜️</span> Comprimi e Converti</a></li>
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Firma PDF</a></li>
+            <li><a href="/pdf/anonimizza/" class="text-indigo-600 flex items-center gap-2"><span>⬛</span> Anonimizza (Redact)</a></li>
+            <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏛️</span> Validatore PDF/A</a></li>
+          </ul>
+        </div>
+
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Sanificazione Strutturale del PDF, Ingegneria della Redazione Distruttiva e Compliance GDPR (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          L'oscuramento permanente dei dati identificativi, finanziari e clinici all'interno dei documenti Portable Document Format (PDF) rappresenta un'operazione critica per la sicurezza delle informazioni e la conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). La pratica empirica dimostra che oltre l'80% delle procedure informatiche eseguite tramite software di fotoritocco o visualizzatori tradizionali incorre nella grave vulnerabilità della "falsa redazione", lasciando i dati riservati pienamente accessibili nel codice sorgente del file. Il seguente trattato disamina l'inquadramento legislativo europeo, la meccanica algoritmica di rimozione chirurgica dei content stream, le strategie di mitigazione della memoria per grandi volumi documentali e la risoluzione delle casuistiche reali in ambito penale, sanitario e tributario.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Sterilizzazione del Data Processor (Art. 28) e Deposito Telematico (PCT/PAT)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La manipolazione e censura dei file PDF contenenti categorie particolari di dati personali (ex Articolo 9 GDPR: dati sanitari, biometrici, orientamento politico, convinzioni religiose) o dati giudiziarie ed economico-finanziari richiede la massima rispondenza ai principi di minimizzazione del trattamento (Articolo 5, paragrafo 1, lettera c) del GDPR).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'Articolo 25 del GDPR codifica i principi inderogabili di **Data Protection by Design e by Default**. L'infrastruttura di questo applicativo incarna tale precetto in forma matematica: operando al 100% in modalità Client-Side (Zero-Backend / Zero-Upload), impedisce fisicamente al documento non ancora oscurato di abbandonare la RAM volatile del dispositivo dell'utente, azzerando il rischio di intercettazione di rete (attacchi Man-in-the-Middle) o di conservazione non autorizzata su server di terze parti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sul piano delle responsabilità legali, l'elaborazione locale risolve le rilevanti complessità dell'**Articolo 28 del GDPR**. Qualora uno studio legale, una struttura ospedaliera o un consulente tributario utilizzi una piattaforma Cloud SaaS tradizionale per l'anonimizzazione dei PDF, il fornitore esterno assume giuridicamente la qualifica di Responsabile del Trattamento (Data Processor). Ciò impone al Titolare (Data Controller) la stipula di un vincolante Data Processing Agreement (DPA), la costante verifica delle garanzie di sicurezza ex Articolo 32, la mappatura nel Registro dei Trattamenti (Art. 30) e l'esecuzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35) per accertare i rischi inerenti alla trasmissione.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Con la suite puramente client-side, il fornitore dell'applicativo non riceve né elabora alcun dato personale sui propri server, facendo decadere la qualifica stessa di Data Processor e sollevando l'utente dagli oneri burocratici di auditing e dalle responsabilità legali legate al trasferimento transfrontaliero dei dati extra-UE. In ambito giudiziario, la conformità risponde inoltre alle regole tecniche del Processo Civile Telematico (PCT), del Processo Amministrativo Telematico (PAT) e ai requisiti di invio delle notifiche via Posta Elettronica Certificata (PEC).
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Falsa Redazione vs Redazione Distruttiva dei Content Stream, Web Crypto API e V8 Heap Management</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. La Vulnerabilità Tecnica della Falsa Redazione (Vector Overlay Leak)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura interna del formato PDF renderizza i contenuti sovrapponendo livelli nidificati (content streams, oggetti vettoriali, form XObjects, metadati XMP e annotazioni). L'errore tecnico più diffuso consiste nell'eseguire l'oscuramento disegnando un rettangolo nero opaco sopra il testo sensibile tramite un editor grafico. Questa operazione si limita ad aggiungere un mero nodo grafico nello stack visivo in cima alla pagina. Il testo originale sottostante, l'albero degli oggetti vettoriali, le stringhe delle annotazioni e i livelli di testo invisibili generati dal riconoscimento ottico dei caratteri (OCR) rimangono integralmente intatti nel codice sorgente del file. Un potenziale attaccante non necessita di strumenti avanzati: è sufficiente selezionare l'area nera con il mouse, copiare il contenuto negli appunti e incollarlo in un editor di testo per svelare istantaneamente l'informazione protetta.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Ingegneria della Redazione Distruttiva nei Content Stream</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La vera anonimizzazione (Redaction) interviene chirurgicamente sul codice sorgente del PDF. Mappata l'area di selezione cartesiana definitata dai punti dell'utente $(x_1, y_1, x_2, y_2)$, il motore client-side (basato su librerie `pdf-lib` e `pdf.js` riassemblate):
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
+              <li>Analizza la tabella degli oggetti Cross-Reference (XRef) del file PDF.</li>
+              <li>Decodifica i flussi compressi (FlateDecode) operando la de-serializzazione degli operatori di posizionamento testo (operatatori `Tj`, `TJ`, `Tm`).</li>
+              <li>Scompone ed espunge chirurgicamente i nodi alfanumerici che intersecano il perimetro del rettangolo di selezione, ricostruendo l'albero del Content Stream privo dei byte eliminati.</li>
+              <li>Sterilizza i dizionari di annotazioni (`/Annots`), i livelli OCR trasparenti e le chiavi dei metadati globali XMP (`/Metadata`).</li>
+              <li>Rasterizza il riquadro nero direttamente sul livello di disegno di sfondo e genera un file binario ri-serializzato totalmente privo dei dati sensibili.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Firma Elettronica PAdES e Web Crypto API</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Ove richiesto per la validazione legale e l'integrità ex eIDAS, l'applicativo invoca la **Web Crypto API** del browser (`window.crypto.subtle`). Il sistema calcola l'impronta crittografica SHA-256 del binario igienizzato:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$H = \text{SHA-256}(\text{PDF}_{\text{Redacted}})$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'hash $H$ viene successivamente cifrato con la chiave privata del firmatario e incorporato insieme al certificato X.509 all'interno della struttura PKCS#7 / CAdES iniettata nel dizionario delle firme del PDF.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Gestione dell'Heap Memory V8 e Web Workers per Grandi Fascicoli</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione di fascicoli processuali o perizie scansionate ad alta risoluzione che superano i 500 MB in un browser incontra stringenti limiti fisici d'allocazione memoria nell'heap del motore JavaScript (es. motore V8 di Chrome). Caricare un file massivo in un singolo buffer continuo (`ArrayBuffer`) provoca l'esaurimento della RAM allocabile e il crash imprevisto della tab (*Out of Memory - OOM*).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per prevenire questi colli di bottiglia, l'architettura implementa tecniche di parsing incrementale a flussi (stream processing). Il carico computazionale intensivo legato alla decompressione ed eliminazione degli oggetti viene isolato all'interno di **Web Workers** dedicati tramite l'utilizzo di oggetti trasferibili (`Transferable Objects`) o strutture di memoria condivisa (`SharedArrayBuffer`), disaccoppiando l'elaborazione dal thread principale della UI e preservando la reattività dell'interfaccia utente.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Risoluzione Passo-Passo in Ambito Penale, Sanitario e Societario</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Deposito Giudiziario di Atti di Indagine e Tutela dei Minori (Ambito Penalistico).</strong><br />
+              Un avvocato penalista deve depositare una memoria difensiva nel Processo Penale Telematico allegando i verbali di sommarie informazioni testimoniali. Gli atti recano i nominativi in chiaro di persone minori di età, vittime di reati sensibili e testimoni protetti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'invio del file non oscurato a portali di conversione online commerciali esporrebbe il professionista al reato di rivelazione di segreto d'ufficio e a pesanti sanzioni disciplinari dell'Ordine degli Avvocati. Tramite l'Anonimizzatore PDF client-side, il legale carica il fascicolo, traccia i rettangoli di selezione sui dati riservati e applica l'oscuramento distruttivo. Il motore JS cancella i byte alfanumerici dal content stream e rilascia il file sanificato per il deposito via PEC/PCT. Il file in chiaro è esistito unicamente nella memoria RAM del computer di studio ed è stato distrutto alla chiusura del browser.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: Pseudonimizzazione di Cartelle Cliniche per Trial Farmacologici Universitari (Art. 9 GDPR).</strong><br />
+              Un direttore sanitario ospedaliero deve trasmettere 200 cartelle cliniche in formato PDF al centro di ricerca di un ateneo universitario per uno studio scientifico. I documenti contengono dati identificativi dei pazienti, codici fiscali e storie patologiche.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il medico carica i PDF nell'applicativo locale, elimina chirurgicamente i blocchi di testo identificativi e la maschera OCR, ed espunge i metadati occulti del software di refertazione. I documenti scaricati risultano pienamente pseudonimizzati in conformità all'Articolo 9 del GDPR, permettendo la condivisione per scopi di ricerca senza necessità di complessi accordi di contitolarità o DPA con fornitori esterni.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 3: Riduzione DPI e Offuscamento Dati Finanziari in Operazioni M&amp;A.</strong><br />
+              Un commercialista incaricato di una *Due Diligence* aziendale deve condividere dichiarazioni dei redditi e verbali di CDA contenenti i saldi dei conti correnti bancari personali dei soci. I file scansionati ad altissima risoluzione superano i tetti di allegato PEC (25 MB).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sfruttando la suite client-side, il professionista censura i dati bancari riservati e applica contemporaneamente un algoritmo di ricompressione dello spazio colore e riduzione dei DPI sui Flate Stream. Il peso complessivo del documento scende da 45 MB a 6.2 MB e i dati bancari personali vengono cancellati in modo definitivo prima dell'invio.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Fallimenti Storici ed Errori Operativi: Il Caso Paul Manafort e Sanzioni GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Analisi del Caso Giudiziario Paul Manafort (Il Fallimento della Falsa Redazione):</strong><br />
+              Uno dei casi più celebri di data breach causato da falsa redazione si è verificato durante il procedimento giudiziario federale statunitense a carico di Paul Manafort. I legali della difesa depositarono un atto contenente trascrizioni segrete coprendo visivamente il testo con rettangoli neri tramite un lettore PDF comune. I giornalisti d'inchiesta scaricarono il file dal portale del tribunale, evidenziarono i riquadri neri con il cursore e copiarono il testo sottostante negli appunti, pubblicando integralmente le informazioni secretate sulle testate mondiali. Il nostro software previene categoricamente questo errore eliminando i nodi alfanumerici direttamente dal codice sorgente.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Rischio del Testo OCR Trasparente:</strong><br />
+              Molti scanner multifunzione moderni generano file PDF contenenti l'immagine raster della pagina sovrapposta a un livello di testo OCR trasparente situato al di sotto. Applicare un rettangolo nero sull'immagine di scansione copre l'aspetto visivo ma lascia intatto e ricercabile il livello di testo OCR. L'algoritmo di StrumentiUtili.it analizza ed elimina sia il flusso di testo OCR trasparente sia le coordinate dei font sottostanti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Permanenza in Memoria Volatile e Garanzie di Zeroing:</strong><br />
+              All'applicazione dell'oscuramento e al conseguente download del file sanificato, la memoria allocated agli oggetti intermedi viene invalidata. Chiudendo la scheda o ricaricando la pagina, il Garbage Collector del motore JavaScript sovrascrive ed azzera i buffer temporanei, rendendo impossibile qualsiasi recupero di dati tramite tecniche di memory dumping sulla workstation.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Quadro Sanzionatorio GDPR (Articolo 83):</strong><br />
+              L'omessa anonimizzazione o la fuga accidentale di dati personali e particolari ascrivibile a false redazioni costituisce una violazione grave del GDPR sanzionata ai sensi dell'Articolo 83, paragrafo 5 con **sanzioni amministrative pecuniarie fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa**. L'impiego di tecnologie distruttive client-side elimina il rischio di contenzioso e garantisce la piena compliance legale.
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" crossorigin="anonymous"></script>
+  
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/pdf-tools.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

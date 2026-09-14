@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Media Universitaria e Voto di Laurea (App Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola la tua media ponderata e aritmetica, e proietta il tuo Voto di Laurea di partenza. I tuoi esami vengono salvati automaticamente nel tuo browser." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/media-universitaria/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Libretto Universitario e Calcolo Media Ponderata" />
+  <meta property="og:description" content="Gestisci i tuoi esami universitari, calcola la media ponderata e il voto di laurea. Salvataggio automatico 100% offline." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/media-universitaria/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- PROTOCOLLO ADS -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalApplication",
+    "name": "Calcolo Media Universitaria e Voto di Laurea",
+    "operatingSystem": "All",
+    "applicationCategory": "EducationalApplication",
+    "url": "https://strumentiutili.it/utilita-web/media-universitaria/",
+    "description": "Software clinet-side avanzato per il calcolo della media ponderata universitaria, proiezione del voto di laurea e gestione del libretto offline nel rispetto del GDPR e del D.M. 270/2004.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/utilita-web/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Utilità &amp; Web</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Libretto Universitario e Calcolo Media</h1>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          Aggiungi i tuoi esami. Il sistema calcolerà istantaneamente la tua Media Ponderata e il tuo Voto di Laurea di partenza. 
+        </p>
+        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit">
+          <span>💾 Salvataggio Automatico:</span> Il libretto è salvato nel tuo browser. Se chiudi la pagina, ritroverai tutto qui.
+        </div>
+        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit mt-2">
+          <span>🛠️ Categoria:</span> Utilità &amp; Web
+        </div>
+      </section>
+
+      <!-- SEZIONE RISULTATI (DASHBOARD) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="bg-indigo-600 text-white p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold opacity-80 mb-1">Media Ponderata</span>
+          <span id="res-media-pond" class="text-4xl font-extrabold tracking-tight">0.00</span>
+        </div>
+        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">Voto di Laurea (Base)</span>
+          <div class="flex items-baseline justify-center gap-1">
+            <span id="res-voto-laurea" class="text-4xl font-extrabold text-gray-900 tracking-tight">0</span>
+            <span class="text-sm font-bold text-gray-400">/110</span>
+          </div>
+        </div>
+        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">CFU Acquisiti</span>
+          <span id="res-cfu-tot" class="text-3xl font-bold text-indigo-600">0</span>
+        </div>
+      </div>
+
+      <!-- INTERFACCIA INSERIMENTO ESAMI -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+        
+        <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+          <h2 class="text-lg font-bold text-gray-900">Aggiungi nuovo esame</h2>
+          <!-- Configurazione 30 e Lode -->
+          <div class="flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+            <span>Valore 30 e Lode:</span>
+            <select id="config-lode" class="bg-white border border-gray-300 rounded px-1 outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer">
+              <option value="30">30</option>
+              <option value="31">31</option>
+              <option value="33">33</option>
+            </select>
+          </div>
+        </div>
+
+        <form id="form-esame" class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
+          <div class="sm:col-span-5">
+            <label class="block text-xs font-bold text-gray-700 mb-1">Nome Esame (Opzionale)</label>
+            <input type="text" id="input-nome" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. Analisi Matematica 1" />
+          </div>
+          
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-gray-700 mb-1">Voto *</label>
+            <select id="input-voto" required class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer">
+              <option value="" disabled selected>-</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="30L">30 e Lode</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-gray-700 mb-1">CFU *</label>
+            <input type="number" id="input-cfu" min="1" max="60" required class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. 6" />
+          </div>
+
+          <div class="sm:col-span-3">
+            <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-lg shadow-sm transition">
+              + Aggiungi
+            </button>
+          </div>
+        </form>
+
+        <!-- LISTA ESAMI (TABELLA) -->
+        <div class="mt-8">
+          <div class="flex justify-between items-end mb-3">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">Il Tuo Libretto</h3>
+            <span class="text-xs text-gray-500 font-medium">Media Aritmetica: <strong id="res-media-arit" class="text-gray-800">0.00</strong></span>
+          </div>
+          
+          <div class="overflow-x-auto border border-gray-200 rounded-lg">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 text-gray-600 border-b border-gray-200 uppercase text-xs">
+                <tr>
+                  <th class="px-4 py-3 font-bold">Esame</th>
+                  <th class="px-4 py-3 font-bold w-20 text-center">Voto</th>
+                  <th class="px-4 py-3 font-bold w-20 text-center">CFU</th>
+                  <th class="px-4 py-3 w-16"></th>
+                </tr>
+              </thead>
+              <tbody id="lista-esami" class="divide-y divide-gray-100 text-gray-800">
+                <!-- Generato tramite Javascript -->
+              </tbody>
+            </table>
+            
+            <div id="empty-state" class="p-8 text-center text-gray-500 text-sm">
+              Non hai ancora inserito nessun esame.
+            </div>
+          </div>
+          
+          <div class="mt-4 flex justify-end">
+            <button id="btn-clear-all" class="text-xs text-red-600 font-bold hover:text-red-800 underline transition hidden">
+              Svuota tutto il libretto
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Utilità &amp; Web</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📉</span> Calcolo Percentuali</a></li>
+        <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> Interessi Composti</a></li>
+        <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Generatore QR</a></li>
+        <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🖼️</span> Converti Immagini</a></li>
+        <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Contaparole</a></li>
+        <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔗</span> URL Shortener</a></li>
+        <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎓</span> Media Universitaria</a></li>
+        <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔬</span> Calcolo BMR</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Architettura del Libretto Universitario, Calcolo Ponderale e Autocertificazione (D.P.R. 445/2000)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La gestione del libretto accademico, il calcolo della media ponderata e la proiezione centodecimale del Voto di Laurea trascendono il mero monitoraggio della carriera studentesca, assumendo un valore giuridico e amministrativo vitale nell'interfacciamento con la Pubblica Amministrazione (es. calcoli ISEE, borse di studio Diritto allo Studio Universitario) e nel rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR).
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: D.M. 270/2004, Zero-Backend e D.P.R. 445/2000</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'impalcatura didattica delle università italiane, uniformata ai dettami dello Spazio Europeo dell'Istruzione Superiore (Processo di Bologna), è stata storicamente codificata dal D.M. 509/1999 e successivamente cristallizzata dal Decreto Ministeriale 22 ottobre 2004, n. 270. Tale architettura introduce la metrica del Credito Formativo Universitario (CFU), equivalente allo standard ECTS (European Credit Transfer and Accumulation System). Il sistema normativo fissa il volume di apprendimento convenzionale a 25 ore per singolo CFU, imponendo che la valutazione del profitto avvenga obbligatoriamente su una scala in trentesimi, con sufficienza legale incardinata a 18/30. La prova finale, al contrario, rispetta il vetusto ma inalterato Regio Decreto 4 giugno 1938, n. 1269, perpetuando il computo massimo su base 110.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La gestione digitale di siffatti dati (voti, esami, medie) afferisce direttamente alla sfera della privacy dello studente. L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Sfruttando la memoria locale del browser (Web Storage API), la nostra architettura Zero-Backend definisce un ecosistema in cui l'intero ciclo di vita del dato avviene esclusivamente all'interno della sandbox del browser dell'utente. Da un punto di vista normativo, questo approccio rivoluziona radicalmente la gestione della conformità al Regolamento Generale sulla Protezione dei Dati (GDPR). L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure tecniche e organizzative a tutela della privacy siano integrate direttamente nell'architettura del sistema fin dalla fase di progettazione concettuale. L'infrastruttura client-side incarna questo principio in modo matematico: applicando le impostazioni più restrittive in maniera predefinita e impedendo fisicamente l'esfiltrazione dei dati (Zero-Upload), il rischio di data breach in transito o a riposo su infrastrutture esterne viene completamente azzerato.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Parallelamente, il calcolo algoritmico della media è sovente impiegato per la successiva stipula di Dichiarazioni Sostitutive. Il corpus legislativo su cui si incardina l'intero impianto della de-burocratizzazione italiana e della semplificazione del procedimento amministrativo è rappresentato dal Testo Unico in materia di Documentazione Amministrativa (D.P.R. 28 dicembre 2000, n. 445). Gli articoli dominanti, l'Art. 46 (Dichiarazioni sostitutive di certificazione) e l'Art. 47 (Dichiarazioni sostitutive dell'atto di notorietà), traslano l'onere probatorio dalle segreterie al cittadino. Lo studente è autorizzato ad auto-attestare lo status del proprio libretto universitario e la media conseguita, avvalendosi di applicativi di calcolo rigorosi per non incorrere in vizi di forma.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Varianza Ponderale e Traslazione Base 110</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione matriciale del rendimento studentesco rifugge dalla basilare Media Aritmetica per ancorarsi indissolubilmente alla Media Ponderata, una funzione in cui ogni esito è moltiplicato per il proprio peso specifico (il CFU). L'equazione algoritmica fondamentale che sorregge l'applicativo è definita come segue:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              Media_{Ponderata} = [ Σ_{i=1}^{n} (Voto_i × CFU_i) ] / [ Σ_{i=1}^{n} CFU_i ]
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per effettuare la traslazione di dominio matematico e proiettare la media (nativa su base 30) verso il punteggio di partenza della seduta di laurea (nativa su base 110), si applica il coefficiente di conversione universale <strong>11/3</strong> (che deriva dalla semplificazione della proporzione <em>Media : 30 = X : 110</em>).
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              Voto_{Base\_Laurea} = Media_{Ponderata} × \frac{11}{3}
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Un aspetto nevralgico della formulazione riguarda le "Idoneità" e i tirocini formativi. Tali attività erogano regolarmente CFU ma sono strutturalmente sprovviste di una valutazione numerica in trentesimi (espresse unicamente con giudizi quali Approvato/Idoneo). Algoritmicamente, i software di gestione carriera (come Esse3) escludono categoricamente i crediti derivanti da idoneità dal denominatore <em>Σ CFU_i</em> della media ponderata, evitando il fatale depotenziamento matematico dell'indicatore.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📈</span> Casuistica Reale: Simulazione ISEE e Variazioni Ponderali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Si ipotizzi la profilazione accademica di uno studente in ingegneria incaricato di compilare la modulistica per l'ottenimento di un "ISEE mirato" al diritto allo studio universitario. L'impianto regolatorio dell'ISEE è disciplinato dal D.P.C.M. 5 dicembre 2013, n. 159, profondamente innovato dalle disposizioni della Legge di Bilancio 2026. L'ente erogatore della borsa di studio (es. EDISU o LAZIODISCO) impone come requisito di merito il superamento della soglia del 26.00/30 come media ponderata. Lo studente possiede il seguente libretto:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
+              <li>Analisi Matematica I: Voto 21, CFU 12</li>
+              <li>Fisica Generale: Voto 24, CFU 9</li>
+              <li>Informatica: Voto 30 e Lode (Pesato a 30 dal regolamento d'ateneo), CFU 6</li>
+              <li>Inglese B2: Idoneità, CFU 3</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Procedendo con l'algoritmo di conversione, lo step iniziale esclude brutalmente l'Idoneità di Inglese (3 CFU) dal divisore. Il montante dei CFU assoggettabili diviene pertanto 27 (12+9+6). Si computano i prodotti parziali: (21 × 12 = 252), (24 × 9 = 216), (30 × 6 = 180). Il numeratore totale si attesta a 648. La divisione 648 / 27 genera una media ponderata di <strong>24.00 esatto</strong>. Qualora lo studente avesse inavvertitamente calcolato la media aritmetica (21+24+30)/3 = 25.00, avrebbe inserito una falsità materiale nell'autocertificazione ai fini della graduatoria di borsa di studio, incorrendo in sanzioni. Il Voto di Laurea di partenza generato da questa media sarà 24.00 × 11/3 = <strong>88/110</strong>.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ y Errores: Anomalie di Ponderazione e Decadenza ex Art. 75</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Paradosso della "Decertificazione":</strong> Dalla Legge di Stabilità 2012, tutte le pubbliche amministrazioni (Università, Comuni, INPS) hanno il divieto assoluto e imperativo di richiedere o accettare certificati cartacei tra loro, demandando tutto all'autocertificazione. Un funzionario pubblico che respinga una corretta Dichiarazione Sostitutiva (D.S.C.) redatta dallo studente esigendo il certificato storico originale della Segreteria, compie una violazione dei doveri d'ufficio e si espone a procedimento disciplinare, dovendo l'Ateneo esperire i controlli d'ufficio.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Decadenza ed Estensioni Punitive:</strong> Sul piano della deterrenza penale, l'equilibrio del sistema di autocertificazione è garantito dalla clausola deterrenziale incastonata negli Articoli 71, 75 e 76 del D.P.R. 445/2000. Il cittadino che compili attestazioni mendaci (es. arrotondando illecitamente al rialzo la propria media o inserendo CFU di esami non verbalizzati) subisce, in combinato disposto, l'obliterazione dei benefici ricevuti e l'esposizione al procedimento penale (Art. 76, richiamo all'Art. 483 c.p.). In passato, la decadenza incideva solo sul beneficio specifico (es. revoca di una singola borsa di studio). Oggi, i controlli operano un irradiamento punitivo trasversale: la dichiarazione palesemente mendace, volta all'ottenimento illecito di esoneri sulle tasse universitarie, comporta non solo la restituzione coattiva del maltolto, ma determina il "blacklisting" istituzionale dell'utente.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Fallacie Software e Trattamento Lodi:</strong> Nel calcolo algoritmico, un errore fatale (Floating Point Precision Error) insorge nei codici JavaScript non ottimizzati. I computer processano i decimali in virgola mobile standard IEEE 754, innescando approssimazioni del tipo (0.1 + 0.2 = 0.30000000000000004). Moltiplicare pesi ingenti causa micro-scostamenti della media che i sistemi centralizzati (come i backend CINECA) respingerebbero. Il presente applicativo client-side bypassa il difetto normalizzando la sommatoria prima della divisione finale. Un ulteriore criticità di calibrazione riguarda l'inserimento del "30 e Lode". Molti Regolamenti Didattici d'Ateneo (RDA) ponderano la Lode come 31, 32 o 33 (tipico delle facoltà mediche), mentre altri atenei la sterilizzano matematicamente a 30, limitandosi ad assegnare un extra-point forfettario alla seduta finale. Forzare una configurazione a 31 in un ateneo che non lo ammette altera illegalmente il denominatore, producendo un falso documentale in sede di attestazione DSU.
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div> <!-- ESTO CIERRA LA COLUMNA IZQUIERDA DEL SEO -->
+
+  </div> <!-- ESTE ES EL DIV QUE CIERRA LA CUADRÍCULA MAIN Y PROTEGE EL FOOTER -->
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/media-universitaria.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+</body>
+</html>

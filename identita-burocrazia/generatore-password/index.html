@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+ 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore di Password Sicure (Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Genera password sicure, casuali e crittografate direttamente nel tuo browser. Zero dati inviati, 100% privacy locale." />
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/generatore-password/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generatore Password Sicure — 100% Client-Side" />
+  <meta property="og:description" content="Crea password impenetrabili usando la Web Crypto API. Nessun dato lascia il tuo dispositivo." />
+  <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/generatore-password/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <!-- PROTOCOLLO ADS: MARCADOR INERTE -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- Marcato Semantico Schema.org (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Generatore di Password Sicure Client-Side",
+    "operatingSystem": "All",
+    "applicationCategory": "SecurityApplication",
+    "url": "https://strumentiutili.it/identita-burocrazia/generatore-password/",
+    "description": "Generatore di password casuali ad alta entropia crittografica. Utilizza esclusivamente la Web Crypto API (window.crypto.getRandomValues) e algoritmi CSPRNG per elaborazioni 100% Client-Side a norma GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareHelp": "https://strumentiutili.it/contatti.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Identità & Burocrazia", "item": "https://strumentiutili.it/identita-burocrazia/" },
+      { "@type": "ListItem", "position": 3, "name": "Generatore Password", "item": "https://strumentiutili.it/identita-burocrazia/generatore-password/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-semibold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/ia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna a IA Locale</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Generatore di Password Sicure</h1>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Crea password robuste utilizzando algoritmi crittografici nativi del tuo browser. 
+          Nessuna password viene generata o inviata a server remoti. <strong>100% Privacy.</strong>
+        </p>
+      </section>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+        
+        <!-- Display Password -->
+        <div class="relative bg-gray-900 rounded-xl p-6 flex items-center justify-between shadow-inner">
+          <div id="pwd-display" class="text-2xl sm:text-3xl font-mono text-emerald-400 break-all select-all tracking-wider">
+            Generando...
+          </div>
+          <button id="btn-copy" class="ml-4 bg-white/10 hover:bg-white/20 text-white p-3 rounded-lg transition" title="Copia Password">
+            📋 Copia
+          </button>
+        </div>
+
+        <div class="space-y-4 pt-4 border-t border-gray-100">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="pwd-length" class="text-sm font-bold text-gray-800">Lunghezza Password</label>
+              <span id="length-val" class="text-sm font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">16 caratteri</span>
+            </div>
+            <input id="pwd-length" type="range" min="8" max="64" value="16" class="w-full accent-indigo-600 cursor-pointer" />
+            <p class="text-xs text-gray-500 mt-1">Consigliato: minimo 16 caratteri per la massima sicurezza.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition">
+              <input id="chk-upper" type="checkbox" checked class="w-5 h-5 text-indigo-600 rounded" />
+              <span class="text-sm font-bold text-gray-800">Maiuscole (A-Z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition">
+              <input id="chk-lower" type="checkbox" checked class="w-5 h-5 text-indigo-600 rounded" />
+              <span class="text-sm font-bold text-gray-800">Minuscole (a-z)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition">
+              <input id="chk-numbers" type="checkbox" checked class="w-5 h-5 text-indigo-600 rounded" />
+              <span class="text-sm font-bold text-gray-800">Numeri (0-9)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-indigo-50 transition">
+              <input id="chk-symbols" type="checkbox" checked class="w-5 h-5 text-indigo-600 rounded" />
+              <span class="text-sm font-bold text-gray-800">Simboli (!@#$...)</span>
+            </label>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <label class="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200 cursor-pointer">
+              <input id="chk-exclude" type="checkbox" checked class="w-5 h-5 text-orange-600 rounded" />
+              <div>
+                <span class="block text-sm font-bold text-orange-900">Escludi caratteri ambigui</span>
+                <span class="block text-xs text-orange-700 mt-0.5">Rimuove i, l, 1, L, o, 0, O per facilitare la lettura.</span>
+              </div>
+            </label>
+          </div>
+
+          <button id="btn-generate" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2">
+            <span>🔄</span> Genera Nuova Password
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Identità &amp; Burocrazia</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/identita-burocrazia/codice-fiscale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🪪</span> Codice Fiscale</a></li>
+        <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🏦</span> Validatore IBAN</a></li>
+        <li><a href="/identita-burocrazia/autocertificazione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Autocertificazione</a></li>
+        <li><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⚖️</span> Calcolo Quote Ereditarie</a></li>
+        <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📸</span> Fototessera ICAO</a></li>
+        <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔑</span> Password Sicure</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Tecnico-Giuridico sulla Sicurezza delle Credenziali e Generazione Crittografica</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La generazione programmata di artefatti per la sicurezza informatica, quali password ad alta entropia, chiavi asimmetriche o token di autenticazione, deve fondarsi su un paradigma assoluto di non-intercettabilità. L'utilizzo di generatori di password ospitati su server remoti di terze parti o piattaforme cloud SaaS espone l'utente a rischi sistemici irrimediabili: se le credenziali vengono prodotte sul server di un provider e trasmesse via rete HTTP/TCP, l'intero canale di comunicazione e il logging sui server intermedi rappresentano vulnerabilità esposte ad attacchi Man-in-the-Middle (MitM), decifrazione TLS e data leak. Questo applicativo risolve la problematica implementando l'architettura <strong>100% Client-Side (Zero-Backend)</strong>: la generazione avviene atomicamente e in via esclusiva nella sandbox del browser dell'utente mediante la Web Crypto API nativa, garantendo un isolamento ergetico e la totale conformità con la normativa europea sul trattamento dei dati riservati.
+        </p>
+
+        <!-- ACCORDEON 1: Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> 1. Inquadramento Normativo: GDPR (Art. 25 e 32), NIST SP 800-63B e ISO/IEC 27001</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Sicurezza del Trattamento (Art. 32 GDPR) e Data Protection by Design (Art. 25)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'Articolo 32 del Regolamento Generale sulla Protezione dei Dati (GDPR - Reg. UE 2016/679) impone al Titolare e al Responsabile del Trattamento l'adozione di misure tecniche e organizzative adeguate per garantire un livello di sicurezza commisurato al rischio, comprese la cifratura e la pseudonimizzazione dei dati sensibili. Le credenziali di accesso (username e password) costituiscono la prima linea di difesa delle banche dati sanitarie, giudiziarie e finanziarie. L'Articolo 25 del GDPR codifica il principio della <em>Data Protection by Design e by Default</em>, prescrivendo che le garanzie per la tutela dei dati debbano essere integrate nell'architettura del software fin dalla fase di progettazione concettuale.
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Generare credenziali tramite un applicativo 100% Client-Side incarna in modo matematico l'Articolo 25: applicando l'isolamento della sandbox locale ed eliminando fisicamente qualsiasi canale di trasmissione verso l'esterno (Zero-Upload), il rischio di data breach in transito o a riposo viene azzerato.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Esonero dagli Oneri dell'Articolo 28 GDPR per i Responsabili del Trattamento</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Se un professionista (avvocato, medico, consulente finanziario, sysadmin) utilizza un servizio cloud per produrre password destinate a server aziendali o cartelle cliniche, il fornitore del cloud agisce giuridicamente come Data Processor (Responsabile del Trattamento ex Articolo 28 GDPR). Questo impone la stipula di complessi Data Processing Agreements (DPA), l'esecuzione di verifiche di audit e l'effettuazione di Valutazioni d'Impatto sulla Protezione dei Dati (DPIA) ex Articolo 35. Nel modello Zero-Backend, il fornitore web mette a disposizione esclusivamente un codice eseguibile locale, senza trattare né memorizzare alcun dato personale sui propri server. La qualifica di Data Processor decade in capo al fornitore, esonerando il professionista da qualunque adempimento burocratico o responsabilità di audit esterno.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Linee Guida NIST SP 800-63B e Standard ISO/IEC 27001</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                National Institute of Standards and Technology (NIST), attraverso la pubblicazione speciale <strong>NIST SP 800-63B (Digital Identity Guidelines)</strong>, ha rivoluzionato i criteri di gestione delle credenziali d'accesso:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Privilegiare la Lunghezza all'Inutile Complessità:</strong> Il factor determinante della resistenza contro gli attacchi offline è la lunghezza totale della stringa. La lunghezza minima raccomandata per credenziali ad alta sicurezza è di 16-24 caratteri.</li>
+                <li><strong>Eliminazione delle Scadenze Periodiche Forzate:</strong> Il NIST sconsiglia la rotazione forzata mensile o trimestrale delle password se non in presenza di comprovate compromissioni, poiché spinge gli utenti a creare schemi alfabetici prevedibili.</li>
+                <li><strong>Supporto all'Intero Insieme di Caratteri ASCII:</strong> È obbligatorio consentire l'uso combinato di maiuscole, minuscole, cifre numeriche e tutti i simboli speciali stampabili ($N=94$).</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 2: Meccanica e Formule dell'Entropia -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Computazionale, Entropia di Shannon e Formule Matematiche</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">A) Formula dell'Entropia Crittografica di Shannon ($E$)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                La robustezza matematica di una password contro attacchi di forza bruta (Brute-Force Attack) si misura in bit di entropia dell'informazione $E$. La formula generale dell'entropia teorica, assumendo una distribuzione perfettamente uniforme dei caratteri estratti da un insieme di dimensione $N$ per una lunghezza $L$, è espressa come:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$E = L \times \log_2(N) = L \times \frac{\ln(N)}{\ln(2)}$$
+              </div>
+              <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                Dove:<br>
+                - $L$: Lunghezza totale della password (numero di caratteri scelti).<br>
+                - $N$: Dimensione del pool di caratteri selezionati dall'utente.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">B) Dimensionamento del Pool di Caratteri ($N$)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                A seconda dei moduli attivati nel generatore, l'ampiezza dell'insieme $N$ varia esattamente come segue:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-3 text-xs font-mono">
+                <li>Minuscole (a-z): $N = 26$</li>
+                <li>Maiuscole + Minuscole (A-Z, a-z): $N = 52$</li>
+                <li>Alfanumerico (A-Z, a-z, 0-9): $N = 62$</li>
+                <li>Set Completo ASCII (+ Simboli speciali): $N = 94$</li>
+                <li>Set Completo con Esclusione Caratteri Ambigui (senza i, l, 1, L, o, 0, O): $N = 86$</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">C) Spazio delle Combinazioni ($S$) e Tempo di Decrittazione ($T$)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Lo spazio totale delle possibili combinazioni $S$ equivale a $S = N^L = 2^E$. Il tempo stimato $T$ necessario per forzare la password mediante attacco dizionario o forza bruta offline alla velocità di calcolo $R$ (tentativi al secondo - Hash/sec) è dato da:
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$T = \frac{2^{E-1}}{R}$$
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">D) Differenza tra PRNG (`Math.random()`) e CSPRNG (`crypto.getRandomValues()`)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                I generatori di numeri pseudo-casuali tradizionali forniti nei linguaggi di programmazione, come la funzione <code>Math.random()</code> in JavaScript, impiegano algoritmi deterministici basati su equazioni ricorsive (ad esempio il generatore <em>Mersenne Twister</em>). Un attaccante che riesca ad osservare un numero limitato di output successivi prodotti da <code>Math.random()</code> può ricostruire lo stato interno del generatore e prevedere con matematica certezza tutte le password future prodotte dalla sessione.
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                Una suite professionale richiede obbligatoriamente l'impiego di un <strong>CSPRNG (Cryptographically Secure Pseudo-Random Number Generator)</strong>. La funzione nativa <code>window.crypto.getRandomValues()</code> della SubtleCrypto API interroga direttamente il pool di entropia hardware del kernel del sistema operativo sottostante (es. <code>/dev/urandom</code> su Unix/Linux/macOS o <code>BCryptGenRandom</code> su Windows). Questo genera byte di entropia provata e impredicibile.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 3: Casuistica Reale Svolta -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Confronto dell'Entropia e Scenari Operativi</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 1: Calcolo Comparativo della Resistenza agli Attacchi GPU (Cluster Hashcat)</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Si consideri un attaccante malintenzionato in possesso di un cluster di schede video moderne (GPU rig) capace di elaborare <strong>100 miliardi di tentativi al secondo ($R = 10^{11}\ \text{Hash/sec}$)</strong> su algoritmi veloci come MD5 o NTLM:
+              </p>
+              
+              <!-- TABELLA COMPARATIVA ENTROPIA -->
+              <div class="overflow-x-auto my-3">
+                <table class="w-full text-xs text-left text-gray-700 border border-gray-200 rounded-lg">
+                  <thead class="bg-gray-100 text-gray-900 font-bold uppercase tracking-wider">
+                    <tr>
+                      <th class="p-2 border-b">Profilo Password</th>
+                      <th class="p-2 border-b">Set ($N$) e Lunghezza ($L$)</th>
+                      <th class="p-2 border-b">Entropia ($E$)</th>
+                      <th class="p-2 border-b">Combinazioni ($2^E$)</th>
+                      <th class="p-2 border-b">Tempo di Cracking ($10^{11}$ H/s)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white font-mono">
+                    <tr>
+                      <td class="p-2 font-semibold font-sans">Vulnerabile</td>
+                      <td class="p-2">Alfanumerico ($N=62$), $L=8$</td>
+                      <td class="p-2">39,72 bit</td>
+                      <td class="p-2">$2,18 \times 10^{11}$</td>
+                      <td class="p-2 text-rose-700 font-bold">1,09 Secondi</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-semibold font-sans">Medio</td>
+                      <td class="p-2">Completo ($N=94$), $L=12$</td>
+                      <td class="p-2">78,66 bit</td>
+                      <td class="p-2">$4,41 \times 10^{23}$</td>
+                      <td class="p-2 text-amber-700 font-bold">~70.000 Anni</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-semibold font-sans">Alta Sicurezza</td>
+                      <td class="p-2">Completo ($N=94$), $L=16$</td>
+                      <td class="p-2">104,88 bit</td>
+                      <td class="p-2">$3,32 \times 10^{31}$</td>
+                      <td class="p-2 text-emerald-700 font-bold">~5,26 Miliardi di Anni</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2 font-semibold font-sans">Vault Aziendale</td>
+                      <td class="p-2">Senza Ambigui ($N=86$), $L=24$</td>
+                      <td class="p-2">154,23 bit</td>
+                      <td class="p-2">$2,63 \times 10^{46}$</td>
+                      <td class="p-2 text-emerald-700 font-bold">Incalcolabile (Era Cosmica)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 2: Generazione Batch per Amministratore di Sistema in Ospedale (ISO 27001)</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Un IT Manager di una struttura sanitaria deve configurare 100 nuovi server di database per le cartelle cliniche e account di servizio per le workstation infermieristiche. Se utilizzasse un generatore cloud SaaS online, i firewall aziendali registrerebbero il traffico in chiaro o le connessioni TLS decifrate. Impiegando questa PWA 100% Client-Side, le password a 24 caratteri vengono generate nella RAM volatile del browser desktop e trasferite direttamente nel gestore credenziali interno, sigillando il perimetro di sicurezza senza violare le policy ISO 27001.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Cold Boot Attacks e Mitigazione della Memoria</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>In che modo il codice protegge la memoria da attacchi Cold Boot e profilazione RAM?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Sotto il profilo della sicurezza della memoria, la generazione di password ad alta entropia applica rigorose pratiche operative di <em>Zeroing</em>. I vettori di memoria tipizzati (<code>Uint32Array</code> o <code>Uint8Array</code>) e le variabili temporanee che trattengono i byte prodotti dalla Web Crypto API vengono attivamente sovrascritti con zeri subito dopo la loro serializzazione o trasferimento negli appunti. Questo riduce drasticamente la finestra di vulnerabilità in caso di attacchi condotti tramite profilazione del Garbage Collector o dump fisici della RAM (Cold Boot Attacks).
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché l'uso di `Math.random()` fallisce sistematicamente gli audit di sicurezza penetrativa?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Nei penetration test informatici (Vulnerability Assessment), l'uso di <code>Math.random()</code> per scopi di sicurezza viene classificato come vulnerabilità critica (CWE-330: <em>Use of Insufficiently Random Values</em>). Essendo un algoritmo deterministico, un attaccante esperto può catturare un numero limitato di stringhe prodotte ed eseguire il reverse-engineering del seme (seed) interno del motore di calcolo, arrivando a prevedere con esattezza le credenziali future generate per altri utenti.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Le password generate vengono inviate o memorizzate su server remoti?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Assolutamente no. Nessuna stringa di testo viaggia attraverso la rete. Tutto il processo di creazione avviene esclusivamente nella memoria temporanea del tuo browser tramite la Web Crypto API. Se disconnetti il dispositivo dalla rete internet, il generatore continuerà a funzionare con la medesima efficienza.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Come incide l'esclusione dei caratteri ambigui sull'entropia complessiva?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Escludere gli 8 caratteri ambigui (<code>i, l, 1, L, o, 0, O</code>) riduce l'insieme completo $N$ da 94 a 86 simboli. Questo produce una trascurabile contrazione dell'entropia (per una password di 16 caratteri, si passa da 104,88 bit a 102,82 bit), ma elimina totalmente il rischio di errore umano durante la trascrizione visiva, mantenendo una resistenza d'acciaio contro qualsiasi attacco informatico noto.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div> 
+  </div> 
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/password.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+</body>
+</html>

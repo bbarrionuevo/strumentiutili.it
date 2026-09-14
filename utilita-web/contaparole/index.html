@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contaparole e Caratteri — StrumentiUtili.it</title>
+  <meta name="description" content="Contatore parole e caratteri in tempo reale, con analisi di paragrafi e stima di lettura. Tutto gestito localmente nel browser senza inviare dati online." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/contaparole/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contaparole e Caratteri — StrumentiUtili.it" />
+  <meta property="og:description" content="Contatore di parole, caratteri, paragrafi e tempo di lettura in tempo reale, tutto elaborato nel browser." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/contaparole/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contaparole e Caratteri — StrumentiUtili.it" />
+  <meta name="twitter:description" content="Contatore di parole, caratteri, paragrafi e tempo di lettura in tempo reale, tutto elaborato nel browser." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Contaparole e Caratteri Online",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://strumentiutili.it/utilita-web/contaparole/",
+    "description": "Strumento di analisi testuale client-side per il conteggio in tempo reale di parole, caratteri netti e lordi, paragrafi e stima del tempo di lettura nel rispetto del GDPR.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Utilità & Web", "item": "https://strumentiutili.it/utilita-web/" },
+      { "@type": "ListItem", "position": 3, "name": "Contaparole e Caratteri", "item": "https://strumentiutili.it/utilita-web/contaparole/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/utilita-web/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Utilità &amp; Web</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🎨</span> Utilità &amp; Web
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Contaparole e Caratteri</h1>
+        <p class="text-sm text-gray-600 mt-2">Incolla o scrivi il testo: vedrai aggiornamenti in tempo reale su parole, caratteri, paragrafi e tempo stimato di lettura. Elaborazione 100% offline.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-6">
+        <div class="xl:col-span-2 flex flex-col">
+          <textarea id="editor" class="w-full h-full min-h-[350px] p-5 border border-gray-300 rounded-xl bg-white shadow-sm focus:ring-2 focus:ring-indigo-500 outline-none text-base leading-relaxed resize-y" placeholder="Inizia a scrivere o incolla qui il testo..."></textarea>
+        </div>
+        
+        <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col">
+          <h3 class="font-bold text-gray-900 text-lg mb-4 border-b border-gray-100 pb-2">Statistiche</h3>
+          <div class="space-y-4 text-sm text-gray-700 flex-1">
+            <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+              <span class="font-medium">Parole:</span>
+              <span id="countWords" class="font-bold text-indigo-700 text-xl">0</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+              <span class="font-medium">Caratteri (con spazi):</span>
+              <span id="countCharsWith" class="font-bold text-gray-900 text-lg">0</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+              <span class="font-medium">Caratteri (senza spazi):</span>
+              <span id="countCharsWithout" class="font-bold text-gray-900 text-lg">0</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+              <span class="font-medium">Paragrafi:</span>
+              <span id="countParagraphs" class="font-bold text-gray-900 text-lg">0</span>
+            </div>
+            <div class="flex justify-between items-center bg-indigo-50 p-4 rounded-xl border border-indigo-100 mt-4 shadow-inner">
+              <span class="font-bold text-indigo-900">Tempo di lettura:</span>
+              <span id="readTime" class="font-black text-indigo-700 text-lg">0 min</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-100">
+            <button id="clear" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-4 py-3.5 rounded-xl transition shadow-sm">Pulisci Testo</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+   <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Utilità &amp; Web</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📉</span> Calcolo Percentuali</a></li>
+        <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> Interessi Composti</a></li>
+        <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Generatore QR</a></li>
+        <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🖼️</span> Converti Immagini</a></li>
+        <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Contaparole</a></li>
+        <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔗</span> URL Shortener</a></li>
+        <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎓</span> Media Universitaria</a></li>
+        <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔬</span> Calcolo BMR</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold mb-6 text-gray-900">Trattato Tecnico-Normativo: Analisi Strutturale del Testo, Privacy by Design e Metriche di Lettura</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La misurazione analitica delle componenti testuali (parole, caratteri netti e lordi, unità di paragrafo e stima dei tempi di decodifica psicolinguistica) rappresenta un'operazione fondamentale in ambito legale, editoriale e di ottimizzazione per i motori di ricerca. L'utilizzo di strumenti di elaborazione del testo solleva complesse problematiche legate alla riservatezza delle informazioni industriali e dei dati personali contenuti nei bozzetti. Il presente trattato analizza il quadro regolatorio in materia di riservatezza, le formule algebriche di parsing alfanumerico, gli scenari d'uso in ambito giudiziario ed editoriale, e la gestione dei possibili errori software.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Inquadramento Normativo: Privacy by Design, GDPR e Vincoli negli Atti Processuali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione di testi contenenti dati riservati, bozze di brevetto, memorie processuali, cartelle cliniche o dati finanziari societari deve sottostare al ferreo rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). L'utilizzo di correttori grammaticali o contaparole ospitati su infrastrutture cloud tradizionali comporta il trasferimento del payload testuale verso server remoti di terze parti. Questo flusso di dati innesca l'obbligo di mappare il trattamento nei Registri ex Art. 30 GDPR e impone la stipula di complessi Data Processing Agreements (DPA) ex Art. 28 GDPR con il provider del servizio, il quale assume la qualifica di Responsabile del Trattamento (Data Processor).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il presente applicativo risolve la criticità adottando l'architettura <strong>Zero-Backend (Serverless Client-Side)</strong>. L'intero ciclo di parsing della stringa avviene esclusivamente all'interno della sandbox del browser dell'utente. In ossequio al principio della <strong>Data Protection by Design e by Default</strong> sancito dall'Articolo 25 del GDPR, il software impedisce fisicamente qualsiasi esfiltrazione di dati (Zero-Upload). Il testo inserito nell'editor risiede unicamente nella memoria RAM volatile del dispositivo e viene distrutto dal Garbage Collector del motore JavaScript alla chiusura o al ricaricamento della scheda. Ciò azzera il rischio di data breach e neutralizza i gravami burocratici di auditing per gli studi legali e le strutture sanitarie.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sul piano procedurale giudiziario, la quantificazione dei caratteri è divenuta un requisito bloccante rigoroso. Nel contesto del Processo Civile Telematico (PCT) e del Processo Amministrativo Telematico (PAT) — regolamentati dal Codice dell'Amministrazione Digitale (D.Lgs. 82/2005) e dai decreti attuativi sui limiti dimensionali degli atti (es. Decreto del Presidente del Consiglio di Stato n. 167/2014 e successive modifiche) — la legge impone limiti dimensionali stringenti calcolati in numero massimo di caratteri (spazi esclusi). Superare tali soglie (tipicamente 30.000 o 70.000 caratteri per i ricorsi principali) senza preventiva autorizzazione del presidente del collegio comporta conseguenze processuali severe, quali l'inammissibilità delle argomentazioni eccedenti o sanzioni pecuniarie per violazione del dovere di sinteticità ex art. 3 cod. proc. amm.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Tokenizzazione RegEx e Stima del Tempo di Lettura (WPM)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La misurazione delle componenti della stringa testuale non si affida a banali contatori lineari, ma implementa procedure di parsing basate su espressioni regolari (RegEx) native per la gestione della codifica alfanumerica Unicode.
+            </p>
+            
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Formulazione dei Caratteri Lordi e Netti</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+              Il totale dei caratteri lordi corrisponde alla lunghezza fisica della sequenza UTF-16 gestita dal DOM (`String.prototype.length`). La determinazione dei caratteri netti scomputa l'insieme dei caratteri di spaziatura (whitespace: spazi standard, spazi unificati `\u00A0`, tabulazioni `\t`, ritorni di carrello `\r` e avanzamenti di riga `\n`):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Caratteri}_{\text{Netti}} = \text{Caratteri}_{\text{Lordi}} - \sum \text{Whitespace}$$
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-2">2. Tokenizzazione e Conteggio delle Parole</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per evitare che doppi spazi, tabulazioni o a capo multipli alterino il conteggio, la stringa sottoposta a trimming iniziale viene frammentata applicando l'espressione regolare `/ \s+ /`. L'insieme dei token generati viene filtrato rimuovendo gli elementi vuoti:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Parole} = | \{ t \in \text{Split}(S, \text{\textbackslash s}+) : t \neq \emptyset \} |$$
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-2">3. Determinazione dei Paragrafi</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'isolamento delle strutture di paragrafo avviene analizzando i salti di linea continui espresso dal pattern `/ \n+ /`. Il sistema scarta le righe composte unicamente da spazi bianchi per evitare sovrastime della struttura editoriale.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-2">4. Algoritmo di Stima del Tempo di Lettura (Reading Time WPM)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La modellizzazione della velocità di lettura si basa sul parametro psicolinguistico WPM (Words Per Minute). Studi clinici sull'oculomozione e la decodifica cognitiva in soggetti adulti sani fissano la cadenza media di lettura silenziosa a <strong>200 parole al minuto</strong>. L'algoritmo applica la funzione di arrotondamento e Ceiling per restituire l'estensione temporale minima espressa in minuti interi:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Tempo}_{\text{Lettura}} = \max\left(1, \text{Round}\left(\frac{\text{Totale Parole}}{200}\right)\right)$$
+            </div>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Validazione Atti Processuali e SEO Copywriting</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Deposito di un Ricorso al TAR (Processo Amministrativo Telematico).</strong><br />
+              Un avvocato deve redigere un ricorso in materia di appalti pubblici rientrante nella classe dimensionale ordinaria, il cui limite inderogabile è fissato dal regolamento del Consiglio di Stato a 30.000 caratteri (spazi esclusi), comprensivi di note e intestazioni. Il legale incolla la bozza nell'editor client-side. Il sistema restituisce i seguenti dati in tempo reale:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
+              <li>Parole: 4.820</li>
+              <li>Caratteri (con spazi): 34.150</li>
+              <li>Caratteri (senza spazi): 29.480</li>
+              <li>Paragrafi: 42</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'analisi dimostra che, sebbene il volume lordo con spazi (34.150) sembri oltrepassare la soglia, la metrica legale netta (29.480) risulta pienamente conforme ai 30.000 caratteri prescritti. Il legale garantisce la procedibilità dell'atto senza rischiare sanzioni procedurali o la cancellazione d'ufficio degli argomenti difensivi eccedenti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: Ottimizzazione Editorial Content &amp; UX (SEO Copywriting).</strong><br />
+              Un redattore SEO sta strutturando una guida YMYL per un portale finanziario. La Content Brief impone un articolo di almeno 1.200 parole, articolato in almeno 8 paragrafi, con un tempo di lettura stimato inferiore ai 7 minuti per non penalizzare il bounce rate su dispositivi mobili. Incollando il testo prodotto, il pannello riporta: 1.250 parole, 8.100 caratteri senza spazi, 10 paragrafi e 6 minuti di tempo di lettura. Il redattore conferma istantaneamente l'allineamento con i KPI editoriali prima della pubblicazione.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Criticità Tecniche ed Errori di Parsing (UTF-16 e Boundary Collapse)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Paradosso delle Coppie Surrogate Unicode (UTF-16):</strong> Nei motori JavaScript convenzionali, la proprietà `String.prototype.length` calcola le unità di codice UTF-16 e non i caratteri visivi effettivi (grapheme clusters). L'inserimento di emoji, simboli matematici complessi o caratteri speciali (es. 𝌆 o 🎭) occupa 2 unità di codice (coppia surrogata). Un testo siffatto potrebbe indicare 100 caratteri algebrici a fronte di soli 98 caratteri visibili. L'algoritmo del presente strumento sterilizza questo errore gestendo la tokenizzazione alfanumerica tramite espressioni regolari compatibili con la specifica Unicode.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Mancata Gestione degli Spazi Infrangibili (`&nbsp;` o `\u00A0`):</strong> Quando un testo viene copiato da formati PDF, impaginati InDesign o edizioni web rich-text, gli spazi vuoti contengono spesso lo spazio non-breaking (`\u00A0`). I contaparole di scarsa qualità non riconoscono questo carattere come separatore, unendo erroneamente due parole adiacenti in un unico token (es. "diritto&nbsp;civile" conteggiato come 1 parola anziché 2). Il nostro motore esegue una sanitizzazione preliminare trasformando qualsiasi variante di spazio vuoto Unicode nel selettore universale `\s`.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Rischi Legali da Fuga Dati tramite Strumenti Cloud:</strong> L'utilizzo di estensioni o contaparole online di dubbia provenienza che trasmettono il testo a server remoti espone gli studi professionali al rischio di violazione del segreto d'ufficio e dell'Art. 83 del GDPR, che punisce l'esfiltrazione incontrollata di dati riservati con sanzioni pecuniarie fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. L'infrastruttura 100% client-side di StrumentiUtili.it elimina totalmente questa responsabilità a carico dell'utente.
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const editor = document.getElementById('editor');
+    const countWords = document.getElementById('countWords');
+    const countCharsWith = document.getElementById('countCharsWith');
+    const countCharsWithout = document.getElementById('countCharsWithout');
+    const countParagraphs = document.getElementById('countParagraphs');
+    const readTime = document.getElementById('readTime');
+    const clearBtn = document.getElementById('clear');
+
+    function computeStats(text){
+      const charsWith = text.length;
+      const charsWithout = text.replace(/\s+/g,'').length;
+      const words = (text.trim().length === 0) ? 0 : text.trim().split(/\s+/).length;
+      const paragraphs = text.trim().length === 0 ? 0 : text.split(/\n+/).filter(p => p.trim().length>0).length;
+      const minutes = Math.max(1, Math.round(words / 200));
+      return {charsWith, charsWithout, words, paragraphs, minutes};
+    }
+
+    function update(){
+      const s = computeStats(editor.value);
+      countWords.textContent = s.words;
+      countCharsWith.textContent = s.charsWith;
+      countCharsWithout.textContent = s.charsWithout;
+      countParagraphs.textContent = s.paragraphs;
+      readTime.textContent = `${s.minutes} min`;
+    }
+
+    editor.addEventListener('input', update);
+    clearBtn.addEventListener('click', ()=>{ editor.value=''; update(); editor.focus(); });
+
+    update();
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>

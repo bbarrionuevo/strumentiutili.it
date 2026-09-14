@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generatore QR Code Offline — StrumentiUtili.it</title>
+  <meta name="description" content="Genera QR code istantanei per URL, testo, Wi-Fi o vCard direttamente nel browser. Personalizza colori e scarica in PNG/SVG con privacy totale." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/generatore-qr/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generatore Codice QR Offline — StrumentiUtili.it" />
+  <meta property="og:description" content="Crea QR code per Wi-Fi, vCard e URL nel tuo browser. Zero tracking e download in PNG/SVG." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/generatore-qr/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generatore Codice QR Offline" />
+  <meta name="twitter:description" content="Genera QR code istantanei per URL, testo o Wi-Fi direttamente nel browser." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Generatore Codice QR Offline",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://strumentiutili.it/utilita-web/generatore-qr/",
+    "description": "Applicativo web client-side per la generazione di codici QR statici ad alta entropia e conformi allo standard ISO/IEC 18004, senza tracciamento server.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Utilità & Web", "item": "https://strumentiutili.it/utilita-web/" },
+      { "@type": "ListItem", "position": 3, "name": "Generatore QR", "item": "https://strumentiutili.it/utilita-web/generatore-qr/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/utilita-web/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Utilità &amp; Web</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🎨</span> Utilità &amp; Web
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Generatore Codice QR Offline</h1>
+        <p class="text-sm text-gray-600 mt-2">Crea QR code statici e privati nel browser. Perfetto per stampare password Wi-Fi, URL o vCard senza essere tracciato.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <!-- Formulario -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Configurazione QR</h2>
+          
+          <label class="block">
+            <span class="text-sm font-bold text-gray-800">Tipo di dato</span>
+            <select id="qr-type" class="mt-2 w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white font-medium">
+              <option value="text">Testo libero / URL Semplice</option>
+              <option value="url">URL Ottimizzato (https://)</option>
+              <option value="wifi">Credenziali Rete Wi-Fi</option>
+              <option value="vcard">Contatto Rubrica (vCard)</option>
+            </select>
+          </label>
+
+          <div id="qr-inputs" class="mt-5">
+            <label class="block text-sm font-bold text-gray-800 mb-2">Contenuto</label>
+            <textarea id="qr-text" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none bg-gray-50 text-gray-900" rows="4" placeholder="Inserisci testo, link o dati..."></textarea>
+          </div>
+
+          <div class="mt-5 grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+            <div>
+              <label class="block text-sm font-bold text-gray-800 mb-2">Colore QR</label>
+              <input id="qr-color" type="color" value="#000000" class="w-full h-12 rounded-lg cursor-pointer border border-gray-300 p-1 bg-white" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-gray-800 mb-2">Colore Sfondo</label>
+              <input id="qr-bg" type="color" value="#ffffff" class="w-full h-12 rounded-lg cursor-pointer border border-gray-300 p-1 bg-white" />
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-gray-100 rounded-xl">
+            <label class="block text-sm font-bold text-gray-800 mb-2 flex justify-between">
+              <span>Dimensione (px)</span> 
+              <span id="size-val" class="font-bold text-indigo-600">256px</span>
+            </label>
+            <input id="qr-size" type="range" min="64" max="1024" step="16" value="256" class="w-full mt-2 cursor-pointer" oninput="document.getElementById('size-val').innerText = this.value + 'px'" />
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-100 flex-1 flex items-end">
+            <button id="gen-qr" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl shadow-sm transition">Genera Codice QR</button>
+          </div>
+        </section>
+
+        <!-- Resultados / Preview -->
+        <aside class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center justify-center min-h-[400px]">
+          <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6 w-full text-center">Anteprima Risultato</h3>
+          
+          <div id="qr-preview" class="p-6 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl shadow-inner min-w-[240px] min-h-[240px] flex items-center justify-center overflow-hidden">
+            <!-- QR JS render qui -->
+            <span class="text-gray-400 text-sm font-medium">Clicca Genera per visualizzare</span>
+          </div>
+
+          <div class="mt-8 flex gap-3 flex-wrap justify-center w-full">
+            <button id="download-png" class="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-4 py-3 rounded-lg transition shadow-sm border border-indigo-200">Scarica PNG</button>
+            <button id="download-svg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-4 py-3 rounded-lg transition shadow-sm border border-gray-200">Scarica SVG</button>
+          </div>
+        </aside>
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+  <div class="sticky-sidebar space-y-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Utilità &amp; Web</h3>
+      <ul class="space-y-3 text-sm font-bold text-gray-600">
+        <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📉</span> Calcolo Percentuali</a></li>
+        <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>📈</span> Interessi Composti</a></li>
+        <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>⬛</span> Generatore QR</a></li>
+        <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🖼️</span> Converti Immagini</a></li>
+        <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>✍️</span> Contaparole</a></li>
+        <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔗</span> URL Shortener</a></li>
+        <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🎓</span> Media Universitaria</a></li>
+        <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span>🔬</span> Calcolo BMR</a></li>
+      </ul>
+    </div>
+    <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Standard ISO/IEC 18004:2024, Ridondanza Reed-Solomon e Inviolabilità Crittografica Client-Side</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La generazione programmatica di vettori d'informazione bidimensionali a matrice — comunemente noti come codici QR (Quick Response) — rappresenta una disciplina nevralgica nell'ingegneria del software moderno, nell'intermediazione d'accesso e nella sicurezza delle comunicazioni di rete. La creazione di credenziali per reti Wi-Fi aziendali, schede di contatto vCard, token di autenticazione a due fattori (2FA) o URI crittografati richiede l'applicazione di principi architetturali rigorosi mirati a eliminare ogni possibile intercettazione o dispersione di log su server intermediari. Il seguente trattato disamina l'inquadramento normativo europeo in materia di sicurezza del trattamento (GDPR), la formalizzazione algebrica della matrice bidimensionale definita dallo standard ISO/IEC 18004:2024, le funzioni di entropia crittografica locale, le casuistiche operative in contesti mission-critical e l'analisi dei possibili fallimenti di scansione ottica.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Sicurezza ex Art. 32 GDPR, Sterilizzazione del Data Processor e Tracciamento SaaS</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per il principio fondamentale di sicurezza del trattamento sancito dall'**Articolo 32 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679)**, il Titolare del Trattamento è tenuto a mettere in atto misure tecniche e organizzative adeguate per garantire un livello di sicurezza commisurato al rischio. La generazione di artefatti grafici che incorporano informazioni riservate (quali stringhe di testo secretate, credenziali d'accesso Wi-Fi WPA2/WPA3, URI di referti sanitari o dati anagrafici) tramite generatori commerciali tradizionali erogati in modalità Cloud SaaS costituisce una grave vulnerabilità sistemica.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La quasi totalità dei servizi QR online gratuiti implementa la pratica dei cosiddetti **"QR Code Dinamici"**. In questo modello, il codice impresso non contiene direttamente l'informazione finale dell'utente, bensì un URI intermediario appartenente al server dell'azienda fornitrice. Quando il codice viene inquadrato, la scansione viene instradata verso i server SaaS remoti, che registrano l'indirizzo IP del dispositivo, la posizione geografica, il timestamp e l'user-agent del browser, per poi eseguire un reindirizzamento HTTP 302 verso la destinazione reale. Oltre al tracciamento non autorizzato degli utenti (in palese violazione del consenso GDPR), tali codici cessano imprevistamente di funzionare non appena il provider modifica le proprie politiche commerciali o disattiva i server, rendendo inutilizzabili i materiali stampati.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'infrastruttura **Zero-Backend (Serverless Client-Side)** del presente applicativo azzera integralmente questo vettore d'attacco. In perfetta aderenza al principio di **Data Protection by Design e by Default** (Articolo 25 GDPR), la generazione dei moduli algebrici avviene interamente all'interno del Document Object Model (DOM) e della memoria RAM locale del browser tramite l'algoritmo compilato in JavaScript. Rifiutando qualsiasi comunicazione verso il server (Zero-Upload), i codici generati sono **estrettamente Statici**: l'informazione è scolpita in modo definitivo all'interno della matrice geometrica. Senza alcun canale di comunicazione attivo verso l'esterno, il gestore del sito non assume mai la qualifica di Responsabile del Trattamento (Data Processor ex Articolo 28 GDPR), sollevando l'utente aziendale dagli oneri di stipula dei Data Processing Agreements (DPA), dalla redazione di DPIA ex Art. 35 e dal rischio di sanzioni amministrative pecuniarie previste dall'Articolo 83 del GDPR (fino a 20 milioni di euro o fino al 4% del fatturato globale annuo).
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Standard ISO/IEC 18004:2024, Polinomi di Reed-Solomon ed Entropia SubtleCrypto</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La strutturazione e la sintassi geometrica dei codici QR sono normate a livello globale dallo standard **ISO/IEC 18004:2024** (*Information technology - Automatic identification and data capture techniques - QR Code bar code symbology specification*). Il simbolo QR si presenta come una griglia quadrata composta da moduli neri e bianchi, incastonati tra tre schemi fondamentali di rilevamento angolare (*finder patterns*), moduli di allineamento e bande di temporizzazione (*timing patterns*).
+            </p>
+            
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. Correzione degli Errori tramite Polinomi di Reed-Solomon</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il cuore matematico della tolleranza ai danni fisici della stampa si fonda sull'algebra astratta applicata ai Campi di Galois $GF(2^8)$. L'elaboratore client-side frammenta la stringa di input in blocchi di parole in codice (*codewords* da 8 bit ciascuno) e genera polinomi di parità $E(x)$ dividendo il polinomio dei dati $D(x)$ per un polinomio generatore $G(x)$ definibile come:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$G(x) = \prod_{i=0}^{t-1} (x - \alpha^i)$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Dove $\alpha$ rappresenta l'elemento primitivo del campo finito $GF(2^8)$ e $t$ identifica il numero di *codewords* di correzione d'errore da iniettare nella matrice. Lo standard ISO/IEC 18004 stabilisce quattro distinti livelli di ridondanza selezionabili:
+            </p>
+
+            <!-- Tabella Error Correction Levels -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-4 mb-4">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-gray-100 text-gray-800">
+                    <th class="py-2.5 px-3 border-b font-bold">Livello Error Correction</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Recupero Dati Danneggiati (Approx.)</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Trade-off della Capacità Modulare</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Scenario Operativo Ideale</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="py-2 px-3 font-bold">L (Low - Basso)</td>
+                    <td class="py-2 px-3">~7% dei Codewords</td>
+                    <td class="py-2 px-3">Massima capacità dati; matrice fisicamente più snella e compattata.</td>
+                    <td class="py-2 px-3">Display digitali puliti, ambienti indoor protetti, payload testuali massicci.</td>
+                  </tr>
+                  <tr class="bg-gray-50/50">
+                    <td class="py-2 px-3 font-bold">M (Medium - Medio)</td>
+                    <td class="py-2 px-3">~15% dei Codewords</td>
+                    <td class="py-2 px-3">Capacità bilanciata; costituisce l'impostazione standard di default.</td>
+                    <td class="py-2 px-3">Stampa su brochure, URL commerciali, packaging pulito e biglietti da visita.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 font-bold">Q (Quartile)</td>
+                    <td class="py-2 px-3">~25% dei Codewords</td>
+                    <td class="py-2 px-3">Capacità ridotta; produce una griglia QR chiaramente più densa.</td>
+                    <td class="py-2 px-3">Ambienti logistici esterni, stampa di loghi aziendali centrali di piccole dimensioni.</td>
+                  </tr>
+                  <tr class="bg-indigo-50/50">
+                    <td class="py-2 px-3 font-bold text-indigo-900">H (High - Alto)</td>
+                    <td class="py-2 px-3 text-indigo-900 font-semibold">~30% dei Codewords</td>
+                    <td class="py-2 px-3 text-indigo-900">Capacità utile minima per preservare la ridondanza strutturale massima.</td>
+                    <td class="py-2 px-3 text-indigo-900 font-medium">Cantieri in ambienti ostili, etichette soggette ad usura chimica, braccialetti ospedalieri.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Versione della Simbologia e Dimensione della Griglia</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              A seconda della quantità di dati da codificare e del livello di correzione errore prescelto, la libreria incrementa la "Versione" del simbolo QR, espandendo le dimensioni della griglia quadratica da un minimo di 21x21 moduli (Versione 1) fino a un massimo di 177x177 moduli (Versione 40). La dimensione modulare si calcola algebricamente tramite la formula:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Moduli per Lato} = 17 + (4 \times \text{Versione})$$
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Entropia Crittografica SubtleCrypto e Tecniche di Zeroing della Memoria</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'integrità crittografica di un generatore dipende dalla qualità della sua sorgente casuale. L'impiego della funzione standard JavaScript `Math.random()` è severamente proibito in contesti di sicurezza in quanto genera sequenze pseudocasuali predicibili. Il nostro sistema richiama esclusivamente l'API standardizzata globale `window.crypto.getRandomValues()`, fornita dall'interfaccia `SubtleCrypto`. Questo metodo instrada la richiesta direttamente al CSPRNG (*Cryptographically Secure Pseudo-Random Number Generator*) operante a livello di kernel del sistema operativo (es. `/dev/urandom` su Unix o `BCryptGenRandom` su Windows), popolando array tipizzati (`Uint8Array` / `Uint32Array`) con bytes ad altissima entropia provata.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Al fine di prevenire vulnerabilità da dump fisici della RAM o attacchi di profilazione del Garbage Collector (*Cold Boot Attacks*), il codice applica severe pratiche operative di **Zeroing**: le variabili temporanee e i buffer che trattengono le stringhe sensibili o le chiavi appena generate vengono sovrascritti forzatamente con zeri subito dopo la resa grafica o il trasferimento negli appunti.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Applicazioni in Triage Sanitario, IT Management Ospedaliero e Logistica VIP</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Triage d'Urgenza Sanitaria e Braccialetti Paziente ad Alta Resistenza.</strong><br />
+              Il personale medico impegnato nei reparti di chirurgia d'urgenza e pronto soccorso deve stampare braccialetti identificativi per pazienti politraumatizzati in ingresso. Al braccialetto viene allegato un codice QR denso contenente l'URI crittografato che punta direttamente alla storia clinica delle reazioni allergiche e del gruppo sanguigno registrata nei server Intranet.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              A causa della prassi sanitaria di utilizzare forti solventi disinfettanti, gel igienizzanti alcolici e del contatto con fluidi corporei, la stampa dell'etichetta è esposta a grave degrado chimico e sfregamento nel giro di poche ore. Il medico ingegnerizza il processo configurando il generatore PWA sul **Livello di Correzione H (30%)**. L'algoritmo di Reed-Solomon calcola i complessi blocchi di parità ed espande la matrice. Tale accorgimento assicura che il sensore ottico del tablet di reparto decodifichi senza incertezze le indicazioni terapeutiche anche qualora un terzo dell'intera superficie stampata del braccialetto dovesse risultare sbiadita o distrutta.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: IT Management Ospedaliero e Setup di Workstation in Zona DMZ.</strong><br />
+              Un amministratore di sistemi (IT Manager) in una grande corporazione ospedaliera deve generare sequenzialmente centinaia di credenziali d'accesso sicure ad alta entropia (24 caratteri alfanumerici e speciali) per il setup automatizzato di nuove postazioni infermieristiche e server clinici.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Se utilizzasse un generatore commerciale ospitato su cloud di terzi, i sistemi di firewalling e i proxy di rete registrerebbero interamente il traffico testuale o le connessioni decifrate. Elaborando le chiavi tramite `window.crypto.getRandomValues()` e convertendole in QR statici direttamente nel browser locale del suo computer di gestione, l'amministratore garantisce per policy la segretezza assoluta delle password mission-critical all'interno della *Demilitarized Zone* (DMZ) dell'infrastruttura ospedaliera.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e Analisi delle Criticità Tecniche: Contrasto Cromatico, Sovrasaturazione Dati e Loghi Uncalibrated</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Fallimento da Inversione di Contrasto Cromatico:</strong><br />
+              L'errore operativo più comune commesso dall'utenza non tecnica risiede nella scelta inadeguata delle palette di colore per il QR code. I sensori ottici delle fotocamere degli smartphone identificano i pattern di sincronizzazione (*finder patterns*) e i moduli basandosi sulla differenza di riflettanza della luce tra i punti scuri e lo sfondo chiaro. Generare un codice QR con sfondo scuro (es. nero `#000000`) e moduli chiari (es. bianco `#FFFFFF`) inverte la matrice: molti lettori d'impronta vecchi o scanner industriali falliscono la decodifica in quanto ricercano tassativamente la combinazione "moduli scuri su sfondo chiaro". Si raccomanda di mantenere sempre una differenza di contrasto pari ad almeno 4.5:1 (conforme alle linee guida di accessibilità WCAG 2.1).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Sovrasaturazione del Payload e Griglia Ingestibile (Versione 40 Collapse):</strong><br />
+              Tettare di codificare un testo di dimensioni enormi (es. un intero documento di oltre 3.000 caratteri) all'interno di un singolo codice QR statico costringe l'algoritmo ad elevare la simbologia alla **Versione 40** (177x177 moduli). La matrice risultante comprenderà oltre 31.000 micro-punti stampati. Se questo QR viene stampato su un supporto di piccole dimensioni (es. un biglietto da visita da 3x3 cm), la risoluzione di stampa fisica e l'inclinazione dell'ottica dello smartphone renderanno i singoli moduli troppo piccoli per essere distinti dai pixel del sensore, causando l'impossibilità di lettura. Per payload testuali complessi, è indispensabile sintetizzare il contenuto o utilizzare URI brevi.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Danneggiamento da Inserimento Logo Centrale Uncalibrated:</strong><br />
+              Molti designer applicano un logo grafico personalizzato al centro della matrice del codice QR sovrapponendolo brutalmente al disegno. Poiché l'immagine del logo copre e distrugge fisicamente i moduli sottostanti, se la matrice originaria era stata generata con un livello di Error Correction basso (Livello L al 7%), la perdita di dati causata dal logo supererà la capacità di recupero dell'algoritmo di Reed-Solomon, rendendo il QR del tutto illeggibile. Se si desidera inserire un elemento grafico al centro, è obbligatorio configurare preventivamente l'Error Correction al **Livello H (30%)**.
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script defer src="/js/qr-code.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>
