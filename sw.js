@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v15';
+const CACHE_NAME = 'strumentiutili-v16';
 
 const APP_SHELL = [
   '/',
@@ -8,6 +8,8 @@ const APP_SHELL = [
 
   // --- Silo Fisco & Professioni ---
   '/fisco-professioni/',
+  '/fisco-professioni/generatore-xml-fatturapa/',
+  '/fisco-professioni/modelli-partita-iva/',
   '/fisco-professioni/calcolo-rata-mutuo/',
   '/fisco-professioni/rivalutazione-istat/',
   '/fisco-professioni/partita-iva/',
@@ -21,6 +23,7 @@ const APP_SHELL = [
 
   // --- Silo Cittadino & Tasse ---
   '/cittadino-tasse/',
+  '/cittadino-tasse/modello-rli/',
   '/cittadino-tasse/imposte-acquisto-casa/',
   '/cittadino-tasse/calcolo-bollo-auto/',
   '/cittadino-tasse/passaggio-di-proprieta/',
@@ -38,6 +41,7 @@ const APP_SHELL = [
 
   // --- Silo Lavoro & Contratti ---
   '/lavoro-contratti/',
+  '/lavoro-contratti/lettera-dimissioni-preavviso/',
   '/lavoro-contratti/calcolo-naspi/',
   '/lavoro-contratti/stipendio-netto/',
   '/lavoro-contratti/calcolo-tfr/',
@@ -94,6 +98,10 @@ const APP_SHELL = [
   '/js/storage-helper.js',
   
   // Script delle calcolatrici
+  '/js/rli.js',
+  '/js/fatturapa.js',
+  '/js/modelli-piva.js',
+  '/js/hr-dimissioni.js',
   '/js/mutuo.js',
   '/js/rivalutazione-istat.js',
   '/js/imposte-casa.js',

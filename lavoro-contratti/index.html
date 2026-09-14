@@ -27,8 +27,8 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lavoro &amp; Contratti: Calcolo Stipendio, TFR e NASpI — StrumentiUtili.it</title>
-  <meta name="description" content="Calcolatori per il lavoro: stipendio netto dal RAL, TFR, simulatore disoccupazione NASpI 2026 e ricevute occasionali. Elaborazione 100% offline." />
+  <title>Lavoro &amp; Contratti: Calcolo Stipendio, TFR, Dimissioni e NASpI — StrumentiUtili.it</title>
+  <meta name="description" content="Calcolatori per il lavoro: stipendio netto dal RAL, TFR, lettera dimissioni con preavviso CCNL, simulatore disoccupazione NASpI 2026 e ricevute occasionali. Elaborazione 100% locale." />
   <link rel="canonical" href="https://strumentiutili.it/lavoro-contratti/" />
   
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
@@ -39,7 +39,7 @@
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Lavoro &amp; Contratti: Suite Dipendenti e Collaboratori" />
-  <meta property="og:description" content="Stima la tua busta paga, la disoccupazione NASpI e le ritenute d'acconto. Privacy garantita, zero dati inviati al server." />
+  <meta property="og:description" content="Stima la tua busta paga, il preavviso di dimissioni, la disoccupazione NASpI e le ritenute d'acconto. Privacy garantita, zero dati inviati al server." />
   <meta property="og:url" content="https://strumentiutili.it/lavoro-contratti/" />
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
@@ -82,7 +82,7 @@
     "name": "Hub Lavoro e Contratti 2026",
     "operatingSystem": "All",
     "url": "https://strumentiutili.it/lavoro-contratti/",
-    "description": "Suite di strumenti professionali per il calcolo di stipendio netto, TFR, indennità NASpI e ritenute d'acconto. Architettura 100% Client-Side per la conformità GDPR.",
+    "description": "Suite di strumenti professionali per il calcolo di stipendio netto, TFR, preavviso dimissioni CCNL, indennità NASpI e ritenute d'acconto. Architettura 100% Client-Side per la conformità GDPR.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
   }
   </script>
@@ -133,77 +133,130 @@
           🤝 Lavoro &amp; Contratti
         </h1>
         <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Simulazioni contrattuali, indennità di disoccupazione (NASpI), calcolo di buste paga e liquidazioni (TFR). Tutti i tool operano sul tuo dispositivo, proteggendo la riservatezza delle tue retribuzioni e dei tuoi inquadramenti aziendali.
+          Simulazioni contrattuali, calcolo del preavviso di dimissioni, indennità di disoccupazione (NASpI), buste paga e liquidazioni (TFR). Tutti i tool operano sul tuo dispositivo, proteggendo la riservatezza delle tue retribuzioni e dei tuoi inquadramenti aziendali.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        
-        <!-- NUOVO: NASpI -->
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Simulatore NASpI 2026</h3>
-            <p class="text-sm text-gray-600 mb-4">Calcola la disoccupazione INPS mensile. Calcolo automatico della durata e del decalage (taglio del 3% per Under e Over 55).</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/calcolo-naspi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+      <!-- SEZIONE 1: BUSTA PAGA & RETRIBUZIONE -->
+      <section class="mb-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
+          <span>💶</span> Busta Paga &amp; Retribuzione
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-        <!-- ESISTENTI -->
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <span class="inline-block text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold mb-2">⚡ Aggiornato 2026</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolatore Stipendio Netto</h3>
-            <p class="text-sm text-gray-600 mb-4">Stima il tuo netto mensile e annuale a partire dalla RAL. Include il nuovo Cuneo Fiscale Strutturale e IRPEF 2026.</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/stipendio-netto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+          <!-- Calcolatore Stipendio Netto -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <span class="inline-block text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold mb-2">⚡ Aggiornato 2026</span>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolatore Stipendio Netto</h3>
+              <p class="text-sm text-gray-600 mb-4">Stima il tuo netto mensile e annuale a partire dalla RAL. Include il nuovo Cuneo Fiscale Strutturale e IRPEF 2026.</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/stipendio-netto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
 
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo TFR Liquidazione</h3>
-            <p class="text-sm text-gray-600 mb-4">Simula la liquidazione (TFR) accantonata, scorpora la rivalutazione ISTAT e calcola la tassazione separata TUIR.</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/calcolo-tfr/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+          <!-- Calcolo TFR -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo TFR Liquidazione</h3>
+              <p class="text-sm text-gray-600 mb-4">Simula la liquidazione (TFR) accantonata, scorpora la rivalutazione ISTAT e calcola la tassazione separata TUIR.</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/calcolo-tfr/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
 
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Ricevuta Prestazione Occasionale</h3>
-            <p class="text-sm text-gray-600 mb-4">Emetti la ricevuta con ritenuta d'acconto al 20%. Rileva automaticamente il superamento della soglia dei 5.000€ (INPS).</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+        </div>
+      </section>
 
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo Ritenuta d'Acconto</h3>
-            <p class="text-sm text-gray-600 mb-4">Calcolo semplificato da lordo a netto e da netto a lordo per fatture e compensi autonomi (inclusa Rivalsa INPS).</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/ritenuta-acconto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+      <!-- SEZIONE 2: CESSAZIONE & DISOCCUPAZIONE -->
+      <section class="mb-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
+          <span>📝</span> Cessazione &amp; Disoccupazione
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Giorni Lavorativi tra 2 Date</h3>
-            <p class="text-sm text-gray-600 mb-4">Conteggia i giorni feriali escludendo weekend e le festività italiane fisse o mobili (es. Pasquetta) tramite Algoritmo di Gauss.</p>
-          </div>
-          <div class="mt-auto pt-4 border-t border-gray-50">
-            <a href="/lavoro-contratti/giorni-lavorativi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
-          </div>
-        </article>
+          <!-- NUOVO: Lettera Dimissioni e Preavviso -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Lettera Dimissioni &amp; Preavviso</h3>
+              <p class="text-sm text-gray-600 mb-4">Calcola l'ultimo giorno di lavoro secondo le decorrenze del tuo CCNL e genera la lettera PDF pronta per l'azienda.</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/lettera-dimissioni-preavviso/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
 
-      </div>
+          <!-- Simulatore NASpI -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Simulatore NASpI 2026</h3>
+              <p class="text-sm text-gray-600 mb-4">Calcola la disoccupazione INPS mensile. Calcolo automatico della durata e del decalage (taglio del 3% per Under e Over 55).</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/calcolo-naspi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SEZIONE 3: COLLABORAZIONI & FREELANCE -->
+      <section class="mb-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
+          <span>🤝</span> Collaborazioni &amp; Freelance
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+          <!-- Ricevuta Prestazione Occasionale -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Ricevuta Prestazione Occasionale</h3>
+              <p class="text-sm text-gray-600 mb-4">Emetti la ricevuta con ritenuta d'acconto al 20%. Rileva automaticamente il superamento della soglia dei 5.000€ (INPS).</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
+
+          <!-- Calcolo Ritenuta d'Acconto -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo Ritenuta d'Acconto</h3>
+              <p class="text-sm text-gray-600 mb-4">Calcolo semplificato da lordo a netto e da netto a lordo per fatture e compensi autonomi (inclusa Rivalsa INPS).</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/ritenuta-acconto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- SEZIONE 4: UTILITÀ CALENDARIO -->
+      <section class="mb-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
+          <span>📅</span> Utilità Calendario
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+          <!-- Giorni Lavorativi -->
+          <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Giorni Lavorativi tra 2 Date</h3>
+              <p class="text-sm text-gray-600 mb-4">Conteggia i giorni feriali escludendo weekend e le festività italiane fisse o mobili (es. Pasquetta) tramite Algoritmo di Gauss.</p>
+            </div>
+            <div class="mt-auto pt-4 border-t border-gray-50">
+              <a href="/lavoro-contratti/giorni-lavorativi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
     </main>
 
     <!-- COLONNA DESTRA: Sticky Sidebar (Solo Ad Desktop) -->
@@ -221,10 +274,10 @@
       <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Trattato Tecnico-Normativo: Contrattualistica, Welfare INPS ed Elaborazione Algoritmica delle Paghe</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il nucleo "Lavoro & Contratti" ospita i simulatori nevralgici per la gestione delle retribuzioni dipendenti, per il sostegno al reddito (disoccupazione) e per le collaborazioni atipiche. L'estrapolazione di una busta paga netta, di una prestazione NASpI o di una liquidazione TFR richiede l'attraversamento di un labirinto tributario (TUIR) e previdenziale (INPS). In virtù della sensibilità dei dati retribuitivi trattati, tutti gli applicativi di questa sezione adottano la rigorosa politica <strong>Zero-Backend</strong>, scongiurando qualsiasi caricamento remoto dei dati o profilazione dell'utente.
+          Il nucleo "Lavoro & Contratti" ospita i simulatori nevralgici per la gestione delle retribuzioni dipendenti, per le dimissioni con preavviso, per il sostegno al reddito (disoccupazione) e per le collaborazioni atipiche. L'estrapolazione di una busta paga netta, di una prestazione NASpI o di una liquidazione TFR richiede l'attraversamento di un labirinto tributario (TUIR) e previdenziale (INPS). In virtù della sensibilità dei dati retribuitivi trattati, tutti gli applicativi di questa sezione adottano la rigorosa politica <strong>Zero-Backend</strong>, scongiurando qualsiasi caricamento remoto dei dati o profilazione dell'utente.
         </p>
 
-        <!-- Accordion 1 -->
+        <!-- Accordion 1: Privacy -->
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
           <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
             <span class="text-lg flex items-center gap-2"><span>🛡️</span> L'Infrastruttura Zero-Backend e la Protezione del Dato Salariale</span>
@@ -236,6 +289,22 @@
             </p>
             <p>
               In risposta a questa criticità, e in stretta osservanza dei principi di <strong>Data Protection by Design (Art. 25 GDPR)</strong>, i simulatori di StrumentiUtili.it caricano le costanti INPS e IRPEF 2026 tramite moduli JSON disaccoppiati e processano le funzioni matematiche esclusivamente nella RAM del tuo browser. Qualsiasi calcolo, dalla trattenuta inpsina al décalage della disoccupazione, avviene a livello locale.
+            </p>
+          </div>
+        </details>
+
+        <!-- NUOVO Accordion: Lettera Dimissioni e Preavviso -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📝</span> Lettera di Dimissioni e Calcolo del Preavviso (Art. 2118 c.c.)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La recessione unilaterale dal contratto di lavoro subordinato (Art. 2118 c.c.) impone il rispetto dei termini di preavviso previsti dal rispettivo CCNL (es. Commercio, Metalmeccanici, Turismo). Il nostro algoritmo gestisce la differenza sostanziale tra le regole di decorrenza: per il CCNL Commercio applica lo shift bimensile forzato (decorrenza al 1° o al 16° giorno del mese), mentre per i Metalmeccanici esegue il calcolo lineare dal giorno successivo alla notifica.
+            </p>
+            <p>
+              Il sistema inserisce automaticamente nella lettera PDF il disclaimer legale relativo all'<strong>effetto sospensivo</strong>: periodi di malattia, infortunio o ferie fruiti durante il preavviso slittano la data finale di cessazione. Il file generato in `pdf-lib` viene scaricato e i dati PII (Codice Fiscale, nomi) vengono immediatamente distrutti dalla memoria del browser per la tua privacy.
             </p>
           </div>
         </details>
@@ -256,7 +325,7 @@
           </div>
         </details>
 
-        <!-- Accordion 2 -->
+        <!-- Accordion 2: Stipendio Netto -->
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
           <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
             <span class="text-lg flex items-center gap-2"><span>💶</span> Stipendio Netto e Cuneo Fiscale Strutturale (Legge 207/2024)</span>
@@ -276,7 +345,7 @@
           </div>
         </details>
 
-        <!-- Accordion 3 -->
+        <!-- Accordion 3: TFR -->
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
           <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
             <span class="text-lg flex items-center gap-2"><span>📈</span> Meccanica del Trattamento di Fine Rapporto (TFR) e Tassazione Separata</span>
@@ -292,7 +361,7 @@
           </div>
         </details>
 
-        <!-- Accordion 4 -->
+        <!-- Accordion 4: Prestazioni Occasionali -->
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
           <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
             <span class="text-lg flex items-center gap-2"><span>⚠️</span> Prestazioni Occasionali e Invasione Gestione Separata (Soglia 5.000€)</span>
@@ -308,7 +377,7 @@
           </div>
         </details>
 
-        <!-- Accordion 5 -->
+        <!-- Accordion 5: Giorni Lavorativi -->
         <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
           <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
             <span class="text-lg flex items-center gap-2"><span>📆</span> Giorni Lavorativi, Festività Mobili e Algoritmo di Gauss</span>
@@ -405,7 +474,7 @@
         const timer = setInterval(() => {
           attempts++;
           if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) { clearInterval(timer); console.warn('[AdSense] No se pudo detectar adsbygoogle.'); }
+          if (attempts >= 100) { clearInterval(timer); }
         }, 100);
       }
       if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
