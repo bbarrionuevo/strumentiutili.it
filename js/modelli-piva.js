@@ -183,15 +183,21 @@
         return;
       }
 
+      // 1. VERIFICA FORZATA C.A.P. (Anti-bypass da auto-fill o storage)
+      const capValue = inputCap.value.trim();
+      if (genericCaps && genericCaps.includes(capValue)) {
+        errorCap.classList.remove("hidden");
+        inputCap.classList.add("border-amber-500", "focus:ring-amber-500");
+        alert("Hai inserito un C.A.P. generico vietato dall'Agenzia delle Entrate. Specifica il C.A.P. esatto della via.");
+        return; // Blocca istantaneamente l'esecuzione
+      }
+
+      // 2. VERIFICA IDENTIFICATIVO FISCALE
       if (!errorIdFiscale.classList.contains("hidden")) {
         alert("L'identificativo fiscale inserito non è formalmente valido.");
         return;
       }
-      if (!errorCap.classList.contains("hidden")) {
-        alert("Hai inserito un C.A.P. generico vietato dall'Agenzia delle Entrate.");
-        return;
-      }
-
+      
       if (typeof PDFLib === 'undefined') {
         alert("Libreria PDF-lib non caricata.");
         return;
@@ -296,7 +302,7 @@
         inputIdFiscale.classList.add("border-gray-300", "focus:ring-indigo-500");
 
         alert("Modulo generato e sigillato con successo.\n\nPer garantire la tua Privacy, tutti i dati inseriti sono stati distrutti.");
-        
+
       } catch (err) {
         console.error(err);
         alert("Errore critico durante la generazione del documento.");

@@ -145,6 +145,90 @@
     }, 500);
 
 
+    // --- GESTIONE NUOVI QUADRI C ed E ---
+    const inputCasiParticolari = document.getElementById("rli-casi-particolari");
+    const quadroESection = document.getElementById("quadro-e-section");
+    const btnAddImmobile = document.getElementById("btn-add-immobile");
+    const immobiliContainer = document.getElementById("immobili-container");
+
+    // Validazione Quadro A / Quadro E
+    inputCasiParticolari.addEventListener("change", () => {
+      if (inputCasiParticolari.value === "1" || inputCasiParticolari.value === "3") {
+        quadroESection.classList.remove("hidden");
+        // Rendi obbligatori i campi del quadro E
+        quadroESection.querySelectorAll("input").forEach(i => i.required = true);
+      } else {
+        quadroESection.classList.add("hidden");
+         // Rimuovi obbligatorietà
+        quadroESection.querySelectorAll("input").forEach(i => i.required = false);
+      }
+    });
+
+    // Validazione Quadro C (Ordinamento Catastale)
+    function validateImmobili() {
+      const items = document.querySelectorAll(".immobile-item");
+      let hasPrincipale = false;
+      let formIsValid = true;
+
+      items.forEach(item => {
+        const tipo = item.querySelector(".immobile-tipo").value;
+        const errorMsg = item.querySelector(".error-catastale");
+        
+        if (tipo === "1") {
+          hasPrincipale = true;
+          errorMsg.classList.add("hidden");
+          item.classList.remove("border-red-500", "bg-red-50");
+        } else if ((tipo === "2" || tipo === "3") && !hasPrincipale) {
+          // Errore: pertinenza inserita prima del principale
+          errorMsg.classList.remove("hidden");
+          item.classList.add("border-red-500", "bg-red-50");
+          formIsValid = false;
+        } else {
+          errorMsg.classList.add("hidden");
+          item.classList.remove("border-red-500", "bg-red-50");
+        }
+      });
+      return formIsValid;
+    }
+
+    // Aggiunta dinamica immobili
+    btnAddImmobile.addEventListener("click", () => {
+      const template = `
+        <div class="immobile-item grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-gray-50 border border-gray-200 rounded-lg relative mt-4">
+          <button type="button" class="btn-remove-immobile absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-white border border-red-100 rounded text-xs">&times; Rimuovi</button>
+          <div class="md:col-span-2 mt-4">
+            <label class="block text-xs font-bold text-gray-700 mb-1">Tipologia *</label>
+            <select class="immobile-tipo w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required>
+              <option value="1">1 - Immobile Principale</option>
+              <option value="2" selected>2 - Pertinenza locata congiuntamente</option>
+              <option value="3">3 - Pertinenza locata separatamente</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 mt-4">
+             <label class="block text-xs font-bold text-gray-700 mb-1">Categoria Catastale</label>
+             <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded text-sm uppercase" placeholder="Es. C/2" />
+          </div>
+          <p class="error-catastale hidden md:col-span-4 text-xs text-red-600 font-bold mt-1">⚠️ Errore Catastale: Impossibile inserire una pertinenza senza prima inserire l'immobile principale.</p>
+        </div>`;
+      immobiliContainer.insertAdjacentHTML('beforeend', template);
+      
+      // Bind validazione ai nuovi elementi
+      const newItems = document.querySelectorAll(".immobile-tipo");
+      newItems.forEach(select => select.addEventListener("change", validateImmobili));
+      
+      const removeBtns = document.querySelectorAll(".btn-remove-immobile");
+      removeBtns.forEach(btn => btn.addEventListener("click", function() {
+          this.closest('.immobile-item').remove();
+          validateImmobili();
+      }));
+      
+      validateImmobili();
+    });
+    
+    // Bind validazione all'elemento base iniziale
+    document.querySelector(".immobile-tipo").addEventListener("change", validateImmobili);
+
+
     // 3. MOTORE DI CALCOLO TRIBUTARIO
     function calculateTaxes() {
       if (!regole) return;
@@ -159,31 +243,38 @@
       let impostaBollo = 0;
       let sanzioni = 0;
 
-      // Differenza in giorni per Ravvedimento
       const diffTime = Math.abs(dataOggi - dataStipula);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       const giorniRitardo = Math.max(0, diffDays - regole.rli.giorniScadenzaRegistrazione);
 
       if (!isCedolare) {
-        // Calcolo Registro Ordinario
-        const parametriContratto = regole.rli.codiciContratto[tipoContratto];
-        const baseImponibile = canone * parametriContratto.moltiplicatoreImponibile;
-        let calcoloRegistro = baseImponibile * parametriContratto.aliquota;
+        
+        let calcoloRegistro = 0;
+        
+        // Logica per Fondi Rustici e Terreni (T2 / T3)
+        if(tipoContratto === "T2" || tipoContratto === "T3") {
+            // L'aliquota agevolata è dello 0,5%
+             calcoloRegistro = canone * 0.005;
+        } else {
+             const parametriContratto = regole.rli.codiciContratto[tipoContratto];
+             if(parametriContratto) {
+                const baseImponibile = canone * parametriContratto.moltiplicatoreImponibile;
+                calcoloRegistro = baseImponibile * parametriContratto.aliquota;
+             }
+        }
         
         impostaRegistro = Math.max(regole.rli.impostaRegistroMinima, calcoloRegistro);
 
-        // Calcolo Bollo (16 euro ogni 4 pagine, moltiplicato per copie)
         const pagine = parseInt(inputPagine.value) || 4;
         const copie = parseInt(inputCopie.value) || 2;
         const fogli = Math.ceil(pagine / 4);
         impostaBollo = fogli * regole.rli.impostaBolloFoglio * copie;
 
-        // Ravvedimento su Imposta di Registro
         if (giorniRitardo > 0) {
           const sanzioneBase = impostaRegistro * regole.ravvedimento.sanzioneBase;
           let riduzione = 1;
           
-          if (giorniRitardo <= 14) riduzione = 0.1; // 1/10 per giorno non implementato qui per semplicità UI
+          if (giorniRitardo <= 14) riduzione = 0.1;
           else if (giorniRitardo <= 30) riduzione = 1/10;
           else if (giorniRitardo <= 90) riduzione = 1/9;
           else if (giorniRitardo <= 365) riduzione = 1/8;
@@ -193,11 +284,9 @@
         }
 
       } else {
-        // Cedolare Secca (Registro e Bollo azzerati)
         impostaRegistro = 0;
         impostaBollo = 0;
 
-        // Sanzioni Fisse Cedolare Secca
         if (giorniRitardo > 0) {
           let sanzioneBaseFlat = (giorniRitardo <= 30) ? regole.rli.sanzioniCedolareSecca.ritardoFino30gg : regole.rli.sanzioniCedolareSecca.ritardoOltre30gg;
           
@@ -211,7 +300,6 @@
         }
       }
 
-      // Aggiornamento Interfaccia
       outRegistro.textContent = money(impostaRegistro);
       outBollo.textContent = money(impostaBollo);
       
@@ -232,6 +320,12 @@
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
+      }
+      
+      // Controllo bloccante Ordinamento Catastale
+      if (!validateImmobili()) {
+         alert("Errore Quadro C: Impossibile registrare una pertinenza senza l'immobile principale antecedente.");
+         return;
       }
 
       if (typeof PDFLib === 'undefined') {
