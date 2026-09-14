@@ -255,26 +255,29 @@
 
         y -= 40;
         const ccnlLabel = dataMatrix[inputCcnl.value].label;
-        const bodyText = `Io sottoscritto/a ${nome} ${cognome}, con la presente intendo rassegnare formalmente 
-le mie dimissioni volontarie dal rapporto di lavoro subordinato intercorrente con 
-codesta azienda.
+        
+        // Testo suddiviso in array pulito senza \n problematici
+        const bodyLines = [
+          `Io sottoscritto/a ${nome} ${cognome}, con la presente intendo rassegnare formalmente`,
+          `le mie dimissioni volontarie dal rapporto di lavoro subordinato intercorrente con`,
+          `codesta azienda.`,
+          ``,
+          `Nel rispetto dei termini previsti dal vigente Contratto Collettivo Nazionale di Lavoro`,
+          `applicato (${ccnlLabel}), comunico che il periodo di preavviso dovuto è pari`,
+          `a ${outPreavviso.textContent}.`,
+          ``,
+          `Pertanto, il mio ultimo giorno di lavoro effettivo coinciderà con la data del:`,
+          ``,
+          `${ultimoGiorno}`,
+          ``,
+          `Colgo l'occasione per ringraziare la direzione e i colleghi per l'opportunità`,
+          `professionale e il percorso condiviso.`,
+          `Rendo inoltre noto che provvederò a convalidare telematicamente le presenti`,
+          `dimissioni tramite il portale del Ministero del Lavoro, come previsto dalla normativa.`
+        ];
 
-Nel rispetto dei termini previsti dal vigente Contratto Collettivo Nazionale di Lavoro 
-applicato (${ccnlLabel}), comunico che il periodo di preavviso dovuto è pari 
-a ${outPreavviso.textContent}.
-
-Pertanto, il mio ultimo giorno di lavoro effettivo coinciderà con la data del:
-
-${ultimoGiorno}
-
-Colgo l'occasione per ringraziare la direzione e i colleghi per l'opportunità 
-professionale e il percorso condiviso.
-Rendo inoltre noto che provvederò a convalidare telematicamente le presenti 
-dimissioni tramite il portale del Ministero del Lavoro, come previsto dalla normativa.`;
-
-        const bodyLines = bodyText.split('\n');
         bodyLines.forEach(line => {
-          const fontToUse = line.includes(ultimoGiorno) ? fontBold : fontNormal;
+          const fontToUse = line === ultimoGiorno ? fontBold : fontNormal;
           page.drawText(line, { x: margin, y, size: 11, font: fontToUse, lineHeight: 16 });
           y -= 16;
         });
@@ -319,3 +322,4 @@ dimissioni tramite il portale del Ministero del Lavoro, come previsto dalla norm
 
   });
 })();
+

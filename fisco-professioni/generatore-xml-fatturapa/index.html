@@ -233,7 +233,7 @@
       <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Manuale Fiscale: Evitare gli Scarti del Sistema di Interscambio (SdI)</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il perimetro normativo della fatturazione elettronica in Italia impone il rigoroso rispetto dell'XML Schema Definition (XSD) in versione 1.2.2 emanato dall'Agenzia delle Entrate[cite: 1, 2]. Questo generatore client-side è stato ingegnerizzato appositamente per le Partite IVA, risolvendo alla radice e in via automatizzata i tre errori formali più frequenti che causano la temuta ricevuta di scarto da parte del Sistema di Interscambio (SdI).
+          Il perimetro normativo della fatturazione elettronica in Italia impone il rigoroso rispetto dell'XML Schema Definition (XSD) in versione 1.2.2 emanato dall'Agenzia delle Entrate. Questo generatore client-side è stato ingegnerizzato appositamente per le Partite IVA, risolvendo alla radice e in via automatizzata i tre errori formali più frequenti che causano la temuta ricevuta di scarto da parte del Sistema di Interscambio (SdI).
         </p>
 
         <!-- ACORDEON 1: Error 00424 y 00400 -->
@@ -244,10 +244,10 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
             <p>
-              Una vulnerabilità classica nei software non aggiornati o nella compilazione manuale è la formattazione inesatta del tag <code>&lt;AliquotaIVA&gt;</code>. Il SdI scarta sistematicamente i file in cui l'aliquota è espressa come fattore decimale (ad esempio, <code>0.22</code>)[cite: 1, 2]. L'algoritmo di StrumentiUtili converte, formatta e impone forzatamente l'espressione nominale percentuale tassativa a due cifre decimali (es. <code>22.00</code>), neutralizzando l'<strong>Errore 00424</strong>[cite: 1, 2].
+              Una vulnerabilità classica nei software non aggiornati o nella compilazione manuale è la formattazione inesatta del tag <code>&lt;AliquotaIVA&gt;</code>. Il SdI scarta sistematicamente i file in cui l'aliquota è espressa come fattore decimale (ad esempio, <code>0.22</code>). L'algoritmo di StrumentiUtili converte, formatta e impone forzatamente l'espressione nominale percentuale tassativa a due cifre decimali (es. <code>22.00</code>), neutralizzando l'<strong>Errore 00424</strong>.
             </p>
             <p>
-              Inoltre, qualora la prestazione sia configurata come esente o non imponibile (Aliquota 0%), la business logic del portale interviene attivamente per prevenire l'<strong>Errore 00400</strong>[cite: 1, 2]. L'interfaccia obbligherà l'utente alla valorizzazione del nodo <code>&lt;Natura&gt;</code> (es. N2.2 per i contribuenti in Regime Forfettario o N3.1 per le esportazioni), bloccando la generazione dell'XML in caso di omissione.
+              Inoltre, qualora la prestazione sia configurata come esente o non imponibile (Aliquota 0%), la business logic del portale interviene attivamente per prevenire l'<strong>Errore 00400</strong>. L'interfaccia obbligherà l'utente alla valorizzazione del nodo <code>&lt;Natura&gt;</code> (es. N2.2 per i contribuenti in Regime Forfettario o N3.1 per le esportazioni), bloccando la generazione dell'XML in caso di omissione.
             </p>
           </div>
         </details>
@@ -260,10 +260,10 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
             <p>
-              L'invio di Partite IVA inesistenti, scaturite da banali errori di digitazione, causa lo scarto istantaneo dell'intero documento (<strong>Errore 00305</strong>). Il nostro script integra nativamente la verifica matematica locale tramite la <strong>Formula di Luhn (modulo 10)</strong> sulle 11 cifre inserite. Questa validazione client-side rileva le incongruenze nel check-digit finale, avvisandoti preventivamente prima ancora che il file venga generato[cite: 1, 2].
+              L'invio di Partite IVA inesistenti, scaturite da banali errori di digitazione, causa lo scarto istantaneo dell'intero documento (<strong>Errore 00305</strong>). Il nostro script integra nativamente la verifica matematica locale tramite la <strong>Formula di Luhn (modulo 10)</strong> sulle 11 cifre inserite. Questa validazione client-side rileva le incongruenze nel check-digit finale, avvisandoti preventivamente prima ancora che il file venga generato.
             </p>
             <p>
-              Parallelamente, il sistema sorveglia l'integrità del Codice Destinatario (<strong>Errore 00311</strong>), assicurandosi che la stringa contenga esattamente 7 caratteri (per B2B) o 6 caratteri (per fatturazione P.A.)[cite: 1, 2]. Qualora il cliente sia un privato cittadino sprovvisto di PEC o codice univoco, è concesso forzare il blocco utilizzando l'override convenzionale a sette zeri: <code>0000000</code>[cite: 1, 2].
+              Parallelamente, il sistema sorveglia l'integrità del Codice Destinatario (<strong>Errore 00311</strong>), assicurandosi che la stringa contenga esattamente 7 caratteri (per B2B) o 6 caratteri (per fatturazione P.A.). Qualora il cliente sia un privato cittadino sprovvisto di PEC o codice univoco, è concesso forzare il blocco utilizzando l'override convenzionale a sette zeri: <code>0000000</code>.
             </p>
           </div>
         </details>
@@ -279,7 +279,7 @@
               L'architettura del nodo XML <code>&lt;DatiRiepilogo&gt;</code> (il cosiddetto "Castelletto IVA") rappresenta l'ostacolo computazionale più arduo nella fatturazione elettronica manuale. L'applicativo mappa in tempo reale (tramite funzioni di array mapping JavaScript) tutte le righe di prodotto inserite dall'utente.
             </p>
             <p>
-              Successivamente, aggrega matematicamente l'Imponibile e l'Imposta raggruppandoli per combinazioni univoche di Aliquota IVA e Codice Natura[cite: 1, 2]. Questa ricomposizione esatta previene la discordanza tra il totale delle linee e i riepiloghi finali (<strong>Errori 00419 e 00421</strong>), restituendo un file XML strutturalmente perfetto pronto per essere recepito dall'Agenzia delle Entrate[cite: 1, 2].
+              Successivamente, aggrega matematicamente l'Imponibile e l'Imposta raggruppandoli per combinazioni univoche di Aliquota IVA e Codice Natura. Questa ricomposizione esatta previene la discordanza tra il totale delle linee e i riepiloghi finali (<strong>Errori 00419 e 00421</strong>), restituendo un file XML strutturalmente perfetto pronto per essere recepito dall'Agenzia delle Entrate.
             </p>
           </div>
         </details>
@@ -324,7 +324,7 @@
             </div>
 
             <div class="mt-4 p-3 bg-white border border-gray-200 rounded-lg text-xs text-gray-500 text-center">
-              ⚠️ Attenzione: Se il file viene rifiutato per "Fattura Duplicata" (Errore 00404), significa che hai inserito un Numero Fattura già utilizzato nel corso dell'anno. Modifica il numero progressivo nel nostro tool e riscarica il file[cite: 1, 2].
+              ⚠️ Attenzione: Se il file viene rifiutato per "Fattura Duplicata" (Errore 00404), significa che hai inserito un Numero Fattura già utilizzato nel corso dell'anno. Modifica il numero progressivo nel nostro tool e riscarica il file.
             </div>
 
           </div>
