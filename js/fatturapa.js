@@ -60,12 +60,14 @@
         <div class="line-item bg-gray-50 border border-gray-200 rounded-lg p-4 relative" data-id="${id}">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
             
-            <div class="md:col-span-4">
+            <!-- Ridotto a 3 colonne -->
+            <div class="md:col-span-3">
               <label class="block text-xs font-bold text-gray-700 mb-1">Descrizione *</label>
               <input type="text" class="line-desc w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required placeholder="Consulenza..." />
             </div>
             
-            <div class="md:col-span-1">
+            <!-- Aumentato a 2 colonne per far respirare il numero -->
+            <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Q.tà *</label>
               <input type="number" step="0.01" min="0" value="1" class="line-qty w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
             </div>
