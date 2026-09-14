@@ -245,7 +245,9 @@
       const nome = document.getElementById("input-nome").value.trim();
       const cognome = document.getElementById("input-cognome").value.trim();
       const cf = inputCf ? inputCf.value.trim().toUpperCase() : "";
-      const dataLettera = formatDateIt(new Date(inputDataNotifica.value));
+      // Formateo directo YYYY-MM-DD a DD/MM/YYYY inmune a husos horarios
+      const [yearNotifica, monthNotifica, dayNotifica] = inputDataNotifica.value.split('-');
+      const dataLettera = `${dayNotifica}/${monthNotifica}/${yearNotifica}`;
       const ultimoGiorno = outUltimoGiorno.textContent;
 
       if (!azienda || !nome || !cognome || !cf) {
