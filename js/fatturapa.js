@@ -47,7 +47,7 @@
     }
 
     // 2. GESTIONE DINAMICA LINEE FATTURA
-    function createLineHTML(id) {
+   function createLineHTML(id) {
       // Costruisce le opzioni Natura IVA dinamicamente
       let naturaOptions = `<option value="">- Seleziona -</option>`;
       if (regoleFattura) {
@@ -58,21 +58,24 @@
 
       return `
         <div class="line-item bg-gray-50 border border-gray-200 rounded-lg p-4 relative" data-id="${id}">
-          <button type="button" class="btn-remove-line absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-white border border-red-100 rounded text-xs">&times; Rimuovi</button>
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mt-2">
-            <div class="md:col-span-5">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+            
+            <div class="md:col-span-4">
               <label class="block text-xs font-bold text-gray-700 mb-1">Descrizione *</label>
               <input type="text" class="line-desc w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required placeholder="Consulenza..." />
             </div>
-            <div class="md:col-span-2">
-              <label class="block text-xs font-bold text-gray-700 mb-1">Quantità *</label>
+            
+            <div class="md:col-span-1">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Q.tà *</label>
               <input type="number" step="0.01" min="0" value="1" class="line-qty w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
             </div>
+            
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Prezzo Un. (€) *</label>
               <input type="number" step="0.01" min="0" value="0.00" class="line-price w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
             </div>
-            <div class="md:col-span-1">
+            
+            <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">IVA %</label>
               <select class="line-iva w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500">
                 <option value="22.00">22%</option>
@@ -82,12 +85,20 @@
                 <option value="0.00">0%</option>
               </select>
             </div>
+            
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Natura (se IVA 0%)</label>
               <select class="line-natura w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 bg-gray-100" disabled>
                 ${naturaOptions}
               </select>
             </div>
+            
+            <div class="md:col-span-1 flex justify-end">
+              <button type="button" class="btn-remove-line text-red-500 hover:text-red-700 font-bold px-2 py-1.5 bg-white border border-red-100 rounded text-xs w-full shadow-sm" title="Rimuovi riga">
+                🗑️
+              </button>
+            </div>
+
           </div>
         </div>
       `;
