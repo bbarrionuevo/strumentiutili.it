@@ -9,6 +9,11 @@
     const inputOperazione = document.getElementById("input-operazione");
     const inputNatura = document.getElementById("input-natura-giuridica");
     
+    // Nodi Atto Costitutivo
+    const boxAttoCostitutivo = document.getElementById("box-atto-costitutivo");
+    const inputDataAtto = document.getElementById("input-data-atto");
+    const inputNumeroAtto = document.getElementById("input-numero-atto");
+    
     const inputIdFiscale = document.getElementById("input-id-fiscale");
     const labelIdFiscale = document.getElementById("label-cf-piva");
     const errorIdFiscale = document.getElementById("error-id-fiscale");
@@ -76,10 +81,33 @@
           const ops = regoleModelli.tipo_operazione;
           outOperazione.textContent = `${inputOperazione.value} - ${ops[inputOperazione.value]}`;
       }
+      toggleAttoCostitutivo(); // Chiamata per gestire lo stato iniziale
     }
 
     inputModello.addEventListener("change", toggleFields);
     inputOperazione.addEventListener("change", toggleFields);
+
+    // 2.5 TOGGLE ATTO COSTITUTIVO (Solo per SPA e SRL)
+    function toggleAttoCostitutivo() {
+      const isAA7 = inputModello.value === "AA7";
+      const naturaCode = inputNatura.value;
+      
+      // I codici 1 (SPA) e 2 (SRL) richiedono l'Atto Costitutivo
+      if (isAA7 && (naturaCode === "1" || naturaCode === "2")) {
+        boxAttoCostitutivo.classList.remove("hidden");
+        inputDataAtto.required = true;
+        inputNumeroAtto.required = true;
+      } else {
+        boxAttoCostitutivo.classList.add("hidden");
+        inputDataAtto.required = false;
+        inputNumeroAtto.required = false;
+        // Pulisce i campi se vengono nascosti
+        inputDataAtto.value = "";
+        inputNumeroAtto.value = "";
+      }
+    }
+
+    inputNatura.addEventListener("change", toggleAttoCostitutivo);
 
     // 3. VALIDAZIONI AVANZATE CLIENT-SIDE (API + LUHN)
     function validateLuhn(piva) {
@@ -141,6 +169,8 @@
         cognome: document.getElementById("input-cognome").value,
         ragioneSociale: document.getElementById("input-ragione-sociale").value,
         natura: inputNatura.value,
+        dataAtto: inputDataAtto.value,
+        numeroAtto: inputNumeroAtto.value,
         ateco: document.getElementById("input-ateco").value,
         comune: document.getElementById("input-comune").value,
         provincia: document.getElementById("input-provincia").value,
@@ -161,6 +191,8 @@
         if (state.cognome) document.getElementById("input-cognome").value = state.cognome;
         if (state.ragioneSociale) document.getElementById("input-ragione-sociale").value = state.ragioneSociale;
         if (state.natura) inputNatura.value = state.natura;
+        if (state.dataAtto) inputDataAtto.value = state.dataAtto;
+        if (state.numeroAtto) inputNumeroAtto.value = state.numeroAtto;
         if (state.ateco) document.getElementById("input-ateco").value = state.ateco;
         if (state.comune) document.getElementById("input-comune").value = state.comune;
         if (state.provincia) document.getElementById("input-provincia").value = state.provincia;
@@ -168,6 +200,7 @@
         if (state.cap) inputCap.value = state.cap;
       }
       toggleFields();
+      toggleAttoCostitutivo();
     }
 
     document.querySelectorAll('.su-save-state').forEach(el => {
@@ -197,7 +230,7 @@
         alert("L'identificativo fiscale inserito non è formalmente valido.");
         return;
       }
-      
+
       if (typeof PDFLib === 'undefined') {
         alert("Libreria PDF-lib non caricata.");
         return;
@@ -245,6 +278,13 @@
           firstPage.drawText(`Ragione Sociale: ${document.getElementById("input-ragione-sociale").value}`, { x: 50, y, size: 12, font: fontNormal });
           y -= 20;
           firstPage.drawText(`Natura Giuridica: ${inputNatura.value}`, { x: 50, y, size: 12, font: fontNormal });
+          
+          // Stampa i dati dell'Atto Costitutivo se richiesti e presenti
+          if (!boxAttoCostitutivo.classList.contains("hidden")) {
+            y -= 20;
+            const formattedDate = inputDataAtto.value ? inputDataAtto.value.split('-').reverse().join('/') : '';
+            firstPage.drawText(`Atto Costitutivo - Data: ${formattedDate} | Num/Repertorio: ${inputNumeroAtto.value}`, { x: 50, y, size: 12, font: fontNormal });
+          }
         }
 
         y -= 40;
