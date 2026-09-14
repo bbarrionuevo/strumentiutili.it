@@ -19,6 +19,15 @@
         console.warn('[Storage] Error al cargar la clave:', key);
         return fallback;
       }
+    },
+
+    // NUOVA FUNZIONE: Necessaria per il Garbage Collection (Privacy)
+    remove(key) {
+      try {
+        localStorage.removeItem(`su_${key}`);
+      } catch (e) {
+        console.warn('[Storage] Error al eliminar localmente:', e);
+      }
     }
   };
 

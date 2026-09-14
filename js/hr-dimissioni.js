@@ -306,19 +306,35 @@
         
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-        if (window.AppStorage) { window.AppStorage.remove('hr_dimissioni_state'); }
+        // 1. Pulizia Storage a prova di errore (bypassando storage-helper se fallisce)
+        try {
+          if (window.AppStorage && typeof window.AppStorage.remove === 'function') {
+            window.AppStorage.remove('hr_dimissioni_state');
+          } else {
+            localStorage.removeItem('hr_dimissioni_state');
+          }
+        } catch(e) { 
+          console.warn("Storage warning ignorato", e); 
+        }
         
-        // Pulizia sicura del form (Evita l'errore "Cannot read properties of null")
+        // 2. Pulizia form sicura
         const activeForm = document.getElementById("dimissioni-form") || document.querySelector("form");
         if (activeForm) activeForm.reset();
         
-        inputDataNotifica.valueAsDate = new Date();
+        // 3. Assegnazione data sicura in formato testuale YYYY-MM-DD
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        inputDataNotifica.value = `${yyyy}-${mm}-${dd}`;
+        
         updateLivelli();
         
+        // Messaggio finale di successo
         alert("Documento scaricato con successo.\n\nPer tutelare la tua Privacy, tutti i dati personali inseriti sono stati distrutti dalla memoria del browser.");
 
       } catch (err) {
-        console.error(err);
+        console.error("Errore PDF:", err);
         alert("Si è verificato un errore nella generazione del documento.");
       } finally {
         btnGenerate.disabled = false;
