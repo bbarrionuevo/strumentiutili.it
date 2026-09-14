@@ -81,7 +81,7 @@
     inputModello.addEventListener("change", toggleFields);
     inputOperazione.addEventListener("change", toggleFields);
 
-    // 3. VALIDAZIONI AVANZATE CLIENT-SIDE
+    // 3. VALIDAZIONI AVANZATE CLIENT-SIDE (API + LUHN)
     function validateLuhn(piva) {
       if (!/^[0-9]{11}$/.test(piva)) return false;
       let s = 0;
@@ -91,43 +91,42 @@
         if (c > 9) c = c - 9;
         s += c;
       }
-      let expectedCheckDigit = (10 - (s % 10)) % 10;
-      return expectedCheckDigit === parseInt(piva.charAt(10));
-    }
-
-    function validateCodiceFiscale(cf) {
-      const regexCF = /^(?:[A-Z][AEIOUX][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i;
-      return regexCF.test(cf);
+      return (10 - (s % 10)) % 10 === parseInt(piva.charAt(10));
     }
 
     inputIdFiscale.addEventListener("input", (e) => {
-      const val = e.target.value.toUpperCase();
-      let isValid = true;
-      if (inputModello.value === "AA9") {
-        if (val.length === 16) isValid = validateCodiceFiscale(val);
-      } else {
-        if (val.length === 11) isValid = validateLuhn(val);
+      const val = e.target.value.trim().toUpperCase();
+      const isAA9 = inputModello.value === "AA9";
+      
+      // Reset visivo se il campo è vuoto o incompleto
+      if (val.length === 0 || (isAA9 && val.length < 16) || (!isAA9 && val.length < 11)) {
+        errorIdFiscale.classList.add("hidden");
+        inputIdFiscale.classList.remove("border-red-500", "ring-red-500", "border-green-500", "ring-green-500", "focus:ring-red-500", "focus:ring-green-500");
+        inputIdFiscale.classList.add("border-gray-300", "focus:ring-indigo-500");
+        return;
       }
 
-      if (val.length > 0 && (inputModello.value === "AA9" ? val.length === 16 : val.length === 11)) {
-        if (!isValid) {
-          errorIdFiscale.classList.remove("hidden");
-          inputIdFiscale.classList.add("border-red-500", "focus:ring-red-500");
-        } else {
-          errorIdFiscale.classList.add("hidden");
-          inputIdFiscale.classList.remove("border-red-500", "focus:ring-red-500");
+      let isValid = false;
+
+      if (isAA9) {
+        // Valida Codice Fiscale (inclusa Omocodia) usando l'API globale
+        if (window.validateCodiceFiscale) {
+          isValid = window.validateCodiceFiscale(val).valid;
         }
-      }
-    });
-
-    inputCap.addEventListener("input", (e) => {
-      const val = e.target.value;
-      if (genericCaps.includes(val)) {
-        errorCap.classList.remove("hidden");
-        inputCap.classList.add("border-amber-500", "focus:ring-amber-500");
       } else {
-        errorCap.classList.add("hidden");
-        inputCap.classList.remove("border-amber-500", "focus:ring-amber-500");
+        // Valida Partita IVA con Algoritmo di Luhn
+        isValid = validateLuhn(val);
+      }
+
+      inputIdFiscale.classList.remove("border-gray-300", "focus:ring-indigo-500");
+      if (!isValid) {
+        errorIdFiscale.classList.remove("hidden");
+        inputIdFiscale.classList.remove("border-green-500", "ring-green-500", "focus:ring-green-500");
+        inputIdFiscale.classList.add("border-red-500", "ring-red-500", "focus:ring-red-500");
+      } else {
+        errorIdFiscale.classList.add("hidden");
+        inputIdFiscale.classList.remove("border-red-500", "ring-red-500", "focus:ring-red-500");
+        inputIdFiscale.classList.add("border-green-500", "ring-green-500", "focus:ring-green-500");
       }
     });
 
@@ -264,12 +263,40 @@
         
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-        if (window.AppStorage) window.AppStorage.remove('modelli_piva_state');
-        form.reset();
+        // GARBAGE COLLECTION E PRIVACY PROFONDA
+        try {
+          const pageKey = location.pathname.replace(/[\/\.]/g, '_') || 'home';
+          const globalKey = `form_data_${pageKey}`;
+
+          if (window.AppStorage && typeof window.AppStorage.remove === 'function') {
+            window.AppStorage.remove('modelli_piva_state'); 
+            window.AppStorage.remove(globalKey);   
+          } else {
+            localStorage.removeItem('su_modelli_piva_state');
+            localStorage.removeItem(`su_${globalKey}`);
+          }
+        } catch(e) { 
+          console.warn("Storage warning ignorato", e); 
+        }
+
+        const activeForm = document.getElementById("piva-form") || document.querySelector("form");
+        if (activeForm) {
+          activeForm.reset();
+          
+          // FORZA L'AGGIORNAMENTO IN MEMORIA DI storage-helper.js
+          activeForm.querySelectorAll('input, select, textarea').forEach(el => {
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+          });
+        }
+        
         toggleFields();
         
-        alert("Modulo generato e sigillato con successo.\n\nPer garantire la tua Privacy, tutti i dati inseriti sono stati distrutti.");
+        // Reset manuale colori del campo Identificativo Fiscale
+        inputIdFiscale.classList.remove("border-red-500", "ring-red-500", "border-green-500", "ring-green-500", "focus:ring-red-500", "focus:ring-green-500");
+        inputIdFiscale.classList.add("border-gray-300", "focus:ring-indigo-500");
 
+        alert("Modulo generato e sigillato con successo.\n\nPer garantire la tua Privacy, tutti i dati inseriti sono stati distrutti.");
+        
       } catch (err) {
         console.error(err);
         alert("Errore critico durante la generazione del documento.");
