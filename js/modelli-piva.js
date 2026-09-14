@@ -28,7 +28,7 @@
 
     // 1. CARICAMENTO ASINCRONO JSON
     try {
-      const response = await fetch('/regole-fiscali-2026_3.json');
+      const response = await fetch('/data/regole-fiscali-2026.json');
       if (!response.ok) throw new Error("Errore rete");
       const jsonData = await response.json();
       regoleModelli = jsonData.modelli_partita_iva;
