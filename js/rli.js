@@ -107,6 +107,44 @@
       return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(val);
     }
 
+    
+    // 2.5 VALIDAZIONE IN TEMPO REALE CODICE FISCALE
+    function checkCFVisualFeedback(inputElement) {
+      const val = inputElement.value.trim().toUpperCase();
+      
+      // Reset stili base se vuoto o non ancora di 16 caratteri
+      if (val.length < 16) {
+        inputElement.classList.remove('border-green-500', 'ring-green-500', 'border-red-500', 'ring-red-500');
+        inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500');
+        return;
+      }
+
+      // Se API CodiceFiscale caricata, esegui validazione (inclusa Omocodia)
+      if (window.validateCodiceFiscale) {
+        const check = window.validateCodiceFiscale(val);
+        inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500');
+        
+        if (check.valid) {
+          inputElement.classList.remove('border-red-500', 'ring-red-500');
+          inputElement.classList.add('border-green-500', 'ring-green-500', 'focus:ring-green-500');
+        } else {
+          inputElement.classList.remove('border-green-500', 'ring-green-500');
+          inputElement.classList.add('border-red-500', 'ring-red-500', 'focus:ring-red-500');
+        }
+      }
+    }
+
+    // Aggiungi listeners ai campi
+    inputCfLocatore.addEventListener('input', () => checkCFVisualFeedback(inputCfLocatore));
+    inputCfConduttore.addEventListener('input', () => checkCFVisualFeedback(inputCfConduttore));
+    
+    // Esegui controllo iniziale (utile per il ripristino dati da storage-helper)
+    setTimeout(() => {
+      checkCFVisualFeedback(inputCfLocatore);
+      checkCFVisualFeedback(inputCfConduttore);
+    }, 500);
+
+
     // 3. MOTORE DI CALCOLO TRIBUTARIO
     function calculateTaxes() {
       if (!regole) return;
@@ -260,15 +298,47 @@
         
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-        // GARBAGE COLLECTION E PRIVACY
-        if (window.AppStorage) window.AppStorage.remove('rli_state');
-        form.reset();
-        inputDataStipula.valueAsDate = new Date();
+      // GARBAGE COLLECTION E PRIVACY PROFONDA
+        try {
+          const pageKey = location.pathname.replace(/[\/\.]/g, '_') || 'home';
+          const globalKey = `form_data_${pageKey}`;
+
+          if (window.AppStorage && typeof window.AppStorage.remove === 'function') {
+            window.AppStorage.remove('rli_state'); 
+            window.AppStorage.remove(globalKey);   
+          } else {
+            localStorage.removeItem('su_rli_state');
+            localStorage.removeItem(`su_${globalKey}`);
+          }
+        } catch(e) { 
+          console.warn("Storage warning ignorato", e); 
+        }
+
+        const activeForm = document.getElementById("rli-form") || document.querySelector("form");
+        if (activeForm) {
+          activeForm.reset();
+          
+          // FORZA L'AGGIORNAMENTO IN MEMORIA DI storage-helper.js
+          activeForm.querySelectorAll('input, select, textarea').forEach(el => {
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+          });
+        }
+        
+        // Assegnazione data sicura in formato testuale YYYY-MM-DD
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        inputDataStipula.value = `${yyyy}-${mm}-${dd}`;
+        
+        // Comunica a storage-helper che la data è tornata a quella di oggi
+        inputDataStipula.dispatchEvent(new Event('input', { bubbles: true }));
+
         toggleCedolareVisibilty();
         calculateTaxes();
         
         alert("Prospetto PDF generato con successo.\n\nPer garantire la tua privacy, i Codici Fiscali e gli importi sono stati cancellati dalla memoria locale.");
-
+        
       } catch (err) {
         console.error(err);
         alert("Errore nella generazione del documento.");
