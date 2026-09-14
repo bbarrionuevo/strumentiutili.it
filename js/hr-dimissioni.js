@@ -306,17 +306,22 @@
         
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-        // 1. Pulizia Storage a prova di errore (bypassando storage-helper se fallisce)
+        // 1. Pulizia Storage profonda (Sia manuale che globale di storage-helper)
         try {
+          // Ricrea la chiave automatica esatta usata da storage-helper.js
+          const pageKey = location.pathname.replace(/[\/\.]/g, '_') || 'home';
+          const globalKey = `form_data_${pageKey}`;
+
           if (window.AppStorage && typeof window.AppStorage.remove === 'function') {
-            window.AppStorage.remove('hr_dimissioni_state');
+            window.AppStorage.remove('hr_dimissioni_state'); // Borra el guardado manual
+            window.AppStorage.remove(globalKey);             // Borra el guardado automático
           } else {
-            localStorage.removeItem('hr_dimissioni_state');
+            localStorage.removeItem('su_hr_dimissioni_state');
+            localStorage.removeItem(`su_${globalKey}`);
           }
         } catch(e) { 
           console.warn("Storage warning ignorato", e); 
         }
-        
         // 2. Pulizia form sicura
         const activeForm = document.getElementById("dimissioni-form") || document.querySelector("form");
         if (activeForm) activeForm.reset();
