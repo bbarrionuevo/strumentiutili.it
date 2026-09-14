@@ -127,7 +127,7 @@
       if (!inputRal || !inputDataAnticipata || !checkEsenzione || !boxPenale) return;
 
       const ral = parseFloat(inputRal.value) || 0;
-      const dataAnticipata = inputDataAnticipata.value ? new Date(inputDataAnticipata.value) : null;
+      const dataAnticipata = inputDataAnticipata.value ? new Date(inputDataAnticipata.value + 'T00:00:00') : null;
       const isEsente = checkEsenzione.checked;
 
       boxPenale.classList.add("hidden");
@@ -166,7 +166,8 @@
       
       outPreavviso.textContent = formatPreavviso(rules);
 
-      const dataNotifica = new Date(notificaStr);
+      // En la función calculatePreavviso()
+      const dataNotifica = new Date(notificaStr + 'T00:00:00');
       let dataInizioCalcolo = new Date(dataNotifica);
 
       if (decorrenzaRule === "fissa_bimensile_1_16") {
