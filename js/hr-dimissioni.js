@@ -242,8 +242,9 @@
         const page = pdfDoc.addPage([595.28, 841.89]);
         const { width, height } = page.getSize();
         
-        const fontNormal = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
-        const fontBold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+        // Uso di WinAnsiEncoding per supportare lettere accentate italiane (è, à, ì)
+        const fontNormal = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica, { subset: true });
+        const fontBold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold, { subset: true });
 
         const margin = 50;
         let y = height - margin - 30;
@@ -257,23 +258,23 @@
         y -= 40;
         const ccnlLabel = dataMatrix[inputCcnl.value].label;
         
-        // Testo suddiviso in array pulito senza \n problematici
+        // Testo pulito per evitare errori di encoding
         const bodyLines = [
           `Io sottoscritto/a ${nome} ${cognome}, con la presente intendo rassegnare formalmente`,
           `le mie dimissioni volontarie dal rapporto di lavoro subordinato intercorrente con`,
           `codesta azienda.`,
           ``,
           `Nel rispetto dei termini previsti dal vigente Contratto Collettivo Nazionale di Lavoro`,
-          `applicato (${ccnlLabel}), comunico che il periodo di preavviso dovuto è pari`,
+          `applicato (${ccnlLabel}), comunico che il periodo di preavviso dovuto e' pari`,
           `a ${outPreavviso.textContent}.`,
           ``,
-          `Pertanto, il mio ultimo giorno di lavoro effettivo coinciderà con la data del:`,
+          `Pertanto, il mio ultimo giorno di lavoro effettivo coincidera' con la data del:`,
           ``,
           `${ultimoGiorno}`,
           ``,
-          `Colgo l'occasione per ringraziare la direzione e i colleghi per l'opportunità`,
+          `Colgo l'occasione per ringraziare la direzione e i colleghi per l'opportunita'`,
           `professionale e il percorso condiviso.`,
-          `Rendo inoltre noto che provvederò a convalidare telematicamente le presenti`,
+          `Rendo inoltre noto che provvedero' a convalidare telematicamente le presenti`,
           `dimissioni tramite il portale del Ministero del Lavoro, come previsto dalla normativa.`
         ];
 
