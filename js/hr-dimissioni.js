@@ -307,7 +307,11 @@
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
         if (window.AppStorage) { window.AppStorage.remove('hr_dimissioni_state'); }
-        document.getElementById("dimissioni-form").reset();
+        
+        // Pulizia sicura del form (Evita l'errore "Cannot read properties of null")
+        const activeForm = document.getElementById("dimissioni-form") || document.querySelector("form");
+        if (activeForm) activeForm.reset();
+        
         inputDataNotifica.valueAsDate = new Date();
         updateLivelli();
         
