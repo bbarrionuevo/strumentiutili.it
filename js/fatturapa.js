@@ -23,7 +23,7 @@
 
     // 1. CARICAMENTO ASINCRONO JSON
     try {
-      const response = await fetch('/regole-fiscali-2026_3.json'); // Assicurati che il nome file sia corretto
+      const response = await fetch('/data/regole-fiscali-2026_3.json'); // Assicurati che il nome file sia corretto
       if (!response.ok) throw new Error("Errore rete");
       const jsonData = await response.json();
       regoleFattura = jsonData.fattura_elettronica;
