@@ -287,10 +287,12 @@
         const ccnlLabel = dataMatrix[inputCcnl.value].label;
         
         // Testo con Disclaimer Sospensivo obbligatorio integrato
+        // 1. Texto de la carta formateado (líneas más cortas para evitar cortes)
         const bodyLines = [
-          `Io sottoscritto/a ${nome} ${cognome} (C.F. ${cf}), con la presente intendo rassegnare formalmente`,
-          `le mie dimissioni volontarie dal rapporto di lavoro subordinato intercorrente con`,
-          `codesta azienda.`,
+          `Io sottoscritto/a ${nome} ${cognome}`,
+          `(C.F. ${cf}), con la presente intendo`,
+          `rassegnare formalmente le mie dimissioni volontarie dal rapporto`,
+          `di lavoro subordinato intercorrente con codesta azienda.`,
           ``,
           `Nel rispetto dei termini previsti dal vigente Contratto Collettivo Nazionale di Lavoro`,
           `applicato (${ccnlLabel}), comunico che il periodo di preavviso dovuto e' pari`,
@@ -311,23 +313,29 @@
 
         bodyLines.forEach(line => {
           const fontToUse = line === ultimoGiorno ? fontBold : fontNormal;
-          // Riduciamo la dimensione della nota legale
-          const sizeToUse = line.startsWith(`* Nota Legale`) || line.startsWith(`svolgimento`) || line.startsWith(`infortunio`) ? 9 : 11;
+          const sizeToUse = line.startsWith(`* Nota Legale`) || line.startsWith(`svolgimento`) || line.startsWith(`infortunio`) ? 8.5 : 11;
           page.drawText(line, { x: margin, y, size: sizeToUse, font: fontToUse, lineHeight: 16 });
           y -= 16;
         });
 
-        y -= 50;
+        // 2. Despedida
+        y -= 30;
         page.drawText(`Cordiali saluti,`, { x: margin, y, size: 11, font: fontNormal });
-        y -= 40;
+        
+        // 3. Nombre impreso del trabajador
+        y -= 25;
         page.drawText(`${nome} ${cognome}`, { x: margin, y, size: 11, font: fontBold });
-        y -= 15;
-        page.drawLine({ start: { x: margin, y }, end: { x: margin + 150, y }, thickness: 1 });
-        page.drawText(`(Firma del Lavoratore)`, { x: margin, y: y-15, size: 9, font: fontNormal });
 
-        y -= 60;
-        page.drawLine({ start: { x: width - 200, y: y+15 }, end: { x: width - 50, y: y+15 }, thickness: 1 });
-        page.drawText(`Per ricevuta e accettazione (L'Azienda)`, { x: width - 210, y, size: 9, font: fontNormal });
+        // 4. ESPACIO PARA FIRMA MANUSCRITA (35px de respiro) Y LÍNEAS DE FIRMA
+        y -= 35; 
+        
+        // Firma Trabajatore (Izquierda)
+        page.drawLine({ start: { x: margin, y }, end: { x: margin + 170, y }, thickness: 1 });
+        page.drawText(`(Firma del Lavoratore)`, { x: margin, y: y - 12, size: 9, font: fontNormal });
+
+        // Recepción Empresa (Derecha)
+        page.drawLine({ start: { x: width - 220, y }, end: { x: width - 50, y }, thickness: 1 });
+        page.drawText(`Per ricevuta e accettazione (L'Azienda)`, { x: width - 220, y: y - 12, size: 9, font: fontNormal });
 
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
