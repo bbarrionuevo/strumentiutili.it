@@ -70,11 +70,10 @@
   }
 
   // ==============================================================
-  // EVENTS (Bug del bucle solucionado)
+  // EVENTS
   // ==============================================================
   function bindEvents() {
     dropArea.addEventListener('click', function (event) {
-      // Escudo anti-bucle: ignoramos clics directos sobre el input o el label
       if (event.target && event.target.tagName !== 'INPUT' && event.target.tagName !== 'LABEL') {
         fileInput.click();
       }
@@ -138,17 +137,12 @@
 
     try {
       var ocrResult = {
-    text: '',
-    words: [],
-    numericText: '',
-    confidence: 0,
-    fields: {
-        lordo: null,
-        netto: null,
-        ferie: null,
-        tfr: null
-    }
-};
+        text: '',
+        words: [],
+        numericText: '',
+        confidence: 0,
+        fields: { lordo: null, netto: null, ferie: null, tfr: null }
+      };
 
       if (file.type === 'application/pdf') {
         updateProgress('Lettura del PDF...');
@@ -175,14 +169,8 @@
         }
       }
 
-      console.log('==================================================');
-      console.log('[Busta Paga] TESTO OCR GENERALE:', ocrResult.text);
-      console.log('[Busta Paga] TESTO OCR NUMERICO:', ocrResult.numericText);
-      console.log('==================================================');
-
       updateProgress('Decodifica spaziale delle voci contabili...');
       var extractedData = parseBustaPaga(ocrResult);
-      console.log('[Busta Paga] DATI ESTRATTI:', extractedData);
       
       runEvaluationLogic(extractedData);
 
@@ -196,7 +184,7 @@
   }
 
   // ==============================================================
-  // OCR WORKER (Integrato con data.words e data.numericText)
+  // OCR WORKER
   // ==============================================================
   function runOcrWorker(imageBlobUrl) {
     return new Promise(function (resolve, reject) {
@@ -228,62 +216,19 @@
           finished = true;
           cleanup();
           resolve({
-    text:
-        typeof data.text === 'string'
-            ? data.text
-            : '',
-
-    words:
-        Array.isArray(data.words)
-            ? data.words
-            : [],
-
-    numericText:
-        typeof data.numericText === 'string'
-            ? data.numericText
-            : '',
-
-    confidence:
-        Number(data.confidence) || 0,
-
-    fields:
-        data.fields && typeof data.fields === 'object'
-            ? {
-                lordo:
-                    Number.isFinite(
-                        Number(data.fields.lordo)
-                    )
-                        ? Number(data.fields.lordo)
-                        : null,
-
-                netto:
-                    Number.isFinite(
-                        Number(data.fields.netto)
-                    )
-                        ? Number(data.fields.netto)
-                        : null,
-
-                ferie:
-                    Number.isFinite(
-                        Number(data.fields.ferie)
-                    )
-                        ? Number(data.fields.ferie)
-                        : null,
-
-                tfr:
-                    Number.isFinite(
-                        Number(data.fields.tfr)
-                    )
-                        ? Number(data.fields.tfr)
-                        : null
-            }
-            : {
-                lordo: null,
-                netto: null,
-                ferie: null,
-                tfr: null
-            }
-});
+            text: typeof data.text === 'string' ? data.text : '',
+            words: Array.isArray(data.words) ? data.words : [],
+            numericText: typeof data.numericText === 'string' ? data.numericText : '',
+            confidence: Number(data.confidence) || 0,
+            fields: data.fields && typeof data.fields === 'object'
+              ? {
+                  lordo: Number.isFinite(Number(data.fields.lordo)) ? Number(data.fields.lordo) : null,
+                  netto: Number.isFinite(Number(data.fields.netto)) ? Number(data.fields.netto) : null,
+                  ferie: Number.isFinite(Number(data.fields.ferie)) ? Number(data.fields.ferie) : null,
+                  tfr: Number.isFinite(Number(data.fields.tfr)) ? Number(data.fields.tfr) : null
+                }
+              : { lordo: null, netto: null, ferie: null, tfr: null }
+          });
           return;
         }
         if (data.type === 'error') {
@@ -309,376 +254,113 @@
   }
 
   // ==============================================================
-  // PARSER PRINCIPALE (Usa Logica Spaziale ROI)
+  // PARSER PRINCIPALE (Logica a 3 Livelli)
   // ==============================================================
   function parseBustaPaga(ocrResult) {
+    var result = {
+        lordo: null,
+        netto: null,
+        ferie: null,
+        tfr: null
+    };
 
-```
-var result = {
-    lordo: null,
-    netto: null,
-    ferie: null,
-    tfr: null
-};
-
-if (!ocrResult) {
-    return result;
-}
-
-var text =
-    ocrResult.text || '';
-
-var numericText =
-    ocrResult.numericText || '';
-
-var fields =
-    ocrResult.fields || {};
-
-console.log(
-    '=================================================='
-);
-
-console.log(
-    '[Busta Paga] TESTO OCR GENERALE:',
-    text
-);
-
-console.log(
-    '[Busta Paga] TESTO OCR NUMERICO:',
-    numericText
-);
-
-console.log(
-    '[Busta Paga] CAMPI OCR DIRETTI:',
-    fields
-);
-
-console.log(
-    '=================================================='
-);
-
-/*
- * ============================================================
- * 1. PRIORITÀ ASSOLUTA:
- *    OCR NUMERICO DIRETTO PER CAMPO
- * ============================================================
- */
-
-if (
-    Number.isFinite(
-        Number(fields.lordo)
-    ) &&
-    Number(fields.lordo) > 0
-) {
-    result.lordo =
-        Number(fields.lordo);
-}
-
-if (
-    Number.isFinite(
-        Number(fields.netto)
-    ) &&
-    Number(fields.netto) > 0
-) {
-    result.netto =
-        Number(fields.netto);
-}
-
-if (
-    Number.isFinite(
-        Number(fields.ferie)
-    ) &&
-    Number(fields.ferie) >= 0
-) {
-    result.ferie =
-        Number(fields.ferie);
-}
-
-if (
-    Number.isFinite(
-        Number(fields.tfr)
-    ) &&
-    Number(fields.tfr) > 0
-) {
-    result.tfr =
-        Number(fields.tfr);
-}
-
-/*
- * ============================================================
- * 2. FALLBACK:
- *    CERCHIAMO NEL TESTO GENERALE
- *
- *    MA SOLO QUANDO IL CAMPO DIRETTO MANCA.
- * ============================================================
- */
-
-var combinedText =
-    normalizeOcrText(
-        text
-    );
-
-if (
-    result.lordo === null
-) {
-    result.lordo =
-        findAmountNearLabels(
-            combinedText,
-            [
-                'totale lordo',
-                'lordo totale',
-                'retribuzione lorda',
-                'lordo',
-                'retribuzione'
-            ]
-        );
-}
-
-if (
-    result.netto === null
-) {
-    result.netto =
-        findAmountNearLabels(
-            combinedText,
-            [
-                'netto in busta',
-                'netto da pagare',
-                'netto a pagare',
-                'netto',
-                'pagare'
-            ]
-        );
-}
-
-if (
-    result.ferie === null
-) {
-
-    var ferieMatch =
-        combinedText.match(
-            /(?:ferie|rol)[^0-9]{0,60}(\d{1,3}(?:[.,]\d{1,2})?)/i
-        );
-
-    if (
-        ferieMatch
-    ) {
-
-        result.ferie =
-            parseFloat(
-                ferieMatch[1]
-                    .replace(
-                        ',',
-                        '.'
-                    )
-            );
+    if (!ocrResult) {
+        return result;
     }
-}
-
-if (
-    result.tfr === null
-) {
-    result.tfr =
-        findAmountNearLabels(
-            combinedText,
-            [
-                'fondo tfr',
-                'tfr maturato',
-                'tfr accantonato',
-                'tfr',
-                'fondo'
-            ]
-        );
-}
-
-/*
- * ============================================================
- * 3. SOLO QUI USIAMO L'INFERENZA.
- *
- *    MA NON PER IL NETTO SE ABBIAMO GIÀ UN VALORE DIRETTO.
- * ============================================================
- */
-
-var amounts =
-    extractAllMoneyValues(
-        combinedText
-    );
-
-if (
-    result.lordo === null
-) {
-    result.lordo =
-        inferGrossFromAmounts(
-            amounts,
-            result
-        );
-}
-
-if (
-    result.tfr === null
-) {
-    result.tfr =
-        inferTfrFromAmounts(
-            amounts,
-            result
-        );
-}
-
-/*
- * ATTENZIONE:
- *
- * Non facciamo inferNetFromAmounts()
- * automaticamente.
- *
- * È proprio quel meccanismo che può prendere:
- *
- * 19886,80
- *
- * e considerarlo un netto.
- */
-if (
-    result.netto === null
-) {
-
-    var possibleNet =
-        findAmountNearLabels(
-            combinedText,
-            [
-                'netto in busta',
-                'netto da pagare',
-                'netto a pagare',
-                'netto'
-            ]
-        );
-
-    if (
-        possibleNet !== null
-    ) {
-
-        result.netto =
-            possibleNet;
-    }
-}
-
-/*
- * ============================================================
- * 4. NORMALIZZAZIONE
- * ============================================================
- */
-
-result.lordo =
-    normalizeDetectedMoney(
-        result.lordo
-    );
-
-result.netto =
-    normalizeDetectedMoney(
-        result.netto
-    );
-
-result.ferie =
-    normalizeDetectedNumber(
-        result.ferie
-    );
-
-result.tfr =
-    normalizeDetectedMoney(
-        result.tfr
-    );
-
-/*
- * ============================================================
- * 5. SANITY CHECK
- * ============================================================
- */
-
-if (
-    result.lordo !== null &&
-    result.netto !== null
-) {
-
-    var ratio =
-        result.netto /
-        result.lordo;
 
     /*
-     * Se il netto è impossibile rispetto al lordo,
-     * lo marchiamo come non affidabile.
+     * 1. PRIORITÀ ASSOLUTA: OCR NUMERICO MIRATO
      */
-    if (
-        result.netto <= 0 ||
-        result.lordo <= 0 ||
-        ratio >= 1 ||
-        ratio < 0.30
-    ) {
-
-        console.warn(
-            '[Busta Paga] Netto non affidabile:',
-            result.netto,
-            'lordo:',
-            result.lordo,
-            'ratio:',
-            ratio
-        );
-
-        result.netto =
-            null;
+    if (ocrResult.fields && typeof ocrResult.fields === 'object') {
+        var fields = ocrResult.fields;
+        if (Number.isFinite(Number(fields.lordo)) && Number(fields.lordo) > 0) result.lordo = Number(fields.lordo);
+        if (Number.isFinite(Number(fields.netto)) && Number(fields.netto) > 0) result.netto = Number(fields.netto);
+        if (Number.isFinite(Number(fields.ferie)) && Number(fields.ferie) >= 0) result.ferie = Number(fields.ferie);
+        if (Number.isFinite(Number(fields.tfr)) && Number(fields.tfr) > 0) result.tfr = Number(fields.tfr);
     }
-}
 
-/*
- * TFR.
- */
-if (
-    result.tfr !== null &&
-    result.netto !== null &&
-    nearlyEqual(
-        result.tfr,
-        result.netto
-    )
-) {
+    /*
+     * 2. FALLBACK: SPATIAL OCR GENERALE (Bounding Boxes)
+     */
+    var words = Array.isArray(ocrResult.words) ? ocrResult.words : [];
+    if (words.length > 0) {
+        if (result.lordo === null) result.lordo = findValueSpatially(words, ['lordo', 'retribuzione', 'lardo']);
+        if (result.netto === null) result.netto = findValueSpatially(words, ['netto', 'pagare']);
+        if (result.ferie === null) result.ferie = findValueSpatially(words, ['ferie', 'rol']);
+        if (result.tfr === null) result.tfr = findValueSpatially(words, ['tfr', 'fondo']);
+    }
 
-    result.tfr =
-        null;
-}
+    /*
+     * 3. FALLBACK TESTUALE
+     */
+    var text = ocrResult.text || '';
+    var numericText = ocrResult.numericText || '';
+    var combinedText = normalizeOcrText(text + '\n' + numericText);
 
-/*
- * Range di sicurezza.
- */
-if (
-    result.lordo !== null &&
-    (
-        result.lordo <= 0 ||
-        result.lordo > 1000000
-    )
-) {
-    result.lordo = null;
-}
+    if (result.lordo === null) {
+        result.lordo = findAmountNearLabels(combinedText, ['lordo', 'retribuzione']);
+    }
 
-if (
-    result.netto !== null &&
-    (
-        result.netto <= 0 ||
-        result.netto > 1000000
-    )
-) {
-    result.netto = null;
-}
+    if (result.netto === null) {
+        result.netto = findAmountNearLabels(combinedText, ['netto', 'pagare']);
+    }
 
-if (
-    result.tfr !== null &&
-    (
-        result.tfr <= 0 ||
-        result.tfr > 10000000
-    )
-) {
-    result.tfr = null;
-}
+    if (result.tfr === null) {
+        result.tfr = findAmountNearLabels(combinedText, ['tfr', 'fondo']);
+    }
 
-return result;
-```
+    /*
+     * 4. FERIE (Fallback Regex)
+     */
+    if (result.ferie === null) {
+        var ferieMatch = combinedText.match(/(?:ferie|rol)[^0-9]{0,40}(\d+(?:[.,]\d+)?)/i);
+        if (ferieMatch) {
+            result.ferie = parseItalianMoney(ferieMatch[1]);
+        }
+    }
 
-}
+    /*
+     * 5. INFERENZA (Escluso il Netto per sicurezza)
+     */
+    var amounts = extractAllMoneyValues(combinedText);
+    
+    if (result.lordo === null) {
+        result.lordo = inferGrossFromAmounts(amounts, result);
+    }
+    if (result.tfr === null) {
+        result.tfr = inferTfrFromAmounts(amounts, result);
+    }
 
+    /*
+     * 6. NORMALIZZAZIONE E SANITY CHECK
+     */
+    if (result.lordo !== null) result.lordo = Number(result.lordo);
+    if (result.netto !== null) result.netto = Number(result.netto);
+    if (result.ferie !== null) result.ferie = Number(result.ferie);
+    if (result.tfr !== null) result.tfr = Number(result.tfr);
+
+    if (result.lordo !== null && result.netto !== null) {
+        var ratio = result.netto / result.lordo;
+        if (result.netto <= 0 || result.lordo <= 0 || ratio >= 1 || ratio < 0.25) {
+            console.warn('[Busta Paga] Netto scartato per valore non plausibile:', result.netto, 'lordo:', result.lordo, 'ratio:', ratio);
+            result.netto = null;
+        }
+    }
+
+    if (result.tfr !== null && result.netto !== null) {
+        if (Math.abs(result.tfr - result.netto) < 0.01) {
+            result.tfr = null;
+        }
+    }
+
+    if (result.lordo !== null && (!Number.isFinite(result.lordo) || result.lordo <= 0 || result.lordo > 1000000)) result.lordo = null;
+    if (result.netto !== null && (!Number.isFinite(result.netto) || result.netto <= 0 || result.netto > 1000000)) result.netto = null;
+    if (result.ferie !== null && (!Number.isFinite(result.ferie) || result.ferie < 0)) result.ferie = null;
+    if (result.tfr !== null && (!Number.isFinite(result.tfr) || result.tfr < 0 || result.tfr > 10000000)) result.tfr = null;
+
+    console.log('[Busta Paga] DATI ESTRATTI:', result);
+    return result;
+  }
 
   // ==============================================================
   // HELPER: RICERCA SPAZIALE GEOMETRICA (ROI)
@@ -688,8 +370,6 @@ return result;
 
     for (var j = 0; j < labels.length; j++) {
       var label = labels[j].toLowerCase();
-      
-      // Trova la parola etichetta
       var targetIdx = words.findIndex(function(w) {
         return w.text.toLowerCase().indexOf(label) !== -1;
       });
@@ -698,12 +378,10 @@ return result;
         var targetWord = words[targetIdx];
         var toleranceY = 25; // Tolleranza verticale in pixel
 
-        // Cerca candidati a destra dell'etichetta (x0 maggiore, y0 simile)
         var candidates = words.filter(function(w) {
           return w.x0 > targetWord.x1 && Math.abs(w.y0 - targetWord.y0) <= toleranceY;
         });
 
-        // Ordina da sinistra a destra
         candidates.sort(function(a, b) { return a.x0 - b.x0; });
 
         for (var i = 0; i < candidates.length; i++) {
@@ -788,27 +466,6 @@ return result;
     return candidates[0];
   }
 
-  function inferNetFromAmounts(amounts, current) {
-    if (!amounts || !amounts.length) return null;
-    var gross = current.lordo;
-    var candidates = amounts.filter(function (amount) {
-      if (amount <= 100) return false;
-      if (current.tfr !== null && nearlyEqual(amount, current.tfr)) return false;
-      if (gross !== null) {
-        if (amount >= gross) return false;
-        var ratio = amount / gross;
-        if (ratio < 0.30 || ratio > 0.99) return false;
-      }
-      return true;
-    });
-    if (!candidates.length) return null;
-    candidates.sort(function (a, b) {
-      if (gross !== null) return Math.abs(gross - b) - Math.abs(gross - a);
-      return b - a;
-    });
-    return candidates[0];
-  }
-
   function inferTfrFromAmounts(amounts, current) {
     if (!amounts || !amounts.length) return null;
     var candidates = amounts.filter(function (amount) {
@@ -857,7 +514,7 @@ return result;
       if (alertsContainer) {
         alertsContainer.innerHTML = createAlert(
           'orange', '⚠️', 'Lettura fallita.',
-          'L algoritmo non è riuscito a rilevare le voci. Assicurati che la foto sia nitida.'
+          'L algoritmo non è riuscito a rilevare le voci. Assicurati che la foto sia nitida e che le etichette siano leggibili.'
         );
       }
       return;
@@ -874,7 +531,7 @@ return result;
         if (alertsContainer) {
           alertsContainer.innerHTML += createAlert(
             'green', '✅', 'Sgravio Cuneo Fiscale Rilevato:',
-            'In base al reddito lordo, rientri nel taglio del cuneo fiscale.'
+            'In base al reddito lordo mensile rilevato, potresti rientrare nel taglio del cuneo fiscale.'
           );
         }
       }
@@ -884,7 +541,7 @@ return result;
     if (detectedCount < 4 && alertsContainer) {
       alertsContainer.innerHTML += createAlert(
         'orange', '⚠️', 'Lettura parziale:',
-        'Controlla i valori evidenziati prima di utilizzarli.'
+        'Alcuni dati potrebbero non essere stati riconosciuti per la qualità del documento. Controlla i valori evidenziati prima di utilizzarli.'
       );
     }
   }
