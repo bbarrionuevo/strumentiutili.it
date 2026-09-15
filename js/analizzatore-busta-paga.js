@@ -5,6 +5,7 @@
   var resLordo, resNetto, resFerie, resTfr;
   var ALIQUOTA_INPS = 0.0919;
   var SOGLIA_CUNEO = 40000;
+  var SOGLIA_CONFIDENZA = 85;
 
   document.addEventListener('DOMContentLoaded', function () {
     cacheDom();
@@ -117,15 +118,24 @@
   // ==============================================================
   function parseBustaPaga(ocrResult) {
     var result = { lordo: null, netto: null, ferie: null, tfr: null };
+    // Confidenza OCR per campo: null = sconosciuta (valore da fallback testuale)
+    var confidence = { lordo: null, netto: null, ferie: null, tfr: null };
     var words = ocrResult.words;
     var text = String(ocrResult.text).toLowerCase();
 
+    function assign(field, hit) {
+      if (hit) {
+        result[field] = hit.value;
+        confidence[field] = hit.confidence;
+      }
+    }
+
     // 1. RICERCA SPAZIALE (Bounding Boxes)
     if (words.length > 0) {
-        result.lordo = findValueSpatially(words, ['lordo', 'retribuzione']);
-        result.netto = findValueSpatially(words, ['netto', 'busta', 'pagare']);
-        result.ferie = findValueSpatially(words, ['ferie', 'residue', 'rol']);
-        result.tfr = findValueSpatially(words, ['tfr', 'fondo', 'accantonato']);
+        assign('lordo', findValueSpatially(words, ['lordo', 'retribuzione']));
+        assign('netto', findValueSpatially(words, ['netto', 'busta', 'pagare']));
+        assign('ferie', findValueSpatially(words, ['ferie', 'residue', 'rol']));
+        assign('tfr', findValueSpatially(words, ['tfr', 'fondo', 'accantonato']));
     }
 
     // 2. FALLBACK TESTUALE
@@ -144,13 +154,16 @@
         if (ratio >= 1 || ratio < 0.25) {
             console.warn('[Busta Paga] Netto scartato per ratio impossibile:', result.netto);
             result.netto = null;
+            confidence.netto = null;
         }
     }
 
     if (result.tfr !== null && result.netto !== null && Math.abs(result.tfr - result.netto) < 0.01) {
         result.tfr = null; // Evita duplicati ottici
+        confidence.tfr = null;
     }
 
+    result.confidence = confidence;
     return result;
   }
 
@@ -167,7 +180,7 @@
 
         for (var i = 0; i < candidates.length; i++) {
           var val = parseItalianMoney(candidates[i].text);
-          if (val !== null) return val;
+          if (val !== null) return { value: val, confidence: candidates[i].confidence };
         }
       }
     }
@@ -198,9 +211,25 @@
     return Number.isFinite(num) ? Number(num.toFixed(2)) : null;
   }
 
+  // Stili inline: tailwind.config.js analizza solo i file .html,
+  // quindi le classi aggiunte via JS verrebbero eliminate dal purge.
+  function markConfidence(el, conf) {
+    if (!el) return false;
+    el.style.boxShadow = '';
+    el.style.backgroundColor = '';
+    el.removeAttribute('title');
+    if (conf !== null && conf < SOGLIA_CONFIDENZA) {
+      el.style.boxShadow = '0 0 0 2px #f59e0b';
+      el.style.backgroundColor = '#fffbeb';
+      el.title = 'Lettura ottica incerta (' + Math.round(conf) + '%). Verifica il valore.';
+      return true;
+    }
+    return false;
+  }
+
   function renderResults(data) {
     resultsDashboard.classList.remove('hidden');
-    
+
     var format = val => val !== null ? '€ ' + val.toFixed(2).replace('.', ',') : 'N/D';
     var formatH = val => val !== null ? val.toFixed(2).replace('.', ',') + ' Ore' : 'N/D';
 
@@ -209,10 +238,19 @@
     resFerie.textContent = formatH(data.ferie);
     resTfr.textContent = format(data.tfr);
 
+    var conf = data.confidence;
+    var incerti = 0;
+    if (markConfidence(resLordo, conf.lordo)) incerti++;
+    if (markConfidence(resNetto, conf.netto)) incerti++;
+    if (markConfidence(resFerie, conf.ferie)) incerti++;
+    if (markConfidence(resTfr, conf.tfr)) incerti++;
+
     var detectedCount = (data.lordo ? 1 : 0) + (data.netto ? 1 : 0) + (data.ferie ? 1 : 0) + (data.tfr ? 1 : 0);
-    
+
     if (detectedCount < 4) {
       alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">⚠️ <b>Lettura parziale:</b> Alcuni dati non sono stati riconosciuti per la qualità dell\'immagine. <b>Puoi cliccare sui numeri per correggerli manualmente.</b></div>';
+    } else if (incerti > 0) {
+      alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">🔍 <b>Valori da verificare:</b> Il riconoscimento ottico non è certo dei campi evidenziati in giallo (caratteri corsivi o immagine a bassa risoluzione). <b>Confrontali con il documento originale e correggili cliccandoci sopra.</b></div>';
     } else if (data.lordo !== null && (data.lordo * 13) < SOGLIA_CUNEO) {
       alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-emerald-50 text-emerald-800 border-emerald-200">✅ <b>Sgravio Cuneo Fiscale:</b> Potresti rientrare nel taglio del cuneo fiscale.</div>';
     }
