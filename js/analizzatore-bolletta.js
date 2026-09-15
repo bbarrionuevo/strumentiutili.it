@@ -86,13 +86,15 @@
         if (rawText.length < 50) {
           updateProgress('PDF scansionato rilevato. Preparazione OCR...');
           const imageBlobUrl = await renderPdfToImageBlob(file);
-          rawText = await runOcrWorker(imageBlobUrl);
-          URL.revokeObjectURL(imageBlobUrl); 
+          const ocrResult = await runOcrWorker(imageBlobUrl);
+          rawText = ocrResult.text;
+          URL.revokeObjectURL(imageBlobUrl);
         }
       } else {
         // TENTATIVO 2: Immagine diretta -> Worker OCR
         const imageBlobUrl = URL.createObjectURL(file);
-        rawText = await runOcrWorker(imageBlobUrl);
+        const ocrResult = await runOcrWorker(imageBlobUrl);
+        rawText = ocrResult.text;
         URL.revokeObjectURL(imageBlobUrl);
       }
 
@@ -143,7 +145,7 @@
   // --- ESECUZIONE WORKER OCR ---
   function runOcrWorker(imageBlobUrl) {
     return new Promise((resolve, reject) => {
-      const worker = new Worker('/js/workers/ocr-worker.js'); 
+      const worker = new Worker('/js/workers/ocr-worker.js');
       worker.onmessage = function(e) {
         const data = e.data;
         if (data.type === 'progress') {
@@ -151,8 +153,10 @@
         } else if (data.type === 'status') {
           updateProgress(data.msg);
         } else if (data.type === 'success') {
-          resolve(data.text);
+          worker.terminate();
+          resolve({ text: data.text || '', words: data.words || [], numericText: data.numericText || '' });
         } else if (data.type === 'error') {
+          worker.terminate();
           reject(new Error(data.msg));
         }
       };

@@ -76,6 +76,7 @@
       URL.revokeObjectURL(imageUrl);
 
       console.log('[Busta Paga] TESTO ESTRATTO:\n', ocrResult.text);
+      console.log('[Busta Paga] PASSATA NUMERICA:\n', ocrResult.numericText);
       var data = parseBustaPaga(ocrResult);
       renderResults(data);
 
@@ -96,7 +97,7 @@
         if (d.type === 'status') updateProgress(d.msg);
         if (d.type === 'success') {
           worker.terminate();
-          resolve({ text: d.text || '', words: d.words || [] });
+          resolve({ text: d.text || '', words: d.words || [], numericText: d.numericText || '' });
         }
         if (d.type === 'error') {
           worker.terminate();
