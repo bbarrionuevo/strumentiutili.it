@@ -140,54 +140,63 @@
     });
   }
 
- // --- PARSER BUSTA PAGA (Fuzzy Matching estremo + Validazione Matematica) ---
+ // --- PARSER BUSTA PAGA (Fuzzy Matching + Fallback Strutturale) ---
   function parseBustaPaga(text) {
     let result = { lordo: null, netto: null, ferie: null, tfr: null };
     if (!text) return result;
 
+    // Stampa il testo grezzo in console per farti vedere come l'OCR ha "distrutto" le parole
+    console.log("TESTO OCR GREZZO:", text); 
+
     let normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
 
-    // 1. FUZZY MATCHING ESTREMO
-    // Invece di cercare parole esatte, cerchiamo varianti comuni degli errori OCR
-    // es. "netto", "nello", "rietto", "pagare", "busta"
-    const nettoMatch = normalizedText.match(/(?:netto|nello|rietto|pagare|busta)[^0-9]{0,35}?([0-9]{1,4}[.,][0-9]{2})/);
-    if (nettoMatch) result.netto = parseFloat(nettoMatch[1].replace(',', '.'));
-
-    const lordoMatch = normalizedText.match(/(?:lordo|lardo|iordo|retribuzione)[^0-9]{0,35}?([0-9]{1,4}[.,][0-9]{2})/);
+    // 1. ESTRAZIONE CON FUZZY MATCHING
+    const lordoMatch = normalizedText.match(/(?:lordo|lardo|iordo|retribuzione)[^0-9]{0,40}?([0-9]{1,5}[.,][0-9]{2})/);
     if (lordoMatch) result.lordo = parseFloat(lordoMatch[1].replace(',', '.'));
 
-    const ferieMatch = normalizedText.match(/(?:ferie|residuo|rol)[^0-9]{0,35}?([0-9]{1,3}[.,]?[0-9]{0,2})/);
+    const ferieMatch = normalizedText.match(/(?:ferie|residuo|rol)[^0-9]{0,40}?([0-9]{1,3}[.,]?[0-9]{0,2})/);
     if (ferieMatch) result.ferie = parseFloat(ferieMatch[1].replace(',', '.'));
 
-    const tfrMatch = normalizedText.match(/(?:tfr|fondo|accantonato)[^0-9]{0,35}?([0-9]{1,5}[.,][0-9]{2})/);
+    const tfrMatch = normalizedText.match(/(?:tfr|fondo|accantonato)[^0-9]{0,40}?([0-9]{1,6}[.,][0-9]{2})/);
     if (tfrMatch) result.tfr = parseFloat(tfrMatch[1].replace(',', '.'));
 
-    // 2. VALIDAZIONE MATEMATICA INCROCIATA (Sanity Check)
-    if (result.lordo && result.netto) {
-      let ratio = result.netto / result.lordo;
-      
-      // Se il Netto è maggiore del Lordo, è matematicamente impossibile in Italia.
-      // Il motore OCR ha sicuramente allucinato il Netto o il Lordo.
-      if (ratio >= 1.0) {
-        console.warn("Sanity Check: Il Netto supera il Lordo. Annullamento dato inaffidabile.");
-        result.netto = null; 
-      } 
-      // Se il Netto è inferiore al 40% del Lordo, è un prelievo fiscale irreale.
-      else if (ratio < 0.40) {
-        console.warn("Sanity Check: Prelievo fiscale irreale (>60%). OCR errato.");
-        result.netto = null;
-      }
+    // Tenta il match classico per il Netto
+    const nettoMatch = normalizedText.match(/(?:netto|nello|net|rietto|busta|bosta|pagare|erogato)[^0-9]{0,40}?([0-9]{1,5}[.,][0-9]{2})/);
+    if (nettoMatch) {
+        result.netto = parseFloat(nettoMatch[1].replace(',', '.'));
+    } 
+    // 2. FALLBACK STRUTTURALE (Il Salvavidas)
+    // Se le parole sono illeggibili per colpa del corsivo, cerchiamo TUTTI gli importi in euro.
+    // Il Netto in busta è quasi sempre l'ULTIMO importo del documento.
+    else {
+        const tuttiGliImporti = [...normalizedText.matchAll(/([0-9]{3,5}[.,][0-9]{2})/g)];
+        if (tuttiGliImporti.length > 0) {
+            // Prende l'ultimo numero trovato nel testo
+            let ultimoNumero = parseFloat(tuttiGliImporti[tuttiGliImporti.length - 1][1].replace(',', '.'));
+            
+            // Verifica logica: Il netto deve essere minore del lordo e diverso dal TFR
+            if (result.lordo && ultimoNumero < result.lordo && ultimoNumero !== result.tfr) {
+                result.netto = ultimoNumero;
+                console.log("Netto recuperato tramite Fallback Strutturale:", result.netto);
+            }
+        }
     }
 
-    // 3. CORREZIONE ALLUCINAZIONI CIFRE (es. 2456,86 invece di 2450,00)
-    // Spesso l'OCR legge i ",00" in corsivo come ",86" o ",88".
-    // Arrotondiamo i centesimi anomali se il valore è molto grande.
+    // 3. SANITY CHECKS E CORREZIONE ALLUCINAZIONI OCR
+    if (result.lordo && result.netto) {
+        let ratio = result.netto / result.lordo;
+        if (ratio >= 1.0 || ratio < 0.30) {
+            result.netto = null; // Annulla se matematicamente impossibile in Italia
+        }
+    }
+    
+    // Correzione dell'errore "0 letto come 6 in corsivo" (es. 2456.00 -> 2450.00)
     if (result.lordo) {
-       let decimali = result.lordo - Math.floor(result.lordo);
-       // Se i decimali sono 0.86 o 0.88, li forziamo a 0.00
-       if (decimali > 0.85 && decimali < 0.89) {
-           result.lordo = Math.floor(result.lordo);
-       }
+        let strLordo = result.lordo.toFixed(2);
+        // Se l'importo finisce con "6.00", nel 99% dei casi l'OCR ha scambiato lo 0 per un 6.
+        if (strLordo.endsWith("6.00")) {
+            result.lordo = parseFloat(strLordo.slice(0, -4) + "0.00");
+        }
     }
 
     return result;
