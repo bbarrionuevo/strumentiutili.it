@@ -1,17 +1,14 @@
 /*
  * js/workers/ocr-worker.js
- *
+ * 
  * OCR client-side per buste paga italiane.
- *
- * Principi:
- * * Tesseract.js 5
- * * nessun langPath manuale
- * * nessun corePath manuale
- * * niente sharpen aggressivo
- * * niente binarizzazione
- * * upscale leggero solo quando necessario
- * * doppio PSM: 6 e 11
- * * selezione automatica del risultato migliore
+ * Tesseract.js 5
+ * niente langPath manuale
+ * niente corePath manuale
+ * nessun filtro aggressivo
+ * upscale leggero solo se necessario
+ * doppio PSM: 6 e 11
+ * scelta automatica del risultato migliore
  */
 
 'use strict';
@@ -20,13 +17,13 @@ importScripts(
     'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'
 );
 
-var activeWorker = null;
+var activeTesseractWorker = null;
 
 // ================================================================
 // MESSAGE
 // ================================================================
-
 self.onmessage = async function (event) {
+
     var data = event.data || {};
 
     var imageBlobUrl =
@@ -38,53 +35,31 @@ self.onmessage = async function (event) {
     if (!imageBlobUrl) {
         self.postMessage({
             type: 'error',
-            msg: 'Nessuna immagine ricevuta.'
+            msg: 'Nessuna immagine ricevuta dal worker.'
         });
         return;
     }
 
     try {
-        reportStatus(
-            'Preparazione immagine...'
-        );
+        reportStatus('Preparazione immagine...');
 
-        /*
-         * Recuperiamo il Blob.
-         */
         var originalBlob =
-            await fetchBlob(
+            await fetchImageBlob(
                 imageBlobUrl
             );
 
         /*
-         * NON facciamo sharpen, threshold o contrasto aggressivo.
-         *
-         * Questo è importante per numeri come:
-         *
-         * 2450,00
-         * 12500,50
-         * 1980,00
+         * Nessuna alterazione aggressiva.
+         * Manteniamo fedeli numeri, virgole e zeri.
          */
-        var ocrImage =
+        var ocrInput =
             await prepareImage(
                 originalBlob
             );
 
-        reportStatus(
-            'Avvio motore OCR italiano...'
-        );
+        reportStatus('Avvio motore OCR italiano...');
 
-        /*
-         * Tesseract.js 5:
-         *
-         * Lasciamo che la libreria gestisca
-         * language data e core automaticamente.
-         *
-         * Questo evita il problema:
-         *
-         * ita.special-words
-         */
-        activeWorker =
+        activeTesseractWorker =
             await Tesseract.createWorker(
                 language,
                 1,
@@ -98,18 +73,17 @@ self.onmessage = async function (event) {
                             message.status ===
                             'recognizing text'
                         ) {
+                            var progress =
+                                Number(
+                                    message.progress
+                                ) || 0;
+
                             self.postMessage({
                                 type: 'progress',
-                                pct:
-                                    Math.round(
-                                        (
-                                            Number(
-                                                message.progress
-                                            ) || 0
-                                        ) * 100
-                                    )
+                                pct: Math.round(
+                                    progress * 100
+                                )
                             });
-
                         } else if (
                             message.status
                         ) {
@@ -123,76 +97,63 @@ self.onmessage = async function (event) {
                 }
             );
 
-        /*
-         * ========================================================
-         * PSM 6
-         * ========================================================
-         *
-         * Layout abbastanza regolare.
-         * Molto adatto alle buste paga.
-         */
-        await setOCRParameters(
-            activeWorker,
+        // ========================================================
+        // PSM 6
+        // ========================================================
+
+        await configureOCR(
+            activeTesseractWorker,
             '6'
         );
 
-        reportStatus(
-            'Lettura della busta paga...'
-        );
+        reportStatus('Lettura della busta paga...');
 
         var result6 =
-            await activeWorker.recognize(
-                ocrImage
+            await activeTesseractWorker.recognize(
+                ocrInput
             );
 
         var text6 =
-            getOCRText(
+            extractText(
                 result6
             );
 
         var confidence6 =
-            getOCRConfidence(
+            extractConfidence(
                 result6
             );
 
-        /*
-         * ========================================================
-         * PSM 11
-         * ========================================================
-         *
-         * Testo sparso / colonne / layout più irregolare.
-         */
-        await setOCRParameters(
-            activeWorker,
+        // ========================================================
+        // PSM 11
+        // ========================================================
+
+        await configureOCR(
+            activeTesseractWorker,
             '11'
         );
 
-        reportStatus(
-            'Verifica del layout del documento...'
-        );
+        reportStatus('Verifica del layout del documento...');
 
         var result11 =
-            await activeWorker.recognize(
-                ocrImage
+            await activeTesseractWorker.recognize(
+                ocrInput
             );
 
         var text11 =
-            getOCRText(
+            extractText(
                 result11
             );
 
         var confidence11 =
-            getOCRConfidence(
+            extractConfidence(
                 result11
             );
 
-        /*
-         * ========================================================
-         * SCELTA DEL RISULTATO
-         * ========================================================
-         */
+        // ========================================================
+        // SELEZIONE
+        // ========================================================
 
-        var best =
+        var selected =
             chooseBestResult(
                 text6,
                 confidence6,
@@ -200,45 +161,23 @@ self.onmessage = async function (event) {
                 confidence11
             );
 
-        consoleLog(
-            '[OCR] PSM 6 confidence:',
-            confidence6
-        );
+        console.log('[OCR] PSM6 confidence:', confidence6);
+        console.log('[OCR] PSM11 confidence:', confidence11);
+        console.log('[OCR] PSM6 text:', text6);
+        console.log('[OCR] PSM11 text:', text11);
+        console.log('[OCR] Risultato scelto:', selected.text);
 
-        consoleLog(
-            '[OCR] PSM 11 confidence:',
-            confidence11
-        );
-
-        consoleLog(
-            '[OCR] PSM 6 text:',
-            text6
-        );
-
-        consoleLog(
-            '[OCR] PSM 11 text:',
-            text11
-        );
-
-        consoleLog(
-            '[OCR] Risultato scelto:',
-            best.text
-        );
-
-        await terminateWorker();
+        await terminateTesseractWorker();
 
         self.postMessage({
             type: 'success',
-            text: best.text
+            text: selected.text
         });
 
     } catch (error) {
-        consoleLog(
-            '[OCR] Errore:',
-            error
-        );
+        console.error('[OCR] Errore:', error);
 
-        await terminateWorker();
+        await terminateTesseractWorker();
 
         self.postMessage({
             type: 'error',
@@ -252,10 +191,28 @@ self.onmessage = async function (event) {
 };
 
 // ================================================================
+// STATUS
+// ================================================================
+function reportStatus(message) {
+    try {
+        self.postMessage({
+            type: 'status',
+            msg: String(
+                message || ''
+            )
+        });
+    } catch (error) {
+        console.warn(
+            '[OCR] Impossibile inviare status:',
+            error
+        );
+    }
+}
+
+// ================================================================
 // FETCH
 // ================================================================
-
-async function fetchBlob(url) {
+async function fetchImageBlob(url) {
     var response =
         await fetch(
             url
@@ -285,17 +242,19 @@ async function fetchBlob(url) {
 // ================================================================
 // PREPARE IMAGE
 // ================================================================
-
 async function prepareImage(blob) {
     /*
-     * Se il browser supporta ImageBitmap + OffscreenCanvas,
-     * facciamo SOLO un eventuale upscale leggero.
-     *
-     * Nessuna alterazione dei pixel.
+     * Se il browser non supporta OffscreenCanvas,
+     * restituiamo direttamente il Blob.
      */
     if (
         typeof createImageBitmap !==
-        'function' ||
+        'function'
+    ) {
+        return blob;
+    }
+
+    if (
         typeof OffscreenCanvas ===
         'undefined'
     ) {
@@ -308,42 +267,46 @@ async function prepareImage(blob) {
         );
 
     try {
-        var width =
+        var sourceWidth =
             bitmap.width;
 
-        var height =
+        var sourceHeight =
             bitmap.height;
 
         /*
-         * Per OCR, se l'immagine è piccola,
-         * aumentiamo moderatamente la dimensione.
+         * Se l'immagine è già abbastanza grande,
+         * NON la modifichiamo.
          *
-         * Non facciamo upscale se l'immagine è già grande.
+         * Questo è particolarmente importante
+         * per importi come:
+         *
+         * 2450,00
+         * 12.500,50
+         * 1.980,00
          */
-        var targetWidth =
-            width;
-
         if (
-            width < 1800
+            sourceWidth >= 1800
         ) {
-            targetWidth =
-                1800;
+            return blob;
         }
 
+        /*
+         * Upscale moderato.
+         */
+        var targetWidth =
+            1800;
+
         if (
-            targetWidth > 2400
+            targetWidth >
+            2400
         ) {
-            targetWidth =
-                2400;
+            targetWidth = 2400;
         }
 
         var scale =
             targetWidth /
-            width;
+            sourceWidth;
 
-        /*
-         * Nessun downscale.
-         */
         if (
             scale <= 1
         ) {
@@ -352,7 +315,7 @@ async function prepareImage(blob) {
 
         var targetHeight =
             Math.round(
-                height *
+                sourceHeight *
                 scale
             );
 
@@ -364,11 +327,11 @@ async function prepareImage(blob) {
         ) {
             scale =
                 3600 /
-                height;
+                sourceHeight;
 
             targetWidth =
                 Math.round(
-                    width *
+                    sourceWidth *
                     scale
                 );
 
@@ -394,20 +357,25 @@ async function prepareImage(blob) {
             return blob;
         }
 
-        /*
-         * IMPORTANTE:
-         *
-         * Nessun getImageData().
-         * Nessun sharpen.
-         * Nessun contrasto artificiale.
-         * Nessun threshold.
-         */
         context.imageSmoothingEnabled =
             true;
 
         context.imageSmoothingQuality =
             'high';
 
+        context.fillStyle =
+            '#ffffff';
+
+        context.fillRect(
+            0,
+            0,
+            targetWidth,
+            targetHeight
+        );
+
+        /*
+         * SOLO upscale.
+         */
         context.drawImage(
             bitmap,
             0,
@@ -429,10 +397,9 @@ async function prepareImage(blob) {
 }
 
 // ================================================================
-// TESSERACT PARAMETERS
+// TESSERACT CONFIG
 // ================================================================
-
-async function setOCRParameters(worker, psm) {
+async function configureOCR(worker, psm) {
     if (
         !worker ||
         typeof worker.setParameters !==
@@ -445,16 +412,9 @@ async function setOCRParameters(worker, psm) {
         tessedit_pageseg_mode:
             String(psm),
 
-        /*
-         * Mantiene gli spazi tra colonne/blocchi
-         * quando Tesseract li riconosce.
-         */
         preserve_interword_spaces:
             '1',
 
-        /*
-         * Valore DPI usato da Tesseract.
-         */
         user_defined_dpi:
             '300'
     });
@@ -463,8 +423,7 @@ async function setOCRParameters(worker, psm) {
 // ================================================================
 // TEXT
 // ================================================================
-
-function getOCRText(result) {
+function extractText(result) {
     if (
         !result ||
         !result.data
@@ -485,8 +444,7 @@ function getOCRText(result) {
 // ================================================================
 // CONFIDENCE
 // ================================================================
-
-function getOCRConfidence(result) {
+function extractConfidence(result) {
     if (
         !result ||
         !result.data
@@ -513,7 +471,6 @@ function getOCRConfidence(result) {
 // ================================================================
 // CHOOSE RESULT
 // ================================================================
-
 function chooseBestResult(
     text6,
     confidence6,
@@ -532,12 +489,12 @@ function chooseBestResult(
             confidence11
         );
 
-    consoleLog(
+    console.log(
         '[OCR] Score PSM6:',
         score6
     );
 
-    consoleLog(
+    console.log(
         '[OCR] Score PSM11:',
         score11
     );
@@ -565,7 +522,6 @@ function chooseBestResult(
 // ================================================================
 // OCR SCORE
 // ================================================================
-
 function scoreOCR(text, confidence) {
     if (
         !text ||
@@ -581,7 +537,7 @@ function scoreOCR(text, confidence) {
         value.toLowerCase();
 
     /*
-     * Confidence.
+     * Confidence Tesseract.
      */
     var confidenceScore =
         Math.max(
@@ -594,7 +550,7 @@ function scoreOCR(text, confidence) {
         );
 
     /*
-     * Parole tipiche di busta paga.
+     * Vocabolario tipico busta paga.
      */
     var keywords = [
         'lordo',
@@ -627,17 +583,12 @@ function scoreOCR(text, confidence) {
                 keywords[i]
             ) !== -1
         ) {
-            keywordScore +=
-                7;
+            keywordScore += 7;
         }
     }
 
     /*
-     * Importi italiani:
-     *
-     * 2450,00
-     * 2.450,00
-     * 12.500,50
+     * Importi monetari.
      */
     var amountMatches =
         value.match(
@@ -648,75 +599,69 @@ function scoreOCR(text, confidence) {
         amountMatches
             ? Math.min(
                 35,
-                amountMatches.length *
-                7
+                amountMatches.length * 7
             )
             : 0;
 
     /*
-     * Penalizza testo estremamente rumoroso.
+     * Bonus se compaiono più concetti chiave.
      */
-    var strangeCharacters =
-        (
-            value.match(
-                /[^a-zA-Z0-9À-ÿ€$£.,:;()\-\s/]/g
-            ) || []
-        ).length;
+    var conceptCount = 0;
 
-    var noisePenalty =
-        Math.min(
-            15,
-            strangeCharacters * 0.15
-        );
+    if (
+        normalized.indexOf('lordo') !== -1
+    ) {
+        conceptCount++;
+    }
+
+    if (
+        normalized.indexOf('netto') !== -1
+    ) {
+        conceptCount++;
+    }
+
+    if (
+        normalized.indexOf('ferie') !== -1
+    ) {
+        conceptCount++;
+    }
+
+    if (
+        normalized.indexOf('tfr') !== -1
+    ) {
+        conceptCount++;
+    }
+
+    var conceptScore =
+        conceptCount * 5;
 
     return (
         confidenceScore +
         keywordScore +
-        amountScore -
-        noisePenalty
+        amountScore +
+        conceptScore
     );
 }
 
 // ================================================================
 // TERMINATE
 // ================================================================
-
-async function terminateWorker() {
+async function terminateTesseractWorker() {
     if (
-        !activeWorker
+        !activeTesseractWorker
     ) {
         return;
     }
 
     try {
-        await activeWorker.terminate();
+        await activeTesseractWorker.terminate();
     } catch (error) {
-        consoleLog(
-            '[OCR] Errore terminate:',
+        console.warn(
+            '[OCR] Errore chiusura worker Tesseract:',
             error
         );
     }
 
-    activeWorker =
+    activeTesseractWorker =
         null;
-}
-
-// ================================================================
-// CONSOLE
-// ================================================================
-
-function consoleLog() {
-    try {
-        if (
-            typeof console !==
-            'undefined' &&
-            typeof console.log ===
-            'function'
-        ) {
-            console.log.apply(
-                console,
-                arguments
-            );
-        }
-    } catch (error) {}
 }
