@@ -15,9 +15,12 @@
   const btnReset = document.getElementById('btn-reset');
 
   // 1. Parametri di Mercato 2026 (Valori di Fallback iniziale)
-  let PUN_MEDIO_STIMATO_KWH = 0.125; 
-  let SPREAD_MAXIMO_FISIOLOGICO = 0.04; 
+  let PUN_MEDIO_STIMATO_KWH = 0.125;
+  let SPREAD_MAXIMO_FISIOLOGICO = 0.04;
   let QUOTA_FISSA_MAXIMA_ANUAL = 120.00;
+
+  // Stato corrente: consente il ricalcolo dopo una correzione manuale dell'utente
+  let currentData = null;
 
   // 2. Caricamento dinamico dei parametri dal JSON locale
   async function loadMarketParameters() {
@@ -40,7 +43,53 @@
   // Avvia il caricamento dei parametri appena il DOM è pronto
   document.addEventListener('DOMContentLoaded', () => {
     loadMarketParameters();
+    makeResultsEditable();
   });
+
+  // --- CORREZIONE MANUALE E REATTIVITÀ ---
+  function parseEditedNumber(rawText) {
+    if (!rawText) return null;
+    let cleaned = String(rawText).replace(/[^0-9.,-]/g, '').trim();
+    if (!cleaned) return null;
+
+    if (cleaned.includes(',') && cleaned.includes('.')) {
+      cleaned = cleaned.lastIndexOf(',') > cleaned.lastIndexOf('.')
+        ? cleaned.replace(/\./g, '').replace(',', '.')
+        : cleaned.replace(/,/g, '');
+    } else if (cleaned.includes(',')) {
+      cleaned = cleaned.replace(',', '.');
+    }
+
+    const num = parseFloat(cleaned);
+    return Number.isFinite(num) ? num : null;
+  }
+
+  function makeResultsEditable() {
+    // res-fissi mostra il totale ANNUO, mentre il modello dati conserva il costo mensile
+    const campi = [
+      { el: resKwh, apply: (v) => { currentData.costoKwh = v; } },
+      { el: resFissi, apply: (v) => { currentData.quotaFissaMensile = v === null ? null : v / 12; } }
+    ];
+
+    campi.forEach(campo => {
+      if (!campo.el) return;
+      campo.el.setAttribute('contenteditable', 'true');
+      campo.el.style.cursor = 'text';
+
+      campo.el.addEventListener('blur', () => {
+        if (!currentData) return;
+        campo.apply(parseEditedNumber(campo.el.textContent));
+        runEvaluationLogic(currentData);
+      });
+
+      campo.el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          campo.el.blur();
+        }
+      });
+    });
+  }
 
   // 3. Gestione Eventi UI (Drag & Drop, Click)
   if (dropArea && fileInput) {
@@ -61,6 +110,7 @@
       resultsDashboard.classList.add('hidden');
       dropArea.classList.remove('hidden');
       fileInput.value = '';
+      currentData = null;
     });
   }
 
@@ -99,8 +149,8 @@
       }
 
       updateProgress('Analisi tariffe e algoritmi ARERA in corso...');
-      const extractedData = parseBollettaText(rawText);
-      runEvaluationLogic(extractedData);
+      currentData = parseBollettaText(rawText);
+      runEvaluationLogic(currentData);
 
     } catch (error) {
       console.error(error);
@@ -170,7 +220,7 @@
 
   // --- PARSER SINTATTICO CON SANITIZZAZIONE E OCR SANITY CHECK ---
   function parseBollettaText(text) {
-    let result = { costoKwh: null, quotaFissaMensile: null };
+    let result = { costoKwh: null, quotaFissaMensile: null, fasce: {}, multiorario: false };
     if (!text) return result;
 
     let normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
@@ -195,7 +245,30 @@
         result.quotaFissaMensile = parseFloat(fissaMatch[1].replace(',', '.'));
     }
 
+    // FASCE ORARIE (contratto multiorario): F1 punte, F2 intermedie, F3 fuori punta
+    ['f1', 'f2', 'f3'].forEach(fascia => {
+      const match = normalizedText.match(new RegExp(fascia + '[^0-9]{0,25}([0-9]{1,2}[.,][0-9]{2,5})'));
+      if (match) {
+        const val = parseFloat(match[1].replace(',', '.'));
+        // Scarta letture fuori scala invece di correggerle a tentativi
+        if (val > 0 && val <= 2.0) result.fasce[fascia] = val;
+      }
+    });
+    result.multiorario = Object.keys(result.fasce).length >= 2;
+
     return result;
+  }
+
+  // Applica lo stato visivo del verdetto in modo idempotente: con classList.replace()
+  // un secondo rendering (dopo una correzione manuale) resterebbe bloccato sul colore precedente.
+  function setVerdettoStyle(contenitoreClass, titoloClass, testoClass) {
+    resVerdetto.parentElement.className = contenitoreClass;
+    const titolo = resVerdetto.parentElement.querySelector('h3');
+    if (titolo) {
+      titolo.classList.remove('text-indigo-900', 'text-gray-900', 'text-rose-900', 'text-emerald-900');
+      titolo.classList.add(titoloClass);
+    }
+    resVerdetto.className = testoClass;
   }
 
   // --- LOGICA VALUTATIVA E RENDERING (CON GESTIONE ERRORI) ---
@@ -214,12 +287,14 @@
         </div>
       `;
       
-      resVerdetto.innerHTML = "Analisi interrotta. I dati estratti non sono sufficienti per emettere una valutazione tariffaria sicura.";
-      resVerdetto.parentElement.className = "bg-gray-50 border border-gray-200 rounded-xl p-5 mt-4";
-      resVerdetto.parentElement.querySelector('h3').classList.replace('text-indigo-900', 'text-gray-900');
-      resVerdetto.className = "text-sm text-gray-800 leading-relaxed font-medium";
-      
-      return; 
+      resVerdetto.innerHTML = "Analisi interrotta. I dati estratti non sono sufficienti per emettere una valutazione tariffaria sicura. <b>Puoi inserire manualmente il prezzo €/kWh cliccando sul valore qui sopra.</b>";
+      setVerdettoStyle(
+        "bg-gray-50 border border-gray-200 rounded-xl p-5 mt-4",
+        "text-gray-900",
+        "text-sm text-gray-800 leading-relaxed font-medium"
+      );
+
+      return;
     }
 
     // ANALISI REALE
@@ -251,23 +326,44 @@
       if (resFissi) resFissi.textContent = "N/D";
     }
 
+    // DIAGNOSTICA FASCE ORARIE (contratto multiorario)
+    if (data.multiorario && data.fasce.f1 && data.fasce.f3) {
+      const deltaFasce = ((data.fasce.f1 - data.fasce.f3) / data.fasce.f3) * 100;
+      if (deltaFasce > 10) {
+        alerts.push({
+          severity: "INFO",
+          message: `📅 <b>Tariffa multioraria:</b> la fascia F1 (${data.fasce.f1.toFixed(3).replace('.', ',')} €/kWh) costa il <b>${deltaFasce.toFixed(0)}% in più</b> della F3 (${data.fasce.f3.toFixed(3).replace('.', ',')} €/kWh). Sposta lavatrice, lavastoviglie e forno alle <b>sere dopo le 19, ai weekend e ai festivi</b> per pagare meno.`
+        });
+      }
+    }
+
+    const stiliAlert = {
+      CRITICAL: 'bg-red-50 text-red-800 border-red-200',
+      WARNING: 'bg-orange-50 text-orange-800 border-orange-200',
+      INFO: 'bg-blue-50 text-blue-800 border-blue-200'
+    };
+
     alerts.forEach(alert => {
         const el = document.createElement('div');
-        el.className = `p-4 text-sm font-medium rounded-lg border ${ alert.severity === 'CRITICAL' ? 'bg-red-50 text-red-800 border-red-200' : alert.severity === 'WARNING' ? 'bg-orange-50 text-orange-800 border-orange-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200' }`;
+        el.className = `p-4 text-sm font-medium rounded-lg border ${stiliAlert[alert.severity] || 'bg-emerald-50 text-emerald-800 border-emerald-200'}`;
         el.innerHTML = alert.message;
         alertsContainer.appendChild(el);
     });
 
     if (isBadTariff) {
       resVerdetto.innerHTML = "Stai pagando troppo. <strong>Confronta le offerte sul Portale ARERA</strong> per cambiare gestore.";
-      resVerdetto.parentElement.className = "bg-rose-50 border border-rose-200 rounded-xl p-5 mt-4";
-      resVerdetto.parentElement.querySelector('h3').classList.replace('text-indigo-900', 'text-rose-900');
-      resVerdetto.className = "text-sm text-rose-800 leading-relaxed font-medium";
+      setVerdettoStyle(
+        "bg-rose-50 border border-rose-200 rounded-xl p-5 mt-4",
+        "text-rose-900",
+        "text-sm text-rose-800 leading-relaxed font-medium"
+      );
     } else {
       resVerdetto.innerHTML = "Ottimo, le condizioni del tuo contratto luce sono vantaggiose.";
-      resVerdetto.parentElement.className = "bg-emerald-50 border border-emerald-200 rounded-xl p-5 mt-4";
-      resVerdetto.parentElement.querySelector('h3').classList.replace('text-indigo-900', 'text-emerald-900');
-      resVerdetto.className = "text-sm text-emerald-800 leading-relaxed font-medium";
+      setVerdettoStyle(
+        "bg-emerald-50 border border-emerald-200 rounded-xl p-5 mt-4",
+        "text-emerald-900",
+        "text-sm text-emerald-800 leading-relaxed font-medium"
+      );
     }
   }
 })();

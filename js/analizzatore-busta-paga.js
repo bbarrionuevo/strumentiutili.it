@@ -6,6 +6,8 @@
   var ALIQUOTA_INPS = 0.0919;
   var SOGLIA_CUNEO = 40000;
   var SOGLIA_CONFIDENZA = 85;
+  // Stato corrente: permette di ricalcolare e ri-renderizzare dopo una correzione manuale dell'utente
+  var currentData = null;
 
   document.addEventListener('DOMContentLoaded', function () {
     cacheDom();
@@ -33,12 +35,44 @@
 
   // Hacemos que los contenedores numéricos sean editables por el usuario
   function makeResultsEditable() {
-    [resLordo, resNetto, resFerie, resTfr].forEach(function(el) {
-        if (el) {
-            el.setAttribute('contenteditable', 'true');
-            el.classList.add('outline-none', 'focus:bg-white', 'focus:ring-2', 'focus:ring-indigo-500', 'rounded', 'px-2', 'py-1', 'transition-all', 'cursor-text');
+    var campi = [
+      { el: resLordo, key: 'lordo' },
+      { el: resNetto, key: 'netto' },
+      { el: resFerie, key: 'ferie' },
+      { el: resTfr, key: 'tfr' }
+    ];
+
+    campi.forEach(function (campo) {
+      if (!campo.el) return;
+      campo.el.setAttribute('contenteditable', 'true');
+      campo.el.classList.add('outline-none', 'rounded', 'px-2', 'py-1');
+      campo.el.style.cursor = 'text';
+
+      campo.el.addEventListener('blur', function () {
+        applyManualEdit(campo.key, campo.el.textContent);
+      });
+
+      // Enter conferma la modifica invece di inserire un a capo
+      campo.el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          campo.el.blur();
         }
+      });
     });
+  }
+
+  // Applica una correzione manuale e ridisegna l'intera dashboard
+  function applyManualEdit(key, rawText) {
+    if (!currentData) return;
+
+    var nuovoValore = parseItalianMoney(String(rawText).replace(/[^0-9.,-]/g, ''));
+    if (currentData[key] === nuovoValore) return;
+
+    currentData[key] = nuovoValore;
+    // Il dato è ora inserito dall'utente: la confidenza OCR non è più rilevante
+    currentData.confidence[key] = null;
+    renderResults(currentData);
   }
 
   function bindEvents() {
@@ -62,6 +96,7 @@
     loadingState.classList.add('hidden');
     alertsContainer.innerHTML = '';
     fileInput.value = '';
+    currentData = null;
   }
 
   function updateProgress(msg) { if (progressText) progressText.textContent = msg; }
@@ -78,8 +113,8 @@
 
       console.log('[Busta Paga] TESTO ESTRATTO:\n', ocrResult.text);
       console.log('[Busta Paga] PASSATA NUMERICA:\n', ocrResult.numericText);
-      var data = parseBustaPaga(ocrResult);
-      renderResults(data);
+      currentData = parseBustaPaga(ocrResult);
+      renderResults(currentData);
 
     } catch (error) {
       alert("Errore: " + error.message);
@@ -227,6 +262,16 @@
     return false;
   }
 
+  function alertBox(tono, html) {
+    var toni = {
+      rosso: 'bg-red-50 text-red-800 border-red-200',
+      arancione: 'bg-orange-50 text-orange-800 border-orange-200',
+      verde: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      blu: 'bg-blue-50 text-blue-800 border-blue-200'
+    };
+    return '<div class="p-4 text-sm font-medium rounded-lg border ' + toni[tono] + '">' + html + '</div>';
+  }
+
   function renderResults(data) {
     resultsDashboard.classList.remove('hidden');
 
@@ -246,13 +291,34 @@
     if (markConfidence(resTfr, conf.tfr)) incerti++;
 
     var detectedCount = (data.lordo ? 1 : 0) + (data.netto ? 1 : 0) + (data.ferie ? 1 : 0) + (data.tfr ? 1 : 0);
+    var alerts = [];
+
+    // SANITY CHECK MATEMATICO — rivalutato a ogni modifica manuale.
+    // Qui avvisiamo soltanto: il valore inserito dall'utente non viene mai scartato.
+    if (data.lordo !== null && data.netto !== null) {
+      var ratio = data.netto / data.lordo;
+      if (ratio >= 1 || ratio < 0.25) {
+        alerts.push(alertBox('rosso', '⚠️ <b>Valori incoerenti:</b> un netto di ' + format(data.netto) + ' su un lordo di ' + format(data.lordo) + ' non è plausibile (le trattenute reali sono circa il 25-40%). Ricontrolla i due importi.'));
+      }
+    }
 
     if (detectedCount < 4) {
-      alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">⚠️ <b>Lettura parziale:</b> Alcuni dati non sono stati riconosciuti per la qualità dell\'immagine. <b>Puoi cliccare sui numeri per correggerli manualmente.</b></div>';
+      alerts.push(alertBox('arancione', '⚠️ <b>Lettura parziale:</b> Alcuni dati non sono stati riconosciuti per la qualità dell\'immagine. <b>Puoi cliccare sui numeri per correggerli manualmente.</b>'));
     } else if (incerti > 0) {
-      alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">🔍 <b>Valori da verificare:</b> Il riconoscimento ottico non è certo dei campi evidenziati in giallo (caratteri corsivi o immagine a bassa risoluzione). <b>Confrontali con il documento originale e correggili cliccandoci sopra.</b></div>';
+      alerts.push(alertBox('arancione', '🔍 <b>Valori da verificare:</b> Il riconoscimento ottico non è certo dei campi evidenziati in giallo (caratteri corsivi o immagine a bassa risoluzione). <b>Confrontali con il documento originale e correggili cliccandoci sopra.</b>'));
     } else if (data.lordo !== null && (data.lordo * 13) < SOGLIA_CUNEO) {
-      alertsContainer.innerHTML = '<div class="p-4 text-sm font-medium rounded-lg border bg-emerald-50 text-emerald-800 border-emerald-200">✅ <b>Sgravio Cuneo Fiscale:</b> Potresti rientrare nel taglio del cuneo fiscale.</div>';
+      alerts.push(alertBox('verde', '✅ <b>Sgravio Cuneo Fiscale:</b> Potresti rientrare nel taglio del cuneo fiscale.'));
     }
+
+    // APPROFONDIMENTI — strumenti correlati
+    if (data.tfr !== null && data.tfr > 0) {
+      alerts.push(alertBox('blu', '💡 <b>Il tuo TFR sta maturando.</b> Vuoi calcolare la tassazione netta sul tuo TFR? Usa il nostro <a href="/lavoro-contratti/calcolo-tfr/" class="underline font-semibold">Calcolatore TFR gratuito</a>.'));
+    }
+
+    if (data.lordo !== null) {
+      alerts.push(alertBox('blu', '🔎 <b>Il netto in busta ti sembra basso?</b> Verifica se è corretto con il nostro <a href="/lavoro-contratti/stipendio-netto/" class="underline font-semibold">Calcolatore Stipendio Netto</a>.'));
+    }
+
+    alertsContainer.innerHTML = alerts.join('');
   }
 })();
