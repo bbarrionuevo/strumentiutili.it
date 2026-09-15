@@ -1,1505 +1,379 @@
-'use strict';
+```js
+function parseBustaPaga(ocrResult) {
 
-importScripts(
-'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'
-);
+    var result = {
+        lordo: null,
+        netto: null,
+        ferie: null,
+        tfr: null
+    };
 
-var activeWorker = null;
-
-self.onmessage = async function (event) {
-
-```
-var data = event.data || {};
-
-var imageBlobUrl =
-    data.imageBlobUrl || '';
-
-var language =
-    data.lang || 'ita';
-
-if (!imageBlobUrl) {
-
-    self.postMessage({
-        type: 'error',
-        msg: 'Nessuna immagine ricevuta.'
-    });
-
-    return;
-}
-
-try {
-
-    // ========================================================
-    // LOAD IMAGE
-    // ========================================================
-
-    reportStatus(
-        'Preparazione del documento...'
-    );
-
-    var response =
-        await fetch(
-            imageBlobUrl
-        );
-
-    if (!response.ok) {
-        throw new Error(
-            'Impossibile leggere l immagine.'
-        );
-    }
-
-    var blob =
-        await response.blob();
-
-    if (
-        !blob ||
-        blob.size <= 0
-    ) {
-        throw new Error(
-            'Immagine vuota.'
-        );
+    if (!ocrResult) {
+        return result;
     }
 
     /*
-     * Ricaviamo le dimensioni reali.
+     * ============================================================
+     * 1. PRIORITÀ ASSOLUTA:
+     *    OCR NUMERICO MIRATO
+     * ============================================================
      */
-    var imageInfo =
-        await getImageSize(
-            blob
-        );
-
-    console.log(
-        '[OCR] Image size:',
-        imageInfo.width,
-        'x',
-        imageInfo.height
-    );
-
-    // ========================================================
-    // CREATE TESSERACT
-    // ========================================================
-
-    reportStatus(
-        'Avvio motore OCR italiano...'
-    );
-
-    activeWorker =
-        await Tesseract.createWorker(
-            language,
-            1,
-            {
-                logger:
-                    function (message) {
-
-                        if (!message) {
-                            return;
-                        }
-
-                        if (
-                            message.status ===
-                            'recognizing text'
-                        ) {
-
-                            var progress =
-                                Number(
-                                    message.progress
-                                ) || 0;
-
-                            self.postMessage({
-                                type:
-                                    'progress',
-
-                                pct:
-                                    Math.round(
-                                        progress *
-                                        100
-                                    )
-                            });
-
-                        } else if (
-                            message.status
-                        ) {
-
-                            reportStatus(
-                                String(
-                                    message.status
-                                )
-                            );
-                        }
-                    }
-            }
-        );
-
-    // ========================================================
-    // GENERAL OCR
-    // ========================================================
-
-    await setGeneralParameters(
-        activeWorker
-    );
-
-    reportStatus(
-        'Lettura della struttura della busta paga...'
-    );
-
-    var generalResult =
-        await activeWorker.recognize(
-            blob
-        );
-
-    var generalData =
-        extractStructuredResult(
-            generalResult
-        );
-
-    console.log(
-        '[OCR] General text:',
-        generalData.text
-    );
-
-    console.log(
-        '[OCR] General words:',
-        generalData.words
-    );
-
-    // ========================================================
-    // TARGETED NUMERIC OCR
-    // ========================================================
-
-    reportStatus(
-        'Verifica dei valori numerici...'
-    );
-
-    var targeted =
-        await extractTargetedFields(
-            activeWorker,
-            blob,
-            imageInfo,
-            generalData.words
-        );
-
-    console.log(
-        '[OCR] Targeted fields:',
-        targeted
-    );
-
-    // ========================================================
-    // OPTIONAL SECOND GENERAL PASS
-    // ========================================================
-
-    /*
-     * Solo se il OCR generale è particolarmente povero.
-     *
-     * Non usiamo PSM11 per decidere i numeri.
-     */
-    var finalText =
-        generalData.text;
 
     if (
-        !looksLikePayslip(
-            finalText
-        )
+        ocrResult.fields &&
+        typeof ocrResult.fields === 'object'
     ) {
 
-        await setSparseParameters(
-            activeWorker
-        );
-
-        var sparseResult =
-            await activeWorker.recognize(
-                blob
-            );
-
-        var sparseData =
-            extractStructuredResult(
-                sparseResult
-            );
+        var fields =
+            ocrResult.fields;
 
         if (
-            sparseData.text.length >
-            finalText.length
+            Number.isFinite(
+                Number(fields.lordo)
+            )
         ) {
-            finalText =
-                sparseData.text;
+            result.lordo =
+                Number(fields.lordo);
+        }
+
+        if (
+            Number.isFinite(
+                Number(fields.netto)
+            )
+        ) {
+            result.netto =
+                Number(fields.netto);
+        }
+
+        if (
+            Number.isFinite(
+                Number(fields.ferie)
+            )
+        ) {
+            result.ferie =
+                Number(fields.ferie);
+        }
+
+        if (
+            Number.isFinite(
+                Number(fields.tfr)
+            )
+        ) {
+            result.tfr =
+                Number(fields.tfr);
         }
     }
 
-    // ========================================================
-    // END
-    // ========================================================
-
-    await terminateWorker();
-
-    self.postMessage({
-
-        type:
-            'success',
-
-        text:
-            finalText,
-
-        words:
-            generalData.words,
-
-        confidence:
-            generalData.confidence,
-
-        fields:
-            targeted
-    });
-
-} catch (error) {
-
-    console.error(
-        '[OCR] Errore:',
-        error
-    );
-
-    await terminateWorker();
-
-    self.postMessage({
-
-        type:
-            'error',
-
-        msg:
-            error &&
-            error.message
-                ? error.message
-                : 'Errore OCR.'
-    });
-}
-```
-
-};
-
-// ================================================================
-// STATUS
-// ================================================================
-
-function reportStatus(
-message
-) {
-
-```
-try {
-
-    self.postMessage({
-
-        type:
-            'status',
-
-        msg:
-            String(
-                message || ''
-            )
-    });
-
-} catch (error) {}
-```
-
-}
-
-// ================================================================
-// IMAGE SIZE
-// ================================================================
-
-async function getImageSize(
-blob
-) {
-
-```
-if (
-    typeof createImageBitmap ===
-    'function'
-) {
-
-    var bitmap =
-        await createImageBitmap(
-            blob
-        );
-
-    try {
-
-        return {
-            width:
-                bitmap.width,
-
-            height:
-                bitmap.height
-        };
-
-    } finally {
-
-        try {
-            bitmap.close();
-        } catch (error) {}
-    }
-}
-
-/*
- * Fallback ragionevole.
- */
-return {
-    width:
-        2000,
-
-    height:
-        3000
-};
-```
-
-}
-
-// ================================================================
-// GENERAL PARAMETERS
-// ================================================================
-
-async function setGeneralParameters(
-worker
-) {
-
-```
-await worker.setParameters({
-
-    tessedit_pageseg_mode:
-        '6',
-
-    preserve_interword_spaces:
-        '1',
-
-    user_defined_dpi:
-        '300',
 
     /*
-     * Mantiene attivo il comportamento normale
-     * per lettere + numeri.
+     * ============================================================
+     * 2. FALLBACK:
+     *    SPATIAL OCR GENERALE
+     * ============================================================
      */
-    tessedit_char_whitelist:
-        ''
-});
-```
 
-}
+    var words =
+        Array.isArray(ocrResult.words)
+            ? ocrResult.words
+            : [];
 
-// ================================================================
-// SPARSE PARAMETERS
-// ================================================================
+    if (words.length > 0) {
 
-async function setSparseParameters(
-worker
-) {
+        if (result.lordo === null) {
+            result.lordo =
+                findValueSpatially(
+                    words,
+                    [
+                        'lordo',
+                        'retribuzione',
+                        'lardo'
+                    ]
+                );
+        }
 
-```
-await worker.setParameters({
+        if (result.netto === null) {
+            result.netto =
+                findValueSpatially(
+                    words,
+                    [
+                        'netto',
+                        'pagare'
+                    ]
+                );
+        }
 
-    tessedit_pageseg_mode:
-        '11',
+        if (result.ferie === null) {
+            result.ferie =
+                findValueSpatially(
+                    words,
+                    [
+                        'ferie',
+                        'rol'
+                    ]
+                );
+        }
 
-    preserve_interword_spaces:
-        '1',
+        if (result.tfr === null) {
+            result.tfr =
+                findValueSpatially(
+                    words,
+                    [
+                        'tfr',
+                        'fondo'
+                    ]
+                );
+        }
+    }
 
-    user_defined_dpi:
-        '300',
 
-    tessedit_char_whitelist:
-        ''
-});
-```
+    /*
+     * ============================================================
+     * 3. FALLBACK TESTUALE
+     * ============================================================
+     *
+     * ATTENZIONE:
+     * non facciamo inferenze per il NETTO.
+     *
+     * Questo evita il vecchio problema:
+     *
+     * 2450 lordo
+     * 19886,80 -> interpretato come netto
+     */
 
-}
+    var text =
+        ocrResult.text || '';
 
-// ================================================================
-// TARGETED FIELDS
-// ================================================================
+    var numericText =
+        ocrResult.numericText || '';
 
-async function extractTargetedFields(
-worker,
-blob,
-imageInfo,
-words
-) {
+    var combinedText =
+        normalizeOcrText(
+            text +
+            '\n' +
+            numericText
+        );
 
-```
-var fields = {
 
-    lordo:
-        null,
+    if (result.lordo === null) {
 
-    netto:
-        null,
+        result.lordo =
+            findAmountNearLabels(
+                combinedText,
+                [
+                    'lordo',
+                    'retribuzione'
+                ]
+            );
+    }
 
-    ferie:
-        null,
+    /*
+     * Per il NETTO NON facciamo:
+     *
+     * inferNetFromAmounts()
+     *
+     * perché è proprio ciò che può trasformare
+     * un numero OCR sbagliato in un dato apparentemente valido.
+     */
 
-    tfr:
-        null
-};
+    if (result.netto === null) {
 
-if (
-    !words ||
-    !words.length
-) {
+        result.netto =
+            findAmountNearLabels(
+                combinedText,
+                [
+                    'netto',
+                    'pagare'
+                ]
+            );
+    }
 
-    return fields;
-}
 
-// ------------------------------------------------------------
-// LORDO
-// ------------------------------------------------------------
+    if (result.tfr === null) {
 
-fields.lordo =
-    await readNumericField(
-        worker,
-        blob,
-        imageInfo,
-        words,
-        [
-            'totale lordo',
-            'lordo totale',
-            'retribuzione lorda',
-            'lordo',
-            'retribuzione'
-        ],
-        'money'
-    );
+        result.tfr =
+            findAmountNearLabels(
+                combinedText,
+                [
+                    'tfr',
+                    'fondo'
+                ]
+            );
+    }
 
-// ------------------------------------------------------------
-// NETTO
-// ------------------------------------------------------------
 
-fields.netto =
-    await readNumericField(
-        worker,
-        blob,
-        imageInfo,
-        words,
-        [
-            'netto in busta',
-            'netto da pagare',
-            'netto a pagare',
-            'netto pagato',
-            'netto mensile',
-            'netto'
-        ],
-        'money'
-    );
+    /*
+     * ============================================================
+     * 4. FERIE
+     * ============================================================
+     */
 
-// ------------------------------------------------------------
-// FERIE
-// ------------------------------------------------------------
+    if (result.ferie === null) {
 
-fields.ferie =
-    await readNumericField(
-        worker,
-        blob,
-        imageInfo,
-        words,
-        [
-            'ferie residue',
-            'ferie resid',
-            'ferie',
-            'rol residue',
-            'rol resid',
-            'rol'
-        ],
-        'number'
-    );
+        var ferieMatch =
+            combinedText.match(
+                /(?:ferie|rol)[^0-9]{0,40}(\d+(?:[.,]\d+)?)/i
+            );
 
-// ------------------------------------------------------------
-// TFR
-// ------------------------------------------------------------
+        if (ferieMatch) {
 
-fields.tfr =
-    await readNumericField(
-        worker,
-        blob,
-        imageInfo,
-        words,
-        [
-            'fondo tfr',
-            'tfr maturato',
-            'tfr accantonato',
-            'totale tfr',
-            'tfr',
-            'fondo'
-        ],
-        'money'
-    );
+            result.ferie =
+                parseItalianMoney(
+                    ferieMatch[1]
+                );
+        }
+    }
 
-return fields;
-```
 
-}
+    /*
+     * ============================================================
+     * 5. NORMALIZZAZIONE
+     * ============================================================
+     */
 
-// ================================================================
-// READ NUMERIC FIELD
-// ================================================================
+    if (
+        result.lordo !== null
+    ) {
+        result.lordo =
+            Number(result.lordo);
+    }
 
-async function readNumericField(
-worker,
-blob,
-imageInfo,
-words,
-labels,
-type
-) {
+    if (
+        result.netto !== null
+    ) {
+        result.netto =
+            Number(result.netto);
+    }
 
-```
-var labelWord =
-    findLabel(
-        words,
-        labels
-    );
+    if (
+        result.ferie !== null
+    ) {
+        result.ferie =
+            Number(result.ferie);
+    }
 
-if (!labelWord) {
+    if (
+        result.tfr !== null
+    ) {
+        result.tfr =
+            Number(result.tfr);
+    }
+
+
+    /*
+     * ============================================================
+     * 6. SANITY CHECK
+     * ============================================================
+     */
+
+    if (
+        result.lordo !== null &&
+        result.netto !== null
+    ) {
+
+        var ratio =
+            result.netto /
+            result.lordo;
+
+        /*
+         * Un netto reale deve essere:
+         * - positivo
+         * - inferiore al lordo
+         * - non assurdamente basso
+         */
+
+        if (
+            result.netto <= 0 ||
+            result.lordo <= 0 ||
+            ratio >= 1 ||
+            ratio < 0.25
+        ) {
+
+            console.warn(
+                '[Busta Paga] Netto scartato per valore non plausibile:',
+                result.netto,
+                'lordo:',
+                result.lordo,
+                'ratio:',
+                ratio
+            );
+
+            result.netto = null;
+        }
+    }
+
+
+    /*
+     * TFR:
+     * evitiamo un valore chiaramente duplicato del netto.
+     */
+
+    if (
+        result.tfr !== null &&
+        result.netto !== null
+    ) {
+
+        if (
+            Math.abs(
+                result.tfr -
+                result.netto
+            ) < 0.01
+        ) {
+
+            result.tfr = null;
+        }
+    }
+
+
+    /*
+     * Validazione finale.
+     */
+
+    if (
+        result.lordo !== null &&
+        (
+            !Number.isFinite(result.lordo) ||
+            result.lordo <= 0
+        )
+    ) {
+        result.lordo = null;
+    }
+
+    if (
+        result.netto !== null &&
+        (
+            !Number.isFinite(result.netto) ||
+            result.netto <= 0
+        )
+    ) {
+        result.netto = null;
+    }
+
+    if (
+        result.ferie !== null &&
+        (
+            !Number.isFinite(result.ferie) ||
+            result.ferie < 0
+        )
+    ) {
+        result.ferie = null;
+    }
+
+    if (
+        result.tfr !== null &&
+        (
+            !Number.isFinite(result.tfr) ||
+            result.tfr < 0
+        )
+    ) {
+        result.tfr = null;
+    }
+
 
     console.log(
-        '[OCR] Label non trovata:',
-        labels
-    );
-
-    return null;
-}
-
-/*
- * Creiamo una ROI orizzontale sulla stessa riga.
- */
-var rectangle =
-    createValueRectangle(
-        labelWord,
-        imageInfo.width,
-        imageInfo.height
-    );
-
-if (!rectangle) {
-    return null;
-}
-
-console.log(
-    '[OCR] ROI',
-    labels[0],
-    rectangle
-);
-
-/*
- * ------------------------------------------------------------
- * PASS 1
- * ------------------------------------------------------------
- *
- * PSM 7 = single text line.
- *
- * Perfetto per:
- *
- * 2450,00
- * 1.980,00
- */
-await worker.setParameters({
-
-    tessedit_pageseg_mode:
-        '7',
-
-    tessedit_char_whitelist:
-        '0123456789,.-',
-
-    preserve_interword_spaces:
-        '0',
-
-    user_defined_dpi:
-        '300'
-});
-
-var result =
-    await worker.recognize(
-        blob,
-        {
-            rectangle:
-                rectangle
-        }
-    );
-
-var text =
-    extractText(
+        '[Busta Paga] DATI ESTRATTI:',
         result
     );
 
-var candidates =
-    extractNumbers(
-        text
-    );
-
-console.log(
-    '[OCR] Numeric ROI',
-    labels[0],
-    ':',
-    text,
-    candidates
-);
-
-/*
- * Se troviamo un numero, lo validiamo.
- */
-var selected =
-    chooseNumericCandidate(
-        candidates,
-        type
-    );
-
-if (
-    selected !== null
-) {
-
-    return selected;
+    return result;
 }
-
-/*
- * ------------------------------------------------------------
- * PASS 2
- * ------------------------------------------------------------
- *
- * Aumentiamo leggermente l'altezza della ROI e usiamo PSM 6.
- */
-var widerRectangle =
-    createWiderRectangle(
-        rectangle,
-        imageInfo.width,
-        imageInfo.height
-    );
-
-await worker.setParameters({
-
-    tessedit_pageseg_mode:
-        '6',
-
-    tessedit_char_whitelist:
-        '0123456789,.-',
-
-    preserve_interword_spaces:
-        '0',
-
-    user_defined_dpi:
-        '300'
-});
-
-var result2 =
-    await worker.recognize(
-        blob,
-        {
-            rectangle:
-                widerRectangle
-        }
-    );
-
-var text2 =
-    extractText(
-        result2
-    );
-
-var candidates2 =
-    extractNumbers(
-        text2
-    );
-
-console.log(
-    '[OCR] Numeric ROI pass2',
-    labels[0],
-    ':',
-    text2,
-    candidates2
-);
-
-return chooseNumericCandidate(
-    candidates2,
-    type
-);
 ```
-
-}
-
-// ================================================================
-// LABEL DETECTION
-// ================================================================
-
-function findLabel(
-words,
-labels
-) {
-
-```
-/*
- * Primo tentativo:
- * parola esatta.
- */
-for (
-    var i = 0;
-    i < labels.length;
-    i++
-) {
-
-    var label =
-        normalizeText(
-            labels[i]
-        );
-
-    for (
-        var j = 0;
-        j < words.length;
-        j++
-    ) {
-
-        var word =
-            normalizeText(
-                words[j].text
-            );
-
-        if (
-            word.indexOf(
-                label
-            ) !== -1 ||
-            label.indexOf(
-                word
-            ) !== -1
-        ) {
-
-            return words[j];
-        }
-    }
-}
-
-/*
- * Secondo tentativo:
- * individua una singola parola chiave.
- */
-for (
-    var k = 0;
-    k < labels.length;
-    k++
-) {
-
-    var tokens =
-        normalizeText(
-            labels[k]
-        ).split(' ');
-
-    for (
-        var t = 0;
-        t < tokens.length;
-        t++
-    ) {
-
-        if (
-            tokens[t].length < 4
-        ) {
-            continue;
-        }
-
-        for (
-            var w = 0;
-            w < words.length;
-            w++
-        ) {
-
-            var current =
-                normalizeText(
-                    words[w].text
-                );
-
-            if (
-                current.indexOf(
-                    tokens[t]
-                ) !== -1
-            ) {
-
-                return words[w];
-            }
-        }
-    }
-}
-
-return null;
-```
-
-}
-
-// ================================================================
-// VALUE RECTANGLE
-// ================================================================
-
-function createValueRectangle(
-label,
-imageWidth,
-imageHeight
-) {
-
-```
-if (
-    !label
-) {
-    return null;
-}
-
-var labelWidth =
-    Math.max(
-        1,
-        label.x1 -
-        label.x0
-    );
-
-var labelHeight =
-    Math.max(
-        1,
-        label.y1 -
-        label.y0
-    );
-
-/*
- * La ROI parte subito dopo la label.
- *
- * Altezza:
- * circa 2.2x l'altezza del testo.
- */
-var left =
-    Math.max(
-        0,
-        Math.round(
-            label.x1 + 3
-        )
-    );
-
-var top =
-    Math.max(
-        0,
-        Math.round(
-            label.y0 -
-            labelHeight * 0.60
-        )
-    );
-
-var rightPadding =
-    Math.max(
-        5,
-        Math.round(
-            imageWidth * 0.015
-        )
-    );
-
-var width =
-    imageWidth -
-    left -
-    rightPadding;
-
-var height =
-    Math.max(
-        30,
-        Math.round(
-            labelHeight * 2.2
-        )
-    );
-
-/*
- * Se la label è très proche do bordo,
- * evitamos rectangle nul.
- */
-if (
-    width < 50
-) {
-    return null;
-}
-
-if (
-    top + height >
-    imageHeight
-) {
-    height =
-        imageHeight -
-        top;
-}
-
-if (
-    height < 15
-) {
-    return null;
-}
-
-return {
-
-    left:
-        left,
-
-    top:
-        top,
-
-    width:
-        Math.round(
-            width
-        ),
-
-    height:
-        Math.round(
-            height
-        )
-};
-```
-
-}
-
-// ================================================================
-// WIDER RECTANGLE
-// ================================================================
-
-function createWiderRectangle(
-rectangle,
-imageWidth,
-imageHeight
-) {
-
-```
-var extra =
-    Math.round(
-        rectangle.height * 0.8
-    );
-
-var top =
-    Math.max(
-        0,
-        rectangle.top -
-        extra
-    );
-
-var bottom =
-    Math.min(
-        imageHeight,
-        rectangle.top +
-        rectangle.height +
-        extra
-    );
-
-return {
-
-    left:
-        rectangle.left,
-
-    top:
-        top,
-
-    width:
-        rectangle.width,
-
-    height:
-        bottom -
-        top
-};
-```
-
-}
-
-// ================================================================
-// EXTRACT NUMBERS
-// ================================================================
-
-function extractNumbers(
-text
-) {
-
-```
-if (
-    !text
-) {
-    return [];
-}
-
-/*
- * Convertiamo separatori strani tipici OCR.
- */
-var value =
-    String(text)
-        .replace(
-            /O/gi,
-            '0'
-        )
-        .replace(
-            /I/g,
-            '1'
-        )
-        .replace(
-            /l/g,
-            '1'
-        );
-
-/*
- * Formati accettati:
- *
- * 2450,00
- * 2.450,00
- * 2450.00
- * 12.500,50
- */
-var matches =
-    value.match(
-        /\d{1,3}(?:[.\s]\d{3})*[,.]\d{2}|\d{1,7}[,.]\d{2}|\d{1,7}/g
-    );
-
-if (
-    !matches
-) {
-    return [];
-}
-
-var result = [];
-
-for (
-    var i = 0;
-    i < matches.length;
-    i++
-) {
-
-    var parsed =
-        parseOCRNumber(
-            matches[i]
-        );
-
-    if (
-        parsed !== null
-    ) {
-
-        result.push(
-            parsed
-        );
-    }
-}
-
-return result;
-```
-
-}
-
-// ================================================================
-// PARSE OCR NUMBER
-// ================================================================
-
-function parseOCRNumber(
-token
-) {
-
-```
-if (
-    token === null ||
-    token === undefined
-) {
-    return null;
-}
-
-var value =
-    String(
-        token
-    )
-    .trim()
-    .replace(
-        /\s/g,
-        ''
-    );
-
-if (
-    !value
-) {
-    return null;
-}
-
-/*
- * 2.450,00
- */
-if (
-    value.indexOf('.') !== -1 &&
-    value.indexOf(',') !== -1
-) {
-
-    if (
-        value.lastIndexOf(',') >
-        value.lastIndexOf('.')
-    ) {
-
-        value =
-            value.replace(
-                /\./g,
-                ''
-            );
-
-        value =
-            value.replace(
-                ',',
-                '.'
-            );
-
-    } else {
-
-        value =
-            value.replace(
-                /,/g,
-                ''
-            );
-    }
-
-} else if (
-    value.indexOf(',') !== -1
-) {
-
-    value =
-        value.replace(
-            ',',
-            '.'
-        );
-}
-
-var number =
-    Number(value);
-
-if (
-    !Number.isFinite(
-        number
-    )
-) {
-    return null;
-}
-
-return Math.round(
-    number * 100
-) / 100;
-```
-
-}
-
-// ================================================================
-// CHOOSE NUMERIC CANDIDATE
-// ================================================================
-
-function chooseNumericCandidate(
-candidates,
-type
-) {
-
-```
-if (
-    !candidates ||
-    !candidates.length
-) {
-    return null;
-}
-
-/*
- * Money:
- * prefer decimal values.
- */
-if (
-    type === 'money'
-) {
-
-    var monetary =
-        candidates.filter(
-            function (value) {
-                return (
-                    Number.isFinite(
-                        value
-                    ) &&
-                    value > 0 &&
-                    value < 10000000
-                );
-            }
-        );
-
-    if (
-        monetary.length
-    ) {
-
-        /*
-         * Normalmente il primo valore della ROI
-         * è quello corretto.
-         */
-        return monetary[0];
-    }
-}
-
-/*
- * Ferie:
- * il valore più piccolo > 0 è normalmente
- * il numero di ore.
- */
-if (
-    type === 'number'
-) {
-
-    var hours =
-        candidates.filter(
-            function (value) {
-                return (
-                    Number.isFinite(
-                        value
-                    ) &&
-                    value >= 0 &&
-                    value <= 1000
-                );
-            }
-        );
-
-    if (
-        hours.length
-    ) {
-        return hours[0];
-    }
-}
-
-return null;
-```
-
-}
-
-// ================================================================
-// STRUCTURED RESULT
-// ================================================================
-
-function extractStructuredResult(
-result
-) {
-
-```
-if (
-    !result ||
-    !result.data
-) {
-
-    return {
-        text: '',
-        confidence: 0,
-        words: []
-    };
-}
-
-var text =
-    typeof result.data.text ===
-    'string'
-        ? result.data.text
-        : '';
-
-var confidence =
-    Number(
-        result.data.confidence
-    );
-
-if (
-    !Number.isFinite(
-        confidence
-    )
-) {
-    confidence = 0;
-}
-
-var words = [];
-
-if (
-    Array.isArray(
-        result.data.words
-    )
-) {
-
-    words =
-        result.data.words
-            .map(
-                function (word) {
-
-                    var bbox =
-                        word.bbox ||
-                        {};
-
-                    return {
-
-                        text:
-                            String(
-                                word.text ||
-                                ''
-                            ),
-
-                        confidence:
-                            Number(
-                                word.confidence
-                            ) || 0,
-
-                        x0:
-                            Number(
-                                bbox.x0
-                            ) || 0,
-
-                        y0:
-                            Number(
-                                bbox.y0
-                            ) || 0,
-
-                        x1:
-                            Number(
-                                bbox.x1
-                            ) || 0,
-
-                        y1:
-                            Number(
-                                bbox.y1
-                            ) || 0
-                    };
-                }
-            )
-            .filter(
-                function (word) {
-                    return (
-                        word.text &&
-                        word.text.trim()
-                    );
-                }
-            );
-}
-
-return {
-
-    text:
-        text,
-
-    confidence:
-        confidence,
-
-    words:
-        words
-};
-```
-
-}
-
-// ================================================================
-// TEXT
-// ================================================================
-
-function extractText(
-result
-) {
-
-```
-if (
-    !result ||
-    !result.data
-) {
-    return '';
-}
-
-return typeof result.data.text ===
-    'string'
-    ? result.data.text.trim()
-    : '';
-```
-
-}
-
-// ================================================================
-// TEXT NORMALIZATION
-// ================================================================
-
-function normalizeText(
-text
-) {
-
-```
-return String(
-    text || ''
-)
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(
-        /[\u0300-\u036f]/g,
-        ''
-    )
-    .replace(
-        /[^a-z0-9]+/g,
-        ' '
-    )
-    .replace(
-        /\s+/g,
-        ' '
-    )
-    .trim();
-```
-
-}
-
-// ================================================================
-// PAYSLIP DETECTION
-// ================================================================
-
-function looksLikePayslip(
-text
-) {
-
-```
-if (
-    !text
-) {
-    return false;
-}
-
-var normalized =
-    normalizeText(
-        text
-    );
-
-var count = 0;
-
-var keywords = [
-    'lordo',
-    'netto',
-    'retribuzione',
-    'ferie',
-    'tfr',
-    'inps',
-    'irpef',
-    'contributi',
-    'ritenute',
-    'paga'
-];
-
-for (
-    var i = 0;
-    i < keywords.length;
-    i++
-) {
-
-    if (
-        normalized.indexOf(
-            keywords[i]
-        ) !== -1
-    ) {
-        count++;
-    }
-}
-
-return count >= 2;
-```
-
-}
-
-// ================================================================
-// TERMINATE
-// ================================================================
-
-async function terminateWorker() {
-
-```
-if (
-    !activeWorker
-) {
-    return;
-}
-
-try {
-
-    await activeWorker.terminate();
-
-} catch (error) {}
-
-activeWorker =
-    null;
-```
-
-}
