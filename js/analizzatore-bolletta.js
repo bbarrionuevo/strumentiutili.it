@@ -160,6 +160,10 @@
           reject(new Error(data.msg));
         }
       };
+      worker.onerror = function (err) {
+        worker.terminate();
+        reject(new Error((err && err.message) || 'Il motore OCR si è interrotto in modo imprevisto.'));
+      };
       worker.postMessage({ imageBlobUrl: imageBlobUrl, lang: 'ita' });
     });
   }

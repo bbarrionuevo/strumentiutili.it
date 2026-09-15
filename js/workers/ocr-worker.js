@@ -15,7 +15,22 @@ try {
 // quando la libreria viene eseguita dentro un Worker annidato (nessun document.currentScript).
 var WORKER_PATH = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js';
 var CORE_PATH = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1/tesseract-core-simd-lstm.wasm.js';
-var LANG_PATH = 'https://tessdata.projectnaptha.com/4.0.0_best_int';
+
+// I modelli 4.0.0_best_int NON esistono su tessdata.projectnaptha.com (404):
+// sono pubblicati solo nei pacchetti @tesseract.js-data/<lingua> su jsDelivr.
+function buildLangPath(lang) {
+    return 'https://cdn.jsdelivr.net/npm/@tesseract.js-data/' + lang + '@1.0.0/4.0.0_best_int';
+}
+
+// Tesseract.js propaga alcuni errori interni fuori dalla catena delle Promise:
+// senza questi handler la UI resterebbe bloccata sullo spinner all'infinito.
+self.onerror = function (e) {
+    self.postMessage({ type: 'error', msg: (e && e.message) || 'Errore interno del motore OCR.' });
+};
+self.onunhandledrejection = function (e) {
+    var reason = e && e.reason;
+    self.postMessage({ type: 'error', msg: (reason && reason.message) || 'Errore interno del motore OCR.' });
+};
 
 // Silenziamo gli errori interni di WebAssembly (es. ita.special-words)
 var originalConsoleError = console.error;
@@ -82,10 +97,11 @@ self.onmessage = async function (event) {
 
         self.postMessage({ type: 'status', msg: 'Avvio motore OCR...' });
 
-        worker = await Tesseract.createWorker(data.lang || 'ita', 1, {
+        var lang = data.lang || 'ita';
+        worker = await Tesseract.createWorker(lang, 1, {
             workerPath: WORKER_PATH,
             corePath: CORE_PATH,
-            langPath: LANG_PATH,
+            langPath: buildLangPath(lang),
             logger: function (m) {
                 if (m && m.status === 'recognizing text') {
                     var pct = Math.round((Number(m.progress) || 0) * 100);
