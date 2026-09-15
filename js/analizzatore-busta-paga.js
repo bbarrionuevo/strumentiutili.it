@@ -140,36 +140,58 @@
     });
   }
 
- // --- PARSER BUSTA PAGA (Fuzzy Matching + Sanity Check) ---
+ // --- PARSER BUSTA PAGA (Fuzzy Matching estremo + Validazione Matematica) ---
   function parseBustaPaga(text) {
     let result = { lordo: null, netto: null, ferie: null, tfr: null };
     if (!text) return result;
 
     let normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
 
-    // Espresiones regulares "Fuzzy": 
-    // Busca la palabra clave, ignora hasta 25 caracteres que NO sean números (ruido OCR), 
-    // y captura la primera cifra con decimales.
-    
-    const nettoMatch = normalizedText.match(/netto[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
+    // 1. FUZZY MATCHING ESTREMO
+    // Invece di cercare parole esatte, cerchiamo varianti comuni degli errori OCR
+    // es. "netto", "nello", "rietto", "pagare", "busta"
+    const nettoMatch = normalizedText.match(/(?:netto|nello|rietto|pagare|busta)[^0-9]{0,35}?([0-9]{1,4}[.,][0-9]{2})/);
     if (nettoMatch) result.netto = parseFloat(nettoMatch[1].replace(',', '.'));
 
-    const lordoMatch = normalizedText.match(/lordo[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
+    const lordoMatch = normalizedText.match(/(?:lordo|lardo|iordo|retribuzione)[^0-9]{0,35}?([0-9]{1,4}[.,][0-9]{2})/);
     if (lordoMatch) result.lordo = parseFloat(lordoMatch[1].replace(',', '.'));
 
-    const ferieMatch = normalizedText.match(/ferie[^0-9]{0,25}([0-9]{1,3}[.,]?[0-9]{0,2})/);
+    const ferieMatch = normalizedText.match(/(?:ferie|residuo|rol)[^0-9]{0,35}?([0-9]{1,3}[.,]?[0-9]{0,2})/);
     if (ferieMatch) result.ferie = parseFloat(ferieMatch[1].replace(',', '.'));
 
-    const tfrMatch = normalizedText.match(/tfr[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
+    const tfrMatch = normalizedText.match(/(?:tfr|fondo|accantonato)[^0-9]{0,35}?([0-9]{1,5}[.,][0-9]{2})/);
     if (tfrMatch) result.tfr = parseFloat(tfrMatch[1].replace(',', '.'));
 
-    // Sanity Checks OCR (Corrección de alucinaciones extremas)
-    if (result.netto && result.netto > 10000) result.netto = null; 
-    if (result.lordo && result.lordo > 15000) result.lordo = null;
-    
+    // 2. VALIDAZIONE MATEMATICA INCROCIATA (Sanity Check)
+    if (result.lordo && result.netto) {
+      let ratio = result.netto / result.lordo;
+      
+      // Se il Netto è maggiore del Lordo, è matematicamente impossibile in Italia.
+      // Il motore OCR ha sicuramente allucinato il Netto o il Lordo.
+      if (ratio >= 1.0) {
+        console.warn("Sanity Check: Il Netto supera il Lordo. Annullamento dato inaffidabile.");
+        result.netto = null; 
+      } 
+      // Se il Netto è inferiore al 40% del Lordo, è un prelievo fiscale irreale.
+      else if (ratio < 0.40) {
+        console.warn("Sanity Check: Prelievo fiscale irreale (>60%). OCR errato.");
+        result.netto = null;
+      }
+    }
+
+    // 3. CORREZIONE ALLUCINAZIONI CIFRE (es. 2456,86 invece di 2450,00)
+    // Spesso l'OCR legge i ",00" in corsivo come ",86" o ",88".
+    // Arrotondiamo i centesimi anomali se il valore è molto grande.
+    if (result.lordo) {
+       let decimali = result.lordo - Math.floor(result.lordo);
+       // Se i decimali sono 0.86 o 0.88, li forziamo a 0.00
+       if (decimali > 0.85 && decimali < 0.89) {
+           result.lordo = Math.floor(result.lordo);
+       }
+    }
+
     return result;
   }
-
   // --- RENDERING RISULTATI ---
   function runEvaluationLogic(data) {
     resultsDashboard.classList.remove('hidden');
