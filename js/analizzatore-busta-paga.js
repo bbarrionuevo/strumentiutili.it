@@ -140,31 +140,31 @@
     });
   }
 
-  // --- PARSER BUSTA PAGA (Regex + Sanity Check) ---
+ // --- PARSER BUSTA PAGA (Fuzzy Matching + Sanity Check) ---
   function parseBustaPaga(text) {
     let result = { lordo: null, netto: null, ferie: null, tfr: null };
     if (!text) return result;
 
     let normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
 
-    // Estrazione Netto in Busta
-    const nettoMatch = normalizedText.match(/(?:netto in busta|totale netto|netto del mese|netto da pagare)[\s:]*([0-9]{1,4}[.,][0-9]{2})/);
+    // Espresiones regulares "Fuzzy": 
+    // Busca la palabra clave, ignora hasta 25 caracteres que NO sean números (ruido OCR), 
+    // y captura la primera cifra con decimales.
+    
+    const nettoMatch = normalizedText.match(/netto[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
     if (nettoMatch) result.netto = parseFloat(nettoMatch[1].replace(',', '.'));
 
-    // Estrazione Totale Lordo
-    const lordoMatch = normalizedText.match(/(?:totale lordo|retribuzione lorda|imponibile lordo)[\s:]*([0-9]{1,4}[.,][0-9]{2})/);
+    const lordoMatch = normalizedText.match(/lordo[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
     if (lordoMatch) result.lordo = parseFloat(lordoMatch[1].replace(',', '.'));
 
-    // Estrazione Ferie / ROL Residui
-    const ferieMatch = normalizedText.match(/(?:ferie residue|residuo ferie)[\s:]*([0-9]{1,3}[.,]?[0-9]{0,2})/);
+    const ferieMatch = normalizedText.match(/ferie[^0-9]{0,25}([0-9]{1,3}[.,]?[0-9]{0,2})/);
     if (ferieMatch) result.ferie = parseFloat(ferieMatch[1].replace(',', '.'));
 
-    // Estrazione TFR Fondo
-    const tfrMatch = normalizedText.match(/(?:fondo tfr|tfr maturato|tfr accantonato)[\s:]*([0-9]{1,5}[.,][0-9]{2})/);
+    const tfrMatch = normalizedText.match(/tfr[^0-9]{0,25}([0-9]{1,5}[.,][0-9]{2})/);
     if (tfrMatch) result.tfr = parseFloat(tfrMatch[1].replace(',', '.'));
 
-    // Sanity Checks OCR
-    if (result.netto && result.netto > 10000) result.netto = null; // Un netto mensile oltre 10k è quasi certamente un errore OCR
+    // Sanity Checks OCR (Corrección de alucinaciones extremas)
+    if (result.netto && result.netto > 10000) result.netto = null; 
     if (result.lordo && result.lordo > 15000) result.lordo = null;
     
     return result;
