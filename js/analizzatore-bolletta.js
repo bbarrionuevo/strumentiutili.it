@@ -1,4 +1,4 @@
-// js/analizzatore-bolletta.js — Scanner Bolletta Luce 3.0 con Worker, Fast-Extraction e Sanity Check
+// js/analizzatore-bolletta.js — Scanner Bolletta Luce 3.0 con Worker, Fast-Extraction, Sanity Check e JSON Dinamico
 (function () {
   'use strict';
 
@@ -14,11 +14,35 @@
   const alertsContainer = document.getElementById('alerts-container');
   const btnReset = document.getElementById('btn-reset');
 
-  // Parametri di Mercato 2026
-  const PUN_MEDIO_STIMATO_KWH = 0.125; 
-  const SPREAD_MAXIMO_FISIOLOGICO = 0.04; 
-  const QUOTA_FISSA_MAXIMA_ANUAL = 120.00;
+  // 1. Parametri di Mercato 2026 (Valori di Fallback iniziale)
+  let PUN_MEDIO_STIMATO_KWH = 0.125; 
+  let SPREAD_MAXIMO_FISIOLOGICO = 0.04; 
+  let QUOTA_FISSA_MAXIMA_ANUAL = 120.00;
 
+  // 2. Caricamento dinamico dei parametri dal JSON locale
+  async function loadMarketParameters() {
+    try {
+      const response = await fetch('/data/regole-fiscali-2026.json');
+      if (!response.ok) throw new Error('File JSON non trovato o inaccessibile.');
+      const data = await response.json();
+      
+      if (data.mercato_energia_2026) {
+        PUN_MEDIO_STIMATO_KWH = data.mercato_energia_2026.pun_medio_stimato_kwh;
+        SPREAD_MAXIMO_FISIOLOGICO = data.mercato_energia_2026.spread_massimo_fisiologico;
+        QUOTA_FISSA_MAXIMA_ANUAL = data.mercato_energia_2026.quota_fissa_massima_annua;
+        console.log(`[StrumentiUtili] Parametri energia aggiornati al: ${data.mercato_energia_2026.ultimo_aggiornamento}`);
+      }
+    } catch (error) {
+      console.warn('[StrumentiUtili] Impossibile caricare il JSON dei parametri. Verranno utilizzati i valori di default.', error);
+    }
+  }
+
+  // Avvia il caricamento dei parametri appena il DOM è pronto
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMarketParameters();
+  });
+
+  // 3. Gestione Eventi UI (Drag & Drop, Click)
   if (dropArea && fileInput) {
     dropArea.addEventListener('click', () => fileInput.click());
     dropArea.addEventListener('dragover', (e) => { e.preventDefault(); dropArea.classList.add('bg-indigo-100'); });
@@ -44,6 +68,7 @@
     if (progressText) progressText.textContent = msg;
   }
 
+  // 4. Flusso Principale di Analisi
   async function startAnalysis(file) {
     dropArea.classList.add('hidden');
     loadingState.classList.remove('hidden');
@@ -54,7 +79,10 @@
       let rawText = '';
 
       if (file.type === 'application/pdf') {
+        // TENTATIVO 1: Estrazione Veloce Nativa (Zero CPU)
         rawText = await extractNativePdfText(file);
+        
+        // Se il PDF è una scansione e non ha testo, usiamo il Canvas + Worker OCR
         if (rawText.length < 50) {
           updateProgress('PDF scansionato rilevato. Preparazione OCR...');
           const imageBlobUrl = await renderPdfToImageBlob(file);
@@ -62,6 +90,7 @@
           URL.revokeObjectURL(imageBlobUrl); 
         }
       } else {
+        // TENTATIVO 2: Immagine diretta -> Worker OCR
         const imageBlobUrl = URL.createObjectURL(file);
         rawText = await runOcrWorker(imageBlobUrl);
         URL.revokeObjectURL(imageBlobUrl);
@@ -80,12 +109,14 @@
     }
   }
 
+  // --- ESTRAZIONE NATIVA (FAST PATH) ---
   async function extractNativePdfText(file) {
     if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js non disponibile.');
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
     const buffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
     let fullText = '';
+    // Legge fino a 2 pagine
     const maxPages = Math.min(pdf.numPages, 2);
     for (let i = 1; i <= maxPages; i++) {
       const page = await pdf.getPage(i);
@@ -96,6 +127,7 @@
     return fullText.trim();
   }
 
+  // --- RENDER PDF -> IMMAGINE (Per OCR) ---
   async function renderPdfToImageBlob(file) {
     const buffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
@@ -108,6 +140,7 @@
     return new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), 'image/jpeg', 0.9));
   }
 
+  // --- ESECUZIONE WORKER OCR ---
   function runOcrWorker(imageBlobUrl) {
     return new Promise((resolve, reject) => {
       const worker = new Worker('/js/workers/ocr-worker.js'); 

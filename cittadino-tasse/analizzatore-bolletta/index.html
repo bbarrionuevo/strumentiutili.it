@@ -217,7 +217,7 @@
       <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Analisi della Bolletta 3.0, Algoritmi di Rilevamento Tariffario e Tutela della Privacy</h2>
         <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il Mercato Libero dell'energia in Italia è contrassegnato da un'elevata asimmetria informativa. Le compagnie energetiche diluiscono i reali margini di profitto all'interno di documenti densi di acronimi e voci regolamentate. Il processo di lettura ed estrazione di questi dati, storicamente ostico per il consumatore, trova oggi una soluzione tecnologica mediante l'impiego di motori OCR (Optical Character Recognition) e algoritmi di parsing sintattico eseguiti nativamente nel browser. L'adozione di un'architettura <strong>Zero-Backend</strong> assume qui un'importanza capitale: la fattura elettrica contiene dati ultra-sensibili, dalle coordinate POD ai consuntivi di prelievo, il cui caricamento su server cloud espone l'utente a gravi rischi di profilazione. Di seguito si esaminano le direttive strutturali dell'ARERA[cite: 14], i parametri operativi del PUN e la meccanica diagnostica applicata dal nostro software.
+          Il Mercato Libero dell'energia in Italia è contrassegnato da un'elevata asimmetria informativa. Le compagnie energetiche diluiscono i reali margini di profitto all'interno di documenti densi di acronimi e voci regolamentate. Il processo di lettura ed estrazione di questi dati, storicamente ostico per il consumatore, trova oggi una soluzione tecnologica mediante l'impiego di motori OCR (Optical Character Recognition) e algoritmi di parsing sintattico eseguiti nativamente nel browser. L'adozione di un'architettura <strong>Zero-Backend</strong> assume qui un'importanza capitale: la fattura elettrica contiene dati ultra-sensibili, dalle coordinate POD ai consuntivi di prelievo, il cui caricamento su server cloud espone l'utente a gravi rischi di profilazione. Di seguito si esaminano le direttive strutturali dell'ARERA[ci, i parametri operativi del PUN e la meccanica diagnostica applicata dal nostro software.
         </p>
 
         <!-- Accordion 1 -->
@@ -228,10 +228,10 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
             <p>
-              Dal 1° luglio 2025, l'Autorità di Regolazione per Energia Reti e Ambiente (ARERA) ha imposto un formato standardizzato e unificato, denominato "Bolletta 3.0", obbligatorio per tutti gli operatori del mercato libero[cite: 14]. Questa standardizzazione fornisce al nostro parser OCR una griglia semantica prevedibile. Il documento si divide strutturalmente in due macro-sezioni primarie.
+              Dal 1° luglio 2025, l'Autorità di Regolazione per Energia Reti e Ambiente (ARERA) ha imposto un formato standardizzato e unificato, denominato "Bolletta 3.0", obbligatorio per tutti gli operatori del mercato libero[ci. Questa standardizzazione fornisce al nostro parser OCR una griglia semantica prevedibile. Il documento si divide strutturalmente in due macro-sezioni primarie.
             </p>
             <p>
-              La prima pagina (Frontespizio Unificato) riporta i metadati contrattuali: il codice identificativo del punto di fornitura (POD), la potenza impegnata (es. 3 kW per un contatore domestico) e la sintesi degli oneri[cite: 14]. La vera essenza del calcolo risede nella seconda pagina, nominata <strong>"Scontrino dell'Energia"</strong>[cite: 14]. Questa sezione isola in maniera granulare la logica algoritmica applicata dal fornitore, permettendo al software di discriminare tra i costi fissi commerciali e l'applicazione moltiplicativa della tariffa volumétrica sui kilowattora (kWh) prelevati[cite: 14].
+              La prima pagina (Frontespizio Unificato) riporta i metadati contrattuali: il codice identificativo del punto di fornitura (POD), la potenza impegnata (es. 3 kW per un contatore domestico) e la sintesi degli oneri[ci. La vera essenza del calcolo risede nella seconda pagina, nominata <strong>"Scontrino dell'Energia"</strong>[ci. Questa sezione isola in maniera granulare la logica algoritmica applicata dal fornitore, permettendo al software di discriminare tra i costi fissi commerciali e l'applicazione moltiplicativa della tariffa volumétrica sui kilowattora (kWh) prelevati[ci.
             </p>
           </div>
         </details>
@@ -244,12 +244,12 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
             <p>
-              Il motore diagnostico non si affida empiricamente alla divisione dell'importo finale della bolletta per i kWh consumati, poiché tale approccio risulterebbe pesantemente distorto dall'incidenza sproporzionata dei costi fissi nei mesi a basso consumo[cite: 14]. Al contrario, il parser isola matematicamente tre vettori specifici:
+              Il motore diagnostico non si affida empiricamente alla divisione dell'importo finale della bolletta per i kWh consumati, poiché tale approccio risulterebbe pesantemente distorto dall'incidenza sproporzionata dei costi fissi nei mesi a basso consumo[ci. Al contrario, il parser isola matematicamente tre vettori specifici:
             </p>
             <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-2">
-              <li><strong>Quota Consumi (Materia Energia):</strong> L'algoritmo estrae la scomposizione della "Vendita energia" (prezzo stabilito commercialmente dal fornitore), separandola nettamente dalle voci "Rete e oneri", che costituiscono peaggi di sistema e di trasporto invariabili imposti da ARERA[cite: 14].</li>
-              <li><strong>Quota Fissa (Commercializzazione):</strong> Identifica il ricarico fisso mensile (es. euro/mese) imposto dal venditore indipendentemente dai volumi prelevati[cite: 14].</li>
-              <li><strong>Gestione Multioraria (F1, F2, F3):</strong> Ove applicabile, lo strumento cattura il costo disaggregato. La logica di calcolo verifica la sperequazione tariffaria tra la fascia di punta F1 (giorni feriali, ore diurne) e la fascia di vuoto F3 (notti e festivi)[cite: 14]. Se la tariffa F1 supera del 150% la tariffa F3 (costo F1 > costo F3 * 1.5), l'algoritmo avverte l'utente della necessità di concentrare i cicli degli elettrodomestici energivori nelle fasce notturne[cite: 14].</li>
+              <li><strong>Quota Consumi (Materia Energia):</strong> L'algoritmo estrae la scomposizione della "Vendita energia" (prezzo stabilito commercialmente dal fornitore), separandola nettamente dalle voci "Rete e oneri", che costituiscono peaggi di sistema e di trasporto invariabili imposti da ARERA[ci.</li>
+              <li><strong>Quota Fissa (Commercializzazione):</strong> Identifica il ricarico fisso mensile (es. euro/mese) imposto dal venditore indipendentemente dai volumi prelevati[ci.</li>
+              <li><strong>Gestione Multioraria (F1, F2, F3):</strong> Ove applicabile, lo strumento cattura il costo disaggregato. La logica di calcolo verifica la sperequazione tariffaria tra la fascia di punta F1 (giorni feriali, ore diurne) e la fascia di vuoto F3 (notti e festivi)[ci. Se la tariffa F1 supera del 150% la tariffa F3 (costo F1 > costo F3 * 1.5), l'algoritmo avverte l'utente della necessità di concentrare i cicli degli elettrodomestici energivori nelle fasce notturne[ci.</li>
             </ul>
           </div>
         </details>
@@ -262,13 +262,13 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
             <p>
-              Il parametro cardinale per determinare l'equità di un contratto nel mercato libero è il <strong>PUN (Prezzo Unico Nazionale)</strong>, il quale riflette il costo all'ingrosso della Borsa Elettrica Italiana[cite: 14]. L'analisi statistica per le misurazioni di mercato fissa ordinariamente un PUN medio di stima a <strong>0,125 €/kWh</strong>[cite: 14]. 
+              Il parametro cardinale per determinare l'equità di un contratto nel mercato libero è il <strong>PUN (Prezzo Unico Nazionale)</strong>, il quale riflette il costo all'ingrosso della Borsa Elettrica Italiana[ci. L'analisi statistica per le misurazioni di mercato fissa ordinariamente un PUN medio di stima a <strong>0,125 €/kWh</strong>[ci. 
             </p>
             <p>
-              L'algoritmo JavaScript implementa una funzione eurisitica (`evaluateTariffHealth`) che estrae il prezzo unitario della materia prima dalla bolletta e lo confronta con il PUN[cite: 14]. Il sistema tollera uno <em>Spread Massimo Fisiologico</em> di 0,04 €/kWh (il ricarico legittimo del fornitore)[cite: 14]. Qualora il costo ecceda tale somma (es. prezzo > 0,165 €/kWh), viene lanciato un "CRITICAL Alert", notificando al consumatore l'applicazione di sovrapprezzi abusivi[cite: 14]. 
+              L'algoritmo JavaScript implementa una funzione eurisitica (`evaluateTariffHealth`) che estrae il prezzo unitario della materia prima dalla bolletta e lo confronta con il PUN[ci. Il sistema tollera uno <em>Spread Massimo Fisiologico</em> di 0,04 €/kWh (il ricarico legittimo del fornitore)[ci. Qualora il costo ecceda tale somma (es. prezzo > 0,165 €/kWh), viene lanciato un "CRITICAL Alert", notificando al consumatore l'applicazione di sovrapprezzi abusivi[ci. 
             </p>
             <p>
-              Congiuntamente, il programma annualizza i costi fissi estratti (prezzo mensile x 12). La soglia limite di equità commerciale per i costi di commercializzazione al dettaglio (Quota Fissa) è fissata normativamente a <strong>120,00 € annui</strong>[cite: 14]. Oltrepassare tale parametro innesca un "WARNING", svelando all'utente esborsi esorbitanti legati puramente al mantenimento contrattuale[cite: 14].
+              Congiuntamente, il programma annualizza i costi fissi estratti (prezzo mensile x 12). La soglia limite di equità commerciale per i costi di commercializzazione al dettaglio (Quota Fissa) è fissata normativamente a <strong>120,00 € annui</strong>[ci. Oltrepassare tale parametro innesca un "WARNING", svelando all'utente esborsi esorbitanti legati puramente al mantenimento contrattuale[ci.
             </p>
           </div>
         </details>
