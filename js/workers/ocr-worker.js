@@ -1,20 +1,13 @@
-/*
- * js/workers/ocr-worker.js
- * 
- * OCR client-side strutturato (Buste Paga + Bollette).
- * Estrae Testo e Bounding Boxes (x0, y0, x1, y1).
- * Nessuna alterazione dei pixel originali.
- */
-
 'use strict';
 importScripts(
     'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'
 );
-
 var activeWorker = null;
 
+// ================================================================
+// MESSAGE
+// ================================================================
 self.onmessage = async function (event) {
-
     var data = event.data || {};
     var imageBlobUrl = data.imageBlobUrl || '';
     var language = data.lang || 'ita';
@@ -28,85 +21,74 @@ self.onmessage = async function (event) {
         reportStatus('Preparazione del documento...');
 
         var response = await fetch(imageBlobUrl);
-        if (!response.ok) {
-            throw new Error('Impossibile leggere l immagine.');
-        }
+        if (!response.ok) throw new Error('Impossibile leggere l immagine.');
         var blob = await response.blob();
-        if (!blob || blob.size <= 0) {
-            throw new Error('Immagine vuota.');
-        }
+        if (!blob || blob.size <= 0) throw new Error('Immagine vuota.');
 
-        reportStatus('Avvio motore OCR italiano...');
+        reportStatus('Avvio OCR italiano...');
 
         /*
-         * IMPORTANTE:
-         * Tesseract.js 5 usa automaticamente il CDN jsDelivr.
-         * Configuriamo user_words_suffix vuoto durante l'inizializzazione 
-         * per evitare il tentativo di caricare ita.special-words.
+         * Non modifichiamo l'immagine.
          */
-        activeWorker = await Tesseract.createWorker(
-            language,
-            1,
-            {
-                logger: function (message) {
-                    if (!message) return;
-                    if (message.status === 'recognizing text') {
-                        var progress = Number(message.progress) || 0;
-                        self.postMessage({
-                            type: 'progress',
-                            pct: Math.round(progress * 100)
-                        });
-                    } else if (message.status) {
-                        reportStatus(String(message.status));
-                    }
+        activeWorker = await Tesseract.createWorker(language, 1, {
+            logger: function (message) {
+                if (!message) return;
+                if (message.status === 'recognizing text') {
+                    var progress = Number(message.progress) || 0;
+                    self.postMessage({
+                        type: 'progress',
+                        pct: Math.round(progress * 100)
+                    });
+                } else if (message.status) {
+                    reportStatus(String(message.status));
                 }
-            },
-            {
-                /* Parametri di inizializzazione */
-                user_words_suffix: '',
-                user_patterns_suffix: '',
-                load_system_dawg: '1',
-                load_freq_dawg: '1',
-                load_punc_dawg: '1',
-                load_number_dawg: '1'
             }
-        );
+        }, {
+            /* Parametri di inizializzazione: disabilita ita.special-words */
+            user_words_suffix: '',
+            user_patterns_suffix: '',
+            load_system_dawg: '1',
+            load_freq_dawg: '1',
+            load_punc_dawg: '1',
+            load_number_dawg: '1'
+        });
 
         // ========================================================
-        // PSM 6
+        // OCR GENERAL (PSM 6)
         // ========================================================
-        await setParameters(activeWorker, '6');
-        reportStatus('Lettura principale del documento...');
+        await configureGeneralOCR(activeWorker, '6');
+        reportStatus('Lettura della struttura della busta paga...');
         
-        var result6 = await activeWorker.recognize(blob);
-        var structured6 = extractStructuredResult(result6);
+        var generalResult = await activeWorker.recognize(blob);
+        var generalData = extractStructuredResult(generalResult);
 
         // ========================================================
-        // PSM 11
+        // OCR GENERAL (PSM 11)
         // ========================================================
-        await setParameters(activeWorker, '11');
-        reportStatus('Controllo della struttura del documento...');
+        await configureGeneralOCR(activeWorker, '11');
+        reportStatus('Verifica del layout del documento...');
         
-        var result11 = await activeWorker.recognize(blob);
-        var structured11 = extractStructuredResult(result11);
+        var sparseResult = await activeWorker.recognize(blob);
+        var sparseData = extractStructuredResult(sparseResult);
 
         // ========================================================
-        // SELECCIÓN
+        // BEST GENERAL RESULT
         // ========================================================
-        var selected = chooseBestResult(structured6, structured11);
+        var best = chooseBestGeneralResult(generalData, sparseData);
 
-        console.log('[OCR] PSM6 confidence:', structured6.confidence);
-        console.log('[OCR] PSM11 confidence:', structured11.confidence);
-        console.log('[OCR] Risultato scelto in base allo scoring.');
+        // ========================================================
+        // NUMERIC OCR (Fallback globale)
+        // ========================================================
+        var numericResults = await runNumericOCR(activeWorker, blob);
 
         await terminateWorker();
 
-        // Ora restituiamo anche l'array WORDS per il parsing spaziale!
         self.postMessage({
             type: 'success',
-            text: selected.text,
-            confidence: selected.confidence,
-            words: selected.words
+            text: best.text,
+            confidence: best.confidence,
+            words: best.words,
+            numericText: numericResults
         });
 
     } catch (error) {
@@ -114,27 +96,21 @@ self.onmessage = async function (event) {
         await terminateWorker();
         self.postMessage({
             type: 'error',
-            msg: error && error.message ? error.message : 'Errore OCR sconosciuto.'
+            msg: error && error.message ? error.message : 'Errore OCR.'
         });
     }
 };
 
 // ================================================================
-// STATUS
+// UTILS & CONFIG
 // ================================================================
 function reportStatus(message) {
     try {
-        self.postMessage({
-            type: 'status',
-            msg: String(message || '')
-        });
+        self.postMessage({ type: 'status', msg: String(message || '') });
     } catch (error) {}
 }
 
-// ================================================================
-// PARAMETERS
-// ================================================================
-async function setParameters(worker, psm) {
+async function configureGeneralOCR(worker, psm) {
     await worker.setParameters({
         tessedit_pageseg_mode: String(psm),
         preserve_interword_spaces: '1',
@@ -142,13 +118,23 @@ async function setParameters(worker, psm) {
     });
 }
 
+async function runNumericOCR(worker, blob) {
+    await worker.setParameters({
+        tessedit_pageseg_mode: '6',
+        tessedit_char_whitelist: '0123456789,.-€',
+        preserve_interword_spaces: '1',
+        user_defined_dpi: '300'
+    });
+    reportStatus('Verifica dei valori numerici...');
+    var result = await worker.recognize(blob);
+    return extractText(result);
+}
+
 // ================================================================
-// STRUCTURED RESULT (Estrae Bounding Boxes)
+// DATA EXTRACTION & SCORING
 // ================================================================
 function extractStructuredResult(result) {
-    if (!result || !result.data) {
-        return { text: '', confidence: 0, words: [] };
-    }
+    if (!result || !result.data) return { text: '', confidence: 0, words: [] };
 
     var text = typeof result.data.text === 'string' ? result.data.text : '';
     var confidence = Number(result.data.confidence);
@@ -157,45 +143,39 @@ function extractStructuredResult(result) {
     var words = [];
     if (Array.isArray(result.data.words)) {
         words = result.data.words.map(function (word) {
+            var bbox = word.bbox || {};
             return {
                 text: String(word.text || ''),
                 confidence: Number(word.confidence) || 0,
-                x0: Number(word.bbox && word.bbox.x0) || 0,
-                y0: Number(word.bbox && word.bbox.y0) || 0,
-                x1: Number(word.bbox && word.bbox.x1) || 0,
-                y1: Number(word.bbox && word.bbox.y1) || 0
+                x0: Number(bbox.x0) || 0,
+                y0: Number(bbox.y0) || 0,
+                x1: Number(bbox.x1) || 0,
+                y1: Number(bbox.y1) || 0
             };
         }).filter(function (word) {
-            return word.text.length > 0;
+            return word.text && word.text.trim();
         });
     }
 
-    return {
-        text: text,
-        confidence: confidence,
-        words: words
-    };
+    return { text: text, confidence: confidence, words: words };
 }
 
-// ================================================================
-// RESULT SELECTION
-// ================================================================
-function chooseBestResult(result6, result11) {
-    var score6 = scoreResult(result6);
-    var score11 = scoreResult(result11);
-
-    if (score11 > score6) return result11;
-    return result6;
+function extractText(result) {
+    if (!result || !result.data) return '';
+    return typeof result.data.text === 'string' ? result.data.text : '';
 }
 
-// ================================================================
-// SCORE UNIVERSALE (Lavoro + Energia)
-// ================================================================
-function scoreResult(result) {
+function chooseBestGeneralResult(first, second) {
+    var scoreFirst = scoreGeneralResult(first);
+    var scoreSecond = scoreGeneralResult(second);
+    if (scoreSecond > scoreFirst) return second;
+    return first;
+}
+
+function scoreGeneralResult(result) {
     if (!result || !result.text) return 0;
-    
     var text = result.text.toLowerCase();
-    var score = Number(result.confidence) * 0.40;
+    var score = Number(result.confidence) * 0.4;
 
     var keywords = [
         // Busta Paga
@@ -207,31 +187,18 @@ function scoreResult(result) {
     ];
 
     for (var i = 0; i < keywords.length; i++) {
-        if (text.indexOf(keywords[i]) !== -1) {
-            score += 8;
-        }
+        if (text.indexOf(keywords[i]) !== -1) score += 8;
     }
 
-    /* Bonus per numeri decimali (tipici di importi) */
-    if (/\d+[,.]\d{2}/.test(result.text)) {
-        score += 15;
-    }
-
-    /* Bonus per quantità di parole rilevate */
+    var amounts = result.text.match(/\b\d{1,3}(?:[.\s]\d{3})*[,.]\d{2}\b/g);
+    if (amounts) score += Math.min(40, amounts.length * 8);
     score += Math.min(20, result.words.length);
 
     return score;
 }
 
-// ================================================================
-// TERMINATE
-// ================================================================
 async function terminateWorker() {
     if (!activeWorker) return;
-    try {
-        await activeWorker.terminate();
-    } catch (error) {
-        console.warn('[OCR] Errore chiusura:', error);
-    }
+    try { await activeWorker.terminate(); } catch (error) {}
     activeWorker = null;
 }
