@@ -1,4 +1,4 @@
-// js/analizzatore-bolletta.js — Scanner Bolletta Luce 3.0 con Worker e Fast-Extraction
+// js/analizzatore-bolletta.js — Scanner Bolletta Luce 3.0 con Worker, Fast-Extraction e Sanity Check
 (function () {
   'use strict';
 
@@ -54,18 +54,14 @@
       let rawText = '';
 
       if (file.type === 'application/pdf') {
-        // TENTATIVO 1: Estrazione Veloce Nativa (Zero CPU)
         rawText = await extractNativePdfText(file);
-        
-        // Se il PDF è una scansione e non ha testo, usiamo il Canvas + Worker OCR
         if (rawText.length < 50) {
           updateProgress('PDF scansionato rilevato. Preparazione OCR...');
           const imageBlobUrl = await renderPdfToImageBlob(file);
           rawText = await runOcrWorker(imageBlobUrl);
-          URL.revokeObjectURL(imageBlobUrl); // Libera memoria
+          URL.revokeObjectURL(imageBlobUrl); 
         }
       } else {
-        // TENTATIVO 2: Immagine diretta -> Worker OCR
         const imageBlobUrl = URL.createObjectURL(file);
         rawText = await runOcrWorker(imageBlobUrl);
         URL.revokeObjectURL(imageBlobUrl);
@@ -78,22 +74,18 @@
     } catch (error) {
       console.error(error);
       alert("Errore durante l'elaborazione: " + error.message);
-      btnReset.click();
+      if (btnReset) btnReset.click();
     } finally {
       loadingState.classList.add('hidden');
     }
   }
 
-  // --- 1. ESTRAZIONE NATIVA (FAST PATH) ---
   async function extractNativePdfText(file) {
     if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js non disponibile.');
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    
     const buffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
     let fullText = '';
-    
-    // Legge le prime due pagine
     const maxPages = Math.min(pdf.numPages, 2);
     for (let i = 1; i <= maxPages; i++) {
       const page = await pdf.getPage(i);
@@ -104,26 +96,21 @@
     return fullText.trim();
   }
 
-  // --- 2. RENDER PDF -> IMMAGINE (Per OCR) ---
   async function renderPdfToImageBlob(file) {
     const buffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
     const pageNum = pdf.numPages >= 2 ? 2 : 1; 
     const page = await pdf.getPage(pageNum);
-    
     const viewport = page.getViewport({ scale: 2.0 });
     const canvas = document.createElement('canvas');
     canvas.width = viewport.width; canvas.height = viewport.height;
     await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-    
     return new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), 'image/jpeg', 0.9));
   }
 
-  // --- 3. ESECUZIONE WORKER OCR ---
   function runOcrWorker(imageBlobUrl) {
     return new Promise((resolve, reject) => {
-      const worker = new Worker('/js/workers/ocr-worker.js'); // Punta al nuovo file
-      
+      const worker = new Worker('/js/workers/ocr-worker.js'); 
       worker.onmessage = function(e) {
         const data = e.data;
         if (data.type === 'progress') {
@@ -136,32 +123,67 @@
           reject(new Error(data.msg));
         }
       };
-
       worker.postMessage({ imageBlobUrl: imageBlobUrl, lang: 'ita' });
     });
   }
 
-  // --- PARSER E LOGICA VALUTATIVA (Identica a prima) ---
+  // --- PARSER SINTATTICO CON SANITIZZAZIONE E OCR SANITY CHECK ---
   function parseBollettaText(text) {
     let result = { costoKwh: null, quotaFissaMensile: null };
-    const normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
+    if (!text) return result;
+
+    let normalizedText = text.toLowerCase().replace(/\s+/g, ' ');
+    // Correzione Typo OCR: Se legge "o,185" o "O,185", lo forza a "0,185"
+    normalizedText = normalizedText.replace(/(^|\s)[oO]([.,][0-9]+)/g, '$10$2');
 
     const kwhMatch = normalizedText.match(/([0-9]{1,2}[.,][0-9]{2,5})\s*(?:€\/?kwh|euro\/?kwh|€\/kwh)/);
-    if (kwhMatch) result.costoKwh = parseFloat(kwhMatch[1].replace(',', '.'));
+    if (kwhMatch) {
+        let valStr = kwhMatch[1].replace(',', '.');
+        let val = parseFloat(valStr);
+
+        // SANITY CHECK: Corregge letture allucinate dall'OCR (es. 6,185 -> 0,185)
+        if (val > 2.0) {
+            valStr = "0" + valStr.substring(1);
+            val = parseFloat(valStr);
+        }
+        result.costoKwh = val;
+    }
 
     const fissaMatch = normalizedText.match(/([0-9]{1,3}[.,][0-9]{2})\s*(?:€\/?mese|euro\/?mese)/);
-    if (fissaMatch) result.quotaFissaMensile = parseFloat(fissaMatch[1].replace(',', '.'));
-
-    // Fallback Heuristico
-    if (!result.costoKwh) result.costoKwh = 0.11 + (Math.random() * 0.11);
-    if (!result.quotaFissaMensile) result.quotaFissaMensile = 6.00 + (Math.random() * 9.00);
+    if (fissaMatch) {
+        result.quotaFissaMensile = parseFloat(fissaMatch[1].replace(',', '.'));
+    }
 
     return result;
   }
 
+  // --- LOGICA VALUTATIVA E RENDERING (CON GESTIONE ERRORI) ---
   function runEvaluationLogic(data) {
     resultsDashboard.classList.remove('hidden');
-    let alerts = []; let isBadTariff = false;
+    alertsContainer.innerHTML = '';
+    
+    // ERRORE ELEGANTE SE NON TROVA I DATI
+    if (!data.costoKwh) {
+      if (resKwh) resKwh.textContent = "--";
+      if (resFissi) resFissi.textContent = "--";
+      
+      alertsContainer.innerHTML = `
+        <div class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">
+          ⚠️ <b>Dati non rilevati.</b> L'algoritmo non è riuscito a leggere il costo della materia energia. Assicurati di aver caricato lo <b>"Scontrino dell'Energia" (solitamente a Pagina 2)</b> e che il documento sia nitido e non tagliato.
+        </div>
+      `;
+      
+      resVerdetto.innerHTML = "Analisi interrotta. I dati estratti non sono sufficienti per emettere una valutazione tariffaria sicura.";
+      resVerdetto.parentElement.className = "bg-gray-50 border border-gray-200 rounded-xl p-5 mt-4";
+      resVerdetto.parentElement.querySelector('h3').classList.replace('text-indigo-900', 'text-gray-900');
+      resVerdetto.className = "text-sm text-gray-800 leading-relaxed font-medium";
+      
+      return; 
+    }
+
+    // ANALISI REALE
+    let alerts = []; 
+    let isBadTariff = false;
 
     let costoMateriaPrima = data.costoKwh;
     if (resKwh) resKwh.textContent = costoMateriaPrima.toFixed(3).replace('.', ',');
@@ -174,14 +196,18 @@
         alerts.push({ severity: "SUCCESS", message: `✅ Costo dell'energia in linea con il mercato.` });
     }
 
-    let costoFijoAnual = data.quotaFissaMensile * 12;
-    if (resFissi) resFissi.textContent = costoFijoAnual.toFixed(2).replace('.', ',');
+    if (data.quotaFissaMensile) {
+      let costoFijoAnual = data.quotaFissaMensile * 12;
+      if (resFissi) resFissi.textContent = costoFijoAnual.toFixed(2).replace('.', ',');
 
-    if (costoFijoAnual > QUOTA_FISSA_MAXIMA_ANUAL) {
-        alerts.push({ severity: "WARNING", message: `🟠 <b>Costi fissi elevati:</b> paghi <b>${costoFijoAnual.toFixed(2).replace('.', ',')} €/anno</b> di mantenimento. Limite consigliato: < 120 €.` });
-        isBadTariff = true;
+      if (costoFijoAnual > QUOTA_FISSA_MAXIMA_ANUAL) {
+          alerts.push({ severity: "WARNING", message: `🟠 <b>Costi fissi elevati:</b> paghi <b>${costoFijoAnual.toFixed(2).replace('.', ',')} €/anno</b> di mantenimento. Limite consigliato: < 120 €.` });
+          isBadTariff = true;
+      } else {
+          alerts.push({ severity: "SUCCESS", message: `✅ Quota fissa commerciale eccellente.` });
+      }
     } else {
-        alerts.push({ severity: "SUCCESS", message: `✅ Quota fissa commerciale eccellente.` });
+      if (resFissi) resFissi.textContent = "N/D";
     }
 
     alerts.forEach(alert => {
