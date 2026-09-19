@@ -503,7 +503,7 @@
         alert("Errore nella generazione del documento PDF/A.");
       } finally {
         btnGenerate.disabled = false;
-        btnGenerate.innerHTML = '<span>📄</span> Genera Modello PDF/A';
+        btnGenerate.innerHTML = '<span>📄</span> Scarica il prospetto delle imposte';
       }
     });
 

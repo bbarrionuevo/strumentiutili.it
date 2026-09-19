@@ -104,7 +104,7 @@ const APP_SHELL = [
   // Script delle calcolatrici
   '/js/rli.js',
   '/js/fatturapa.js',
-  '/js/modelli-piva.js',
+  '/js/compilatore-moduli.js',
   '/js/hr-dimissioni.js',
   '/js/mutuo.js',
   '/js/rivalutazione-istat.js',

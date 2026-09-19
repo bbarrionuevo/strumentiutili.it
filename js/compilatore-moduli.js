@@ -1,21 +1,24 @@
-// js/modelli-piva.js — Compilatore guidato dei modelli AA9/12 e AA7/10
+// js/compilatore-moduli.js — Compilazione guidata dei modelli dell'Agenzia delle Entrate
 //
-// Legge la mappa dei campi da /data/modelli-piva-schema.json, costruisce una
+// Motore condiviso: legge la mappa dei campi da uno schema JSON, costruisce una
 // procedura passo per passo con la spiegazione di ogni voce presa dalle
 // istruzioni ufficiali e, alla fine, riempie il vero PDF dell'Agenzia delle
 // Entrate con pdf-lib e lo fa scaricare. Tutto nel browser: nessun dato esce
 // dal dispositivo.
+//
+// La pagina lo configura con gli attributi del contenitore:
+//   <div id="mp-app" data-schema="/data/...json" data-stato="chiave_locale">
+// e, se il modulo e' uno solo, data-modello="RLI".
 (() => {
   'use strict';
 
-  const PERCORSO_SCHEMA = '/data/modelli-piva-schema.json';
   const PERCORSO_REGOLE = '/data/regole-fiscali-2026.json';
-  const CHIAVE_STATO = 'modelli_piva_compilatore';
 
   const stato = {
     schema: null,
     capVietati: [],
-    modello: 'AA9',
+    chiaveStato: 'compilatore_moduli',
+    modello: null,
     passo: 0,
     dati: Object.create(null),      // "passo.campo" -> valore
     attivi: Object.create(null),    // "modello.passo" -> true se un quadro opzionale e' stato attivato
@@ -134,7 +137,11 @@
       case 'ateco':
         return /^[0-9]{4,6}$/.test(v) ? null : 'Il codice ATECO va scritto in cifre, senza punti (per esempio 620100).';
       case 'importo':
-        return /^[0-9]{1,11}$/.test(v.replace(/[.\s]/g, '')) ? null : 'Indica un importo in euro, senza decimali.';
+        return /^[0-9]{1,11}$/.test(v.replace(/[.,\s]/g, '')) ? null : 'Indica un importo in euro, senza decimali.';
+      case 'numero':
+        return /^[0-9]{1,4}$/.test(v) ? null : 'Indica solo cifre.';
+      case 'anno':
+        return /^(19|20)\d{2}$/.test(v) ? null : 'Indica un anno di quattro cifre (per esempio 2026).';
       case 'email':
         return /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(String(valore).trim()) ? null : 'Indirizzo e-mail non valido.';
       case 'data':
@@ -207,6 +214,8 @@
       case 'provincia': return 'type="text" maxlength="2" class="mp-input mp-maiuscolo"';
       case 'ateco': return 'type="text" maxlength="6" inputmode="numeric" class="mp-input"';
       case 'importo': return 'type="text" inputmode="numeric" class="mp-input"';
+      case 'numero': return 'type="text" inputmode="numeric" maxlength="4" class="mp-input"';
+      case 'anno': return 'type="text" inputmode="numeric" maxlength="4" class="mp-input"';
       case 'data': return 'type="date" class="mp-input"';
       case 'email': return 'type="email" class="mp-input"';
       default: return 'type="text" class="mp-input"';
@@ -437,10 +446,12 @@
       link.href = modello.istruzioni;
       link.textContent = `Istruzioni ufficiali ${modello.codice} (PDF)`;
     }
-    document.querySelectorAll('[data-modello]').forEach((b) => {
+    document.querySelectorAll('button[data-modello]').forEach((b) => {
       b.classList.toggle('mp-scelta-attiva', b.dataset.modello === stato.modello);
       b.setAttribute('aria-pressed', String(b.dataset.modello === stato.modello));
     });
+    const titolo = document.getElementById('mp-titolo-modello');
+    if (titolo) titolo.textContent = modello.nome;
   }
 
   function avviso(testo, tipo) {
@@ -453,7 +464,7 @@
 
   function salva() {
     if (!window.AppStorage) return;
-    window.AppStorage.save(CHIAVE_STATO, {
+    window.AppStorage.save(stato.chiaveStato, {
       modello: stato.modello,
       passo: stato.passo,
       dati: stato.dati,
@@ -464,9 +475,11 @@
 
   function ripristina() {
     if (!window.AppStorage) return;
-    const salvato = window.AppStorage.load(CHIAVE_STATO, null);
+    const salvato = window.AppStorage.load(stato.chiaveStato, null);
     if (!salvato) return;
-    if (salvato.modello && stato.schema.modelli[salvato.modello]) stato.modello = salvato.modello;
+    if (!app.dataset.modello && salvato.modello && stato.schema.modelli[salvato.modello]) {
+      stato.modello = salvato.modello;
+    }
     if (typeof salvato.passo === 'number') stato.passo = salvato.passo;
     Object.assign(stato.dati, salvato.dati || {});
     Object.assign(stato.attivi, salvato.attivi || {});
@@ -482,10 +495,10 @@
     try {
       const chiavePagina = location.pathname.replace(/[\/.]/g, '_') || 'home';
       if (window.AppStorage) {
-        window.AppStorage.remove(CHIAVE_STATO);
+        window.AppStorage.remove(stato.chiaveStato);
         window.AppStorage.remove(`form_data_${chiavePagina}`);
       }
-      localStorage.removeItem(`su_${CHIAVE_STATO}`);
+      localStorage.removeItem(`su_${stato.chiaveStato}`);
       localStorage.removeItem(`su_form_data_${chiavePagina}`);
     } catch (e) { /* la privacy non deve bloccare l'utente */ }
   }
@@ -503,7 +516,7 @@
     switch (tipo) {
       case 'data': return dataItaliana(v);
       case 'cf': case 'cfOpiva': case 'provincia': return v.toUpperCase();
-      case 'importo': return v.replace(/[^\d]/g, '');
+      case 'importo': case 'numero': case 'anno': return v.replace(/[^\d]/g, '');
       case 'cap': case 'piva': case 'cfNum': case 'ateco': return v.replace(/[^\dA-Za-z]/g, '');
       default: return v;
     }
@@ -608,18 +621,29 @@
       });
     });
 
-    // Testata: il codice fiscale va in alto su ogni pagina, insieme alla numerazione.
-    const cf = perModello(leggi(chiave('quadroA', 'cfContribuente')) || '', 'cf');
-    const testata = modello.testata;
-    if (cf) testata.codiceFiscale.forEach((nome) => testi.set(nome, cf));
-    testata.numeroPagina.forEach((nome, i) => testi.set(nome, String(i + 1)));
-    testi.set(testata.totalePagine, String(testata.numeroPagina.length));
+    // Testata: i dati che il modello ripete in alto su ogni pagina.
+    const testata = modello.testata || {};
+    (testata.copie || []).forEach((regola) => {
+      let valore = regola.valore;
+      if (!valore && regola.da) {
+        const [passoId, campoId] = regola.da.split('.');
+        valore = perModello(leggi(chiave(passoId, campoId)) || '', regola.tipo || 'testo');
+      }
+      if (!valore) return;
+      regola.a.forEach((nome) => testi.set(nome, valore));
+    });
+    if (testata.numeroPagina) {
+      testata.numeroPagina.forEach((nome, i) => testi.set(nome, String(i + 1)));
+      if (testata.totalePagine) testi.set(testata.totalePagine, String(testata.numeroPagina.length));
+    }
 
     // Riquadro "quadri compilati": si barra ciò che è stato effettivamente riempito.
-    quadri.forEach((lettera) => {
-      const nome = modello.caselleQuadri[lettera];
-      if (nome) spunte.add(nome);
-    });
+    if (modello.caselleQuadri) {
+      quadri.forEach((lettera) => {
+        const nome = modello.caselleQuadri[lettera];
+        if (nome) spunte.add(nome);
+      });
+    }
 
     return { testi, spunte };
   }
@@ -689,7 +713,11 @@
       documento.setCreationDate(new Date());
 
       const byte = await documento.save();
-      const identificativo = String(leggi(chiave('quadroA', 'cfContribuente')) || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      const rifNome = (modello.testata && modello.testata.riferimentoNomeFile) || '';
+      const [passoRif, campoRif] = rifNome.split('.');
+      const identificativo = passoRif
+        ? String(leggi(chiave(passoRif, campoRif)) || '').toUpperCase().replace(/[^A-Z0-9]/g, '')
+        : '';
       const nomeFile = `${modello.codice.replace('/', '_')}${identificativo ? '_' + identificativo : ''}_compilato.pdf`;
       scarica(byte, nomeFile);
 
@@ -813,7 +841,7 @@
       }
     });
 
-    document.querySelectorAll('[data-modello]').forEach((bottone) => {
+    document.querySelectorAll('button[data-modello]').forEach((bottone) => {
       bottone.addEventListener('click', () => {
         if (stato.modello === bottone.dataset.modello) return;
         stato.modello = bottone.dataset.modello;
@@ -836,6 +864,37 @@
     }
   }
 
+
+  /* ------------------------------------------------------------- API esterna */
+
+  // Permette a uno strumento della stessa pagina (per esempio il simulatore
+  // delle imposte) di travasare i propri dati dentro al modulo.
+  window.CompilatoreModuli = {
+    /**
+     * @param {Object} mappa  chiavi "passo.campo" oppure "passo.gruppo.indice.sottocampo"
+     * @param {Object} [opzioni]  { attiva: ["passoOpzionale", ...] }
+     * @returns {number} quanti valori sono stati effettivamente riportati
+     */
+    precompila(mappa, opzioni) {
+      if (!stato.schema) return 0;
+      let quanti = 0;
+      Object.keys(mappa || {}).forEach((percorso) => {
+        const valore = mappa[percorso];
+        if (valore === '' || valore == null || valore === false) return;
+        stato.dati[`${stato.modello}.${percorso}`] = valore;
+        quanti += 1;
+      });
+      ((opzioni && opzioni.attiva) || []).forEach((passo) => {
+        stato.attivi[`${stato.modello}.${passo}`] = true;
+      });
+      if (quanti) {
+        salva();
+        render();
+      }
+      return quanti;
+    }
+  };
+
   /* --------------------------------------------------------------- avvio */
 
   document.addEventListener('DOMContentLoaded', async () => {
@@ -846,12 +905,15 @@
     riquadroNav = document.getElementById('mp-nav');
     riquadroStato = document.getElementById('mp-stato');
 
+    stato.chiaveStato = app.dataset.stato || stato.chiaveStato;
+
     try {
       const [schema, regole] = await Promise.all([
-        fetch(PERCORSO_SCHEMA).then((r) => { if (!r.ok) throw new Error('schema'); return r.json(); }),
+        fetch(app.dataset.schema).then((r) => { if (!r.ok) throw new Error('schema'); return r.json(); }),
         fetch(PERCORSO_REGOLE).then((r) => (r.ok ? r.json() : null)).catch(() => null)
       ]);
       stato.schema = schema;
+      stato.modello = app.dataset.modello || Object.keys(schema.modelli)[0];
       const modelliRegole = regole && regole.modelli_partita_iva;
       stato.capVietati = (modelliRegole && modelliRegole.blacklist_cap_generici) || [];
     } catch (errore) {
