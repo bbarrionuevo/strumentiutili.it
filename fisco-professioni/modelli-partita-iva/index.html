@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compila i modelli AA9/12 e AA7/10 online: apertura, variazione e chiusura Partita IVA — StrumentiUtili.it</title>
+  <meta name="description" content="Compila online i modelli ufficiali AA9/12 e AA7/10 per aprire, variare o chiudere la Partita IVA: procedura guidata campo per campo e download del PDF ministeriale già compilato. Tutto nel browser, zero backend." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/modelli-partita-iva/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <style>
+    /* --- Compilatore guidato dei modelli AA9/12 e AA7/10 -------------------
+       CSS scritto a mano: la build Tailwind analizza solo i file .html, quindi
+       le classi generate da JavaScript non finirebbero nel foglio compilato. */
+    .mp-scelta { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-bottom: 1.5rem; }
+    @media (min-width: 640px) { .mp-scelta { grid-template-columns: 1fr 1fr; } }
+    .mp-scelta-btn { text-align: left; padding: 1rem 1.15rem; border: 2px solid #e5e7eb; border-radius: .9rem;
+      background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s, background .15s; }
+    .mp-scelta-btn strong { display: block; font-size: 1.05rem; color: #111827; }
+    .mp-scelta-btn span { display: block; font-size: .78rem; color: #6b7280; margin-top: .15rem; line-height: 1.35; }
+    .mp-scelta-btn:hover { border-color: #c7d2fe; }
+    .mp-scelta-btn.mp-scelta-attiva { border-color: #4f46e5; background: #eef2ff; box-shadow: 0 1px 3px rgba(79,70,229,.18); }
+    .mp-scelta-btn.mp-scelta-attiva strong { color: #3730a3; }
+
+    .mp-guscio { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
+    @media (min-width: 900px) { .mp-guscio { grid-template-columns: 245px minmax(0, 1fr); } }
+
+    .mp-passi { display: flex; flex-direction: row; gap: .35rem; overflow-x: auto; padding-bottom: .35rem; }
+    @media (min-width: 900px) { .mp-passi { flex-direction: column; overflow: visible; position: sticky; top: 6rem; } }
+    .mp-passo-voce { display: flex; align-items: center; gap: .55rem; padding: .5rem .6rem; border-radius: .55rem;
+      border: 1px solid transparent; background: transparent; cursor: pointer; text-align: left; white-space: nowrap; }
+    @media (min-width: 900px) { .mp-passo-voce { white-space: normal; } }
+    .mp-passo-voce:hover { background: #f3f4f6; }
+    .mp-passo-numero { flex: 0 0 auto; width: 1.4rem; height: 1.4rem; border-radius: 999px; background: #e5e7eb;
+      color: #4b5563; font-size: .68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+    .mp-passo-nome { font-size: .76rem; color: #4b5563; line-height: 1.25; }
+    .mp-passo-attivo { background: #eef2ff; border-color: #c7d2fe; }
+    .mp-passo-attivo .mp-passo-numero { background: #4f46e5; color: #fff; }
+    .mp-passo-attivo .mp-passo-nome { color: #3730a3; font-weight: 700; }
+    .mp-passo-saltato .mp-passo-nome { color: #9ca3af; }
+
+    .mp-pannello { background: #fff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04); min-width: 0; }
+    @media (min-width: 640px) { .mp-pannello { padding: 2rem; } }
+    .mp-titolo { font-size: 1.3rem; font-weight: 800; color: #111827; margin: 0 0 .4rem; }
+    .mp-descrizione { font-size: .86rem; color: #4b5563; line-height: 1.6; margin: 0 0 1.25rem; }
+    .mp-saltato { font-size: .82rem; color: #6b7280; background: #f9fafb; border: 1px dashed #e5e7eb;
+      border-radius: .6rem; padding: .85rem 1rem; line-height: 1.55; }
+
+    .mp-griglia { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+    .mp-campo { grid-column: span 12; min-width: 0; }
+    @media (min-width: 720px) {
+      .mp-c3 { grid-column: span 3; } .mp-c4 { grid-column: span 4; }
+      .mp-c6 { grid-column: span 6; } .mp-c8 { grid-column: span 8; } .mp-c12 { grid-column: span 12; }
+    }
+
+    .mp-etichetta-riga { display: flex; align-items: center; gap: .4rem; margin-bottom: .3rem; }
+    .mp-etichetta { font-size: .72rem; font-weight: 700; color: #374151; line-height: 1.3; }
+    .mp-obb { color: #dc2626; }
+    .mp-info { flex: 0 0 auto; width: 1.15rem; height: 1.15rem; border-radius: 999px; border: none;
+      background: #eef2ff; color: #4f46e5; font-size: .68rem; font-weight: 800; font-style: italic;
+      cursor: pointer; line-height: 1; }
+    .mp-info:hover { background: #e0e7ff; }
+    .mp-info:focus-visible { outline: 2px solid #4f46e5; outline-offset: 1px; }
+
+    .mp-input { width: 100%; padding: .5rem .7rem; border: 1px solid #d1d5db; border-radius: .5rem;
+      font-size: .875rem; color: #111827; background: #fff; box-sizing: border-box; }
+    .mp-input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 2px rgba(79,70,229,.25); }
+    .mp-maiuscolo { text-transform: uppercase; }
+
+    .mp-guida { margin-top: .45rem; border: 1px solid #c7d2fe; background: #eef2ff; border-radius: .55rem;
+      padding: .65rem .8rem; font-size: .76rem; color: #374151; line-height: 1.55; }
+    .mp-guida[hidden] { display: none !important; }
+    .mp-nota { font-size: .76rem; color: #6b7280; line-height: 1.55; margin: .3rem 0 .6rem; }
+    .mp-errore { font-size: .74rem; color: #b91c1c; font-weight: 600; margin: .35rem 0 0; }
+
+    .mp-fieldset { border: 1px solid #e5e7eb; border-radius: .75rem; padding: 1rem; margin: 0; min-width: 0; }
+    .mp-legenda { font-size: .8rem; font-weight: 800; color: #111827; padding: 0 .35rem; }
+    .mp-radio-gruppo { display: flex; flex-direction: column; gap: .45rem; }
+    .mp-radio-gruppo-inline { flex-direction: row; flex-wrap: wrap; gap: .75rem; }
+    .mp-radio, .mp-checkbox, .mp-switch { display: flex; align-items: flex-start; gap: .55rem; cursor: pointer; }
+    .mp-radio input, .mp-checkbox input, .mp-switch input { margin-top: .2rem; flex: 0 0 auto;
+      width: 1rem; height: 1rem; accent-color: #4f46e5; }
+    .mp-radio-testo { display: block; font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-radio-testo strong { display: block; font-weight: 700; color: #111827; }
+    .mp-radio-testo em { display: block; font-style: normal; font-size: .75rem; color: #6b7280; margin-top: .12rem; line-height: 1.5; }
+    .mp-radio-inline span { font-size: .8rem; color: #374151; }
+    .mp-checkbox span { font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-switch { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: .6rem; padding: .7rem .85rem; }
+    .mp-switch span { font-size: .82rem; font-weight: 600; color: #374151; }
+    .mp-switch-grande { margin-bottom: 1.25rem; }
+
+    .mp-riga { border-top: 1px dashed #e5e7eb; padding-top: .9rem; margin-top: .9rem; }
+    .mp-riga:first-of-type { border-top: none; padding-top: 0; margin-top: .5rem; }
+    .mp-riga-numero { display: inline-block; font-size: .68rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .04em; color: #6b7280; margin-bottom: .6rem; }
+
+    .mp-nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap;
+      margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #e5e7eb; }
+    .mp-conta { font-size: .74rem; color: #6b7280; font-weight: 600; }
+    .mp-btn { padding: .6rem 1rem; border-radius: .55rem; font-size: .84rem; font-weight: 700;
+      cursor: pointer; border: 1px solid #d1d5db; background: #fff; color: #374151; }
+    .mp-btn:hover:not(:disabled) { background: #f9fafb; }
+    .mp-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .mp-btn-forte { background: #4f46e5; border-color: transparent; color: #fff; }
+    .mp-btn-forte:hover:not(:disabled) { background: #4338ca; }
+    .mp-btn-lieve { background: #fff; }
+
+    .mp-avviso { border-radius: .6rem; padding: .8rem 1rem; font-size: .82rem; line-height: 1.55; margin-bottom: 1.25rem; }
+    .mp-avviso[hidden] { display: none !important; }
+    .mp-avviso-info { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
+    .mp-avviso-ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .mp-avviso-errore { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Compilatore Modelli AA9/12 e AA7/10",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/",
+        "description": "Compilazione guidata dei modelli ufficiali AA9/12 e AA7/10 per apertura, variazione e chiusura della Partita IVA: spiegazione di ogni campo tratta dalle istruzioni dell'Agenzia delle Entrate, controllo di codice fiscale, Partita IVA e C.A.P., download del modulo ministeriale già compilato.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "@id": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Scelta fra modello AA9/12 e AA7/10",
+          "Compilazione guidata di tutti i quadri, dalla A alla I",
+          "Spiegazione di ogni campo tratta dalle istruzioni ufficiali",
+          "Controllo del codice fiscale e della Partita IVA",
+          "Blocco dei CAP generici delle grandi città",
+          "Download del modulo ministeriale PDF già compilato"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "fisco-professioni",
+            "item": "https://strumentiutili.it/fisco-professioni/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Modelli Partita IVA",
+            "item": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#howto",
+        "name": "Come compilare il modello AA9/12 o AA7/10 per la Partita IVA",
+        "description": "Procedura guidata per compilare e scaricare il modello ministeriale AA9/12 o AA7/10 già riempito con i propri dati.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT15M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Codice fiscale, indirizzo della sede e codice ATECO"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Scegli il modello",
+            "text": "Seleziona AA9/12 se sei una persona fisica (ditta individuale, artista o professionista) oppure AA7/10 se sei una società, un ente o un condominio.",
+            "url": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#mp-app"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Indica il tipo di dichiarazione",
+            "text": "Nel quadro A scegli fra inizio attività, variazione dati, cessazione o richiesta di duplicato e indica la data corrispondente.",
+            "url": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#mp-app"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Compila i quadri passo per passo",
+            "text": "Segui la procedura quadro per quadro: per ogni campo la scheda di aiuto riporta la spiegazione delle istruzioni ufficiali. I quadri che non ti riguardano si possono saltare.",
+            "url": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#mp-app"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Scarica il modello compilato",
+            "text": "Al termine il modulo ufficiale in PDF viene riempito nel browser e scaricato: controllalo, stampalo e firmalo prima di presentarlo.",
+            "url": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#mp-app"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/fisco-professioni/modelli-partita-iva/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quanto costa aprire una partita IVA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'apertura della partita IVA presso l'Agenzia delle Entrate è gratuita e non comporta alcun tributo. I costi derivano dagli adempimenti collegati: iscrizione al Registro delle Imprese e diritto camerale annuale per le attività commerciali, contribuzione previdenziale obbligatoria e onorari del professionista che assiste nella pratica. Per un professionista non iscritto ad albo l'apertura può essere effettuata in autonomia senza costi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso aprire la partita IVA con effetto retroattivo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il modello va presentato entro trenta giorni dall'inizio effettivo dell'attività, che è un fatto sostanziale e non una scelta formale. Se l'attività è già iniziata, la presentazione tardiva è possibile e va accompagnata dal ravvedimento operoso per la sanzione. Non è invece ammesso indicare una data di inizio posticipata rispetto alla prima operazione realmente effettuata."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa succede se sbaglio il codice ATECO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il codice ATECO determina il coefficiente di redditività nel regime forfettario, l'inquadramento previdenziale e gli obblighi settoriali. Un codice errato può quindi produrre una liquidazione d'imposta sbagliata o un'iscrizione previdenziale impropria. La correzione avviene con una dichiarazione di variazione dati, da presentare entro trenta giorni dalla rilevazione dell'errore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Devo comunicare il cambio di residenza se lavoro da casa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, quando la residenza coincide con la sede dell'attività o con il luogo di conservazione delle scritture contabili. Il trasferimento va comunicato entro trenta giorni con il modello di variazione. L'omissione genera disallineamenti fra anagrafe tributaria e recapiti effettivi, con il rischio concreto di notifiche di atti presso un indirizzo non più presidiato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso chiudere la partita IVA se ho ancora fatture da incassare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. La cessazione va dichiarata quando terminano le operazioni rilevanti ai fini IVA, non quando si conclude ogni incasso. I crediti pregressi restano esigibili e i relativi importi vanno dichiarati secondo il criterio di competenza o di cassa applicabile. Restano inoltre fermi gli obblighi dichiarativi per il periodo d'imposta in cui l'attività è stata esercitata."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'Agenzia delle Entrate può chiudere d'ufficio una partita IVA inattiva?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. In presenza di una partita IVA che non presenta dichiarazioni né effettua operazioni per tre annualità consecutive, l'amministrazione può disporne la cessazione d'ufficio. La chiusura d'ufficio non sana però le omissioni pregresse e non estingue le sanzioni eventualmente maturate per i periodi di inattività non dichiarata."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- Importiamo PDF-Lib per la compilazione dei moduli -->
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header Navigazione Principale -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-indigo-600 font-semibold">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA CENTRALE (APP) -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/fisco-professioni/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna a Fisco &amp; Professioni</a>
+      
+      <div class="mb-6 border-b border-gray-200 pb-4">
+        <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ 100% nel browser - nessun dato inviato a un server</span>
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Compila online i modelli AA9/12 e AA7/10</h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Una procedura guidata ti accompagna quadro per quadro: per ogni casella trovi la spiegazione tratta dalle
+          istruzioni ufficiali dell'Agenzia delle Entrate. Alla fine scarichi il <strong>modulo ministeriale vero e proprio,
+          già compilato</strong>, pronto da controllare, stampare e firmare per aprire, variare o chiudere la Partita IVA.
+        </p>
+      </div>
+
+      <!-- COMPILATORE GUIDATO -->
+      <section id="mp-app" class="mb-8">
+
+        <div class="mp-scelta" role="group" aria-label="Scelta del modello da compilare">
+          <button type="button" data-modello="AA9" class="mp-scelta-btn mp-scelta-attiva" aria-pressed="true">
+            <strong>Modello AA9/12</strong>
+            <span>Sei una persona fisica: ditta individuale, artigiano, commerciante, artista o professionista.</span>
+          </button>
+          <button type="button" data-modello="AA7" class="mp-scelta-btn" aria-pressed="false">
+            <strong>Modello AA7/10</strong>
+            <span>Sei una società, un ente, un'associazione, una fondazione o un condominio.</span>
+          </button>
+        </div>
+
+        <div class="mp-guscio">
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <div class="mp-pannello">
+            <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
+            <div id="mp-corpo"></div>
+            <div id="mp-nav" class="mp-nav"></div>
+          </div>
+        </div>
+
+        <noscript>
+          <p class="mt-4 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-4">
+            Il compilatore funziona interamente nel browser e richiede JavaScript. Puoi comunque scaricare
+            i modelli in bianco e le istruzioni ufficiali dai link in questa pagina.
+          </p>
+        </noscript>
+      </section>
+    </main>
+
+    <!-- COLONNA DESTRA (ASIDE & ADSENSE) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Modello in compilazione</h3>
+            <span id="mp-badge-modello" class="text-[10px] font-bold bg-indigo-500 px-2 py-0.5 rounded text-white shadow-sm">AA9/12</span>
+          </div>
+
+          <p id="mp-sottotitolo-modello" class="text-sm text-gray-300 leading-relaxed">Imprese individuali e lavoratori autonomi</p>
+
+          <div class="pt-3 border-t border-gray-800 space-y-3">
+            <a id="mp-link-istruzioni" href="/assets/pdf/istruzioni-aa9-12.pdf" target="_blank" rel="noopener"
+               class="flex items-center gap-2 text-xs font-bold text-indigo-300 hover:text-indigo-200 transition">
+              <span aria-hidden="true">📘</span> Istruzioni ufficiali AA9/12 (PDF)
+            </a>
+            <button id="mp-azzera" type="button"
+              class="w-full text-xs font-bold text-gray-400 hover:text-red-300 transition text-left flex items-center gap-2">
+              <span aria-hidden="true">🗑️</span> Cancella tutti i dati inseriti
+            </button>
+          </div>
+
+          <p class="text-[9px] text-gray-500 leading-tight pt-2 border-t border-gray-800">
+            I dati restano nel tuo dispositivo e servono solo a riempire il PDF. Il modulo scaricato resta modificabile:
+            se trovi un errore puoi correggerlo qui e rigenerarlo.
+          </p>
+        </div>
+        <!-- NUOVA SEZIONE: Download Modelli Ufficiali -->
+        <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 shadow-sm space-y-4">
+          <h3 class="text-sm font-bold text-indigo-900 uppercase tracking-wider border-b border-indigo-200 pb-2 flex items-center gap-2">
+            <span>🏛️</span> Modelli Ufficiali
+          </h3>
+          <p class="text-xs text-indigo-800 leading-relaxed">
+            Hai bisogno dei moduli originali dell'Agenzia delle Entrate per la compilazione manuale o la consultazione? Visita le pagine ufficiali.
+          </p>
+          
+          <div class="space-y-3 pt-2">
+            <!-- Modello AA9/12 -->
+            <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+              <span class="block text-xs font-bold text-gray-800 mb-2">Persone Fisiche (AA9/12)</span>
+              <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/aa9_11-apertura-variazione-chiusura-pf/modello-e-istr-pi-pf" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition">
+                🌐 Pagina Ufficiale AA9/12
+              </a>
+            </div>
+
+            <!-- Modello AA7/10 -->
+            <div class="bg-white p-3 rounded-lg border border-indigo-100 shadow-sm">
+              <span class="block text-xs font-bold text-gray-800 mb-2">Società ed Enti (AA7/10)</span>
+              <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/aa7_10/modello-aa7_10" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition">
+                🌐 Pagina Ufficiale AA7/10
+              </a>
+            </div>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧮</span> Partita IVA Forfettaria</a></li>
+            <li><a href="/fisco-professioni/generatore-xml-fatturapa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> Generatore FatturaPA XML</a></li>
+            <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Calcolo Scorporo IVA</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Contributo Unificato 2026</a></li>
+              <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Interessi Moratori B2B</a></li>
+              <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Parcella Avvocato</a></li>
+              <li><a href="/fisco-professioni/ravvedimento-operoso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⏱️</span> Ravvedimento Operoso</a></li>
+              <li><a href="/fisco-professioni/rivalutazione-istat/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Rivalutazione ISTAT FOI</a></li>
+              <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Simulatore Rata Mutuo</a></li>
+              <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📜</span> Usufrutto e Nuda Proprietà</a></li>
+              <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
+            </ul>
+          </details>
+          <a href="/fisco-professioni/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Fisco &amp; Professioni</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: DOSSIER SEO E-E-A-T B2B -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di compilazione dei modelli AA9/12 e AA7/10 aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Codice fiscale, dati anagrafici e indirizzi vengono elaborati nel browser e scritti direttamente nel PDF, senza passare da alcun server. I valori restano nella memoria locale del dispositivo, cos&igrave; puoi riprendere la compilazione pi&ugrave; tardi o correggere un errore e rigenerare il modulo; il pulsante &laquo;Cancella tutti i dati&raquo; li elimina in qualsiasi momento, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.P.R. 633/1972 art. 35, D.Lgs. 471/1997 art. 5, istruzioni ai modelli AA9/12 e AA7/10 dell'Agenzia delle Entrate, D.L. 7/2007 art. 9 (Comunicazione Unica per le imprese), classificazione ATECO 2025 dell'ISTAT.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Guida Normativa: Apertura, Variazione e Chiusura Partita IVA (Modelli AA9/12 e AA7/10)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          I modelli ministeriali AA9/12 e AA7/10 costituiscono l'infrastruttura documentale fondante ai sensi dell'art. 35 del D.P.R. 633/1972, mediante la quale i contribuenti notificano all'Amministrazione Finanziaria l'inizio, la modifica o la definitiva cessazione dell'attività produttiva di reddito soggetta a Imposta sul Valore Aggiunto.
+        </p>
+
+        <!-- ACORDEON 1: Differenza tra Modelli -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> AA9/12 vs AA7/10: Quale modello scegliere?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Le dinamiche di utilizzo dei due modelli obbediscono a criteri selettivi in base alla natura giuridica del soggetto:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Modello AA9/12:</strong> È ad appannaggio esclusivo delle <strong>Persone Fisiche</strong>. Deve essere utilizzato dai lavoratori autonomi (freelance, professionisti) e dalle imprese individuali (ditte individuali) per aprire o chiudere la propria posizione fiscale. Richiede obbligatoriamente il Codice Fiscale a 16 caratteri.</li>
+              <li><strong>Modello AA7/10:</strong> È obbligatorio per i <strong>Soggetti diversi dalle persone fisiche</strong>. Assorbe le istanze per le Società di Capitali (S.r.l., S.p.A.), le Società di Persone, gli Enti del Terzo Settore (ETS) e le Associazioni. Questo modulo richiede l'inserimento della Natura Giuridica e un codice fiscale puramente numerico (11 cifre).</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- ACORDEON 2: Tempistiche e Sanzioni -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⏱️</span> Tempistiche di Legge e Decorrenza (30 Giorni)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'ordinamento tributario italiano non tollera latenze nell'inizio delle attività d'impresa. Entrambi gli applicativi documentali postulano un termine legale inesorabile di <strong>30 giorni</strong> dalla data di inizio dell'attività, della variazione degli affari o della cessazione, per la loro consegna telematica o cartacea all'Agenzia delle Entrate.
+            </p>
+            <p>
+              In caso di omessa o tardiva presentazione del modello di cessazione (chiusura Partita IVA), il Fisco presume la continuità dell'attività, esponendo il contribuente a controlli incrociati e sanzioni formali.
+            </p>
+          </div>
+        </details>
+
+        <!-- ACORDEON 3: Edge Case CAP Generico -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❌</span> Attenzione: Lo Scarto per C.A.P. Generico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Uno degli errori di compilazione più frequenti che causa il rigetto del modello riguarda la formattazione dei campi topografici. L'Agenzia delle Entrate scarta sistematicamente i modelli recanti Codici di Avviamento Postale (C.A.P.) generici in comuni frazionati a zone postali.
+            </p>
+            <p>
+              Ad esempio, l'immissione di <code>00100</code> per Roma, <code>20100</code> per Milano o <code>80100</code> per Napoli è formalmente vietata. La validazione del nostro sistema JavaScript intercetta questi "edge cases" topografici, obbligando l'utente all'inserimento del C.A.P. specifico assegnato alla via e al quartiere della sede legale.
+            </p>
+          </div>
+        </details>
+
+        <!-- ACORDEON 4: PDF Sigillato e Privacy -->
+        <details class="bg-emerald-50/50 rounded-xl border border-emerald-100 group mb-8">
+          <summary class="font-bold text-emerald-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-emerald-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔒</span> Sicurezza Zero-Backend e Appiattimento del PDF (Flatten)</span>
+            <span class="text-emerald-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-emerald-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La generazione di documenti d'identità fiscale tramite portali online pone seri rischi di esfiltrazione dati. Per ottemperare al principio di <em>Privacy by Design</em>, questo applicativo funziona interamente "Client-Side" nel tuo browser. Nessun Codice Fiscale, Partita IVA o indirizzo viene inviato a server esterni.
+            </p>
+            <p>
+              Il documento prodotto con la libreria <code>pdf-lib</code> è il <strong>modello ministeriale vero e proprio, compilato con i dati inseriti</strong>: il PDF ufficiale dell'Agenzia delle Entrate viene caricato nel browser e riempito casella per casella. Resta comunque un documento da controllare e firmare: la presentazione va poi effettuata tramite i servizi telematici dell'Agenzia delle Entrate, il proprio intermediario abilitato o, per le imprese tenute all'iscrizione al Registro delle imprese, la Comunicazione Unica.
+            </p>
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>D.P.R. 26 ottobre 1972 n. 633, articolo 35</strong> — impone la dichiarazione di inizio, variazione e cessazione attività e ne fissa il termine di trenta giorni.</li>
+              <li><strong>D.P.R. 26 ottobre 1972 n. 633, articolo 35-ter</strong> — disciplina l'identificazione diretta dei soggetti non residenti.</li>
+              <li><strong>D.Lgs. 18 dicembre 1997 n. 471, articolo 5</strong> — sanziona l'omessa o tardiva presentazione della dichiarazione di inizio o variazione attività.</li>
+              <li><strong>D.L. 31 maggio 2010 n. 78, articolo 23</strong> — introduce i controlli preventivi sulle nuove partite IVA e i presidi antifrode in materia di operazioni intracomunitarie.</li>
+              <li><strong>Provvedimenti del Direttore dell'Agenzia delle Entrate</strong> — approvano i modelli AA9/12 e AA7/10 vigenti, le istruzioni di compilazione e le specifiche tecniche telematiche.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Quale modello utilizzare</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Modello</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Destinatari</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Esempi</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">AA9/12</td><td class="px-3 py-2 border-t border-gray-200">Persone fisiche</td><td class="px-3 py-2 border-t border-gray-200">Liberi professionisti, ditte individuali, lavoratori autonomi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">AA7/10</td><td class="px-3 py-2 border-t border-gray-200">Soggetti diversi dalle persone fisiche</td><td class="px-3 py-2 border-t border-gray-200">SRL, SPA, SNC, SAS, associazioni, enti del terzo settore</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Codici di natura giuridica ricorrenti</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Codice 1</strong> — Società per azioni.</li>
+              <li><strong>Codice 2</strong> — Società a responsabilità limitata, la forma societaria più diffusa fra le piccole imprese strutturate.</li>
+              <li><strong>Codice 12</strong> — Associazione non riconosciuta, priva di personalità giuridica autonoma.</li>
+              <li><strong>Codice 50</strong> — Ente del terzo settore, categoria introdotta dalla riforma del non profit e soggetta a un regime fiscale dedicato.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Tipologie di operazione e termini</h3>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li><strong>Inizio attività (tipo 1)</strong>: va presentata entro trenta giorni dall'effettivo avvio dell'attività o dalla costituzione della società.</li>
+              <li><strong>Variazione dati (tipo 2)</strong>: obbligatoria entro trenta giorni da qualsiasi mutamento dei dati comunicati, incluso il cambio di sede, l'aggiunta di codici ATECO o la modifica del regime fiscale.</li>
+              <li><strong>Cessazione attività (tipo 3)</strong>: entro trenta giorni dalla cessazione, dalla ultimazione delle operazioni di liquidazione o dalla chiusura del fallimento.</li>
+            </ol>
+            <p>La mancata comunicazione di una variazione è una delle irregolarità più sottovalutate: continuare a operare con una sede legale o un codice attività non aggiornato espone a sanzioni e, nei casi più seri, all'inibizione delle operazioni intracomunitarie per disallineamento del sistema VIES.</p>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> l'indirizzo dichiarato deve corrispondere a un recapito effettivamente riferibile al contribuente. L'utilizzo di codici di avviamento postale generici o di indirizzi non specifici è una delle cause più frequenti di scarto telematico del modello. Lo strumento assiste la compilazione e verifica la coerenza formale dei campi, ma non trasmette nulla: l'invio all'Agenzia delle Entrate resta a carico del contribuente o dell'intermediario abilitato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti descrivono situazioni frequenti e la compilazione corrispondente nel generatore della pagina.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: sviluppatrice che avvia l'attività da libera professionista</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Modello: AA9/12, operazione 1 - Inizio attività</li>
+            <li>Identificativo: codice fiscale personale di 16 caratteri</li>
+            <li>ATECO: codice 2025 dell'attività di programmazione verificato sul sito ISTAT</li>
+            <li>Termine: entro 30 giorni dal primo giorno di lavoro</li>
+            </ul>
+            <p>Non essendo un'impresa, non serve la Comunicazione Unica: la dichiarazione si presenta all'Agenzia delle Entrate. Nello stesso modello si esprime l'opzione per il regime forfettario, se ne ricorrono i requisiti, e poi va chiesta l'iscrizione alla Gestione Separata INPS.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: consulente che trasferisce lo studio a Milano</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Modello: AA9/12, operazione 2 - Variazione dati</li>
+            <li>Nuovo indirizzo con CAP della via, ad esempio 20146, non 20100</li>
+            <li>Termine: entro 30 giorni dal trasferimento</li>
+            </ul>
+            <p>Se lo studio coincide con la residenza, occorre aggiornare anche il domicilio fiscale. Un indirizzo non aggiornato fa arrivare comunicazioni e atti a un recapito non più presidiato.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: tre soci che costituiscono una SRL</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Modello: AA7/10, operazione 1 - Inizio attività</li>
+            <li>Identificativo: codice fiscale numerico della società di 11 cifre</li>
+            <li>Dati dell'atto costitutivo: data e numero di repertorio del notaio</li>
+            <li>Canale: Comunicazione Unica alla Camera di Commercio</li>
+            </ul>
+            <p>Selezionando una società di capitali il generatore richiede i dati dell'atto costitutivo. Prima dell'invio conviene verificare il codice di natura giuridica sulla tabella allegata alle istruzioni ufficiali del modello AA7/10.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Quanto costa aprire una partita IVA?</h3>
+              <p>L'apertura della partita IVA presso l'Agenzia delle Entrate è gratuita e non comporta alcun tributo. I costi derivano dagli adempimenti collegati: iscrizione al Registro delle Imprese e diritto camerale annuale per le attività commerciali, contribuzione previdenziale obbligatoria e onorari del professionista che assiste nella pratica. Per un professionista non iscritto ad albo l'apertura può essere effettuata in autonomia senza costi.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso aprire la partita IVA con effetto retroattivo?</h3>
+              <p>Il modello va presentato entro trenta giorni dall'inizio effettivo dell'attività, che è un fatto sostanziale e non una scelta formale. Se l'attività è già iniziata, la presentazione tardiva è possibile e va accompagnata dal ravvedimento operoso per la sanzione. Non è invece ammesso indicare una data di inizio posticipata rispetto alla prima operazione realmente effettuata.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa succede se sbaglio il codice ATECO?</h3>
+              <p>Il codice ATECO determina il coefficiente di redditività nel regime forfettario, l'inquadramento previdenziale e gli obblighi settoriali. Un codice errato può quindi produrre una liquidazione d'imposta sbagliata o un'iscrizione previdenziale impropria. La correzione avviene con una dichiarazione di variazione dati, da presentare entro trenta giorni dalla rilevazione dell'errore.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Devo comunicare il cambio di residenza se lavoro da casa?</h3>
+              <p>Sì, quando la residenza coincide con la sede dell'attività o con il luogo di conservazione delle scritture contabili. Il trasferimento va comunicato entro trenta giorni con il modello di variazione. L'omissione genera disallineamenti fra anagrafe tributaria e recapiti effettivi, con il rischio concreto di notifiche di atti presso un indirizzo non più presidiato.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso chiudere la partita IVA se ho ancora fatture da incassare?</h3>
+              <p>Sì. La cessazione va dichiarata quando terminano le operazioni rilevanti ai fini IVA, non quando si conclude ogni incasso. I crediti pregressi restano esigibili e i relativi importi vanno dichiarati secondo il criterio di competenza o di cassa applicabile. Restano inoltre fermi gli obblighi dichiarativi per il periodo d'imposta in cui l'attività è stata esercitata.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">L'Agenzia delle Entrate può chiudere d'ufficio una partita IVA inattiva?</h3>
+              <p>Sì. In presenza di una partita IVA che non presenta dichiarazioni né effettua operazioni per tre annualità consecutive, l'amministrazione può disporne la cessazione d'ufficio. La chiusura d'ufficio non sana però le omissioni pregresse e non estingue le sanzioni eventualmente maturate per i periodi di inattività non dichiarata.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il compilatore dei modelli per la partita IVA è un'applicazione <strong>100% client-side, priva di backend</strong>. Il codice fiscale, i dati anagrafici, l'indirizzo di residenza o di sede, i codici ATECO e ogni altra informazione che inserisci sono elaborati e riversati nel PDF direttamente dal browser, sul tuo dispositivo. Nessun campo raggiunge mai un nostro server, perché nessun server di elaborazione esiste.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">L'insieme costituito da codice fiscale, dati anagrafici completi e indirizzo è esattamente il pacchetto informativo utilizzato nei tentativi di furto d'identità e di apertura fraudolenta di posizioni fiscali. La scelta di non raccoglierlo affatto è la misura di sicurezza più efficace possibile e realizza in concreto il Regolamento UE 2016/679 (GDPR): i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5 sono soddisfatti a livello di architettura, non di semplice informativa. Il PDF viene inoltre riempito localmente, dentro la pagina: il modulo in bianco viene scaricato dal sito, compilato nel browser e salvato sul dispositivo senza che alcun dato compia il percorso inverso.</p>
+        </div>
+
+        </section>
+
+      <!-- Pubblicità Mobile -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+ <!-- Link agli script esterni -->
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/codice-fiscale.js"></script>
+  <script defer src="/js/modelli-piva.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() { if (!adsenseReady()) return; document.querySelectorAll(AD_SELECTOR).forEach(initAd); }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+</body>
+</html>

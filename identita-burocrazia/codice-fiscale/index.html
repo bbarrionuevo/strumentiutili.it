@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense (Limpio, sin atributos de cookieconsent) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore e Verificatore Codice Fiscale — StrumentiUtili.it</title>
+  <meta name="description" content="Genera e verifica il Codice Fiscale in modo locale e privato nel browser. Calcolo corretto del codice catastale, controllo del carattere di controllo e gestione omocodia." />
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/codice-fiscale/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generatore e Verificatore Codice Fiscale — StrumentiUtili.it" />
+  <meta property="og:description" content="Genera e verifica il Codice Fiscale direttamente nel browser con privacy totale e controllo formale del codice." />
+  <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/codice-fiscale/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generatore e Verificatore Codice Fiscale — StrumentiUtili.it" />
+  <meta name="twitter:description" content="Genera e verifica il Codice Fiscale direttamente nel browser con privacy totale e controllo formale del codice." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle { 
+      display: block !important; 
+      width: 100%; 
+      min-width: 0; 
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Generatore e Verificatore Codice Fiscale",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/",
+        "description": "Calcolo, verifica del carattere di controllo e decodifica del codice fiscale italiano nel browser, con codici catastali dei Comuni e codici degli Stati esteri.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "featureList": [
+          "Generazione del codice fiscale da dati anagrafici",
+          "Codici catastali dei Comuni e codici «Z» degli Stati esteri",
+          "Verifica del carattere di controllo anche per codici omocodici",
+          "Decodifica di data, sesso e luogo di nascita",
+          "Elaborazione nel browser senza invio di dati"
+        ],
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Identità",
+            "item": "https://strumentiutili.it/identita-burocrazia/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Codice Fiscale",
+            "item": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#howto",
+        "name": "Come calcolare il codice fiscale",
+        "description": "Procedura per calcolare un codice fiscale e confrontarlo con quello ufficiale.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Dati anagrafici di nascita"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci cognome e nome",
+            "text": "Scrivili come all'anagrafe, con eventuali nomi e cognomi composti.",
+            "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#cognome"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Indica data e sesso",
+            "text": "Inserisci la data di nascita e il sesso.",
+            "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#data"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Scegli il luogo di nascita",
+            "text": "Seleziona il Comune o, per i nati all'estero, lo Stato dai suggerimenti.",
+            "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#comune"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Genera e confronta",
+            "text": "Premi Genera CF e confronta il risultato con la tessera sanitaria.",
+            "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#cfResult"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il codice generato ha lo stesso valore di quello sulla Tessera Sanitaria?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il codice calcolato è una ricostruzione matematica corretta nella grande maggioranza dei casi, ma l'unico codice giuridicamente valido è quello attribuito dall'Agenzia delle Entrate e riportato sul tesserino. In presenza di omocodia, di rettifiche anagrafiche o di variazioni di stato civile il codice ufficiale può differire da quello calcolabile a partire dai dati anagrafici."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il codice fiscale cambia in caso di matrimonio o di cambio di cognome?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il codice si forma sui dati anagrafici di nascita e non varia per effetto del matrimonio, poiché il cognome anagrafico resta invariato. Cambia invece a seguito di un provvedimento di rettifica del nome, del cognome o della data di nascita, oppure di rettificazione di attribuzione di sesso: in questi casi l'Agenzia delle Entrate attribuisce un nuovo codice e annulla il precedente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cos'è esattamente l'omocodia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si verifica quando l'algoritmo produce lo stesso codice per due persone diverse, circostanza possibile perché l'algoritmo comprime le informazioni anagrafiche e non è biiettivo. L'Agenzia delle Entrate risolve il conflitto sostituendo progressivamente le cifre del secondo codice, a partire da quella più a destra, con lettere corrispondenti secondo una tabella di conversione, e ricalcolando poi il carattere di controllo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Uno straniero può ottenere il codice fiscale italiano?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, ed è anzi necessario per qualsiasi rapporto giuridicamente rilevante nel Paese, dall'apertura di un conto corrente alla stipula di un contratto di lavoro o di locazione. Viene attribuito dall'Agenzia delle Entrate o, per i cittadini stranieri che ne facciano richiesta contestuale, dagli Sportelli Unici per l'immigrazione e dalle Questure nell'ambito delle procedure di soggiorno."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usare il codice fiscale per verificare l'identità di una persona?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, e sarebbe un errore metodologico rilevante. Il codice fiscale è un identificativo derivato da dati anagrafici pubblicamente ricostruibili: chiunque conosca nome, cognome, data e luogo di nascita può calcolarlo. Non ha quindi alcuna funzione autenticativa e non va mai impiegato come elemento di verifica dell'identità o come credenziale di accesso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa fare se il codice sulla mia tessera sembra errato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Occorre rivolgersi a un ufficio dell'Agenzia delle Entrate con un documento di identità e, se necessario, con la documentazione anagrafica che attesti i dati corretti. Se l'errore deriva da una trascrizione inesatta dei dati anagrafici, la correzione richiede il preventivo allineamento presso il Comune di residenza. Fino alla rettifica il codice errato può generare scarti negli invii telematici e nelle procedure bancarie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa si intende per Omocodia e come viene risolta operativamente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La collisione anagrafica, definita tecnicamente Omocodia, rappresenta la vulnerabilità principale dell'architettura e si manifesta qualora due cittadini generino la medesima stringa. Per risolvere la collisione, l'Agenzia delle Entrate procede alla destrutturazione del codice primario, sostituendo forzatamente le cifre numeriche con equivalenti alfabetici pre-codificati (L=0, M=1, N=2, P=3, Q=4, R=5, S=6, T=7, U=8, V=9). L'operazione procede a ritroso verso sinistra, partendo dall'ultima cifra del codice Belfiore. Nessun generatore basato sui soli dati anagrafici può sapere se a una persona è stato attribuito un codice omocodico: solo l'anagrafe tributaria conosce la sostituzione applicata, quindi il codice va sempre confrontato con la tessera."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual è la procedura corretta per soggetti nati all'estero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'anomalia procedurale investe sistematicamente la naturalizzazione di soggetti esteri. I cittadini nati fuori dal territorio della Repubblica non possiedono un codice Belfiore comunale. Essi devono obbligatoriamente utilizzare un identificativo nazionale prefissato dalla lettera \"Z\" (ad esempio, Z112 per la Germania, Z100 per l'Albania, Z404 per gli Stati Uniti). L'errore operativo consistente nel compilare atti giudiziari o bancari imputando testualmente la città estera provoca un disallineamento critico nei database istituzionali."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché l'onomastica complessa (nomi composti) genera scarti in ambiente bancario o AML?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La validazione algoritmica stringe con particolare severità sui nomi polirematici o composti. Lo standard di decodifica governativo impone che la stringa anagrafica venga normalizzata rimuovendo apici, spaziature e accenti. La mancata esecuzione di questo rigoroso processo di sanitizzazione pre-elaborazione (ad esempio ignorando lo spazio in un cognome composto) altera drasticamente il flusso di estrazione consonantica. Questo falso logico inficia il calcolo del parametro CIN, determinando la conseguente e immediata repulsione della pratica in ambienti severamente monitorati come l'adeguata verifica antiriciclaggio (AML)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-semibold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/identita-burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Identità &amp; Burocrazia</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🪪</span> Dati Anagrafici
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Codice Fiscale (CF) — Generatore e Verificatore</h1>
+        <p class="text-sm text-gray-600 mt-2">Genera, decodifica o verifica la struttura del Codice Fiscale. Nessun dato anagrafico viene inviato a server esterni, tutela totale della privacy.</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div class="mb-6 border-b border-gray-200">
+          <nav class="flex gap-4 -mb-px">
+            <button id="tabGen" class="tab active pb-3 px-1 border-b-2 border-indigo-600 font-medium text-indigo-600">Generatore</button>
+            <button id="tabVer" class="tab pb-3 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Verificatore</button>
+            <button id="tabDecode" class="tab pb-3 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Decodifica</button>
+          </nav>
+        </div>
+
+        <div id="genArea">
+          <form id="genForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <div class="flex items-center gap-2">
+                <label for="cognome" class="text-sm font-medium text-gray-700">Cognome</label>
+                <button type="button" data-guida-toggle="guida-cf-cognome" aria-expanded="false" aria-controls="guida-cf-cognome" aria-label="Guida al campo Cognome" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-cf-cognome" aria-describedby="guida-cf-cognome" id="cognome" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <div id="guida-cf-cognome" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Come scriverlo:</strong> come nell'atto di nascita, con spazi e apostrofi: «De Luca», «D'Angelo». Il calcolo li elimina ed estrae le consonanti da «DELUCA» e «DANGELO».</p>
+                <p><strong class="text-indigo-900">Donne sposate:</strong> si usa sempre il cognome di nascita: il matrimonio non cambia il codice fiscale.</p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <label for="nome" class="text-sm font-medium text-gray-700">Nome</label>
+                <button type="button" data-guida-toggle="guida-cf-nome" aria-expanded="false" aria-controls="guida-cf-nome" aria-label="Guida al campo Nome" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-cf-nome" aria-describedby="guida-cf-nome" id="nome" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <div id="guida-cf-nome" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Nomi composti:</strong> inserisci tutti i nomi presenti all'anagrafe, per esempio «Maria Grazia»: le lettere si estraggono dall'insieme.</p>
+                <p><strong class="text-indigo-900">Regola della seconda consonante:</strong> se il nome ha almeno quattro consonanti si prendono la prima, la terza e la quarta: Gianfranco diventa GFR, non GNF.</p>
+                <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Data di nascita</label>
+              <input id="data" type="date" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Sesso</label>
+              <select id="sesso" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="M">Maschio</option>
+                <option value="F">Femmina</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Luogo di nascita</label>
+              <div class="flex flex-wrap gap-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <label class="inline-flex items-center gap-2 cursor-pointer"><input type="radio" name="nascitaTipo" value="italia" class="text-indigo-600 focus:ring-indigo-500" checked /> Nato in Italia</label>
+                <label class="inline-flex items-center gap-2 cursor-pointer"><input type="radio" name="nascitaTipo" value="estero" class="text-indigo-600 focus:ring-indigo-500" /> Nato all'Estero</label>
+              </div>
+            </div>
+            <div class="relative md:col-span-2">
+              <div class="flex items-center gap-2">
+                <label for="comune" id="luogoLabel" class="text-sm font-medium text-gray-700">Comune di nascita</label>
+                <button type="button" data-guida-toggle="guida-cf-luogo" aria-expanded="false" aria-controls="guida-cf-luogo" aria-label="Guida al campo Luogo di nascita" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-cf-luogo" aria-describedby="guida-cf-luogo" id="comune" list="comuni" autocomplete="off" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. Roma o H501" />
+              <datalist id="comuni"></datalist>
+              <div id="selectedComune" class="text-sm text-gray-500 mt-1">Seleziona il comune o lo stato per inserire automaticamente il codice catastale.</div>
+              <div id="comune-suggestions" class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-50 hidden" style="max-height:200px; overflow:auto;"></div>
+            </div>
+            <div id="guida-cf-luogo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Nati in Italia:</strong> scegli il Comune dall'elenco dei suggerimenti: il codice catastale compare accanto al nome. Per i Comuni soppressi o fusi usa quello esistente alla data di nascita.</p>
+              <p><strong class="text-indigo-900">Nati all'estero:</strong> seleziona «Nato all'Estero» e indica lo Stato, non la città: per esempio Romania (Z129), Marocco (Z330), Germania (Z112).</p>
+              <p><strong class="text-indigo-900">Luogo non riconosciuto:</strong> se il nome non corrisponde a nessun Comune o Stato il generatore non mostra un codice, per evitare risultati con luogo sbagliato.</p>
+            </div>
+
+            <div class="md:col-span-2 flex items-end gap-3 pt-2">
+              <button type="button" id="genera" class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Genera CF</button>
+              <button type="button" id="generaLimpa" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+          </form>
+
+          <div class="mt-6 p-6 bg-indigo-50 border border-indigo-100 rounded-xl">
+            <h3 class="text-xs font-bold text-indigo-800 uppercase tracking-wider">Codice Fiscale Generato</h3>
+            <div id="cfResult" class="mt-2 text-3xl font-black text-indigo-700 font-mono tracking-widest break-all">—</div>
+          </div>
+        </div>
+
+        <div id="verArea" style="display:none;">
+          <div class="grid grid-cols-1 gap-5">
+            <div>
+              <div class="flex items-center gap-2">
+                <label for="cfToCheck" class="text-sm font-medium text-gray-700">Codice Fiscale da verificare</label>
+                <button type="button" data-guida-toggle="guida-cf-verifica" aria-expanded="false" aria-controls="guida-cf-verifica" aria-label="Guida al campo Codice da verificare" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-cf-verifica" aria-describedby="guida-cf-verifica" id="cfToCheck" class="mt-1 w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono uppercase text-lg" placeholder="Esempio: RSSMRA85M01H501U" />
+              <div id="guida-cf-verifica" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa controlla:</strong> la lunghezza e il carattere di controllo finale. Un codice valido può comunque non essere attribuito a nessuno: la verifica dell'esistenza si fa sul sito dell'Agenzia delle Entrate.</p>
+                <p><strong class="text-indigo-900">Codici omocodici:</strong> lettere al posto delle cifre (L=0, M=1… V=9) nelle posizioni numeriche sono ammesse: indicano un codice modificato per evitare un duplicato.</p>
+              </div>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <button id="verifica" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Verifica Validità</button>
+              <button id="verReset" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+            <div class="mt-4 p-5 border border-gray-200 rounded-xl bg-gray-50 min-h-[100px] flex flex-col justify-center">
+              <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Esito del Controllo</h3>
+              <div id="verResult" class="mt-2 text-lg font-medium text-gray-900">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="decodeArea" style="display:none;">
+          <div class="grid grid-cols-1 gap-5">
+            <div>
+              <div class="flex items-center gap-2">
+                <label for="cfToDecode" class="text-sm font-medium text-gray-700">Inserisci un Codice Fiscale (16 caratteri)</label>
+                <button type="button" data-guida-toggle="guida-cf-decodifica" aria-expanded="false" aria-controls="guida-cf-decodifica" aria-label="Guida al campo Codice da decodificare" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-cf-decodifica" aria-describedby="guida-cf-decodifica" id="cfToDecode" class="mt-1 w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono uppercase text-lg" placeholder="Esempio: RSSMRA85M01H501U" />
+              <div id="guida-cf-decodifica" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa si ricava:</strong> data di nascita, sesso e luogo di nascita. Nome e cognome non si possono ricostruire.</p>
+                <p><strong class="text-indigo-900">Secolo di nascita:</strong> il codice contiene solo le ultime due cifre dell'anno: 26 viene letto come 2026, quindi una persona nata nel 1926 risulta nata nel 2026.</p>
+              </div>
+            </div>
+            <div class="flex gap-3 pt-2">
+              <button id="decodeBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Decodifica Dati</button>
+              <button id="decodeReset" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+
+            <div id="decodeResult" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" style="display:none;">
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Data di Nascita</div>
+                <div id="dec-birth" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Età stimata</div>
+                <div id="dec-age" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Sesso</div>
+                <div id="dec-sex" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Comune / Stato</div>
+                <div id="dec-comune" class="text-lg font-semibold text-gray-900 mt-1 truncate">—</div>
+              </div>
+              <div class="md:col-span-2 p-4 border border-gray-200 rounded-xl bg-indigo-50">
+                <div class="text-xs font-bold text-indigo-800 uppercase">Codice Catastale</div>
+                <div id="dec-code" class="text-xl font-bold text-indigo-900 font-mono mt-1">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+   <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+     <div class="sticky-sidebar space-y-6">
+       <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+         <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+         <ul class="space-y-3 text-sm font-bold text-gray-600">
+           <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Validatore IBAN</a></li>
+           <li><a href="/identita-burocrazia/autocertificazione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Autocertificazione</a></li>
+           <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📸</span> Fototessera ICAO</a></li>
+         </ul>
+         <details class="group mt-3 pt-3 border-t border-gray-100">
+           <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+             <span>Altri strumenti in questa categoria</span>
+             <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+           </summary>
+           <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+             <li><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Calcolo Quote Ereditarie</a></li>
+             <li><a href="/identita-burocrazia/generatore-cv-ats/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Generatore CV ATS</a></li>
+             <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Password Sicure</a></li>
+           </ul>
+         </details>
+         <a href="/identita-burocrazia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Identità &amp; Burocrazia</span><span aria-hidden="true">→</span></a>
+       </nav>
+       <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+     </div>
+   </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Algoritmo e codici degli Stati esteri verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nome, cognome, data e luogo di nascita vengono elaborati nel browser e non sono inviati a server. I valori dei campi possono restare memorizzati nel localStorage di questo dispositivo per ritrovarli alla visita successiva, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e tecniche</p>
+            <p class="text-gray-600 leading-relaxed">D.P.R. 29 settembre 1973 n. 605, D.M. 23 dicembre 1976 (struttura del codice fiscale e carattere di controllo), codici catastali dei Comuni e codici «Z» degli Stati esteri usati dall'Agenzia delle Entrate, D.Lgs. 231/2007 (antiriciclaggio), Regolamento UE 2016/679.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa Avanzata al Calcolo e Verifica del Codice Fiscale (Architettura Client-Side)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il sistema alfanumerico del Codice Fiscale, gestito centralmente dal partner tecnologico Sogei per conto dell'Anagrafe Tributaria, è normato dal Decreto Ministeriale del 23 dicembre 1976. Questo standard a sedici caratteri costituisce la chiave primaria nei database della Pubblica Amministrazione, fungendo da identificatore univoco per l'assolvimento degli obblighi tributari, previdenziali e civili. Dal punto di vista sistemistico e normativo, l'applicativo erogato in questa pagina opera interamente nel rispetto del paradigma architetturale Zero-Backend. L'elaborazione algoritmica avviene al 100% all'interno della sandbox del browser locale dell'utente, annullando di fatto il trasferimento dei dati anagrafici verso server esterni e conformandosi rigorosamente al principio di Data Protection by Design e by Default imposto dall'Articolo 25 del Regolamento Generale sulla Protezione dei Dati (GDPR). Neutralizzando l'esfiltrazione crittografica, tale architettura esenta il fornitore dell'applicativo web dalla qualifica di Responsabile del Trattamento (Data Processor), eliminando per il professionista gli oneri legati alla redazione di complessi Data Processing Agreements (DPA) delineati dall'Articolo 28 del GDPR.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📖</span> Meccanica e Formule: Algoritmo di Generazione e Modulo 26</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Scomposizione della Matrice Anagrafica a 16 Caratteri</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Il procedimento di hashing alfanumerico opera una scomposizione deterministica della matrice anagrafica secondo rigorose regole sintattiche:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Cognome (3 caratteri):</strong> L'algoritmo estrae in sequenza le prime tre consonanti. Qualora il cognome risulti breve, si attinge progressivamente alle vocali fino a saturare il blocco di tre lettere; in extrema ratio, per cognomi composti da soli due caratteri, il campo viene colmato con la lettera X.</li>
+                <li><strong>Nome (3 caratteri):</strong> Segue la medesima struttura del cognome, prevedendo tuttavia una specifica deroga per l'onomastica complessa: per nomi che contengono quattro o più consonanti, si impone matematicamente l'estrazione della prima, terza e quarta consonante, scartando sistematicamente la seconda.</li>
+                <li><strong>Anno e Mese (3 caratteri):</strong> L'anno di nascita si contrae alle sole decine e unità (es. 1980 si riduce alla stringa 80). Il mese si converte invece mediante l'applicazione di una tabella alfabetica posizionale fissa: A = Gennaio, B = Febbraio, C = Marzo, D = Aprile, E = Maggio, H = Giugno, L = Luglio, M = Agosto, P = Settembre, R = Ottobre, S = Novembre, T = Dicembre.</li>
+                <li><strong>Giorno e Sesso (2 caratteri):</strong> Per i nati di sesso maschile, il parametro fissa il giorno effettivo (da 01 a 31), mentre per le nate di sesso femminile interviene un'operazione che trasla di un parametro scalare costante di 40 unità la data di nascita (generando un intervallo da 41 a 71).</li>
+                <li><strong>Comune di Nascita (4 caratteri):</strong> Il parametro geografico si allinea al Codice Belfiore a 4 caratteri alfanumerici (es. Milano corrisponde a F205, Roma a H501).</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Determinazione del Carattere Interno di Controllo (CIN)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La chiusura crittografica della stringa è affidata al Carattere Interno di Controllo (CIN), determinato tramite il calcolo dell'Algoritmo Modulo 26. I quindici caratteri primari generati vengono isolati alternativamente nelle rispettive posizioni pari e dispari, per poi essere convertiti in numeri interi secondo mappe di pesi asimmetriche. Ad esempio, per le posizioni pari, il carattere 'A' (o lo '0') assume peso 0, e il carattere 'C' (o '2') assume peso 2; per le posizioni dispari, 'A'/'0' assume peso 1, 'B'/'1' peso 0, e 'C'/'2' assume peso 5. Al termine dell'assegnazione, i valori vengono sommati in un montante unico e ridotti matematicamente al modulo 26, producendo un resto finale che viene associato ad una lettera dell'alfabeto (dove A=0 e Z=25).
+              </p>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mt-4">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Casuistica Reale: Compilazione Algebrica Passo-Passo</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Prendiamo in esame la procedura di compilazione algebrica per il cittadino fittizio MARIO ROSSI, uomo, nato il 15/05/1980 a Roma (Codice Belfiore H501).
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p>1. <strong>Cognome (ROSSI):</strong> L'estrazione delle prime tre consonanti produce la stringa RSS.</p>
+                <p>2. <strong>Nome (MARIO):</strong> L'algoritmo individua due sole consonanti (M, R) e sopperisce all'assenza della terza importando la prima vocale utile (A), producendo MRA.</p>
+                <p>3. <strong>Data e Sesso:</strong> L'anno 1980 fornisce la stringa 80. Il mese di Maggio si converte nella lettera E. Il giorno 15, declinato per il sesso maschile, rimane invariato in 15.</p>
+                <p>4. <strong>Luogo di Nascita:</strong> Innesta il blocco H501. La stringa provvisoria a quindici caratteri si attesta su RSSMRA80E15H501.</p>
+                <p>5. <strong>Calcolo CIN:</strong> Il checksum CIN si calcola aggregando i pesi posizionali. R(Dispari)=8, S(Pari)=18, S(Dispari)=12, M(Pari)=12, R(Dispari)=8, A(Pari)=0, 8(Dispari)=19, 0(Pari)=0, E(Dispari)=9, 1(Pari)=1, 5(Dispari)=13, H(Pari)=7, 5(Dispari)=13, 0(Pari)=0, 1(Dispari)=0. La somma di tali interi ammonta algebricamente a 120. Applicando l'operazione matematica $120 \pmod{26}$, si ottiene un resto formale pari a 16. Mappando tale resto sulla matrice alfabetica standard, il valore 16 restituisce inoppugnabilmente il carattere Q.</p>
+                <p class="mt-2 text-indigo-700 font-bold">La sintesi definitiva approvata dall'Anagrafe Tributaria è RSSMRA80E15H501Q.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">FAQ e Criticità: Errori Operativi e Anomalie di Decodifica</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa si intende per Omocodia e come viene risolta operativamente?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La collisione anagrafica, definita tecnicamente Omocodia, rappresenta la vulnerabilità principale dell'architettura e si manifesta qualora due cittadini generino la medesima stringa. Per risolvere la collisione, l'Agenzia delle Entrate procede alla destrutturazione del codice primario, sostituendo forzatamente le cifre numeriche con equivalenti alfabetici pre-codificati (L=0, M=1, N=2, P=3, Q=4, R=5, S=6, T=7, U=8, V=9). L'operazione procede a ritroso verso sinistra, partendo dall'ultima cifra del codice Belfiore. Nessun generatore basato sui soli dati anagrafici può sapere se a una persona è stato attribuito un codice omocodico: solo l'anagrafe tributaria conosce la sostituzione applicata, quindi il codice va sempre confrontato con la tessera.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Qual è la procedura corretta per soggetti nati all'estero?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'anomalia procedurale investe sistematicamente la naturalizzazione di soggetti esteri. I cittadini nati fuori dal territorio della Repubblica non possiedono un codice Belfiore comunale. Essi devono obbligatoriamente utilizzare un identificativo nazionale prefissato dalla lettera "Z" (ad esempio, Z112 per la Germania, Z100 per l'Albania, Z404 per gli Stati Uniti). L'errore operativo consistente nel compilare atti giudiziari o bancari imputando testualmente la città estera provoca un disallineamento critico nei database istituzionali.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché l'onomastica complessa (nomi composti) genera scarti in ambiente bancario o AML?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La validazione algoritmica stringe con particolare severità sui nomi polirematici o composti. Lo standard di decodifica governativo impone che la stringa anagrafica venga normalizzata rimuovendo apici, spaziature e accenti. La mancata esecuzione di questo rigoroso processo di sanitizzazione pre-elaborazione (ad esempio ignorando lo spazio in un cognome composto) altera drasticamente il flusso di estrazione consonantica. Questo falso logico inficia il calcolo del parametro CIN, determinando la conseguente e immediata repulsione della pratica in ambienti severamente monitorati come l'adeguata verifica antiriciclaggio (AML).
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>D.P.R. 29 settembre 1973 n. 605</strong> — istituisce l'anagrafe tributaria e il codice fiscale quale strumento univoco di identificazione dei contribuenti.</li>
+              <li><strong>D.M. 23 dicembre 1976</strong> — definisce l'algoritmo di formazione del codice fiscale, le regole di estrazione dei caratteri e il metodo di calcolo del carattere di controllo.</li>
+              <li><strong>D.M. 13 dicembre 1993</strong> — disciplina le modalità di risoluzione dei casi di omocodia mediante sostituzione progressiva dei caratteri numerici.</li>
+              <li><strong>Regolamento UE 2016/679 (GDPR)</strong> — qualifica il codice fiscale come dato personale, il cui trattamento richiede una base giuridica idonea e misure di sicurezza adeguate.</li>
+              <li><strong>D.Lgs. 21 novembre 2007 n. 231</strong> — normativa antiriciclaggio, che impone la verifica dell'identità del cliente e la corretta acquisizione del codice fiscale.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">La struttura dei sedici caratteri</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Posizione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Contenuto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Regola di formazione</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">1 – 3</td><td class="px-3 py-2 border-t border-gray-200">Cognome</td><td class="px-3 py-2 border-t border-gray-200">Prime tre consonanti; se insufficienti si integrano le vocali nell'ordine</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">4 – 6</td><td class="px-3 py-2 border-t border-gray-200">Nome</td><td class="px-3 py-2 border-t border-gray-200">Se le consonanti sono quattro o più si prendono la prima, la terza e la quarta</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">7 – 8</td><td class="px-3 py-2 border-t border-gray-200">Anno di nascita</td><td class="px-3 py-2 border-t border-gray-200">Ultime due cifre dell'anno</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">Mese di nascita</td><td class="px-3 py-2 border-t border-gray-200">Lettera convenzionale secondo la tabella ministeriale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">10 – 11</td><td class="px-3 py-2 border-t border-gray-200">Giorno e sesso</td><td class="px-3 py-2 border-t border-gray-200">Giorno di nascita, aumentato di 40 per il sesso femminile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">12 – 15</td><td class="px-3 py-2 border-t border-gray-200">Luogo di nascita</td><td class="px-3 py-2 border-t border-gray-200">Codice catastale del Comune o codice dello Stato estero</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">16</td><td class="px-3 py-2 border-t border-gray-200">Carattere di controllo</td><td class="px-3 py-2 border-t border-gray-200">Calcolato con l'algoritmo a pesi alternati modulo 26</td></tr></tbody></table></div>
+            <p>La regola di estrazione del nome merita attenzione perché è l'unica asimmetrica rispetto al cognome: in presenza di quattro o più consonanti si scarta la seconda. È la fonte di errore più frequente nella generazione manuale e produce codici formalmente plausibili ma non corrispondenti a quelli attribuiti dall'anagrafe tributaria.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il valore giuridico del codice calcolato</h3>
+            <p>Il codice generato da un algoritmo è una <strong>ricostruzione deterministica</strong>, non un'attribuzione ufficiale. L'unico codice fiscale valido è quello registrato presso l'anagrafe tributaria e attestato dal tesserino o dalla Tessera Sanitaria. Nei casi di omocodia il codice effettivamente attribuito diverge da quello calcolabile, perché l'amministrazione sostituisce progressivamente caratteri numerici con lettere secondo una tabella di conversione predefinita.</p>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> per i soggetti nati all'estero il codice impiega il codice dello Stato estero in luogo di quello catastale comunale, e la verifica va condotta sull'elenco ufficiale dei codici Stato. Il codice ricostruito ha finalità di controllo e di compilazione assistita: per usi contrattuali, bancari o fiscali occorre sempre riscontrare il dato con il documento rilasciato dall'Agenzia delle Entrate.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati generati e decodificati con gli strumenti della pagina.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: nata a Torino, controllo della decodifica</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Giulia Bianchi, femmina, nata a Torino il 12/04/1990</li>
+            <li>Codice: BNC GLI 90 D 52 L219 I</li>
+            <li>Decodifica: 12/04/1990, femmina, Torino</li>
+            </ul>
+            <p>Il giorno 52 indica una donna nata il 12 del mese (12 + 40). La lettera D corrisponde ad aprile e L219 è il codice catastale di Torino.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: nato in Romania</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Stefan Popescu, maschio, nato a Bucarest il 02/03/1985</li>
+            <li>Luogo: «Nato all'Estero», Stato Romania, codice Z129</li>
+            <li>Codice: PPSSFN85C02Z129A</li>
+            </ul>
+            <p>Per i nati all'estero conta solo lo Stato: Bucarest e Cluj producono lo stesso codice. Indicando la città come se fosse un Comune italiano il luogo non viene riconosciuto.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: nome con quattro consonanti</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Gianfranco Esposito, maschio, nato a Napoli il 22/07/1978</li>
+            <li>Consonanti del nome: G N F R N C, si usano la 1ª, la 3ª e la 4ª: GFR</li>
+            <li>Codice: SPSGFR78L22F839D</li>
+            </ul>
+            <p>Prendendo le prime tre consonanti si otterrebbe GNF e un codice diverso con carattere di controllo errato: è l'errore più comune nei calcoli fatti a mano.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: codice omocodico</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Codice di partenza: BNCGLI90D52L219I</li>
+            <li>Ultima cifra del codice comune sostituita: 9 → V</li>
+            <li>Codice omocodico con nuovo controllo: BNCGLI90D52L21VX</li>
+            <li>Verifica: valido; decodifica: Torino</li>
+            </ul>
+            <p>Il Verificatore accetta il codice perché il carattere di controllo è ricalcolato sulla stringa con la lettera. Se nella tessera di una persona compare un codice di questo tipo, va usato quello e non la versione calcolata dai dati anagrafici.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il codice generato ha lo stesso valore di quello sulla Tessera Sanitaria?</h3>
+              <p>No. Il codice calcolato è una ricostruzione matematica corretta nella grande maggioranza dei casi, ma l'unico codice giuridicamente valido è quello attribuito dall'Agenzia delle Entrate e riportato sul tesserino. In presenza di omocodia, di rettifiche anagrafiche o di variazioni di stato civile il codice ufficiale può differire da quello calcolabile a partire dai dati anagrafici.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il codice fiscale cambia in caso di matrimonio o di cambio di cognome?</h3>
+              <p>Il codice si forma sui dati anagrafici di nascita e non varia per effetto del matrimonio, poiché il cognome anagrafico resta invariato. Cambia invece a seguito di un provvedimento di rettifica del nome, del cognome o della data di nascita, oppure di rettificazione di attribuzione di sesso: in questi casi l'Agenzia delle Entrate attribuisce un nuovo codice e annulla il precedente.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Che cos'è esattamente l'omocodia?</h3>
+              <p>Si verifica quando l'algoritmo produce lo stesso codice per due persone diverse, circostanza possibile perché l'algoritmo comprime le informazioni anagrafiche e non è biiettivo. L'Agenzia delle Entrate risolve il conflitto sostituendo progressivamente le cifre del secondo codice, a partire da quella più a destra, con lettere corrispondenti secondo una tabella di conversione, e ricalcolando poi il carattere di controllo.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Uno straniero può ottenere il codice fiscale italiano?</h3>
+              <p>Sì, ed è anzi necessario per qualsiasi rapporto giuridicamente rilevante nel Paese, dall'apertura di un conto corrente alla stipula di un contratto di lavoro o di locazione. Viene attribuito dall'Agenzia delle Entrate o, per i cittadini stranieri che ne facciano richiesta contestuale, dagli Sportelli Unici per l'immigrazione e dalle Questure nell'ambito delle procedure di soggiorno.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso usare il codice fiscale per verificare l'identità di una persona?</h3>
+              <p>No, e sarebbe un errore metodologico rilevante. Il codice fiscale è un identificativo derivato da dati anagrafici pubblicamente ricostruibili: chiunque conosca nome, cognome, data e luogo di nascita può calcolarlo. Non ha quindi alcuna funzione autenticativa e non va mai impiegato come elemento di verifica dell'identità o come credenziale di accesso.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa fare se il codice sulla mia tessera sembra errato?</h3>
+              <p>Occorre rivolgersi a un ufficio dell'Agenzia delle Entrate con un documento di identità e, se necessario, con la documentazione anagrafica che attesti i dati corretti. Se l'errore deriva da una trascrizione inesatta dei dati anagrafici, la correzione richiede il preventivo allineamento presso il Comune di residenza. Fino alla rettifica il codice errato può generare scarti negli invii telematici e nelle procedure bancarie.</p>
+            </div>
+          </div>
+        </details>
+
+        </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/codice-fiscale.js"></script>
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script>
+    // Utility per CF: usa il modulo centralizzato
+    const foreignEntries = (window.CodiceFiscale && window.CodiceFiscale.STATI_ESTERI)
+      ? Object.entries(window.CodiceFiscale.STATI_ESTERI).map(([name, code]) => ({ name: String(name).trim().toUpperCase(), upName: String(name).trim().toUpperCase(), code: String(code).trim().toUpperCase() }))
+      : [
+          { name: 'ARGENTINA', upName: 'ARGENTINA', code: 'Z600' },
+          { name: 'SPAGNA', upName: 'SPAGNA', code: 'Z131' },
+          { name: 'GERMANIA', upName: 'GERMANIA', code: 'Z112' },
+          { name: 'FRANCIA', upName: 'FRANCIA', code: 'Z110' },
+          { name: 'STATI UNITI D\'AMERICA', upName: 'STATI UNITI D\'AMERICA', code: 'Z404' },
+          { name: 'BRASILE', upName: 'BRASILE', code: 'Z602' },
+          { name: 'REGNO UNITO', upName: 'REGNO UNITO', code: 'Z114' },
+          { name: 'SVIZZERA', upName: 'SVIZZERA', code: 'Z133' }
+        ];
+    const localMap = {
+      'ROMA': 'H501',
+      'MILANO': 'F205',
+      'NAPOLI': 'F839',
+      'TORINO': 'L219',
+      'PALERMO': 'G273',
+      'BOLOGNA': 'A944',
+      'FIRENZE': 'D612'
+    };
+    const comuniMap = Object.assign({}, localMap);
+    foreignEntries.forEach((entry) => { comuniMap[entry.name] = entry.code; });
+    let comuniList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+    let italianList = [];
+    let foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+    let selectedBirthMode = 'italia';
+
+    function updateBirthModeUI(){
+      const mode = selectedBirthMode;
+      const label = document.getElementById('luogoLabel');
+      const input = document.getElementById('comune');
+      if (label) {
+        label.textContent = mode === 'italia' ? 'Comune di nascita' : 'Stato Estero di nascita';
+      }
+      if (input) {
+        input.placeholder = mode === 'italia' ? 'Es. Roma o H501' : 'Es. Argentina o Z600';
+      }
+      if (document.getElementById('comuni')) {
+        const datalist = document.getElementById('comuni');
+        datalist.innerHTML = '';
+        const entries = mode === 'italia' ? italianList : foreignList;
+        const source = entries.length ? entries : foreignList;
+        source.forEach((entry) => {
+          const opt = document.createElement('option');
+          opt.value = entry.name;
+          datalist.appendChild(opt);
+        });
+      }
+      if (typeof setupComuneTypeahead === 'function') {
+        setupComuneTypeahead();
+      }
+    }
+
+    function applyComuneDataset(data){
+      // Lo script del motore è caricato con defer: al primo avvio questo script usava l'elenco ridotto di riserva.
+      // Quando arrivano i comuni il motore è disponibile, quindi si riallinea l'elenco completo degli Stati esteri.
+      if (window.CodiceFiscale && window.CodiceFiscale.STATI_ESTERI && foreignEntries.length < Object.keys(window.CodiceFiscale.STATI_ESTERI).length) {
+        foreignEntries.length = 0;
+        Object.entries(window.CodiceFiscale.STATI_ESTERI).forEach(([name, code]) => foreignEntries.push({ name: String(name).trim().toUpperCase(), upName: String(name).trim().toUpperCase(), code: String(code).trim().toUpperCase() }));
+        foreignEntries.forEach((entry) => { comuniMap[entry.name] = entry.code; });
+      }
+      if (!data || !Array.isArray(data)) {
+        italianList = [];
+        foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+        comuniList = [...foreignList];
+        updateBirthModeUI();
+        return;
+      }
+      const lookup = window.CodiceFiscale ? window.CodiceFiscale.buildComuneLookup(data) : { map: {}, list: [] };
+      Object.assign(comuniMap, lookup.map);
+
+      italianList = [];
+      foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+      lookup.list.forEach((item) => {
+        if (!item || !item.code) return;
+        const name = String(item.name || item.nome || '').toUpperCase();
+        const code = String(item.code).toUpperCase();
+        if (code.startsWith('Z')) {
+          if (!foreignList.some((entry) => entry.name === name || entry.code === code)) {
+            foreignList.push({ name, upName: name, code });
+          }
+        } else {
+          if (!italianList.some((entry) => entry.name === name || entry.code === code)) {
+            italianList.push({ name, upName: name, code });
+          }
+        }
+      });
+      italianList = italianList.sort((a, b) => a.name.localeCompare(b.name));
+      foreignList = foreignList.sort((a, b) => a.name.localeCompare(b.name));
+      comuniList = [...italianList, ...foreignList].sort((a, b) => a.name.localeCompare(b.name));
+      window.comuniMap = comuniMap;
+      window.comuniList = comuniList;
+      window.COMUNI_MAP = comuniMap;
+
+      const datalist = document.getElementById('comuni');
+      if (datalist) {
+        datalist.innerHTML = '';
+        const entries = selectedBirthMode === 'italia' ? italianList : foreignList;
+        const source = entries.length ? entries : foreignList;
+        source.forEach((entry) => {
+          const opt = document.createElement('option');
+          opt.value = entry.name;
+          datalist.appendChild(opt);
+        });
+      }
+      setupComuneTypeahead();
+    }
+
+    async function loadComuniFromRemote(){
+      const localUrl = '/data/comuni.json';
+      const remoteUrl = 'https://raw.githubusercontent.com/matteocontrini/comuni-json/master/comuni.json';
+      let data = null;
+
+      try {
+        const resLocal = await fetch(localUrl);
+        if (resLocal && resLocal.ok) data = await resLocal.json();
+      } catch (e) {
+        // fallirà verso remote
+      }
+
+      if (!data) {
+        try {
+          const res = await fetch(remoteUrl);
+          if (res && res.ok) data = await res.json();
+        } catch (e) {
+          console.warn('Impossibile scaricare dataset dei comuni', e);
+        }
+      }
+
+      if (!data || !Array.isArray(data)) {
+        applyComuneDataset([]);
+        return;
+      }
+      applyComuneDataset(data);
+    }
+
+    function setupComuneTypeahead(){
+      const input = document.getElementById('comune');
+      const suggBox = document.getElementById('comune-suggestions');
+      const selected = document.getElementById('selectedComune');
+      if (!input || !suggBox) return;
+
+      let activeIndex = -1;
+      let currentSuggestions = [];
+
+      function clearSuggestions(){
+        suggBox.innerHTML = '';
+        suggBox.classList.add('hidden');
+        activeIndex = -1;
+        currentSuggestions = [];
+      }
+
+      function renderSuggestions(items){
+        clearSuggestions();
+        if (!items || items.length === 0) return;
+        currentSuggestions = items;
+        const ul = document.createElement('ul');
+        ul.className = 'divide-y divide-gray-100';
+        items.forEach((it, idx) => {
+          const li = document.createElement('li');
+          li.className = 'px-4 py-2 cursor-pointer hover:bg-indigo-50 text-sm';
+          li.textContent = `${it.name} — ${it.code}`;
+          li.dataset.index = idx;
+          li.addEventListener('mousedown', (ev)=>{
+            ev.preventDefault();
+            selectSuggestion(idx);
+          });
+          ul.appendChild(li);
+        });
+        suggBox.appendChild(ul);
+        suggBox.classList.remove('hidden');
+      }
+
+      function selectSuggestion(idx){
+        const it = currentSuggestions[idx];
+        if (!it) return;
+        input.value = it.name;
+        selected.textContent = selectedBirthMode === 'italia' ? `Comune selezionato: ${it.name}` : `Stato selezionato: ${it.name}`;
+        clearSuggestions();
+      }
+
+      function findMatches(q){
+        if (!q) return [];
+        const source = selectedBirthMode === 'italia' ? italianList : foreignList;
+        const upq = q.toUpperCase();
+        const res = source.filter(c => c.upName.startsWith(upq)).concat(source.filter(c => !c.upName.startsWith(upq) && c.upName.includes(upq)));
+        const seen = new Set();
+        const out = [];
+        for (const r of res) {
+          if (!seen.has(r.code)) { seen.add(r.code); out.push(r); }
+          if (out.length >= 10) break;
+        }
+        return out;
+      }
+
+      input.addEventListener('input', ()=>{
+        const q = input.value.trim();
+        const source = selectedBirthMode === 'italia' ? italianList : foreignList;
+        if (/^[A-Z0-9]{4}$/.test(q.toUpperCase())){
+          const found = source.find(c => c.code === q.toUpperCase()) || comuniList.find(c => c.code === q.toUpperCase());
+          if (found) {
+            input.value = found.name;
+            selected.textContent = selectedBirthMode === 'italia' ? `Comune selezionato: ${found.name}` : `Stato selezionato: ${found.name}`;
+          } else {
+            selected.textContent = 'Codice inserito manualmente.';
+          }
+          clearSuggestions();
+          return;
+        }
+        const matches = findMatches(q);
+        renderSuggestions(matches);
+      });
+
+      input.addEventListener('keydown', (ev)=>{
+        if (suggBox.classList.contains('hidden')) return;
+        const items = suggBox.querySelectorAll('li');
+        if (ev.key === 'ArrowDown') {
+          ev.preventDefault();
+          activeIndex = Math.min(activeIndex + 1, items.length - 1);
+          items[activeIndex].scrollIntoView({ block: 'nearest' });
+          items.forEach((el, i) => el.classList.toggle('bg-indigo-50', i === activeIndex));
+        } else if (ev.key === 'ArrowUp') {
+          ev.preventDefault();
+          activeIndex = Math.max(activeIndex - 1, 0);
+          items[activeIndex].scrollIntoView({ block: 'nearest' });
+          items.forEach((el, i) => el.classList.toggle('bg-indigo-50', i === activeIndex));
+        } else if (ev.key === 'Enter') {
+          if (activeIndex >= 0) { ev.preventDefault(); selectSuggestion(activeIndex); }
+        } else if (ev.key === 'Escape') {
+          clearSuggestions();
+        }
+      });
+
+      input.addEventListener('blur', ()=> { setTimeout(()=>clearSuggestions(), 150); });
+    }
+
+    function getComuneCode(input){
+      return window.CodiceFiscale ? window.CodiceFiscale.resolveComuneCode(input, comuniMap) : 'Z000';
+    }
+
+    function generateCF(cognome, nome, data, sesso, comuneInput){
+      return window.CodiceFiscale ? window.CodiceFiscale.generateCodiceFiscale(nome, cognome, data, sesso, comuneInput) : null;
+    }
+
+    function getBirthModeValue(){
+      return document.querySelector('input[name="nascitaTipo"]:checked')?.value || 'italia';
+    }
+
+    document.querySelectorAll('input[name="nascitaTipo"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        selectedBirthMode = getBirthModeValue();
+        updateBirthModeUI();
+      });
+    });
+
+    const genBtn = document.getElementById('genera');
+    if (genBtn) genBtn.disabled = true;
+    loadComuniFromRemote().then(()=>{
+      const b = document.getElementById('genera'); if (b) b.disabled = false;
+    });
+    updateBirthModeUI();
+
+    // Gestione Tabs Migliorata per UI
+    function switchTab(activeId, showAreaId) {
+      ['tabGen', 'tabVer', 'tabDecode'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) {
+          el.classList.remove('border-indigo-600', 'text-indigo-600');
+          el.classList.add('border-transparent', 'text-gray-500');
+        }
+      });
+      ['genArea', 'verArea', 'decodeArea'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.style.display = 'none';
+      });
+      
+      const activeTab = document.getElementById(activeId);
+      activeTab.classList.remove('border-transparent', 'text-gray-500');
+      activeTab.classList.add('border-indigo-600', 'text-indigo-600');
+      document.getElementById(showAreaId).style.display = 'block';
+    }
+
+    document.getElementById('tabGen').addEventListener('click', ()=> switchTab('tabGen', 'genArea'));
+    document.getElementById('tabVer').addEventListener('click', ()=> switchTab('tabVer', 'verArea'));
+    if(document.getElementById('tabDecode')) {
+      document.getElementById('tabDecode').addEventListener('click', ()=> switchTab('tabDecode', 'decodeArea'));
+    }
+
+    document.getElementById('genera').addEventListener('click', ()=>{
+      const cogn = document.getElementById('cognome').value.trim();
+      const nome = document.getElementById('nome').value.trim();
+      const data = document.getElementById('data').value;
+      const sesso = document.getElementById('sesso').value;
+      const comune = document.getElementById('comune').value.trim();
+      if (!cogn || !nome || !data) return alert('Compila Cognome, Nome e Data.');
+      const cf = generateCF(cogn,nome,data,sesso,comune);
+      // Z000 significa luogo di nascita non riconosciuto: non va mostrato un codice apparentemente valido
+      document.getElementById('cfResult').textContent = !cf ? 'Errore nel calcolo' : (cf.slice(11, 15) === 'Z000' ? 'Luogo di nascita non riconosciuto: selezionalo dall\'elenco dei suggerimenti' : cf);
+    });
+
+    document.getElementById('generaLimpa').addEventListener('click', ()=>{
+      document.getElementById('cognome').value='';
+      document.getElementById('nome').value='';
+      document.getElementById('data').value='';
+      document.getElementById('sesso').value='M';
+      document.getElementById('comune').value='';
+      document.getElementById('cfResult').textContent='—';
+    });
+
+    document.getElementById('verifica').addEventListener('click', ()=>{
+      const cf = (document.getElementById('cfToCheck').value||'').trim().toUpperCase();
+      if (!cf) return alert('Inserisci un CF da verificare.');
+      if (!/^[A-Z0-9]{16}$/.test(cf)){
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-amber-600';
+        document.getElementById('verResult').textContent = 'Formato non valido (deve essere di 16 caratteri).';
+        return;
+      }
+      const result = window.CodiceFiscale ? window.CodiceFiscale.validateCodiceFiscale(cf) : { valid: false };
+      if (result.valid) {
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-emerald-600';
+        document.getElementById('verResult').textContent = 'Codice Fiscale valido (controllo carattere OK).';
+        if (result.canonical) {
+          document.getElementById('verResult').textContent += ' Canonica: ' + result.canonical;
+        }
+      } else {
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-rose-600';
+        document.getElementById('verResult').textContent = 'Codice Fiscale non valido (carattere di controllo errato).';
+      }
+    });
+
+    document.getElementById('verReset').addEventListener('click', ()=>{
+      document.getElementById('cfToCheck').value='';
+      document.getElementById('verResult').className = 'mt-2 text-lg font-medium text-gray-900';
+      document.getElementById('verResult').textContent='—';
+    });
+  </script>
+
+  <script>
+    (function(){
+      const decodeBtn = document.getElementById('decodeBtn');
+      const decodeReset = document.getElementById('decodeReset');
+      const cfToDecode = document.getElementById('cfToDecode');
+      const decodeResult = document.getElementById('decodeResult');
+
+      function renderDecodeResult(obj){
+        if (!obj){ decodeResult.style.display='none'; return; }
+        decodeResult.style.display='grid';
+        document.getElementById('dec-birth').textContent = obj.birthIso || '—';
+        document.getElementById('dec-age').textContent = (obj.age != null) ? (obj.age + ' anni') : '—';
+        document.getElementById('dec-sex').textContent = obj.sex || '—';
+        document.getElementById('dec-comune').textContent = obj.comuneName || (obj.isForeign ? 'Stato estero' : 'Comune non trovato');
+        document.getElementById('dec-code').textContent = obj.comuneCode || '—';
+      }
+
+      if (decodeBtn) decodeBtn.addEventListener('click', ()=>{
+        const val = (cfToDecode.value||'').trim().toUpperCase();
+        if (!/^[A-Z0-9]{16}$/.test(val)) { alert('Inserisci un Codice Fiscale valido di 16 caratteri.'); return; }
+        if (!window.CodiceFiscale || typeof window.CodiceFiscale.parseCodiceFiscaleReverse !== 'function') {
+          alert('Funzione di decodifica non disponibile.'); return;
+        }
+        const res = window.CodiceFiscale.parseCodiceFiscaleReverse(val);
+        renderDecodeResult(res);
+      });
+
+      if (decodeReset) decodeReset.addEventListener('click', ()=>{
+        cfToDecode.value = '';
+        renderDecodeResult(null);
+      });
+    })();
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-cf-nome'] = function (campo) {
+      var C = window.CodiceFiscale;
+      if (!C || !campo.value.trim()) return '';
+      var cognome = document.getElementById('cognome').value;
+      var parti = 'Nome ' + campo.value.trim() + ' → ' + C.threeLettersName(campo.value);
+      if (cognome.trim()) parti = 'Cognome ' + cognome.trim() + ' → ' + C.threeLettersSurname(cognome) + '; ' + parti;
+      return parti + '.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+</body>
+</html>

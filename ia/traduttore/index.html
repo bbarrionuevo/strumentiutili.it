@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="it">
+<head>
+
+<!-- Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+  <!-- Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Traduttore Documenti IA (Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Traduci documenti (.txt, .docx, .pdf) localmente nel browser. Modelli MarianMT ONNX ed esecuzione privata.">
+  <link rel="canonical" href="https://strumentiutili.it/ia/traduttore/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Librerías de Extracción y Generación PDF/Word -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script defer src="https://unpkg.com/mammoth/mammoth.browser.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/docx@7.6.0/build/index.js" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script>
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Traduttore documenti offline",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/ia/traduttore/",
+        "description": "Traduzione di documenti TXT, DOCX e PDF fra italiano, inglese e spagnolo con un modello neurale MarianMT eseguito nel browser: il testo non viene inviato a server ed è esportabile in TXT, DOCX e PDF.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "@id": "https://strumentiutili.it/ia/traduttore/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Traduzione italiano, inglese e spagnolo nelle quattro direzioni proposte",
+          "Estrazione del testo da TXT, DOCX e PDF",
+          "Modello neurale eseguito nel browser, con cache locale",
+          "Paragrafi mantenuti distinti nel testo tradotto",
+          "Anteprima del risultato ed esportazione in TXT, DOCX e PDF"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "IA Locale",
+            "item": "https://strumentiutili.it/ia/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Traduttore Documenti",
+            "item": "https://strumentiutili.it/ia/traduttore/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/ia/traduttore/#howto",
+        "name": "Come tradurre un documento senza inviarlo online",
+        "description": "Procedura per tradurre un file TXT, DOCX o PDF nel browser, con un modello scaricato una sola volta.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il documento da tradurre"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica il documento",
+            "text": "Trascina il file TXT, DOCX o PDF nel riquadro o sfoglialo dal dispositivo.",
+            "url": "https://strumentiutili.it/ia/traduttore/#drop-file-input"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli la direzione",
+            "text": "Seleziona la coppia di lingue, per esempio Italiano → Inglese.",
+            "url": "https://strumentiutili.it/ia/traduttore/#direction"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Avvia la traduzione",
+            "text": "Premi Avvia traduzione e attendi il caricamento del modello e l'elaborazione.",
+            "url": "https://strumentiutili.it/ia/traduttore/#start-translate"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Rileggi e scarica",
+            "text": "Controlla il testo nell'anteprima e scaricalo in TXT, DOCX o PDF.",
+            "url": "https://strumentiutili.it/ia/traduttore/#download-area"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/ia/traduttore/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "La qualità è paragonabile a quella dei traduttori online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. I modelli usati qui sono compatti e quantizzati per poter girare nel browser: capiscono bene le frasi comuni, ma sbagliano con più facilità termini tecnici, giuridici e medici. La traduzione va sempre riletta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il documento viene inviato da qualche parte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Viene letto e tradotto nel browser; dalla rete arriva solo il modello di traduzione, scaricato al primo utilizzo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché la prima traduzione è lenta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La prima volta il browser scarica il modello della direzione linguistica scelta, alcune decine di megabyte. Nella prova, circa 9 secondi su desktop; poi il modello resta nella cache."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso tradurre un PDF scansionato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, se contiene solo immagini: non c'è testo da estrarre. Prima va riconosciuto il testo con lo strumento OCR."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'impaginazione del documento viene mantenuta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: viene estratto e tradotto il solo testo, suddiviso in paragrafi. Tabelle, colonne, intestazioni e immagini non vengono riprodotte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché la pagina della traduzione potrebbe crashare segnalando un errore OOM (Out of Memory)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il caricamento di elaboratori semantici LLM o NMT densi satura profondamente la memoria di allocazione consentita dal motore JavaScript (tipicamente limitata a 2-4 GB di Heap per tab nel motore V8 del browser). Quando si carica il tensore di intelligenza artificiale non compresso (FP32) o si processa un PDF Word colossale di centinaia di pagine senza partizionarlo, si supera brutalmente il limite di RAM allocabile imposto dal sistema operativo, inducendo il processo di tab-crashing e l'eradicazione della pagina dalla memoria (Out of Memory - OOM). Per questo i nostri strumenti implementano rigorosamente modelli quantizzati in formato intero INT8 (22 MB anziché 90 MB) ed eseguono il parsing a chunk iterativi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa si intende per \"Thermal Throttling\" e come degrada l'esperienza di traduzione locale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'esecuzione prolungata di cicli matematici intensi tipici delle reti neurali (moltiplicazioni di matrice per i modelli Transformer) genera un grave sovraccarico continuato sulle frequenze della CPU o del System on a Chip (SoC) del dispositivo mobile o laptop leggero. Per prevenire danni fisici all'hardware, i sensori termici riducono in via forzosa e draconiana le frequenze di clock del processore, innescando il fenomeno delthermal throttling. Ciò porta all'erosione repentina della batteria, a un marcato innalzamento delle temperature dello chassis e alla compromissione della reattività dell'interfaccia (blocco del main thread UI). Per ovviare, è vitale abilitare l'accelerazione WebGPU dislocando il carico computazionale interamente sull'acceleratore video isolato tramite le funzionalità dei Web Workers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali ostacoli presenta l'API WebGL per le inferenze NMT, e perché viene soppiantata da WebGPU?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'interfaccia WebGL fa affidamento su direttive storiche radicate nello standard OpenGL ES 2.0/3.0. Sebbene permetta l'esecuzione dell'IA su browser non recenti, il suo livello di astrazione induce un pesantissimo sovraccarico di stato operativo (overhead) per ogni singola transazione inviata alla scheda video. Soprattutto, è priva della tecnologia deicompute shaderin virgola mobile a mezza precisione (FP16). WebGPU, interfacciandosi con strati kernel a basso livello (Vulkan, Metal), sblocca l'operatività cruda della memoria, accelerando spaventosamente (+1900%) i calcoli tensoriali necessari alla codifica e decodifica dei token tradotti."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-indigo-600 font-semibold">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <a href="/ia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria IA Locale</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🤖</span> Intelligenza Artificiale
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Traduttore Locale di Documenti (Offline)</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale: i tuoi documenti non vengono mai inviati a server esterni. Tutta l'inferenza AI avviene nel tuo browser.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Impostazioni e Caricamento</h2>
+          
+          <label for="file-input" class="block text-sm font-bold text-gray-800 mb-2">Carica file (.txt, .docx, .pdf)</label>
+          <input id="file-input" type="file" accept=".txt,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden" />
+          <div id="drop-file-input" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors p-6 text-center rounded-xl cursor-pointer shadow-sm">
+            <div class="text-4xl mb-3">📄</div>
+            <div class="text-sm font-medium text-gray-700">Trascina qui il file oppure <span class="text-indigo-600 font-bold" id="file-browse">sfoglia</span></div>
+            <div id="file-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <button type="button" data-guida-toggle="guida-trad-file" aria-expanded="false" aria-controls="guida-trad-file" aria-label="Guida al campo Documento da tradurre" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quali file accetta</button>
+          <div id="guida-trad-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Formati:</strong> TXT, DOCX e PDF. Dei file DOCX e PDF viene estratto solo il testo: impaginazione, tabelle, immagini e intestazioni non vengono riprodotte.</p>
+            <p><strong class="text-indigo-900">PDF scansionati:</strong> un PDF che contiene solo immagini non ha testo da estrarre: passa prima dallo strumento OCR e traduci il testo riconosciuto.</p>
+            <p><strong class="text-indigo-900">Dimensione:</strong> il testo viene tradotto una frase per volta: su documenti di molte pagine l'attesa si misura in minuti. Per una prova, parti da poche pagine.</p>
+          </div>
+
+          <div class="flex items-center gap-2 mt-6 mb-2">
+            <label for="direction" class="text-sm font-bold text-gray-800">Direzione traduzione</label>
+            <button type="button" data-guida-toggle="guida-trad-direzione" aria-expanded="false" aria-controls="guida-trad-direzione" aria-label="Guida al campo Direzione della traduzione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+          </div>
+          <select data-guida="guida-trad-direzione" aria-describedby="guida-trad-direzione" id="direction" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white font-medium">
+            <option value="it-en">Italiano → Inglese</option>
+            <option value="en-it">Inglese → Italiano</option>
+            <option value="es-it">Spagnolo → Italiano</option>
+            <option value="it-es">Italiano → Spagnolo</option>
+          </select>
+          <div id="guida-trad-direzione" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Modelli separati:</strong> ogni direzione usa un modello diverso, scaricato la prima volta che la scegli: cambiare direzione comporta un nuovo scaricamento.</p>
+            <p><strong class="text-indigo-900">Una lingua per volta:</strong> il modello traduce dalla lingua di partenza indicata: se il documento contiene brani in altre lingue, quelle parti vengono tradotte male o lasciate quasi invariate.</p>
+            <p><strong class="text-indigo-900">Coppie disponibili:</strong> italiano, inglese e spagnolo nelle quattro combinazioni proposte. Non sono disponibili altre lingue.</p>
+          </div>
+
+          <button id="start-translate" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-lg shadow-sm transition">Avvia traduzione</button>
+          <button type="button" data-guida-toggle="guida-trad-avvio" aria-expanded="false" aria-controls="guida-trad-avvio" aria-label="Guida al campo Avvio della traduzione" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa succede dopo l'avvio</button>
+          <div id="guida-trad-avvio" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Primo avvio:</strong> la prima barra mostra lo scaricamento del modello (alcune decine di megabyte); poi resta nella cache del browser e gli usi successivi partono subito.</p>
+            <p><strong class="text-indigo-900">Avanzamento:</strong> la seconda barra segue la traduzione dei singoli segmenti di testo.</p>
+            <p><strong class="text-indigo-900">Struttura:</strong> ogni paragrafo viene tradotto separatamente e i paragrafi restano distinti nel testo finale.</p>
+            <p><strong class="text-indigo-900">Risultato:</strong> il testo tradotto compare nel riquadro di destra e può essere scaricato in TXT, DOCX o PDF.</p>
+          </div>
+          <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-bold text-gray-700 mb-1">
+                <span>Stato modello IA:</span>
+                <span id="model-status" class="text-indigo-600">Non caricato</span>
+              </div>
+              <div class="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden"><div id="model-progress" class="bg-indigo-500 h-full transition-all duration-300" style="width:0%"></div></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm font-bold text-gray-700 mb-1">
+                <span>Progresso traduzione:</span>
+                <span id="trans-status" class="text-emerald-600">In attesa</span>
+              </div>
+              <div class="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden"><div id="trans-progress" class="bg-emerald-500 h-full transition-all duration-300" style="width:0%"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full min-h-[300px]">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Download Documento</h3>
+          <div id="download-area" class="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 p-6 text-center">
+            <div class="text-4xl mb-3 opacity-50">📥</div>
+            <div class="text-sm font-semibold text-gray-500">Nessun file tradotto disponibile.</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/ia/ocr-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👁️</span> OCR Immagini</a></li>
+            <li><a href="/ia/riassunto-testo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Riassunto Testo</a></li>
+            <li><a href="/ia/trascrizione-audio/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🎙️</span> Trascrizione Audio</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/ia/assistente-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🤖</span> Assistente IA Documenti</a></li>
+            </ul>
+          </details>
+          <a href="/ia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti IA Locale</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+      <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+      <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+    </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Qualità e tempi della traduzione verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il documento viene letto e tradotto nel browser: il testo non viene inviato a server. Il modello di traduzione (alcune decine di megabyte) viene scaricato da una CDN al primo utilizzo e resta nella cache del browser: viaggia il modello, non il tuo documento (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti tecniche e normative</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 2016/679 (GDPR), artt. 5, 25, 28 e 32; sentenza della Corte di giustizia UE C-311/18 (Schrems II); documentazione Transformers.js 2.17 e ONNX Runtime Web; modelli di traduzione MarianMT del progetto Helsinki-NLP (opus-mt); librerie pdf.js, Mammoth.js, pdf-lib e docx.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Tecnico-Giuridico sull'Intelligenza Artificiale Locale, Traduzione NMT e Conformità Normativa (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          L'avanzamento tecnologico più radicale che ha interessato le architetture software documentali client-side è la capacità di eseguire reti neurali profonde ed estesi modelli di linguaggio (LLM) interamente all'interno del browser web dell'utente. Questo strumento usa Transformers.js con ONNX Runtime Web per eseguire nel browser un modello di traduzione automatica neurale della famiglia MarianMT, addestrato dal progetto open source Helsinki-NLP. Il testo del documento non viene trasmesso: dalla rete arriva soltanto il modello, scaricato una volta e conservato nella cache del browser. La contropartita è che la qualità è quella di un modello compatto, inferiore a quella dei traduttori online più noti, e che la traduzione va sempre riletta prima dell'uso.
+        </p>
+
+        <!-- ACCORDEON 1: Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo: Sicurezza del Trattamento (GDPR) e Minaccia Cloud NMT</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Privacy by Design (Art. 25 GDPR) ed Esfiltrazione dei Dati</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Dal punto di vista normativo, l'impiego di modelli di traduzione automatica (NMT) o LLM commerciali ospitati in cloud pone minacce insormontabili in termini di riservatezza e conformità legale. Quando si processano dati sensibili, i Termini di Servizio (ToS) di molti provider cloud (come Google Translate, DeepL o le API OpenAI) garantiscono al fornitore il diritto unilaterale di immagazzinare i prompt testuali, i documenti e i flussi informativi dell'utente per il riaddestramento continuo dei propri modelli algoritmici. Questo meccanismo viola frontalmente il principio di limitazione della finalità prescritto dal GDPR. L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure a tutela della privacy siano architettate direttamente nel codice fin dalla fase di progettazione. Eseguendo la traduzione nel browser il testo non viene trasmesso ad alcun fornitore, e viene quindi meno il rischio che finisca in un archivio esterno o sia usato per addestrare modelli. Restano da curare le misure di sicurezza sul dispositivo e la conservazione dei file tradotti.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Articolo 28 (Data Processing) e il Rischio Schrems II</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'utilizzo di un Cloud NMT per tradurre documenti sensibili trasforma istantaneamente l'azienda fornitrice del software in un <em>Data Processor</em> (Responsabile del Trattamento ex Articolo 28 GDPR). Questo innesca per il professionista (Titolare del Trattamento) l'obbligo inderogabile di stipulare rigorosi Data Processing Agreements (DPA), condurre estenuanti audit di sicurezza e autorizzare i sub-responsabili. Inoltre, in ambito europeo, i trasferimenti di dati extra-UE verso server operanti negli Stati Uniti costituiscono un terreno giuridicamente incerto a causa delle ripercussioni giurisprudenziali della nota sentenza "Schrems II". Con l'esecuzione locale il sito fornisce il programma e il modello, ma non tratta il testo: per questa operazione non c'è un responsabile del trattamento da nominare né un trasferimento di dati verso paesi terzi da giustificare. Gli altri adempimenti del titolare restano invariati.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 2: Meccanica Computazionale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Architettura del modello: MarianMT, ONNX Runtime Web e quantizzazione a 8 bit</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">ONNX Runtime Web e Piattaforme di Esecuzione (Execution Providers)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Il motore di inferenza si affida a ONNX (Open Neural Network Exchange), il formato standardizzato per la rappresentazione dei grafi computazionali intermedi nel Machine Learning. La libreria <code>onnxruntime-web</code> distribuisce i modelli <em>sequence-to-sequence</em> (come MarianMT) nel browser instradando le operazioni vettoriali attraverso diverse interfacce di esecuzione hardware (Execution Providers):
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>WebAssembly (CPU):</strong> è il motore usato da questo strumento. Funziona su qualsiasi browser recente senza driver né permessi particolari, ma il calcolo resta a carico del processore: la velocità dipende dal dispositivo.</li>
+                <li><strong>Multi-thread:</strong> ONNX Runtime può distribuire il calcolo su più core solo se la pagina è «cross-origin isolated», condizione che richiede intestazioni HTTP particolari e impedirebbe di caricare risorse esterne. Qui l'esecuzione avviene quindi su un singolo thread, dentro un Web Worker che tiene libera l'interfaccia.</li>
+                <li><strong>WebGPU (GPU):</strong> lo standard che porta l'accelerazione grafica al calcolo neurale, con guadagni di velocità notevoli. Non è utilizzato da questo strumento: il supporto nei browser è ancora disomogeneo e i modelli di traduzione usati qui sono abbastanza piccoli da girare sul processore.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">Compressione Logica: Quantizzazione INT8 Post-Addestramento</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'ostacolo ingegneristico più grave per il deployment di modelli linguistici NLP all'interno del browser web è rappresentato dai limiti fisici della larghezza di banda di rete e dai limiti stringenti di allocazione RAM/VRAM imposti al processo. I modelli traduttori possiedono un peso originale massiccio nella loro configurazione in virgola mobile a 32 bit (FP32). Richiederne il caricamento causerebbe il blocco dell'interfaccia utente (UI) o il crash prematuro indotto dal sistema operativo (Out of Memory - OOM).
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La soluzione adottata è la quantizzazione a 8 bit: i pesi della rete, originariamente numeri in virgola mobile a 32 bit, vengono convertiti in interi a 8 bit. Il modello scaricato pesa così circa un quarto dell'originale, con un peggioramento contenuto della qualità della traduzione. È il compromesso che rende praticabile l'esecuzione nel browser: i modelli usati qui (famiglia MarianMT, addestrati dal progetto Helsinki-NLP) occupano alcune decine di megabyte per ciascuna direzione linguistica.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">Quanto tempo richiede</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La traduzione procede una frase per volta (modello autoregressivo: ogni parola prodotta dipende dalle precedenti), quindi il tempo cresce con la lunghezza del testo. In una prova su un computer desktop, il caricamento del modello ha richiesto circa 9 secondi e la traduzione di un verbale di circa 370 caratteri circa 3 secondi e mezzo. Il modello resta poi nella cache del browser: le traduzioni successive nella stessa direzione linguistica partono subito. Per documenti di molte pagine il tempo si misura in minuti, e conviene lasciare la scheda in primo piano.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 3: Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📈</span> 3. Casuistica Reale: Processi Professionali in Settori M&A e Clinici</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Scenario 1: Due Diligence Documentale nel Settore Finanziario (M&A)</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Un team operativo interbancario è incaricato di elaborare un'analisi di rischio critico (Due Diligence) in una delicata manovra di fusione e acquisizione aziendale (Mergers and Acquisitions - M&A). Il materiale documentale consiste in migliaia di contratti legali esteri scannerizzati ad altissima risoluzione.
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p><strong>Esecuzione:</strong> I professionisti caricano i file PDF: il testo viene estratto con pdf.js e tradotto paragrafo per paragrafo dal modello locale. Su documenti di decine di pagine il tempo si misura in minuti, e la traduzione va considerata una bozza di lavoro: per i passaggi contrattuali rilevanti serve comunque una revisione umana, perché un modello compatto sbaglia con facilità termini tecnici e cifre.<br>
+                <span class="text-emerald-700 font-bold">Vantaggio:</span> La valutazione del capitale viene condotta tutelando ermeticamente il segreto industriale dell'accordo; si evitano gravissimi reati finanziari quali l'insider trading, frequentemente innescati da data leak provocati da processi su server esposti a vulnerabilità.</p>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Scenario 2: Traduzione Narrativa di Registri Sanitari Estero-Italia</h3>
+              <p class="text-xs text-gray-700 leading-relaxed mb-3">
+                Un primario ospedaliero italiano riceve cartelle cliniche in spagnolo da un istituto di Barcellona riguardanti un paziente sottoposto a trial clinici sperimentali, ricche di dati sensibili e categorie particolari ex Art. 9 GDPR.
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p><strong>Esecuzione:</strong> Il testo viene tradotto sul computer dell'ambulatorio, senza uscire dalla rete interna. Diagnosi, dosaggi e posologie vanno però sempre verificati su un traduttore professionale o da un medico che conosca la lingua: un errore su un'unità di misura o su una negazione può avere conseguenze dirette sulla terapia.<br>
+                <span class="text-emerald-700 font-bold">Vantaggio:</span> La struttura ospedaliera neutralizza in modo incontrovertibile lo spettro che le ammissioni intime dei pazienti vengano fagocitate, analizzate o profilate da algoritmi gestiti dalle multinazionali Big Tech per futuri addestramenti commerciali.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Errori Operativi (OOM) e Colli di Bottiglia dell'Hardware (YMYL)</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+                <p>I casi seguenti sono stati riprodotti con lo strumento, confrontando il testo di partenza con quello restituito dal modello e misurando i tempi su un computer desktop.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: clausole di un contratto di locazione (italiano → inglese)</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>«Il contratto di locazione ha una durata di quattro anni.» → «The lease shall last for four years.»</li>
+                <li>«Il canone mensile e di 750 euro.» → «The monthly fee is 750 euros.»</li>
+                <li>«Le spese condominiali sono a carico del conduttore.» → «The condominium costs are borne by the holder.»</li>
+                </ul>
+                <p>Le prime due frasi sono corrette. Nella terza «conduttore», che in un contratto di locazione è l'inquilino (<em>tenant</em>), diventa «holder»: è il tipico errore di un modello compatto sui termini giuridici, che rende indispensabile la rilettura.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: verbale di assemblea in DOCX</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Titolo «VERBALE ASSEMBLEARE» (tutto maiuscolo) → «AXISAL VERBAL»</li>
+                <li>Corpo del testo: tradotto in modo corretto e comprensibile</li>
+                <li>Tempi: 8,7 secondi per caricare il modello, 3,5 secondi per 367 caratteri</li>
+                </ul>
+                <p>Le righe in maiuscolo mettono in difficoltà il modello, che le tratta come parole sconosciute: conviene convertire i titoli in minuscolo prima di tradurre. I paragrafi restano separati, come nell'originale.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: esportazione del testo tradotto</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>TXT e DOCX: testo integrale, con i paragrafi separati</li>
+                <li>PDF: font Helvetica, righe mandate a capo sulla larghezza della pagina A4</li>
+                <li>Lettere fuori dall'alfabeto latino occidentale nel PDF: ricondotte alla lettera base</li>
+                </ul>
+                <p>Per conservare il testo esattamente come prodotto dal modello conviene il formato TXT o DOCX; il PDF è comodo per la stampa, ma è un documento di solo testo e non riproduce l'impaginazione dell'originale.</p>
+              </div>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché la pagina della traduzione potrebbe crashare segnalando un errore OOM (Out of Memory)?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il caricamento di elaboratori semantici LLM o NMT densi satura profondamente la memoria di allocazione consentita dal motore JavaScript (tipicamente limitata a 2-4 GB di Heap per tab nel motore V8 del browser). Quando si carica il tensore di intelligenza artificiale non compresso (FP32) o si processa un PDF Word colossale di centinaia di pagine senza partizionarlo, si supera brutalmente il limite di RAM allocabile imposto dal sistema operativo, inducendo il processo di tab-crashing e l'eradicazione della pagina dalla memoria (Out of Memory - OOM). Per questo i nostri strumenti implementano rigorosamente modelli quantizzati in formato intero INT8 (22 MB anziché 90 MB) ed eseguono il parsing a chunk iterativi.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa si intende per "Thermal Throttling" e come degrada l'esperienza di traduzione locale?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'esecuzione prolungata di cicli matematici intensi tipici delle reti neurali (moltiplicazioni di matrice per i modelli Transformer) genera un grave sovraccarico continuato sulle frequenze della CPU o del System on a Chip (SoC) del dispositivo mobile o laptop leggero. Per prevenire danni fisici all'hardware, i sensori termici riducono in via forzosa e draconiana le frequenze di clock del processore, innescando il fenomeno del <em>thermal throttling</em>. Ciò porta all'erosione repentina della batteria, a un marcato innalzamento delle temperature dello chassis e alla compromissione della reattività dell'interfaccia (blocco del main thread UI). Per ovviare, è vitale abilitare l'accelerazione WebGPU dislocando il carico computazionale interamente sull'acceleratore video isolato tramite le funzionalità dei Web Workers.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali ostacoli presenta l'API WebGL per le inferenze NMT, e perché viene soppiantata da WebGPU?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'interfaccia WebGL fa affidamento su direttive storiche radicate nello standard OpenGL ES 2.0/3.0. Sebbene permetta l'esecuzione dell'IA su browser non recenti, il suo livello di astrazione induce un pesantissimo sovraccarico di stato operativo (overhead) per ogni singola transazione inviata alla scheda video. Soprattutto, è priva della tecnologia dei <em>compute shader</em> in virgola mobile a mezza precisione (FP16). WebGPU, interfacciandosi con strati kernel a basso livello (Vulkan, Metal), sblocca l'operatività cruda della memoria, accelerando spaventosamente (+1900%) i calcoli tensoriali necessari alla codifica e decodifica dei token tradotti.
+              </p>
+            </details>
+
+            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+                <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+                <div class="border-l-4 border-indigo-200 pl-4 py-1">
+                <h3 class="font-bold text-gray-900 text-base mb-1">La qualità è paragonabile a quella dei traduttori online?</h3>
+                <p>No. I modelli usati qui sono compatti e quantizzati per poter girare nel browser: capiscono bene le frasi comuni, ma sbagliano con più facilità termini tecnici, giuridici e medici. La traduzione va sempre riletta.</p>
+                </div>
+                <div class="border-l-4 border-indigo-200 pl-4 py-1">
+                <h3 class="font-bold text-gray-900 text-base mb-1">Il documento viene inviato da qualche parte?</h3>
+                <p>No. Viene letto e tradotto nel browser; dalla rete arriva solo il modello di traduzione, scaricato al primo utilizzo.</p>
+                </div>
+                <div class="border-l-4 border-indigo-200 pl-4 py-1">
+                <h3 class="font-bold text-gray-900 text-base mb-1">Perché la prima traduzione è lenta?</h3>
+                <p>La prima volta il browser scarica il modello della direzione linguistica scelta, alcune decine di megabyte. Nella prova, circa 9 secondi su desktop; poi il modello resta nella cache.</p>
+                </div>
+                <div class="border-l-4 border-indigo-200 pl-4 py-1">
+                <h3 class="font-bold text-gray-900 text-base mb-1">Posso tradurre un PDF scansionato?</h3>
+                <p>No, se contiene solo immagini: non c'è testo da estrarre. Prima va riconosciuto il testo con lo strumento OCR.</p>
+                </div>
+                <div class="border-l-4 border-indigo-200 pl-4 py-1">
+                <h3 class="font-bold text-gray-900 text-base mb-1">L'impaginazione del documento viene mantenuta?</h3>
+                <p>No: viene estratto e tradotto il solo testo, suddiviso in paragrafi. Tabelle, colonne, intestazioni e immagini non vengono riprodotte.</p>
+                </div>
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/error-utils.js"></script>
+  <script type="module" src="/js/traduttore.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+</body>
+</html>

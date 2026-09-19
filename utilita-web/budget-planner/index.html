@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth scroll-pt-24">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied", ad_storage: "denied", ad_user_data: "denied",
+        analytics_storage: "denied", functionality_storage: "denied", personalization_storage: "denied",
+        security_storage: "granted", wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true); gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Budget Planner 50/30/20: Pianifica il Bilancio Familiare — StrumentiUtili.it</title>
+  <meta name="description" content="Inserisci reddito netto e spese mensili: il planner applica la regola 50/30/20, disegna un grafico in tempo reale e ti indica dove intervenire su mutuo, utenze e risparmi. 100% nel browser, nessun dato inviato online." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/budget-planner/" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; } .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+
+    /* Elementi generati via JS: stili qui per non dipendere dal build Tailwind */
+    .bp-alert { padding: 1rem; font-size: .875rem; line-height: 1.5; font-weight: 500; border-radius: .5rem; border: 1px solid; }
+    .bp-alert a { text-decoration: underline; font-weight: 700; }
+    .bp-alert ul { margin: .5rem 0 0 1.1rem; list-style: disc; }
+    .bp-tono-rosso { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+    .bp-tono-giallo { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .bp-tono-verde { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+    .bp-tono-blu { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+    .bp-barra { position: relative; height: 8px; background: #f3f4f6; border-radius: 9999px; overflow: visible; }
+    .bp-barra-riempimento { height: 100%; border-radius: 9999px; transition: width .5s ease, background-color .3s ease; }
+    .bp-barra-obiettivo { position: absolute; top: -3px; width: 2px; height: 14px; background: #111827; border-radius: 1px; }
+    .bp-input-errore { border-color: #ef4444 !important; background: #fef2f2; }
+    @media (prefers-reduced-motion: reduce) { .bp-barra-riempimento { transition: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/utilita-web/budget-planner/#app",
+        "name": "Budget Planner 50/30/20",
+        "url": "https://strumentiutili.it/utilita-web/budget-planner/",
+        "description": "Pianificazione del bilancio familiare con la regola 50/30/20: somma delle voci per necessità, desideri e risparmi, semaforo per categoria, confronto delle spese fisse con riferimenti prudenziali e suggerimenti mirati.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Ripartizione del reddito netto in necessità, desideri e risparmi",
+          "Semaforo verde, giallo e rosso per ogni categoria",
+          "Confronto di abitazione, utenze, alimentazione e mobilità con soglie di riferimento",
+          "Grafico ad anello del reddito allocato",
+          "Importi salvati solo sul dispositivo"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/utilita-web/budget-planner/#howto",
+        "name": "Come applicare la regola 50/30/20 al bilancio familiare",
+        "description": "Procedura per classificare le spese mensili e verificare la ripartizione del reddito netto.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT10M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Estratti conto e bollette degli ultimi mesi"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci il reddito netto",
+            "text": "Indica le entrate nette regolari del mese.",
+            "url": "https://strumentiutili.it/utilita-web/budget-planner/#bp-reddito"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Compila le necessità",
+            "text": "Inserisci casa, utenze, alimentazione e trasporti, dividendo per 12 le spese annuali.",
+            "url": "https://strumentiutili.it/utilita-web/budget-planner/#bp-mutuoOAffitto"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Compila desideri e risparmi",
+            "text": "Aggiungi svago, acquisti, accantonamenti e rate dei debiti.",
+            "url": "https://strumentiutili.it/utilita-web/budget-planner/#bp-fondoEmergenza"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi semafori e suggerimenti",
+            "text": "Controlla le percentuali delle tre categorie e gli interventi proposti.",
+            "url": "https://strumentiutili.it/utilita-web/budget-planner/#bp-alerts"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/budget-planner/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "La regola 50/30/20 funziona anche con redditi bassi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con redditi bassi le necessità superano spesso il 50% per il solo costo della casa. In questi casi conviene usare la regola come direzione: mantenere un accantonamento anche piccolo e ridurre prima i desideri, poi le voci fisse più pesanti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le rate di un prestito vanno fra le necessità o fra i risparmi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nel planner le rate di prestiti personali e carte revolving rientrano nel 20% dei risparmi e debiti, perché rimborsare un debito libera reddito futuro come un risparmio. La rata del mutuo sulla casa resta invece fra le necessità."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove inserisco le spese per i figli?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mensa, libri e visite mediche fra le necessità, nella spesa alimentare o in farmacia e salute; sport e attività ricreative fra i desideri, nel campo sport e benessere. Le spese annuali vanno divise per 12."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I dati inseriti restano salvati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, ma solo su questo dispositivo, nel localStorage del browser. Non vengono inviati a server e il pulsante «Azzera» li cancella. Su un computer condiviso conviene azzerare al termine."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF &amp; IA</a>
+        <a href="/utilita-web/" class="text-indigo-600 font-bold">🛠️ Utilità</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="mb-8 border-b border-gray-200 pb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
+          <span>🔒 Privacy Assoluta (Zero-Upload)</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
+          Budget Planner Intelligente 50/30/20
+        </h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Inserisci il reddito netto e le spese mensili della tua famiglia. Il planner le ripartisce tra <strong>Necessità (50%)</strong>, <strong>Desideri (30%)</strong> e <strong>Risparmi e debiti (20%)</strong>, aggiorna il grafico in tempo reale e ti indica con un semaforo quali voci correggere. I dati restano sul tuo dispositivo.
+        </p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div id="bp-workspace" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-6">
+
+        <!-- REDDITO -->
+        <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 flex flex-col md:flex-row md:items-end gap-4">
+          <div class="block flex-1">
+            <div class="flex items-center gap-2">
+              <label for="bp-reddito" class="text-sm font-bold text-indigo-900">Reddito netto mensile disponibile</label>
+              <button type="button" data-guida-toggle="guida-bp-reddito" aria-expanded="false" aria-controls="guida-bp-reddito" aria-label="Guida al campo Reddito netto mensile" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <span class="block text-xs text-indigo-700 mb-2">Stipendio netto più eventuali altre entrate regolari (es. Assegno Unico).</span>
+            <span class="relative block">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-indigo-400 font-bold pointer-events-none">€</span>
+              <input data-guida="guida-bp-reddito" aria-describedby="guida-bp-reddito" id="bp-reddito" data-bp-path="redditoNettoDisponibile" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-indigo-300 rounded-lg pl-9 pr-4 py-3 text-2xl font-extrabold text-gray-900 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+            </span>
+              <div id="guida-bp-reddito" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa includere:</strong> lo stipendio netto accreditato, la pensione, l'Assegno Unico e altre entrate che arrivano ogni mese. Escludi rimborsi spese e bonus una tantum.</p>
+                <p><strong class="text-indigo-900">Tredicesima e quattordicesima:</strong> se vuoi usarle per le spese annuali, somma tutte le mensilità e dividi per 12: con 14 mensilità da 1.800 € il reddito mensile equivalente è 2.100 €.</p>
+                <p><strong class="text-indigo-900">Lavoro autonomo:</strong> usa la media mensile dell'ultimo anno al netto di tasse e contributi, non il fatturato.</p>
+                <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+              </div>
+          </div>
+          <div class="flex gap-4 md:pb-3">
+            <button type="button" id="bp-esempio" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 underline">Carica esempio</button>
+            <button type="button" id="bp-azzera" class="text-sm font-bold text-gray-500 hover:text-red-600 underline">Azzera</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+
+          <!-- CRUSCOTTO (grafico + semafori) -->
+          <div class="xl:col-span-2 xl:col-start-4 xl:row-start-1 xl:row-span-2">
+            <div class="xl:sticky xl:top-24 space-y-4">
+              <div class="border border-gray-200 rounded-xl p-5">
+                <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Salute finanziaria</h2>
+                <div class="relative mx-auto w-full max-w-[260px] aspect-square">
+                  <canvas id="bp-grafico" role="img" aria-label="Grafico a ciambella della ripartizione del reddito tra necessità, desideri e risparmi"></canvas>
+                  <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+                    <span id="bp-centro-valore" class="text-3xl font-extrabold text-gray-900">--</span>
+                    <span id="bp-centro-etichetta" class="text-xs font-bold text-gray-500 uppercase tracking-wider">del reddito</span>
+                  </div>
+                </div>
+                <p id="bp-grafico-fallback" class="hidden text-sm text-gray-500 text-center">Grafico non disponibile: i calcoli restano attivi.</p>
+              </div>
+
+              <div class="border border-gray-200 rounded-xl p-5 space-y-4">
+                <div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="flex items-center gap-2 font-bold text-gray-800"><span id="bp-semaforo-necessita" class="inline-block w-3 h-3 rounded-full bg-gray-300"></span>Necessità</span>
+                    <span><strong id="bp-ratio-necessita" class="text-gray-900">--</strong> <span class="text-xs text-gray-500">/ 50%</span></span>
+                  </div>
+                  <div class="bp-barra mt-2"><div id="bp-barra-necessita" class="bp-barra-riempimento" style="width:0;background:#4f46e5"></div><span class="bp-barra-obiettivo" style="left:50%"></span></div>
+                  <div id="bp-euro-necessita" class="text-xs text-gray-500 mt-1">0,00 €</div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="flex items-center gap-2 font-bold text-gray-800"><span id="bp-semaforo-desideri" class="inline-block w-3 h-3 rounded-full bg-gray-300"></span>Desideri</span>
+                    <span><strong id="bp-ratio-desideri" class="text-gray-900">--</strong> <span class="text-xs text-gray-500">/ 30%</span></span>
+                  </div>
+                  <div class="bp-barra mt-2"><div id="bp-barra-desideri" class="bp-barra-riempimento" style="width:0;background:#f59e0b"></div><span class="bp-barra-obiettivo" style="left:30%"></span></div>
+                  <div id="bp-euro-desideri" class="text-xs text-gray-500 mt-1">0,00 €</div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="flex items-center gap-2 font-bold text-gray-800"><span id="bp-semaforo-risparmi" class="inline-block w-3 h-3 rounded-full bg-gray-300"></span>Risparmi e debiti</span>
+                    <span><strong id="bp-ratio-risparmi" class="text-gray-900">--</strong> <span class="text-xs text-gray-500">/ 20%</span></span>
+                  </div>
+                  <div class="bp-barra mt-2"><div id="bp-barra-risparmi" class="bp-barra-riempimento" style="width:0;background:#10b981"></div><span class="bp-barra-obiettivo" style="left:20%"></span></div>
+                  <div id="bp-euro-risparmi" class="text-xs text-gray-500 mt-1">0,00 €</div>
+                </div>
+                <div class="flex justify-between text-sm border-t border-gray-100 pt-3">
+                  <span class="font-medium text-gray-600">Saldo mensile</span>
+                  <strong id="bp-saldo" class="text-gray-900">--</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIAGNOSTICA -->
+          <div id="bp-alerts" class="xl:col-span-3 xl:row-start-1 space-y-3" aria-live="polite"></div>
+
+          <!-- GRIGLIA USCITE -->
+          <div class="xl:col-span-3 xl:row-start-2 space-y-6">
+            <p class="text-xs text-gray-500">Inserisci importi <strong>mensili</strong>. Per le spese annuali (IMU, bollo, assicurazione) dividi il totale per 12.</p>
+
+            <!-- NECESSITA 50 -->
+            <section class="border border-indigo-200 rounded-xl overflow-hidden">
+              <header class="bg-indigo-50 px-5 py-3 flex items-center justify-between">
+                <h2 class="font-bold text-indigo-900">🏠 Necessità <span class="text-xs font-bold text-indigo-600">obiettivo 50%</span></h2>
+                <span id="bp-sub-necessita_50" class="font-extrabold text-indigo-900">0,00 €</span>
+              </header>
+              <div class="p-5 space-y-5">
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Abitazione</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="block"><div class="flex items-center gap-2">
+                      <label for="bp-mutuoOAffitto" class="text-xs font-bold text-gray-700">Mutuo o affitto</label>
+                      <button type="button" data-guida-toggle="guida-bp-abitazione" aria-expanded="false" aria-controls="guida-bp-abitazione" aria-label="Guida al campo Mutuo o affitto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                    </div><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input data-guida="guida-bp-abitazione" aria-describedby="guida-bp-abitazione" id="bp-mutuoOAffitto" data-bp-path="uscite.necessita_50.abitazione.mutuoOAffitto" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span>
+                    <div id="guida-bp-abitazione" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                      <p><strong class="text-indigo-900">Importo:</strong> la rata mensile del mutuo, comprensiva di interessi e quota capitale, oppure il canone di affitto senza le spese condominiali, che hanno un campo proprio.</p>
+                      <p><strong class="text-indigo-900">Riferimento:</strong> se le spese dell'abitazione superano il 30% del reddito netto il planner suggerisce di valutare la rinegoziazione o la surroga, gratuita per legge.</p>
+                    </div></div>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Spese condominiali</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-speseCondominiali" data-bp-path="uscite.necessita_50.abitazione.speseCondominiali" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Manutenzione straordinaria</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-manutenzioneStraordinaria" data-bp-path="uscite.necessita_50.abitazione.manutenzioneStraordinaria" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <div class="block"><div class="flex items-center gap-2">
+                      <label for="bp-IMU" class="text-xs font-bold text-gray-700">IMU (quota mensile)</label>
+                      <button type="button" data-guida-toggle="guida-bp-tributi" aria-expanded="false" aria-controls="guida-bp-tributi" aria-label="Guida al campo Tributi e costi annuali" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                    </div><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input data-guida="guida-bp-tributi" aria-describedby="guida-bp-tributi" id="bp-IMU" data-bp-path="uscite.necessita_50.abitazione.tributiLocali.IMU" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span>
+                    <div id="guida-bp-tributi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                      <p><strong class="text-indigo-900">Quota mensile:</strong> dividi per 12 l'importo annuo: 540 € di IMU diventano 45 € al mese. Vale anche per TARI, bollo auto e RC Auto pagati una volta all'anno.</p>
+                      <p><strong class="text-indigo-900">Abitazione principale:</strong> l'IMU non è dovuta sulla prima casa, salvo le categorie di lusso A/1, A/8 e A/9: in quel caso lascia il campo vuoto.</p>
+                    </div></div>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">TARI rifiuti (quota mensile)</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-TARI" data-bp-path="uscite.necessita_50.abitazione.tributiLocali.TARI" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Utenze domestiche</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Energia elettrica</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-energiaElettrica" data-bp-path="uscite.necessita_50.utenzeDomestiche.energiaElettrica" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Gas metano</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-gasMetano" data-bp-path="uscite.necessita_50.utenzeDomestiche.gasMetano" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Servizio idrico</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-servizioIdrico" data-bp-path="uscite.necessita_50.utenzeDomestiche.servizioIdrico" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Internet e fibra ottica</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-fibraOttica" data-bp-path="uscite.necessita_50.utenzeDomestiche.fibraOttica" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Alimentazione e salute</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Spesa alimentare (supermercato)</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-spesaGdo" data-bp-path="uscite.necessita_50.alimentazione.spesaGdo" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Farmacia e salute</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-farmaciaESalute" data-bp-path="uscite.necessita_50.alimentazione.farmaciaESalute" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mobilità</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Carburante</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-carburante" data-bp-path="uscite.necessita_50.mobilita.carburante" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Assicurazione RC Auto</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-assicurazioneRCA" data-bp-path="uscite.necessita_50.mobilita.assicurazioneRCA" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Bollo auto (quota mensile)</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-bolloAuto" data-bp-path="uscite.necessita_50.mobilita.bolloAuto" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Abbonamento trasporto pubblico</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-abbonamentoTPL" data-bp-path="uscite.necessita_50.mobilita.abbonamentoTPL" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+              </div>
+            </section>
+
+            <!-- DESIDERI 30 -->
+            <section class="border border-amber-200 rounded-xl overflow-hidden">
+              <header class="bg-amber-50 px-5 py-3 flex items-center justify-between">
+                <h2 class="font-bold text-amber-900">🎭 Desideri <span class="text-xs font-bold text-amber-700">obiettivo 30%</span></h2>
+                <span id="bp-sub-desideri_30" class="font-extrabold text-amber-900">0,00 €</span>
+              </header>
+              <div class="p-5 space-y-5">
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ristorazione</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Ristoranti e pub</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-ristorantiPub" data-bp-path="uscite.desideri_30.ristorazione.ristorantiPub" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Food delivery</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-foodDelivery" data-bp-path="uscite.desideri_30.ristorazione.foodDelivery" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Intrattenimento</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Piattaforme streaming</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-piattaformeStreaming" data-bp-path="uscite.desideri_30.intrattenimento.piattaformeStreaming" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Sport e benessere</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-sportEBenessere" data-bp-path="uscite.desideri_30.intrattenimento.sportEBenessere" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Acquisti non essenziali</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Abbigliamento</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-abbigliamento" data-bp-path="uscite.desideri_30.beniVoluttuari.abbigliamento" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Tecnologia di consumo</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-tecnologiaDiConsumo" data-bp-path="uscite.desideri_30.beniVoluttuari.tecnologiaDiConsumo" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+              </div>
+            </section>
+
+            <!-- RISPARMI 20 -->
+            <section class="border border-emerald-200 rounded-xl overflow-hidden">
+              <header class="bg-emerald-50 px-5 py-3 flex items-center justify-between">
+                <h2 class="font-bold text-emerald-900">🌱 Risparmi e debiti <span class="text-xs font-bold text-emerald-700">obiettivo 20%</span></h2>
+                <span id="bp-sub-risparmiEInvestimenti_20" class="font-extrabold text-emerald-900">0,00 €</span>
+              </header>
+              <div class="p-5 space-y-5">
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Accantonamenti</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="block"><div class="flex items-center gap-2">
+                      <label for="bp-fondoEmergenza" class="text-xs font-bold text-gray-700">Fondo di emergenza</label>
+                      <button type="button" data-guida-toggle="guida-bp-emergenza" aria-expanded="false" aria-controls="guida-bp-emergenza" aria-label="Guida al campo Fondo di emergenza" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                    </div><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input data-guida="guida-bp-emergenza" aria-describedby="guida-bp-emergenza" id="bp-fondoEmergenza" data-bp-path="uscite.risparmiEInvestimenti_20.accantonamenti.fondoEmergenza" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span>
+                    <div id="guida-bp-emergenza" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                      <p><strong class="text-indigo-900">Obiettivo:</strong> una riserva liquida pari a 3-6 mesi di spese essenziali, su un conto separato o un conto deposito svincolabile, per affrontare guasti, spese mediche o perdita del lavoro senza ricorrere al credito.</p>
+                      <p><strong class="text-indigo-900">Quando fermarsi:</strong> raggiunto l'obiettivo, sposta la quota mensile sul piano di accumulo o sul fondo pensione.</p>
+                      <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+                    </div></div>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Piano di accumulo (PAC)</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-pianoAccumuloCapitale" data-bp-path="uscite.risparmiEInvestimenti_20.accantonamenti.pianoAccumuloCapitale" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Fondo pensione integrativo</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-fondoPensioneIntegrativo" data-bp-path="uscite.risparmiEInvestimenti_20.accantonamenti.fondoPensioneIntegrativo" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Rimborso debiti (esclusi mutui)</legend>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="block"><span class="text-xs font-bold text-gray-700">Prestito personale</span><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input id="bp-prestitoPersonale" data-bp-path="uscite.risparmiEInvestimenti_20.servizioDebito.prestitoPersonale" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span></label>
+                    <div class="block"><div class="flex items-center gap-2">
+                      <label for="bp-carteRevolving" class="text-xs font-bold text-gray-700">Carte revolving</label>
+                      <button type="button" data-guida-toggle="guida-bp-revolving" aria-expanded="false" aria-controls="guida-bp-revolving" aria-label="Guida al campo Carte revolving" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                    </div><span class="relative block mt-1"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-sm pointer-events-none">€</span><input data-guida="guida-bp-revolving" aria-describedby="guida-bp-revolving" id="bp-carteRevolving" data-bp-path="uscite.risparmiEInvestimenti_20.servizioDebito.carteRevolving" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00" class="w-full border border-gray-300 rounded-lg pl-7 pr-3 py-2 text-right focus:ring-2 focus:ring-indigo-500 outline-none" /></span>
+                    <div id="guida-bp-revolving" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                      <p><strong class="text-indigo-900">Cosa inserire:</strong> la rata mensile addebitata dalla carta. Il TAEG delle carte revolving è spesso fra il 15% e il 20%, molto più alto di un prestito personale.</p>
+                      <p><strong class="text-indigo-900">Priorità:</strong> estinguere il debito revolving rende più di qualsiasi investimento prudente: il planner lo indica come primo intervento quando il risparmio è sotto il 20%.</p>
+                    </div></div>
+                  </div>
+                </fieldset>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR DESTRA (Silo Utilità & Web) -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Interessi Composti</a></li>
+            <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📉</span> Calcolo Percentuali</a></li>
+            <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🎓</span> Media Universitaria</a></li>
+          <li><a href="/utilita-web/prezzo-unitario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛒</span> Prezzo Unitario</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔬</span> Calcolo BMR</a></li>
+              <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Contaparole</a></li>
+              <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🖼️</span> Converti Immagini</a></li>
+              <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Generatore QR</a></li>
+              <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔗</span> URL Shortener</a></li>
+            </ul>
+          </details>
+          <a href="/utilita-web/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Utilità &amp; Web</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+    <!-- BLOCCO SEO E-E-A-T INFERIORE -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Soglie di diagnosi e riferimenti di spesa aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Reddito, rate e debiti restano nel browser: gli importi sono salvati solo nel localStorage di questo dispositivo per ritrovarli alla visita successiva e il pulsante «Azzera» li cancella. Nessun importo viene inviato a server, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti e riferimenti</p>
+            <p class="text-gray-600 leading-relaxed">E. Warren e A. Warren Tyagi, All Your Worth (2005) per la regola 50/30/20; D.L. 7/2007 convertito dalla L. 40/2007 (surroga del mutuo senza costi); Portale Offerte di ARERA per il confronto delle tariffe di luce e gas; D.Lgs. 252/2005 sulla previdenza complementare; normativa sul TAEG del credito ai consumatori (D.Lgs. 385/1993, artt. 121 e seguenti).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Guida al Metodo 50/30/20: Pianificazione del Bilancio Familiare in Italia</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Un bilancio familiare non si governa con l'intuito: servono pochi rapporti numerici, facili da ricordare e da verificare ogni mese. La regola 50/30/20 trasforma l'elenco disordinato delle uscite in tre indicatori immediati, permettendo di capire in pochi secondi se il reddito netto sta finanziando il presente a scapito del futuro.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Origine e logica della regola 50/30/20</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il metodo è stato reso popolare da Elizabeth Warren e Amelia Warren Tyagi nel libro <em>All Your Worth</em> (2005). Il principio è una partizione rigida del <strong>reddito netto</strong> mensile in tre macro-vettori:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>50% Necessità:</strong> gli impegni inderogabili per vivere e rispettare obblighi legali e contrattuali (casa, utenze, alimentazione, trasporti essenziali).</li>
+              <li><strong>30% Desideri:</strong> stile di vita, svago e consumi volontari.</li>
+              <li><strong>20% Risparmi e debiti:</strong> fondo di emergenza, investimenti, previdenza integrativa e rimborso anticipato dei debiti che generano interessi.</li>
+            </ul>
+            <p>Il planner calcola ogni rapporto con la formula <strong>Ratio = (Somma spese della categoria ÷ Reddito netto) × 100</strong>, sommando ricorsivamente tutte le voci della struttura di spesa.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🗂️</span> Come classificare le spese tipiche di una famiglia italiana</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Alcune voci italiane creano dubbi di classificazione. Il mutuo o l'affitto dell'abitazione principale, le spese condominiali, <strong>IMU e TARI</strong>, le bollette di luce, gas e acqua, l'assicurazione <strong>RC Auto</strong> e il <strong>bollo</strong> sono necessità: non puoi eliminarle senza conseguenze legali o pratiche.</p>
+            <p>I costi annuali vanno convertiti in quota mensile dividendoli per 12, altrimenti il mese in cui scadono sembra un disastro e gli altri undici appaiono falsamente positivi. I rimborsi di <strong>prestiti personali e carte revolving</strong> rientrano invece nel 20%: ridurli libera reddito futuro esattamente come un risparmio.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🚦</span> Il semaforo e gli interventi consigliati</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Ogni categoria riceve uno stato: <strong>verde</strong> se rispetta l'obiettivo, <strong>giallo</strong> se lo sfora di poco (fino a 10 punti), <strong>rosso</strong> oltre. Quando le necessità superano il 50%, l'algoritmo confronta le singole voci con valori di riferimento prudenziali sul reddito netto — abitazione 30%, utenze 6%, alimentazione 15%, mobilità 10% — e suggerisce interventi mirati:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Abitazione:</strong> rinegoziazione del tasso con la propria banca o <strong>surroga del mutuo</strong> verso un altro istituto, senza costi per il mutuatario (L. 40/2007).</li>
+              <li><strong>Utenze:</strong> verifica del prezzo della materia energia rispetto al PUN e confronto delle offerte sul Portale Offerte ARERA.</li>
+              <li><strong>Risparmi:</strong> priorità al rimborso delle carte revolving, tra le forme di credito più costose, e alla costruzione di un fondo di emergenza pari a 3-6 mesi di spese essenziali.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design: i tuoi conti restano tuoi</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Reddito, rate del mutuo e debiti descrivono con precisione la situazione economica di una famiglia: informazioni personali tutelate dal <strong>Regolamento UE 2016/679 (GDPR)</strong> e appetibili per profilazione commerciale. Molte app di budgeting richiedono la registrazione o il collegamento del conto corrente.</p>
+            <p>Questo planner è <strong>Zero-Backend</strong>: calcoli, diagnostica e grafico vengono eseguiti interamente nel browser. Gli importi sono memorizzati solo nel <code>localStorage</code> del tuo dispositivo per ritrovarli alla visita successiva, e il pulsante "Azzera" li elimina in un clic.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono calcolati con il motore della pagina. Il primo corrisponde al pulsante «Carica esempio».</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: famiglia con 3.200 € netti e mutuo da 950 €</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Necessità: 2.075,90 € = 64,9% (rosso)</li>
+            <li>Desideri: 635,00 € = 19,8% (verde)</li>
+            <li>Risparmi e debiti: 490,00 € = 15,3% (giallo)</li>
+            <li>Voci fuori riferimento: abitazione 35,8% (rif. 30%), utenze 6,7% (rif. 6%)</li>
+            </ul>
+            <p>Il problema non sono i desideri, già sotto il 30%, ma il peso della casa. Ridurre la rata di 180 € con una surroga porterebbe l'abitazione al 30,2% e libererebbe la cifra necessaria per portare i risparmi al 20,9%.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: lavoratrice single in affitto con 1.650 € netti e una carta revolving</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Affitto 650 €, TARI 15 €, utenze 105 €, spesa e farmacia 270 €, abbonamento bus 35 €</li>
+            <li>Necessità: 1.075,00 € = 65,2%; desideri: 238,00 € = 14,4%</li>
+            <li>Fondo di emergenza 100 € + rata revolving 80 € = 10,9%</li>
+            <li>Reddito non allocato: 157,00 € al mese</li>
+            </ul>
+            <p>Con un affitto al 40,3% del reddito le necessità restano alte anche con pochi desideri. Il planner indica come primo intervento la carta revolving: destinando i 157 € non allocati al suo rimborso anticipato la quota risparmi e debiti sale al 20,4%, senza tagliare altre spese.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: coppia con 4.000 € netti che rispetta la regola</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Necessità: 1.880,00 € = 47,0%</li>
+            <li>Desideri: 900,00 € = 22,5%</li>
+            <li>Fondo di emergenza 300 €, PAC 500 €, fondo pensione 200 € = 25,0%</li>
+            <li>Reddito non allocato: 220,00 € al mese</li>
+            </ul>
+            <p>Tutti i semafori sono verdi, ma 220 € al mese senza destinazione tendono a disperdersi in spese non tracciate. Assegnarli al fondo di emergenza accorcia i tempi per arrivare a tre mesi di necessità, pari a 5.640 €.</p>
+
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Caso 4: spese annuali distribuite sui dodici mesi</h3>
+              <p>Una famiglia paga ogni anno RC Auto per 660 €, bollo per 264 €, TARI per 300 €, 1.500 € di vacanze e 600 € di regali: 3.324 € in totale. Inseriti nel mese in cui scadono, fanno sembrare in deficit luglio e dicembre e in attivo gli altri mesi. Divisi per 12 diventano 277 € al mese: 102 € fra le necessità (RC Auto 55 €, bollo 22 €, TARI 25 €) e 175 € fra i desideri. Accantonando ogni mese questa cifra su un conto separato, la tredicesima resta libera per il fondo di emergenza invece di coprire scadenze prevedibili.</p>
+            </div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Dove inserire le voci che creano più dubbi</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Categoria</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Campo del planner</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Rata del mutuo sulla prima casa</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Mutuo o affitto</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Rata dell'auto acquistata a rate</td><td class="px-3 py-2 border-t border-gray-200">Risparmi e debiti</td><td class="px-3 py-2 border-t border-gray-200">Prestito personale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Canone RAI in bolletta</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Energia elettrica, sommato alla bolletta</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Abbonamento telefonico dello smartphone</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Internet e fibra ottica</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Palestra</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Sport e benessere</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Visite mediche private e ticket</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Farmacia e salute</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Vacanze estive</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Beni voluttuari, in quota mensile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Versamenti volontari al TFR in un fondo pensione</td><td class="px-3 py-2 border-t border-gray-200">Risparmi e debiti</td><td class="px-3 py-2 border-t border-gray-200">Fondo pensione integrativo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Parcheggio e pedaggi per andare al lavoro</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Carburante</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Regali e ricorrenze</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Beni voluttuari, in quota mensile</td></tr></tbody></table></div>
+            <p>La regola pratica è chiedersi cosa succederebbe eliminando la spesa domani: se ci sono conseguenze legali o pratiche immediate è una necessità, se cambia solo lo stile di vita è un desiderio, se riduce un debito o costruisce una riserva appartiene al 20%.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La regola 50/30/20 funziona anche con redditi bassi?</h3>
+            <p>Con redditi bassi le necessità superano spesso il 50% per il solo costo della casa. In questi casi conviene usare la regola come direzione: mantenere un accantonamento anche piccolo e ridurre prima i desideri, poi le voci fisse più pesanti.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Le rate di un prestito vanno fra le necessità o fra i risparmi?</h3>
+            <p>Nel planner le rate di prestiti personali e carte revolving rientrano nel 20% dei risparmi e debiti, perché rimborsare un debito libera reddito futuro come un risparmio. La rata del mutuo sulla casa resta invece fra le necessità.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Dove inserisco le spese per i figli?</h3>
+            <p>Mensa, libri e visite mediche fra le necessità, nella spesa alimentare o in farmacia e salute; sport e attività ricreative fra i desideri, nel campo sport e benessere. Le spese annuali vanno divise per 12.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">I dati inseriti restano salvati?</h3>
+            <p>Sì, ma solo su questo dispositivo, nel localStorage del browser. Non vengono inviati a server e il pulsante «Azzera» li cancella. Su un computer condiviso conviene azzerare al termine.</p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIBRERIE ESTERNE -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <!-- SCRIPT LOGICO -->
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/budget-planner.js"></script>
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    var suEuro = function (n) { return n.toLocaleString('it-IT', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €'; };
+    var suImporto = function (s) {
+      s = String(s || '').replace(/[€\s]/g, '');
+      if (s.indexOf(',') !== -1) s = s.replace(/\./g, '').replace(',', '.');
+      else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, '');
+      var n = Number(s);
+      return isFinite(n) ? n : 0;
+    };
+    window.SuGuidaLive['guida-bp-reddito'] = function (campo) {
+      var r = suImporto(campo.value);
+      if (!(r > 0)) return '';
+      return 'Tetti per ' + suEuro(r) + ': necessità ' + suEuro(r * 0.5) + ', desideri ' + suEuro(r * 0.3) + ', risparmi e debiti ' + suEuro(r * 0.2) + '.';
+    };
+    window.SuGuidaLive['guida-bp-emergenza'] = function (campo) {
+      var stato = window.BudgetPlanner && window.BudgetPlanner.getStato();
+      if (!stato) return '';
+      var n = stato.budgetMensile.uscite.necessita_50;
+      var somma = function (x) { return typeof x === 'number' ? x : Object.keys(x).reduce(function (a, k) { return a + somma(x[k]); }, 0); };
+      var essenziali = somma(n);
+      var quota = suImporto(campo.value);
+      if (!(essenziali > 0)) return 'Compila le necessità per stimare l\'obiettivo del fondo.';
+      var obiettivo = essenziali * 3;
+      if (!(quota > 0)) return 'Obiettivo minimo: ' + suEuro(obiettivo) + ' (3 mesi di necessità).';
+      return 'Obiettivo minimo ' + suEuro(obiettivo) + ': con ' + suEuro(quota) + ' al mese lo raggiungi in ' + Math.ceil(obiettivo / quota) + ' mesi.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth scroll-pt-24">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied", ad_storage: "denied", ad_user_data: "denied",
+        analytics_storage: "denied", functionality_storage: "denied", personalization_storage: "denied",
+        security_storage: "granted", wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true); gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulatore Pensione 2026: Calcolo Contributivo INPS — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola quando andrai in pensione e quanto prenderai. Simulatore 2026 con requisiti INPS aggiornati, coefficienti di trasformazione 2025-2026 e tassazione IRPEF. 100% client-side: i tuoi dati non lasciano il browser." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/simulatore-pensione/" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+    .ad-slot-desktop { display: none; } .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#app",
+        "name": "Simulatore Pensione 2026",
+        "url": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/",
+        "description": "Simulatore della pensione INPS 2026: individua la prima via di uscita tra Vecchiaia e Anticipata Ordinaria, applica i coefficienti di trasformazione 2025-2026 e stima l'assegno lordo e netto.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Calcolo interamente nel browser, senza invio di dati a server",
+          "Requisiti INPS 2026 per Pensione di Vecchiaia e Anticipata Ordinaria",
+          "Coefficienti di trasformazione 2025-2026",
+          "Stima della pensione lorda e netta su 13 mensilità",
+          "Salvataggio locale dei dati inseriti"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#howto",
+        "name": "Come simulare la pensione 2026 con il metodo contributivo",
+        "description": "Procedura per stimare data di uscita e importo della pensione a partire dai dati dell'estratto conto contributivo INPS.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Estratto conto contributivo INPS (area riservata MyINPS)"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci data di nascita e sesso",
+            "text": "La data di nascita determina l'età alla decorrenza e quindi il coefficiente di trasformazione; il sesso fissa la soglia della Pensione Anticipata Ordinaria.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#pens-data-nascita"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Riporta gli anni e i mesi di contributi",
+            "text": "Copia l'anzianità contributiva dall'estratto conto INPS: 52 settimane corrispondono a un anno, le settimane residue divise per 4,33 danno i mesi.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#pens-anni-contributi"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Indica il montante contributivo alla data di uscita",
+            "text": "Inserisci il capitale previsto al pensionamento: per i dipendenti ogni anno si accredita il 33% della retribuzione imponibile, rivalutato con la media quinquennale del PIL nominale.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#pens-montante"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Calcola e leggi la proiezione",
+            "text": "Premi Calcola la mia pensione: il simulatore mostra la via di accesso, la data di decorrenza, la pensione lorda e il netto prudenziale.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#results-dashboard"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-pensione/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Dove trovo il mio montante contributivo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Lo trovi nell'estratto conto contributivo disponibile nell'area riservata del sito INPS, a cui si accede con SPID, CIE o CNS. Il documento riporta i contributi accreditati anno per anno. Il servizio di simulazione dell'INPS mostra anche una stima del montante e della pensione futura, utile come confronto con questo strumento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché il netto indicato sembra basso?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché il simulatore applica l'IRPEF lorda senza le detrazioni per redditi da pensione. Queste detrazioni sono più alte per gli assegni bassi e si riducono al crescere del reddito. Per importi contenuti l'imposta reale può essere molto inferiore a quella stimata, o anche nulla. Il netto effettivo è quindi di norma più alto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conviene lavorare qualche anno in più?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dal punto di vista dell'importo quasi sempre sì. Ogni anno in più aumenta il coefficiente di trasformazione e aggiunge nuovi contributi al montante. La scelta dipende però anche dalla salute, dalla situazione familiare e dal numero di anni in cui si percepirà la pensione. Un assegno più alto ricevuto per meno anni non sempre produce un totale maggiore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cos'è la finestra mobile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È il periodo di attesa fra il momento in cui si maturano i requisiti e il pagamento della prima rata. Per la pensione anticipata ordinaria è di tre mesi. Durante la finestra si può continuare a lavorare. Chi smette di lavorare subito dopo aver maturato il requisito resta senza reddito per quel periodo, e deve tenerne conto nella pianificazione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa succede se la mia pensione di vecchiaia è sotto la soglia minima?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per chi ha solo contributi successivi al 1995, la pensione di vecchiaia a 67 anni richiede un assegno almeno pari all'importo dell'assegno sociale. Se l'importo è inferiore, l'uscita slitta a 71 anni, quando bastano cinque anni di contributi e non serve alcuna soglia di importo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I contributi figurativi contano per la pensione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, entro certi limiti. Maternità, disoccupazione indennizzata, cassa integrazione e servizio militare generano contributi figurativi, utili per il diritto e per l'importo. Per la pensione anticipata alcuni periodi figurativi sono però esclusi o limitati. Nell'estratto conto i contributi figurativi sono indicati separatamente."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-bold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF &amp; IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block">
+
+      <div class="su-ad mb-6 w-full text-center">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="mb-8 border-b border-gray-200 pb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
+          <span>🔒 Privacy Assoluta (Zero-Upload)</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
+          Simulatore Pensione 2026
+        </h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Scopri <strong>quando</strong> potrai lasciare il lavoro e <strong>quanto</strong> percepirai. Il motore attuariale confronta la tua anzianità contributiva con i requisiti INPS 2026 (Vecchiaia e Anticipata Ordinaria), converte il montante con i coefficienti di trasformazione 2025-2026 e applica l'IRPEF a tre scaglioni. Tutti i calcoli avvengono nel tuo browser: nessun dato viene inviato a server esterni.
+        </p>
+      </div>
+
+      <!-- WORKSPACE -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+
+        <h2 class="text-xl font-bold text-gray-900 mb-5 border-b border-gray-200 pb-2">I tuoi dati previdenziali</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <div>
+            <div class="flex items-center gap-2">
+              <label for="pens-data-nascita" class="text-sm font-bold text-gray-700">Data di nascita</label>
+              <button type="button" data-guida-toggle="guida-pens-nascita" aria-expanded="false" aria-controls="guida-pens-nascita" aria-label="Guida al campo Data di nascita" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input id="pens-data-nascita" type="date" data-guida="guida-pens-nascita" aria-describedby="guida-pens-nascita" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-pens-nascita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cos'è:</strong> la data da cui il simulatore ricava l'età alla decorrenza della pensione. L'età determina sia quando maturi la Vecchiaia (67 anni) sia il coefficiente con cui il capitale diventa assegno.</p>
+              <p><strong class="text-indigo-900">Dove trovarla:</strong> sulla carta d'identità o sulla tessera sanitaria (è codificata anche nel tuo codice fiscale).</p>
+              <p><strong class="text-indigo-900">Esempio:</strong> con 300.000 € di montante, uscire a 64 anni (coefficiente 5,088%) vale 1.174,15 € lordi al mese; uscire a 67 anni (5,608%) ne vale 1.294,15.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <label for="pens-sesso" class="text-sm font-bold text-gray-700">Sesso</label>
+              <button type="button" data-guida-toggle="guida-pens-sesso" aria-expanded="false" aria-controls="guida-pens-sesso" aria-label="Guida al campo Sesso" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select id="pens-sesso" data-guida="guida-pens-sesso" aria-describedby="guida-pens-sesso" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="uomo">Uomo</option>
+              <option value="donna">Donna</option>
+            </select>
+            <div class="text-xs text-gray-500 mt-2 font-medium">Rileva solo per la Pensione Anticipata Ordinaria (42a 10m uomini / 41a 10m donne).</div>
+            <div id="guida-pens-sesso" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cos'è:</strong> il dato che fissa la soglia della Pensione Anticipata Ordinaria: 42 anni e 10 mesi di contributi per gli uomini, 41 anni e 10 mesi per le donne. Non modifica età di Vecchiaia né coefficienti.</p>
+              <p><strong class="text-indigo-900">Esempio:</strong> nata nel 1970 con 38 anni di contributi a settembre 2026, una lavoratrice riceve la prima rata dell'anticipata il 16 ottobre 2030; un uomo con la stessa carriera la riceve un anno dopo, il 16 ottobre 2031.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <label for="pens-anni-contributi" class="text-sm font-bold text-gray-700">Anni di contributi versati</label>
+              <button type="button" data-guida-toggle="guida-pens-anni" aria-expanded="false" aria-controls="guida-pens-anni" aria-label="Guida al campo Anni di contributi" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input id="pens-anni-contributi" type="number" min="0" max="50" step="1" value="20" data-guida="guida-pens-anni" aria-describedby="guida-pens-anni" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-pens-anni" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cos'è:</strong> la tua anzianità contributiva, cioè i periodi coperti da contributi obbligatori, volontari, figurativi (maternità, NASpI, cassa integrazione) o riscattati.</p>
+              <p><strong class="text-indigo-900">Dove trovarla:</strong> nell'<strong>Estratto conto contributivo</strong> dell'area riservata MyINPS, a cui accedi con SPID, CIE o CNS. L'INPS la esprime in settimane: 52 settimane corrispondono a un anno.</p>
+              <p><strong class="text-indigo-900">Esempio:</strong> 1.820 settimane equivalgono a 35 anni. Il simulatore presume che continuerai a versare senza interruzioni fino alla pensione.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <label for="pens-mesi-contributi" class="text-sm font-bold text-gray-700">Mesi aggiuntivi di contributi</label>
+              <button type="button" data-guida-toggle="guida-pens-mesi" aria-expanded="false" aria-controls="guida-pens-mesi" aria-label="Guida al campo Mesi aggiuntivi" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input id="pens-mesi-contributi" type="number" min="0" max="11" step="1" value="0" data-guida="guida-pens-mesi" aria-describedby="guida-pens-mesi" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-pens-mesi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cos'è:</strong> la frazione di anno che resta dopo gli anni interi. Conta soprattutto per l'anticipata, dove la soglia si misura al mese.</p>
+              <p><strong class="text-indigo-900">Come calcolarla:</strong> dividi le settimane residue dell'estratto conto per 4,33.</p>
+              <p><strong class="text-indigo-900">Esempio:</strong> 1.850 settimane = 35 anni (1.820 settimane) + 30 settimane, cioè circa 7 mesi.</p>
+            </div>
+          </div>
+
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-2">
+              <label for="pens-montante" class="text-sm font-bold text-gray-700">Montante contributivo stimato alla pensione (€)</label>
+              <button type="button" data-guida-toggle="guida-pens-montante" aria-expanded="false" aria-controls="guida-pens-montante" aria-label="Guida al campo Montante contributivo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input id="pens-montante" type="number" min="0" step="1000" value="180000" data-guida="guida-pens-montante" aria-describedby="guida-pens-montante" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div class="text-xs text-gray-500 mt-2 font-medium">Inserisci il capitale che prevedi di avere <strong>alla data di uscita</strong>: il coefficiente si applica al montante finale, non a quello di oggi.</div>
+            <div id="guida-pens-montante" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cos'è:</strong> la somma dei contributi accreditati ogni anno, rivalutata annualmente in base alla media quinquennale del PIL nominale (L. 335/1995). Per i lavoratori dipendenti ogni anno si accredita il 33% della retribuzione imponibile.</p>
+              <p><strong class="text-indigo-900">Dove trovarlo:</strong> nell'area riservata MyINPS (SPID, CIE o CNS) consulta l'Estratto conto contributivo e il servizio di simulazione della pensione futura, che proietta il montante alla data di uscita.</p>
+              <p><strong class="text-indigo-900">Stima rapida:</strong> con una retribuzione annua di 30.000 € si accreditano 9.900 € l'anno; in 30 anni sono circa 297.000 €, prima della rivalutazione.</p>
+              <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+            </div>
+          </div>
+
+        </div>
+
+        <button id="btn-calcola-pensione" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl shadow-sm transition mt-6">Calcola la mia pensione</button>
+
+        <!-- DASHBOARD RISULTATI -->
+        <div id="results-dashboard" class="mt-8 space-y-6">
+          <h2 class="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">Proiezione previdenziale</h2>
+
+          <!-- VIA DI ACCESSO -->
+          <div id="via-accesso-box" class="bg-indigo-50 border border-indigo-200 rounded-xl p-5">
+            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Via di accesso alla pensione</span>
+            <div id="res-via-accesso" class="text-2xl font-extrabold text-indigo-900">In attesa dei dati...</div>
+            <p id="res-via-dettaglio" class="text-sm text-indigo-800 mt-2 leading-relaxed font-medium">Compila il modulo e premi «Calcola la mia pensione» per vedere la tua proiezione.</p>
+          </div>
+
+          <div id="alerts-container" class="space-y-3"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-center">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Decorrenza stimata</span>
+              <div id="res-data-pensione" class="text-2xl font-extrabold text-gray-900 mt-1">--</div>
+              <div id="res-eta-pensione" class="text-xs text-gray-500 mt-1 font-medium">&nbsp;</div>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-center">
+              <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">Pensione lorda mensile</span>
+              <div id="res-lordo-mensile" class="text-2xl font-extrabold text-orange-900 mt-1">--</div>
+              <div class="text-xs text-orange-700 mt-1 font-medium">su 13 mensilità</div>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-center">
+              <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Pensione netta mensile</span>
+              <div id="res-netto-mensile" class="text-2xl font-extrabold text-emerald-900 mt-1">--</div>
+              <div class="text-xs text-emerald-700 mt-1 font-medium">al netto IRPEF</div>
+            </div>
+          </div>
+
+          <!-- DETTAGLIO ATTUARIALE -->
+          <div class="p-5 border border-gray-200 rounded-xl bg-gray-50 space-y-3 shadow-inner">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider border-b border-gray-200 pb-2">Dettaglio del calcolo</h3>
+            <div class="flex justify-between items-center gap-4 border-b border-gray-100 pb-2">
+              <span class="text-sm font-medium text-gray-600">Anzianità contributiva alla decorrenza</span>
+              <span id="res-contributi-finali" class="text-right font-bold text-gray-900">--</span>
+            </div>
+            <div class="flex justify-between items-center gap-4 border-b border-gray-100 pb-2">
+              <span class="text-sm font-medium text-gray-600">Coefficiente di trasformazione applicato</span>
+              <span id="res-coefficiente" class="text-right font-bold text-gray-900">--</span>
+            </div>
+            <div class="flex justify-between items-center gap-4 border-b border-gray-100 pb-2">
+              <span class="text-sm font-medium text-gray-600">Pensione lorda annua</span>
+              <span id="res-lordo-annuo" class="text-right font-bold text-gray-900">--</span>
+            </div>
+            <div class="flex justify-between items-center gap-4 pt-1">
+              <span class="text-sm font-bold text-rose-700">IRPEF annua stimata</span>
+              <span id="res-irpef-annua" class="text-right font-bold text-rose-700">--</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-500 leading-relaxed">
+            <strong>Nota metodologica:</strong> la stima applica il metodo contributivo puro e l'IRPEF lorda a tre scaglioni, senza considerare le detrazioni per redditi da pensione, le addizionali regionali e comunali né eventuali quote retributive maturate ante 1996. L'importo netto reale è quindi generalmente <strong>più alto</strong> di quello indicato. Il risultato è una simulazione indicativa e non sostituisce la certificazione ufficiale INPS.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR DESTRA -->
+    <aside class="w-full lg:col-span-4 xl:col-span-3 lg:col-start-9 xl:col-start-10 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+            <li><a href="/cittadino-tasse/simulatore-isee/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📊</span> Simulatore ISEE 2026</a></li>
+            <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta Luce</a></li>
+              <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> F24 Ordinario Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad ad-slot-desktop w-full text-center">
+          <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+          <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="vertical" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </aside>
+
+    <!-- BLOCCO SEO E-E-A-T INFERIORE -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Normativa e formule aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">L. 335/1995 (Riforma Dini), D.L. 201/2011 art. 24, coefficienti di trasformazione del biennio 2025-2026, Legge di Bilancio 2026 (L. 199/2025).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Previdenziale: Requisiti INPS 2026, Metodo Contributivo e Coefficienti di Trasformazione</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il sistema previdenziale italiano liquida le prestazioni maturate dopo il 1996 con il <strong>metodo contributivo puro</strong>: l'assegno non deriva più dalle ultime retribuzioni percepite, ma dalla conversione attuariale del capitale accumulato nell'arco dell'intera vita lavorativa. Comprendere l'interazione fra requisito anagrafico, anzianità contributiva e coefficiente di trasformazione è il presupposto per qualsiasi pianificazione previdenziale consapevole.
+        </p>
+
+        <!-- Accordion 1 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📅</span> Requisiti di Accesso 2026: Vecchiaia e Anticipata Ordinaria</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La <strong>Pensione di Vecchiaia</strong> richiede il perfezionamento simultaneo di tre condizioni: 67 anni di età anagrafica, almeno 20 anni di contribuzione effettiva e — per i lavoratori interamente contributivi — il superamento di una soglia economica minima. Se l'assegno maturato non supera l'importo dell'Assegno Sociale (<strong>546,24 € mensili</strong> per il 2026), l'accesso viene precluso e differito ai 71 anni di età, con un requisito contributivo ridotto a soli 5 anni.
+            </p>
+            <p>
+              La <strong>Pensione Anticipata Ordinaria</strong> prescinde completamente dall'età anagrafica e guarda esclusivamente alla massa contributiva accumulata: servono <strong>42 anni e 10 mesi</strong> per gli uomini e <strong>41 anni e 10 mesi</strong> per le donne. A questo requisito si somma la cosiddetta <em>finestra mobile</em>: tre mesi di attesa obbligatoria fra il perfezionamento del diritto e l'effettiva decorrenza della prima rata.
+            </p>
+            <p>
+              Esiste infine l'<strong>Ape Sociale</strong>, indennità-ponte riservata a categorie fragili (disoccupati, caregiver, invalidi, addetti a lavori gravosi), che richiede 63 anni e 5 mesi di età uniti a 30 anni di contributi, elevati a 36 anni per le mansioni usuranti.
+            </p>
+          </div>
+        </details>
+
+        <!-- Accordion 2 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Coefficienti di Trasformazione 2025-2026 e Matematica Attuariale</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Il cuore del calcolo contributivo è la conversione del <strong>montante contributivo</strong> in rendita vitalizia secondo la formula:
+            </p>
+            <p class="bg-gray-50 border border-gray-200 rounded-lg p-4 font-mono text-xs text-gray-900">
+              Pensione Annua Lorda = Montante Contributivo × Coefficiente di Trasformazione
+            </p>
+            <p>
+              Il coefficiente è un moltiplicatore fissato dal Ministero del Lavoro che cresce con l'età di uscita, poiché una pensione liquidata più tardi verrà erogata statisticamente per un numero inferiore di anni. <strong>Posticipare l'uscita aumenta quindi in modo significativo l'assegno mensile</strong>: passare da 62 a 67 anni comporta un incremento del coefficiente dal 4,795% al 5,608%, pari a circa il 17% di assegno in più a parità di capitale versato.
+            </p>
+            <ul class="list-disc pl-5 text-gray-700 space-y-1 mb-2">
+              <li><strong>57 anni:</strong> 4,204% — <strong>58:</strong> 4,308% — <strong>59:</strong> 4,419% — <strong>60:</strong> 4,536%</li>
+              <li><strong>61 anni:</strong> 4,661% — <strong>62:</strong> 4,795% — <strong>63:</strong> 4,936% — <strong>64:</strong> 5,088%</li>
+              <li><strong>65 anni:</strong> 5,250% — <strong>66:</strong> 5,423% — <strong>67:</strong> 5,608% — <strong>68:</strong> 5,808%</li>
+              <li><strong>69 anni:</strong> 6,024% — <strong>70:</strong> 6,258% — <strong>71:</strong> 6,510%</li>
+            </ul>
+            <p>
+              L'importo annuo così ottenuto viene ripartito su <strong>13 mensilità</strong>, secondo lo standard di erogazione INPS.
+            </p>
+          </div>
+        </details>
+
+        <!-- Accordion 3 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🚫</span> Quota 103 e Opzione Donna: Misure Non Prorogate nel 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La Legge di Bilancio 2026 (L. 199/2025) ha certificato la <strong>mancata proroga</strong> dei canali di uscita transitori. Il presente simulatore non proietta quindi tali opzioni verso il futuro: restano accessibili unicamente come <em>diritti cristallizzati</em> per chi ne ha già perfezionato i requisiti.
+            </p>
+            <p>
+              <strong>Quota 103</strong> è utilizzabile solo da chi ha maturato 62 anni di età e 41 anni di contributi entro la finestra di vigenza della misura. Il diritto, una volta perfezionato, non si perde e può essere esercitato anche successivamente.
+            </p>
+            <p>
+              <strong>Opzione Donna</strong> richiede 35 anni di contributi e 61 anni di età (con sconto fino a 2 anni in funzione del numero di figli) maturati entro il 31 dicembre 2024, unitamente all'appartenenza a categorie tutelate — caregiver, invalidità al 74%, lavoratrici di aziende in crisi — con condizione materializzata entro il 31 dicembre 2025. L'adesione comporta una finestra mobile di 12 mesi (dipendenti) o 18 mesi (autonome) e il ricalcolo integralmente contributivo dell'assegno, che tipicamente produce una decurtazione del 20-30% rispetto al sistema misto.
+            </p>
+          </div>
+        </details>
+
+        <!-- Accordion 4 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Tassazione IRPEF dell'Assegno e Privacy by Design</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La pensione è fiscalmente assimilata al reddito da lavoro dipendente e sconta l'IRPEF secondo i tre scaglioni consolidati dalla Legge di Bilancio 2026: 23% fino a 28.000 €, 33% fra 28.001 e 50.000 €, 43% oltre i 50.000 €. Il simulatore applica l'imposta lorda sulla pensione annua ricostruita, offrendo una stima prudenziale dell'importo netto.
+            </p>
+            <p>
+              I dati previdenziali — data di nascita, anzianità contributiva, montante accumulato — costituiscono informazioni economiche altamente sensibili. L'architettura <strong>Zero-Backend</strong> di questo strumento garantisce che nessuno di questi valori venga trasmesso in rete: l'intero motore attuariale è scritto in JavaScript ed eseguito nella memoria RAM del tuo browser. I valori inseriti vengono conservati esclusivamente nel <code>localStorage</code> del tuo dispositivo per comodità di ricalcolo, e possono essere cancellati in qualsiasi momento svuotando i dati di navigazione.
+            </p>
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il simulatore esegue quattro passaggi in sequenza. Individua la prima via di uscita disponibile, determina l'età alla decorrenza, converte il montante in una pensione annua e infine stima l'imposta. Ogni passaggio usa i parametri 2026 della configurazione centralizzata.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Passaggio uno: la via di accesso</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Vecchiaia: eta &gt;= 67 anni  E  contributi &gt;= 20 anni  E  assegno &gt;= 546,24 EUR al mese</li>
+              <li>Deroga per importo insufficiente: eta &gt;= 71 anni  E  contributi &gt;= 5 anni</li>
+              <li>Anticipata ordinaria uomini: contributi &gt;= 42 anni e 10 mesi, a qualsiasi eta</li>
+              <li>Anticipata ordinaria donne:  contributi &gt;= 41 anni e 10 mesi, a qualsiasi eta</li>
+              <li>Decorrenza anticipata = data di maturazione + 3 mesi di finestra mobile</li>
+            </ul>
+            <p>Il motore confronta le date in cui maturerebbe ciascun requisito e sceglie la più vicina. Per chi ha iniziato a lavorare presto, l'anticipata ordinaria arriva spesso prima dei 67 anni. Per chi ha carriere discontinue, la vecchiaia è di solito l'unica strada, purché l'assegno superi la soglia minima.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Passaggio due: dal montante alla pensione</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Pensione lorda annua = Montante contributivo x Coefficiente dell'eta di uscita</li>
+              <li>Pensione lorda mensile = Pensione lorda annua / 13</li>
+              <li>Il coefficiente si applica all'eta in anni interi alla decorrenza</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio: montante di 300.000 euro, tre età di uscita diverse</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Età di uscita</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Coefficiente</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Lorda annua</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Lorda mensile</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">64 anni</td><td class="px-3 py-2 border-t border-gray-200">5,088%</td><td class="px-3 py-2 border-t border-gray-200">15.264,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.174,15 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">67 anni</td><td class="px-3 py-2 border-t border-gray-200">5,608%</td><td class="px-3 py-2 border-t border-gray-200">16.824,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.294,15 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">70 anni</td><td class="px-3 py-2 border-t border-gray-200">6,258%</td><td class="px-3 py-2 border-t border-gray-200">18.774,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.444,15 EUR</td></tr></tbody></table></div>
+            <p>Con lo stesso capitale, tre anni in più di lavoro fra i 67 e i 70 anni aumentano l'assegno di 150 euro al mese, circa l'11,6%. Nella realtà la differenza è ancora maggiore, perché negli anni aggiuntivi il montante continua a crescere con i nuovi contributi e con la rivalutazione annuale.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Passaggio tre: la stima dell'imposta</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>IRPEF lorda = 23% fino a 28.000 EUR, 33% fino a 50.000 EUR, 43% oltre</li>
+              <li>Esempio a 67 anni: 16.824 x 23% = 3.869,52 EUR annui</li>
+              <li>Netto stimato = (16.824 - 3.869,52) / 13 = 996,50 EUR al mese</li>
+            </ul>
+            <p>Questa stima è volutamente prudenziale. Non sottrae le detrazioni per redditi da pensione, che riducono in modo sensibile l'imposta sugli assegni medio-bassi, e non aggiunge le addizionali locali. Il netto reale sarà quindi di norma più alto di quello indicato. Il dato serve come soglia minima di riferimento per la pianificazione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Come leggere il montante nell'estratto conto INPS</h3>
+            <p>Il montante indicato nell'estratto conto è quello accumulato fino a oggi. Il coefficiente, però, si applica al montante finale. Per una stima realistica occorre aggiungere i contributi degli anni che mancano all'uscita. Un modo semplice è sommare ogni anno il 33% della retribuzione lorda prevista, cioè l'aliquota di computo dei lavoratori dipendenti, e aggiungere una rivalutazione prudenziale.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Legge 8 agosto 1995 n. 335 (Riforma Dini)</strong> — introduce il metodo contributivo, i coefficienti di trasformazione e l'assegno sociale.</li>
+              <li><strong>D.L. 6 dicembre 2011 n. 201, articolo 24 (Riforma Fornero)</strong> — estende il contributivo pro rata a tutti dal 2012 e fissa l'impianto dei requisiti di vecchiaia e anticipata.</li>
+              <li><strong>D.L. 31 maggio 2010 n. 78, articolo 12</strong> — collega i requisiti anagrafici e contributivi all'aumento della speranza di vita.</li>
+              <li><strong>Decreti interministeriali Lavoro-Economia di aggiornamento biennale</strong> — rideterminano i coefficienti di trasformazione in base ai dati demografici ISTAT.</li>
+              <li><strong>D.P.R. 22 dicembre 1986 n. 917 (TUIR), articoli 49 e 13</strong> — assimilano le pensioni ai redditi da lavoro dipendente e disciplinano le detrazioni per redditi da pensione.</li>
+              <li><strong>Legge di Bilancio 2026</strong> — definisce le misure di flessibilità in uscita per l'anno e il mancato rinnovo dei canali transitori.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Parametri applicati dal motore</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore 2026</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Età per la pensione di vecchiaia</td><td class="px-3 py-2 border-t border-gray-200">67 anni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Contribuzione minima per la vecchiaia</td><td class="px-3 py-2 border-t border-gray-200">20 anni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Soglia minima dell'assegno per la vecchiaia</td><td class="px-3 py-2 border-t border-gray-200">546,24 EUR al mese</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Uscita in deroga per importo insufficiente</td><td class="px-3 py-2 border-t border-gray-200">71 anni con 5 anni di contributi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Anticipata ordinaria uomini</td><td class="px-3 py-2 border-t border-gray-200">42 anni e 10 mesi di contributi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Anticipata ordinaria donne</td><td class="px-3 py-2 border-t border-gray-200">41 anni e 10 mesi di contributi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Finestra mobile per l'anticipata</td><td class="px-3 py-2 border-t border-gray-200">3 mesi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Mensilità annue</td><td class="px-3 py-2 border-t border-gray-200">13</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coefficienti di trasformazione</td><td class="px-3 py-2 border-t border-gray-200">Dal 4,204% a 57 anni al 6,510% a 71 anni</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Cosa il simulatore non considera</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Quote retributive</strong>: chi ha contributi anteriori al 1996 riceve una parte dell'assegno calcolata con il metodo retributivo, spesso più favorevole.</li>
+              <li><strong>Adeguamenti futuri alla speranza di vita</strong>: i requisiti possono cambiare negli anni che mancano alla pensione.</li>
+              <li><strong>Cumulo e totalizzazione</strong>: i contributi versati in gestioni diverse richiedono regole di calcolo specifiche.</li>
+              <li><strong>Uscite anticipate speciali</strong>: lavori usuranti, precoci, Ape Sociale e diritti già maturati con misure non più attive.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> la simulazione non ha valore di certificazione. L'unico documento che attesta requisiti e importi è l'estratto conto certificativo rilasciato dall'INPS. Prima di dimettersi o di presentare domanda di pensione è indispensabile una verifica presso l'INPS o un patronato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I tre casi seguenti sono stati calcolati con lo stesso motore di questa pagina, alla data del 16 settembre 2026, ipotizzando contribuzione continua fino all'uscita e un montante già stimato alla data di pensionamento. Mostrano come carriera, sesso e importo dell'assegno cambino la via di uscita.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: Laura, 38 anni di contributi, uscita anticipata</h3>
+            <p>Laura è nata il 1° gennaio 1970, ha 38 anni di contributi e stima un montante di 250.000 €. Le mancano 3 anni e 10 mesi per la soglia femminile di 41 anni e 10 mesi, che raggiunge il <strong>16 luglio 2030</strong>. Con i 3 mesi di finestra mobile la prima rata decorre il <strong>16 ottobre 2030</strong>, a 60 anni: molto prima dei 67 anni della Vecchiaia.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Coefficiente a 60 anni: 4,536%</li>
+              <li>Lorda annua: 250.000 × 4,536% = 11.340,00 €</li>
+              <li>Lorda mensile: 11.340,00 / 13 = 872,31 €</li>
+              <li>IRPEF lorda stimata: 11.340,00 × 23% = 2.608,20 € l'anno</li>
+              <li>Netto prudenziale: (11.340,00 − 2.608,20) / 13 = 671,68 € al mese</li>
+            </ul>
+            <p>Il prezzo dell'uscita precoce è un coefficiente basso. Se Laura rimandasse a 71 anni, con lo stesso montante il coefficiente salirebbe al 6,510% e l'assegno lordo a 1.251,92 € al mese.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: Andrea, stessa carriera ma uomo</h3>
+            <p>Andrea ha gli stessi dati di Laura. La soglia maschile di 42 anni e 10 mesi arriva un anno dopo: il requisito matura il <strong>16 luglio 2031</strong> e la pensione decorre il <strong>16 ottobre 2031</strong>, a 61 anni. L'anno in più alza il coefficiente al 4,661%.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Lorda annua: 250.000 × 4,661% = 11.652,50 €</li>
+              <li>Lorda mensile: 896,35 €, cioè 24,04 € in più di Laura</li>
+              <li>Netto prudenziale: 690,19 € al mese</li>
+            </ul>
+            <p>Nella realtà la differenza sarebbe maggiore, perché nei 12 mesi aggiuntivi Andrea continua a versare contributi e il suo montante cresce. Il simulatore usa il montante che indichi, quindi per un confronto fedele conviene inserire due stime distinte.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: Giuseppe, assegno sotto la soglia minima</h3>
+            <p>Giuseppe è nato il 5 maggio 1960, ha 25 anni di contributi e un montante di 100.000 €. Compie 67 anni il 5 maggio 2027, ma a quell'età l'assegno sarebbe di <strong>431,38 € lordi al mese</strong>, sotto l'Assegno Sociale di 546,24 €. Da contributivo puro non può accedere alla Vecchiaia: l'uscita slitta al <strong>5 maggio 2031</strong>, a 71 anni, quando bastano 5 anni di contributi e non serve alcuna soglia.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Coefficiente a 71 anni: 6,510%</li>
+              <li>Lorda annua: 100.000 × 6,510% = 6.510,00 €</li>
+              <li>Lorda mensile: 500,77 €</li>
+              <li>Netto prudenziale del simulatore: 385,59 € al mese</li>
+            </ul>
+            <p>Qui la stima prudenziale si allontana molto dalla realtà. Su una pensione annua di 6.510 € la detrazione per redditi da pensione, che copre i redditi fino a 8.500 €, azzera di fatto l'IRPEF: il netto effettivo è molto vicino ai 500,77 € lordi. È il caso tipico in cui conviene far verificare l'importo a un patronato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Dove trovo il mio montante contributivo?</h3>
+              <p>Lo trovi nell'estratto conto contributivo disponibile nell'area riservata del sito INPS, a cui si accede con SPID, CIE o CNS. Il documento riporta i contributi accreditati anno per anno. Il servizio di simulazione dell'INPS mostra anche una stima del montante e della pensione futura, utile come confronto con questo strumento.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché il netto indicato sembra basso?</h3>
+              <p>Perché il simulatore applica l'IRPEF lorda senza le detrazioni per redditi da pensione. Queste detrazioni sono più alte per gli assegni bassi e si riducono al crescere del reddito. Per importi contenuti l'imposta reale può essere molto inferiore a quella stimata, o anche nulla. Il netto effettivo è quindi di norma più alto.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene lavorare qualche anno in più?</h3>
+              <p>Dal punto di vista dell'importo quasi sempre sì. Ogni anno in più aumenta il coefficiente di trasformazione e aggiunge nuovi contributi al montante. La scelta dipende però anche dalla salute, dalla situazione familiare e dal numero di anni in cui si percepirà la pensione. Un assegno più alto ricevuto per meno anni non sempre produce un totale maggiore.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cos'è la finestra mobile?</h3>
+              <p>È il periodo di attesa fra il momento in cui si maturano i requisiti e il pagamento della prima rata. Per la pensione anticipata ordinaria è di tre mesi. Durante la finestra si può continuare a lavorare. Chi smette di lavorare subito dopo aver maturato il requisito resta senza reddito per quel periodo, e deve tenerne conto nella pianificazione.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa succede se la mia pensione di vecchiaia è sotto la soglia minima?</h3>
+              <p>Per chi ha solo contributi successivi al 1995, la pensione di vecchiaia a 67 anni richiede un assegno almeno pari all'importo dell'assegno sociale. Se l'importo è inferiore, l'uscita slitta a 71 anni, quando bastano cinque anni di contributi e non serve alcuna soglia di importo.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">I contributi figurativi contano per la pensione?</h3>
+              <p>Sì, entro certi limiti. Maternità, disoccupazione indennizzata, cassa integrazione e servizio militare generano contributi figurativi, utili per il diritto e per l'importo. Per la pensione anticipata alcuni periodi figurativi sono però esclusi o limitati. Nell'estratto conto i contributi figurativi sono indicati separatamente.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il simulatore pensionistico è uno strumento <strong>100% client-side, a infrastruttura zero-backend</strong>. La data di nascita, il sesso, gli anni di contributi e il montante che inserisci vengono elaborati solo dal browser sul tuo dispositivo. Nessun dato previdenziale, codice fiscale, IBAN o dato retributivo viene caricato su un server. Per comodità di ricalcolo, i valori inseriti restano salvati nello spazio locale del browser, sul tuo dispositivo e non altrove. Puoi cancellarli in qualsiasi momento eliminando i dati di navigazione del sito.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Età, carriera contributiva e importo della futura pensione descrivono con precisione la situazione economica di una persona. Non raccogliendoli, lo strumento rispetta il Regolamento UE 2016/679 (GDPR) e attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, insieme alla minimizzazione dei dati dell'articolo 5. Nessuna simulazione è accessibile a noi o a terzi.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad ad-slot-mobile mt-8 text-center bg-gray-50 rounded-xl p-2 border border-gray-100 w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad mb-8 text-center w-full">
+        <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGICO -->
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/data-loader.js"></script>
+  <script defer src="/js/simulatore-pensione.js"></script>
+  <script defer src="/js/guida-campi.js"></script>
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+</html>
