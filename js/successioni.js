@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let regole = null;
 
   try {
-    const response = await fetch('/data/regole-fiscali-2026.json');
-    const data = await response.json();
+    const data = await window.StrumentiData.getRegoleFiscali();
+    if (!data) throw new Error('Regole fiscali non disponibili.');
     regole = data.successioni_italia_2026;
     calculateEredita();
   } catch (err) {

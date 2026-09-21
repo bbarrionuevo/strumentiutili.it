@@ -18,12 +18,8 @@
     // 1. CARICAMENTO REGOLE FISCALI DAL JSON
     let regole = null;
     try {
-        if (window.StrumentiData && window.StrumentiData.getRegoleFiscali) {
-            regole = await window.StrumentiData.getRegoleFiscali();
-        } else {
-            const res = await fetch('/data/regole-fiscali-2026.json');
-            regole = await res.json();
-        }
+        regole = await window.StrumentiData.getRegoleFiscali();
+        if (!regole) throw new Error('Regole fiscali non disponibili.');
     } catch (e) {
         console.warn("Avviso: Regole fiscali non caricate da JSON, uso configurazione di default.", e);
     }

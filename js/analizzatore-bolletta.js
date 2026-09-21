@@ -25,9 +25,8 @@
   // 2. Caricamento dinamico dei parametri dal JSON locale
   async function loadMarketParameters() {
     try {
-      const response = await fetch('/data/regole-fiscali-2026.json');
-      if (!response.ok) throw new Error('File JSON non trovato o inaccessibile.');
-      const data = await response.json();
+      const data = await window.StrumentiData.getRegoleFiscali();
+      if (!data) throw new Error('Regole fiscali non disponibili.');
       
       if (data.mercato_energia_2026) {
         PUN_MEDIO_STIMATO_KWH = data.mercato_energia_2026.pun_medio_stimato_kwh;

@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let regole = null;
 
   try {
-    const response = await fetch('/data/regole-fiscali-2026.json');
-    const data = await response.json();
+    const data = await window.StrumentiData.getRegoleFiscali();
+    if (!data) throw new Error('Regole fiscali non disponibili.');
     regole = data.imposte_acquisto_casa_2026;
     calculateImposte();
   } catch (err) {

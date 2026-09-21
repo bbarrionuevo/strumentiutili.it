@@ -4,12 +4,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 1. CARICAMENTO REGOLE FISCALI DAL JSON
     let regole = null;
     try {
-        if (window.StrumentiData && window.StrumentiData.getRegoleFiscali) {
-            regole = await window.StrumentiData.getRegoleFiscali();
-        } else {
-            const res = await fetch('/data/regole-fiscali-2026.json');
-            regole = await res.json();
-        }
+        regole = await window.StrumentiData.getRegoleFiscali();
+        if (!regole) throw new Error('Regole fiscali non disponibili.');
     } catch (e) {
         console.error("Errore nel caricamento delle regole fiscali:", e);
         alert("Impossibile caricare i parametri fiscali. Riprova più tardi.");

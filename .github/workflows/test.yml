@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  calcoli:
+    name: Motori di calcolo fiscale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # I test non hanno dipendenze: usano node:test e node:assert.
+      - name: Esegui i test
+        run: npm test
+
+  build:
+    name: Build CSS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Compila Tailwind
+        run: npm run build
+
+      # Se il CSS compilato differisce da quello versionato, qualcuno ha
+      # modificato src/input.css senza rigenerare css/styles.css.
+      - name: Verifica che css/styles.css sia aggiornato
+        run: git diff --exit-code css/styles.css

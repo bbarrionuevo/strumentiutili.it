@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             regole = await window.StrumentiData.getRegoleFiscali();
         } else {
             console.warn("DataLoader non trovato, fallback su fetch nativo...");
-            const res = await fetch('/data/regole-fiscali-2026.json');
-            regole = await res.json();
+            regole = await window.StrumentiData.getRegoleFiscali();
+            if (!regole) throw new Error('Regole fiscali non disponibili.');
         }
     } catch (e) {
         console.error("Errore nel caricamento delle regole fiscali:", e);

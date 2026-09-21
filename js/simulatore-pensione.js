@@ -287,9 +287,7 @@
     if (!el['btn-calcola-pensione']) return;
 
     try {
-      regole = window.StrumentiData && window.StrumentiData.getRegoleFiscali
-        ? await window.StrumentiData.getRegoleFiscali()
-        : await (await fetch('/data/regole-fiscali-2026.json')).json();
+      regole = await window.StrumentiData.getRegoleFiscali();
     } catch (err) {
       console.error('[Pensione] Errore caricamento regole:', err);
       regole = null;

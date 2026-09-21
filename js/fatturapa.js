@@ -31,9 +31,8 @@
 
     // 1. CARICAMENTO ASINCRONO JSON
     try {
-      const response = await fetch('/data/regole-fiscali-2026.json');
-      if (!response.ok) throw new Error("Errore rete");
-      const jsonData = await response.json();
+      const jsonData = await window.StrumentiData.getRegoleFiscali();
+      if (!jsonData) throw new Error('Regole fiscali non disponibili.');
       regoleFattura = jsonData.fattura_elettronica;
 
       // Popola <select> Tipo Documento

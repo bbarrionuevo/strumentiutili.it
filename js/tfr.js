@@ -16,16 +16,17 @@
     return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value || 0);
   }
 
-  // Calcolo IRPEF basato sugli scaglioni dinamici del JSON
+  // IRPEF: delegata al motore condiviso js/irpef.js. La versione precedente
+  // indicizzava scaglioni[0..2] a mano, quindi un quarto scaglione nel JSON
+  // sarebbe stato ignorato.
+  const motoreIrpef = (typeof window !== 'undefined' && window.StrumentiIrpef) ||
+    (typeof self !== 'undefined' && self.StrumentiIrpef) || null;
+
   function computeIRPEF(imponibile, configIrpef) {
-    const income = Math.max(0, safeNumber(imponibile, 0));
-    if (income <= configIrpef.scaglioni[0].limite) {
-      return round2(income * configIrpef.scaglioni[0].aliquota);
-    } else if (income <= configIrpef.scaglioni[1].limite) {
-      return round2(configIrpef.scaglioni[1].base + ((income - configIrpef.scaglioni[0].limite) * configIrpef.scaglioni[1].aliquota));
-    } else {
-      return round2(configIrpef.scaglioni[2].base + ((income - configIrpef.scaglioni[1].limite) * configIrpef.scaglioni[2].aliquota));
+    if (!motoreIrpef) {
+      throw new Error('[TFR] js/irpef.js non caricato.');
     }
+    return motoreIrpef.computeIRPEF(imponibile, configIrpef);
   }
 
   // Funzione Principale TFR
@@ -89,12 +90,8 @@
       // 1. CARICAMENTO RIGOROSO DEL JSON
       let regole = null;
       try {
-          if (window.StrumentiData && window.StrumentiData.getRegoleFiscali) {
-              regole = await window.StrumentiData.getRegoleFiscali();
-          } else {
-              const res = await fetch('/data/regole-fiscali-2026.json');
-              regole = await res.json();
-          }
+          regole = await window.StrumentiData.getRegoleFiscali();
+          if (!regole) throw new Error('Regole fiscali non disponibili.');
       } catch (err) {
           console.error("Errore di rete durante il caricamento del JSON:", err);
       }

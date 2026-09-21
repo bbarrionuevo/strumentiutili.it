@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let regoleBollo = null;
 
   try {
-    const response = await fetch('/data/regole-fiscali-2026.json');
-    const data = await response.json();
+    const data = await window.StrumentiData.getRegoleFiscali();
+    if (!data) throw new Error('Regole fiscali non disponibili.');
     regoleBollo = data.bollo_auto_2026;
     calculateBollo();
   } catch (err) {

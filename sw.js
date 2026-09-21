@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v33';
+const CACHE_NAME = 'strumentiutili-v34';
 
 const APP_SHELL = [
   '/',
@@ -118,6 +118,7 @@ const APP_SHELL = [
   '/js/passaggio-proprieta.js',
   '/js/naspi.js',
   '/js/successioni.js',
+  '/js/irpef.js',
   '/js/stipendio-netto.js',
   '/js/partita-iva.js',
   '/js/parcella-avvocato.js',
@@ -158,7 +159,6 @@ const APP_SHELL = [
   '/js/budget-planner.js',
 
   // Web Workers
-  '/js/workers/worker-sample.js',
   '/js/workers/translation-worker.js',
   '/js/workers/p7m-worker.js',
   '/js/workers/pdf-worker.js',

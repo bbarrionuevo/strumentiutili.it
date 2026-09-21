@@ -19,39 +19,17 @@
     }).format(Number(value) || 0);
   }
 
-  // Escala Progresiva IRPEF 2026 (Leída desde JSON)
+  // IRPEF: delegata al motore condiviso js/irpef.js, che legge gli scaglioni
+  // dal JSON senza indici fissi. Prima c'era una copia locale che, sopra i
+  // 50.000 euro, cadeva in un fallback con le aliquote scritte nel codice.
+  const motoreIrpef = (typeof window !== 'undefined' && window.StrumentiIrpef) ||
+    (typeof self !== 'undefined' && self.StrumentiIrpef) || null;
+
   function computeIRPEF(imponibile, configIrpef) {
-    const income = Math.max(0, safeNumber(imponibile, 0));
-    let tax = 0;
-    
-    // Itera sugli scaglioni definiti nel JSON
-    for (const scaglione of configIrpef.scaglioni) {
-      if (scaglione.limite === null || income > scaglione.limite) {
-        continue;
-      }
-      
-      // Calcolo base per lo scaglione in cui cade il reddito
-      const limitePrecedente = configIrpef.scaglioni.find(s => s.base === scaglione.base - (s.limite * s.aliquota))?.limite || 0; // Si assume ordine crescente
-      const redditoInScaglione = income - limitePrecedente;
-      
-      // Metodo più sicuro: calcolo esplicito basato sulla base accumulata
-      if (income <= configIrpef.scaglioni[0].limite) {
-           return round2(income * configIrpef.scaglioni[0].aliquota);
-      } else if (income <= configIrpef.scaglioni[1].limite) {
-           return round2(configIrpef.scaglioni[1].base + ((income - configIrpef.scaglioni[0].limite) * configIrpef.scaglioni[1].aliquota));
-      } else {
-           return round2(configIrpef.scaglioni[2].base + ((income - configIrpef.scaglioni[1].limite) * configIrpef.scaglioni[2].aliquota));
-      }
+    if (!motoreIrpef) {
+      throw new Error('[StipendioNetto] js/irpef.js non caricato.');
     }
-    
-    // Fallback sicuro (stessa logica hardcoded per sicurezza)
-    if (income <= 28000) {
-      return round2(income * 0.23);
-    } else if (income <= 50000) {
-      return round2(6440 + ((income - 28000) * 0.33));
-    } else {
-      return round2(13700 + ((income - 50000) * 0.43));
-    }
+    return motoreIrpef.computeIRPEF(imponibile, configIrpef);
   }
 
   // Deducción por Trabajo Asalariado (Art. 13 TUIR) + Salvaguardia y Corrección (Leída desde JSON)
@@ -275,12 +253,8 @@
       // Caricamento Regole
       let regole = null;
       try {
-          if (window.StrumentiData && window.StrumentiData.getRegoleFiscali) {
-              regole = await window.StrumentiData.getRegoleFiscali();
-          } else {
-              const res = await fetch('/data/regole-fiscali-2026.json');
-              regole = await res.json();
-          }
+          regole = await window.StrumentiData.getRegoleFiscali();
+          if (!regole) throw new Error('Regole fiscali non disponibili.');
       } catch (e) {
           console.error("Errore nel caricamento delle regole fiscali:", e);
           alert("Impossibile caricare le aliquote. Riprova più tardi.");
