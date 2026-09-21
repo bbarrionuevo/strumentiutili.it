@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Giorni Lavorativi e Festività Italiane (2026) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola i giorni lavorativi tra due date escludendo weekend e festività nazionali italiane (inclusa Pasquetta). Aggiungi il Santo Patrono locale." />
+  <link rel="canonical" href="https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolo Giorni Lavorativi e Festività Italiane" />
+  <meta property="og:description" content="Calcolatore istantaneo per uffici e HR. Esclude sabati, domeniche e festività nazionali in automatico." />
+  <meta property="og:url" content="https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- PROTOCOLLO ADS -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore Giorni Lavorativi e Festività 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/",
+        "description": "Conteggio dei giorni lavorativi fra due date con esclusione di weekend, festività nazionali italiane, Lunedì dell'Angelo e santo patrono.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "inLanguage": "it-IT",
+        "@id": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Conteggio di giorni solari e lavorativi fra due date incluse",
+          "Esclusione facoltativa di sabato e domenica",
+          "Festività nazionali fisse e Lunedì dell'Angelo calcolato per ogni anno",
+          "Festa del santo patrono selezionabile",
+          "Nessun dato inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#howto",
+        "name": "Come contare i giorni lavorativi fra due date",
+        "description": "Procedura per calcolare i giorni lavorativi di un periodo escludendo weekend, festività nazionali e patrono.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT1M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Date di inizio e fine del periodo"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Imposta le date",
+            "text": "Inserisci la data iniziale e la data finale, entrambe incluse nel conteggio.",
+            "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#start-date"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli le esclusioni",
+            "text": "Indica se escludere weekend e festività nazionali.",
+            "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#chk-weekends"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Aggiungi il patrono",
+            "text": "Seleziona giorno e mese del santo patrono del Comune della sede di lavoro.",
+            "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#patron-day"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi il risultato",
+            "text": "Consulta giorni lavorativi, giorni totali, weekend e festività escluse.",
+            "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#res-working-days"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "La data iniziale e quella finale sono comprese nel conteggio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, entrambe. Dal 1° al 30 aprile 2026 il calcolatore conta 30 giorni solari e 21 lavorativi. Per un periodo di ferie inserisci il primo e l'ultimo giorno di assenza, non la data di rientro al lavoro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Una festività che cade di sabato riduce i giorni lavorativi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo per chi lavora anche il sabato. Sulla settimana dal lunedì al venerdì il sabato è già un giorno non lavorativo, quindi la festività non cambia il conteggio; il trattamento economico delle festività coincidenti con giorni di riposo dipende dal contratto collettivo applicato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quale santo patrono va considerato se lavoro in smart working?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Di norma quello del Comune in cui ha sede l'unità produttiva a cui sei assegnato, non quello di residenza. Alcuni accordi aziendali stabiliscono regole diverse per chi lavora da remoto: in caso di dubbio conviene verificarle con l'ufficio del personale."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-indigo-600 font-semibold">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/lavoro-contratti/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna a Lavoro &amp; Contratti</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Calcolo Giorni Lavorativi e Festività</h1>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Calcola istantaneamente quanti giorni lavorativi (feriali) ci sono tra due date. Il sistema esclude in automatico i weekend e tutte le festività nazionali italiane (inclusa la Pasquetta, calcolata algoritmicamente per ogni anno).
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        
+        <!-- FORMULARIO -->
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <h2 class="text-lg font-bold text-indigo-900 mb-4 border-b border-gray-100 pb-2">1. Imposta le Date</h2>
+          
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="start-date" class="text-sm font-bold text-gray-800">Data Iniziale</label>
+                  <button type="button" data-guida-toggle="guida-gl-date" aria-expanded="false" aria-controls="guida-gl-date" aria-label="Guida al campo Intervallo di date" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-gl-date" aria-describedby="guida-gl-date" type="date" id="start-date" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+                <div id="guida-gl-date" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Come si conta:</strong> entrambe le date sono incluse: dal 1° al 30 aprile i giorni solari sono 30, non 29. Per calcolare le ferie di un periodo di assenza inserisci il primo e l'ultimo giorno di assenza, non il giorno di rientro.</p>
+                  <p><strong class="text-indigo-900">Periodi a cavallo d'anno:</strong> il calcolo attraversa senza problemi il 31 dicembre e ricalcola la Pasquetta per ogni anno compreso nell'intervallo.</p>
+                </div>
+              </div>
+              <div>
+                <label for="end-date" class="block text-sm font-bold text-gray-800 mb-1">Data Finale</label>
+                <input type="date" id="end-date" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input data-guida="guida-gl-weekend" aria-describedby="guida-gl-weekend" type="checkbox" id="chk-weekends" checked class="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 cursor-pointer" />
+                <span class="text-sm font-bold text-gray-800 group-hover:text-indigo-600 transition">Escludi i Weekend (Sabato e Domenica)</span>
+              </label>
+              <button type="button" data-guida-toggle="guida-gl-weekend" aria-expanded="false" aria-controls="guida-gl-weekend" aria-label="Guida al campo Esclusione dei weekend" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Lavori anche il sabato?</button>
+              <div id="guida-gl-weekend" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Settimana corta:</strong> con la casella attiva sabato e domenica non sono lavorativi: è il caso della maggior parte degli uffici, con orario dal lunedì al venerdì.</p>
+                <p><strong class="text-indigo-900">Settimana lunga:</strong> se lavori dal lunedì al sabato, disattiva la casella e sottrai a mano le domeniche del periodo. Attenzione alle festività che cadono di sabato: per te sono un giorno lavorativo in meno, mentre sulla settimana corta non cambiano nulla.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input data-guida="guida-gl-festivita" aria-describedby="guida-gl-festivita" type="checkbox" id="chk-holidays" checked class="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 cursor-pointer" />
+                <span class="text-sm font-bold text-gray-800 group-hover:text-indigo-600 transition">Escludi le Festività Nazionali Italiane</span>
+              </label>
+              <button type="button" data-guida-toggle="guida-gl-festivita" aria-expanded="false" aria-controls="guida-gl-festivita" aria-label="Guida al campo Festività nazionali" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quali festività sono escluse</button>
+              <div id="guida-gl-festivita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Incluse nel calcolo:</strong> 1° e 6 gennaio, Lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 1° novembre, 8, 25 e 26 dicembre. Il Lunedì dell'Angelo cambia ogni anno ed è calcolato con il computo della Pasqua.</p>
+                <p><strong class="text-indigo-900">Non incluse:</strong> le festività soppresse, come San Giuseppe o l'Ascensione, che restano giorni lavorativi ma danno diritto a permessi retribuiti secondo il contratto collettivo, e le chiusure aziendali collettive.</p>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100">
+              <div class="flex items-center gap-2 mb-1">
+                <label for="patron-day" class="text-sm font-bold text-gray-800">Santo Patrono (Opzionale)</label>
+                <button type="button" data-guida-toggle="guida-gl-patrono" aria-expanded="false" aria-controls="guida-gl-patrono" aria-label="Guida al campo Santo patrono" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <p class="text-xs text-gray-500 mb-2">Se desideri escludere la festività del tuo comune, seleziona il giorno e il mese.</p>
+              <div id="patrono-selettori" class="flex gap-2">
+                <select data-guida="guida-gl-patrono" aria-describedby="guida-gl-patrono" id="patron-day" class="bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option value="">Giorno</option>
+                  <!-- Generato da JS -->
+                </select>
+                <select id="patron-month" class="bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option value="">Mese</option>
+                  <option value="1">Gennaio</option>
+                  <option value="2">Febbraio</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Aprile</option>
+                  <option value="5">Maggio</option>
+                  <option value="6">Giugno</option>
+                  <option value="7">Luglio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Settembre</option>
+                  <option value="10">Ottobre</option>
+                  <option value="11">Novembre</option>
+                  <option value="12">Dicembre</option>
+                </select>
+              </div>
+              <div id="guida-gl-patrono" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Quale indicare:</strong> il patrono del Comune in cui si trova la sede di lavoro, non quello di residenza. Alcuni esempi: 29 giugno a Roma, 7 dicembre a Milano, 24 giugno a Torino, Genova e Firenze, 19 settembre a Napoli, 4 ottobre a Bologna.</p>
+                <p><strong class="text-indigo-900">Contratti particolari:</strong> alcuni contratti collettivi sostituiscono la festa patronale con un altro giorno o con un permesso retribuito: in quel caso non selezionarla.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- RISULTATI -->
+        <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <h2 class="text-lg font-bold text-indigo-900 mb-4 border-b border-gray-100 pb-2">2. Risultato Calcolo</h2>
+          
+          <div class="flex-1 flex flex-col justify-center text-center py-4">
+            <div class="text-5xl font-extrabold text-indigo-600 mb-2" id="res-working-days">0</div>
+            <div class="text-lg font-bold text-gray-800">Giorni Lavorativi</div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-4 space-y-2 mt-4 border border-gray-200 text-sm">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Giorni Totali (Solari):</span>
+              <span class="font-bold text-gray-900" id="res-total-days">0</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Weekend Sottratti:</span>
+              <span class="font-bold text-orange-600" id="res-weekend-days">0</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 font-medium">Festività Sottratte:</span>
+              <span class="font-bold text-emerald-600" id="res-holiday-days">0</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/lavoro-contratti/lettera-dimissioni-preavviso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Lettera Dimissioni (CCNL)</a></li>
+            <li><a href="/lavoro-contratti/analizzatore-busta-paga/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔍</span> Analizzatore Busta Paga</a></li>
+            <li><a href="/lavoro-contratti/stipendio-netto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Calcolo Stipendio Netto</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/lavoro-contratti/calcolo-tfr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💼</span> Calcolo TFR Liquidazione</a></li>
+              <li><a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Prestazione Occasionale</a></li>
+              <li><a href="/lavoro-contratti/ritenuta-acconto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Ritenuta d'Acconto</a></li>
+              <li><a href="/lavoro-contratti/calcolo-naspi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📉</span> Simulatore NASpI 2026</a></li>
+            </ul>
+          </details>
+          <a href="/lavoro-contratti/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Lavoro &amp; Contratti</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Calendario delle festività aggiornato a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">L. 260/1949 e successive modifiche (ricorrenze festive), L. 54/1977 (festività soppresse), D.P.R. 792/1985 (festività dell'8 dicembre e dell'Epifania), contratti collettivi nazionali per il trattamento delle festività.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Calcolo Algoritmico dei Giorni Lavorativi e Regime delle Festività nell'Ordinamento Italiano</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il calcolo esatto dei giorni lavorativi intercorrenti tra due date è un'operazione fondamentale in ambito aziendale, sia per il dipartimento delle risorse umane (calcolo ferie e permessi), sia per la gestione operativa dei progetti e la stima dei tempi di consegna logistici. La nostra utility automatizza questo processo elaborando le variabili interamente all'interno del tuo browser, applicando rigorosamente l'impianto giuslavoristico ed evitando approssimazioni matematiche.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Inquadramento Normativo: Fondamenti Giuslavoristici, Legge 260/1949 e Festività Soppresse</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">L'impalcatura giuslavoristica che presidia la determinazione del tempo contrattuale, le ricorrenze civili e religiose, e le relative ricadute sul fronte contributivo e retributivo, si inquadra all'interno della Legge 27 maggio 1949, n. 260. Ad essa fanno storicamente séguito i correttivi dettati dalla Legge 5 marzo 1977, n. 54, che ha operato la declassificazione in giorni feriali di specifiche solennità, inquadrate ora come Festività soppresse. L'identificazione precisa dei giorni solari considerati "festivi" è determinante ai fini della gestione dei permessi orari (ROL, Ex-festività), della maggiorazione della retribuzione per lavoro straordinario, nonché dello slittamento civilistico di adempimenti contrattuali o scadenze tributarie in presenza di giorni non bancabili.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il calendario lavorativo esclude convenzionalmente dai giorni lavorabili i fine settimana (sabato e domenica per l'orario su settimana corta) e le dieci festività nazionali a datazione fissa (1 Gennaio, 6 Gennaio, 25 Aprile, 1 Maggio, 2 Giugno, 15 Agosto, 1 Novembre, 8 Dicembre, 25 Dicembre, 26 Dicembre) alle quali si somma l'attribuzione municipale della Festa del Santo Patrono. L'apparato costituzionale, specificamente l'Articolo 36 della Costituzione Italiana, garantisce il diritto irrinunciabile al riposo settimanale e alle ferie retribuite, rendendo la classificazione dei giorni feriali un elemento di stretta conformità normativa.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Qualsiasi alterazione o mancato riconoscimento di tali festività nel calcolo dell'orario di lavoro contrattuale si configura come una palese violazione dei diritti sanciti dalla contrattazione collettiva nazionale (CCNL). La corretta applicazione di questo framework normativo è essenziale per non incorrere in sanzioni amministrative ed evitare vertenze sindacali. Le aziende devono mappare rigorosamente il calendario annuo per isolare il monte ore lavorativo effettivo, sul quale si calcolano indennità, scatti di anzianità e contribuzioni previdenziali INPS, senza incappare in violazioni che produrrebbero gravami ispettivi.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Architettura dell'Algoritmo di Gauss e Computus Ecclesiastico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il cardine di instabilità algoritmica nei software di Enterprise Resource Planning (ERP) per HR risiede nel Lunedì dell'Angelo (Pasquetta), l'unica solennità istituzionalizzata a mobilità perpetua. Per la determinazione in codice della festività mobile si fa affidamento al Computus Ecclesiastico, perfezionato nel noto Algoritmo di Gauss.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Posto l'anno target Y (es. 2026), l'algoritmo elabora le equazioni di aritmetica modulare in cascata: <em>a = Y (mod 19)</em>; <em>b = Y ÷ 100</em>; <em>c = Y (mod 100)</em>. Le costanti divisorie astronomiche intermedie d, e, f, g, h, i, k, L, m operano la sincronizzazione tra equinozio, ciclo lunare aureo e salto secolare.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Da queste estrazioni si definisce la data formale della Domenica di Pasqua. Il software gestionale innesca quindi il trigger automatizzato: Festività Mobile (Pasquetta) = Domenica di Pasqua + 1 Giorno. Questo complesso meccanismo matematico garantisce che l'applicazione identifichi con assoluta precisione la data della Pasquetta senza necessità di consultare database esterni o API di terze parti, assicurando il rispetto del paradigma Zero-Backend e preservando l'isolamento della sandbox del browser. Ogni variabile dell'algoritmo di Gauss (come il ciclo metonico rappresentato dall'operatore modulo 19) svolge un ruolo critico per mappare l'orbita lunare rispetto al calendario solare Gregoriano, un aspetto imprescindibile poiché la legislazione italiana (e internazionale) àncora l'erogazione della festività civile a questo esclusivo evento astronomico-religioso.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📅</span> Casuistica Reale: Simulazione e Rendicontazione dei Turni Produttivi per Aprile 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Si applichi il workflow per la rendicontazione dei turni produttivi nel mese di Aprile 2026. Implementando l'algoritmo matematico di Gauss al parametro 2026, si ottiene un mese (m) pari a 4 (Aprile) e un giorno (d) pari a 5. La Pasqua cade pertanto il 5 aprile 2026. La funzione software incrementale posiziona il Lunedì dell'Angelo per il 6 aprile 2026.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Nel medesimo periodo temporale ricade la festività fissa della Liberazione (25 Aprile), che il calendario individua in una giornata di Sabato. L'estrazione del montante feriale si processa come segue:</p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
+              <li>Giorni totali del mese solare: 30.</li>
+              <li>Giorni di riposo standard (Weekend su 5 GG lavorativi): 8 (4 sabati, 4 domeniche).</li>
+              <li>Festività infrasettimanali aggiuntive: 1 (Il 6 aprile cade di lunedì; il 25 aprile cade già di sabato, neutralizzando la detrazione feriale).</li>
+              <li>Giorni lavorativi effettivi retribuibili nel mese: 30 - 8 - 1 = 21 giornate.</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Questo scenario illustra matematicamente come le collisioni sul calendario tra festività fisse (es. 25 Aprile) e giorni non lavorativi di default (Sabato) si elidano, non riducendo ulteriormente il monte ore retribuibile della mensilità per i lavoratori operanti su settimana corta (Lunedì-Venerdì). Al contrario, qualora il contratto preveda la settimana lavorativa lunga (6 giorni, dal Lunedì al Sabato), il 25 Aprile verrebbe computato e detratto, riducendo i giorni lavorativi a 24 (26 giorni dal lunedì al sabato meno Pasquetta e 25 aprile) e facendo scattare le prerogative economiche connesse al godimento o al mancato godimento del giorno di riposo retribuito.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti nel calcolatore della pagina con settimana corta, dal lunedì al venerdì, e festività nazionali escluse.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: dicembre 2026 a Milano, un mese con tre festività feriali</h3>
+            <p>Dal 1° al 31 dicembre 2026 con Sant'Ambrogio, il 7 dicembre, come patrono.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Giorni solari: 31; sabati e domeniche: 8</li>
+            <li>Festività infrasettimanali: 7 dicembre (lunedì), 8 dicembre (martedì), 25 dicembre (venerdì)</li>
+            <li>Santo Stefano cade di sabato e non riduce i giorni lavorativi</li>
+            <li>Giorni lavorativi: 31 − 8 − 3 = 20</li>
+            </ul>
+            <p>Per un consulente pagato 250 € a giornata, dicembre vale 5.000 € contro i 5.500 € di un mese da 22 giorni lavorativi.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: pausa natalizia dal 21 dicembre 2026 al 6 gennaio 2027</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Giorni solari: 17; sabati e domeniche: 4</li>
+            <li>Festività infrasettimanali: 25 dicembre, 1° gennaio, 6 gennaio</li>
+            <li>Giorni lavorativi, cioè giorni di ferie da usare: 10</li>
+            </ul>
+            <p>Con 10 giorni di ferie si ottengono 17 giorni di assenza consecutivi. Spostando l'inizio al 7 dicembre, a Milano il periodo salirebbe a 31 giorni di assenza con 18 giorni di ferie, grazie a Sant'Ambrogio e all'Immacolata.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: aprile 2026 su settimana corta</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Giorni solari: 30; sabati e domeniche: 8</li>
+            <li>Festività infrasettimanali: Lunedì dell'Angelo, 6 aprile</li>
+            <li>Il 25 aprile cade di sabato e non conta</li>
+            <li>Giorni lavorativi: 21</li>
+            </ul>
+            <p>Chi lavora anche il sabato parte invece da 26 giorni, esclude Pasquetta e 25 aprile e arriva a 24 giornate: la stessa festività pesa diversamente a seconda dell'orario settimanale.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Errori Operativi, Anomalie di Sistema e Regime Sanzionatorio</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">La neutralizzazione del 25 aprile, cadente di sabato, non è priva di conseguenze retributive per chi opera su settimana lunga (6 giorni). Qualora una festività fissa coincida con la domenica (giorno per definizione già tutelato dal riposo settimanale ex art. 36 Costituzione), la giurisprudenza e la Legge 260/1949 impongono alle aziende di corrispondere al lavoratore una maggiorazione compensativa, calcolata come una quota giornaliera aggiuntiva di retribuzione (il cosiddetto "1/26esimo" della retribuzione globale di fatto mensilizzata). Questa erogazione per festività non goduta viene storicamente disattesa dai piccoli imprenditori. Un errore operazionale sistemico riscontrato nei software paghe mal calibrati consiste nell'ignorare il divisore fisso "26" stabilito dai contratti collettivi per calcolare tale quota, adottando erroneamente i giorni solari del mese corrente, producendo differenze retributive nocive.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">L'area dei ratei introduce ulteriori vertenze: le Festività Soppresse ex Legge 54/1977 (San Giuseppe del 19 marzo, Ascensione, Corpus Domini e San Pietro/Paolo) non garantiscono più al dipendente di astenersi dalla prestazione lavorativa. Ciononostante, i contratti collettivi maggioritari stabiliscono che il dipendente continui a maturare per esse specifici contatori orari, inseriti in busta paga sotto la dicitura "Permessi Ex-Festività", esigibili dal dipendente e da liquidare in denaro a scadenza annuale qualora non fruiti. Lo sfalsamento di tali voci tra ratei maturati, goduti e liquidati crea asimmetrie complesse per i consulenti del lavoro. Un guasto frequente del software gestionale si palesa quando il lavoratore transita da un'azienda all'altra a ridosso di tali date, perdendo illegittimamente l'accantonamento frazionato a causa di elaborazioni deficitarie.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Infine, la diffusione capillare del Remote Working e dello Smart Working decostruisce l'assegnazione territoriale del Santo Patrono. Un lavoratore tele-allocato in smart working residente a Napoli, ma strutturalmente dipendente da una branch sita a Milano, solleva un conflitto giurisprudenziale sul godimento festivo (7 dicembre vs 19 settembre), che deve essere categoricamente sterilizzato in fase di contratto aziendale per non sfalsare il montante del lavoro ordinario erogato. In difetto di pattuizioni individuali specifiche scritte, la presunzione legale avvantaggia sistematicamente la sede operativa in cui si inquadra il dipendente, comportando gravi sanzioni pecuniarie e recuperi per irregolarità sulle registrazioni LUL (Libro Unico del Lavoro) qualora l'azienda applichi arbitrariamente la festività del comune di residenza remota, defraudando il dipendente della sua naturale spettanza normata.</p>
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📌</span> Applicazioni pratiche: ferie, ratei e rendicontazione</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il computo dei giorni lavorativi non è un esercizio di calendario ma il presupposto di numerosi calcoli contrattuali e amministrativi. Conoscerne le applicazioni evita gli errori più costosi nella gestione del personale e nella rendicontazione dei progetti.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Conversione fra giorni e ore di ferie</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Ferie in ore = Giorni di ferie x Ore medie giornaliere contrattuali</li>
+              <li>Full time standard: 40 ore settimanali / 5 giorni = 8 ore al giorno</li>
+              <li>Part time orizzontale al 60%: 24 ore / 5 giorni = 4,8 ore al giorno</li>
+              <li>Rateo mensile = Ferie annue spettanti / 12</li>
+            </ul>
+            <p>Molti contratti collettivi esprimono le ferie in giorni e i permessi in ore, il che rende necessaria la conversione. Per i rapporti a tempo parziale verticale, in cui la prestazione si concentra su alcuni giorni della settimana, il computo in giornate va riproporzionato: un lavoratore impiegato tre giorni a settimana consuma una giornata di ferie per ogni giorno di assenza, ma matura un monte ferie ridotto in proporzione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il calcolo dei ratei in caso di assunzione o cessazione in corso d'anno</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Ratei maturati = (Ferie annue / 12) x Mesi interi di servizio</li>
+              <li>Si computa come mese intero la frazione superiore a 15 giorni</li>
+              <li>Stesso criterio per tredicesima, quattordicesima e permessi retribuiti</li>
+            </ul>
+            <p>La regola dei quindici giorni è pressoché universale nella contrattazione collettiva italiana e produce un effetto soglia rilevante: una cessazione il giorno 16 del mese attribuisce un rateo pieno, mentre il giorno 15 non ne attribuisce alcuno. Su tredicesima, quattordicesima, ferie e permessi la differenza complessiva può superare l'equivalente di alcuni giorni di retribuzione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Termini processuali e amministrativi</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Termini a giorni liberi</strong>: non si computano né il giorno iniziale né quello finale, criterio frequente nei termini processuali.</li>
+              <li><strong>Termini che scadono in giorno festivo</strong>: la scadenza si proroga di diritto al primo giorno seguente non festivo.</li>
+              <li><strong>Sospensione feriale dei termini</strong>: nel periodo estivo stabilito dalla legge i termini processuali civili restano sospesi, con ripresa alla scadenza del periodo.</li>
+              <li><strong>Termini a mesi</strong>: si computano secondo il calendario comune, scadendo nel giorno corrispondente del mese finale, indipendentemente dal numero effettivo di giorni.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Rendicontazione di progetti e commesse</h3>
+            <p>Nei progetti finanziati e negli appalti a corpo, la conversione fra giornate uomo e costo orario passa necessariamente dal numero di giorni effettivamente lavorabili nel periodo. Un mese di trenta giorni solari può contenere venti, ventuno o ventidue giorni lavorativi a seconda della collocazione dei fine settimana e delle festività infrasettimanali, con uno scarto superiore al dieci per cento sul costo del personale imputato. È la ragione per cui i piani di rendicontazione richiedono il calendario effettivo e non una media convenzionale.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Festività che cadono di domenica</h3>
+            <p>Quando una festività nazionale coincide con la domenica, il lavoratore ha diritto a un trattamento economico aggiuntivo secondo quanto previsto dal contratto collettivo applicato, ma non matura un giorno di riposo compensativo salvo espressa previsione contrattuale. Il computo dei giorni lavorativi del mese resta quindi invariato, mentre varia la retribuzione spettante: una distinzione che genera frequenti contestazioni nella verifica delle buste paga.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La data iniziale e quella finale sono comprese nel conteggio?</h3>
+            <p>Sì, entrambe. Dal 1° al 30 aprile 2026 il calcolatore conta 30 giorni solari e 21 lavorativi. Per un periodo di ferie inserisci il primo e l'ultimo giorno di assenza, non la data di rientro al lavoro.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Una festività che cade di sabato riduce i giorni lavorativi?</h3>
+            <p>Solo per chi lavora anche il sabato. Sulla settimana dal lunedì al venerdì il sabato è già un giorno non lavorativo, quindi la festività non cambia il conteggio; il trattamento economico delle festività coincidenti con giorni di riposo dipende dal contratto collettivo applicato.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Quale santo patrono va considerato se lavoro in smart working?</h3>
+            <p>Di norma quello del Comune in cui ha sede l'unità produttiva a cui sei assegnato, non quello di residenza. Alcuni accordi aziendali stabiliscono regole diverse per chi lavora da remoto: in caso di dubbio conviene verificarle con l'ufficio del personale.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore dei giorni lavorativi opera <strong>interamente lato client, senza alcun backend</strong>. Le date che selezioni, il calendario delle festività e i parametri di computo vengono elaborati dal motore JavaScript del browser sul tuo dispositivo. Nessuna informazione viene inviata a server esterni, registrata in archivi o associata alla tua persona.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Anche un dato apparentemente neutro come un intervallo di date può rivelare informazioni sensibili, quali un periodo di assenza per malattia, la programmazione di un congedo o la data di cessazione di un rapporto di lavoro. Il trattamento integralmente locale garantisce che nessuna di queste deduzioni sia possibile da parte nostra o di terzi, in piena conformità al Regolamento UE 2016/679 (GDPR) e ai principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, oltre alla minimizzazione dei dati dell'articolo 5. Lo strumento funziona anche offline, una volta caricata la pagina.</p>
+        </div>
+
+        </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div> 
+  </div> 
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/giorni-lavorativi.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

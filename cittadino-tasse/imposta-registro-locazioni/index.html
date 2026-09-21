@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calcolatore Imposta di Registro vs Cedolare Secca 2026 | StrumentiUtili</title>
+  <meta name="description" content="Compara l'Imposta di Registro ordinaria con la Cedolare Secca. Calcolo ottimizzato per Affitti Brevi turistici con le aliquote 2026 (21% e 26%).">
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Imposta di Registro vs Cedolare Secca 2026" />
+  <meta property="og:description" content="Simulatore affitti e Cedolare Secca per locazioni ordinarie e brevi turistiche. Calcolo 100% offline." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore Imposta di Registro vs Cedolare Secca 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/",
+        "description": "Confronto fra imposta di registro nel regime ordinario e cedolare secca per affitti a canone libero, concordato e locazioni brevi con più immobili.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "@id": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Imposta di registro al 2% con base ridotta per il canone concordato",
+          "Cedolare secca al 21% e al 10%",
+          "Locazioni brevi su più immobili con assegnazione ottimale del 21%",
+          "Segnalazione della soglia oltre la quale si presume attività d'impresa",
+          "Nessun dato inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#howto",
+        "name": "Come scegliere fra imposta di registro e cedolare secca",
+        "description": "Procedura per confrontare il costo fiscale di un affitto nel regime ordinario e con la cedolare secca.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Contratto di locazione con canone annuo"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Scegli la tipologia di contratto",
+            "text": "Seleziona canone libero, concordato o affitto breve turistico.",
+            "url": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#tipo-locazione"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci il canone",
+            "text": "Indica il canone annuo lordo o, per gli affitti brevi, gli incassi di ciascun immobile.",
+            "url": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#canone-singolo"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Confronta i due regimi",
+            "text": "Premi Confronta Regimi e aggiungi al regime ordinario l'IRPEF sul 95% del canone per valutare la convenienza.",
+            "url": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#res-ced-imposta"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/imposta-registro-locazioni/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "La cedolare secca conviene sempre rispetto al regime ordinario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La cedolare è un'imposta proporzionale che prescinde dal reddito complessivo, quindi conviene ai locatori con aliquota marginale IRPEF elevata. Un contribuente con redditi bassi, ampie detrazioni o situazione di incapienza può trovare più vantaggioso il regime ordinario, che tassa solo il 95% del canone e consente di sfruttare le detrazioni. Va inoltre considerato che optando per la cedolare si rinuncia all'aggiornamento ISTAT del canone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Chi paga materialmente l'imposta di registro, il proprietario o l'inquilino?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La legge stabilisce la solidarietà passiva: l'Agenzia delle Entrate può pretendere l'intero importo da entrambi. Nella prassi contrattuale l'onere viene ripartito a metà, ma si tratta di un accordo interno che non è opponibile all'amministrazione finanziaria. In caso di cedolare secca l'imposta di registro non è dovuta affatto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa accade se registro il contratto oltre i 30 giorni previsti?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si incorre nella tardiva registrazione, sanzionata in misura proporzionale all'imposta dovuta. Il ravvedimento operoso consente di ridurre sensibilmente la sanzione versando spontaneamente imposta, sanzione ridotta e interessi legali prima di qualsiasi controllo. Per i contratti in cedolare secca la disciplina prevede sanzioni in misura fissa, pari a 150 euro entro trenta giorni di ritardo e 250 euro oltre tale termine."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'imposta di registro va versata ogni anno o una sola volta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Esistono due modalità alternative. Il versamento annuale prevede il pagamento entro trenta giorni dalla scadenza di ciascuna annualità. Il versamento per l'intera durata consente invece di assolvere il tributo in un'unica soluzione all'atto della registrazione, ottenendo una riduzione commisurata agli interessi legali sul numero di annualità anticipate. Il simulatore ragiona su base annua, che è il parametro di confronto più leggibile."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come funziona la tassazione delle locazioni brevi con più immobili?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'aliquota resta al 21% per un immobile destinato alla locazione breve, scelto dal proprietario, mentre per tutti gli altri si applica il 26%: non esistono aliquote più alte per il terzo o il quarto. Superata la soglia dei quattro immobili l'attività si presume esercitata in forma imprenditoriale, con conseguente obbligo di partita IVA e uscita integrale dal perimetro della cedolare."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso revocare l'opzione per la cedolare secca durante il contratto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. L'opzione si esercita e si revoca per ciascuna annualità contrattuale. La revoca va comunicata entro trenta giorni dalla scadenza dell'annualità precedente e comporta il ritorno al regime ordinario, con conseguente obbligo di versare l'imposta di registro per le annualità residue e di assoggettare il canone a IRPEF."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Cittadino-tasse</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏠</span> Locazioni e Immobili
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Imposta di Registro vs Cedolare Secca 2026</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Confronta il costo dell'imposta di registro ordinaria con la tassazione piatta (Cedolare Secca) per affitti standard e turistici. L'algoritmo ottimizza automaticamente la tassazione per patrimoni multi-immobile (Affitti Brevi).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Input Section -->
+        <section class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col h-fit">
+          <h2 class="text-xl font-bold text-gray-900 mb-5">Configurazione Affitto</h2>
+          
+          <div class="space-y-5">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <label for="tipo-locazione" class="text-sm font-bold text-gray-800">Tipologia di Locazione</label>
+                <button type="button" data-guida-toggle="guida-loc-tipo" aria-expanded="false" aria-controls="guida-loc-tipo" aria-label="Guida al campo Tipologia di locazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-loc-tipo" aria-describedby="guida-loc-tipo" id="tipo-locazione" class="w-full border border-gray-300 bg-gray-50 px-4 py-3 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-sm">
+                <option value="lunga_libera">Abitativo Libero (4+4)</option>
+                <option value="lunga_concordata">Abitativo a Canone Concordato (3+2)</option>
+                <option value="breve_turistico">Affitto Breve Turistico (&lt; 30 gg)</option>
+              </select>
+              <div id="guida-loc-tipo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Libero 4+4:</strong> contratto con canone deciso liberamente dalle parti, durata di quattro anni rinnovabili per altri quattro. Registro al 2% del canone oppure cedolare secca al 21%.</p>
+                <p><strong class="text-indigo-900">Concordato 3+2:</strong> contratto con canone entro i limiti dell'accordo territoriale del Comune. Nei Comuni ad alta tensione abitativa la base del registro scende al 70% e la cedolare al 10%. Rientrano anche i transitori e quelli per studenti universitari stipulati secondo gli accordi.</p>
+                <p><strong class="text-indigo-900">Breve turistico:</strong> soggiorni fino a 30 giorni senza servizi alberghieri, anche tramite portali online. Non c'è registrazione del contratto e la cedolare è al 21% per un immobile a scelta e al 26% per gli altri.</p>
+              </div>
+            </div>
+
+            <!-- Contenitore Singolo Immobile (Affitti Lunghi) -->
+            <div id="box-singolo" class="space-y-5">
+                <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <label for="canone-singolo" class="text-sm font-bold text-gray-800">Canone Annuo Lordo (€)</label>
+                  <button type="button" data-guida-toggle="guida-loc-canone" aria-expanded="false" aria-controls="guida-loc-canone" aria-label="Guida al campo Canone annuo lordo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-loc-canone" aria-describedby="guida-loc-canone" id="canone-singolo" type="number" min="0" step="100" class="w-full border border-gray-300 px-4 py-3 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-bold text-lg" placeholder="12000" />
+                <div id="guida-loc-canone" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Cosa inserire:</strong> il canone annuo scritto nel contratto, senza spese condominiali e utenze anche se pagate insieme all'affitto. Per un canone mensile di 800 € inserisci 9600.</p>
+                  <p><strong class="text-indigo-900">Limite del calcolo:</strong> il simulatore applica il minimo di 67 € ogni anno, ma per legge vale solo per la prima annualità: per le successive l'imposta è sempre il 2% esatto, anche se inferiore.</p>
+                  <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+                </div>
+                </div>
+            </div>
+
+            <!-- Contenitore Multi-Immobile (Affitti Brevi) -->
+            <div id="box-multiplo" class="hidden space-y-4">
+                <p class="text-xs text-gray-600 bg-gray-50 p-3 rounded border border-gray-200">
+                    Per gli affitti brevi, inserisci i ricavi generati da ciascun immobile gestito. L'algoritmo applicherà il tasso agevolato (21%) all'immobile più redditizio per massimizzare il tuo risparmio.
+                </p>
+                <div id="immobili-container" class="space-y-3">
+                    <!-- Dinamico -->
+                    <div class="flex items-center gap-2 immobile-row">
+                        <span class="text-sm font-bold text-gray-500 w-6">#1</span>
+                        <input type="number" min="0" step="100" class="immobile-val w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-sm" placeholder="Incasso Immobile 1 (€)" />
+                    </div>
+                </div>
+                <button type="button" data-guida-toggle="guida-loc-brevi" aria-expanded="false" aria-controls="guida-loc-brevi" aria-label="Guida al campo Incassi degli affitti brevi" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come inserire gli incassi</button>
+                <div id="guida-loc-brevi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Quale importo:</strong> i corrispettivi lordi incassati nell'anno per ciascun immobile, comprese le somme trattenute dai portali come commissioni. La cedolare si applica sull'intero importo, senza deduzioni di spese.</p>
+                  <p><strong class="text-indigo-900">Scelta del 21%:</strong> l'aliquota ridotta spetta a un solo immobile, scelto dal proprietario in dichiarazione. Il simulatore la assegna all'immobile che incassa di più, perché è la scelta che fa pagare meno.</p>
+                  <p><strong class="text-indigo-900">Ritenuta dei portali:</strong> se l'incasso passa da un intermediario, questo trattiene il 21% a titolo d'acconto: la differenza fino al 26% va versata con la dichiarazione dei redditi.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button id="add-immobile" class="text-sm text-indigo-600 font-bold hover:text-indigo-800 transition px-2 py-1">+ Aggiungi Immobile</button>
+                    <button id="rem-immobile" class="text-sm text-gray-500 font-bold hover:text-gray-700 transition px-2 py-1 hidden">- Rimuovi</button>
+                </div>
+
+                <div id="alert-partita-iva" class="hidden mt-3 rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm text-rose-800 font-medium">
+                    🚨 <strong>Attenzione:</strong> La gestione di 5 o più immobili turistici configura attività d'impresa. Decade la Cedolare Secca ed è obbligatoria l'apertura della Partita IVA.
+                </div>
+            </div>
+
+            <button id="btn-calcola" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-lg shadow-sm transition mt-2">Confronta Regimi</button>
+          </div>
+        </section>
+
+        <!-- Result Section -->
+        <section class="bg-gray-800 p-6 md:p-8 rounded-xl shadow-md text-white flex flex-col h-fit">
+          <h2 class="text-xl font-bold mb-6 border-b border-gray-700 pb-3">Simulazione Tassazione</h2>
+          
+          <div class="space-y-6">
+            <!-- Regime Ordinario -->
+            <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-600">
+                <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">Regime Ordinario (Imposta di Registro)</h3>
+                <div class="flex justify-between items-center pb-2 border-b border-gray-700 text-sm">
+                    <span class="text-gray-400">Canone Imponibile:</span>
+                    <span id="res-ord-base" class="font-mono text-gray-200">€ 0,00</span>
+                </div>
+                <div class="flex justify-between items-end mt-2">
+                    <span class="text-xs text-gray-400">Tassa di Registro annua<br/>+ Obbligo Bolli. (Aggiunge all'IRPEF)</span>
+                    <span id="res-ord-imposta" class="text-xl font-bold text-white font-mono">€ 0,00</span>
+                </div>
+            </div>
+
+            <!-- Cedolare Secca -->
+            <div id="box-res-cedolare" class="bg-indigo-900/50 p-4 rounded-xl border border-indigo-500/30">
+                <h3 class="text-sm font-bold text-indigo-200 uppercase tracking-wider mb-3">Opzione Cedolare Secca</h3>
+                <div class="flex justify-between items-center pb-2 border-b border-indigo-500/20 text-sm">
+                    <span class="text-indigo-200">Aliquota Media Ponderata:</span>
+                    <span id="res-ced-aliquota" class="font-mono text-white font-bold">0%</span>
+                </div>
+                <div class="flex justify-between items-end mt-2">
+                    <span class="text-xs text-indigo-200">Imposta Sostitutiva Netta<br/>(Esenzione Bolli e Registro)</span>
+                    <span id="res-ced-imposta" class="text-2xl font-black text-white font-mono">€ 0,00</span>
+                </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+            <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+            <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU 2026</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+              <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta Luce</a></li>
+              <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> F24 Ordinario Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+              <li><a href="/cittadino-tasse/simulatore-isee/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📊</span> Simulatore ISEE 2026</a></li>
+              <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👴</span> Simulatore Pensione 2026</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Aliquote di registro e cedolare secca aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.P.R. 131/1986 (imposta di registro) e Tariffa parte I art. 5, D.Lgs. 23/2011 art. 3 (cedolare secca), L. 431/1998 art. 8 (canone concordato), D.L. 50/2017 art. 4 e L. 213/2023 art. 1 c. 63 (locazioni brevi), L. 178/2020 art. 1 c. 595 (presunzione di attività d'impresa).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Imposta di Registro, Cedolare Secca 2026 e Tassazione degli Affitti Brevi</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il panorama della fiscalità immobiliare in Italia pone i locatori di fronte a una dirimente scelta strategica: assoggettare i proventi dell'affitto al regime ordinario IRPEF (scontando l'Imposta di Registro) o optare per la tassazione piatta e sostitutiva della Cedolare Secca. La Legge di Bilancio ha recentemente rivoluzionato le regole d'ingaggio, concentrandosi in particolar modo sugli "Affitti Brevi" ad uso turistico per arginare il sommerso e riequilibrare il mercato immobiliare. Questa calcolatrice è stata ingegnerizzata per dirimere il calcolo operando in modo 100% Client-Side.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Il Regime Ordinario: Imposta di Registro e Tetto Minimo</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Qualora il locatore rinunci all'opzione della Cedolare Secca, il contratto di affitto sconta in sede di registrazione l'<strong>Imposta di Registro</strong>. Per i fabbricati ad uso abitativo, l'imposta si calcola moltiplicando il canone annuo lordo pattuito per l'aliquota fissa del <strong>2%</strong>.
+            </p>
+            <p>
+              Tuttavia, lo Stato impone un "peggio tributario" o soglia di irreducibilità: l'imposta minima dovuta per la prima annualità non può mai essere inferiore a <strong>67,00 €</strong>. Pertanto, il nostro algoritmo esegue una funzione condizionale $\max(Canone \times 0.02,\ 67.00)$ per assicurare il gettito minimo erariale. 
+            </p>
+            <p>
+              Se la locazione rientra nella tipologia a <em>Canone Concordato (3+2)</em> in un comune ad alta tensione abitativa, il legislatore premia le parti decurtando la base imponibile del 30%. In questa specifica circostanza, l'aliquota effettiva scende all'1,4% (fermo restando il limite invalicabile dei 67,00 €). Va inoltre ricordato che il regime ordinario obbliga al pagamento dell'Imposta di Bollo (16,00 € ogni 4 facciate o 100 righe) e, crucialmente, i canoni percepiti fanno cumulo con gli altri redditi del contribuente, concorrendo a innalzare l'aliquota marginale IRPEF progressiva.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Cedolare Secca Ordinaria: 21% e 10%</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              La Cedolare Secca opera come una scudo fiscale: l'imposta è piatta, non si cumula all'IRPEF, oblitera il versamento dell'Imposta di Registro e azzera il costo delle marche da bollo documentali.
+            </p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>Per le <strong>locazioni libere (4+4)</strong>, il saggio sostitutivo è vincolato al <strong>21%</strong>.</li>
+              <li>Per i contratti a <strong>canone concordato</strong> in comuni selezionati, si applica l'aliquota iper-agevolata del <strong>10%</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏨</span> Affitti Brevi e Turistici: Il Labirinto del 2026 e l'Ottimizzazione Algoritmica</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Sulle locazioni turistiche brevi (inferiori a 30 giorni) si è abbattuta una feroce stretta normativa per osteggiare l'overtourism e disincentivare le multiproprietà gestite da non professionisti. La legge prevede ora un frazionamento progressivo e punitivo degli scaglioni:
+            </p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Immobile 1:</strong> Mantiene la trincea del <strong>21%</strong>.</li>
+              <li><strong>Immobile 2:</strong> L'aliquota sale automaticamente al <strong>26%</strong> su tutti i redditi generati da tale cespite.</li>
+              <li><strong>Immobile 3 e 4:</strong> Si applica anch'essa l'aliquota del <strong>26%</strong>: la legge non prevede scaglioni ulteriori oltre il secondo immobile.</li>
+              <li><strong>Immobile 5 e successivi:</strong> Oltre la soglia dei 4 immobili, si concretizza la presunzione assoluta di attività di impresa. Decade d'ufficio il diritto di optare per la Cedolare Secca ed emerge l'obbligo inderogabile di aprire <strong>Partita IVA</strong>, con assoggettamento agli ISA o, se ne ricorrono i requisiti, al regime forfettario, all'IRPEF progressivo e ai contributi previdenziali INPS.</li>
+            </ul>
+            <p>
+              <strong>Heuristica di Salvaguardia del Simulatore:</strong> La normativa concede al proprietario la facoltà discrezionale di scegliere a quale immobile, tra quelli posseduti, assegnare l'aliquota di favore del 21%. Per massimizzare il risparmio del cittadino, il nostro algoritmo cattura in memoria i ricavi di tutti gli immobili imputati, esegue un ordinamento decrescente (<code>Array.prototype.sort</code>) e assegna inflessibilmente la tassa del 21% all'appartamento che ha incassato di più in assoluto. A tutti gli altri immobili viene applicata l'aliquota del 26%.
+            </p>
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il confronto fra regime ordinario e cedolare secca si riduce a due catene di calcolo indipendenti che il motore esegue in parallelo sullo stesso canone annuo, restituendo il differenziale di convenienza.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Ramo A: imposta di registro nel regime ordinario</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Base imponibile = Canone annuo x Coefficiente di abbattimento</li>
+              <li>Coefficiente = 1,00 (canone libero)  oppure  0,70 (canone concordato)</li>
+              <li>Imposta teorica = Base imponibile x 0,02</li>
+              <li>Imposta dovuta = max(Imposta teorica ; 67,00 EUR)</li>
+            </ul>
+            <p>L'aliquota del 2% è quella propria delle locazioni di fabbricati a uso abitativo. La funzione di massimo che chiude il calcolo implementa il <strong>minimo d'imposta di 67,00 euro</strong>: per i contratti di modesto importo il prelievo non scende mai sotto questa soglia, il che rende il regime ordinario sproporzionatamente oneroso sui canoni bassi. L'imposta è ripartita per consuetudine in parti uguali fra locatore e conduttore, salvo diverso accordo, ma verso l'erario entrambi rispondono in solido.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Ramo B: cedolare secca</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Imposta cedolare = Canone annuo x Aliquota di regime</li>
+              <li>Locazione lunga a canone libero        =&gt;  21%</li>
+              <li>Locazione lunga a canone concordato    =&gt;  10%</li>
+              <li>Locazione breve, primo immobile        =&gt;  21%</li>
+              <li>Locazione breve, secondo immobile      =&gt;  26%</li>
+              <li>Locazione breve, terzo e quarto        =&gt;  26%</li>
+            </ul>
+            <p>Sulla cedolare non si applica alcun abbattimento della base: l'aliquota agevolata del 10% prevista per i contratti concordati incorpora già il beneficio. Va sottolineato che i due rami non sono omogenei sul piano economico. L'imposta di registro è un tributo d'atto che si affianca alla tassazione IRPEF ordinaria del canone, mentre la cedolare è un'imposta sostitutiva: assorbe IRPEF, addizionali, imposta di registro e imposta di bollo in un unico prelievo proporzionale.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio numerico: canone libero di 9.000 euro annui</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Regime ordinario</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Cedolare secca 21%</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Base imponibile</td><td class="px-3 py-2 border-t border-gray-200">9.000,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">9.000,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta proporzionale</td><td class="px-3 py-2 border-t border-gray-200">9.000 x 2% = 180,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">9.000 x 21% = 1.890,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Minimo di legge</td><td class="px-3 py-2 border-t border-gray-200">Non operante (180 &gt; 67)</td><td class="px-3 py-2 border-t border-gray-200">Non previsto</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota tipica a carico del locatore</td><td class="px-3 py-2 border-t border-gray-200">90,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.890,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">IRPEF sul canone</td><td class="px-3 py-2 border-t border-gray-200">Dovuta a parte sul 95% del canone</td><td class="px-3 py-2 border-t border-gray-200">Assorbita dall'imposta sostitutiva</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta di bollo</td><td class="px-3 py-2 border-t border-gray-200">16,00 EUR ogni 4 facciate</td><td class="px-3 py-2 border-t border-gray-200">Esente</td></tr></tbody></table></div>
+            <p>La lettura corretta dell'esempio impone di aggiungere al regime ordinario l'IRPEF sul reddito fondiario: con un'aliquota marginale del 35% su una base pari al 95% del canone si genererebbero circa 2.992 euro di imposta, portando il carico complessivo ben oltre i 1.890 euro della cedolare. La convenienza della cedolare cresce quindi con l'aliquota marginale del locatore e si riduce fino ad annullarsi per i contribuenti incapienti, per i quali il regime ordinario può risultare preferibile.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il caso dei canoni ridotti</h3>
+            <p>Su un canone annuo di 2.400 euro l'imposta teorica di registro sarebbe 48,00 euro, ma la soglia minima innalza il dovuto a 67,00 euro, con un'incidenza effettiva del 2,79% anziché del 2%. È la ragione per cui il motore espone sempre l'aliquota effettiva accanto a quella nominale: sui piccoli importi la distorsione introdotta dal minimo di legge è tutt'altro che trascurabile.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>D.P.R. 26 aprile 1986 n. 131 (Testo Unico dell'Imposta di Registro)</strong> — disciplina generale del tributo, obbligo di registrazione dei contratti di locazione e determinazione della base imponibile.</li>
+              <li><strong>D.Lgs. 14 marzo 2011 n. 23, articolo 3</strong> — norma istitutiva della cedolare secca sugli affitti, che ne definisce natura sostitutiva, presupposti soggettivi e modalità di opzione.</li>
+              <li><strong>Legge 9 dicembre 1998 n. 431</strong> — regola la locazione abitativa, distingue il canone libero dal canone concordato e fissa le durate contrattuali minime.</li>
+              <li><strong>D.L. 24 aprile 2017 n. 50, articolo 4</strong> — introduce la disciplina delle locazioni brevi e gli obblighi degli intermediari immobiliari e dei portali telematici.</li>
+              <li><strong>Legge 30 dicembre 2023 n. 213</strong> — ha rimodulato la tassazione delle locazioni brevi in presenza di più immobili destinati alla locazione nello stesso periodo d'imposta.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Costanti fiscali applicate dal motore</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore 2026</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Aliquota imposta di registro, uso abitativo</td><td class="px-3 py-2 border-t border-gray-200">2,00%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Abbattimento base imponibile, canone concordato</td><td class="px-3 py-2 border-t border-gray-200">30% (coefficiente 0,70)</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta di registro minima (prima annualità)</td><td class="px-3 py-2 border-t border-gray-200">67,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Cedolare secca, canone libero</td><td class="px-3 py-2 border-t border-gray-200">21,00%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Cedolare secca, canone concordato</td><td class="px-3 py-2 border-t border-gray-200">10,00%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Cedolare secca, locazioni brevi oltre il primo immobile</td><td class="px-3 py-2 border-t border-gray-200">26,00%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta di bollo per foglio (regime ordinario)</td><td class="px-3 py-2 border-t border-gray-200">16,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Termine per la registrazione del contratto</td><td class="px-3 py-2 border-t border-gray-200">30 giorni dalla stipula</td></tr></tbody></table></div>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> l'abbattimento del 30% sulla base imponibile del canone concordato presuppone che l'immobile si trovi in un comune ad alta tensione abitativa e che il contratto sia assistito dalle organizzazioni sindacali o corredato dall'attestazione di conformità. In assenza di tali requisiti l'agevolazione decade con recupero dell'imposta e applicazione delle sanzioni. Il simulatore fornisce una stima e non sostituisce la verifica con un professionista abilitato o con un'associazione della proprietà edilizia.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati inseriti nel simulatore della pagina. Il confronto con l'IRPEF, che il simulatore non calcola, è sviluppato a parte con le aliquote 2026.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: bilocale a canone libero da 800 € al mese, due profili di reddito</h3>
+            <p>Il canone annuo è di 9.600 €. Il simulatore restituisce 192,00 € di imposta di registro nel regime ordinario e 2.016,00 € di cedolare secca al 21%. Per un confronto corretto, al regime ordinario va aggiunta l'IRPEF sul 95% del canone, cioè su 9.120 €.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Proprietario con aliquota marginale 33%: IRPEF 3.009,60 € + registro 96,00 € = 3.105,60 €</li>
+            <li>Proprietario con aliquota marginale 23%: IRPEF 2.097,60 € + registro 96,00 € = 2.193,60 €</li>
+            <li>Cedolare secca in entrambi i casi: 2.016,00 €</li>
+            </ul>
+            <p>Con il 33% la cedolare fa risparmiare circa 1.090 € l'anno, senza contare le addizionali. Con il 23% il vantaggio scende a 177,60 € e va confrontato con la rinuncia all'aggiornamento ISTAT del canone: con un'inflazione del 2%, l'adeguamento varrebbe 192 € l'anno di affitto in più.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: trilocale a canone concordato in un Comune ad alta tensione abitativa</h3>
+            <p>Il contratto 3+2 prevede 600 € al mese, 7.200 € l'anno, nel rispetto dell'accordo territoriale.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Base imponibile del registro: 7.200 × 70% = 5.040,00 €</li>
+            <li>Imposta di registro: 5.040 × 2% = 100,80 €</li>
+            <li>Cedolare secca al 10%: 720,00 €</li>
+            </ul>
+            <p>Il 10% è l'aliquota più bassa disponibile per un reddito da locazione. Se il Comune prevede anche un'aliquota IMU ridotta per i contratti concordati, il proprietario somma il vantaggio della riduzione IMU del 25%.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: due appartamenti affittati per brevi periodi</h3>
+            <p>Una proprietaria affitta ai turisti un monolocale in centro, che nell'anno incassa 14.000 €, e un appartamento al mare, che ne incassa 9.000 €.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Monolocale al 21%: 14.000 × 21% = 2.940,00 €</li>
+            <li>Appartamento al 26%: 9.000 × 26% = 2.340,00 €</li>
+            <li>Cedolare complessiva: 5.280,00 €, aliquota media del 23%</li>
+            </ul>
+            <p>Assegnare il 21% all'appartamento al mare invece che al monolocale costerebbe 250 € in più: (14.000 − 9.000) × 5%. Se i portali hanno già trattenuto il 21% su entrambi gli incassi, con la dichiarazione resta da versare il 5% sui 9.000 €, pari a 450 €.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">La cedolare secca conviene sempre rispetto al regime ordinario?</h3>
+              <p>No. La cedolare è un'imposta proporzionale che prescinde dal reddito complessivo, quindi conviene ai locatori con aliquota marginale IRPEF elevata. Un contribuente con redditi bassi, ampie detrazioni o situazione di incapienza può trovare più vantaggioso il regime ordinario, che tassa solo il 95% del canone e consente di sfruttare le detrazioni. Va inoltre considerato che optando per la cedolare si rinuncia all'aggiornamento ISTAT del canone.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Chi paga materialmente l'imposta di registro, il proprietario o l'inquilino?</h3>
+              <p>La legge stabilisce la solidarietà passiva: l'Agenzia delle Entrate può pretendere l'intero importo da entrambi. Nella prassi contrattuale l'onere viene ripartito a metà, ma si tratta di un accordo interno che non è opponibile all'amministrazione finanziaria. In caso di cedolare secca l'imposta di registro non è dovuta affatto.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa accade se registro il contratto oltre i 30 giorni previsti?</h3>
+              <p>Si incorre nella tardiva registrazione, sanzionata in misura proporzionale all'imposta dovuta. Il ravvedimento operoso consente di ridurre sensibilmente la sanzione versando spontaneamente imposta, sanzione ridotta e interessi legali prima di qualsiasi controllo. Per i contratti in cedolare secca la disciplina prevede sanzioni in misura fissa, pari a 150 euro entro trenta giorni di ritardo e 250 euro oltre tale termine.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">L'imposta di registro va versata ogni anno o una sola volta?</h3>
+              <p>Esistono due modalità alternative. Il versamento annuale prevede il pagamento entro trenta giorni dalla scadenza di ciascuna annualità. Il versamento per l'intera durata consente invece di assolvere il tributo in un'unica soluzione all'atto della registrazione, ottenendo una riduzione commisurata agli interessi legali sul numero di annualità anticipate. Il simulatore ragiona su base annua, che è il parametro di confronto più leggibile.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Come funziona la tassazione delle locazioni brevi con più immobili?</h3>
+              <p>L'aliquota resta al 21% per un immobile destinato alla locazione breve, scelto dal proprietario, mentre per tutti gli altri si applica il 26%: non esistono aliquote più alte per il terzo o il quarto. Superata la soglia dei quattro immobili l'attività si presume esercitata in forma imprenditoriale, con conseguente obbligo di partita IVA e uscita integrale dal perimetro della cedolare.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso revocare l'opzione per la cedolare secca durante il contratto?</h3>
+              <p>Sì. L'opzione si esercita e si revoca per ciascuna annualità contrattuale. La revoca va comunicata entro trenta giorni dalla scadenza dell'annualità precedente e comporta il ritorno al regime ordinario, con conseguente obbligo di versare l'imposta di registro per le annualità residue e di assoggettare il canone a IRPEF.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il comparatore fra imposta di registro e cedolare secca funziona in modalità <strong>100% client-side con architettura zero-backend</strong>. I canoni di locazione, il numero di immobili, i codici contrattuali e ogni altro dato che inserisci restano confinati nella memoria del tuo browser. Non transitano su alcun server, non vengono scritti in un database e non sono accessibili a noi né a terze parti: il calcolo è un'operazione locale, esattamente come lo sarebbe su un foglio di calcolo installato sul tuo computer.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Questa scelta architetturale garantisce il pieno rispetto del Regolamento UE 2016/679 (GDPR). L'ammontare dei canoni percepiti e la consistenza del patrimonio immobiliare sono dati economici idonei a rivelare la situazione patrimoniale dell'interessato, e il modo più solido di proteggerli è non raccoglierli. L'assenza di trasmissione realizza la <em>protezione dei dati fin dalla progettazione</em> dell'articolo 25 e la minimizzazione dell'articolo 5, paragrafo 1, lettera c. Nessun cookie di profilazione viene impiegato per le funzioni di calcolo.</p>
+        </div>
+
+        </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/data-loader.js"></script>
+  <script defer src="/js/imposta-locazioni.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-loc-canone'] = function (campo) {
+      var canone = parseFloat(campo.value);
+      if (!(canone > 0)) return '';
+      var concordato = document.getElementById('tipo-locazione').value === 'lunga_concordata';
+      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
+      var registro = canone * (concordato ? 0.70 : 1) * 0.02;
+      var cedolare = canone * (concordato ? 0.10 : 0.21);
+      return 'Canone di ' + euro(canone) + ': registro annuo ' + euro(registro) + ' da dividere di norma con l\'inquilino, oppure cedolare secca di ' + euro(cedolare) + ' a carico del solo proprietario, che però sostituisce anche l\'IRPEF sul canone.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

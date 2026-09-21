@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Firma PDF Online Gratis e Sicuro (Offline) — StrumentiUtili</title>
+  <meta name="description" content="Aggiungi la tua firma autografa ai documenti PDF. Disegna o carica la tua firma in formato immagine. Elaborazione 100% locale per la massima privacy.">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/firma/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Firma PDF Online in Privacy" />
+  <meta property="og:description" content="Disegna o carica la tua firma e applicala ai PDF senza caricare i tuoi documenti in rete." />
+  <meta property="og:url" content="https://strumentiutili.it/pdf/firma/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Firma PDF",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/pdf/firma/",
+        "description": "Firma grafica su PDF nel browser: il tratto disegnato o l'immagine caricata viene ritagliata, posizionata sull'anteprima della pagina e inserita nel documento, anche su pagine ruotate, senza inviare il file a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/pdf/firma/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Firma tracciata con mouse, dito o pennino",
+          "Caricamento della foto di una firma con sfondo reso trasparente",
+          "Posizionamento sull'anteprima con dimensione reale",
+          "Applicazione a una pagina o a tutte le pagine",
+          "Gestione delle pagine ruotate",
+          "Elaborazione nel browser senza upload"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti PDF",
+            "item": "https://strumentiutili.it/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Firma PDF",
+            "item": "https://strumentiutili.it/pdf/firma/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/pdf/firma/#howto",
+        "name": "Come firmare un PDF",
+        "description": "Procedura per inserire la propria firma grafica in un documento PDF senza inviarlo online.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il PDF da firmare"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica il PDF",
+            "text": "Trascina il documento nel riquadro o sfoglialo dal dispositivo.",
+            "url": "https://strumentiutili.it/pdf/firma/#drop-sign-file"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Traccia la firma",
+            "text": "Disegna la firma nel riquadro, oppure carica la foto di una firma su carta.",
+            "url": "https://strumentiutili.it/pdf/firma/#signature-canvas"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Posizionala",
+            "text": "Fai clic sull'anteprima nel punto desiderato e regola la larghezza in punti.",
+            "url": "https://strumentiutili.it/pdf/firma/#sign-width"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Applica e controlla",
+            "text": "Premi Applica e Scarica PDF, poi apri il file per verificare la firma.",
+            "url": "https://strumentiutili.it/pdf/firma/#apply-signature"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/firma/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Questa firma ha valore legale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È una firma elettronica semplice: può essere usata in molti contratti, ma il suo valore in giudizio è liberamente valutabile dal giudice. Non equivale alla firma digitale e non ha l'efficacia probatoria dell'articolo 2702 del Codice civile."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usarla per il processo telematico o per un atto notarile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. In quei casi serve una firma elettronica qualificata rilasciata da un prestatore qualificato, con smart card, token o firma remota."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La firma esce più piccola di quanto impostato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: la larghezza si applica al tratto disegnato, perché l'immagine viene ritagliata sui pixel effettivamente tracciati. Il riquadro blu dell'anteprima mostra la dimensione reale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funziona con le scansioni ruotate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Le pagine con rotazione /Rotate 90, 180 o 270 vengono gestite: la firma compare dritta nel punto scelto sull'anteprima."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Chi riceve il documento può togliere la firma?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, con un editor PDF l'immagine può essere rimossa o spostata, e il file non conserva traccia della modifica. Per impedirlo serve una firma con certificato."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>✍️</span> Modifica e Firma
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Firma PDF Online (Senza caricamento in rete)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Disegna la tua firma a mano libera, clicca sull'anteprima per posizionarla dove desideri e scarica il documento firmato. Zero server esterni coinvolti.
+        </p>
+
+        <!-- BOX CHIARIMENTO LEGALE (ALINEACIÓN DE EXPECTATIVAS) -->
+        <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed flex items-start gap-3">
+          <span class="text-lg">⚖️</span>
+          <div>
+            <strong>Tipologia di Firma Applicata:</strong> Questo strumento sovrappone al PDF l'immagine della firma: si tratta di una <strong>firma elettronica semplice</strong>, senza certificati né cifratura. Può essere usata per contratti privati, accordi di riservatezza (NDA), modulistica interna e liberatorie, tenendo presente che in caso di contestazione il suo valore è valutato dal giudice caso per caso. <em>Nota: Non sostituisce la Firma Elettronica Qualificata (FEQ / Firma Digitale con certificato .pfx o smartcard/token USB) richiesta per il Processo Civile Telematico (PCT) o atti notarili.</em>
+          </div>
+        </div>
+      </div>
+
+      <section class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <input id="sign-file" type="file" accept="application/pdf" class="hidden" />
+          <div id="drop-sign-file" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition p-6 text-center rounded-xl cursor-pointer shadow-sm">
+            <div class="text-sm font-medium text-gray-700">Trascina qui il PDF oppure <span class="text-indigo-600 font-bold" id="sign-browse">sfoglia</span></div>
+            <div id="sign-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <button type="button" data-guida-toggle="guida-firma-file" aria-expanded="false" aria-controls="guida-firma-file" aria-label="Guida al campo PDF da firmare" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Prima di firmare</button>
+          <div id="guida-firma-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Copia di lavoro:</strong> il file firmato viene scaricato con il suffisso «-firmato»: l'originale sul tuo dispositivo resta invariato.</p>
+            <p><strong class="text-indigo-900">PDF protetti:</strong> i documenti con password di apertura non si possono firmare: rimuovi prima la protezione.</p>
+            <p><strong class="text-indigo-900">Documenti già firmati digitalmente:</strong> aggiungere un'immagine invalida la firma digitale esistente. In quel caso firma prima graficamente e applica la firma digitale per ultima.</p>
+          </div>
+          <div class="flex flex-col justify-center bg-gray-50 p-4 border border-gray-200 rounded-xl">
+            <label class="text-sm font-bold text-gray-800 mb-2">Numero Pagina (Anteprima)</label>
+            <input id="sign-page" type="number" min="1" value="1" class="border border-gray-300 bg-white px-4 py-2.5 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 font-medium" placeholder="1" />
+          </div>
+        </div>
+
+        <div class="mt-5 p-4 bg-indigo-50 border border-indigo-100 rounded-xl shadow-sm">
+          <label class="inline-flex items-center text-sm font-bold text-indigo-900 cursor-pointer">
+            <input id="sign-all-pages" type="checkbox" class="mr-3 rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4">
+            Applica la firma a tutte le pagine del documento
+          </label>
+          <div id="sign-all-pages-nota" class="text-xs text-indigo-700 mt-1 ml-7">La firma verrà replicata nello stesso punto di ogni pagina.</div>
+          <button type="button" data-guida-toggle="guida-firma-tutte" aria-expanded="false" aria-controls="guida-firma-tutte" aria-label="Guida al campo Firma su tutte le pagine" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come funziona</button>
+          <div id="guida-firma-tutte" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Stessa posizione:</strong> la firma viene replicata nello stesso punto di ogni pagina: verifica che quel punto sia libero anche nelle pagine diverse dalla prima.</p>
+            <p><strong class="text-indigo-900">Sigla e firma estesa:</strong> per siglare ogni pagina e firmare per esteso solo l'ultima, applica prima la sigla a tutte le pagine, poi ricarica il file scaricato e applica la firma estesa alla sola ultima pagina.</p>
+            <p><strong class="text-indigo-900">Peso del file:</strong> l'immagine viene inserita una sola volta e richiamata dalle pagine: il file cresce di pochi kilobyte anche con molte pagine.</p>
+          </div>
+        </div>
+
+        <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="text-xs font-bold text-gray-800" for="sign-width">Larghezza firma (punti: 180 pt ≈ 6,3 cm)</label>
+              <button type="button" data-guida-toggle="guida-firma-larghezza" aria-expanded="false" aria-controls="guida-firma-larghezza" aria-label="Guida al campo Larghezza della firma" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-firma-larghezza" aria-describedby="guida-firma-larghezza" id="sign-width" type="number" min="40" value="180" class="border border-gray-300 bg-gray-50 p-2.5 rounded-lg w-full outline-none focus:ring-2 focus:ring-indigo-500 font-medium" />
+            <div id="guida-firma-larghezza" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Unità di misura:</strong> il valore è in punti tipografici: 72 punti corrispondono a 2,54 cm, quindi 180 punti sono circa 6,3 cm, una larghezza adatta a un riquadro di firma standard.</p>
+              <p><strong class="text-indigo-900">Proporzioni:</strong> l'altezza segue automaticamente la forma del tratto disegnato: il riquadro blu dell'anteprima mostra la dimensione reale che avrà la firma.</p>
+              <p><strong class="text-indigo-900">Sigle a margine:</strong> per una sigla ripetuta su tutte le pagine sono spesso sufficienti 60-90 punti.</p>
+            </div>
+          </div>
+          <div class="flex gap-2 flex-wrap items-end pb-0.5">
+            <span class="text-xs font-bold text-gray-800 w-full mb-1">Posizione rapida:</span>
+            <button type="button" id="preset-bottom-left" class="px-4 py-2 bg-gray-100 border border-gray-200 text-sm font-bold rounded-lg hover:bg-indigo-50 transition shadow-sm">Sinistra</button>
+            <button type="button" id="preset-bottom-center" class="px-4 py-2 bg-gray-100 border border-gray-200 text-sm font-bold rounded-lg hover:bg-indigo-50 transition shadow-sm">Centro</button>
+            <button type="button" id="preset-bottom-right" class="px-4 py-2 bg-gray-100 border border-gray-200 text-sm font-bold rounded-lg hover:bg-indigo-50 transition shadow-sm">Destra</button>
+          </div>
+        </div>
+
+        <div id="pdf-preview-container" class="relative border border-gray-300 rounded-xl bg-gray-200 mt-8 overflow-hidden flex justify-center items-center min-h-[400px]">
+          <canvas id="pdf-preview-canvas" class="border shadow-lg bg-white cursor-crosshair max-w-full h-auto"></canvas>
+          <div id="signature-box-overlay" class="absolute border-2 border-indigo-600 bg-indigo-500/20 rounded hidden pointer-events-none flex items-center justify-center text-xs font-bold text-indigo-800 uppercase backdrop-blur-[1px]">Firma qui</div>
+        </div>
+
+        <div class="mt-8">
+          <label class="block text-sm font-bold text-gray-800 mb-2">1. Traccia la firma in questo riquadro:</label>
+          <canvas id="signature-canvas" width="600" height="200" class="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 w-full shadow-inner" style="touch-action:none; cursor:crosshair"></canvas>
+        </div>
+        
+        <div class="mt-5 flex gap-3 flex-wrap">
+          <button id="clear-signature" class="bg-white border border-gray-300 text-gray-700 font-bold px-5 py-3 rounded-xl hover:bg-gray-50 shadow-sm transition">Ridisegna</button>
+          <label class="bg-indigo-50 border border-indigo-200 text-indigo-700 font-bold px-5 py-3 rounded-xl cursor-pointer hover:bg-indigo-100 shadow-sm transition flex-1 sm:flex-none text-center">
+            Oppure Carica (JPG/PNG)
+            <input id="signature-upload" type="file" accept="image/png, image/jpeg, image/jpg" class="hidden" />
+          </label>
+          <button id="apply-signature" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-sm transition ml-auto w-full sm:w-auto">2. Applica e Scarica PDF</button>
+        </div>
+        <div id="signature-msg" class="mt-3 text-sm font-medium text-emerald-600 text-right"></div>
+        <button type="button" data-guida-toggle="guida-firma-applica" aria-expanded="false" aria-controls="guida-firma-applica" aria-label="Guida al campo Applicazione della firma" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa viene inserito nel PDF</button>
+        <div id="guida-firma-applica" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Solo il tratto:</strong> viene inserita l'immagine ritagliata sul tratto disegnato, con sfondo trasparente: il riquadro vuoto attorno non finisce nel documento.</p>
+          <p><strong class="text-indigo-900">Nessun certificato:</strong> non viene aggiunta alcuna firma digitale: chi riceve il file non può verificarne crittograficamente la provenienza, e l'immagine può essere rimossa con un editor PDF.</p>
+          <p><strong class="text-indigo-900">Controllo finale:</strong> apri il file scaricato e verifica posizione e dimensione della firma prima di inviarlo.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Validatore PDF/A</a></li>
+            <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Anonimizza PDF (Redact)</a></li>
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📂</span> Unisci e Dividi PDF</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🗜️</span> Comprimi e Converti PDF</a></li>
+              <li><a href="/pdf/scanner-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Scanner Documenti</a></li>
+            </ul>
+          </details>
+          <a href="/pdf/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Strumenti PDF</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Posizionamento della firma verificato su pagine ruotate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF, il tratto della firma e l'eventuale immagine caricata restano nel browser: nessun file viene inviato a server. Le librerie pdf.js e pdf-lib sono scaricate da CDN al primo utilizzo e non ricevono i documenti (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e tecniche</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 910/2014 (eIDAS), artt. 3, 25 e 26; Codice dell'amministrazione digitale (D.Lgs. 82/2005), artt. 20 e 24; art. 2702 del Codice civile; Regolamento UE 2016/679 (GDPR), artt. 25 e 32; ISO 32000 (formato PDF); librerie pdf.js e pdf-lib.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Giurisprudenza della Firma Elettronica, Mappatura Cartesiana Inversa e Protezione dei Dati Sensibili (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La sottoscrizione informatica dei documenti in formato Portable Document Format (PDF) rappresenta un pilastro operativo imprescindibile per professionisti, aziende e pubbliche amministrazioni. Sovrapporre a un PDF l'immagine della propria firma è rapido, ma non equivale a firmare digitalmente: cambia il valore probatorio del documento e cambia ciò che si può dimostrare in caso di contestazione. Poiché l'elaborazione avviene nel browser, il documento e il tratto della firma non vengono trasmessi ad alcun servizio. Questa guida spiega quali livelli di firma prevede la normativa, come lo strumento colloca la firma nella pagina (comprese le pagine ruotate) e quali sono i suoi limiti.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Regolamento eIDAS (UE 910/2014), CAD D.Lgs. 82/2005 e Compliance GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La disciplina della sottoscrizione digitale dei documenti si incardina a livello europeo sul Regolamento UE n. 910/2014 (eIDAS - Electronic Identification Authentication and Trust Services) e, nell'ordinamento italiano, sul Codice dell'Amministrazione Digitale (CAD - D.Lgs. 82/2005). L'architettura giuridica stratifica le firme elettroniche secondo tre livelli a valore probatorio crescente:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+              <li><strong>Firma Elettronica Semplice (FES):</strong> Definita dall'Articolo 3, n. 10 del Regolamento eIDAS e dall'Articolo 20 del CAD come l'insieme dei dati in forma elettronica, allegati oppure connessi tramite associazione logica ad altri dati elettronici, utilizzati dal firmatario per firmare. L'articolo 20 del CAD stabilisce che l'idoneità del documento informatico a soddisfare il requisito della forma scritta e il suo valore probatorio sono liberamente valutabili in giudizio, tenuto conto delle caratteristiche oggettive di qualità, sicurezza, integrità e immodificabilità. Il documento non gode quindi dell'efficacia probatoria rafforzata dell'articolo 2702 del Codice civile, riservata alle firme di livello superiore.</li>
+              <li><strong>Firma Elettronica Avanzata (FEA):</strong> Disciplinata dall'articolo 26 eIDAS. Richiede la connessione univoca al firmatario, la sua identificazione, il controllo esclusivo dei dati di creazione della firma e la capacità di rilevare ogni modifica successiva del documento. Il documento firmato con FEA ha l'efficacia probatoria della scrittura privata prevista dall'articolo 2702 del Codice civile.</li>
+              <li><strong>Firma Elettronica Qualificata (FEQ) / Firma Digitale:</strong> Basata su un certificato qualificato rilasciato da un prestatore di servizi fiduciari qualificato, vigilato da AgID, e creata con un dispositivo sicuro (smart card, token USB o firma remota). Ha lo stesso effetto giuridico della firma autografa e il documento fa piena prova, fino a querela di falso, della provenienza delle dichiarazioni (art. 2702 del Codice civile).</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Questo strumento produce una firma elettronica semplice: l'immagine PNG del tratto viene sovrapposta alla pagina del PDF. Anche l'immagine di una firma autografa è un dato personale e va trattata con le stesse cautele del documento che accompagna.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I servizi commerciali cloud tradizionali impongono l'upload remoto del documento e dell'immagine della firma. Tale architettura introduce una severa criticità di conformità, costringendo il Titolare del Trattamento (Data Controller) ad eseguire una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR), a registrare il flusso nel Registro dei Trattamenti (Art. 30 GDPR) e a stipulare un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore esterno.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'infrastruttura Zero-Backend (Serverless Client-Side) di questo strumento incarna matematicamente il principio di Data Protection by Design e by Default (Articolo 25 GDPR). L'intero ciclo — acquisizione del tratto, disegno su canvas, conversione delle coordinate e riscrittura del PDF con `pdf-lib` — avviene nella memoria del dispositivo. Non essendoci trasmissione del documento, per questa operazione non c'è un fornitore da nominare responsabile del trattamento; restano a carico di chi usa lo strumento la sicurezza del dispositivo e la conservazione dei file firmati.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e formule: coordinate dello schermo e della pagina, ritaglio del tratto e pagine ruotate</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Dalle coordinate dello schermo a quelle della pagina</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Nel browser l'origine $(0,0)$ dell'elemento <code>canvas</code> è nell'angolo in alto a sinistra e l'asse $Y$ cresce verso il basso; nello standard PDF (ISO 32000) l'origine è in basso a sinistra e l'asse $Y$ cresce verso l'alto. Il punto in cui fai clic sull'anteprima diventa l'angolo in alto a sinistra della firma, espresso come frazione della pagina, e viene convertito in punti tipografici ($1\text{ pt} = 1/72$ di pollice, circa $0,35$ mm):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-sm">
+              $X_{\text{pdf}} = \left( \frac{X_{\text{canvas}}}{W_{\text{canvas}}} \right) \times W_{\text{pagina}}$
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-sm">
+              $Y_{\text{pdf}} = H_{\text{pagina}} - \left( \frac{Y_{\text{canvas}}}{H_{\text{canvas}}} \right) \times H_{\text{pagina}} - H_{\text{firma}}$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Dove $H_{\text{firma}}$ è l'altezza della firma, calcolata dalla larghezza scelta mantenendo le proporzioni del tratto.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Ritaglio del tratto e dimensione reale</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il riquadro di disegno misura 600×200 pixel, ma la firma ne occupa solo una parte. Prima di inserirla nel PDF, lo strumento individua il rettangolo dei pixel effettivamente disegnati e ritaglia l'immagine su quel rettangolo, con un piccolo margine. Senza questo passaggio la larghezza impostata si applicherebbe a tutto il riquadro: in una prova con 180 punti la firma finiva larga 21 punti, molto più piccola e spostata rispetto al riquadro mostrato nell'anteprima. L'immagine ritagliata viene salvata in PNG con sfondo trasparente e inserita una sola volta nel documento come oggetto immagine (<code>/XObject</code>); applicandola a tutte le pagine, ogni pagina richiama lo stesso oggetto, quindi il file cresce di poco.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Pagine ruotate</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Molte scansioni hanno una rotazione registrata nel dizionario della pagina (<code>/Rotate 90</code>, <code>180</code> o <code>270</code>): il documento appare dritto, ma le coordinate interne sono ruotate. Lo strumento calcola la posizione nella pagina così come la vedi, poi la converte nelle coordinate interne e ruota l'immagine della firma della stessa quantità, in modo che risulti dritta. Il comportamento è stato verificato sui quattro valori di rotazione confrontando la posizione dell'inchiostro nel file prodotto con il riquadro dell'anteprima.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Cosa questo strumento non fa</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La firma è un'immagine sovrapposta alla pagina: non c'è alcuna operazione crittografica, nessun certificato e nessun campo firma PAdES. Il file prodotto non contiene un'impronta che permetta di accorgersi di modifiche successive, e chiunque disponga di un editor PDF può rimuovere o spostare l'immagine. Per una firma con valore di firma digitale serve un certificato qualificato e il software del proprio fornitore.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Accordi di Riservatezza (NDA), Consensi Informati Medici e Pratiche HR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: accordo di riservatezza (NDA) da sottoscrivere in giornata.</strong><br />
+              Un consulente deve firmare un NDA di 12 pagine prima di accedere ai documenti di un'operazione societaria: serve una sigla su ogni pagina e la firma estesa sull'ultima.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Con lo strumento traccia la sigla, spunta «Applica la firma a tutte le pagine» e sceglie la posizione in basso a sinistra. Poi toglie la spunta, ridisegna la firma estesa e la posiziona con un clic sull'anteprima dell'ultima pagina, ripetendo l'operazione sul file appena scaricato. Il documento non lascia il computer; resta però una firma elettronica semplice, il cui valore dipende da quanto le parti possono dimostrare sulla sua provenienza.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: consensi informati in uno studio sanitario.</strong><br />
+              Uno studio medico fa firmare ai pazienti il consenso informato e l'informativa sul trattamento dei dati.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Su un tablet, la segreteria apre il modulo PDF e il paziente firma sullo schermo con il dito o con un pennino; il file firmato viene salvato nella cartella dello studio. Non essendoci un servizio esterno, per questa operazione non serve nominare un responsabile del trattamento; restano da rispettare gli altri obblighi, come informativa, conservazione dei file e misure di sicurezza sul dispositivo.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 3: fogli presenza e note spese.</strong><br />
+              L'ufficio del personale raccoglie ogni mese fogli firmati da decine di dipendenti.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La firma grafica sul PDF evita il ciclo stampa-firma-scansione e produce file già pronti per l'archiviazione. Per documenti che incidono su rapporti di lavoro conviene però valutare una firma elettronica avanzata, che lega la firma all'identità del firmatario e rileva le modifiche successive.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti con lo strumento su pagine A4 create per la prova; la posizione dell'inchiostro nel file scaricato è stata misurata rendendo la pagina con pdf.js e confrontandola con il riquadro dell'anteprima.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: firma larga 180 punti in basso a destra</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Pagina A4 (595 × 842 punti), posizione rapida «Destra»</li>
+            <li>Riquadro dell'anteprima: 415 punti da sinistra, 702 dall'alto, 180 × 140 punti</li>
+            <li>Inchiostro nel PDF: 425 punti da sinistra, 711 dall'alto, 161 × 122 punti</li>
+            </ul>
+            <p>Lo scarto di una decina di punti è il margine trasparente lasciato attorno al tratto: la firma resta dentro il riquadro mostrato. Prima della revisione di questo strumento la stessa firma veniva inserita larga 21 punti, perché la larghezza si applicava all'intero riquadro di disegno invece che al tratto.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: scansione con pagina ruotata</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Pagina con rotazione /Rotate 90: visualizzata 842 × 595 punti</li>
+            <li>Riquadro dell'anteprima: 589 punti da sinistra, 455 dall'alto</li>
+            <li>Inchiostro nel PDF: 599 punti da sinistra, 465 dall'alto, orientato come nell'anteprima</li>
+            </ul>
+            <p>Le prove ripetute con rotazione 0, 90, 180 e 270 danno lo stesso risultato: la firma compare dritta e nel punto scelto. È il caso più frequente con i documenti scansionati o ricevuti da fotocopiatrici di rete.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: foto di una firma a penna blu</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Immagine JPEG 400 × 150, tratto blu su carta bianca</li>
+            <li>Dopo il caricamento: 114.618 pixel resi trasparenti, 4.731 opachi</li>
+            <li>Colore medio del tratto conservato: RGB 41, 49, 142</li>
+            </ul>
+            <p>Lo sfondo della carta sparisce e il tratto mantiene il colore originale: la firma si appoggia sul documento senza il rettangolo bianco della foto. Con fogli a righe o fotografie molto scure il risultato peggiora, perché la separazione si basa sulla luminosità dei pixel.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ ed errori: pagine ruotate, firma fotografata e valore giuridico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Alineazione delle Aspettative: Differenza tra FES (Firma Grafica) e FEQ / Firma Digitale:</strong><br />
+              È fondamentale chiarire in modo trasparente l'ambito di efficacia giuridica della firma applicata da questo strumento. Lo strumento sovrappone al documento l'immagine della firma, senza certificati: è una firma elettronica semplice. È utilizzabile per contratti fra privati e imprese, accordi di riservatezza, accettazione di preventivi, fogli presenze e liberatorie, ma non garantisce da sola chi ha firmato né che il documento non sia stato modificato dopo. Tuttavia, non sostituisce e non costituisce una Firma Elettronica Qualificata (FEQ / Firma Digitale) basata su certificati cifrati forniti da enti accreditati AgID (es. Aruba, InfoCert, Namirial tramite smartcard o token USB). Per il deposito di atti giudiziari nel Processo Civile Telematico (PCT) o per atti immobiliari ad *substantiam* ex Art. 1350 C.C., è obbligatorio utilizzare un software di firma qualificata PAdES/CAdES.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Pagine ruotate (chiave <code>/Rotate</code>):</strong><br />
+              Un documento può contenere pagine che appaiono dritte ma hanno una rotazione registrata nel codice (<code>/Rotate 90</code>, <code>180</code> o <code>270</code>): è il caso tipico delle scansioni. Un'applicazione che ignora questo attributo colloca la firma ruotata o in un punto diverso da quello scelto. Lo strumento converte le coordinate dell'anteprima nel sistema di riferimento interno della pagina e ruota l'immagine di conseguenza; la corrispondenza fra anteprima e risultato è stata verificata sulle quattro rotazioni.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Firma fotografata su carta:</strong><br />
+              Se carichi la foto di una firma, lo strumento rende trasparenti i pixel chiari e conserva il colore del tratto, con un passaggio graduale sui bordi per evitare l'effetto ritaglio. Funziona meglio con un foglio bianco ben illuminato e senza ombre: su carta a quadretti o con fondo scuro il risultato è irregolare. Una firma tracciata direttamente nel riquadro resta la soluzione più pulita.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Sanzioni per Esfiltrazione Involontaria di Tratti Autografi (Articolo 83 GDPR):</strong><br />
+              L'invio di contratti contenenti firme autografe a convertitori o editor cloud non verificati espone le aziende al rischio di data breach e profilazione grafologica. Le sanzioni edittali previste dal GDPR per la mancata adozione di adeguate misure di sicurezza (Art. 32 GDPR) o per il trattamento illecito possono raggiungere 20 milioni di euro o fino al 4% del fatturato globale annuo. Con l'elaborazione nel browser il documento e la firma non vengono trasmessi ad alcun servizio, quindi questo rischio specifico non si pone; restano da curare la sicurezza del dispositivo e la custodia dei file.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Questa firma ha valore legale?</h3>
+            <p>È una firma elettronica semplice: può essere usata in molti contratti, ma il suo valore in giudizio è liberamente valutabile dal giudice. Non equivale alla firma digitale e non ha l'efficacia probatoria dell'articolo 2702 del Codice civile.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso usarla per il processo telematico o per un atto notarile?</h3>
+            <p>No. In quei casi serve una firma elettronica qualificata rilasciata da un prestatore qualificato, con smart card, token o firma remota.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La firma esce più piccola di quanto impostato?</h3>
+            <p>No: la larghezza si applica al tratto disegnato, perché l'immagine viene ritagliata sui pixel effettivamente tracciati. Il riquadro blu dell'anteprima mostra la dimensione reale.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Funziona con le scansioni ruotate?</h3>
+            <p>Sì. Le pagine con rotazione /Rotate 90, 180 o 270 vengono gestite: la firma compare dritta nel punto scelto sull'anteprima.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Chi riceve il documento può togliere la firma?</h3>
+            <p>Sì, con un editor PDF l'immagine può essere rimossa o spostata, e il file non conserva traccia della modifica. Per impedirlo serve una firma con certificato.</p>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" crossorigin="anonymous"></script>
+  
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/pdf-tools.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

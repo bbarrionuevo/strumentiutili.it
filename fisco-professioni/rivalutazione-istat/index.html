@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rivalutazione ISTAT FOI e Calcolo Interessi Legali 2026 — StrumentiUtili.it</title>
+  <meta name="description" content="Aggiorna il canone di locazione con gli indici ISTAT FOI e calcola gli interessi legali 2026 (1,60%) con algoritmo pro rata temporis. Tool gratuito e offline." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/rivalutazione-istat/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rivalutazione ISTAT e Interessi Legali 2026" />
+  <meta property="og:description" content="Calcolatore professionale per l'adeguamento affitti (75% - 100%) e la liquidazione di interessi legali storici. Nessun dato salvato sui server." />
+  <meta property="og:url" content="https://strumentiutili.it/fisco-professioni/rivalutazione-istat/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fisco & Professioni",
+            "item": "https://strumentiutili.it/fisco-professioni/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Rivalutazione ISTAT",
+            "item": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore Rivalutazione ISTAT e Interessi Legali",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Aggiornamento del canone di locazione con gli indici FOI ISTAT al 75% o al 100%, con raccordo fra base 2015 e base 2025, e calcolo degli interessi legali giorno per giorno con il tasso di ciascun anno.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Variazione FOI fra due mesi con coefficiente di raccordo 1,214",
+          "Aggiornamento del canone al 75% o al 100%",
+          "Blocco della variazione negativa",
+          "Interessi legali per anno solare con anni bisestili",
+          "Nessun dato inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#howto",
+        "name": "Come aggiornare un canone di locazione con l'indice ISTAT",
+        "description": "Procedura per calcolare l'aumento ISTAT del canone e gli interessi legali su una somma pagata in ritardo.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Contratto di locazione con canone e data di decorrenza"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci il canone",
+            "text": "Indica il canone mensile in vigore.",
+            "url": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#istat-canone"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli i mesi di confronto",
+            "text": "Seleziona il mese precedente la ricorrenza del contratto e lo stesso mese dell'anno prima.",
+            "url": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#istat-mese-inizio"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Scegli la percentuale",
+            "text": "Seleziona 75% o 100% secondo il contratto e la tipologia di immobile.",
+            "url": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#istat-percentuale"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi il nuovo canone",
+            "text": "Il calcolatore mostra variazione ISTAT, aumento mensile e nuovo canone.",
+            "url": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#res-istat-nuovo"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/fisco-professioni/rivalutazione-istat/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Posso sommare liberamente rivalutazione e interessi legali?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non nel modo intuitivo. Per i debiti di valore le Sezioni Unite hanno chiarito che gli interessi non vanno calcolati sulla somma già integralmente rivalutata, perché ciò produrrebbe una duplicazione del risarcimento, ma sul capitale via via rivalutato anno per anno. Per i debiti di valuta la rivalutazione non spetta automaticamente e va provata come maggior danno rispetto agli interessi legali."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa accade se l'indice ISTAT diminuisce?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In periodo di deflazione il coefficiente scende sotto l'unità e produrrebbe matematicamente una riduzione del credito. La giurisprudenza prevalente esclude però che l'aggiornamento possa tradursi in una decurtazione del canone di locazione o del credito, riconoscendo alla clausola una funzione di sola salvaguardia del potere d'acquisto. Il risultato pratico è un blocco al valore precedente anziché una variazione negativa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché nei contratti di locazione si applica spesso il 75% dell'indice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché molti contratti prevedono convenzionalmente un aggiornamento in misura ridotta rispetto alla variazione piena, soluzione che riflette un equilibrio negoziale consolidato nella prassi. La misura applicabile va verificata nella clausola contrattuale: in assenza di previsione espressa l'aggiornamento non è automatico e va richiesto dal locatore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'aggiornamento ISTAT è dovuto anche in regime di cedolare secca?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. L'opzione per la cedolare secca comporta la rinuncia del locatore, per l'intera durata dell'opzione, alla facoltà di chiedere l'aggiornamento del canone a qualsiasi titolo, compreso quello legato alla variazione degli indici ISTAT. La rinuncia va comunicata per iscritto al conduttore ed è condizione di efficacia dell'opzione stessa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Da quale data decorre la rivalutazione di un credito risarcitorio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dalla data dell'evento dannoso, non da quella della domanda giudiziale né da quella della sentenza. Il debito di valore si rivaluta per l'intero periodo intercorso fino alla liquidazione, momento in cui si trasforma in debito di valuta e da lì in avanti produce soltanto interessi legali sulla somma liquidata."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gli interessi si calcolano su 365 o su 366 giorni?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sull'effettiva durata dell'anno di competenza. Il motore applica 366 giorni agli anni bisestili, come il 2024, e 365 agli altri. Su importi elevati e periodi lunghi la differenza non è trascurabile e costituisce uno dei motivi ricorrenti di contestazione dei conteggi prodotti in sede stragiudiziale."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-indigo-600 font-semibold">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- 1. MAIN -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/fisco-professioni/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna a Fisco & Professioni</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>⚖️</span> Diritto e Burocrazia
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Rivalutazione ISTAT FOI e Interessi Legali</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Aggiorna l'affitto con l'indice nazionale FOI e calcola gli interessi legali civili sulle pendenze. L'algoritmo integra i tassi ufficiali del MEF validi per il 2026.
+        </p>
+      </section>
+
+      <!-- Strumento 1: ISTAT FOI -->
+      <h2 class="text-xl font-bold text-gray-800 mb-4">1. Adeguamento ISTAT Canoni di Locazione</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <form class="space-y-4" id="istat-form">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="istat-canone" class="text-sm font-bold text-gray-700">Canone Base (€)</label>
+                <button type="button" data-guida-toggle="guida-istat-canone" aria-expanded="false" aria-controls="guida-istat-canone" aria-label="Guida al campo Canone base" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-istat-canone" aria-describedby="guida-istat-canone" type="number" id="istat-canone" placeholder="Es. 800" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-gray-50" />
+              <div id="guida-istat-canone" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Quale importo:</strong> il canone mensile in vigore prima dell'aggiornamento, compresi gli aumenti ISTAT degli anni precedenti già richiesti. Escludi spese condominiali e altri oneri accessori.</p>
+                <p><strong class="text-indigo-900">Anni non richiesti:</strong> gli aggiornamenti non chiesti negli anni passati non si recuperano con gli arretrati: la richiesta vale dal mese successivo a quello in cui il conduttore la riceve.</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="istat-mese-inizio" class="text-sm font-bold text-gray-700">Mese Inizio</label>
+                  <button type="button" data-guida-toggle="guida-istat-mesi" aria-expanded="false" aria-controls="guida-istat-mesi" aria-label="Guida al campo Mesi di confronto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <select data-guida="guida-istat-mesi" aria-describedby="guida-istat-mesi" id="istat-mese-inizio" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                  <option value="01">Gennaio</option><option value="02">Febbraio</option><option value="03">Marzo</option>
+                  <option value="04">Aprile</option><option value="05">Maggio</option><option value="06">Giugno</option>
+                  <option value="07">Luglio</option><option value="08">Agosto</option><option value="09">Settembre</option>
+                  <option value="10">Ottobre</option><option value="11">Novembre</option><option value="12">Dicembre</option>
+                </select>
+                <div id="guida-istat-mesi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Aggiornamento annuale:</strong> si confronta l'indice del mese precedente la ricorrenza del contratto con quello dello stesso mese dell'anno prima. Per un contratto iniziato il 1° ottobre si usano gli indici di agosto, gli ultimi pubblicati a settembre.</p>
+                  <p><strong class="text-indigo-900">Cambio di base 2026:</strong> da gennaio 2026 ISTAT pubblica gli indici in base 2025=100. Per confrontarli con quelli fino a dicembre 2025 il calcolatore li moltiplica per il coefficiente di raccordo 1,214.</p>
+                  <p><strong class="text-indigo-900">Indici disponibili:</strong> l'ultimo indice caricato è quello di agosto 2026. Per i mesi successivi il calcolatore mostra «Dati ISTAT non disponibili».</p>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1">Anno</label>
+                <select id="istat-anno-inizio" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                  <option value="2023">2023</option><option value="2024">2024</option><option value="2025" selected>2025</option><option value="2026">2026</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="istat-mese-fine" class="text-sm font-bold text-gray-700">Mese Fine</label>
+                  <button type="button" data-guida-toggle="guida-istat-periodo" aria-expanded="false" aria-controls="guida-istat-periodo" aria-label="Guida al campo Periodo di confronto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <select data-guida="guida-istat-periodo" aria-describedby="guida-istat-periodo" id="istat-mese-fine" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                  <option value="01">Gennaio</option><option value="02">Febbraio</option><option value="03">Marzo</option>
+                  <option value="04">Aprile</option><option value="05">Maggio</option><option value="06">Giugno</option>
+                  <option value="07">Luglio</option><option value="08">Agosto</option><option value="09">Settembre</option>
+                  <option value="10">Ottobre</option><option value="11">Novembre</option><option value="12">Dicembre</option>
+                </select>
+                <div id="guida-istat-periodo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Un anno o più:</strong> per l'aggiornamento annuale il mese finale dista 12 mesi da quello iniziale. Periodi più lunghi servono a rivalutare un credito o a ricalcolare più annualità non ancora applicate.</p>
+                  <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1">Anno</label>
+                <select id="istat-anno-fine" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                  <option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026" selected>2026</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="istat-percentuale" class="text-sm font-bold text-gray-700">Percentuale Applicabile (L. 392/78)</label>
+                <button type="button" data-guida-toggle="guida-istat-percentuale" aria-expanded="false" aria-controls="guida-istat-percentuale" aria-label="Guida al campo Percentuale applicabile" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-istat-percentuale" aria-describedby="guida-istat-percentuale" id="istat-percentuale" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                <option value="100">100% (Intera Variazione)</option>
+                <option value="75">75% (Contratti Residenziali / Commerciali base)</option>
+              </select>
+              <div id="guida-istat-percentuale" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">75%:</strong> obbligatorio come massimo per negozi, uffici e altri immobili non abitativi; prassi degli accordi territoriali per i contratti abitativi a canone concordato.</p>
+                <p><strong class="text-indigo-900">100%:</strong> possibile nei contratti abitativi a canone libero se il contratto lo prevede, e usato per rivalutare crediti, assegni di mantenimento e risarcimenti.</p>
+                <p><strong class="text-indigo-900">Cedolare secca:</strong> se il locatore ha scelto la cedolare secca, per tutta la durata dell'opzione l'aggiornamento ISTAT non è dovuto, qualunque sia la percentuale scritta nel contratto.</p>
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <article class="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center text-center shadow-inner">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Canone Aggiornato</h3>
+          <div id="res-istat-nuovo" class="text-4xl font-extrabold text-indigo-700 tracking-tight">€ 0,00</div>
+          <div class="mt-6 text-sm text-gray-600 space-y-2">
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Variazione FOI Reale:</span>
+              <span class="font-bold text-gray-900" id="res-istat-diff">0,00%</span>
+            </div>
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Aumento Mensile:</span>
+              <span class="font-bold text-emerald-600" id="res-istat-aumento">+ € 0,00</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Strumento 2: Interessi Legali -->
+      <h2 class="text-xl font-bold text-gray-800 mb-4 border-t border-gray-200 pt-6">2. Calcolo Interessi Legali (Art. 1284 c.c.)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <form class="space-y-4" id="interessi-form">
+            <div>
+              <label class="block text-sm font-bold text-gray-700 mb-1">Capitale Dovuto (€)</label>
+              <input type="number" id="int-capitale" placeholder="Es. 5000" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-gray-50" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="int-data-inizio" class="text-sm font-bold text-gray-700">Data Inizio Mora</label>
+                  <button type="button" data-guida-toggle="guida-int-date" aria-expanded="false" aria-controls="guida-int-date" aria-label="Guida al campo Date degli interessi" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-int-date" aria-describedby="guida-int-date" type="date" id="int-data-inizio" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white outline-none focus:ring-2 focus:ring-indigo-500">
+                <div id="guida-int-date" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Data iniziale:</strong> il giorno di scadenza del pagamento o, se non c'è un termine, quello in cui il debitore riceve la richiesta scritta di pagamento (messa in mora).</p>
+                  <p><strong class="text-indigo-900">Conteggio:</strong> gli interessi maturano dal giorno successivo alla data iniziale fino alla data di saldo compresa, con il tasso di ciascun anno solare: 2,5% nel 2024 su 366 giorni, 2% nel 2025, 1,6% nel 2026.</p>
+                  <p><strong class="text-indigo-900">Fra imprese:</strong> per i ritardi nelle transazioni commerciali si applicano gli interessi moratori del D.Lgs. 231/2002, molto più alti del tasso legale: usa il calcolatore degli interessi moratori.</p>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1">Data Saldo Debito</label>
+                <input type="date" id="int-data-fine" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <article class="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center text-center shadow-inner">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Totale Dovuto (Capitale + Int.)</h3>
+          <div id="res-int-totale" class="text-4xl font-extrabold text-indigo-700 tracking-tight">€ 0,00</div>
+          <div class="mt-6 text-sm text-gray-600 space-y-2">
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Interessi Maturati:</span>
+              <span class="font-bold text-rose-600" id="res-int-maturati">€ 0,00</span>
+            </div>
+            <div class="flex justify-between items-center bg-white px-4 py-2 rounded border border-gray-100">
+              <span>Giorni di Ritardo:</span>
+              <span class="font-bold text-gray-900" id="res-int-giorni">0</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </main>
+
+    <!-- 2. ASIDE -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Interessi Moratori B2B</a></li>
+            <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📜</span> Usufrutto e Nuda Proprietà</a></li>
+            <li><a href="/fisco-professioni/ravvedimento-operoso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⏱️</span> Ravvedimento Operoso</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Calcolo Scorporo IVA</a></li>
+              <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Contributo Unificato 2026</a></li>
+              <li><a href="/fisco-professioni/generatore-xml-fatturapa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> Generatore FatturaPA XML</a></li>
+              <li><a href="/fisco-professioni/modelli-partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏢</span> Modelli AA9/12 e AA7/10</a></li>
+              <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Parcella Avvocato</a></li>
+              <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧮</span> Partita IVA Forfettaria</a></li>
+              <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Simulatore Rata Mutuo</a></li>
+              <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
+            </ul>
+          </details>
+          <a href="/fisco-professioni/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Fisco &amp; Professioni</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- 3. CONTENEDOR SEO (+1000 Parole) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Indici FOI ISTAT e tassi di interesse legale aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">Indici dei prezzi al consumo per le famiglie di operai e impiegati senza tabacchi pubblicati dall'ISTAT (base 2015=100 fino al 2025, base 2025=100 con coefficiente di raccordo 1,214 dal 2026), L. 392/1978 art. 32, L. 431/1998, D.Lgs. 23/2011 art. 3, codice civile artt. 1224, 1283 e 1284, decreti annuali del Ministero dell'Economia sul saggio degli interessi legali.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Dossier Giuridico: Aggiornamento ISTAT FOI e Maturazione degli Interessi Legali (Artt. 1283 e 1284 c.c.)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">Il calcolo della svalutazione monetaria e la liquidazione degli interessi civili su debiti pecuniari costituiscono procedimenti algebrico-giuridici di primaria importanza per avvocati, amministratori di condominio e consulenti finanziari. Il framework normativo italiano vincola severamente l'aggiornamento dei canoni di locazione (Legge 392/1978) e sanziona il ritardo nell'adempimento delle obbligazioni pecuniarie applicando i saggi d'interesse dettati annualmente dal Ministero dell'Economia e delle Finanze. Il presente trattato sviscera l'architettura matematica utilizzata dai nostri algoritmi, delineando le formule "pro rata temporis" per i calcoli frazionati, la gestione dei leap years (anni bisestili) e la disciplina stringente del divieto di anatocismo.</p>
+        
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>1.</span> Costrutto Matematico della Rivalutazione ISTAT (Indice FOI)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La svalutazione del potere d'acquisto della moneta viene misurata dall'Istituto Nazionale di Statistica (ISTAT) tramite l'Indice Nazionale dei Prezzi al Consumo per le Famiglie di Operai e Impiegati (FOI, al netto dei tabacchi). Questo indicatore costituisce la base legale per la correzione inflattiva di assegni di mantenimento, pensioni e contratti di locazione commerciale e abitativa.</p>
+            <p>Dal punto di vista algebrico, il calcolo della variazione percentuale ($\Delta\%_{\text{FOI}}$) tra due periodi di riferimento ($m_1, a_1$ per il mese base e $m_2, a_2$ per il mese finale) è espresso dalla seguente relazione differenziale:</p>
+            <div class="overflow-x-auto my-4 text-center">
+              $$\Delta\%_{\text{FOI}} = \left[\frac{\text{Indice FOI}_{m_2,a_2} - \text{Indice FOI}_{m_1,a_1}}{\text{Indice FOI}_{m_1,a_1}}\right] \cdot 100$$
+            </div>
+            <p>La normativa vincola strettamente la percentuale di adeguamento contrattuale ($\beta$) applicabile. Per le locazioni a uso diverso dall'abitativo, come negozi, uffici e laboratori, l'art. 32 della L. 392/1978 limita l'aggiornamento annuale al <strong>75%</strong> della variazione accertata dall'ISTAT ($\beta = 0,75$). Per le locazioni abitative a canone libero 4+4 la misura è rimessa al contratto, che può prevedere anche la variazione integrale al <strong>100%</strong> ($\beta = 1,00$); nei contratti a canone concordato gli accordi territoriali fissano di norma il 75%. L'aggiornamento spetta solo se previsto dal contratto. L'equazione di rivalutazione finale diventa pertanto: $\text{Canone Aggiornato} = \text{Canone Base} \cdot \left[1 + \left(\frac{\Delta\%_{\text{FOI}} \cdot \beta}{100}\right)\right]$.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>2.</span> Il Fenomeno della Deflazione: Il Blocco Giurisprudenziale</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Una criticità algoritmica di rilevante impatto sorge durante i cicli economici caratterizzati da tassi di inflazione negativi (deflazione). In queste fasi contingenti, l'indice FOI del mese di calcolo risulta inferiore all'indice del mese base, generando matematicamente una variazione percentuale negativa ($\Delta\%_{\text{FOI}} < 0$).</p>
+            <p>Qualora il calcolo fosse condotto in maniera acritica, la formula produrrebbe una diminuzione nominale del canone di locazione. Tuttavia, secondo l'interpretazione prevalente, in assenza di una specifica clausola contrattuale in deroga, l'adeguamento ISTAT tutela il potere d'acquisto del locatore ma non può tradursi in una decurtazione del canone originariamente pattuito in caso di recessione economica.</p>
+            <p>Il nostro software integra pertanto un costrutto di blocco condizionale normativo (floor at zero): la variazione viene neutralizzata se negativa ($\Delta\%_{\text{FOI}} < 0 \implies \Delta\%_{\text{FOI}} = 0$), garantendo l'invarianza del canone di locazione nell'annualità di deflazione, per poi riprendere regolarmente il conteggio incrementale nei periodi successivi.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>3.</span> Tassi di Interesse Legale (2026) e Calcolo Pro Rata Temporis</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La ritardata esecuzione di un'obbligazione pecuniaria obbliga il debitore a corrispondere al creditore gli interessi moratori civili, calcolati in base al saggio di interesse legale fissato dall'Articolo 1284 del Codice Civile. Tale tasso è soggetto a revisione annuale da parte del Ministero dell'Economia e delle Finanze (MEF) con apposito Decreto Ministeriale.</p>
+            <p>A partire dal 1° gennaio 2026, il tasso d'interesse legale civile è fissato all'<strong>1,60% su base annua</strong>. Questo valore costituisce una flessione rispetto alle annualità pregresse (il tasso era del 2,00% nel 2025, del 2,50% nel 2024 e del 5,00% nel 2023). Poiché un debito può protrarsi attraverso molteplici annualità solari, il calcolo della quota interessi non può basarsi esclusivamente sul tasso odierno, ma deve frammentare l'orizzonte temporale in corrispondenza dei tassi vigenti in ogni singola epoca.</p>
+            <p>L'algoritmo sviluppato esegue un calcolo per giorni solari (pro rata temporis) applicando la formula della capitalizzazione semplice:</p>
+            <div class="overflow-x-auto my-4 text-center">
+              $$\text{Interessi Totali} = \sum_{j=1}^{m} \left[ \frac{C_j \cdot r_j \cdot gg_j}{N_j \cdot 100} \right]$$
+            </div>
+            <p>La frazione temporale ($gg_j$) rileva gli esatti giorni di mora accertati all'interno della finestra del tasso specifico ($r_j$). Un elemento di estrema accuratezza peritale riguarda l'implementazione del divisore dei giorni annui ($N_j$). L'algoritmo adegua dinamicamente la base temporale a <strong>366 giorni</strong> se il periodo incrocia un anno bisestile (come avvenuto nel 2024), e a <strong>365 giorni</strong> per gli anni ordinari (come 2025 e 2026). La mancata osservanza di questa deviazione matematica invalida sistematicamente i prospetti contabili depositati in ambito processuale e stragiudiziale.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Anatocismo (Art. 1283 c.c.) e Ambito di Applicazione</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Perché il simulatore non calcola l'interesse composto?</h4>
+              <p>Nel sistema giuridico italiano opera un generale e rigoroso divieto di anatocismo, sancito dall'Articolo 1283 del Codice Civile. Gli interessi scaduti e non pagati non generano a loro volta nuovi interessi (capitalizzazione composta), a meno che non intervenga una domanda giudiziale specifica dal giorno della sua proposizione o che le parti non abbiano stipulato una convenzione esplicita in tal senso, sempre posteriore alla scadenza degli interessi per almeno sei mesi. Il nostro simulatore, aderendo al protocollo legale standard per i recuperi crediti ordinari, calcola esclusivamente la capitalizzazione semplice in ossequio alla norma codicistica vigente.</p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Quale tasso si applica in caso di transazioni commerciali (B2B)?</h4>
+              <p>Il tasso di interesse legale dell'1,60% (Art. 1284 c.c.) esaminato in questa pagina regola i rapporti obbligatori di natura civile (ad esempio i ritardi nel pagamento di oneri condominiali, transazioni tra privati o debiti tributari se previsti dalla legge). Se il ritardo nel pagamento riguarda transazioni commerciali strette tra imprese (B2B) o tra imprese e pubbliche amministrazioni, la normativa deroga a favore del Decreto Legislativo n. 231/2002. In quel caso, il tasso di mora è determinato a livello europeo (Tasso BCE) con l'aggiunta di una rigida penalizzazione spread di 8 punti percentuali.</p>
+            </div>
+
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Codice civile, articolo 1224</strong> — disciplina il danno nelle obbligazioni pecuniarie e il diritto del creditore al maggior danno rispetto agli interessi legali.</li>
+              <li><strong>Codice civile, articolo 1284</strong> — fissa il saggio degli interessi legali, determinato annualmente con decreto del Ministero dell'Economia e delle Finanze.</li>
+              <li><strong>Codice civile, articolo 1283</strong> — vieta l'anatocismo salvo domanda giudiziale o convenzione posteriore alla scadenza e comunque per interessi dovuti da almeno sei mesi.</li>
+              <li><strong>Legge 27 luglio 1978 n. 392, articolo 32</strong> — consente l'aggiornamento annuale del canone delle locazioni a uso diverso dall'abitativo in misura non superiore al 75% della variazione dell'indice ISTAT.</li>
+              <li><strong>Cassazione, Sezioni Unite, sentenza n. 1712 del 1995</strong> — stabilisce che nei debiti di valore gli interessi vanno calcolati sulla somma progressivamente rivalutata e non sul capitale già rivalutato per intero.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Debiti di valore e debiti di valuta</h3>
+            <p>La distinzione governa l'intera materia. Il <strong>debito di valuta</strong> ha per oggetto una somma di denaro determinata fin dall'origine, come il prezzo di una compravendita o il rimborso di un mutuo: segue il principio nominalistico, per cui cento euro dovuti nel 2020 restano cento euro, e la svalutazione si recupera solo provando il maggior danno. Il <strong>debito di valore</strong> ha invece per oggetto la reintegrazione di un valore economico, come il risarcimento del danno: si rivaluta automaticamente fino alla liquidazione, perché la somma è solo la misura monetaria di un bene.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Indici e tassi impiegati dal motore</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Tasso di interesse legale</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Giorni convenzionali</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">2021</td><td class="px-3 py-2 border-t border-gray-200">0,01%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2022</td><td class="px-3 py-2 border-t border-gray-200">1,25%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2023</td><td class="px-3 py-2 border-t border-gray-200">5,00%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2024</td><td class="px-3 py-2 border-t border-gray-200">2,50%</td><td class="px-3 py-2 border-t border-gray-200">366</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2025</td><td class="px-3 py-2 border-t border-gray-200">2,00%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2026</td><td class="px-3 py-2 border-t border-gray-200">1,60%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr></tbody></table></div>
+            <p>L'oscillazione del saggio legale fra lo 0,01% del 2021 e il 5,00% del 2023 rende indispensabile la segmentazione temporale del calcolo: applicare il tasso vigente all'intero arco di un credito pluriennale produce errori che possono superare il cinquanta per cento dell'importo accessorio. Il motore spezza il periodo in segmenti annuali e applica a ciascuno il saggio di competenza, computando correttamente i 366 giorni degli anni bisestili.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Ambiti applicativi tipici</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Aggiornamento dei canoni di locazione</strong>: nella misura del 100% o del 75% della variazione FOI, secondo il tipo contrattuale e purché l'opzione per la cedolare secca non sia stata esercitata.</li>
+              <li><strong>Crediti di lavoro</strong>: rivalutazione e interessi sulle retribuzioni corrisposte in ritardo, con le peculiarità stabilite per il pubblico impiego.</li>
+              <li><strong>Risarcimento del danno</strong>: rivalutazione automatica del debito di valore dall'evento dannoso alla liquidazione giudiziale.</li>
+              <li><strong>Assegni di mantenimento</strong>: adeguamento periodico secondo gli indici ISTAT, di regola previsto direttamente nel provvedimento del giudice.</li>
+              <li><strong>Appalti e contratti pubblici</strong>: revisione dei prezzi secondo le clausole contrattuali e le disposizioni del codice dei contratti.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> l'indice FOI utilizzato per gli aggiornamenti contrattuali è quello al netto dei tabacchi, pubblicato mensilmente dall'ISTAT in Gazzetta Ufficiale. Gli indici degli ultimi mesi possono essere provvisori e soggetti a revisione. La quantificazione prodotta ha valore orientativo: per una domanda giudiziale o una transazione è opportuno che il conteggio sia validato da un legale o da un consulente tecnico.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono calcolati con il motore della pagina, usando gli indici FOI pubblicati dall'ISTAT e i tassi di interesse legale di ciascun anno.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: negozio da 1.500 € al mese con contratto iniziato il 1° ottobre</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Indici: agosto 2025 = 121,8; agosto 2026 = 103,7 × 1,214 = 125,89</li>
+            <li>Variazione ISTAT: +3,4%</li>
+            <li>Aggiornamento al 75%: +2,55%, pari a 38,25 € al mese</li>
+            <li>Nuovo canone da ottobre 2026: 1.538,25 €</li>
+            </ul>
+            <p>Senza il coefficiente di raccordo il confronto fra 121,8 e 103,7 darebbe un calo del 15% e nessun aumento: è l'errore più frequente nei conteggi fatti a mano nel 2026.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: appartamento a canone libero da 800 € con aggiornamento pieno</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Periodo: luglio 2025 - luglio 2026</li>
+            <li>Variazione ISTAT: +2,8%, applicata al 100%</li>
+            <li>Aumento: 22,40 € al mese, nuovo canone 822,40 €</li>
+            </ul>
+            <p>La clausola al 100% è ammessa nel 4+4 a canone libero. Se il proprietario ha optato per la cedolare secca l'aumento non è dovuto, anche se previsto dal contratto.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: ufficio da 700 € con aggiornamento dimenticato nel 2025</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Periodo: gennaio 2024 - gennaio 2026, variazione ISTAT +2,2%</li>
+            <li>Aggiornamento al 75%: +1,65%, pari a 11,55 €</li>
+            <li>Nuovo canone: 711,55 €</li>
+            </ul>
+            <p>Confrontando due anni in una volta il locatore recupera il livello del canone, ma non gli aumenti dei mesi già pagati: la richiesta produce effetti solo per il futuro.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: prestito fra privati da 5.000 € restituito con due anni di ritardo</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Dal 15 marzo 2024 al 15 marzo 2026: 730 giorni</li>
+            <li>2024: 292 giorni al 2,5% su 366 = 99,73 €</li>
+            <li>2025: 365 giorni al 2% = 100,00 €</li>
+            <li>2026: 73 giorni all'1,6% = 16,00 €</li>
+            <li>Interessi: 215,73 €; totale dovuto 5.215,73 €</li>
+            </ul>
+            <p>Applicando a tutto il periodo il tasso del 2026 gli interessi sarebbero di 160 €, circa un quarto in meno di quanto dovuto.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 5: quote condominiali da 1.200 € pagate con sei mesi di ritardo</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Dal 1° giugno al 1° dicembre 2025: 183 giorni al 2%</li>
+            <li>Interessi legali: 12,03 €; totale 1.212,03 €</li>
+            </ul>
+            <p>Su importi e ritardi contenuti gli interessi legali restano modesti: il regolamento di condominio può prevedere interessi più alti, purché entro i limiti dell'usura.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso sommare liberamente rivalutazione e interessi legali?</h3>
+              <p>Non nel modo intuitivo. Per i debiti di valore le Sezioni Unite hanno chiarito che gli interessi non vanno calcolati sulla somma già integralmente rivalutata, perché ciò produrrebbe una duplicazione del risarcimento, ma sul capitale via via rivalutato anno per anno. Per i debiti di valuta la rivalutazione non spetta automaticamente e va provata come maggior danno rispetto agli interessi legali.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa accade se l'indice ISTAT diminuisce?</h3>
+              <p>In periodo di deflazione il coefficiente scende sotto l'unità e produrrebbe matematicamente una riduzione del credito. La giurisprudenza prevalente esclude però che l'aggiornamento possa tradursi in una decurtazione del canone di locazione o del credito, riconoscendo alla clausola una funzione di sola salvaguardia del potere d'acquisto. Il risultato pratico è un blocco al valore precedente anziché una variazione negativa.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché nei contratti di locazione si applica spesso il 75% dell'indice?</h3>
+              <p>Perché molti contratti prevedono convenzionalmente un aggiornamento in misura ridotta rispetto alla variazione piena, soluzione che riflette un equilibrio negoziale consolidato nella prassi. La misura applicabile va verificata nella clausola contrattuale: in assenza di previsione espressa l'aggiornamento non è automatico e va richiesto dal locatore.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">L'aggiornamento ISTAT è dovuto anche in regime di cedolare secca?</h3>
+              <p>No. L'opzione per la cedolare secca comporta la rinuncia del locatore, per l'intera durata dell'opzione, alla facoltà di chiedere l'aggiornamento del canone a qualsiasi titolo, compreso quello legato alla variazione degli indici ISTAT. La rinuncia va comunicata per iscritto al conduttore ed è condizione di efficacia dell'opzione stessa.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Da quale data decorre la rivalutazione di un credito risarcitorio?</h3>
+              <p>Dalla data dell'evento dannoso, non da quella della domanda giudiziale né da quella della sentenza. Il debito di valore si rivaluta per l'intero periodo intercorso fino alla liquidazione, momento in cui si trasforma in debito di valuta e da lì in avanti produce soltanto interessi legali sulla somma liquidata.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Gli interessi si calcolano su 365 o su 366 giorni?</h3>
+              <p>Sull'effettiva durata dell'anno di competenza. Il motore applica 366 giorni agli anni bisestili, come il 2024, e 365 agli altri. Su importi elevati e periodi lunghi la differenza non è trascurabile e costituisce uno dei motivi ricorrenti di contestazione dei conteggi prodotti in sede stragiudiziale.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore di rivalutazione monetaria e interessi legali funziona <strong>interamente lato client, senza alcun backend</strong>. L'importo del credito, le date di riferimento e la tipologia di rapporto vengono elaborati dal browser sul tuo dispositivo e non lasciano mai la macchina. Non conserviamo alcuna traccia dei conteggi eseguiti né dei valori inseriti.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">I conteggi di rivalutazione riguardano tipicamente crediti di lavoro, risarcimenti del danno e controversie in corso: informazioni che rivelano l'esistenza di un contenzioso e la posizione economica delle parti coinvolte. L'assenza totale di trasmissione garantisce la conformità al Regolamento UE 2016/679 (GDPR) e realizza i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, unitamente alla minimizzazione dei dati dell'articolo 5. Lo strumento è utilizzabile anche in assenza di connessione, una volta caricata la pagina.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. FOOTER -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 5. SCRIPTS -->
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/rivalutazione-istat.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; console.warn('[AdSense] Error:', error); }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => requestAnimationFrame(initVisibleAds));
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-istat-periodo'] = function (campo) {
+      var mi = document.getElementById('istat-mese-inizio').value, ai = document.getElementById('istat-anno-inizio').value;
+      var af = document.getElementById('istat-anno-fine').value;
+      if (!campo.value || !mi || !ai || !af) return '';
+      var mesi = (Number(af) - Number(ai)) * 12 + Number(campo.value) - Number(mi);
+      if (mesi <= 0) return 'Il mese finale deve essere successivo a quello iniziale.';
+      if (mesi === 12) return 'Periodo di 12 mesi: è il confronto corretto per l\'aggiornamento annuale del canone.';
+      return 'Periodo di ' + mesi + ' mesi: per l\'aggiornamento annuale del canone il confronto è di 12 mesi.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

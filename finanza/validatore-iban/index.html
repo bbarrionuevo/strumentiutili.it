@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Validatore IBAN &amp; BIC/SWIFT — StrumentiUtili.it</title>
+  <meta name="description" content="Verifica IBAN italiani e internazionali con MOD 97 basato su BigInt e controlla la sintassi BIC/SWIFT direttamente nel browser. Nessun dato inviato a server esterni.">
+  <link rel="canonical" href="https://strumentiutili.it/finanza/validatore-iban/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Validatore IBAN &amp; BIC/SWIFT">
+  <meta property="og:description" content="Controllo matematico IBAN e verifica BIC/SWIFT 100% client-side.">
+  <meta property="og:url" content="https://strumentiutili.it/finanza/validatore-iban/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Validatore IBAN & BIC/SWIFT",
+    "operatingSystem": "All",
+    "applicationCategory": "FinanceApplication",
+    "url": "https://strumentiutili.it/finanza/validatore-iban/",
+    "image": "https://strumentiutili.it/assets/og-image.png",
+    "description": "Verifica locale di IBAN e BIC con algoritmo MOD 97-10 basato su BigInt e decomposizione dei codici italiani.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Finanza", "item": "https://strumentiutili.it/finanza/" },
+      { "@type": "ListItem", "position": 3, "name": "Validatore IBAN & BIC/SWIFT", "item": "https://strumentiutili.it/finanza/validatore-iban/" }
+    ]
+  }
+  </script>
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 pb-28 flex flex-col">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-4">
+        <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-indigo-600 font-semibold">🏦 Finanza</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+    
+    <!-- COLUMNA IZQUIERDA: Herramienta -->
+    <main class="w-full lg:w-8/12 xl:w-9/12">
+      
+      <!-- 1. Anuncio 'Above the Fold' -->
+      <div class="ad-skeleton-horizontal mb-6">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <a href="/finanza/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Finanza</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏦</span> Finanza &amp; Banche
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Validatore IBAN &amp; BIC/SWIFT</h1>
+        <p class="mt-2 text-sm text-gray-600 leading-relaxed">Controllo matematico locale con <code>BigInt</code> per evitare falsi negativi sui codici lunghi. Verifica in totale privacy la correttezza formale e scopri banca e filiale senza inviare dati a servizi esterni.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        
+        <!-- IBAN Block -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <label class="block">
+            <span class="text-sm font-bold text-gray-800">Inserisci IBAN</span>
+            <input id="iban-input" class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none uppercase font-mono text-lg" placeholder="IT60X0542811101000000123456">
+          </label>
+          <div class="mt-4 flex gap-3">
+            <button id="check-iban" class="flex-1 bg-indigo-600 hover:bg-indigo-700 font-bold text-white px-4 py-2.5 rounded-lg shadow-sm transition">Verifica IBAN</button>
+            <button id="clear-iban" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg transition">Pulisci</button>
+          </div>
+          <div id="iban-result" class="mt-6 flex-1 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm text-gray-700 break-all flex flex-col justify-center">Inserisci un IBAN da controllare.</div>
+        </div>
+
+        <!-- BIC Block -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <label class="block">
+            <span class="text-sm font-bold text-gray-800">Inserisci BIC / SWIFT</span>
+            <input id="bic-input" class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none uppercase font-mono text-lg" placeholder="UNCRITMMXXX">
+          </label>
+          <div class="mt-4 flex gap-3">
+            <button id="check-bic" class="flex-1 bg-indigo-600 hover:bg-indigo-700 font-bold text-white px-4 py-2.5 rounded-lg shadow-sm transition">Verifica BIC</button>
+            <button id="clear-bic" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg transition">Pulisci</button>
+          </div>
+          <div id="bic-result" class="mt-6 flex-1 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm text-gray-700 flex flex-col justify-center">Inserisci un codice BIC / SWIFT.</div>
+        </div>
+
+      </div>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Algoritmo di Validazione IBAN (Standard ISO 13616)</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          L'IBAN (International Bank Account Number) è uno standard internazionale sviluppato per identificare in modo univoco un conto bancario. Il nostro validatore non interroga banche dati esterne o server proprietari, ma ne verifica la correttezza formale e matematica eseguendo l'<strong>algoritmo Modulo 97 (MOD-97-10)</strong> localmente nel browser.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">La Matematica del Checksum (MOD-97)</h3>
+            <p class="text-sm text-gray-700 mb-2">Per capire se un IBAN è digitato correttamente, l'algoritmo esegue una serie di rigorose trasformazioni:</p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+              <li><strong>Traslazione:</strong> I primi 4 caratteri vengono spostati in fondo.</li>
+              <li><strong>Conversione:</strong> Le lettere vengono convertite in numeri (A=10, Z=35).</li>
+              <li><strong>Calcolo BigInt:</strong> La stringa (lunga fino a 30 cifre) viene divisa per 97. Se il resto è 1, l'IBAN è formalmente valido.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">Analisi ABI, CAB e Sicurezza Dati</h3>
+            <p class="text-sm text-gray-700">
+              Per gli IBAN italiani (27 caratteri), lo strumento decomprime la struttura rivelando il CIN, l'<strong>ABI (Banca)</strong>, il <strong>CAB (Sportello)</strong> e il numero di conto. Abbiamo integrato un database offline (Super Dizionario ABI) per il riconoscimento immediato dei principali istituti bancari.<br><br>
+              <strong>Zero Tracking:</strong> Poiché l'intero processo matematico avviene nella RAM del tuo dispositivo, il codice IBAN digitato non viene mai trasmesso o archiviato.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anuncio extra para móviles -->
+      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </main>
+
+    <!-- COLUMNA DERECHA: Sticky Sidebar -->
+    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
+      <div class="sticky-sidebar">
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+        
+        <!-- 2. Anuncio 'Sticky' Vertical -->
+        <div class="ad-skeleton-vertical">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="w-full text-center overflow-hidden mb-8">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/validatore-iban.js"></script>
+</body>
+</html>

@@ -1,0 +1,1307 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello RAP creati da scripts/prepara-modello-rap.py. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-rap.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ]
+ },
+ "modelli": {
+  "RAP": {
+   "codice": "RAP",
+   "nome": "Modello RAP",
+   "sottotitolo": "Registrazione di atto privato",
+   "descrizione": "Il modello con cui si chiede all'Agenzia delle Entrate la registrazione di un atto privato: contratto di comodato d'uso gratuito, contratto preliminare di compravendita e verbale di distribuzione degli utili societari.",
+   "pdf": "/assets/pdf/modello-rap-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-rap.pdf",
+   "testata": {
+    "riferimentoNomeFile": "atto.cfTestata"
+   },
+   "passi": [
+    {
+     "id": "atto",
+     "titolo": "Dati generali dell'atto",
+     "descrizione": "Che atto stai registrando, dove lo presenti e da quanti fogli è composto. Il codice fiscale di chi chiede la registrazione compare in alto su ogni pagina del modello: lo scrivi una volta sola.",
+     "campi": [
+      {
+       "id": "cfTestata",
+       "pdf": "cf_testata",
+       "type": "cfOpiva",
+       "label": "Codice fiscale di chi chiede la registrazione",
+       "required": true,
+       "width": "half",
+       "help": "Se a chiedere la registrazione è un soggetto diverso da una persona fisica, va il codice fiscale della società o dell'ente."
+      },
+      {
+       "id": "moduloN",
+       "pdf": "modulo_n",
+       "type": "testo",
+       "label": "Modulo n.",
+       "width": "quarter",
+       "help": "Scrivi 001. Se i righi di un quadro non bastano servono più moduli, numerati 002, 003 e così via."
+      },
+      {
+       "id": "ufficioTerritoriale",
+       "pdf": "ufficio_territoriale",
+       "type": "testo",
+       "label": "Ufficio territoriale di",
+       "required": true,
+       "width": "half",
+       "help": "Gli atti privati si registrano presso qualunque ufficio territoriale dell'Agenzia delle Entrate. Quello che scegli resta competente per tutti gli adempimenti successivi."
+      },
+      {
+       "id": "tipologiaAtto",
+       "pdf": "tipologia_atto",
+       "type": "select",
+       "label": "Tipologia di atto",
+       "required": true,
+       "width": "half",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Contratto di comodato d'uso gratuito"
+        },
+        {
+         "value": "2",
+         "label": "2 — Contratto preliminare di compravendita"
+        },
+        {
+         "value": "3",
+         "label": "3 — Verbale di distribuzione degli utili societari"
+        }
+       ],
+       "help": "È la scelta che decide quale quadro compilare più avanti: uno solo dei tre."
+      },
+      {
+       "id": "dataAtto",
+       "pdf": "data_atto",
+       "type": "data",
+       "label": "Data dell'atto",
+       "required": true,
+       "width": "third",
+       "help": "La data di stipula, la stessa che compare sull'atto originale. Per un verbale di distribuzione utili è la data di approvazione del verbale, o del bilancio se la distribuzione è deliberata lì."
+      },
+      {
+       "id": "nFogli",
+       "pdf": "n_fogli",
+       "type": "numero",
+       "label": "N. fogli dell'atto",
+       "width": "quarter",
+       "help": "Un foglio è al massimo 4 facciate e non più di 100 righe. Quattro facciate con 101 righe contano come due fogli."
+      },
+      {
+       "id": "nCopie",
+       "pdf": "n_copie",
+       "type": "numero",
+       "label": "N. copie dell'atto",
+       "width": "quarter",
+       "help": "Gli esemplari cartacei firmati dalle parti di cui chiedi la registrazione: almeno uno."
+      },
+      {
+       "id": "esenzioni",
+       "pdf": "esenzioni",
+       "type": "select",
+       "label": "Esenzioni",
+       "width": "third",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Esente dall'imposta di bollo"
+        },
+        {
+         "value": "2",
+         "label": "2 — Esente da imposta di registro e di bollo"
+        },
+        {
+         "value": "3",
+         "label": "3 — Esente dalla sola imposta di registro"
+        }
+       ],
+       "help": "Per esempio gli atti degli Enti del Terzo Settore sono esenti dall'imposta di bollo."
+      },
+      {
+       "id": "condizioneSospensiva",
+       "pdf": "condizione_sospensiva",
+       "type": "checkX",
+       "label": "Condizione sospensiva",
+       "width": "third",
+       "help": "Un evento futuro e incerto indicato nell'atto che ne sospende l'efficacia. Barrandola, l'imposta su quella parte resta sospesa; quando la condizione si avvera hai 30 giorni per comunicarlo all'ufficio con il Modello 2 e versare l'imposta."
+      },
+      {
+       "id": "eventiEccezionali",
+       "pdf": "eventi_eccezionali",
+       "type": "checkX",
+       "label": "Eventi eccezionali",
+       "width": "third",
+       "help": "Si barra (codice 1) quando si fruisce di agevolazioni per calamità naturali o altri eventi eccezionali che sospendono i termini."
+      },
+      {
+       "id": "casiParticolari",
+       "pdf": "casi_particolari",
+       "type": "select",
+       "label": "Casi particolari",
+       "width": "third",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Imposta di registro calcolata con regole diverse da quelle ordinarie"
+        },
+        {
+         "value": "2",
+         "label": "2 — Agevolazioni per gli Enti del Terzo Settore (art. 82 c. 3 d.lgs. 117/2017)"
+        }
+       ]
+      },
+      {
+       "id": "allegatiScritture",
+       "pdf": "allegati_scritture",
+       "type": "numero",
+       "label": "Allegati · scritture private e inventari",
+       "width": "third",
+       "help": "Il numero di fogli del documento allegato, con la stessa regola dei fogli dell'atto: massimo 4 facciate e 100 righe per foglio."
+      },
+      {
+       "id": "allegatiRicevute",
+       "pdf": "allegati_ricevute",
+       "type": "numero",
+       "label": "Allegati · ricevute e quietanze",
+       "width": "third",
+       "help": "Il numero di esemplari."
+      },
+      {
+       "id": "allegatiMappe",
+       "pdf": "allegati_mappe",
+       "type": "numero",
+       "label": "Allegati · mappe, planimetrie e disegni",
+       "width": "third",
+       "help": "Il numero di esemplari: un elemento grafico fino a 4 facciate è un esemplare; oltre, se ne conta uno ogni 4 facciate."
+      }
+     ]
+    },
+    {
+     "id": "richiedente",
+     "titolo": "Chi chiede la registrazione",
+     "descrizione": "Il richiedente è il soggetto obbligato a chiedere la registrazione: una delle parti del contratto, oppure il mediatore. Per un verbale di distribuzione utili è sempre la società che li distribuisce.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "richiedente_cognome",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "richiedente_nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half"
+      },
+      {
+       "id": "cf",
+       "pdf": "richiedente_cf",
+       "type": "cfOpiva",
+       "label": "Codice fiscale del richiedente",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "mediatore",
+       "pdf": "mediatore",
+       "type": "checkX",
+       "label": "Il richiedente è il mediatore",
+       "width": "half",
+       "help": "Il mediatore è chi mette in relazione due o più parti per concludere un affare, senza essere legato a nessuna di esse da rapporti di collaborazione, dipendenza o rappresentanza."
+      },
+      {
+       "id": "firma",
+       "pdf": "firma_richiedente",
+       "type": "testo",
+       "label": "Firma del richiedente (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata. Chi firma attesta che i dati dichiarati coincidono con l'atto originale."
+      },
+      {
+       "id": "rappCognome",
+       "pdf": "rappresentante_cognome",
+       "type": "testo",
+       "label": "Rappresentante legale · cognome",
+       "width": "half",
+       "help": "Si compila solo se chi chiede la registrazione agisce in nome e per conto di un altro soggetto: una società, un ente, un minore, un interdetto. In quel caso il richiedente resta il rappresentato, ma è il rappresentante a firmare."
+      },
+      {
+       "id": "rappNome",
+       "pdf": "rappresentante_nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half"
+      },
+      {
+       "id": "rappCf",
+       "pdf": "rappresentante_cf",
+       "type": "cf",
+       "label": "Codice fiscale del rappresentante",
+       "width": "half"
+      },
+      {
+       "id": "codiceCarica",
+       "pdf": "codice_carica",
+       "type": "select",
+       "label": "Codice carica",
+       "width": "half",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Rappresentante legale, negoziale o di fatto, socio amministratore"
+        },
+        {
+         "value": "2",
+         "label": "2 — Rappresentante di minore, inabilitato o interdetto; amministratore di sostegno"
+        },
+        {
+         "value": "3",
+         "label": "3 — Curatore fallimentare"
+        },
+        {
+         "value": "4",
+         "label": "4 — Commissario liquidatore"
+        },
+        {
+         "value": "5",
+         "label": "5 — Commissario giudiziale o custode giudiziario"
+        },
+        {
+         "value": "7",
+         "label": "7 — Erede"
+        },
+        {
+         "value": "8",
+         "label": "8 — Liquidatore (liquidazione volontaria)"
+        },
+        {
+         "value": "11",
+         "label": "11 — Soggetto esercente l'attività tutoria del minore o interdetto"
+        },
+        {
+         "value": "13",
+         "label": "13 — Amministratore di condominio"
+        },
+        {
+         "value": "14",
+         "label": "14 — Chi sottoscrive per conto di una pubblica amministrazione"
+        },
+        {
+         "value": "15",
+         "label": "15 — Commissario liquidatore di una pubblica amministrazione"
+        }
+       ],
+       "help": "Il genitore che rappresenta un figlio minore usa il codice 2."
+      }
+     ]
+    },
+    {
+     "id": "invio",
+     "titolo": "Invio telematico e imposte",
+     "opzionale": true,
+     "descrizione": "Da compilare solo se la richiesta la trasmette un intermediario abilitato. Nella parte finale ci sono le imposte: il servizio online dell'Agenzia le calcola da sé, qui puoi riportarle se le hai già.",
+     "campi": [
+      {
+       "id": "cfIntermediario",
+       "pdf": "cf_intermediario",
+       "type": "cfOpiva",
+       "label": "Codice fiscale dell'intermediario",
+       "width": "half"
+      },
+      {
+       "id": "impegno",
+       "pdf": "impegno_telematico",
+       "type": "select",
+       "label": "Impegno a presentare in via telematica",
+       "width": "half",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Richiesta predisposta da chi è obbligato a registrare l'atto"
+        },
+        {
+         "value": "2",
+         "label": "2 — Richiesta predisposta dall'intermediario che la invia"
+        }
+       ]
+      },
+      {
+       "id": "impegnoGiorno",
+       "pdf": "impegno_giorno",
+       "type": "numero",
+       "label": "Data dell'impegno · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "impegnoMese",
+       "pdf": "impegno_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "impegnoAnno",
+       "pdf": "impegno_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "firmaImpegno",
+       "pdf": "firma_impegno",
+       "type": "testo",
+       "label": "Firma dell'intermediario (nome da stampare)",
+       "width": "half"
+      },
+      {
+       "id": "impostaRegistro",
+       "pdf": "imposta_registro",
+       "pdfCentesimi": "imposta_registro_cent",
+       "type": "importoEuro",
+       "label": "Imposta di registro (euro)",
+       "width": "third"
+      },
+      {
+       "id": "sanzioniRegistro",
+       "pdf": "sanzioni_registro",
+       "pdfCentesimi": "sanzioni_registro_cent",
+       "type": "importoEuro",
+       "label": "Sanzioni · registro",
+       "width": "third",
+       "help": "In caso di registrazione tardiva il servizio dell'Agenzia propone il calcolo delle sanzioni, che puoi accettare o modificare prima dell'invio."
+      },
+      {
+       "id": "interessiRegistro",
+       "pdf": "interessi_registro",
+       "pdfCentesimi": "interessi_registro_cent",
+       "type": "importoEuro",
+       "label": "Interessi · registro",
+       "width": "third"
+      },
+      {
+       "id": "impostaBollo",
+       "pdf": "imposta_bollo",
+       "pdfCentesimi": "imposta_bollo_cent",
+       "type": "importoEuro",
+       "label": "Imposta di bollo (euro)",
+       "width": "third"
+      },
+      {
+       "id": "sanzioniBollo",
+       "pdf": "sanzioni_bollo",
+       "pdfCentesimi": "sanzioni_bollo_cent",
+       "type": "importoEuro",
+       "label": "Sanzioni · bollo",
+       "width": "third"
+      },
+      {
+       "id": "interessiBollo",
+       "pdf": "interessi_bollo",
+       "pdfCentesimi": "interessi_bollo_cent",
+       "type": "importoEuro",
+       "label": "Interessi · bollo",
+       "width": "third"
+      }
+     ]
+    },
+    {
+     "id": "soggetti",
+     "titolo": "Le parti del contratto",
+     "descrizione": "I soggetti che hanno firmato il contratto di comodato o il preliminare. I danti causa sono chi trasmette il diritto — il comodante, il promissario venditore — gli aventi causa chi lo acquisisce: il comodatario, il promissario acquirente.",
+     "ripetibili": [
+      {
+       "id": "dante",
+       "label": "Sezione I · danti causa",
+       "righeMax": 3,
+       "help": "Chi dà il bene in comodato, oppure chi promette di vendere.",
+       "sottocampi": [
+        {
+         "id": "cf",
+         "type": "cfOpiva",
+         "label": "Codice fiscale",
+         "width": "half"
+        },
+        {
+         "id": "cognome",
+         "type": "testo",
+         "label": "Cognome, denominazione o ragione sociale",
+         "width": "half"
+        },
+        {
+         "id": "nome",
+         "type": "testo",
+         "label": "Nome",
+         "width": "half"
+        },
+        {
+         "id": "dataNascita",
+         "type": "data",
+         "label": "Data di nascita",
+         "width": "third"
+        },
+        {
+         "id": "sesso",
+         "type": "select",
+         "options": "sesso",
+         "label": "Sesso",
+         "width": "quarter"
+        },
+        {
+         "id": "comuneNascita",
+         "type": "testo",
+         "label": "Comune (o Stato estero) di nascita",
+         "width": "half",
+         "help": "Chi è nato all'estero scrive qui lo Stato e mette EE nella provincia."
+        },
+        {
+         "id": "provincia",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "cf": "s1_cf",
+         "cognome": "s1_cognome",
+         "nome": "s1_nome",
+         "dataNascita": "s1_data_nascita",
+         "sesso": "s1_sesso",
+         "comuneNascita": "s1_comune_nascita",
+         "provincia": "s1_provincia"
+        },
+        {
+         "cf": "s2_cf",
+         "cognome": "s2_cognome",
+         "nome": "s2_nome",
+         "dataNascita": "s2_data_nascita",
+         "sesso": "s2_sesso",
+         "comuneNascita": "s2_comune_nascita",
+         "provincia": "s2_provincia"
+        },
+        {
+         "cf": "s3_cf",
+         "cognome": "s3_cognome",
+         "nome": "s3_nome",
+         "dataNascita": "s3_data_nascita",
+         "sesso": "s3_sesso",
+         "comuneNascita": "s3_comune_nascita",
+         "provincia": "s3_provincia"
+        }
+       ]
+      },
+      {
+       "id": "avente",
+       "label": "Sezione II · aventi causa",
+       "righeMax": 3,
+       "help": "Chi riceve il bene in comodato, oppure chi promette di comprare.",
+       "sottocampi": [
+        {
+         "id": "cf",
+         "type": "cfOpiva",
+         "label": "Codice fiscale",
+         "width": "half"
+        },
+        {
+         "id": "cognome",
+         "type": "testo",
+         "label": "Cognome, denominazione o ragione sociale",
+         "width": "half"
+        },
+        {
+         "id": "nome",
+         "type": "testo",
+         "label": "Nome",
+         "width": "half"
+        },
+        {
+         "id": "dataNascita",
+         "type": "data",
+         "label": "Data di nascita",
+         "width": "third"
+        },
+        {
+         "id": "sesso",
+         "type": "select",
+         "options": "sesso",
+         "label": "Sesso",
+         "width": "quarter"
+        },
+        {
+         "id": "comuneNascita",
+         "type": "testo",
+         "label": "Comune (o Stato estero) di nascita",
+         "width": "half",
+         "help": "Chi è nato all'estero scrive qui lo Stato e mette EE nella provincia."
+        },
+        {
+         "id": "provincia",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "cf": "s4_cf",
+         "cognome": "s4_cognome",
+         "nome": "s4_nome",
+         "dataNascita": "s4_data_nascita",
+         "sesso": "s4_sesso",
+         "comuneNascita": "s4_comune_nascita",
+         "provincia": "s4_provincia"
+        },
+        {
+         "cf": "s5_cf",
+         "cognome": "s5_cognome",
+         "nome": "s5_nome",
+         "dataNascita": "s5_data_nascita",
+         "sesso": "s5_sesso",
+         "comuneNascita": "s5_comune_nascita",
+         "provincia": "s5_provincia"
+        },
+        {
+         "cf": "s6_cf",
+         "cognome": "s6_cognome",
+         "nome": "s6_nome",
+         "dataNascita": "s6_data_nascita",
+         "sesso": "s6_sesso",
+         "comuneNascita": "s6_comune_nascita",
+         "provincia": "s6_provincia"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "comodato",
+     "titolo": "Contratto di comodato",
+     "opzionale": true,
+     "descrizione": "Da attivare se la tipologia di atto è 1. Il comodato è il prestito gratuito di un bene: registrarlo è anche la condizione per avere la riduzione del 50% dell'IMU quando il bene è un'abitazione data a un figlio o a un genitore.",
+     "campi": [
+      {
+       "id": "tempoIndeterminato",
+       "pdf": "com_tempo_indeterminato",
+       "type": "checkX",
+       "label": "Contratto a tempo indeterminato",
+       "width": "half",
+       "help": "Se non c'è una data di fine, compila solo «dal» e barra questa casella."
+      },
+      {
+       "id": "durataDal",
+       "pdf": "com_durata_dal",
+       "type": "data",
+       "label": "Durata · dal",
+       "width": "third"
+      },
+      {
+       "id": "durataAl",
+       "pdf": "com_durata_al",
+       "type": "data",
+       "label": "al",
+       "width": "third"
+      },
+      {
+       "id": "clausolaPenale",
+       "pdf": "com_clausola_penale",
+       "type": "checkX",
+       "label": "Clausola penale volontaria",
+       "width": "half",
+       "help": "Stabilisce il risarcimento in caso di ritardo o inadempimento. Se la penale scatta, hai 30 giorni per comunicarlo all'ufficio con il Modello 2 e versare l'imposta."
+      },
+      {
+       "id": "tipo",
+       "pdf": "com_tipo",
+       "type": "select",
+       "label": "Tipo di comodato",
+       "width": "third",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Comodato verbale"
+        },
+        {
+         "value": "2",
+         "label": "2 — Comodato in forma scritta"
+        }
+       ]
+      },
+      {
+       "id": "mobile",
+       "pdf": "com_mobile",
+       "type": "checkX",
+       "label": "Bene mobile",
+       "width": "quarter"
+      },
+      {
+       "id": "immobile",
+       "pdf": "com_immobile",
+       "type": "checkX",
+       "label": "Bene immobile",
+       "width": "quarter"
+      },
+      {
+       "id": "universalita",
+       "pdf": "com_universalita",
+       "type": "checkX",
+       "label": "Universalità",
+       "width": "quarter",
+       "help": "Una pluralità di cose dello stesso proprietario con destinazione unitaria: una pinacoteca, una biblioteca. Si tratta come un tutto unico, senza elencare i singoli beni."
+      },
+      {
+       "id": "descrizione",
+       "pdf": "com_descrizione",
+       "type": "testo",
+       "label": "Descrizione del bene",
+       "width": "full",
+       "help": "Una riga basta: «il bene dato in comodato è una bicicletta elettrica, marca XXX»."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "immobile",
+       "label": "Immobili del comodato",
+       "righeMax": 5,
+       "help": "I dati catastali si prendono da una visura recente. Il quadro si compila solo se fra i beni dell'atto c'è un immobile.",
+       "sottocampi": [
+        {
+         "id": "codiceComune",
+         "type": "testo",
+         "label": "Codice comune",
+         "width": "quarter",
+         "help": "Il codice del comune riportato sul documento catastale: quattro o cinque caratteri."
+        },
+        {
+         "id": "tu",
+         "type": "select",
+         "label": "T/U",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "T",
+           "label": "T — catasto terreni"
+          },
+          {
+           "value": "U",
+           "label": "U — catasto edilizio urbano"
+          }
+         ]
+        },
+        {
+         "id": "sezione",
+         "type": "testo",
+         "label": "Sezione urbana / comune catastale",
+         "width": "quarter",
+         "help": "Lettere o numeri del documento catastale, se presenti. Nelle zone a sistema tavolare si indica il codice del «Comune catastale»."
+        },
+        {
+         "id": "foglio",
+         "type": "testo",
+         "label": "Foglio",
+         "width": "quarter"
+        },
+        {
+         "id": "particella",
+         "type": "testo",
+         "label": "Particella",
+         "width": "quarter",
+         "help": "Fino a cinque cifre. Se la particella è una sola serie di cifre va tutta qui. Per un immobile graffato si riporta solo la prima particella, quella dell'immobile principale."
+        },
+        {
+         "id": "particellaDen",
+         "type": "testo",
+         "label": "Particella · dopo la barra",
+         "width": "quarter",
+         "help": "La seconda parte della particella, fino a quattro cifre. Spesso resta vuota."
+        },
+        {
+         "id": "subalterno",
+         "type": "testo",
+         "label": "Subalterno",
+         "width": "quarter"
+        },
+        {
+         "id": "accatastamento",
+         "type": "checkX",
+         "label": "In via di accatastamento",
+         "width": "third",
+         "help": "Se l'immobile è in via di accatastamento e gli identificativi non si conoscono ancora, bastano provincia, comune, codice comune e T/U. Per un fabbricato servono anche tipologia e indirizzo; per un terreno no."
+        },
+        {
+         "id": "comune",
+         "type": "testo",
+         "label": "Comune dell'immobile",
+         "width": "half",
+         "help": "Il comune amministrativo dove si trova l'immobile. Se è all'estero, lo Stato estero, con EE nella provincia e l'indirizzo completo."
+        },
+        {
+         "id": "provincia",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter"
+        },
+        {
+         "id": "tipologia",
+         "type": "testo",
+         "label": "Tipologia (via, piazza…)",
+         "width": "quarter"
+        },
+        {
+         "id": "indirizzo",
+         "type": "testo",
+         "label": "Indirizzo",
+         "width": "half"
+        },
+        {
+         "id": "civico",
+         "type": "testo",
+         "label": "N. civico",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "codiceComune": "ic1_codice_comune",
+         "tu": "ic1_tu",
+         "sezione": "ic1_sezione",
+         "foglio": "ic1_foglio",
+         "particella": "ic1_particella",
+         "particellaDen": "ic1_particella_den",
+         "subalterno": "ic1_subalterno",
+         "accatastamento": "ic1_accatastamento",
+         "comune": "ic1_comune",
+         "provincia": "ic1_provincia",
+         "tipologia": "ic1_tipologia",
+         "indirizzo": "ic1_indirizzo",
+         "civico": "ic1_civico"
+        },
+        {
+         "codiceComune": "ic2_codice_comune",
+         "tu": "ic2_tu",
+         "sezione": "ic2_sezione",
+         "foglio": "ic2_foglio",
+         "particella": "ic2_particella",
+         "particellaDen": "ic2_particella_den",
+         "subalterno": "ic2_subalterno",
+         "accatastamento": "ic2_accatastamento",
+         "comune": "ic2_comune",
+         "provincia": "ic2_provincia",
+         "tipologia": "ic2_tipologia",
+         "indirizzo": "ic2_indirizzo",
+         "civico": "ic2_civico"
+        },
+        {
+         "codiceComune": "ic3_codice_comune",
+         "tu": "ic3_tu",
+         "sezione": "ic3_sezione",
+         "foglio": "ic3_foglio",
+         "particella": "ic3_particella",
+         "particellaDen": "ic3_particella_den",
+         "subalterno": "ic3_subalterno",
+         "accatastamento": "ic3_accatastamento",
+         "comune": "ic3_comune",
+         "provincia": "ic3_provincia",
+         "tipologia": "ic3_tipologia",
+         "indirizzo": "ic3_indirizzo",
+         "civico": "ic3_civico"
+        },
+        {
+         "codiceComune": "ic4_codice_comune",
+         "tu": "ic4_tu",
+         "sezione": "ic4_sezione",
+         "foglio": "ic4_foglio",
+         "particella": "ic4_particella",
+         "particellaDen": "ic4_particella_den",
+         "subalterno": "ic4_subalterno",
+         "accatastamento": "ic4_accatastamento",
+         "comune": "ic4_comune",
+         "provincia": "ic4_provincia",
+         "tipologia": "ic4_tipologia",
+         "indirizzo": "ic4_indirizzo",
+         "civico": "ic4_civico"
+        },
+        {
+         "codiceComune": "ic5_codice_comune",
+         "tu": "ic5_tu",
+         "sezione": "ic5_sezione",
+         "foglio": "ic5_foglio",
+         "particella": "ic5_particella",
+         "particellaDen": "ic5_particella_den",
+         "subalterno": "ic5_subalterno",
+         "accatastamento": "ic5_accatastamento",
+         "comune": "ic5_comune",
+         "provincia": "ic5_provincia",
+         "tipologia": "ic5_tipologia",
+         "indirizzo": "ic5_indirizzo",
+         "civico": "ic5_civico"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "preliminare",
+     "titolo": "Contratto preliminare di compravendita",
+     "opzionale": true,
+     "descrizione": "Da attivare se la tipologia di atto è 2. È il compromesso: l'imposta di registro si paga in misura fissa sull'atto, più lo 0,50% sulla caparra confirmatoria e il 3% sugli acconti non soggetti a IVA.",
+     "campi": [
+      {
+       "id": "beneImmobile",
+       "pdf": "pre_immobile",
+       "type": "checkX",
+       "label": "Oggetto · immobile",
+       "width": "quarter",
+       "help": "Almeno una fra immobile e altri beni va barrata: è obbligatoria per registrare l'atto."
+      },
+      {
+       "id": "altriBeni",
+       "pdf": "pre_altri_beni",
+       "type": "checkX",
+       "label": "Oggetto · altri beni",
+       "width": "quarter"
+      },
+      {
+       "id": "prezzo",
+       "pdf": "pre_prezzo",
+       "pdfCentesimi": "pre_prezzo_cent",
+       "type": "importoEuro",
+       "label": "Prezzo (euro)",
+       "required": true,
+       "width": "third",
+       "help": "Obbligatorio: il prezzo di vendita stabilito dalle parti."
+      },
+      {
+       "id": "caparraConfirmatoria",
+       "pdf": "pre_caparra_confirmatoria",
+       "pdfCentesimi": "pre_caparra_confirmatoria_cent",
+       "type": "importoEuro",
+       "label": "Caparra confirmatoria (euro)",
+       "width": "third",
+       "help": "La somma che il futuro acquirente consegna al futuro venditore a conferma della promessa d'acquisto. È garanzia per entrambe le parti in caso di inadempimento."
+      },
+      {
+       "id": "acconto",
+       "pdf": "pre_acconto",
+       "pdfCentesimi": "pre_acconto_cent",
+       "type": "importoEuro",
+       "label": "Acconto (euro)",
+       "width": "third",
+       "help": "La somma versata in acconto sul prezzo finale di vendita."
+      },
+      {
+       "id": "caparraPenitenziale",
+       "pdf": "pre_caparra_penitenziale",
+       "pdfCentesimi": "pre_caparra_penitenziale_cent",
+       "type": "importoEuro",
+       "label": "Caparra penitenziale (euro)",
+       "width": "third",
+       "help": "È il corrispettivo del diritto di recesso: chi recede la lascia all'altra parte, che non potrà chiedere altro."
+      },
+      {
+       "id": "soggettoIva",
+       "pdf": "pre_soggetto_iva",
+       "type": "checkX",
+       "label": "Contratto soggetto a IVA",
+       "width": "third"
+      },
+      {
+       "id": "clausolaPenale",
+       "pdf": "pre_clausola_penale",
+       "type": "checkX",
+       "label": "Clausola penale volontaria",
+       "width": "third"
+      },
+      {
+       "id": "statoEnti",
+       "pdf": "pre_stato_enti",
+       "type": "checkX",
+       "label": "Stato, enti pubblici, ecc.",
+       "width": "third"
+      },
+      {
+       "id": "descrizione",
+       "pdf": "pre_descrizione",
+       "type": "testo",
+       "label": "Descrizione del bene",
+       "width": "full",
+       "help": "Facoltativa se il bene è un immobile, ma consigliata: «il bene oggetto del preliminare è l'immobile sito in Roma, via XXXX n. 25»."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "immobile",
+       "label": "Immobili del preliminare",
+       "righeMax": 5,
+       "help": "I dati catastali si prendono da una visura recente. Il quadro si compila solo se fra i beni dell'atto c'è un immobile.",
+       "sottocampi": [
+        {
+         "id": "codiceComune",
+         "type": "testo",
+         "label": "Codice comune",
+         "width": "quarter",
+         "help": "Il codice del comune riportato sul documento catastale: quattro o cinque caratteri."
+        },
+        {
+         "id": "tu",
+         "type": "select",
+         "label": "T/U",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "T",
+           "label": "T — catasto terreni"
+          },
+          {
+           "value": "U",
+           "label": "U — catasto edilizio urbano"
+          }
+         ]
+        },
+        {
+         "id": "sezione",
+         "type": "testo",
+         "label": "Sezione urbana / comune catastale",
+         "width": "quarter",
+         "help": "Lettere o numeri del documento catastale, se presenti. Nelle zone a sistema tavolare si indica il codice del «Comune catastale»."
+        },
+        {
+         "id": "foglio",
+         "type": "testo",
+         "label": "Foglio",
+         "width": "quarter"
+        },
+        {
+         "id": "particella",
+         "type": "testo",
+         "label": "Particella",
+         "width": "quarter",
+         "help": "Fino a cinque cifre. Se la particella è una sola serie di cifre va tutta qui. Per un immobile graffato si riporta solo la prima particella, quella dell'immobile principale."
+        },
+        {
+         "id": "particellaDen",
+         "type": "testo",
+         "label": "Particella · dopo la barra",
+         "width": "quarter",
+         "help": "La seconda parte della particella, fino a quattro cifre. Spesso resta vuota."
+        },
+        {
+         "id": "subalterno",
+         "type": "testo",
+         "label": "Subalterno",
+         "width": "quarter"
+        },
+        {
+         "id": "accatastamento",
+         "type": "checkX",
+         "label": "In via di accatastamento",
+         "width": "third",
+         "help": "Se l'immobile è in via di accatastamento e gli identificativi non si conoscono ancora, bastano provincia, comune, codice comune e T/U. Per un fabbricato servono anche tipologia e indirizzo; per un terreno no."
+        },
+        {
+         "id": "comune",
+         "type": "testo",
+         "label": "Comune dell'immobile",
+         "width": "half",
+         "help": "Il comune amministrativo dove si trova l'immobile. Se è all'estero, lo Stato estero, con EE nella provincia e l'indirizzo completo."
+        },
+        {
+         "id": "provincia",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter"
+        },
+        {
+         "id": "tipologia",
+         "type": "testo",
+         "label": "Tipologia (via, piazza…)",
+         "width": "quarter"
+        },
+        {
+         "id": "indirizzo",
+         "type": "testo",
+         "label": "Indirizzo",
+         "width": "half"
+        },
+        {
+         "id": "civico",
+         "type": "testo",
+         "label": "N. civico",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "codiceComune": "ip1_codice_comune",
+         "tu": "ip1_tu",
+         "sezione": "ip1_sezione",
+         "foglio": "ip1_foglio",
+         "particella": "ip1_particella",
+         "particellaDen": "ip1_particella_den",
+         "subalterno": "ip1_subalterno",
+         "accatastamento": "ip1_accatastamento",
+         "comune": "ip1_comune",
+         "provincia": "ip1_provincia",
+         "tipologia": "ip1_tipologia",
+         "indirizzo": "ip1_indirizzo",
+         "civico": "ip1_civico"
+        },
+        {
+         "codiceComune": "ip2_codice_comune",
+         "tu": "ip2_tu",
+         "sezione": "ip2_sezione",
+         "foglio": "ip2_foglio",
+         "particella": "ip2_particella",
+         "particellaDen": "ip2_particella_den",
+         "subalterno": "ip2_subalterno",
+         "accatastamento": "ip2_accatastamento",
+         "comune": "ip2_comune",
+         "provincia": "ip2_provincia",
+         "tipologia": "ip2_tipologia",
+         "indirizzo": "ip2_indirizzo",
+         "civico": "ip2_civico"
+        },
+        {
+         "codiceComune": "ip3_codice_comune",
+         "tu": "ip3_tu",
+         "sezione": "ip3_sezione",
+         "foglio": "ip3_foglio",
+         "particella": "ip3_particella",
+         "particellaDen": "ip3_particella_den",
+         "subalterno": "ip3_subalterno",
+         "accatastamento": "ip3_accatastamento",
+         "comune": "ip3_comune",
+         "provincia": "ip3_provincia",
+         "tipologia": "ip3_tipologia",
+         "indirizzo": "ip3_indirizzo",
+         "civico": "ip3_civico"
+        },
+        {
+         "codiceComune": "ip4_codice_comune",
+         "tu": "ip4_tu",
+         "sezione": "ip4_sezione",
+         "foglio": "ip4_foglio",
+         "particella": "ip4_particella",
+         "particellaDen": "ip4_particella_den",
+         "subalterno": "ip4_subalterno",
+         "accatastamento": "ip4_accatastamento",
+         "comune": "ip4_comune",
+         "provincia": "ip4_provincia",
+         "tipologia": "ip4_tipologia",
+         "indirizzo": "ip4_indirizzo",
+         "civico": "ip4_civico"
+        },
+        {
+         "codiceComune": "ip5_codice_comune",
+         "tu": "ip5_tu",
+         "sezione": "ip5_sezione",
+         "foglio": "ip5_foglio",
+         "particella": "ip5_particella",
+         "particellaDen": "ip5_particella_den",
+         "subalterno": "ip5_subalterno",
+         "accatastamento": "ip5_accatastamento",
+         "comune": "ip5_comune",
+         "provincia": "ip5_provincia",
+         "tipologia": "ip5_tipologia",
+         "indirizzo": "ip5_indirizzo",
+         "civico": "ip5_civico"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "utili",
+     "titolo": "Verbale di distribuzione utili",
+     "opzionale": true,
+     "descrizione": "Da attivare se la tipologia di atto è 3. Il quadro dei soci elenca chi percepisce l'utile, quando i soci sono menzionati singolarmente.",
+     "campi": [
+      {
+       "id": "totale",
+       "pdf": "utili_totale",
+       "pdfCentesimi": "utili_totale_cent",
+       "type": "importoEuro",
+       "label": "Totale utile conseguito o riserva accantonata (euro)",
+       "width": "third",
+       "help": "L'utile di esercizio conseguito dalla società che approva il bilancio."
+      },
+      {
+       "id": "distribuiti",
+       "pdf": "utili_distribuiti",
+       "pdfCentesimi": "utili_distribuiti_cent",
+       "type": "importoEuro",
+       "label": "Importo utili o riserve distribuiti ai soci (euro)",
+       "width": "third",
+       "help": "La parte dell'utile destinata alla distribuzione fra i soci."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "socio",
+       "label": "Soci",
+       "righeMax": 5,
+       "sottocampi": [
+        {
+         "id": "cf",
+         "type": "cfOpiva",
+         "label": "Codice fiscale",
+         "width": "half"
+        },
+        {
+         "id": "cognome",
+         "type": "testo",
+         "label": "Cognome, denominazione o ragione sociale",
+         "width": "half"
+        },
+        {
+         "id": "nome",
+         "type": "testo",
+         "label": "Nome",
+         "width": "half"
+        },
+        {
+         "id": "dataNascita",
+         "type": "data",
+         "label": "Data di nascita",
+         "width": "third"
+        },
+        {
+         "id": "sesso",
+         "type": "select",
+         "options": "sesso",
+         "label": "Sesso",
+         "width": "quarter"
+        },
+        {
+         "id": "comuneNascita",
+         "type": "testo",
+         "label": "Comune (o Stato estero) di nascita",
+         "width": "half",
+         "help": "Chi è nato all'estero scrive qui lo Stato e mette EE nella provincia."
+        },
+        {
+         "id": "provincia",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter"
+        },
+        {
+         "id": "quota",
+         "type": "importoEuro",
+         "label": "Quota di partecipazione (%)",
+         "width": "quarter",
+         "help": "La quota del socio al capitale sociale, con due decimali: chi partecipa per il 20 per cento scrive 20,00."
+        },
+        {
+         "id": "importo",
+         "type": "importoEuro",
+         "label": "Utili percepiti (euro)",
+         "width": "third",
+         "help": "La quota parte di utile percepita dal singolo socio, in ragione della sua quota di partecipazione."
+        }
+       ],
+       "righe": [
+        {
+         "cf": "so1_cf",
+         "cognome": "so1_cognome",
+         "nome": "so1_nome",
+         "dataNascita": "so1_data_nascita",
+         "sesso": "so1_sesso",
+         "comuneNascita": "so1_comune_nascita",
+         "provincia": "so1_provincia",
+         "quota": {
+          "euro": "so1_quota",
+          "cent": "so1_quota_cent"
+         },
+         "importo": {
+          "euro": "so1_importo",
+          "cent": "so1_importo_cent"
+         }
+        },
+        {
+         "cf": "so2_cf",
+         "cognome": "so2_cognome",
+         "nome": "so2_nome",
+         "dataNascita": "so2_data_nascita",
+         "sesso": "so2_sesso",
+         "comuneNascita": "so2_comune_nascita",
+         "provincia": "so2_provincia",
+         "quota": {
+          "euro": "so2_quota",
+          "cent": "so2_quota_cent"
+         },
+         "importo": {
+          "euro": "so2_importo",
+          "cent": "so2_importo_cent"
+         }
+        },
+        {
+         "cf": "so3_cf",
+         "cognome": "so3_cognome",
+         "nome": "so3_nome",
+         "dataNascita": "so3_data_nascita",
+         "sesso": "so3_sesso",
+         "comuneNascita": "so3_comune_nascita",
+         "provincia": "so3_provincia",
+         "quota": {
+          "euro": "so3_quota",
+          "cent": "so3_quota_cent"
+         },
+         "importo": {
+          "euro": "so3_importo",
+          "cent": "so3_importo_cent"
+         }
+        },
+        {
+         "cf": "so4_cf",
+         "cognome": "so4_cognome",
+         "nome": "so4_nome",
+         "dataNascita": "so4_data_nascita",
+         "sesso": "so4_sesso",
+         "comuneNascita": "so4_comune_nascita",
+         "provincia": "so4_provincia",
+         "quota": {
+          "euro": "so4_quota",
+          "cent": "so4_quota_cent"
+         },
+         "importo": {
+          "euro": "so4_importo",
+          "cent": "so4_importo_cent"
+         }
+        },
+        {
+         "cf": "so5_cf",
+         "cognome": "so5_cognome",
+         "nome": "so5_nome",
+         "dataNascita": "so5_data_nascita",
+         "sesso": "so5_sesso",
+         "comuneNascita": "so5_comune_nascita",
+         "provincia": "so5_provincia",
+         "quota": {
+          "euro": "so5_quota",
+          "cent": "so5_quota_cent"
+         },
+         "importo": {
+          "euro": "so5_importo",
+          "cent": "so5_importo_cent"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

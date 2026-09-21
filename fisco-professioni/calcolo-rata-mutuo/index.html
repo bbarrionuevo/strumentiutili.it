@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulatore Rata Mutuo e Piano di Ammortamento 2026 — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola la rata del mutuo (ammortamento alla francese) e ottieni il TAEG/ISC reale. Simulatore aggiornato al 2026, 100% gratuito e client-side." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/" />
+
+  <!-- Favicon e Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolo Rata Mutuo e Piano di Ammortamento" />
+  <meta property="og:description" content="Sviluppa il piano di ammortamento alla francese, calcola gli interessi totali e il TAEG reale applicando le imposte sostitutive italiane (0.25% - 2%)." />
+  <meta property="og:url" content="https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE -->
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Dati Strutturati SEO (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fisco & Professioni",
+            "item": "https://strumentiutili.it/fisco-professioni/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Simulatore Rata Mutuo",
+            "item": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore Rata Mutuo e TAEG 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Calcolo della rata di un mutuo con ammortamento alla francese, piano di ammortamento mensile, interessi totali, costi accessori standard e TAEG stimato con imposta sostitutiva prima o seconda casa.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Rata costante con ammortamento alla francese",
+          "Piano di ammortamento mese per mese",
+          "Imposta sostitutiva dello 0,25% o del 2%",
+          "TAEG stimato con istruttoria, perizia, incasso rata e polizza incendio",
+          "Nessun dato inviato a banche o intermediari"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#howto",
+        "name": "Come calcolare la rata di un mutuo",
+        "description": "Procedura per stimare rata, interessi totali e TAEG di un mutuo ipotecario.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Offerta della banca con capitale, durata e TAN"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci capitale e durata",
+            "text": "Indica l'importo richiesto e la durata in anni.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#calc-capitale"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci il TAN",
+            "text": "Digita il tasso annuo nominale dell'offerta.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#calc-tan"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Scegli la finalità",
+            "text": "Seleziona prima casa o altri utilizzi per applicare l'imposta sostitutiva corretta.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#calc-finalita"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi rata e TAEG",
+            "text": "Consulta rata, TAEG, interessi totali e piano di ammortamento.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#res-rata"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-rata-mutuo/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Perché all'inizio del mutuo pago quasi solo interessi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché nell'ammortamento alla francese la rata è costante ma la sua composizione varia. La quota interessi si calcola sul debito residuo, che all'inizio coincide quasi con l'intero capitale, mentre la quota capitale è ciò che resta della rata dopo aver pagato gli interessi. Con il progressivo abbattimento del debito residuo la quota interessi si riduce e quella capitale cresce, secondo una progressione geometrica."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conviene di più un tasso fisso o un tasso variabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il tasso fisso incorpora il costo della copertura contro il rialzo e parte quindi da un livello più alto, garantendo però una rata immutabile per tutta la durata. Il variabile costa mediamente meno ma espone a oscillazioni che su durate lunghe possono modificare sensibilmente la rata. La scelta dipende dalla capacità di assorbire un aumento imprevisto e dall'orizzonte temporale: su durate brevi il variabile è meno rischioso, su durate trentennali l'incertezza cumulata è considerevole."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual è la differenza fra TAN e TAEG?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il TAN è il tasso annuo nominale applicato al capitale e serve a costruire il piano di ammortamento. Il TAEG è l'indicatore di costo complessivo: incorpora interessi, istruttoria, perizia, incasso rata, imposta sostitutiva e polizze obbligatorie, esprimendo il costo reale su base annua. Due offerte con identico TAN possono presentare TAEG molto diversi, ed è il secondo a determinare quale convenga."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto posso chiedere in rapporto al mio reddito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La prassi bancaria fissa la sostenibilità della rata attorno a un terzo del reddito netto mensile del nucleo familiare, considerando anche eventuali altri finanziamenti in corso. A questo si aggiunge il rapporto fra importo finanziato e valore dell'immobile, che raramente supera l'ottanta per cento salvo garanzie integrative o accesso a fondi pubblici di garanzia per specifiche categorie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Estinguere in anticipo conviene sempre?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Conviene tanto più quanto prima si interviene, perché il risparmio corrisponde agli interessi non ancora maturati sul debito residuo abbattuto. Negli ultimi anni di piano la quota interessi è ormai marginale e il beneficio si assottiglia. Va inoltre confrontato il rendimento alternativo della liquidità impiegata: se supera il tasso del mutuo, l'estinzione non è la scelta finanziariamente ottimale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La polizza assicurativa proposta dalla banca è obbligatoria?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo la copertura contro incendio e scoppio dell'immobile è obbligatoria per legge. Le polizze vita, infortuni o perdita dell'impiego sono facoltative e non possono essere imposte come condizione per l'erogazione. Il cliente ha inoltre il diritto di reperire autonomamente sul mercato la polizza incendio, senza che ciò comporti peggioramenti delle condizioni economiche del finanziamento."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-indigo-600 font-semibold">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- 1. MAIN (Colonna Sinistra) -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/fisco-professioni/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna a Fisco & Professioni</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏦</span> Finanza Immobiliare
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Simulatore Rata Mutuo e Ammortamento</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Calcola la rata mensile (ammortamento alla francese) e determina il TAEG reale stimato includendo l'imposta sostitutiva e gli oneri accessori bancari. I dati non lasciano mai il tuo dispositivo.
+        </p>
+      </section>
+
+      <!-- Form Calcolo Mutuo -->
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-6">
+        <form id="mutuo-form" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-capitale" class="text-sm font-bold text-gray-700">Capitale da Richiedere (€) *</label>
+              <button type="button" data-guida-toggle="guida-mutuo-capitale" aria-expanded="false" aria-controls="guida-mutuo-capitale" aria-label="Guida al campo Capitale richiesto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-mutuo-capitale" aria-describedby="guida-mutuo-capitale" type="number" id="calc-capitale" placeholder="Es. 150000" min="10000" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-mutuo-capitale" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Quanto chiedere:</strong> la differenza fra prezzo della casa e risparmi disponibili, tenendo da parte il denaro per notaio, imposte d'acquisto ed eventuale agenzia. Le banche finanziano di norma fino all'80% del valore di perizia.</p>
+              <p><strong class="text-indigo-900">Esempio:</strong> per una casa da 200.000 € il mutuo massimo ordinario è di 160.000 €: servono almeno 40.000 € di anticipo più alcune migliaia di euro per le spese di acquisto.</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-anni" class="text-sm font-bold text-gray-700">Durata (Anni) *</label>
+              <button type="button" data-guida-toggle="guida-mutuo-anni" aria-expanded="false" aria-controls="guida-mutuo-anni" aria-label="Guida al campo Durata" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-mutuo-anni" aria-describedby="guida-mutuo-anni" type="number" id="calc-anni" placeholder="Es. 20" min="5" max="40" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-mutuo-anni" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Effetto sulla rata:</strong> allungare la durata abbassa la rata ma aumenta molto gli interessi totali: su 150.000 € al 3,20%, passare da 25 a 30 anni riduce la rata di 78,32 € e aumenta gli interessi di 15.426,57 €.</p>
+              <p><strong class="text-indigo-900">Limite di età:</strong> molte banche chiedono che il mutuo si estingua entro i 75-80 anni del richiedente più anziano: a 50 anni la durata massima è spesso di 25-30 anni.</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-tan" class="text-sm font-bold text-gray-700">Tasso Annuo Nominale (TAN %)</label>
+              <button type="button" data-guida-toggle="guida-mutuo-tan" aria-expanded="false" aria-controls="guida-mutuo-tan" aria-label="Guida al campo TAN" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-mutuo-tan" aria-describedby="guida-mutuo-tan" type="number" id="calc-tan" placeholder="Es. 3.45" step="0.01" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-mutuo-tan" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Dove trovarlo:</strong> nel Prospetto Informativo Europeo Standardizzato che la banca consegna prima della stipula. Per un tasso variabile il TAN è la somma dell'indice di riferimento, di solito l'Euribor, e dello spread della banca.</p>
+              <p><strong class="text-indigo-900">TAN o TAEG:</strong> per confrontare offerte diverse guarda il TAEG, che include le spese. Il TAN serve a calcolare la rata.</p>
+              <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-finalita" class="text-sm font-bold text-gray-700">Finalità del Mutuo</label>
+              <button type="button" data-guida-toggle="guida-mutuo-finalita" aria-expanded="false" aria-controls="guida-mutuo-finalita" aria-label="Guida al campo Finalità del mutuo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-mutuo-finalita" aria-describedby="guida-mutuo-finalita" id="calc-finalita" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="prima_casa">Acquisto Prima Casa (Imp. Sostitutiva 0.25%)</option>
+              <option value="seconda_casa">Seconda Casa / Liquidità (Imp. Sostitutiva 2.00%)</option>
+            </select>
+            <div id="guida-mutuo-finalita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Prima casa:</strong> l'imposta sostitutiva dello 0,25% spetta ai mutui per acquisto, costruzione o ristrutturazione dell'abitazione principale non di lusso, se ricorrono i requisiti prima casa. Va dichiarato nell'atto di mutuo.</p>
+              <p><strong class="text-indigo-900">Altri casi e surroga:</strong> seconde case, immobili non abitativi e mutui di liquidità pagano il 2%. La surroga presso un'altra banca è invece esente da imposte e spese notarili a carico del cliente.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Piano Ammortamento UI -->
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm mb-6 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+          <h3 class="font-bold text-gray-900">Sviluppo Piano di Ammortamento</h3>
+        </div>
+        <div class="overflow-x-auto max-h-[500px]">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-gray-100 sticky top-0 shadow-sm">
+              <tr>
+                <th class="py-3 px-3 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Mese</th>
+                <th class="py-3 px-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Rata</th>
+                <th class="py-3 px-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Interessi</th>
+                <th class="py-3 px-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Capitale</th>
+                <th class="py-3 px-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Debito Residuo</th>
+              </tr>
+            </thead>
+            <tbody id="piano-ammortamento-body">
+              <tr><td colspan="5" class="py-8 text-center text-gray-400 text-sm">Compila i dati per generare il piano...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- 2. ASIDE (Colonna Destra in Desktop, Sotto Main in Mobile) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400 border-b border-gray-800 pb-2">Analisi Sintetica</h3>
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Rata Mensile Costante</span>
+            <span id="res-rata" class="text-4xl font-black text-amber-400 font-mono tracking-tight">0,00 €</span>
+          </div>
+          <div class="space-y-3 border-t border-gray-800 pt-4 text-sm mt-2">
+            <div class="flex justify-between text-gray-300">
+              <span>TAEG Stimato:</span>
+              <span id="res-taeg" class="font-bold text-white font-mono">0,00%</span>
+            </div>
+            <div class="flex justify-between text-gray-300">
+              <span>Totale Interessi:</span>
+              <span id="res-interessi" class="font-bold text-rose-400 font-mono">0,00 €</span>
+            </div>
+          </div>
+          <div class="pt-4 space-y-2 border-t border-gray-800 mt-4">
+            <div class="flex justify-between text-gray-400 text-xs">
+              <span>Rimborso Totale Banco:</span>
+              <span id="res-totale" class="font-bold text-white font-mono">0,00 €</span>
+            </div>
+            <p class="text-[10px] text-gray-500 mt-2 leading-tight">Include: istruttoria, perizia e imposta sostitutiva. Incasso rata e polizza incendio sono considerati nel TAEG.</p>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📜</span> Usufrutto e Nuda Proprietà</a></li>
+            <li><a href="/fisco-professioni/rivalutazione-istat/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Rivalutazione ISTAT FOI</a></li>
+            <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Interessi Moratori B2B</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Calcolo Scorporo IVA</a></li>
+              <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Contributo Unificato 2026</a></li>
+              <li><a href="/fisco-professioni/generatore-xml-fatturapa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> Generatore FatturaPA XML</a></li>
+              <li><a href="/fisco-professioni/modelli-partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏢</span> Modelli AA9/12 e AA7/10</a></li>
+              <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Parcella Avvocato</a></li>
+              <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧮</span> Partita IVA Forfettaria</a></li>
+              <li><a href="/fisco-professioni/ravvedimento-operoso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⏱️</span> Ravvedimento Operoso</a></li>
+              <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
+            </ul>
+          </details>
+          <a href="/fisco-professioni/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Fisco &amp; Professioni</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- 3. CONTENEDOR SEO (+1000 Parole) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Imposta sostitutiva e costi standard aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.Lgs. 385/1993 (Testo unico bancario) artt. 120-ter e 120-quater, D.P.R. 601/1973 artt. 15-20 (imposta sostitutiva), D.Lgs. 72/2016 (credito immobiliare ai consumatori), Disposizioni della Banca d'Italia sulla trasparenza.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Finanziario: Ammortamento Francese, Oneri Accessori e Calcolo del TAEG</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">L'accesso al credito ipotecario rappresenta, per il cittadino e per l'investitore, una delle esposizioni finanziarie più complesse e durature. L'ordinamento bancario italiano predilige quasi in via esclusiva il sistema di ammortamento alla francese, caratterizzato da rate costanti che nascondono, tuttavia, una composizione interna fortemente asimmetrica. Il presente approfondimento sviscera l'architettura matematica del piano di rimborso, i limiti operativi fissati dalla Banca d'Italia e il framework fiscale previsto dal D.P.R. 601/1973 per la concessione di finanziamenti a medio e lungo termine.</p>
+        
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>1.</span> La Meccanica Matematica dell'Ammortamento alla Francese</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il sistema bancario italiano adotta universalmente il piano di ammortamento a "rata costante posticipata", comunemente noto come ammortamento alla francese. La peculiarità di questo modello, contrapposto all'ammortamento all'italiana (a quote capitali costanti), risiede nella progressiva scomposizione interna della rata. Pur mantenendo un esborso finanziario mensile invariato (in costanza di un Tasso Annuo Nominale o TAN fisso), la componente destinata all'effettivo abbattimento del debito originario (Quota Capitale) cresce geometricamente nel tempo. Parallelamente, la componente di remunerazione del rischio per l'istituto di credito (Quota Interessi) decresce simmetricamente, essendo calcolata mese per mese unicamente sul debito residuo.</p>
+            <p>Dal punto di vista dell'analisi matematica, la determinazione della rata fissa ($R$) si appoggia all'equazione fondamentale delle rendite certe posticipate. L'algoritmo sviluppato nel nostro applicativo esegue la seguente funzione: $R = C \cdot \frac{i \cdot (1 + i)^n}{(1 + i)^n - 1}$. In questa formula, $C$ rappresenta il capitale erogato al netto degli abbuoni, $n$ indica il montante delle mensilità totali (ad esempio, 240 mesi per un mutuo ventennale) e $i$ costituisce il tasso di interesse periodale, derivato dalla semplice conversione lineare del TAN annuo diviso per dodici mensilità ($i = TAN / 12$).</p>
+            <p>Tale meccanismo genera una criticità intrinseca: qualora il mutuatario decida di procedere a un'estinzione anticipata (parziale o totale) o a una surroga del mutuo durante il primo terzo della vita del finanziamento, si accorgerà di aver rimborsato alla banca quasi esclusivamente la quota interessi, mantenendo un debito residuo in linea capitale ancora molto prossimo alla somma inizialmente richiesta.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>2.</span> Il Framework Fiscale: L'Imposta Sostitutiva (D.P.R. 601/1973)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Oltre al costo nudo degli interessi passivi, l'erogazione di un mutuo ipotecario in Italia sconta in fase di stipula l'applicazione dell'Imposta Sostitutiva sui finanziamenti a medio-lungo termine. Questa tassa, disciplinata storicamente dall'Articolo 18 del D.P.R. 601/1973, funge da assorbente rispetto alle ordinarie imposte di registro, bollo, ipotecarie e catastali che graverebbero altrimenti sull'iscrizione della garanzia reale.</p>
+            <p>Il legislatore fiscale ha introdotto una netta dicotomia tariffaria legata alla finalità urbanistica e abitativa dell'immobile dedotto in garanzia. Se il finanziamento è finalizzato in via esclusiva all'acquisto, alla costruzione o alla ristrutturazione radicale della <strong>Prima Casa</strong> (ovvero l'abitazione principale e non di lusso del nucleo familiare), la normativa impone un'aliquota agevolata pari allo <strong>0,25%</strong> del capitale effettivamente erogato.</p>
+            <p>In aperto contrasto, qualora il mutuo sia acceso per l'acquisto di <strong>Seconde Case</strong>, immobili ad uso turistico, locali commerciali o, più in generale, in caso di mutui di liquidità (dove il capitale viene richiesto per scopi estranei al perimetro immobiliare agevolato), il prelievo fiscale si inasprisce severamente. In questi scenari, l'aliquota diventa otto volte più alta, assestandosi al <strong>2,00%</strong> dell'erogato. A livello operativo, tale imposta viene trattenuta in origine alla fonte: la banca erogherà materialmente nelle mani del notaio o del venditore una cifra già decurtata di questa gabella erariale.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>3.</span> Spese di Istruttoria e Oneri Periziali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La filiera di accensione di un mutuo fondiario comporta oneri accessori fissi che incidono pesantemente sul costo reale dell'operazione. Il primo scoglio è rappresentato dalle Spese di Istruttoria bancaria. Queste coprono i costi amministrativi sostenuti dall'istituto per l'analisi del merito creditizio, la valutazione della documentazione reddituale e l'interrogazione delle centrali rischi (CRIF). Nella prassi bancaria del 2026, l'istruttoria viene calcolata come una percentuale del capitale richiesto, oscillante tipicamente tra lo 0,60% e l'1,20%, prevedendo comunque dei "floor" (soglie minime, circa 500,00 €) e dei "cap" (soglie massime, raramente superiori ai 2.000,00 €).</p>
+            <p>Il secondo onere indissolubilmente legato alla concessione è la Perizia Tecnica Giurata. Poiché l'erogazione è garantita dal valore intrinseco dell'immobile (rispettando il limite del Loan-to-Value, o LTV, fissato di norma all'80%), la banca incarica un perito indipendente per accertare la regolarità urbanistico-catastale e il valore di mercato del cespite. Il costo periziale si attesta su una tariffa media nazionale di circa 320,00 €. È essenziale notare che questi oneri (istruttoria e perizia) vengono anch'essi trattenuti in fase di erogazione, riducendo ulteriormente il netto erogato al mutuatario.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>4.</span> La Rivoluzione del TAEG / ISC (Metodo Newton-Raphson)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il Tasso Annuo Nominale (TAN) rappresenta esclusivamente il costo del denaro prestato, ma si rivela uno strumento decettivo se utilizzato come unico metro di paragone tra diverse offerte bancarie. Il vero termometro del costo del mutuo è il Tasso Annuo Effettivo Globale (TAEG), introdotto originariamente con la dicitura Indicatore Sintetico di Costo (ISC). In ottemperanza alla Direttiva Europea 2014/17/UE e alle Disposizioni di Trasparenza della Banca d'Italia, il TAEG impone l'inclusione matematica di tutti gli oneri accessori obbligatori: imposta sostitutiva, istruttoria, perizia, costi fissi di incasso rata (mediamente 2,50 € al mese) e la polizza assicurativa antincendio obbligatoria.</p>
+            <p>La complessità algoritmica del TAEG deriva dall'impossibilità di ricavare il tasso mediante una formula algebrica chiusa e lineare. La sua estrazione richiede la risoluzione dell'equazione del Valore Attuale Netto (VAN) posto uguale a zero. Il nostro applicativo web elabora questa sfida computazionale avvalendosi del metodo di iterazione numerica di <strong>Newton-Raphson</strong>.</p>
+            <p>In termini informatici, il motore JavaScript istanzia un ciclo di approssimazioni successive che calcola le derivate parziali dei flussi di cassa in entrata (il capitale netto ricevuto, decurtato di spese iniziali e imposte) controbilanciandoli con i flussi in uscita (le rate gravate dalle spese di incasso e assicurazione mensile). L'algoritmo itera fino a convergere a una tolleranza di approssimazione inferiore a $10^{-7}$, restituendo all'utente un TAEG esatto e pienamente allineato agli standard di rendicontazione previsti dalla normativa europea.</p>
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>D.Lgs. 1 settembre 1993 n. 385 (Testo Unico Bancario)</strong> — disciplina generale del credito, trasparenza delle condizioni contrattuali e obblighi informativi verso il cliente.</li>
+              <li><strong>D.P.R. 29 settembre 1973 n. 601, articoli 15 e seguenti</strong> — istituisce l'imposta sostitutiva sui finanziamenti a medio e lungo termine, in luogo di registro, bollo, ipotecarie e catastali.</li>
+              <li><strong>D.Lgs. 21 aprile 2016 n. 72</strong> — recepisce la direttiva europea sul credito immobiliare ai consumatori e introduce il Prospetto Informativo Europeo Standardizzato.</li>
+              <li><strong>Legge 2 aprile 2007 n. 40 (Legge Bersani)</strong> — sancisce il diritto alla portabilità del mutuo senza costi a carico del cliente e vieta le penali di estinzione anticipata sui mutui prima casa.</li>
+              <li><strong>Legge 7 marzo 1996 n. 108</strong> — disciplina antiusura e determinazione trimestrale dei tassi soglia da parte del Ministero dell'Economia.</li>
+              <li><strong>Delibera CICR e Istruzioni di Vigilanza della Banca d'Italia</strong> — regolano il calcolo dell'Indicatore Sintetico di Costo e le modalità di pubblicizzazione delle condizioni.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Gli oneri accessori applicati dal motore</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro 2026</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Natura</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Imposta sostitutiva, prima casa</td><td class="px-3 py-2 border-t border-gray-200">0,25% del capitale</td><td class="px-3 py-2 border-t border-gray-200">Tributo, trattenuto all'erogazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta sostitutiva, altri immobili</td><td class="px-3 py-2 border-t border-gray-200">2,00% del capitale</td><td class="px-3 py-2 border-t border-gray-200">Tributo, trattenuto all'erogazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spese di istruttoria</td><td class="px-3 py-2 border-t border-gray-200">0,80%, minimo 500 e massimo 2.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">Costo bancario una tantum</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Perizia tecnica sull'immobile</td><td class="px-3 py-2 border-t border-gray-200">320,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Costo una tantum, spesso non negoziabile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Incasso rata</td><td class="px-3 py-2 border-t border-gray-200">2,50 EUR al mese</td><td class="px-3 py-2 border-t border-gray-200">Costo ricorrente per l'intera durata</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Polizza incendio e scoppio</td><td class="px-3 py-2 border-t border-gray-200">0,035% annuo</td><td class="px-3 py-2 border-t border-gray-200">Copertura obbligatoria per legge</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Durata ammessa</td><td class="px-3 py-2 border-t border-gray-200">da 5 a 40 anni</td><td class="px-3 py-2 border-t border-gray-200">Vincolo di prodotto</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il peso reale degli oneri accessori</h3>
+            <p>Su un finanziamento prima casa di 150.000 euro a venticinque anni, gli oneri accessori si compongono di 375 euro di imposta sostitutiva, 1.200 euro di istruttoria, 320 euro di perizia, 750 euro di commissioni di incasso distribuite sulle trecento rate e circa 1.312 euro di premi assicurativi, per un totale prossimo a <strong>3.957 euro</strong>. Se lo stesso immobile non godesse dell'agevolazione prima casa, la sola imposta sostitutiva salirebbe da 375 a 3.000 euro, portando il totale oltre i 6.500 euro.</p>
+            <p>È esattamente questo insieme di voci a determinare la divaricazione fra TAN e TAEG. Il primo remunera il solo capitale; il secondo, noto anche come Indicatore Sintetico di Costo, incorpora tutti gli oneri obbligatori e rappresenta l'unico parametro su cui un confronto fra offerte abbia significato economico.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Tutele contrattuali da conoscere</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Estinzione anticipata</strong>: sui mutui stipulati da persone fisiche per l'acquisto o la ristrutturazione della prima casa non è dovuta alcuna penale, né totale né parziale.</li>
+              <li><strong>Surroga</strong>: il trasferimento del mutuo presso un altro istituto avviene senza costi, senza nuovo atto notarile di compravendita e conservando l'ipoteca originaria.</li>
+              <li><strong>Sospensione delle rate</strong>: il Fondo di solidarietà per i mutui prima casa consente, in presenza di determinati eventi, la sospensione dei pagamenti per un periodo massimo predeterminato.</li>
+              <li><strong>Rinegoziazione</strong>: è sempre possibile chiedere alla banca la modifica delle condizioni, operazione che non richiede atto pubblico e ha costi trascurabili.</li>
+              <li><strong>Tasso soglia antiusura</strong>: un TEG superiore alla soglia trimestrale rende non dovuti gli interessi, con conseguenze radicali sul piano civilistico.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> il piano di ammortamento prodotto è una simulazione costruita su parametri standard di mercato. Il TAEG effettivo dipende dalle condizioni concrete offerte dall'istituto, dalla presenza di polizze facoltative e dalla periodicità degli oneri. Il documento di riferimento vincolante resta il Prospetto Informativo Europeo Standardizzato che la banca è obbligata a consegnare prima della stipula.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono calcolati con il simulatore della pagina, che applica ammortamento alla francese e costi accessori standard (istruttoria 0,80% fra 500 e 2.000 €, perizia 320 €, incasso rata 2,50 €, polizza incendio 0,035% annuo).</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: 150.000 € per la prima casa al 3,20%, tre durate a confronto</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>20 anni: rata 846,99 €, interessi 53.278,62 €</li>
+            <li>25 anni: rata 727,02 €, interessi 68.105,54 €</li>
+            <li>30 anni: rata 648,70 €, interessi 83.532,11 €</li>
+            </ul>
+            <p>Passare da 20 a 30 anni abbassa la rata di 198,29 € al mese ma costa 30.253,49 € di interessi in più. Una soluzione intermedia è scegliere una durata lunga per avere margine e fare estinzioni parziali quando possibile: sui mutui prima casa non ci sono penali.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: 90.000 € al 3,60% per 20 anni, prima o seconda casa</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Rata identica: 526,60 €</li>
+            <li>Prima casa: imposta 225 €, TAEG 3,94%, esborso totale 127.649,08 €</li>
+            <li>Seconda casa: imposta 1.800 €, TAEG 4,15%, esborso totale 129.224,08 €</li>
+            </ul>
+            <p>La rata non cambia perché l'imposta sostitutiva viene trattenuta all'erogazione: si riceve meno denaro. Per questo, con la stessa rata, il TAEG della seconda casa è più alto di 0,21 punti.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: com'è fatta la prima rata</h3>
+            <p>Sul mutuo da 150.000 € a 25 anni al 3,20%, la prima delle 300 rate da 727,02 € si divide così:</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Interessi: 150.000 × 3,20% / 12 = 400,00 €</li>
+            <li>Capitale restituito: 727,02 − 400,00 = 327,02 €</li>
+            </ul>
+            <p>Più della metà della prima rata sono interessi. Un'estinzione parziale di 10.000 € nei primi anni riduce il debito su cui si calcolano tutti gli interessi futuri, ed è quindi molto più efficace della stessa somma versata negli ultimi anni del piano.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché all'inizio del mutuo pago quasi solo interessi?</h3>
+              <p>Perché nell'ammortamento alla francese la rata è costante ma la sua composizione varia. La quota interessi si calcola sul debito residuo, che all'inizio coincide quasi con l'intero capitale, mentre la quota capitale è ciò che resta della rata dopo aver pagato gli interessi. Con il progressivo abbattimento del debito residuo la quota interessi si riduce e quella capitale cresce, secondo una progressione geometrica.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene di più un tasso fisso o un tasso variabile?</h3>
+              <p>Il tasso fisso incorpora il costo della copertura contro il rialzo e parte quindi da un livello più alto, garantendo però una rata immutabile per tutta la durata. Il variabile costa mediamente meno ma espone a oscillazioni che su durate lunghe possono modificare sensibilmente la rata. La scelta dipende dalla capacità di assorbire un aumento imprevisto e dall'orizzonte temporale: su durate brevi il variabile è meno rischioso, su durate trentennali l'incertezza cumulata è considerevole.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra TAN e TAEG?</h3>
+              <p>Il TAN è il tasso annuo nominale applicato al capitale e serve a costruire il piano di ammortamento. Il TAEG è l'indicatore di costo complessivo: incorpora interessi, istruttoria, perizia, incasso rata, imposta sostitutiva e polizze obbligatorie, esprimendo il costo reale su base annua. Due offerte con identico TAN possono presentare TAEG molto diversi, ed è il secondo a determinare quale convenga.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Quanto posso chiedere in rapporto al mio reddito?</h3>
+              <p>La prassi bancaria fissa la sostenibilità della rata attorno a un terzo del reddito netto mensile del nucleo familiare, considerando anche eventuali altri finanziamenti in corso. A questo si aggiunge il rapporto fra importo finanziato e valore dell'immobile, che raramente supera l'ottanta per cento salvo garanzie integrative o accesso a fondi pubblici di garanzia per specifiche categorie.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Estinguere in anticipo conviene sempre?</h3>
+              <p>Conviene tanto più quanto prima si interviene, perché il risparmio corrisponde agli interessi non ancora maturati sul debito residuo abbattuto. Negli ultimi anni di piano la quota interessi è ormai marginale e il beneficio si assottiglia. Va inoltre confrontato il rendimento alternativo della liquidità impiegata: se supera il tasso del mutuo, l'estinzione non è la scelta finanziariamente ottimale.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">La polizza assicurativa proposta dalla banca è obbligatoria?</h3>
+              <p>Solo la copertura contro incendio e scoppio dell'immobile è obbligatoria per legge. Le polizze vita, infortuni o perdita dell'impiego sono facoltative e non possono essere imposte come condizione per l'erogazione. Il cliente ha inoltre il diritto di reperire autonomamente sul mercato la polizza incendio, senza che ciò comporti peggioramenti delle condizioni economiche del finanziamento.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il simulatore di mutuo è uno strumento <strong>100% client-side, senza alcun backend</strong>. Il capitale richiesto, la durata, il tasso, il reddito e ogni altro parametro che inserisci restano nella memoria del browser sul tuo dispositivo. Non effettuiamo alcuna trasmissione, non generiamo lead, non cediamo dati a istituti di credito o intermediari e non registriamo le simulazioni eseguite.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">È una differenza sostanziale rispetto ai comparatori commerciali, che tipicamente raccolgono i dati della simulazione per rivenderli come contatti qualificati. Reddito, capacità di indebitamento e progetto di acquisto immobiliare costituiscono un profilo economico di grande valore di mercato e di pari sensibilità per l'interessato. Non raccogliendolo, lo strumento rispetta il Regolamento UE 2016/679 (GDPR) e ne attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, oltre alla minimizzazione dei dati dell'articolo 5, paragrafo 1, lettera c.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. FOOTER -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 5. SCRIPTS -->
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/mutuo.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; console.warn('[AdSense] Error:', error); }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => requestAnimationFrame(initVisibleAds));
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-mutuo-tan'] = function (campo) {
+      var tan = parseFloat(campo.value);
+      var capitale = parseFloat(document.getElementById('calc-capitale').value);
+      var anni = parseInt(document.getElementById('calc-anni').value, 10);
+      if (!(tan > 0) || !(capitale > 0) || !(anni > 0)) return '';
+      var n = anni * 12;
+      var rata = function (t) { var i = t / 100 / 12; return capitale * (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1); };
+      var euro = function (v) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(v); };
+      var base = rata(tan), piu = rata(tan + 0.5);
+      return 'Con TAN ' + String(tan).replace('.', ',') + '% la rata è ' + euro(base) + '; mezzo punto in più la porterebbe a ' + euro(piu) + ' (+' + euro(piu - base) + ' al mese).';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

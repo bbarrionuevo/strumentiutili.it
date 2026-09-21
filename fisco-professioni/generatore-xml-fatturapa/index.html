@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore XML Fattura Elettronica (FatturaPA) — StrumentiUtili.it</title>
+  <meta name="description" content="Crea file XML per la Fattura Elettronica (SdI 1.2.2) gratis e senza registrazione. Calcolo DatiRiepilogo automatico. 100% Privacy nel browser." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Generatore XML FatturaPA",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/",
+        "description": "Creazione nel browser di un file XML FatturaPA con dati di fornitore e cliente, righe con aliquota o natura IVA, riepilogo IVA automatico, ritenuta d'acconto e controllo dei numeri duplicati.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "@id": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Controllo matematico della Partita IVA e del codice fiscale",
+          "Righe con aliquote IVA e codici natura",
+          "Castelletto IVA raggruppato per aliquota e natura",
+          "Nodo DatiRitenuta con causale di pagamento",
+          "Avviso sui numeri di fattura già generati"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "fisco-professioni",
+            "item": "https://strumentiutili.it/fisco-professioni/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Generatore XML FatturaPA",
+            "item": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#howto",
+        "name": "Come creare un file XML di fattura elettronica",
+        "description": "Procedura per preparare un file FatturaPA da completare e trasmettere al Sistema di Interscambio.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT10M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Dati fiscali del fornitore e del cliente"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci i tuoi dati",
+            "text": "Indica denominazione, Partita IVA e regime fiscale.",
+            "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#emittente-piva"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci il cliente",
+            "text": "Indica denominazione, Partita IVA o codice fiscale e codice destinatario.",
+            "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#cliente-id"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Compila documento e righe",
+            "text": "Scegli tipo, numero e data, poi aggiungi le righe con aliquota o natura IVA.",
+            "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#lines-container"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Scarica e completa il file",
+            "text": "Scarica l'XML, completa gli indirizzi e gli eventuali dati del bollo e trasmettilo con il servizio dell'Agenzia o il tuo gestionale.",
+            "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#btn-generate-xml"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Cosa devo fare se il Sistema di Interscambio scarta la mia fattura?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il documento scartato si considera giuridicamente non emesso. Occorre correggere l'errore segnalato dal codice di scarto e ritrasmettere il file entro cinque giorni dalla notifica, mantenendo la data e il numero originari. Se il termine viene rispettato non si incorre in alcuna sanzione per tardiva emissione, perché la trasmissione si considera tempestiva."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Un contribuente in regime forfettario deve emettere fattura elettronica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. L'obbligo si è esteso a tutti i titolari di partita IVA, senza più esclusioni legate al regime o al volume dei ricavi. Il forfettario espone l'operazione senza IVA, indicando il regime fiscale corrispondente e la natura relativa alle operazioni non soggette, e applica l'imposta di bollo virtuale quando l'importo supera la soglia di legge."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il file XML generato è già valido per l'invio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il generatore produce un tracciato conforme alle specifiche e ne verifica la coerenza formale, compresa la quadratura del castelletto e la validità del codice di controllo delle partite IVA. La trasmissione resta però un passaggio separato: va effettuata tramite il portale Fatture e Corrispettivi, un intermediario abilitato o un canale accreditato. Questo strumento non invia nulla ad alcun sistema."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual è la differenza fra codice destinatario e PEC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sono i due recapiti alternativi attraverso cui il Sistema di Interscambio consegna il documento. Il codice destinatario è un identificativo di sette caratteri associato al canale telematico del ricevente. In assenza di codice si valorizza il campo con sette zeri e si indica la PEC del destinatario. Se nessuno dei due è noto, la fattura viene comunque recapitata nell'area riservata del cessionario."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso modificare una fattura già accettata dal Sistema di Interscambio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Una volta consegnata, la fattura è immodificabile. La rettifica avviene esclusivamente mediante emissione di una nota di credito, che storna in tutto o in parte il documento originario, o di una nota di debito per gli aumenti. Entrambe seguono lo stesso tracciato e le stesse regole di trasmissione della fattura."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conservare il file XML sul mio computer soddisfa l'obbligo di legge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La conservazione a norma richiede l'apposizione di riferimenti temporali opponibili a terzi, la generazione di pacchetti di archiviazione conformi e la garanzia di integrità e leggibilità per dieci anni. Il salvataggio su disco o su un servizio cloud generico non integra questi requisiti. Il servizio di conservazione gratuito offerto dall'Agenzia delle Entrate va attivato espressamente mediante adesione."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header Navigazione Principale -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-indigo-600 font-semibold">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA CENTRALE (APP) -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/fisco-professioni/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna a Fisco &amp; Professioni</a>
+      
+      <div class="mb-6 border-b border-gray-200 pb-4">
+        <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ Zero-Backend - I dati restano nel tuo browser</span>
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Generatore XML Fattura Elettronica</h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Crea il file <strong>.xml (FatturaPA vers. 1.2.2)</strong> pronto per l'invio al Sistema di Interscambio (SdI). Valida le Partite IVA con algoritmo di Luhn ed evita gli scarti formali. Non richiede registrazione o abbonamenti.
+        </p>
+      </div>
+
+      <!-- FORM INTERFACCIA -->
+      <form id="fattura-form" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-8 space-y-8">
+        
+        <!-- Dati Emittente -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">1. I tuoi dati (Cedente / Prestatore)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Denominazione / Ragione Sociale *</label>
+              <input type="text" id="emittente-nome" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="Es. Rossi Mario Srl" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="emittente-piva" class="text-xs font-bold text-gray-700">Partita IVA (11 cifre) *</label>
+                <button type="button" data-guida-toggle="guida-xml-piva" aria-expanded="false" aria-controls="guida-xml-piva" aria-label="Guida al campo Partita IVA dell'emittente" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-xml-piva" aria-describedby="guida-xml-piva" type="text" id="emittente-piva" required maxlength="11" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="01234567890" />
+              <div id="guida-xml-piva" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Controllo:</strong> il campo diventa verde quando le 11 cifre superano il controllo matematico del carattere finale. Il controllo non verifica che la Partita IVA sia attiva: una partita cessata viene scartata dal Sistema di Interscambio.</p>
+                <p><strong class="text-indigo-900">Dove verificarla:</strong> nel servizio di verifica delle partite IVA sul sito dell'Agenzia delle Entrate o nel VIES per le operazioni con l'estero.</p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="emittente-regime" class="text-xs font-bold text-gray-700">Regime Fiscale *</label>
+                <button type="button" data-guida-toggle="guida-xml-regime" aria-expanded="false" aria-controls="guida-xml-regime" aria-label="Guida al campo Regime fiscale" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-xml-regime" aria-describedby="guida-xml-regime" id="emittente-regime" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state">
+                <option value="RF01">Ordinario (RF01)</option>
+                <option value="RF19">Forfettario (RF19)</option>
+                <option value="RF02">Contribuenti minimi (RF02)</option>
+              </select>
+              <div id="guida-xml-regime" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Quale scegliere:</strong> RF01 per il regime ordinario, RF19 per il forfettario, RF02 per i vecchi contribuenti minimi. Il codice deve coincidere con quello comunicato all'Agenzia all'apertura della Partita IVA.</p>
+                <p><strong class="text-indigo-900">Forfettario:</strong> con RF19 la ritenuta viene disattivata e le righe vanno impostate con IVA 0% e natura N2.2. Sopra 77,47 € serve il bollo da 2 €, che il generatore non inserisce: va indicato nel gestionale o nel servizio dell'Agenzia prima dell'invio.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dati Cliente -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">2. Dati Cliente (Cessionario / Committente)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Denominazione Cliente *</label>
+              <input type="text" id="cliente-nome" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="cliente-id" class="text-xs font-bold text-gray-700">Partita IVA / Codice Fiscale *</label>
+                <button type="button" data-guida-toggle="guida-xml-cliente" aria-expanded="false" aria-controls="guida-xml-cliente" aria-label="Guida al campo Identificativo del cliente" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-xml-cliente" aria-describedby="guida-xml-cliente" type="text" id="cliente-id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="P.IVA 11 cifre o CF 16 cifre" />
+              <div id="guida-xml-cliente" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Azienda o professionista:</strong> la Partita IVA di 11 cifre: viene inserita nel nodo IdFiscaleIVA.</p>
+                <p><strong class="text-indigo-900">Privato:</strong> il codice fiscale di 16 caratteri: viene inserito nel nodo CodiceFiscale. In questo caso usa 0000000 come codice destinatario e consegna al cliente anche una copia PDF.</p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="cliente-sdi" class="text-xs font-bold text-gray-700">Codice Destinatario (SdI) *</label>
+                <button type="button" data-guida-toggle="guida-xml-sdi" aria-expanded="false" aria-controls="guida-xml-sdi" aria-label="Guida al campo Codice destinatario" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-xml-sdi" aria-describedby="guida-xml-sdi" type="text" id="cliente-sdi" required maxlength="7" value="0000000" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 font-mono su-save-state" placeholder="7 caratteri (es. M5UXCR1 o 0000000)" />
+              <div id="guida-xml-sdi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Dove trovarlo:</strong> il codice di 7 caratteri che il cliente ha registrato presso l'Agenzia o quello del suo software di fatturazione, di solito indicato nella visura o chiesto per email. Le pubbliche amministrazioni usano un codice ufficio di 6 caratteri.</p>
+                <p><strong class="text-indigo-900">Se non lo conosci:</strong> usa 0000000: la fattura arriva nell'area riservata del cliente o alla PEC registrata. Un codice sbagliato non causa lo scarto ma una mancata consegna.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dati Fattura -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">3. Dati Documento</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Tipo Documento</label>
+              <select id="doc-tipo" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state">
+                <option value="TD01">Fattura (TD01)</option>
+                <option value="TD04">Nota di Credito (TD04)</option>
+                <option value="TD06">Parcella (TD06)</option>
+              </select>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="doc-numero" class="text-xs font-bold text-gray-700">Numero Fattura *</label>
+                <button type="button" data-guida-toggle="guida-xml-numero" aria-expanded="false" aria-controls="guida-xml-numero" aria-label="Guida al campo Numero della fattura" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-xml-numero" aria-describedby="guida-xml-numero" type="text" id="doc-numero" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="Es. 1/2026" />
+              <div id="guida-xml-numero" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Regola:</strong> numerazione progressiva per anno solare, senza salti né ripetizioni: 1/2026, 2/2026. Puoi usare prefissi o sezionali, per esempio FT-2026-12, purché la sequenza resti univoca.</p>
+                <p><strong class="text-indigo-900">Duplicati:</strong> il generatore ricorda nel browser i numeri già usati con la stessa Partita IVA e ti avvisa prima di creare un duplicato, che il Sistema di Interscambio scarterebbe con l'errore 00404.</p>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Data *</label>
+              <input type="date" id="doc-data" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+            </div>
+          </div>
+        </div>
+      
+        <!-- Ritenuta d'Acconto (Condizionale) -->
+        <div id="section-ritenuta" class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-lg font-bold text-gray-900">Ritenuta d'Acconto</h2>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input data-guida="guida-xml-ritenuta" aria-describedby="guida-xml-ritenuta" type="checkbox" id="applica-ritenuta" class="sr-only peer su-save-state">
+              <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+            </label>
+          </div>
+          <p id="msg-forfettario" class="text-xs text-indigo-600 font-semibold hidden">La Ritenuta d'Acconto è disabilitata per i contribuenti in Regime Forfettario (RF19).</p>
+          <button type="button" data-guida-toggle="guida-xml-ritenuta" aria-expanded="false" aria-controls="guida-xml-ritenuta" aria-label="Guida al campo Ritenuta d'acconto" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quando attivare la ritenuta</button>
+          <div id="guida-xml-ritenuta" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Quando serve:</strong> se sei un professionista in regime ordinario e il cliente è un sostituto d'imposta: azienda, professionista o ente. Causale A per i professionisti, M per il lavoro autonomo occasionale, Q per le provvigioni.</p>
+            <p><strong class="text-indigo-900">Effetto nel file:</strong> il totale del documento resta comprensivo dell'intero importo; la ritenuta, del 20% sull'imponibile, viene esposta a parte nel nodo DatiRitenuta e il cliente paga la differenza.</p>
+          </div>
+          
+          <div id="ritenuta-fields" class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4 hidden">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Aliquota Ritenuta (%) *</label>
+              <input type="number" id="ritenuta-aliquota" value="20.00" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Causale Pagamento (Mod. 770) *</label>
+              <select id="ritenuta-causale" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state">
+                <option value="A">A - Prestazioni di lavoro autonomo (Professionisti)</option>
+                <option value="M">M - Prestazioni di lavoro autonomo occasionale</option>
+                <option value="Q">Q - Provvigioni corrisposte ad agenti</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dettaglio Linee -->
+        <div>
+          <div class="flex justify-between items-end border-b border-gray-100 pb-2 mb-4">
+            <h2 class="text-lg font-bold text-gray-900">4. Dettaglio Prodotti / Servizi</h2>
+            <button type="button" id="btn-add-line" class="text-xs bg-indigo-50 text-indigo-700 font-bold px-3 py-1.5 rounded hover:bg-indigo-100 transition">+ Aggiungi Riga</button>
+          </div>
+          
+          <div id="lines-container" class="space-y-4">
+            <!-- Linee iniettate da JS -->
+          </div>
+          <button type="button" data-guida-toggle="guida-xml-righe" aria-expanded="false" aria-controls="guida-xml-righe" aria-label="Guida al campo Righe e natura IVA" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Aliquote e natura IVA</button>
+          <div id="guida-xml-righe" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Aliquota:</strong> una riga per ogni bene o servizio con la propria aliquota; il riepilogo IVA viene raggruppato automaticamente per aliquota e natura.</p>
+            <p><strong class="text-indigo-900">Natura con IVA 0%:</strong> N2.2 per i forfettari, N4 per le operazioni esenti come le prestazioni sanitarie, N3.1 per le esportazioni, N2.1 per i servizi a clienti esteri non soggetti in Italia, N1 per le somme escluse come le anticipazioni per conto del cliente.</p>
+          </div>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- COLONNA DESTRA (ASIDE & ADSENSE) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Riepilogo Importi</h3>
+            <span class="text-[10px] font-bold bg-indigo-500 px-2 py-0.5 rounded text-white shadow-sm">XML 1.2.2</span>
+          </div>
+          
+          <div class="pt-2 flex justify-between">
+            <span class="text-sm text-gray-300">Imponibile Totale</span>
+            <span id="out-imponibile" class="text-sm font-mono text-white">€ 0.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-sm text-gray-300">Imposta (IVA)</span>
+            <span id="out-imposta" class="text-sm font-mono text-white">€ 0.00</span>
+          </div>
+
+          <div class="pt-2 border-t border-gray-800 mt-2 flex justify-between items-center">
+            <span class="text-sm font-bold text-white uppercase block mt-1">Totale Documento</span>
+            <span id="out-totale" class="text-2xl font-extrabold text-amber-400 font-mono tracking-tight">€ 0.00</span>
+          </div>
+
+          <div class="pt-4 mt-2">
+            <button id="btn-generate-xml" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>&lt;/&gt;</span> Scarica File XML
+            </button>
+            <p class="text-[9px] text-gray-500 text-center leading-tight mt-3">
+              Nessun dato viene inviato ai nostri server. Il file XML viene assemblato in locale per la tua sicurezza.
+            </p>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
+            <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Calcolo Scorporo IVA</a></li>
+            <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧮</span> Partita IVA Forfettaria</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Contributo Unificato 2026</a></li>
+              <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Interessi Moratori B2B</a></li>
+              <li><a href="/fisco-professioni/modelli-partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏢</span> Modelli AA9/12 e AA7/10</a></li>
+              <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Parcella Avvocato</a></li>
+              <li><a href="/fisco-professioni/ravvedimento-operoso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⏱️</span> Ravvedimento Operoso</a></li>
+              <li><a href="/fisco-professioni/rivalutazione-istat/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Rivalutazione ISTAT FOI</a></li>
+              <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Simulatore Rata Mutuo</a></li>
+              <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📜</span> Usufrutto e Nuda Proprietà</a></li>
+            </ul>
+          </details>
+          <a href="/fisco-professioni/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Fisco &amp; Professioni</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- DOSSIER SEO E-E-A-T B2B -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Codifiche del tracciato FatturaPA aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il file XML viene composto nel browser: dati del fornitore, del cliente e importi non vengono inviati a server. L'unico dato conservato nel dispositivo è l'elenco dei numeri di fattura già generati, usato per avvisarti dei duplicati, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.Lgs. 127/2015, D.P.R. 633/1972 art. 21, specifiche tecniche FatturaPA versione 1.2 e elenco dei controlli del Sistema di Interscambio pubblicati dall'Agenzia delle Entrate, D.M. 17 giugno 2014 (bollo sui documenti informatici).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Manuale Fiscale: Evitare gli Scarti del Sistema di Interscambio (SdI)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il perimetro normativo della fatturazione elettronica in Italia impone il rigoroso rispetto dell'XML Schema Definition (XSD) in versione 1.2.2 emanato dall'Agenzia delle Entrate. Questo generatore client-side è stato ingegnerizzato appositamente per le Partite IVA, risolvendo alla radice e in via automatizzata i tre errori formali più frequenti che causano la temuta ricevuta di scarto da parte del Sistema di Interscambio (SdI).
+        </p>
+
+        <!-- ACORDEON 1: Error 00424 y 00400 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❌</span> Errore 00424 e 00400: Gestione Rigida Aliquote e Natura IVA</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Una vulnerabilità classica nei software non aggiornati o nella compilazione manuale è la formattazione inesatta del tag <code>&lt;AliquotaIVA&gt;</code>. Il SdI scarta sistematicamente i file in cui l'aliquota è espressa come fattore decimale (ad esempio, <code>0.22</code>). L'algoritmo di StrumentiUtili converte, formatta e impone forzatamente l'espressione nominale percentuale tassativa a due cifre decimali (es. <code>22.00</code>), neutralizzando l'<strong>Errore 00424</strong>.
+            </p>
+            <p>
+              Inoltre, qualora la prestazione sia configurata come esente o non imponibile (Aliquota 0%), la business logic del portale interviene attivamente per prevenire l'<strong>Errore 00400</strong>. L'interfaccia obbligherà l'utente alla valorizzazione del nodo <code>&lt;Natura&gt;</code> (es. N2.2 per i contribuenti in Regime Forfettario o N3.1 per le esportazioni), bloccando la generazione dell'XML in caso di omissione.
+            </p>
+          </div>
+        </details>
+
+        <!-- ACORDEON 2: Luhn e Errori Anagrafici -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔢</span> Errore 00305 e 00311: Validazione P.IVA tramite Algoritmo di Luhn</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'invio di Partite IVA inesistenti, scaturite da banali errori di digitazione, causa lo scarto istantaneo dell'intero documento (<strong>Errore 00305</strong>). Il nostro script integra nativamente la verifica matematica locale tramite la <strong>Formula di Luhn (modulo 10)</strong> sulle 11 cifre inserite. Questa validazione client-side rileva le incongruenze nel check-digit finale, avvisandoti preventivamente prima ancora che il file venga generato.
+            </p>
+            <p>
+              Parallelamente, il sistema sorveglia l'integrità del Codice Destinatario (<strong>Errore 00311</strong>), assicurandosi che la stringa contenga esattamente 7 caratteri (per B2B) o 6 caratteri (per fatturazione P.A.). Qualora il cliente sia un privato cittadino sprovvisto di PEC o codice univoco, è concesso forzare il blocco utilizzando l'override convenzionale a sette zeri: <code>0000000</code>.
+            </p>
+          </div>
+        </details>
+
+        <!-- ACORDEON 3: DatiRiepilogo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Errore 00419: Costruzione Automatica dei DatiRiepilogo (Castelletto IVA)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'architettura del nodo XML <code>&lt;DatiRiepilogo&gt;</code> (il cosiddetto "Castelletto IVA") rappresenta l'ostacolo computazionale più arduo nella fatturazione elettronica manuale. L'applicativo mappa in tempo reale (tramite funzioni di array mapping JavaScript) tutte le righe di prodotto inserite dall'utente.
+            </p>
+            <p>
+              Successivamente, aggrega matematicamente l'Imponibile e l'Imposta raggruppandoli per combinazioni univoche di Aliquota IVA e Codice Natura. Questa ricomposizione esatta previene la discordanza tra il totale delle linee e i riepiloghi finali (<strong>Errori 00419 e 00421</strong>), restituendo un castelletto IVA coerente con le righe. Prima della trasmissione il file va completato con gli indirizzi reali di fornitore e cliente, che il generatore imposta con valori segnaposto.
+            </p>
+          </div>
+        </details>
+
+
+        <!-- ACORDEON 4: GUIDA PASO A PASO -->
+        <details class="bg-emerald-50/50 rounded-xl border border-emerald-100 group" open>
+          <summary class="font-bold text-emerald-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-emerald-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🚀</span> Guida Operativa: Come inviare il file XML allo SdI?</span>
+            <span class="text-emerald-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-emerald-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            
+            <p>Scaricare il file XML da questa pagina è solo il primo passo. Essendo uno strumento <em>Zero-Backend</em>, noi generiamo il documento, ma <strong>la trasmissione fiscale spetta a te</strong>. Segui questa procedura in 3 step:</p>
+            
+            <div class="space-y-4">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">1</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Genera e Scarica l'XML</h4>
+                  <p class="mt-1">Compila il form prestando attenzione alle Partite IVA. Clicca su "Scarica File XML". Il file verrà salvato nella tua cartella Download con la nomenclatura ufficiale richiesta dallo Stato (es. <code>IT01234567890_00001.xml</code>).</p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">2</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Accedi al Cassetto Fiscale (Fatture e Corrispettivi)</h4>
+                  <p class="mt-1">Entra nel portale <strong>Fatture e Corrispettivi</strong> dell'Agenzia delle Entrate utilizzando le tue credenziali SPID, CIE o CNS. Puoi usare anche il portale della tua Camera di Commercio o software di terze parti.</p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">3</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Effettua l'Upload e Trasmetti</h4>
+                  <p class="mt-1">Cerca la sezione <em>"Trasmissione"</em> e seleziona l'opzione <em>"Carica un file XML"</em>. Seleziona il file appena scaricato. Il sistema dell'Agenzia effettuerà i controlli formali e ti rilascerà, entro 5 giorni, la ricevuta di avvenuta consegna (o di scarto, in caso di pendenze gravi).</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 bg-white border border-gray-200 rounded-lg text-xs text-gray-500 text-center">
+              ⚠️ Attenzione: Se il file viene rifiutato per "Fattura Duplicata" (Errore 00404), significa che hai inserito un Numero Fattura già utilizzato nel corso dell'anno. Modifica il numero progressivo nel nostro tool e riscarica il file.
+            </div>
+
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il file XML della fattura elettronica non è un documento testuale ma una struttura dati sottoposta a validazione automatica dal Sistema di Interscambio. Due sono i meccanismi computazionali che determinano l'accettazione o lo scarto: il controllo di integrità della partita IVA e la quadratura del castelletto IVA.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il codice di controllo della partita IVA</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>La partita IVA italiana e composta da 11 cifre: 10 identificative + 1 di controllo</li>
+              <li>1. Si sommano le cifre in posizione dispari (1a, 3a, 5a, 7a, 9a)</li>
+              <li>2. Si raddoppia ogni cifra in posizione pari; se il risultato supera 9 si sottrae 9</li>
+              <li>3. Si sommano i valori ottenuti al punto 2 e li si aggiunge alla somma del punto 1</li>
+              <li>4. Cifra di controllo = (10 - (Somma totale mod 10)) mod 10</li>
+              <li>La validazione fallisce se la cifra calcolata differisce dall'undicesima</li>
+            </ul>
+            <p>L'algoritmo appartiene alla famiglia delle verifiche di parità pesata e intercetta la totalità degli errori di digitazione su singola cifra e la quasi totalità delle inversioni fra cifre adiacenti. Il controllo è puramente matematico e non accerta l'effettiva esistenza del soggetto: una partita IVA formalmente valida ma cessata supera la verifica locale e viene respinta soltanto dai controlli anagrafici del Sistema di Interscambio.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">La quadratura del castelletto IVA</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Per ogni aliquota presente nelle righe di dettaglio:</li>
+              <li>ImponibileImporto = Somma dei PrezzoTotale delle righe con quella aliquota</li>
+              <li>Imposta = ImponibileImporto x AliquotaIVA / 100</li>
+              <li>Vincolo: deve esistere un blocco DatiRiepilogo per ciascuna aliquota distinta</li>
+              <li>Arrotondamento obbligatorio alla seconda cifra decimale su ogni singolo blocco</li>
+            </ul>
+            <p>Il castelletto è il punto in cui si concentra la maggior parte degli scarti evitabili. La causa tipica non è un errore di calcolo ma un problema di arrotondamento: sommare valori già arrotondati riga per riga produce risultati diversi dall'arrotondamento della somma. Su una fattura con molte righe lo scostamento di un centesimo è sufficiente a far respingere il documento, perché il validatore applica un confronto esatto.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio di quadratura con due aliquote</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Riga</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Descrizione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Imponibile</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Aliquota</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">1</td><td class="px-3 py-2 border-t border-gray-200">Consulenza tecnica</td><td class="px-3 py-2 border-t border-gray-200">1.500,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">22%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2</td><td class="px-3 py-2 border-t border-gray-200">Materiale editoriale</td><td class="px-3 py-2 border-t border-gray-200">400,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">4%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">3</td><td class="px-3 py-2 border-t border-gray-200">Assistenza continuativa</td><td class="px-3 py-2 border-t border-gray-200">600,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">22%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Riepilogo 22%</td><td class="px-3 py-2 border-t border-gray-200">Righe 1 e 3</td><td class="px-3 py-2 border-t border-gray-200">2.100,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 462,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Riepilogo 4%</td><td class="px-3 py-2 border-t border-gray-200">Riga 2</td><td class="px-3 py-2 border-t border-gray-200">400,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 16,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale documento</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">2.500,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 478,00 EUR</td></tr></tbody></table></div>
+            <p>Si noti che i blocchi di riepilogo sono due e non tre: l'aggregazione avviene per aliquota, non per riga. Un documento che esponesse tre riepiloghi, uno per riga, verrebbe scartato pur essendo aritmeticamente corretto, perché violerebbe la regola di unicità del blocco per ciascuna combinazione di aliquota e natura.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il caso delle operazioni senza imposta</h3>
+            <p>Quando l'aliquota è pari a zero il tracciato impone la valorizzazione del campo Natura, che spiega la ragione giuridica dell'assenza di imposta. L'omissione genera lo scarto per incoerenza fra aliquota nulla e natura mancante. È l'errore più frequente fra i contribuenti in regime forfettario, che devono indicare il codice relativo alle operazioni non soggette per effetto del proprio regime agevolato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>D.Lgs. 5 agosto 2015 n. 127</strong> — introduce la fatturazione elettronica generalizzata fra privati e il Sistema di Interscambio come canale obbligatorio.</li>
+              <li><strong>D.P.R. 26 ottobre 1972 n. 633, articolo 21</strong> — stabilisce il contenuto obbligatorio della fattura e i termini di emissione.</li>
+              <li><strong>Provvedimento del Direttore dell'Agenzia delle Entrate del 30 aprile 2018</strong> — approva le specifiche tecniche del tracciato FatturaPA e le regole di validazione applicate dal Sistema di Interscambio.</li>
+              <li><strong>D.M. 17 giugno 2014</strong> — disciplina le modalità di assolvimento dell'imposta di bollo sui documenti informatici e la conservazione digitale.</li>
+              <li><strong>D.Lgs. 7 marzo 2005 n. 82 (CAD)</strong> — regola il valore probatorio dei documenti informatici, la firma elettronica e la conservazione a norma.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Codifiche fondamentali del tracciato</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Campo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Significato</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD01</td><td class="px-3 py-2 border-t border-gray-200">Fattura ordinaria</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD04</td><td class="px-3 py-2 border-t border-gray-200">Nota di credito</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD05</td><td class="px-3 py-2 border-t border-gray-200">Nota di debito</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD06</td><td class="px-3 py-2 border-t border-gray-200">Parcella professionale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">RegimeFiscale</td><td class="px-3 py-2 border-t border-gray-200">RF01</td><td class="px-3 py-2 border-t border-gray-200">Regime ordinario</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">RegimeFiscale</td><td class="px-3 py-2 border-t border-gray-200">RF19</td><td class="px-3 py-2 border-t border-gray-200">Regime forfettario</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N1</td><td class="px-3 py-2 border-t border-gray-200">Operazioni escluse ex articolo 15</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N2.2</td><td class="px-3 py-2 border-t border-gray-200">Operazioni non soggette, altri casi, tipiche dei forfettari</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N3.1</td><td class="px-3 py-2 border-t border-gray-200">Operazioni non imponibili, esportazioni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N4</td><td class="px-3 py-2 border-t border-gray-200">Operazioni esenti ex articolo 10</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">A</td><td class="px-3 py-2 border-t border-gray-200">Prestazioni di lavoro autonomo abituale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">M</td><td class="px-3 py-2 border-t border-gray-200">Lavoro autonomo non esercitato abitualmente</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">Q</td><td class="px-3 py-2 border-t border-gray-200">Provvigioni ad agenti e rappresentanti</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Termini e adempimenti</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Emissione</strong>: entro dodici giorni dall'effettuazione dell'operazione per la fattura immediata, entro il giorno quindici del mese successivo per la differita.</li>
+              <li><strong>Esito della trasmissione</strong>: il Sistema di Interscambio restituisce ricevuta di consegna o di mancata consegna, oppure notifica di scarto entro cinque giorni.</li>
+              <li><strong>Correzione dopo lo scarto</strong>: il documento respinto si considera non emesso e va ritrasmesso corretto entro cinque giorni dalla notifica, conservando data e numerazione originarie.</li>
+              <li><strong>Imposta di bollo</strong>: 2,00 euro sulle fatture senza IVA di importo superiore a 77,47 euro, assolta in modo virtuale con versamento trimestrale.</li>
+              <li><strong>Conservazione</strong>: dieci anni in modalità conforme alle regole tecniche, obbligo che non è assolto dal semplice salvataggio del file su un disco locale.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le specifiche tecniche del tracciato vengono aggiornate periodicamente dall'Agenzia delle Entrate e l'introduzione di nuovi codici o controlli può rendere non conformi documenti prodotti secondo versioni precedenti. Il file generato da questo strumento va verificato con il proprio intermediario o software gestionale prima della trasmissione al Sistema di Interscambio.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati riprodotti nel generatore. I totali sono quelli del riepilogo laterale, che nel file XML diventano ImportoTotaleDocumento.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: consulente in regime ordinario con ritenuta</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Riga: 12 ore di consulenza × 60,00 € = 720,00 € al 22%</li>
+            <li>IVA: 158,40 €; totale documento: 878,40 €</li>
+            <li>Ritenuta 20% su 720 € (nodo DatiRitenuta): 144,00 €</li>
+            <li>Importo effettivamente pagato dal cliente: 734,40 €</li>
+            </ul>
+            <p>Il cliente versa i 144 € all'Erario con il codice tributo 1040 entro il 16 del mese successivo al pagamento. Il consulente li recupera in dichiarazione.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: traduzione con volume allegato, due aliquote</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Riga 1: traduzione tecnica 900,00 € al 22%, IVA 198,00 €</li>
+            <li>Riga 2: copia cartacea del manuale 30,00 € al 4%, IVA 1,20 €</li>
+            <li>Imponibile 930,00 €; IVA 199,20 €; totale 1.129,20 €</li>
+            </ul>
+            <p>Nel file compaiono due blocchi DatiRiepilogo, uno per aliquota. Un'unica aliquota per entrambe le righe sarebbe un errore sostanziale, da correggere con nota di credito e nuova fattura.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: fotografa in regime forfettario</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Regime RF19: la ritenuta viene disattivata automaticamente</li>
+            <li>Riga: servizio fotografico 1.200,00 € con IVA 0% e natura N2.2</li>
+            <li>Totale documento: 1.200,00 €</li>
+            </ul>
+            <p>Sopra 77,47 € la fattura del forfettario richiede il bollo virtuale da 2 €, che l'Agenzia addebita trimestralmente: il generatore non lo inserisce, quindi va aggiunto nel file prima dell'invio, insieme agli indirizzi reali delle parti.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa devo fare se il Sistema di Interscambio scarta la mia fattura?</h3>
+              <p>Il documento scartato si considera giuridicamente non emesso. Occorre correggere l'errore segnalato dal codice di scarto e ritrasmettere il file entro cinque giorni dalla notifica, mantenendo la data e il numero originari. Se il termine viene rispettato non si incorre in alcuna sanzione per tardiva emissione, perché la trasmissione si considera tempestiva.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Un contribuente in regime forfettario deve emettere fattura elettronica?</h3>
+              <p>Sì. L'obbligo si è esteso a tutti i titolari di partita IVA, senza più esclusioni legate al regime o al volume dei ricavi. Il forfettario espone l'operazione senza IVA, indicando il regime fiscale corrispondente e la natura relativa alle operazioni non soggette, e applica l'imposta di bollo virtuale quando l'importo supera la soglia di legge.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il file XML generato è già valido per l'invio?</h3>
+              <p>Il generatore produce un tracciato conforme alle specifiche e ne verifica la coerenza formale, compresa la quadratura del castelletto e la validità del codice di controllo delle partite IVA. La trasmissione resta però un passaggio separato: va effettuata tramite il portale Fatture e Corrispettivi, un intermediario abilitato o un canale accreditato. Questo strumento non invia nulla ad alcun sistema.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra codice destinatario e PEC?</h3>
+              <p>Sono i due recapiti alternativi attraverso cui il Sistema di Interscambio consegna il documento. Il codice destinatario è un identificativo di sette caratteri associato al canale telematico del ricevente. In assenza di codice si valorizza il campo con sette zeri e si indica la PEC del destinatario. Se nessuno dei due è noto, la fattura viene comunque recapitata nell'area riservata del cessionario.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso modificare una fattura già accettata dal Sistema di Interscambio?</h3>
+              <p>No. Una volta consegnata, la fattura è immodificabile. La rettifica avviene esclusivamente mediante emissione di una nota di credito, che storna in tutto o in parte il documento originario, o di una nota di debito per gli aumenti. Entrambe seguono lo stesso tracciato e le stesse regole di trasmissione della fattura.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Conservare il file XML sul mio computer soddisfa l'obbligo di legge?</h3>
+              <p>No. La conservazione a norma richiede l'apposizione di riferimenti temporali opponibili a terzi, la generazione di pacchetti di archiviazione conformi e la garanzia di integrità e leggibilità per dieci anni. Il salvataggio su disco o su un servizio cloud generico non integra questi requisiti. Il servizio di conservazione gratuito offerto dall'Agenzia delle Entrate va attivato espressamente mediante adesione.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il generatore di XML per la fatturazione elettronica è un'applicazione <strong>100% client-side, senza alcun backend</strong>. Le partite IVA, i codici fiscali, le ragioni sociali, gli indirizzi e gli importi dei tuoi clienti vengono composti nel tracciato direttamente dal browser, sul tuo dispositivo. Il file XML nasce localmente e resta nella tua esclusiva disponibilità: nessun dato di fatturazione transita su nostri server, perché nessun server di elaborazione esiste.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Il punto è particolarmente rilevante perché una fattura contiene dati personali di un terzo, il cliente, rispetto ai quali tu operi come titolare del trattamento ai sensi del Regolamento UE 2016/679 (GDPR). Utilizzando uno strumento che non trasmette nulla, eviti di introdurre un responsabile del trattamento esterno nella tua catena di fornitura e la conseguente necessità di un accordo ai sensi dell'articolo 28. L'architettura attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5, paragrafo 1, lettera c.</p>
+        </div>
+
+        </section>
+
+      <!-- Pubblicità Mobile -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link agli script esterni -->
+  
+  <script defer src="/js/codice-fiscale.js"></script>
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/fatturapa.js"></script>
+
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() { if (!adsenseReady()) return; document.querySelectorAll(AD_SELECTOR).forEach(initAd); }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

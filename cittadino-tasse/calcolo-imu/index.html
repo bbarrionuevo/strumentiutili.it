@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo IMU 2026 Online: Simulatore Gratuito — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola l'IMU 2026 online in pochi secondi. Inserisci la rendita catastale e calcola acconto, saldo e base imponibile per la tua abitazione o terreno." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/calcolo-imu/" />
+
+  <!-- Favicon e Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolatore IMU 2026 Online (Gratis e Privato)" />
+  <meta property="og:description" content="Simula l'IMU 2026 con i nuovi moltiplicatori catastali. Calcola acconto e saldo senza inviare dati a server esterni." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/calcolo-imu/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px; /* Riserva lo spazio per evitare il CLS */
+      background-color: #f8fafc; /* Grigio ultra chiaro neutro */
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cittadino & Tasse",
+            "item": "https://strumentiutili.it/cittadino-tasse/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Calcolo IMU 2026",
+            "item": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore IMU 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Calcolo dell'IMU annua, dell'acconto e del saldo da rendita catastale, categoria, aliquota comunale, quota e mesi di possesso, con riduzioni per immobili storici o inagibili, comodato e canone concordato.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "@id": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Rivalutazione della rendita e moltiplicatori per categoria catastale",
+          "Calcolo per quota e mesi di possesso",
+          "Riduzioni per immobili storici o inagibili, comodato ai parenti e canone concordato",
+          "Ripartizione in acconto e saldo e codice tributo F24",
+          "Nessun dato catastale inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#howto",
+        "name": "Come calcolare l'IMU 2026 di un immobile",
+        "description": "Procedura per calcolare l'IMU dovuta su seconde case, immobili locati, negozi, capannoni e terreni a partire dalla visura catastale.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT3M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Visura catastale e delibera delle aliquote del Comune"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci la rendita catastale",
+            "text": "Riporta la rendita non rivalutata risultante dalla visura catastale.",
+            "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#calc-rendita"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli categoria e aliquota",
+            "text": "Seleziona la categoria catastale e inserisci l'aliquota comunale in per mille.",
+            "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#calc-categoria"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Indica quota e mesi di possesso",
+            "text": "Inserisci la percentuale di proprietà e i mesi di possesso nell'anno.",
+            "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#calc-quota"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Seleziona le agevolazioni",
+            "text": "Spunta le riduzioni per immobile storico o inagibile, comodato o canone concordato se ne hai i requisiti.",
+            "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#imu-agevolazioni"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "Calcola e leggi le rate",
+            "text": "Premi Calcola Importo IMU per ottenere imposta annua, acconto, saldo e codice tributo.",
+            "url": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#out-totale"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/calcolo-imu/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quali sono i rischi legati all'errata ripartizione per gli immobili di Categoria D?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nel perimetro industriale e commerciale, un errore sistematico di vasta portata consiste nel versare l'intero 0,86% di aliquota, previsto per i capannoni industriali (categoria D), in modo cumulativo al codice tributo comunale 3930. Questo comportamento ignora la disposizione che impone lo scorporo: come stabilito, lo 0,76% appartiene in via esclusiva allo Stato (codice 3925), mentre solo l'eventuale eccedenza va destinata al Comune. Il mancato sezionamento degli importi si traduce formalmente nell'omissione di un tributo erariale. Ciò comporta l'emissione diretta di un avviso di accertamento erariale per omesso versamento, il quale viene sanzionato al 25% in virtù delle decadenze previste ex D.Lgs. 87/2024."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come deve essere gestita la detrazione in caso di comproprietà con residenza divisa tra coniugi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La giurisprudenza ha consolidato l'orientamento circa la fruizione della qualifica di abitazione principale per i nuclei familiari disgregati geograficamente per cause lavorative. Nello specifico, se due coniugi (non legalmente separati) possiedono un immobile al 50%, ma per ragioni lavorative solo uno vi risiede e vi dimora abitualmente, la giurisprudenza della Cassazione e la prassi confermano inequivocabilmente che il coniuge non residente deve calcolare l'IMU in via ordinaria (trattando la sua quota come \"seconda casa\"). Affidarsi alla teoria dell'esenzione totale ed espansiva genera immancabilmente il recupero coattivo dell'imposta evasa con annessa irrogazione di sanzioni tributarie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa comporta l'omissione della Dichiarazione IMU per il godimento delle agevolazioni?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Molti contribuenti presumono erroneamente che le agevolazioni scattino in maniera automatica e silente, decidendo di beneficiare della riduzione del 50% per comodato gratuito o per il riscontro di uno stato di inagibilità senza presentare la Dichiarazione IMU al Comune di competenza. Tuttavia, la normativa prescrive che tale documentazione debba essere inoltrata entro il 30 giugno dell'anno successivo al verificarsi dell'evento. L'obbligo dichiarativo è istituito a pena di decadenza; la sua omissione annulla con valenza retroattiva l'agevolazione applicata, autorizzando il Comune a procedere con il recupero dell'imposta calcolata in misura piena e progressiva per l'arco temporale delle ultime 5 annualità accertabili."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Strumento -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Cittadino-tasse</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏠</span> Tributi Locali 2026
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolatore IMU 2026</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Simula il calcolo dell'Imposta Municipale Propria. Inserisci la rendita catastale del tuo immobile, seleziona la categoria e ottieni l'importo esatto di acconto e saldo arrotondato secondo la legge. L'elaborazione avviene al 100% nel tuo browser.
+        </p>
+      </section>
+
+      <!-- Form Calcolo IMU -->
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-6">
+        <div class="space-y-4">
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2">Dati dell'immobile</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="calc-rendita" class="text-sm font-bold text-gray-700">Rendita Catastale (€)</label>
+                <button type="button" data-guida-toggle="guida-imu-rendita" aria-expanded="false" aria-controls="guida-imu-rendita" aria-label="Guida al campo Rendita catastale" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-imu-rendita" aria-describedby="guida-imu-rendita" type="number" id="calc-rendita" placeholder="Es. 450.50" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
+              <div id="guida-imu-rendita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Dove trovarla:</strong> nella visura catastale, che puoi scaricare gratis con SPID o CIE dai servizi online dell'Agenzia delle Entrate. La trovi anche nell'atto di acquisto o nella dichiarazione dei redditi precompilata, nel quadro dei fabbricati.</p>
+                <p><strong class="text-indigo-900">Quale valore inserire:</strong> la rendita così come risulta dalla visura, senza rivalutazione: la maggiorazione del 5% per i fabbricati e del 25% per i terreni viene applicata dallo strumento. Per un terreno agricolo usa il reddito dominicale.</p>
+                <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="calc-categoria" class="text-sm font-bold text-gray-700">Categoria Catastale</label>
+                <button type="button" data-guida-toggle="guida-imu-categoria" aria-expanded="false" aria-controls="guida-imu-categoria" aria-label="Guida al campo Categoria catastale" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-imu-categoria" aria-describedby="guida-imu-categoria" id="calc-categoria" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow">
+                <option value="A/2">A/2 - Abitazione civile</option>
+                <option value="A/1">A/1 - Abitazione signorile (Lusso)</option>
+                <option value="C/1">C/1 - Negozi e botteghe</option>
+                <option value="C/2">C/2 - Magazzini / Cantine</option>
+                <option value="C/6">C/6 - Box / Posti auto</option>
+                <option value="D/5">D/5 - Istituti di credito</option>
+                <option value="A/10">A/10 - Uffici e studi privati</option>
+                <option value="C/3">C/3 - Laboratori per arti e mestieri</option>
+                <option value="D/1">D/1 - Opifici e altri immobili del gruppo D</option>
+                <option value="TERRENO">Terreno Agricolo</option>
+              </select>
+              <div id="guida-imu-categoria" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Se la tua non è in elenco:</strong> scegli la categoria con lo stesso moltiplicatore. Per A/3, A/4, A/5, A/6 e A/7 usa A/2 (160). Per A/8 e A/9 usa A/1. Per C/7 usa C/6 (160). Per C/4 e C/5 usa C/3 (140). Per i gruppi da D/2 a D/10, escluso D/5, usa D/1 (65).</p>
+                <p><strong class="text-indigo-900">Quando non serve calcolare:</strong> l'abitazione principale di categoria da A/2 ad A/7, con le sue pertinenze (una per categoria fra C/2, C/6 e C/7), è esente. Lo strumento serve per seconde case, immobili affittati, negozi, capannoni e terreni.</p>
+                <p><strong class="text-indigo-900">Esempio:</strong> a parità di rendita di 1.000 €, un box C/6 ha una base imponibile di 168.000 €, un negozio C/1 di soli 57.750 €, perché il moltiplicatore scende da 160 a 55.</p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="calc-aliquota" class="text-sm font-bold text-gray-700">Aliquota Comunale (‰)</label>
+                <button type="button" data-guida-toggle="guida-imu-aliquota" aria-expanded="false" aria-controls="guida-imu-aliquota" aria-label="Guida al campo Aliquota comunale" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-imu-aliquota" aria-describedby="guida-imu-aliquota" type="number" id="calc-aliquota" value="10.6" step="0.1" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
+              <div id="guida-imu-aliquota" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Dove trovarla:</strong> nella delibera del tuo Comune, pubblicata nel prospetto delle aliquote sul Portale del federalismo fiscale del Ministero dell'Economia. Per l'acconto di giugno si usano le aliquote dell'anno precedente; il saldo di dicembre si calcola con quelle dell'anno in corso.</p>
+                <p><strong class="text-indigo-900">Unità di misura:</strong> si inserisce in per mille: 1,06% corrisponde a 10,6. L'aliquota base per gli altri immobili è 8,6‰, che i Comuni possono portare fino a 10,6‰; per l'abitazione principale di lusso la base è 5‰.</p>
+                <p><strong class="text-indigo-900">Gruppo D:</strong> lo 0,76% è sempre riservato allo Stato e si versa con il codice 3925; la parte che eccede, fino all'aliquota deliberata, va al Comune con il codice 3930.</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="calc-quota" class="text-sm font-bold text-gray-700">Possesso (%)</label>
+                  <button type="button" data-guida-toggle="guida-imu-quota" aria-expanded="false" aria-controls="guida-imu-quota" aria-label="Guida al campo Percentuale di possesso" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-imu-quota" aria-describedby="guida-imu-quota" type="number" id="calc-quota" value="100" max="100" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
+                <div id="guida-imu-quota" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Cosa indicare:</strong> la tua quota di proprietà, come risulta dalla visura: 50 se l'immobile è cointestato con il coniuge in parti uguali, 33,33 se è ereditato fra tre fratelli. Ogni contitolare paga separatamente la propria parte.</p>
+                  <p><strong class="text-indigo-900">Usufrutto e diritto di abitazione:</strong> l'IMU è dovuta dal titolare del diritto reale di godimento, non dal nudo proprietario. Chi ha l'usufrutto sull'intero immobile indica 100, il nudo proprietario non paga nulla.</p>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <label for="calc-mesi" class="text-sm font-bold text-gray-700">Mesi</label>
+                  <button type="button" data-guida-toggle="guida-imu-mesi" aria-expanded="false" aria-controls="guida-imu-mesi" aria-label="Guida al campo Mesi di possesso" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-imu-mesi" aria-describedby="guida-imu-mesi" type="number" id="calc-mesi" value="12" min="1" max="12" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
+                <div id="guida-imu-mesi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Come contarli:</strong> un mese conta per intero se lo hai posseduto per più della metà dei giorni; il giorno del rogito è attribuito a chi compra. Con un rogito del 14 maggio l'acquirente possiede 18 giorni su 31, quindi maggio è suo: il venditore indica 4 mesi e l'acquirente 8.</p>
+                  <p><strong class="text-indigo-900">Acconto con possesso parziale:</strong> lo strumento divide il totale annuo in due rate uguali. Se hai acquistato o ereditato nel corso del primo semestre, l'acconto di giugno corrisponde invece ai soli mesi di possesso fino a giugno e il resto si versa a dicembre.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4 border-t border-gray-200">
+          <h3 class="text-sm font-bold text-gray-900">Agevolazioni e Riduzioni</h3>
+          <div id="imu-agevolazioni" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <label class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+              <input data-guida="guida-imu-storico" aria-describedby="guida-imu-storico" type="checkbox" id="calc-storico" class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+              <span class="text-sm text-gray-700 font-medium">Storico / Inagibile (-50%)</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+              <input data-guida="guida-imu-comodato" aria-describedby="guida-imu-comodato" type="checkbox" id="calc-comodato" class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+              <span class="text-sm text-gray-700 font-medium">Comodato d'uso (-50%)</span>
+            </label>
+            <p id="avviso-comodato" hidden
+               class="sm:col-span-2 lg:col-span-3 text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-lg p-3 leading-relaxed">
+              <strong>Attenzione:</strong> la riduzione del 50% spetta solo se il contratto di comodato
+              &egrave; <strong>registrato</strong> all'Agenzia delle Entrate, oltre agli altri requisiti di
+              legge. Puoi registrarlo con il
+              <a href="/cittadino-tasse/modello-rap/" class="underline font-bold">modello RAP</a>.
+            </p>
+            <label class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+              <input data-guida="guida-imu-concordato" aria-describedby="guida-imu-concordato" type="checkbox" id="calc-concordato" class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+              <span class="text-sm text-gray-700 font-medium">Canone Concordato (-25%)</span>
+            </label>
+          </div>
+          <button type="button" data-guida-toggle="guida-imu-storico" aria-expanded="false" aria-controls="guida-imu-storico" aria-label="Guida al campo Immobile storico o inagibile" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Storico o inagibile</button>
+          <button type="button" data-guida-toggle="guida-imu-comodato" aria-expanded="false" aria-controls="guida-imu-comodato" aria-label="Guida al campo Comodato d'uso gratuito" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Comodato</button>
+          <button type="button" data-guida-toggle="guida-imu-concordato" aria-expanded="false" aria-controls="guida-imu-concordato" aria-label="Guida al campo Canone concordato" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Canone concordato</button>
+          <div id="guida-imu-storico" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Immobili storici:</strong> fabbricati vincolati come beni di interesse storico o artistico ai sensi del D.Lgs. 42/2004. Il vincolo risulta dai registri della Soprintendenza.</p>
+            <p><strong class="text-indigo-900">Immobili inagibili:</strong> fabbricati dichiarati inagibili o inabitabili e di fatto non utilizzati, per degrado strutturale non superabile con semplice manutenzione. Serve una perizia dell'ufficio tecnico comunale o una dichiarazione sostitutiva, e la riduzione vale solo per il periodo in cui persistono le condizioni.</p>
+            <p><strong class="text-indigo-900">Come funziona:</strong> dimezza la base imponibile. Un rudere accatastato come A/4 non utilizzabile non è esente: paga la metà, finché non viene demolito o accatastato come unità collabente (F/2).</p>
+          </div>
+          <div id="guida-imu-comodato" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Quando spetta:</strong> solo per l'abitazione data in uso a un figlio o a un genitore che la usa come abitazione principale, con contratto registrato. Il comodante deve possedere un solo immobile abitativo in Italia, oltre eventualmente alla propria abitazione principale, e risiedere nello stesso Comune. Sono escluse le categorie A/1, A/8 e A/9.</p>
+            <p><strong class="text-indigo-900">Adempimenti:</strong> la riduzione del 50% della base imponibile va comunicata con la dichiarazione IMU entro il 30 giugno dell'anno successivo. Il comodato a fratelli, nipoti o altri parenti non dà diritto allo sconto.</p>
+            <p><strong class="text-indigo-900">Esempio:</strong> un A/2 con rendita di 780 € e aliquota di 9,6‰ passa da 1.258 € a 629 € l'anno.</p>
+          </div>
+          <div id="guida-imu-concordato" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Quando spetta:</strong> per gli immobili affittati con contratti a canone concordato previsti dalla L. 431/1998: il 3+2 abitativo, i transitori e quelli per studenti universitari stipulati secondo gli accordi territoriali. Per i contratti firmati senza l'assistenza delle associazioni serve l'attestazione di rispondenza all'accordo.</p>
+            <p><strong class="text-indigo-900">Come funziona:</strong> riduce del 25% l'imposta finale, non la base imponibile. Molti Comuni prevedono anche un'aliquota agevolata per questi contratti: in quel caso inserisci l'aliquota ridotta e spunta comunque la casella.</p>
+            <p><strong class="text-indigo-900">Esempio:</strong> un'imposta di 1.000 € scende a 750 €. Il vantaggio si somma alla cedolare secca al 10% sul canone.</p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="button" id="btn-esegui-calcolo" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-sm text-lg">
+            Calcola Importo IMU
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sidebar Fissa con Risultati -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400 border-b border-gray-800 pb-2">Risultato Calcolo</h3>
+
+          <div class="space-y-3 border-b border-gray-800 pb-4 text-sm">
+            <div class="flex justify-between text-gray-300">
+              <span>Base Imponibile:</span>
+              <span id="out-imponibile" class="font-bold font-mono">0,00 €</span>
+            </div>
+            <div class="flex justify-between text-gray-300">
+              <span>Imposta Lorda:</span>
+              <span id="out-lorda" class="font-bold font-mono">0,00 €</span>
+            </div>
+            <div class="flex justify-between text-indigo-300">
+              <span>Codice Tributo:</span>
+              <span id="out-codice" class="font-bold font-mono">—</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-2 border-b border-gray-800 pb-4">
+            <div>
+              <span class="text-[10px] text-gray-400 uppercase block font-semibold mb-1">Acconto (16 Giu)</span>
+              <span id="out-acconto" class="text-xl font-bold text-white font-mono">0 €</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-gray-400 uppercase block font-semibold mb-1">Saldo (16 Dic)</span>
+              <span id="out-saldo" class="text-xl font-bold text-white font-mono">0 €</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Totale Annuo IMU</span>
+            <span id="out-totale" class="text-4xl font-black text-amber-400 font-mono tracking-tight">0 €</span>
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm text-center">
+              <span>📄</span> Vai al Modello F24
+            </a>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">
+              Paga l'imposta compilando il Modello F24 Semplificato.
+            </p>
+          </div>
+       
+        <!-- Ad Sidebar Desktop -->
+        
+        
+      </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+            <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+            <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+              <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta Luce</a></li>
+              <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> F24 Ordinario Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+              <li><a href="/cittadino-tasse/simulatore-isee/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📊</span> Simulatore ISEE 2026</a></li>
+              <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👴</span> Simulatore Pensione 2026</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenata debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Moltiplicatori e riduzioni aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">L. 160/2019, commi 738-783 (disciplina IMU), prospetto delle aliquote comunali pubblicato sul Portale del federalismo fiscale del MEF, L. 431/1998 per i contratti a canone concordato, D.Lgs. 87/2024 per il regime sanzionatorio.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Dossier Analitico: Impianto Normativo e Meccanica Computazionale IMU 2026</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La strutturazione fiscale e algoritmica dell'Imposta Municipale Propria (IMU) per il ciclo impositivo 2026 impone un'analisi rigorosa e accademica delle stratificazioni legislative, dei coefficienti moltiplicativi catastali e delle disposizioni sanzionatorie ad essa correlate. Il presente approfondimento tecnico sviscera in maniera capillare ed esaustiva i meccanismi di determinazione dell'obbligazione tributaria, delineando le formule matematiche essenziali, i vincoli operativi e la casistica professionale avanzata per un corretto adempimento dichiarativo e di versamento.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo e Regole Bloccanti</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'impalcatura gius-tributaria dell'Imposta Municipale Propria trae origine e fondamenta dalla Legge 160/2019 (Legge di Bilancio 2020), segnatamente all'interno dei commi compresi tra il 738 e il 783. Tali disposizioni delineano il perimetro oggettivo e soggettivo del tributo, vincolando rigorosamente i procedimenti di liquidazione al Prospetto aliquote nazionale standard MEF, il quale ha assunto piena obbligatorietà a regime per tutte le delibere comunali inerenti al biennio 2025/2026. Tale architettura centralizzata neutralizza la precedente frammentazione amministrativa, obbligando gli Enti Locali a uniformare la struttura delle aliquote e facilitando un calcolo matematico deterministico.
+            </p>
+            <p>
+              Il legislatore ha inoltre incardinato nel sistema specifiche regole operative ineludibili e clausole di salvaguardia. La prima e più rilevante attiene alla <strong>Soglia Minima</strong> di versamento: appellandosi al principio cardine dell'economicità dell'azione amministrativa, la normativa stabilisce che non è dovuto alcun versamento qualora l'imposta annua complessiva, calcolata per il singolo Comune, risulti inferiore all'importo di 12,00€ (salvo diverse, ma intrinsecamente rare, delibere comunali di stampo peggiorativo).
+            </p>
+            <p>
+              Sul fronte della temporalità e del trasferimento dei diritti reali, si erge la cosiddetta <strong>Regola dei 15 giorni per la mensilità</strong>. Questa disposizione dirime le tempistiche relative ai passaggi di proprietà, imponendo che il mese sia computato per intero in capo a chi ha posseduto l'immobile per più della metà dei giorni di cui il mese è composto (16 giorni nei mesi di 31, 15 nei mesi di 30). Il giorno del trasferimento si computa in capo all'acquirente e, in caso di parità di giorni, il mese spetta a quest'ultimo (L. 160/2019, comma 761).
+            </p>
+            <p>
+              Infine, il sistema prevede precise <strong>Riduzioni non derogabili</strong> a valenza strutturale. Per gli immobili concessi in locazione mediante contratti a canone concordato, i titolari del diritto di proprietà beneficiano di una decurtazione netta dell'imposta pari al 25%, versando pertanto il 75% dell'obbligazione ordinaria. Congiuntamente, gli immobili concessi in comodato d'uso gratuito a parenti in linea retta di primo grado (genitori/figli) beneficiano di un'estesa riduzione della base imponibile del 50%, subordinata tuttavia alla rigorosa ottemperanza di precisi presupposti: il contratto deve essere regolarmente registrato, il comodante deve possedere un solo immobile abitativo in Italia e deve risiedere e dimorare nello stesso Comune in cui si trova l'immobile concesso. L'agevolazione resta valida se il comodante possiede, nello stesso Comune, anche la propria abitazione principale, purché non di categoria A/1, A/8 o A/9.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica Computazionale e Formule Matematiche</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Il processo di determinazione dell'imposta esige l'attraversamento di stadi computazionali sequenziali. Il parametro di partenza inalienabile è la definizione del <strong>Valore Catastale</strong>, che costituisce la base imponibile su cui applicare i successivi coefficienti. Tale valore viene astratto tramite la seguente espressione algebrica:
+            </p>
+            <div class="overflow-x-auto my-4 text-center">
+              $$Valore\ Catastale = Rendita\ Catastale_{Non\ Rivalutata} \times 1,05 \times Moltiplicatore$$
+            </div>
+            <p>
+              Il processo prevede dunque la rivalutazione iniziale del 5% (eseguita moltiplicando per 1,05) e la successiva applicazione del Moltiplicatore IMU 2026, variabile in funzione esclusiva della categoria catastale del bene. Il quadro normativo ripartisce i moltiplicatori come segue:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li>Per le categorie <strong>A (escluso A/10), C/2, C/6, C/7</strong>, inerenti ad abitazioni, cantine, box auto e tettoie, il moltiplicatore assegnato è pari a <strong>160</strong>.</li>
+              <li>Per le categorie <strong>A/10 e D/5</strong>, comprendenti uffici, studi privati e istituti di credito, il moltiplicatore si dimezza a <strong>80</strong>.</li>
+              <li>Per le categorie <strong>C/1</strong> (negozi e botteghe), si applica il moltiplicatore di <strong>55</strong>.</li>
+              <li>Per il <strong>Gruppo D (escluso D/5)</strong>, relativo ad opifici, alberghi e immobili produttivi in generale, il moltiplicatore di riferimento è pari a <strong>65</strong>.</li>
+              <li>Per i <strong>Terreni Agricoli</strong> il valore è fissato a <strong>135</strong>, mentre i terreni posseduti e condotti da <strong>coltivatori diretti e IAP</strong> iscritti alla previdenza agricola sono esenti (L. 160/2019, comma 758).</li>
+            </ul>
+            <p>
+              Estrapolato matematicamente il Valore Catastale, si procede alla formulazione dell'imposta lorda su base annuale:
+            </p>
+            <div class="overflow-x-auto my-4 text-center">
+              $$IMU_{Lorda} = Valore\ Catastale \times \left(\frac{Aliquota_{Comunale}}{1000}\right) \times \%_{Possesso} \times \left(\frac{Mesi_{Possesso}}{12}\right)$$
+            </div>
+            <p>
+              La struttura delle aliquote di base per l'annualità 2026, declinata per tipologia immobiliare, prevede parametri tassativi. Per l'<strong>abitazione principale di lusso (A/1, A/8, A/9)</strong> è stabilita un'aliquota dello 0,5% alla quale si abbina una detrazione fissa di 200€. Nel contesto degli <strong>Immobili Produttivi (Gruppo D)</strong>, l'aliquota di riferimento ammonta allo 0,86%, la quale si frammenta in due quote indissolubili: lo 0,76% è riservato obbligatoriamente allo Stato, mentre il residuo 0,10% è di stretta competenza comunale. Per i restanti <strong>Altri immobili (seconde case)</strong>, l'aliquota base si attesta allo 0,86%, parametro che rimane espandibile dai Comuni fino ad un massimale fisiologico dell'1,06%. Sotto il profilo dei flussi finanziari, l'acconto di giugno impone il versamento del 50% dell'imposta calcolata avvalendosi provvisoriamente delle aliquote dell'anno precedente; successivamente, il saldo di dicembre opera il conguaglio attingendo alle aliquote 2026 promulgate ufficialmente sul portale del MEF.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Sviluppo Avanzato dei Calcoli</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Al fine di tradurre i precetti normativi in operatività tangibile, esaminiamo in profondità due distinte fattispecie di calcolo che coinvolgono dinamiche complesse, agevolazioni incrociate e decodifiche tributarie.
+            </p>
+            <h4 class="font-bold text-gray-900 mt-2">Scenario Alpha: Immobile Produttivo (Categoria D)</h4>
+            <p>
+              Si prefiguri una società per azioni titolare al 100% per 12 mesi di un opificio adibito a sito produttivo (categoria catastale del Gruppo D, escluso D/5), gravato da una rendita catastale non rivalutata pari a 2.500,00€. L'algoritmo di partenza estrae la base imponibile: si opera la rivalutazione (2.500,00 * 1,05 = 2.625,00€), per poi applicare il moltiplicatore assegnato pari a 65. Il Valore Catastale definitivo ammonta a 170.625,00€. Adottando l'aliquota standard per immobili produttivi pari allo 0,86%, l'IMU lorda complessiva si attesta a 1.467,38€. Giunti al versamento tramite modello F24, insorge l'obbligo di scorporo. La quota dello 0,76% riservata obbligatoriamente allo Stato (170.625,00 * 0,0076), equivalente a 1.296,75€, viene isolata sul codice tributo 3925. La differenza residuals, pari a 170,62€, rappresenta lo 0,10% di competenza comunale e confluirà sul codice tributo 3930. L'ignoranza di tale scissione matematica invalida intrinsecamente il flusso di liquidazione.
+            </p>
+            <h4 class="font-bold text-gray-900 mt-2">Scenario Beta: Unità Abitativa (Categoria A/2) con Canone Concordato</h4>
+            <p>
+              Si ipotizzi un soggetto che detenga per l'intera annualità il 50% delle quote di un immobile residenziale (Categoria A/2), caratterizzato da una rendita catastale originaria di 600,00€ e concesso in locazione mediante un regolare contratto a canone concordato. L'estrazione della base imponibile impone la consueta rivalutazione al 5% (600,00 * 1,05 = 630,00€) ed il successivo impiego del moltiplicatore corrispondente di 160, originando un Valore Catastale di 100.800,00€. Postulando che il Comune di afferenza abbia deliberato la massima estensione possibile dell'aliquota, portandola all'1,06% per le seconde case, l'obbligazione d'imposta primaria assommerebbe a 1.068,48€. Poiché il contribuente possiede unicamente il 50% dell'immobile, l'importo di propria competenza scende a 534,24€. In ultima istanza, operano le riduzioni non derogabili: stante la natura del contratto a canone concordato, il legislatore accorda una riduzione d'imposta del 25% (si versa pertanto il 75%). Il contribuente erogherà dunque un saldo finale pari a 400,68€ per la propria porzione dominicale.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono calcolati con il motore della pagina e si riproducono inserendo gli stessi dati nel modulo. Gli importi finali sono arrotondati all'euro, come richiesto nel modello F24.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: seconda casa ereditata a marzo da due fratelli</h3>
+            <p>Il padre muore il 10 marzo lasciando ai due figli, in parti uguali, un appartamento A/3 con rendita di 520 €. Il Comune applica il 10,6‰. Marzo conta per gli eredi, che lo possiedono per 22 giorni su 31: i mesi di possesso sono dieci.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Base imponibile: 520 × 1,05 × 160 = 87.360,00 €</li>
+            <li>Imposta per ciascun fratello: 87.360 × 10,6‰ × 50% × 10/12 = 385,84 €</li>
+            <li>Totale annuo da versare: 386 € ciascuno</li>
+            <li>Acconto legale: mesi da marzo a giugno, 4/12 dell'imposta = 154 €</li>
+            <li>Saldo di dicembre: 386 − 154 = 232 €</li>
+            </ul>
+            <p>Lo strumento divide il totale in due rate da 193 €. Con un possesso che non copre tutto il primo semestre conviene seguire il calcolo per mesi: il totale non cambia, ma l'acconto è più basso. I mesi da gennaio al 9 marzo restano a carico del defunto e si versano a nome degli eredi.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: appartamento dato in comodato al figlio</h3>
+            <p>Una madre residente a Bologna possiede la propria abitazione principale e un secondo appartamento A/2 nello stesso Comune, con rendita di 780 €, in cui vive il figlio con contratto di comodato registrato. Il Comune prevede un'aliquota di 9,6‰ per questi immobili.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Base imponibile piena: 780 × 1,05 × 160 = 131.040,00 €</li>
+            <li>Base con riduzione del 50%: 65.520,00 €</li>
+            <li>Imposta annua: 65.520 × 9,6‰ = 629 €, invece di 1.258 €</li>
+            <li>Rate: acconto 314 €, saldo 315 €</li>
+            </ul>
+            <p>Se la madre possedesse anche una casa al mare, il requisito dell'unico immobile abitativo verrebbe meno e l'IMU tornerebbe a 1.258 €. Lo stesso accadrebbe se il comodato non fosse registrato.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: negozio e box di un piccolo commerciante</h3>
+            <p>Un commerciante possiede il negozio in cui lavora, C/1 con rendita di 1.850 €, e un box C/6 con rendita di 120 € a qualche strada di distanza, che non è pertinenza di un'abitazione principale. Entrambi sono tassati al 10,6‰.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Negozio: 1.850 × 1,05 × 55 = 106.837,50 € di base, imposta 1.132 €</li>
+            <li>Box: 120 × 1,05 × 160 = 20.160,00 € di base, imposta 214 €</li>
+            <li>Totale: 1.346 € con codice tributo 3918</li>
+            </ul>
+            <p>La rendita del negozio è oltre quindici volte quella del box, ma l'imposta è solo cinque volte più alta, per effetto del moltiplicatore 55 riservato ai C/1. Se il box fosse pertinenza dell'abitazione principale del commerciante, sarebbe esente.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Errori Operativi e Sistema Sanzionatorio</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Quali sono i rischi legati all'errata ripartizione per gli immobili di Categoria D?</h4>
+              <p>
+                Nel perimetro industriale e commerciale, un errore sistematico di vasta portata consiste nel versare l'intero 0,86% di aliquota, previsto per i capannoni industriali (categoria D), in modo cumulativo al codice tributo comunale 3930. Questo comportamento ignora la disposizione che impone lo scorporo: come stabilito, lo 0,76% appartiene in via esclusiva allo Stato (codice 3925), mentre solo l'eventuale eccedenza va destinata al Comune. Il mancato sezionamento degli importi si traduce formalmente nell'omissione di un tributo erariale. Ciò comporta l'emissione diretta di un avviso di accertamento erariale per omesso versamento, il quale viene sanzionato al 25% in virtù delle decadenze previste ex D.Lgs. 87/2024.
+              </p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Come deve essere gestita la detrazione in caso di comproprietà con residenza divisa tra coniugi?</h4>
+              <p>
+                La giurisprudenza ha consolidato l'orientamento circa la fruizione della qualifica di abitazione principale per i nuclei familiari disgregati geograficamente per cause lavorative. Nello specifico, se due coniugi (non legalmente separati) possiedono un immobile al 50%, ma per ragioni lavorative solo uno vi risiede e vi dimora abitualmente, la giurisprudenza della Cassazione e la prassi confermano inequivocabilmente che il coniuge non residente deve calcolare l'IMU in via ordinaria (trattando la sua quota come "seconda casa"). Affidarsi alla teoria dell'esenzione totale ed espansiva genera immancabilmente il recupero coattivo dell'imposta evasa con annessa irrogazione di sanzioni tributarie.
+              </p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Cosa comporta l'omissione della Dichiarazione IMU per il godimento delle agevolazioni?</h4>
+              <p>
+                Molti contribuenti presumono erroneamente che le agevolazioni scattino in maniera automatica e silente, decidendo di beneficiare della riduzione del 50% per comodato gratuito o per il riscontro di uno stato di inagibilità senza presentare la Dichiarazione IMU al Comune di competenza. Tuttavia, la normativa prescrive che tale documentazione debba essere inoltrata entro il 30 giugno dell'anno successivo al verificarsi dell'evento. L'obbligo dichiarativo è istituito a pena di decadenza; la sua omissione annulla con valenza retroattiva l'agevolazione applicata, autorizzando il Comune a procedere con il recupero dell'imposta calcolata in misura piena e progressiva per l'arco temporale delle ultime 5 annualità accertabili.
+              </p>
+            </div>
+
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore IMU è uno strumento <strong>100% client-side, costruito senza alcun backend</strong>. La rendita catastale, la categoria dell'immobile, la quota di possesso, i mesi di detenzione e il Comune di ubicazione restano interamente nel tuo browser. Nessun dato catastale o identificativo viene trasmesso a server remoti, registrato in un archivio o associato alla tua persona.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">L'insieme formato da rendita, categoria catastale e Comune consente di risalire con buona approssimazione al patrimonio immobiliare di un soggetto, ed è per questo un dato personale di rilievo economico ai sensi del Regolamento UE 2016/679 (GDPR). Non raccogliendolo affatto, lo strumento realizza nella sostanza i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5, paragrafo 1, lettera c. Che nessuna richiesta di rete trasporti i dati inseriti è verificabile in autonomia dal pannello sviluppatore del browser: vengono scaricati soltanto la pagina, i parametri fiscali pubblici e gli eventuali annunci pubblicitari.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <!-- Caricamento logica di calcolo IMU -->
+  <script defer src="/js/imu.js"></script>
+
+  <!-- Script UI locale per agganciare i dati al pannello di destra -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnCalcola = document.getElementById('btn-esegui-calcolo');
+      
+      const outImponibile = document.getElementById('out-imponibile');
+      const outLorda = document.getElementById('out-lorda');
+      const outCodice = document.getElementById('out-codice');
+      const outAcconto = document.getElementById('out-acconto');
+      const outSaldo = document.getElementById('out-saldo');
+      const outTotale = document.getElementById('out-totale');
+
+      const fmt = val => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(val);
+
+      if (btnCalcola && window.IMUCalculator) {
+        btnCalcola.addEventListener('click', () => {
+          const data = {
+            rendita: document.getElementById('calc-rendita').value,
+            categoria: document.getElementById('calc-categoria').value,
+            aliquota: document.getElementById('calc-aliquota').value,
+            quota: document.getElementById('calc-quota').value,
+            mesi: document.getElementById('calc-mesi').value,
+            isStorico: document.getElementById('calc-storico').checked,
+            isComodato: document.getElementById('calc-comodato').checked,
+            isConcordato: document.getElementById('calc-concordato').checked
+          };
+
+          const calc = window.IMUCalculator.calcola(data);
+
+          if (calc.impostaAnnua <= 0) {
+            alert('L\'imposta calcolata è zero. Verifica i dati inseriti (es. Rendita).');
+            return;
+          }
+
+          outImponibile.textContent = fmt(calc.baseImponibile);
+          outLorda.textContent = fmt(calc.impostaLorda);
+          outCodice.textContent = calc.codiceTributo;
+          
+          outAcconto.textContent = `${calc.acconto} €`;
+          outSaldo.textContent = `${calc.saldo} €`;
+          outTotale.textContent = `${calc.impostaAnnua} €`;
+        });
+      }
+    });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; console.warn('[AdSense] Error:', error); }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => requestAnimationFrame(initVisibleAds));
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-imu-rendita'] = function (campo) {
+      var rendita = parseFloat(campo.value);
+      if (!(rendita > 0) || !window.IMUCalculator) return '';
+      var categoria = document.getElementById('calc-categoria').value;
+      var aliquota = parseFloat(document.getElementById('calc-aliquota').value) || 0;
+      var r = window.IMUCalculator.calcola({ rendita: rendita, categoria: categoria, aliquota: aliquota, quota: 100, mesi: 12 });
+      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
+      return 'Con rendita ' + euro(rendita) + ' in categoria ' + categoria + ': rendita rivalutata ' + euro(r.renditaRivalutata) + ', base imponibile ' + euro(r.baseImponibile) + '. Con aliquota ' + String(aliquota).replace('.', ',') + '‰ e possesso pieno per 12 mesi l\'imposta è di ' + euro(r.impostaLorda) + ' l\'anno.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <!-- La riduzione per comodato richiede un contratto registrato: si avvisa chi la spunta -->
+  <script>
+    (function () {
+      function avvia() {
+        var casella = document.getElementById('calc-comodato');
+        var avviso = document.getElementById('avviso-comodato');
+        if (!casella || !avviso) return;
+        function aggiorna() { avviso.hidden = !casella.checked; }
+        casella.addEventListener('change', aggiorna);
+        aggiorna();
+      }
+      // Lo script sta in fondo al body: se il documento e' gia' pronto si parte
+      // subito, senza aspettare un evento che potrebbe essere gia' passato.
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', avvia);
+      else avvia();
+    })();
+  </script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

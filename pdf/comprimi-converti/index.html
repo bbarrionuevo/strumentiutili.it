@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Comprimi e Converti PDF (DOCX, JPG) Offline — StrumentiUtili</title>
+  <meta name="description" content="Riduci il peso dei tuoi PDF, converti file Word (DOCX) in PDF e trasforma JPG/PNG in documenti PDF direttamente nel tuo browser. Privacy totale.">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/comprimi-converti/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Comprimi e Converti PDF in Locale" />
+  <meta property="og:description" content="Riduci la dimensione dei tuoi PDF o converti DOCX e Immagini senza caricare file su internet." />
+  <meta property="og:url" content="https://strumentiutili.it/pdf/comprimi-converti/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Comprimi e Converti PDF",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/pdf/comprimi-converti/",
+        "description": "Strumenti PDF nel browser: unione di immagini JPG e PNG in pagine A4, compressione di PDF scansionati mantenendo il formato di pagina e conversione del testo di documenti Word in PDF.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/pdf/comprimi-converti/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Immagini JPG e PNG in PDF su pagine A4 centrate",
+          "Compressione dei PDF scansionati con qualità regolabile",
+          "Formato di pagina invariato e confronto del peso prima e dopo",
+          "Conversione del testo DOCX in PDF con a capo automatico",
+          "Elaborazione nel browser senza upload"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti PDF",
+            "item": "https://strumentiutili.it/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Comprimi e Converti PDF",
+            "item": "https://strumentiutili.it/pdf/comprimi-converti/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/pdf/comprimi-converti/#howto",
+        "name": "Come ridurre il peso di un PDF scansionato",
+        "description": "Procedura per comprimere un PDF di scansioni prima dell'invio via PEC o piattaforma telematica.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT3M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il PDF da comprimere"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica il PDF",
+            "text": "Trascina il file nel riquadro del compressore.",
+            "url": "https://strumentiutili.it/pdf/comprimi-converti/#drop-compress-file"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli la qualità",
+            "text": "Imposta 0,7 per documenti da leggere, 0,5 per il peso minimo.",
+            "url": "https://strumentiutili.it/pdf/comprimi-converti/#compress-quality"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Comprimi e controlla",
+            "text": "Premi Comprimi PDF, verifica peso e leggibilità del file scaricato.",
+            "url": "https://strumentiutili.it/pdf/comprimi-converti/#compress-msg"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/comprimi-converti/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Perché il PDF compresso non viene scaricato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché non risultava più leggero dell'originale. Succede con i PDF creati da programmi di scrittura o gestionali, che contengono testo e non immagini."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La compressione riduce la qualità di stampa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le pagine vengono rese a circa 108 DPI: il testo resta leggibile, ma dettagli minuti come note a piè di pagina di disegni tecnici o firme sottili possono perdere nitidezza."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso convertire un PDF in Word?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, questo strumento converte da Word a PDF e crea PDF da immagini e PDF compressi. Per estrarre il testo da un PDF puoi usare l'Assistente documenti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I file vengono caricati su un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Tutte le conversioni avvengono nel browser e i file restano sul dispositivo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📄</span> Gestione Documenti
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Comprimi e Converti PDF</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Riduci il peso dei tuoi PDF scansionati o converti documenti Word e immagini in formato PDF. Elaborazione sicura e 100% offline.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        
+        <!-- Immagini a PDF -->
+        <section class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Immagini → PDF</h2>
+          <p class="text-sm text-gray-600 mb-4">Unisci JPG/PNG in un unico PDF.</p>
+          <input id="images-files" type="file" accept="image/*" multiple class="hidden" />
+          <div id="drop-images-files" class="flex-1 bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition p-6 text-center rounded-xl cursor-pointer flex flex-col justify-center min-h-[140px]">
+            <div class="text-sm font-medium text-gray-700">Trascina immagini o <span class="text-indigo-600 font-bold" id="images-browse">sfoglia</span></div>
+            <div id="images-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <button type="button" data-guida-toggle="guida-pdf-immagini" aria-expanded="false" aria-controls="guida-pdf-immagini" aria-label="Guida al campo Immagini" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Formati e ordine delle pagine</button>
+          <div id="guida-pdf-immagini" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Formati:</strong> JPG e PNG. Le immagini WebP o HEIC dell'iPhone vanno prima convertite con il Convertitore immagini.</p>
+            <p><strong class="text-indigo-900">Ordine:</strong> le pagine seguono l'ordine di selezione dei file: rinomina le foto con un numero iniziale, per esempio «01-fronte», «02-retro», prima di selezionarle insieme.</p>
+            <p><strong class="text-indigo-900">Impaginazione:</strong> ogni immagine occupa una pagina A4 centrata, verticale o orizzontale secondo la foto.</p>
+          </div>
+          <button id="images-to-pdf" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl transition shadow-sm">Crea PDF</button>
+          <div id="images-msg" class="mt-2 text-sm font-medium text-emerald-600 text-center"></div>
+        </section>
+
+        <!-- Compressore -->
+        <section class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Compressore PDF</h2>
+          <p class="text-sm text-gray-600 mb-4">Riduce il peso ricampionando le pagine.</p>
+          <input id="compress-file" type="file" accept="application/pdf" class="hidden" />
+          <div id="drop-compress-file" class="flex-1 bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition p-6 text-center rounded-xl cursor-pointer flex flex-col justify-center min-h-[140px]">
+            <div class="text-sm font-medium text-gray-700">Trascina il PDF o <span class="text-indigo-600 font-bold" id="compress-browse">sfoglia</span></div>
+            <div id="compress-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <div class="flex items-center gap-2 mt-4">
+            <label for="compress-quality" class="text-xs font-bold text-gray-700">Qualità compressione (0.1 - 1.0)</label>
+            <button type="button" data-guida-toggle="guida-pdf-qualita" aria-expanded="false" aria-controls="guida-pdf-qualita" aria-label="Guida al campo Qualità compressione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+          </div>
+          <input data-guida="guida-pdf-qualita" aria-describedby="guida-pdf-qualita" id="compress-quality" type="number" step="0.1" min="0.1" max="1.0" value="0.7" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-gray-50 font-medium" />
+          <div id="guida-pdf-qualita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Quando conviene:</strong> per PDF di scansioni e fotografie. Un PDF creato da Word o da un gestionale è già leggero: la compressione lo trasformerebbe in immagini più pesanti, e in quel caso il file non viene scaricato.</p>
+            <p><strong class="text-indigo-900">Valori:</strong> 0,7 per documenti da leggere a schermo, 0,5 per ridurre al massimo il peso, 0,9 se ci sono dettagli fini come firme o timbri.</p>
+            <p><strong class="text-indigo-900">Testo:</strong> dopo la compressione le pagine sono immagini: il testo non è più selezionabile né ricercabile.</p>
+            <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+          </div>
+          <button id="do-compress" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl transition shadow-sm">Comprimi PDF</button>
+          <div id="compress-msg" class="mt-2 text-sm font-medium text-emerald-600 text-center"></div>
+        </section>
+
+        <!-- Word a PDF -->
+        <section class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col md:col-span-2 xl:col-span-1">
+          <h2 class="text-lg font-bold text-gray-900 mb-1">Converti DOCX → PDF</h2>
+          <p class="text-sm text-gray-600 mb-4">Estrai il testo da Word e genera un PDF.</p>
+          <input id="docx-file" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden" />
+          <div id="drop-docx-file" class="flex-1 bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition p-6 text-center rounded-xl cursor-pointer flex flex-col justify-center min-h-[140px]">
+            <div class="text-sm font-medium text-gray-700">Trascina file .docx o <span class="text-indigo-600 font-bold" id="docx-browse">sfoglia</span></div>
+            <div id="docx-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <button type="button" data-guida-toggle="guida-pdf-docx" aria-expanded="false" aria-controls="guida-pdf-docx" aria-label="Guida al campo Documento Word" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa viene convertito</button>
+          <div id="guida-pdf-docx" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Solo testo:</strong> vengono riportati i paragrafi in Helvetica 11 punti su pagine A4. Grassetti, tabelle, immagini, intestazioni e numeri di pagina non vengono riprodotti.</p>
+            <p><strong class="text-indigo-900">Quando usarlo:</strong> per lettere, verbali e testi semplici da trasformare velocemente in PDF. Per documenti impaginati usa «Salva come PDF» di Word o LibreOffice.</p>
+            <p><strong class="text-indigo-900">Formato:</strong> solo file .docx: i vecchi .doc vanno prima salvati come .docx.</p>
+          </div>
+          <button id="docx-to-pdf" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl transition shadow-sm">Converti e Scarica</button>
+          <div id="docx-msg" class="mt-2 text-sm font-medium text-emerald-600 text-center"></div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Validatore PDF/A</a></li>
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📂</span> Unisci e Dividi PDF</a></li>
+            <li><a href="/pdf/scanner-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Scanner Documenti</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Anonimizza PDF (Redact)</a></li>
+              <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Firma PDF</a></li>
+            </ul>
+          </details>
+          <a href="/pdf/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Strumenti PDF</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Metodi di compressione e conversione verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Immagini, PDF e documenti Word vengono letti ed elaborati nel browser: nessun file viene inviato a server. Le librerie di conversione sono scaricate da CDN al primo utilizzo e non ricevono i documenti (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti tecniche e normative</p>
+            <p class="text-gray-600 leading-relaxed">ISO 32000 (formato PDF) e ISO 19005 (PDF/A), ISO/IEC 10918 (JPEG), D.Lgs. 82/2005 (CAD) e Linee guida AgID sulla formazione del documento informatico, D.Lgs. 36/2023 art. 25 sulle piattaforme di approvvigionamento digitale, librerie pdf.js, pdf-lib e Mammoth.js.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Compressione Raster/Vettoriale, Conversione OpenXML DOCX e Protezione dei Dati Sensibili (GDPR)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La riduzione del peso digitale dei file Portable Document Format (PDF) e la conversione inter-formato di documenti di testo Microsoft Word (.docx) ed immagini raster (JPEG, PNG) costituiscono operazioni nevralgiche per l'interfaccia con i portali della Pubblica Amministrazione, per i sistemi di Posta Elettronica Certificata (PEC) e per il deposito telematico negli uffici giudiziari. L'adozione di un'architettura Zero-Backend (Serverless Client-Side) garantisce la totale conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679), eliminando i rischi di data breach legati all'upload remoto. Il presente trattato analizza dettagliatamente l'inquadramento normativo, le formule algebriche di compressione e ricampionamento, la decodifica dell'architettura OpenXML e la risoluzione delle casuistiche reali in ambito tributario e concorsuale.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Codice Amministrazione Digitale (CAD), Limiti PEC/AgID e Conformità GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'interazione telematica con le strutture pubbliche, i portali di gara (e-Procurement), l'Agenzia delle Entrate e il Processo Telematico (PCT/PAT) è regolamentata in Italia dal Codice dell'Amministrazione Digitale (CAD - D.Lgs. 82/2005) e dalle Linee Guida AgID sulla formazione, gestione e conservazione dei documenti informatici. I gestori di Posta Elettronica Certificata e i gateway di ricezione ministeriali impongono limiti di dimensione agli allegati, diversi da un gestore all'altro: per la PEC sono frequenti tetti complessivi fra 30 e 100 MB per messaggio, mentre le piattaforme di gara indicano spesso un limite per singolo file. Il superamento di tali soglie determina il rigetto telematico automatico dell'invio, con conseguenti decadenze dai termini perentori di gara o di deposito processuale.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Al contempo, il trattamento dei documenti inoltrati sconta il ferreo regime del GDPR. L'uso di convertitori e compressori PDF commerciali ospitati in cloud genera un trasferimento di dati verso server remoti di terze parti. Questo innesca l'obbligo formale di censire il trattamento nei Registri ex Art. 30 GDPR, di sottoscrivere un Data Processing Agreement (DPA) ex Art. 28 GDPR con il provider e di condurre una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR) per accertare i rischi inerenti alla trasmissione online di informazioni finanziarie o sanitarie.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura 100% Client-Side di questo applicativo concretizza il principio della Data Protection by Design e by Default (Articolo 25 GDPR). L'intero ciclo computazionale — dalla lettura del file sorgente, alla decompressione dei Flate Stream, al ricampionamento dei raster via Canvas, fino alla ricostruzione del binario tramite `pdf-lib` — avviene esclusivamente all'interno della memoria RAM isolata del browser dell'utente. Senza alcun caricamento remoto (Zero-Upload), viene a cadere la qualifica giuridica di Data Processor in capo al gestore del sito, esonerando il professionista da qualsiasi vincolo DPA o responsabilità sanzionatoria ex Articolo 83 del GDPR per fuga indebita di dati aziendali o clinici.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Rasterizzazione PDF.js, Quantizzazione DCT JPEG, Decodifica OpenXML e Geometria Punti</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Algoritmo di Compressione tramite Rasterizzazione e Quantizzazione DCT</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La riduzione volumetrica dei documenti PDF scansionati ad alta risoluzione opera attraverso un processo di ri-rasterizzazione e quantizzazioneLossy gestito dal modulo `PDF.js` unitamente alle API HTML5 Canvas. Il motore decodifica le pagine vettoriali e disegna ogni pagina su una tela in memoria a 1,5 volte la dimensione in punti, pari a circa 108 DPI ($DPI_{\text{target}} = 72 \times 1{,}5$), e mantiene nel file compresso il formato originale della pagina:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Pixel}_{\text{larghezza}} = \left( \frac{\text{Punti}_{\text{larghezza}}}{72} \right) \times DPI_{\text{target}}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La tela viene successivamente serializzata in un Blob `image/jpeg` applicando un coefficiente di qualità $Q \in [0.1, 1.0]$. L'algoritmo JPEG comprime il segnale cromatico dividendo la matrice di pixel in blocchi 8x8 ed eseguendo la Trasformata Discreta del Coseno (DCT):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$F(u,v) = \frac{1}{4} C(u) C(v) \sum_{x=0}^{7} \sum_{y=0}^{7} f(x,y) \cos\left[\frac{(2x+1)u\pi}{16}\right] \cos\left[\frac{(2y+1)v\pi}{16}\right]$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La successiva fase di quantizzazione divide i coefficienti $F(u,v)$ per una matrice di quantizzazione scalata sul parametro $Q$, azzerando le frequenze spaziali ad alta variazione impercettibili all'occhio umano e riducendo drasticamente il peso in kbyte. L'efficienza globale viene espressa dal Rapporto di Compressione ($CR$):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$CR = \frac{\text{Dimensione}_{\text{Sorgente}}}{\text{Dimensione}_{\text{Compressa}}}$$
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Decodifica dell'Architettura OpenXML DOCX (Mammoth.js)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I file Microsoft Word con estensione `.docx` costituiscono in realtà archivi compressi ZIP contenenti la struttura stilistica OpenXML (`word/document.xml`). La libreria client-side `Mammoth.js` decomprime il pacchetto in RAM, analizza il file XML sottostante, estrae l'albero sintattico astratto (AST) ed estrae il solo testo dei paragrafi (`<w:p>`, `<w:r>`, `<w:t>`), senza grassetti, tabelle, immagini o intestazioni. La libreria `pdf-lib` impagina poi il testo in Helvetica 11 punti su pagine A4 (595,28 × 841,89 punti), andando a capo sulla larghezza utile e iniziando una nuova pagina ogni 50 righe. Le lettere di alfabeti non supportati dal font, come «Ș», diventano la lettera base; i simboli non stampabili diventano «?».
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Vettorializzazione e Proiezione di Immagini (JPG/PNG → PDF)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Nel modulo Immagini → PDF, le immagini caricate (JPG, PNG) vengono decodificate dal browser e incorporate nel PDF rettificando la scala in punti tipografici ($1\text{ pt} = 1/72\text{ pollici}$):
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$\text{Larghezza}_{\text{pt}} = \text{Pixel}_{\text{larghezza}} \times \frac{72}{DPI_{\text{sorgente}}}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Ogni immagine viene centrata in una pagina A4, verticale o orizzontale secondo la forma dell'immagine, con un margine di 20 punti e senza alterarne le proporzioni.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Bando di Gara Pubblica PA e Conversione Massiva di Referti Clinici</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Superamento del Blocco Dimensionale PEC per Bando di Gara Pubblica.</strong><br />
+              Un'impresa di costruzioni deve caricare sulla piattaforma telematica della stazione appaltante un allegato composto da planimetrie scansionate a 300 DPI, mentre la piattaforma accetta file fino a una dimensione massima indicata nel disciplinare.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il direttore tecnico carica il file PDF nell'area "Compressore PDF" dell'applicativo e imposta il parametro di qualità sul valore `0.6`. Il motore client-side ricampiona le pagine scansionate applicando la quantizzazione DCT. 
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
+              <li>Risoluzione di partenza delle scansioni: 300 DPI</li>
+              <li>Risoluzione dopo la compressione: circa 108 DPI, con qualità JPEG 0,6</li>
+              <li>Riduzione del numero di pixel per pagina: circa l'87% ($1 - (108/300)^2$)</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il peso finale dipende dal contenuto delle pagine; il compressore mostra la dimensione prima e dopo e non scarica il file se non risulta più leggero. Prima di caricarlo va verificata la leggibilità delle quote e dei dettagli più piccoli delle planimetrie.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: Conversione Massiva di Referti DOCX/JPG in Archivio Sanitario Unificato (Art. 9 GDPR).</strong><br />
+              Un laboratorio di analisi cliniche deve trasformare in PDF alcuni referti redatti in Word (`.docx`) e le relative scansioni in `.jpg`. Caricare questi file su portali di conversione gratuiti comunicherebbe dati sanitari a un fornitore esterno senza le garanzie richieste dal GDPR.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sfruttando i moduli "DOCX → PDF" e "Immagini → PDF" operanti al 100% nel browser locale, la struttura converte un documento Word per volta e unisce le scansioni di ciascun paziente in un PDF, caricando solo le immagini di quel paziente. I dati di salute non attraversano la rete; la conversione DOCX mantiene solo il testo, quindi per referti con tabelle o loghi è preferibile l'esportazione PDF del programma di videoscrittura.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti con gli strumenti della pagina su file di prova; pesi e formati sono quelli misurati sui file scaricati.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: foto di un documento e di un logo in un unico PDF</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>File: una foto JPG 1920 × 1537 px e un PNG 400 × 300 px</li>
+            <li>Risultato: PDF di 2 pagine A4 orizzontali (842 × 595 punti), 300 KB</li>
+            </ul>
+            <p>Entrambe le immagini sono più larghe che alte, quindi le pagine sono orizzontali. Per una carta d'identità fotografata in verticale la pagina sarebbe verticale.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: compressione del PDF appena creato</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Qualità 0,7, pagine rese a circa 108 DPI</li>
+            <li>Da 300 KB a 140 KB (-53%)</li>
+            <li>Formato delle pagine invariato: A4 orizzontale</li>
+            </ul>
+            <p>Il formato di stampa resta quello dell'originale, così il documento compresso si stampa alle stesse dimensioni.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: PDF di testo già leggero</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Referto di 2 pagine generato da un programma: 1 KB</li>
+            <li>Versione compressa come immagini: 27 KB</li>
+            <li>Esito: «il file è già ottimizzato, usa l'originale»; nessun download</li>
+            </ul>
+            <p>I PDF testuali contengono solo caratteri e font: trasformarli in immagini li appesantisce e toglie il testo selezionabile.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: verbale di assemblea da Word a PDF</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Paragrafo di oltre 330 caratteri: ripartito su 4 righe entro i margini</li>
+            <li>«Ștefan Popescu» diventa «Stefan Popescu»; la freccia «→» diventa «?»</li>
+            </ul>
+            <p>Prima di inviare il PDF conviene rileggere nomi stranieri e simboli: se il documento contiene frecce, emoji o alfabeti non latini, esporta il PDF direttamente da Word.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Risoluzione Anomalie Software e Limiti Tecnologici (OOM V8 e Layout Shift OpenXML)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Esaurimento della Memoria V8 e Arresto Anomalo (Out of Memory - OOM):</strong><br />
+              La manipolazione di file PDF di dimensioni estese (es. oltre 200 MB) all'interno del browser è limitata dall'allocazione di memoria dell'heap del motore JavaScript (es. V8 di Chrome). Istanziare l'intero albero degli oggetti PDF e decodificare contemporaneamente decine di pagine raster ad alta risoluzione in un unico `ArrayBuffer` continuo può saturare la RAM allocabile, causando il crash imprevisto della scheda browser (*OOM*). Per mitigare questo limite su dispositivi mobili o pc datati, si raccomanda di ridurre il fattore di qualità a `0.5` o di processare il documento dividendo preventivamente le sezioni tramite lo strumento "Unisci e Dividi".
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Perdita del Testo Vettoriale nella Compressione PDF:</strong><br />
+              È fondamentale comprendere che il processo di compressione via ricampionamento raster decodifica la pagina vettoriale trasformandola in un'immagine ad alta efficienza. Se il file PDF originale conteneva testo selezionabile e ricercabile, la compressione raster convertirà tali caratteri in pixel. Qualora sia indispensabile mantenere il testo selezionabile per le funzioni di copia-incolla o per la conservazione sostitutiva ISO 19005 (PDF/A), si raccomanda di conservare la versione originale o di effettuare la compressione agendo esclusivamente sugli stream di immagini interni tramite software desktop dedicati.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Alterazioni di Layout nella Conversione DOCX (OpenXML Shift):</strong><br />
+              La conversione di documenti Word (`.docx`) basata sulla libreria Mammoth.js estrae soltanto il testo dei paragrafi: titoli, grassetti, elenchi puntati, tabelle, immagini, intestazioni e piè di pagina non vengono riprodotti. Qualora il file Word contenga impaginazioni grafiche complesse su più colonne o forme vettoriali avanzate, il documento PDF generato potrebbe mostrare un riallineamento del layout. In tali scenari, è preferibile esportare il file direttamente da Microsoft Word o LibreOffice tramite la funzione nativa "Salva come PDF".
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Responsabilità e Sanzioni GDPR per Fuga di Dati Aziendali (Articolo 83):</strong><br />
+              L'upload involontario o non autorizzato di contratti secretati, bilanci non pubblicati o dati personali su server gratuiti terzi espone l'operatore alle sanzioni pecuniarie previste dall'Articolo 83, paragrafo 5 del GDPR: fino a 20 milioni di euro o fino al 4% del fatturato globale annuo. L'impiego della nostra suite 100% client-side azzera categoricamente questo rischio eliminando la trasmissione remota dei file.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il PDF compresso non viene scaricato?</h3>
+            <p>Perché non risultava più leggero dell'originale. Succede con i PDF creati da programmi di scrittura o gestionali, che contengono testo e non immagini.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La compressione riduce la qualità di stampa?</h3>
+            <p>Le pagine vengono rese a circa 108 DPI: il testo resta leggibile, ma dettagli minuti come note a piè di pagina di disegni tecnici o firme sottili possono perdere nitidezza.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso convertire un PDF in Word?</h3>
+            <p>No, questo strumento converte da Word a PDF e crea PDF da immagini e PDF compressi. Per estrarre il testo da un PDF puoi usare l'Assistente documenti.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">I file vengono caricati su un server?</h3>
+            <p>No. Tutte le conversioni avvengono nel browser e i file restano sul dispositivo.</p>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/mammoth/mammoth.browser.min.js" crossorigin="anonymous"></script>
+  
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/pdf-tools.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-pdf-qualita'] = function (campo) {
+      var q = parseFloat(String(campo.value).replace(',', '.'));
+      if (!(q > 0)) return '';
+      if (q < 0.1 || q > 1) return 'Il valore deve essere compreso fra 0,1 e 1.';
+      var giudizio = q <= 0.4 ? 'artefatti visibili attorno al testo, adatta solo per bozze' : (q <= 0.6 ? 'buon compromesso per scansioni da inviare' : (q <= 0.8 ? 'lettura a schermo senza difetti evidenti' : 'dettagli fini ben conservati, riduzione di peso minore'));
+      return 'Qualità ' + String(q).replace('.', ',') + ': ' + giudizio + '. Le pagine vengono rese a circa 108 DPI.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

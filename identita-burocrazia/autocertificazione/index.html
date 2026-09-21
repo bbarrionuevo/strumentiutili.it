@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generatore di Autocertificazione — StrumentiUtili.it</title>
+  <meta name="description" content="Genera gratis una Dichiarazione Sostitutiva di Certificazione (Art. 46 D.P.R. 445/2000) o di Atto di Notorietà (Art. 47) in PDF, pronta da firmare. Elaborazione 100% locale nel browser.">
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/autocertificazione/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- REGLAS CSS NATIVAS PARA ADSENSE (MARCADOR INERTE LEGAL) -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+  
+  
+  
+  <!-- Marcado Semántico Schema.org (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Generatore di Autocertificazione",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "GovernmentApplication",
+        "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Creazione nel browser di una dichiarazione sostitutiva di certificazione ai sensi dell'art. 46 del D.P.R. 445/2000, con richiamo agli artt. 75 e 76, formula di allegazione del documento e PDF A4 pronto da firmare.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Anteprima in tempo reale della dichiarazione",
+          "Richiamo automatico alle sanzioni degli artt. 75 e 76",
+          "Formula di allegazione del documento d'identità",
+          "PDF A4 generato nel browser",
+          "Controllo dei caratteri non stampabili"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Identità & Burocrazia",
+            "item": "https://strumentiutili.it/identita-burocrazia/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Generatore di Autocertificazione",
+            "item": "https://strumentiutili.it/identita-burocrazia/autocertificazione/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#howto",
+        "name": "Come compilare un'autocertificazione",
+        "description": "Procedura per preparare, firmare e consegnare una dichiarazione sostitutiva di certificazione.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Documento d'identità"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci i dati anagrafici",
+            "text": "Compila nome, cognome, nascita e residenza come nel documento.",
+            "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#ac-nome"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scrivi la dichiarazione",
+            "text": "Descrivi lo stato o la qualità da attestare iniziando con «di».",
+            "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#ac-testo"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Scegli se allegare il documento",
+            "text": "Lascia la formula di allegazione se invii la dichiarazione per posta o email.",
+            "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#ac-allega-cf"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Genera, stampa e firma",
+            "text": "Scarica il PDF, firmalo a mano e consegnalo con la copia del documento se richiesta.",
+            "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#ac-genera"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/autocertificazione/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "L'autocertificazione vale anche con banche, assicurazioni e datori di lavoro privati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I privati possono accettarla ma non sono obbligati. L'obbligo di accettazione riguarda pubbliche amministrazioni e gestori di pubblici servizi, come Poste o le società di trasporto pubblico."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto dura la validità di un'autocertificazione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ha la stessa validità del certificato che sostituisce; per stati che possono cambiare, come la residenza, conta la situazione alla data della firma. Per stati che non mutano, come la data di nascita, vale senza limiti di tempo (art. 48)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso firmarla con una firma scannerizzata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Serve la firma autografa sul foglio, poi scansionato insieme al documento, oppure una firma digitale o l'invio con identità digitale. Un'immagine della firma incollata nel PDF non ha valore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa succede se scrivo un dato sbagliato in buona fede?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'amministrazione che rileva un errore materiale o un'irregolarità sanabile invita a correggerlo (art. 71). Il falso punito dall'art. 76 richiede la consapevolezza della non veridicità."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa accade se il modulo non cita esplicitamente l'Articolo 76 del D.P.R. 445/2000?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La dichiarazione resta valida e chi dichiara il falso resta punibile: l'art. 76 si applica per legge, e l'ignoranza della legge penale non scusa. L'art. 48 impone alle amministrazioni di inserire il richiamo nei propri moduli, ma la sua mancanza è un difetto del modulo, non una causa di esclusione della responsabilità. Il generatore inserisce comunque sempre il richiamo agli artt. 75 e 76."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "È obbligatorio allegare sempre la fotocopia del documento di identità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Secondo l'art. 38 la copia non autenticata del documento serve quando la dichiarazione è inviata per posta, fax o email o consegnata da un'altra persona. Se la firmi davanti al dipendente addetto a riceverla non serve allegare nulla. Per l'invio telematico sono valide anche la firma digitale, l'accesso con SPID, CIE o CNS e, secondo l'art. 65 del CAD, l'invio dalla propria PEC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La PA può rifiutare la mia autocertificazione e pretendere il certificato originale emesso dal Comune?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Assolutamente no. Vige il principio assoluto della \"Decertificazione\" (introdotto dalla Legge di Stabilità 2012). Tutte le Pubbliche Amministrazioni (Comuni, INPS, Università, ASL) hanno il divieto imperativo di richiedere o accettare certificati cartacei tra loro, demandando tutto all'autocertificazione del cittadino. Un funzionario pubblico che respinga una corretta D.S.C. esigendo il certificato originale compie una grave violazione dei doveri d'ufficio e si espone a un procedimento disciplinare."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali sono le sanzioni se dichiaro il falso per ottenere agevolazioni o prestazioni (es. ISEE, bonus)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Laddove la PA sia tenuta ad effettuare i controlli formali a campione (Art. 71), il cittadino che compili attestazioni mendaci subisce l'immediata revoca dei benefici ottenuti e l'esposizione a una denuncia penale ex Art. 76 (falso ideologico). Inoltre, dopo le modifiche introdotte dal D.L. 76/2020 all'art. 75, la dichiarazione non veritiera comporta il divieto di accesso a contributi, finanziamenti e agevolazioni per due anni dall'adozione dell'atto di decadenza, qualunque sia l'amministrazione che li eroga."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-semibold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/identita-burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Fiscalità</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📜</span> Semplificazione Amministrativa 2026
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Generatore di Autocertificazione (D.P.R. 445/2000)</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale &amp; Privata: i tuoi dati anagrafici e il testo della dichiarazione non vengono mai inviati a server esterni. Il PDF viene generato istantaneamente nel tuo browser.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-semibold mb-4 text-gray-900 border-b border-gray-100 pb-2">Dati del dichiarante</h2>
+
+          <form id="autocert-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="block">
+                <div class="flex items-center gap-2">
+                  <label for="ac-nome" class="text-sm font-medium text-gray-700">Nome *</label>
+                  <button type="button" data-guida-toggle="guida-ac-nome" aria-expanded="false" aria-controls="guida-ac-nome" aria-label="Guida al campo Nome e cognome" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-ac-nome" aria-describedby="guida-ac-nome" id="ac-nome" type="text" required class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Mario">
+                <div id="guida-ac-nome" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Come scriverli:</strong> esattamente come nel documento d'identità, compresi eventuali secondi nomi e doppi cognomi.</p>
+                  <p><strong class="text-indigo-900">Lettere speciali:</strong> il PDF usa un font che copre l'alfabeto latino occidentale: lettere accentate italiane, francesi, spagnole e tedesche vanno bene, mentre «ș», «ł», «ğ» o caratteri cirillici non possono essere stampati.</p>
+                  <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+                </div>
+              </div>
+              <label class="block">
+                <span class="text-sm font-medium text-gray-700">Cognome *</span>
+                <input id="ac-cognome" type="text" required class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Rossi">
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm font-medium text-gray-700">Luogo di nascita *</span>
+                <input id="ac-luogo-nascita" type="text" required class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Milano (MI)">
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-gray-700">Data di nascita *</span>
+                <input id="ac-data-nascita" type="date" required class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+              </label>
+            </div>
+
+            <div class="block">
+              <div class="flex items-center gap-2">
+                <label for="ac-cf" class="text-sm font-medium text-gray-700">Codice Fiscale</label>
+                <button type="button" data-guida-toggle="guida-ac-cf" aria-expanded="false" aria-controls="guida-ac-cf" aria-label="Guida al campo Codice fiscale" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-ac-cf" aria-describedby="guida-ac-cf" id="ac-cf" type="text" maxlength="16" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 uppercase focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="RSSMRA80A15F205X">
+              <div id="guida-ac-cf" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Facoltativo ma utile:</strong> non è richiesto dal D.P.R. 445/2000, ma molte amministrazioni lo usano per abbinare la dichiarazione alla pratica: inseriscilo quando il modulo del destinatario lo prevede.</p>
+                <p><strong class="text-indigo-900">Formato:</strong> 16 caratteri per le persone fisiche, come sulla tessera sanitaria; il generatore lo converte in maiuscolo.</p>
+              </div>
+            </div>
+
+            <label class="block">
+              <span class="text-sm font-medium text-gray-700">Residenza (indirizzo, città, provincia) *</span>
+              <input id="ac-residenza" type="text" required class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Via Roma 10, Milano (MI)">
+            </label>
+
+            <label class="block">
+              <span class="text-sm font-medium text-gray-700">Destinatario (opzionale)</span>
+              <input id="ac-destinatario" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. Comune di Milano / Ente XYZ / Banca ABC">
+            </label>
+
+            <div class="block">
+              <div class="flex items-center gap-2">
+                <label for="ac-testo" class="text-sm font-medium text-gray-700">Testo della dichiarazione *</label>
+                <button type="button" data-guida-toggle="guida-ac-testo" aria-expanded="false" aria-controls="guida-ac-testo" aria-label="Guida al campo Testo della dichiarazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <textarea data-guida="guida-ac-testo" aria-describedby="guida-ac-testo" id="ac-testo" required rows="6" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. di essere residente all'indirizzo sopra indicato dal 2018... / di non aver riportato condanne penali... / di essere in possesso del titolo di studio di laurea in..."></textarea>
+              <div class="text-xs text-gray-500 mt-1">Scrivi in prima persona quello che vuoi dichiarare. Il testo verrà inserito così come scritto nel corpo della dichiarazione.</div>
+              <div id="guida-ac-testo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Formula:</strong> inizia con «di» e un verbo all'infinito: «di essere residente in…», «di essere in possesso del diploma di…», «di essere iscritto all'albo…».</p>
+                <p><strong class="text-indigo-900">Cosa si dichiara con questo modello:</strong> stati e qualità risultanti da registri pubblici, elencati nell'art. 46: residenza, stato civile, titolo di studio, iscrizioni ad albi, assenza di condanne. Il PDF riporta il titolo «Dichiarazione sostitutiva di certificazione (art. 46)».</p>
+                <p><strong class="text-indigo-900">Cosa non si dichiara:</strong> fatti a conoscenza diretta, come la qualità di erede o la conformità di una copia, richiedono la dichiarazione sostitutiva di atto di notorietà dell'art. 47. Certificati medici, veterinari, di origine e di conformità CE non sono mai sostituibili (art. 49).</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm font-medium text-gray-700">Luogo di compilazione</span>
+                <input id="ac-luogo-compilazione" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Milano">
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-gray-700">Data di compilazione</span>
+                <input id="ac-data-compilazione" type="date" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+              </label>
+            </div>
+
+            <label class="block text-sm text-gray-700">
+              <input data-guida="guida-ac-documento" aria-describedby="guida-ac-documento" id="ac-allega-cf" type="checkbox" class="mr-2 rounded text-indigo-600 focus:ring-indigo-500" checked>
+              Includi la formula di allegazione del documento d'identità (art. 38 D.P.R. 445/2000)
+            </label>
+            <button type="button" data-guida-toggle="guida-ac-documento" aria-expanded="false" aria-controls="guida-ac-documento" aria-label="Guida al campo Documento d'identità" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quando allegarlo</button>
+            <div id="guida-ac-documento" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Serve:</strong> se invii la dichiarazione per posta, email o fax o la fa consegnare un'altra persona: allega la copia fronte-retro di un documento valido.</p>
+              <p><strong class="text-indigo-900">Non serve:</strong> se la firmi davanti all'impiegato che la riceve o la trasmetti con firma digitale, SPID, CIE o dalla tua PEC.</p>
+            </div>
+
+            <button type="button" id="ac-genera" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-lg transition shadow-sm w-full sm:w-auto">Genera PDF e Scarica</button>
+            <div id="ac-msg" class="hidden"></div>
+          </form>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-semibold mb-4 text-gray-900 border-b border-gray-100 pb-2">Anteprima testo dichiarazione</h2>
+          <p class="text-sm text-gray-500 mb-3">Il PDF finale riprende questo testo con l'intestazione legale, i tuoi dati anagrafici e lo spazio per luogo, data e firma.</p>
+          <pre id="ac-preview" class="whitespace-pre-wrap text-sm text-gray-700 bg-gray-50 border border-gray-200 rounded-lg p-4 overflow-x-auto min-h-[300px]">Compila il modulo per vedere l'anteprima del testo.</pre>
+        </section>
+      </div>
+    </main>
+
+   <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+     <div class="sticky-sidebar space-y-6">
+       <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+         <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+         <ul class="space-y-3 text-sm font-bold text-gray-600">
+           <li><a href="/identita-burocrazia/codice-fiscale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🪪</span> Codice Fiscale</a></li>
+           <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📸</span> Fototessera ICAO</a></li>
+           <li><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Calcolo Quote Ereditarie</a></li>
+           <li><a href="/identita-burocrazia/disdetta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✉️</span> Lettera di Disdetta</a></li>
+         </ul>
+         <details class="group mt-3 pt-3 border-t border-gray-100">
+           <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+             <span>Altri strumenti in questa categoria</span>
+             <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+           </summary>
+           <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+             <li><a href="/identita-burocrazia/generatore-cv-ats/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Generatore CV ATS</a></li>
+             <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Password Sicure</a></li>
+             <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Validatore IBAN</a></li>
+           </ul>
+         </details>
+         <a href="/identita-burocrazia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Identità &amp; Burocrazia</span><span aria-hidden="true">→</span></a>
+       </nav>
+       <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+     </div>
+   </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Formule e riferimenti del D.P.R. 445/2000 verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Dati anagrafici, codice fiscale e testo della dichiarazione vengono elaborati nel browser: l'anteprima e il PDF sono creati sul dispositivo e nessun dato viene inviato a server, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.P.R. 28 dicembre 2000 n. 445 artt. 38, 40, 43, 46, 47, 48, 49, 71, 74, 75 e 76, come modificati dalla L. 183/2011 (decertificazione) e dal D.L. 76/2020, art. 483 del codice penale, D.Lgs. 82/2005 art. 65 sulle istanze telematiche.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <!-- Párrafo introductorio visible -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa all'Autocertificazione e alle Dichiarazioni Sostitutive (D.P.R. 445/2000)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il corpus legislativo su cui si incardina l'intero impianto della de-burocratizzazione italiana e della semplificazione del procedimento amministrativo è rappresentato dal Testo Unico in materia di Documentazione Amministrativa (<strong>D.P.R. 28 dicembre 2000, n. 445</strong>). Gli articoli dominanti, l'Art. 46 (Dichiarazioni sostitutive di certificazione) e l'Art. 47 (Dichiarazioni sostitutive dell'atto di notorietà), traslano l'onere probatorio delle qualità e degli status pregressi dalla Pubblica Amministrazione al cittadino. Il cittadino può così auto-attestare stati anagrafici, percorsi formativi o situazioni reddituali nei rapporti con le pubbliche istituzioni o i gestori di servizi pubblici. L'equilibrio del sistema è garantito dalla clausola deterrenziale incastonata negli Articoli 71, 75 e 76: laddove la PA sia tenuta ad effettuare controlli formali, il cittadino che compili attestazioni mendaci subisce, in combinato disposto, l'obliterazione dei benefici ricevuti e l'esposizione al procedimento penale. La nostra applicazione per la generazione del PDF esegue l'elaborazione interamente in locale (Zero-Backend), tutelando i dati sensibili del dichiarante in stretta osservanza dell'Articolo 25 del GDPR (Privacy by Design). Nessuna anagrafica o dichiarazione viene mai inviata a server esterni.
+        </p>
+
+        <!-- Bloque de contenuto denso desplegable 1 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Struttura Legale della Dichiarazione e Validazione (Ex Art. 38)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">I Pilastri Sintattici del Modulo</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Una Dichiarazione Sostitutiva di Certificazione (D.S.C.) redatta in maniera inoppugnabile deve stratificarsi su quattro pilastri sintattici, la cui parziale o totale defezione compromette irrimediabilmente la valenza giuridica dell'atto:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Epigrafe Anagrafica:</strong> Generalità complete del dichiarante atte a identificarlo univocamente (Nome, Cognome, Luogo e Data di nascita, Residenza, Codice Fiscale).</li>
+                <li><strong>Monito Deterrenziale:</strong> Evocazione obbligatoria dell'Art. 76, rendendo consapevole il sottoscrittore delle conseguenze previste dal Codice Penale (Art. 483 c.p.) in materia di dichiarazioni dolose. Il richiamo ha funzione informativa: la responsabilità penale per le dichiarazioni false sussiste anche se il modulo non lo riporta.</li>
+                <li><strong>Corpo Dichiarativo:</strong> L'asserzione di fatto a diretta conoscenza dell'interessato (Art. 47) o l'inquadramento oggettivo dei propri status legali e reddituali (Art. 46).</li>
+                <li><strong>Validazione Ex Art. 38:</strong> Luogo, data esatta, e firma olografa (o digitale). L'istanza generata assume per legge pienezza giuridica qualora venga corredata dalla scansione leggibile di un documento d'identità in corso di validità, rendendo pleonastica qualsiasi autentica di firma da parte di pubblici ufficiali.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 2 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📝</span> 2. Casuistica Reale: Esempio Pratico e Formulazione Blindata</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Costruzione del Template Giuridico</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'ingegneria del nostro template automatizzato, invocato ad esempio per cristallizzare la composizione del nucleo ai fini ISEE o per l'iscrizione a un Albo, produce la seguente struttura blindata per il cittadino:
+              </p>
+              <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg text-xs font-mono text-gray-800 leading-relaxed">
+                <strong>DICHIARAZIONE SOSTITUTIVA DI CERTIFICAZIONE E ATTO DI NOTORIETÀ<br>(Art. 46 e Art. 47 D.P.R. 28 dicembre 2000, n. 445)</strong><br><br>
+                Il/La sottoscritto/a <strong>[MARIO ROSSI]</strong>, nato/a a <strong>[ROMA (RM)]</strong>, il <strong>[15/05/1980]</strong>, residente in <strong>[ROMA (RM)]</strong> alla Via <strong>[X, n. Y, CAP 00100]</strong>, consapevole delle sanzioni penali previste dall'art. 76 del D.P.R. 445/2000 per le ipotesi di formazione o uso di atti falsi e dichiarazioni mendaci, nonché della contestuale revoca e decadenza dai benefici eventualmente conseguenti al provvedimento emanato sulla base di informazioni non veritiere ex art. 75 D.P.R. 445/2000,<br><br>
+                <strong>DICHIARA</strong><br>
+                sotto la propria personale responsabilità, ai sensi delle vigenti disposizioni in materia:<br>
+                <em>- Di essere iscritto all'Albo Professionale [Y] del circondario di [RM] con il numero di matricola [Z].</em><br>
+                <em>- Che il proprio stato di famiglia anagrafico risulta composto da n. 4 membri conviventi.</em><br><br>
+                Dichiara altresì di aver preso visione dell'Informativa sul trattamento dei dati personali (Reg. UE 2016/679) per le finalità istruttorie del procedimento in oggetto.<br><br>
+                [Luogo, Data di rilascio]<br>
+                IL DICHIARANTE (Firma estesa e leggibile)<br><br>
+                <em>(Ai sensi dell'art. 38 del D.P.R. 445/2000, la dichiarazione è sottoscritta e inviata unitamente a copia fotostatica non autenticata di un documento di identità in corso di validità del sottoscrittore, al fine di garantirne la valenza certificativa)</em>.
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de FAQ -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">3. Domande Frequenti (FAQ), Criticità e Sanzioni (YMYL)</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+                <p>I casi seguenti sono stati compilati nel generatore e mostrano il testo prodotto nell'anteprima e nel PDF.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: residenza per l'iscrizione del figlio all'asilo nido comunale</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Dichiarante: Giulia Bianchi, nata a Napoli (NA) il 12/04/1990</li>
+                <li>Residenza: Via Po 25, Torino (TO)</li>
+                <li>Testo: di essere residente a Torino in Via Po 25 dal 01/09/2023</li>
+                <li>Destinatario: Comune di Torino - Servizi educativi</li>
+                </ul>
+                <p>La residenza è uno stato risultante dall'anagrafe, quindi basta la dichiarazione sostitutiva di certificazione. Se viene consegnata allo sportello e firmata davanti all'impiegato non serve la copia del documento: la casella dell'allegato può essere tolta.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: dichiarante nato in Romania con una «Ș» nel nome</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Nome: Ștefan Popescu, nato a Bucarest (Romania)</li>
+                <li>Guida del campo: «Non stampabili nel PDF: Ș»</li>
+                <li>Generazione PDF: messaggio che indica il carattere da sostituire</li>
+                </ul>
+                <p>Scrivendo «Stefan» il PDF viene generato. Poiché il nome deve corrispondere al documento, conviene aggiungere a penna il segno sulla «S» prima di firmare, oppure compilare a mano il modulo del destinatario.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: dichiararsi unico erede per chiudere il conto del genitore</h3>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Fatto da dichiarare: qualità di erede e assenza di testamento</li>
+                <li>Strumento corretto: dichiarazione sostitutiva di atto di notorietà (art. 47)</li>
+                <li>Destinatario privato (banca): firma spesso da autenticare o atto notorio davanti a notaio o cancelliere</li>
+                </ul>
+                <p>Questo generatore produce una dichiarazione ex art. 46 e non è adatto: la qualità di erede non risulta da un registro pubblico. Molte banche forniscono il proprio modulo e, sopra certi importi, chiedono un atto notorio.</p>
+              </div>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa accade se il modulo non cita esplicitamente l'Articolo 76 del D.P.R. 445/2000?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La dichiarazione resta valida e chi dichiara il falso resta punibile: l'art. 76 si applica per legge, e l'ignoranza della legge penale non scusa. L'art. 48 impone alle amministrazioni di inserire il richiamo nei propri moduli, ma la sua mancanza è un difetto del modulo, non una causa di esclusione della responsabilità. Il generatore inserisce comunque sempre il richiamo agli artt. 75 e 76.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>È obbligatorio allegare sempre la fotocopia del documento di identità?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                No. Secondo l'art. 38 la copia non autenticata del documento serve quando la dichiarazione è inviata per posta, fax o email o consegnata da un'altra persona. Se la firmi davanti al dipendente addetto a riceverla non serve allegare nulla. Per l'invio telematico sono valide anche la firma digitale, l'accesso con SPID, CIE o CNS e, secondo l'art. 65 del CAD, l'invio dalla propria PEC.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>La PA può rifiutare la mia autocertificazione e pretendere il certificato originale emesso dal Comune?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Assolutamente no. Vige il principio assoluto della "Decertificazione" (introdotto dalla Legge di Stabilità 2012). Tutte le Pubbliche Amministrazioni (Comuni, INPS, Università, ASL) hanno il divieto imperativo di richiedere o accettare certificati cartacei tra loro, demandando tutto all'autocertificazione del cittadino. Un funzionario pubblico che respinga una corretta D.S.C. esigendo il certificato originale compie una grave violazione dei doveri d'ufficio e si espone a un procedimento disciplinare.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali sono le sanzioni se dichiaro il falso per ottenere agevolazioni o prestazioni (es. ISEE, bonus)?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Laddove la PA sia tenuta ad effettuare i controlli formali a campione (Art. 71), il cittadino che compili attestazioni mendaci subisce l'immediata revoca dei benefici ottenuti e l'esposizione a una denuncia penale ex Art. 76 (falso ideologico). Inoltre, dopo le modifiche introdotte dal D.L. 76/2020 all'art. 75, la dichiarazione non veritiera comporta il divieto di accesso a contributi, finanziamenti e agevolazioni per due anni dall'adozione dell'atto di decadenza, qualunque sia l'amministrazione che li eroga.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📌</span> Cosa si può autocertificare e cosa no</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La dichiarazione sostitutiva non è uno strumento a contenuto libero. La legge individua tassativamente gli stati e i fatti autocertificabili, e l'uso al di fuori di quel perimetro produce un documento privo di efficacia, che la pubblica amministrazione è tenuta a respingere.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Stati e qualità autocertificabili</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>Data e luogo di nascita, residenza e cittadinanza, oltre al godimento dei diritti civili e politici.</li>
+              <li>Stato civile, situazione di famiglia, esistenza in vita, nascita del figlio e decesso del coniuge, dell'ascendente o del discendente.</li>
+              <li>Titolo di studio conseguito, esami sostenuti, qualifica professionale, titolo di specializzazione, abilitazione e formazione.</li>
+              <li>Situazione reddituale ed economica, assolvimento di obblighi contributivi, possesso e numero del codice fiscale e della partita IVA.</li>
+              <li>Stato di disoccupazione, qualità di pensionato e categoria di pensione, condizione di studente o di casalinga.</li>
+              <li>Iscrizione in albi o elenchi tenuti dalla pubblica amministrazione, qualità di legale rappresentante di persone fisiche o giuridiche.</li>
+              <li>Assenza di condanne penali e di provvedimenti iscritti nel casellario giudiziale riferiti al dichiarante.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Fatti esclusi dall'autocertificazione</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Certificati medici e sanitari</strong>, comprese le certificazioni di malattia, di idoneità e le valutazioni diagnostiche.</li>
+              <li><strong>Certificati veterinari</strong> e attestazioni relative alla salute degli animali.</li>
+              <li><strong>Certificati di origine e di conformità</strong> di merci e prodotti, oltre ai marchi e ai brevetti.</li>
+              <li><strong>Certificati di conformità CE</strong> e attestazioni tecniche riservate a organismi notificati.</li>
+            </ul>
+            <p>L'esclusione si spiega con la natura tecnico-valutativa di questi atti: non attestano uno stato oggettivo risultante da pubblici registri ma esprimono un giudizio professionale, che non può essere sostituito dalla dichiarazione dell'interessato.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il dovere della pubblica amministrazione</h3>
+            <p>Le amministrazioni e i gestori di pubblici servizi <strong>non possono richiedere certificati</strong> relativi a stati e fatti autocertificabili: la richiesta costituisce violazione dei doveri d'ufficio ed è valutabile ai fini della responsabilità disciplinare e della misurazione della performance. Dal 2012 i certificati rilasciati dalle amministrazioni sono validi esclusivamente nei rapporti fra privati, mentre nei rapporti con la pubblica amministrazione vanno sostituiti dalle dichiarazioni dell'interessato.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Autocertificazione e atto di notorietà</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Profilo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Dichiarazione sostitutiva di certificazione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Dichiarazione sostitutiva di atto di notorietà</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Oggetto</td><td class="px-3 py-2 border-t border-gray-200">Stati e fatti presenti in pubblici registri</td><td class="px-3 py-2 border-t border-gray-200">Fatti, stati e qualità a diretta conoscenza</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Autenticazione della firma</td><td class="px-3 py-2 border-t border-gray-200">Non richiesta</td><td class="px-3 py-2 border-t border-gray-200">Non richiesta verso la PA, richiesta verso i privati</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Copia del documento</td><td class="px-3 py-2 border-t border-gray-200">Non necessaria se firmata in presenza</td><td class="px-3 py-2 border-t border-gray-200">Da allegare se inviata o consegnata da terzi</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Esempi tipici</td><td class="px-3 py-2 border-t border-gray-200">Residenza, titolo di studio, stato civile</td><td class="px-3 py-2 border-t border-gray-200">Conformità di copia all'originale, qualità di erede</td></tr></tbody></table></div>
+            <p>La distinzione conta sul piano pratico: quando il fatto da attestare non risulta da un pubblico registro ma è a diretta conoscenza del dichiarante, come la qualità di erede o la conformità di una copia, lo strumento corretto è l'atto di notorietà e non la dichiarazione sostitutiva di certificazione.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">L'autocertificazione vale anche con banche, assicurazioni e datori di lavoro privati?</h3>
+            <p>I privati possono accettarla ma non sono obbligati. L'obbligo di accettazione riguarda pubbliche amministrazioni e gestori di pubblici servizi, come Poste o le società di trasporto pubblico.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Quanto dura la validità di un'autocertificazione?</h3>
+            <p>Ha la stessa validità del certificato che sostituisce; per stati che possono cambiare, come la residenza, conta la situazione alla data della firma. Per stati che non mutano, come la data di nascita, vale senza limiti di tempo (art. 48).</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso firmarla con una firma scannerizzata?</h3>
+            <p>No. Serve la firma autografa sul foglio, poi scansionato insieme al documento, oppure una firma digitale o l'invio con identità digitale. Un'immagine della firma incollata nel PDF non ha valore.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Cosa succede se scrivo un dato sbagliato in buona fede?</h3>
+            <p>L'amministrazione che rileva un errore materiale o un'irregolarità sanabile invita a correggerlo (art. 71). Il falso punito dall'art. 76 richiede la consapevolezza della non veridicità.</p>
+            </div>
+          </div>
+        </details>
+
+        </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/autocertificazione.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-ac-nome'] = function (campo) {
+      var testo = [campo.value, document.getElementById('ac-cognome').value, document.getElementById('ac-luogo-nascita').value].join(' ');
+      if (!testo.trim()) return '';
+      var ammessi = /[\u0000-\u00FF\u20AC\u201A\u0192\u201E\u2026\u2020\u2021\u02C6\u2030\u0160\u2039\u0152\u017D\u2018\u2019\u201C\u201D\u2022\u2013\u2014\u02DC\u2122\u0161\u203A\u0153\u017E\u0178]/;
+      var esclusi = Array.from(testo).filter(function (c) { return !ammessi.test(c); });
+      if (!esclusi.length) return 'Tutti i caratteri di nome, cognome e luogo di nascita possono essere stampati nel PDF.';
+      return 'Non stampabili nel PDF: ' + esclusi.filter(function (c, i, a) { return a.indexOf(c) === i; }).join(' ') + '. Usa la lettera senza segni e correggi a penna se necessario.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

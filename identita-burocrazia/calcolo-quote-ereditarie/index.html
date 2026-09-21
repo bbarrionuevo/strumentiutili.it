@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Quote Ereditarie e Successione Legittima 2026</title>
+  <meta name="description" content="Calcola la divisione dell'eredità, le quote di legittima e la massa ereditaria (riunione fittizia). Simulatore basato sul Codice Civile Italiano (2026)." />
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/" />
+
+  <!-- Favicon e Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolatore Eredità e Quote di Legittima (Gratis)" />
+  <meta property="og:description" content="Simulatore della successione testamentaria e legittima. Calcola le frazioni esatte spettanti a coniuge, figli e parenti." />
+  <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Dati Strutturati SEO (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Identità & Burocrazia",
+            "item": "https://strumentiutili.it/identita-burocrazia/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Calcolo Eredità",
+            "item": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore Quote Ereditarie",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Calcolo delle quote di successione legittima e delle quote di legittima e disponibile in presenza di testamento, con riunione fittizia di attivo, debiti e donazioni secondo il Codice civile.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Quote di successione legittima senza testamento",
+          "Quote di legittima e quota disponibile con testamento",
+          "Riunione fittizia di attivo, debiti e donazioni",
+          "Coniuge, unito civilmente, separato con addebito, figli e ascendenti",
+          "Calcolo nel browser senza invio di dati"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#howto",
+        "name": "Come calcolare le quote di un'eredità",
+        "description": "Procedura per stimare la ripartizione di un patrimonio fra gli eredi secondo il Codice civile.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Valori di beni, debiti e donazioni del defunto"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Indica se c'è un testamento",
+            "text": "Scegli sì per vedere legittima e disponibile, no per la successione legittima.",
+            "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#calc-testamento"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Descrivi la famiglia",
+            "text": "Indica coniuge, numero di figli e presenza di genitori o ascendenti.",
+            "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#calc-coniuge"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Inserisci patrimonio, debiti e donazioni",
+            "text": "Usa i valori alla data della morte.",
+            "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#calc-relictum"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi le quote",
+            "text": "Controlla massa di calcolo, frazioni e controvalori nella tabella.",
+            "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#quote-body"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Posso diseredare un figlio nel mio testamento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nel nostro ordinamento la diseredazione di un legittimario non produce l'effetto voluto. Il figlio escluso conserva il diritto alla quota di riserva e può esercitare l'azione di riduzione per ottenerla. Il testatore può disporre liberamente soltanto della quota disponibile, che varia dal terzo alla metà del patrimonio secondo la composizione della famiglia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il coniuge separato ha diritto all'eredità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il coniuge separato senza addebito conserva integralmente i diritti successori, come se la separazione non fosse intervenuta. Il coniuge cui la separazione sia stata addebitata con sentenza perde invece la qualità di legittimario e ha diritto soltanto a un assegno vitalizio, e solo se al momento dell'apertura della successione godeva degli alimenti. Il divorzio fa cessare ogni diritto successorio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le donazioni fatte in vita rientrano nel calcolo dell'eredità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, ai soli fini del calcolo della legittima, mediante la riunione fittizia. Le donazioni si sommano contabilmente al patrimonio netto per determinare la massa su cui misurare le quote di riserva. Se risultano lesive, il legittimario può chiederne la riduzione, aggredendo dapprima le disposizioni testamentarie e poi le donazioni a partire dalla più recente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cos'è il diritto di abitazione del coniuge superstite?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È un diritto che la legge attribuisce al coniuge superstite sulla casa adibita a residenza familiare e sui mobili che la corredano, e si aggiunge alla quota di eredità spettante. Grava sulla quota disponibile e, se questa non basta, sulla quota di riserva del coniuge e poi su quella dei figli. Riduce il valore dell'immobile che si trasferisce agli altri eredi, i quali ne ricevono di fatto la sola nuda proprietà."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso rinunciare all'eredità se il defunto aveva debiti?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. La rinuncia va fatta con dichiarazione ricevuta da un notaio o dal cancelliere del tribunale del luogo di apertura della successione, finché non si prescrive il diritto di accettare, di regola in dieci anni. Chi è nel possesso dei beni ereditari deve però fare l'inventario entro tre mesi dall'apertura della successione, altrimenti è considerato erede puro e semplice. In alternativa è possibile accettare con beneficio d'inventario, che limita la responsabilità per i debiti al valore dei beni ricevuti tenendo distinto il patrimonio dell'erede da quello del defunto. Attenzione agli atti che comportano accettazione tacita, che precludono la rinuncia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I nipoti ereditano se il figlio è premorto al genitore?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, per rappresentazione. I discendenti del figlio premorto subentrano nella posizione che sarebbe spettata al loro genitore e ne ricevono la quota, dividendola fra loro per stirpi e non per teste. Lo stesso meccanismo opera in caso di rinuncia o di indegnità a succedere del chiamato, salvo che il testatore abbia disposto diversamente."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-semibold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- 1. MAIN (Colonna Sinistra) -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/identita-burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna a Identità & Burocrazia</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>⚖️</span> Codice Civile
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo Quote Ereditarie e Successione</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Simulatore della successione legittima e testamentaria. Calcola la riunione fittizia del patrimonio ed estrapola le quote di legittima per coniuge, figli e ascendenti.
+        </p>
+      </section>
+
+      <!-- Form Calcolo Successione -->
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-6 space-y-6">
+        
+        <h3 class="font-bold text-gray-900 border-b border-gray-100 pb-2">1. Configurazione Familiare</h3>
+        <form id="eredita-form" class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-testamento" class="text-sm font-bold text-gray-700">Presenza di Testamento</label>
+              <button type="button" data-guida-toggle="guida-qe-testamento" aria-expanded="false" aria-controls="guida-qe-testamento" aria-label="Guida al campo Testamento" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-qe-testamento" aria-describedby="guida-qe-testamento" id="calc-testamento" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="si">Sì (Mostra Quota Disponibile)</option>
+              <option value="no">No (Successione Legittima - 100% ripartito)</option>
+            </select>
+            <div id="guida-qe-testamento" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Sì:</strong> il calcolatore mostra le quote di legittima riservate per legge e la quota disponibile, di cui il testatore poteva disporre liberamente. Serve a verificare se un testamento lede i legittimari.</p>
+              <p><strong class="text-indigo-900">No:</strong> mostra la ripartizione della successione legittima: l'intero patrimonio va agli eredi indicati dalla legge. Usa questa opzione anche per la parte di patrimonio non regolata dal testamento.</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-coniuge" class="text-sm font-bold text-gray-700">Coniuge Superstite</label>
+              <button type="button" data-guida-toggle="guida-qe-coniuge" aria-expanded="false" aria-controls="guida-qe-coniuge" aria-label="Guida al campo Coniuge superstite" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-qe-coniuge" aria-describedby="guida-qe-coniuge" id="calc-coniuge" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="si">Sì, Sposati o Uniti Civilmente</option>
+              <option value="no">No / Divorziato</option>
+              <option value="separato_addebito">Separato con addebito di colpa (Non Eredita)</option>
+            </select>
+            <div id="guida-qe-coniuge" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Chi conta:</strong> il coniuge e la parte di un'unione civile, anche se separati senza addebito. Il convivente di fatto non è erede per legge: può ricevere solo con testamento, nei limiti della quota disponibile.</p>
+              <p><strong class="text-indigo-900">Separazione con addebito:</strong> il coniuge perde i diritti di erede e ha solo un assegno vitalizio se riceveva gli alimenti. Con il divorzio i diritti successori cessano del tutto.</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-figli" class="text-sm font-bold text-gray-700">Numero di Figli</label>
+              <button type="button" data-guida-toggle="guida-qe-figli" aria-expanded="false" aria-controls="guida-qe-figli" aria-label="Guida al campo Figli" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-qe-figli" aria-describedby="guida-qe-figli" type="number" id="calc-figli" placeholder="Es. 2" value="0" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-gray-50" />
+            <span class="text-xs text-gray-500 mt-1 block">Inclusi i figli riconosciuti fuori dal matrimonio.</span>
+            <div id="guida-qe-figli" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Chi contare:</strong> tutti i figli, nati nel matrimonio o fuori, riconosciuti e adottivi. Un figlio morto prima del genitore conta se ha lasciato discendenti, che ereditano per rappresentazione la sua quota.</p>
+              <p><strong class="text-indigo-900">Ascendenti:</strong> con almeno un figlio i genitori del defunto non ereditano: il campo degli ascendenti viene bloccato.</p>
+              <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-ascendenti" class="text-sm font-bold text-gray-700">Genitori / Ascendenti in Vita</label>
+              <button type="button" data-guida-toggle="guida-qe-ascendenti" aria-expanded="false" aria-controls="guida-qe-ascendenti" aria-label="Guida al campo Ascendenti" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-qe-ascendenti" aria-describedby="guida-qe-ascendenti" id="calc-ascendenti" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="no">No</option>
+              <option value="si">Sì</option>
+            </select>
+            <span class="text-xs text-amber-600 mt-1 block">La presenza di figli esclude gli ascendenti.</span>
+            <div id="guida-qe-ascendenti" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Con testamento:</strong> genitori e nonni sono legittimari solo senza figli: 1/3 senza coniuge, 1/4 con il coniuge.</p>
+              <p><strong class="text-indigo-900">Senza testamento e fratelli:</strong> il calcolatore non ha un campo per i fratelli. Con coniuge e fratelli ma senza figli né ascendenti al coniuge spettano 2/3 e ai fratelli 1/3, non l'intero patrimonio; senza coniuge, genitori e fratelli dividono l'eredità con almeno la metà ai genitori.</p>
+            </div>
+          </div>
+        </form>
+
+        <h3 class="font-bold text-gray-900 border-b border-gray-100 pb-2 pt-4">2. Valori Patrimoniali (Riunione Fittizia)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-relictum" class="text-sm font-bold text-gray-700">Attivo (Relictum) €</label>
+              <button type="button" data-guida-toggle="guida-qe-relictum" aria-expanded="false" aria-controls="guida-qe-relictum" aria-label="Guida al campo Attivo ereditario" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-qe-relictum" aria-describedby="guida-qe-relictum" type="number" id="calc-relictum" placeholder="Es. 300000" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-qe-relictum" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Cosa includere:</strong> il valore di mercato alla data della morte di immobili, conti, titoli, veicoli e altri beni del defunto. Dei conti cointestati si considera di norma la sola quota del defunto, per esempio metà del saldo.</p>
+              <p><strong class="text-indigo-900">Cosa escludere:</strong> le polizze vita con beneficiario designato e il TFR non ancora liquidato, che spettano ai beneficiari per diritto proprio.</p>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Debiti €</label>
+            <input type="number" id="calc-debiti" placeholder="Es. 50000" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <label for="calc-donatum" class="text-sm font-bold text-gray-700">Donazioni in Vita €</label>
+              <button type="button" data-guida-toggle="guida-qe-donazioni" aria-expanded="false" aria-controls="guida-qe-donazioni" aria-label="Guida al campo Donazioni in vita" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-qe-donazioni" aria-describedby="guida-qe-donazioni" type="number" id="calc-donatum" placeholder="Es. 20000" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            <div id="guida-qe-donazioni" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Valore:</strong> il valore dei beni donati al momento della morte, non quello del giorno della donazione: una casa donata nel 2005 va stimata ai prezzi attuali.</p>
+              <p><strong class="text-indigo-900">Donazioni indirette:</strong> rientrano anche l'acquisto di una casa intestata al figlio pagata dal genitore e i bonifici importanti senza causa. Le spese ordinarie di mantenimento e istruzione non vanno incluse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabella Ripartizione Quote -->
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm mb-6 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+          <h3 class="font-bold text-gray-900">Ripartizione Frazionaria dell'Eredità</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="py-3 px-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Avente Diritto</th>
+                <th class="py-3 px-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Frazione di Legge</th>
+                <th class="py-3 px-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Controvalore (€)</th>
+              </tr>
+            </thead>
+            <tbody id="quote-body">
+              <tr><td colspan="3" class="py-8 text-center text-gray-400 text-sm">Inserisci i dati per generare il riparto...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- 2. ASIDE -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400 border-b border-gray-800 pb-2">Massa Ereditaria (Art. 556 c.c.)</h3>
+          
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Massa Calcolata</span>
+            <span id="res-massa" class="text-4xl font-black text-amber-400 font-mono tracking-tight">€ 0,00</span>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-800 mt-4">
+            <p class="text-[10px] text-gray-500 leading-tight">Formula: Max(0, Relictum - Debiti) + Donazioni. I debiti non possono erodere le donazioni pregresse.</p>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/identita-burocrazia/autocertificazione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Autocertificazione</a></li>
+            <li><a href="/identita-burocrazia/codice-fiscale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🪪</span> Codice Fiscale</a></li>
+            <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Validatore IBAN</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📸</span> Fototessera ICAO</a></li>
+              <li><a href="/identita-burocrazia/generatore-cv-ats/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Generatore CV ATS</a></li>
+              <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Password Sicure</a></li>
+            </ul>
+          </details>
+          <a href="/identita-burocrazia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Identità &amp; Burocrazia</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- 3. CONTENEDOR SEO (+1000 Parole) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Quote di legittima e di successione legittima verificate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Composizione della famiglia, patrimonio, debiti e donazioni vengono elaborati nel browser e non sono inviati a server. I valori inseriti restano salvati nel localStorage di questo dispositivo per ritrovarli alla visita successiva: su un computer condiviso cancellali dalle impostazioni del browser (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">Codice civile artt. 456, 485, 519, 536-564 (legittimari, riunione fittizia e riduzione), 565-586 (successione legittima), 737 (collazione); L. 76/2016 art. 1 comma 21 (unioni civili); D.Lgs. 346/1990 (imposta di successione).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Giuridico: Successione Legittima, Quota di Riserva e Riunione Fittizia</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">L'apertura della successione per causa di morte in Italia (Art. 456 c.c.) innesca un complesso meccanismo traslativo regolamentato dal Codice Civile. L'ordinamento italiano è fortemente improntato alla tutela del nucleo familiare stretto (Successione Necessaria), limitando l'autonomia testamentaria del <em>de cuius</em> attraverso l'imposizione di quote di riserva intangibili. Il presente dossier sviscera l'algoritmo legale che determina la riunione fittizia del patrimonio, i profili di parentela ammessi alla legittima e le dinamiche di decurtazione in presenza di testamento lesivo.</p>
+        
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>1.</span> Costituzione dell'Asse Ereditario (Riunione Fittizia, Art. 556 c.c.)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Per quantificare matematicamente le quote spettanti agli eredi non è sufficiente guardare ai beni presenti nel momento del decesso. L'ordinamento impone una complessa operazione contabile denominata <strong>Riunione Fittizia</strong>, prescritta dall'Articolo 556 del Codice Civile. L'operazione ($Massa = Relictum - Debiti + Donatum$) serve per ricostruire il patrimonio complessivo del defunto al fine di accertare eventuali lesioni di legittima.</p>
+            <p>Il <em>Relictum</em> rappresenta il valore commerciale dei beni immobili e mobili esistenti al momento del decesso. Da questo importo devono essere sottratti i debiti e gli oneri passivi documentati. Un vincolo algoritmico fondamentale, implementato nel nostro simulatore, stabilisce che la sottrazione ($Relictum - Debiti$) non può mai generare un valore negativo: se le passività eccedono le attività, il saldo netto si sterilizza a zero, impedendo ai debiti di intaccare contabilmente le donazioni pregresse (<em>Donatum</em>). A questo saldo netto zero (o positivo) vengono infine sommate, virtualmente, tutte le liberalità e donazioni effettuate in vita dal causante, valutate al tempo dell'apertura della successione.</p>
+            <p>Il motore esprime le quote come frazioni esatte, ridotte ai minimi termini, e calcola il controvalore in euro moltiplicando la massa per la frazione: gli importi sono arrotondati al centesimo in visualizzazione e, per le quote da dividere fra più figli, la divisione finale va fatta a parte.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>2.</span> Successione Testamentaria: La Tutela dei Legittimari</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>In presenza di un testamento, la legge italiana impedisce al testatore di disporre dell'intero patrimonio a proprio piacimento, riservando una "Quota di Riserva" (o Legittima) a categorie tassative di familiari, definiti <strong>Legittimari</strong>: il coniuge superstite, i figli (e loro discendenti) e, solo in assenza di questi ultimi, gli ascendenti legittimi (genitori o nonni).</p>
+            <p>Le quote di riserva si declinano matematicamente in base ai soggetti concorrenti:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Solo coniuge:</strong> Il coniuge acquisisce il diritto intangibile a 1/2 (metà) del patrimonio. Il residuo 1/2 costituisce la "Quota Disponibile" che il testatore può lasciare a chiunque.</li>
+              <li><strong>Cónyuge + 1 Hijo:</strong> La riserva è di 1/3 per il coniuge e 1/3 per il figlio, lasciando 1/3 di quota disponibile.</li>
+              <li><strong>Cónyuge + 2 o più Hijos:</strong> Il coniuge mantiene 1/4 dell'asse, mentre ai figli è riservata congiuntamente una quota globale di 2/4 (ovvero 1/2) da dividersi in parti uguali. La quota disponibile si contrae a 1/4.</li>
+            </ul>
+            <p>I fratelli, le sorelle e i parenti collaterali non rivestono <strong>mai</strong> la qualifica di legittimari: in presenza di testamento, possono essere interamente diseredati o pretermessi senza poter esperire alcuna azione di riduzione.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>3.</span> Successione Legittima (Senza Testamento o Testamento Nullo)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Qualora il defunto non abbia lasciato disposizioni testamentarie (Successione Intestata o Legittima, Art. 565 c.c.), l'ordinamento interviene distribuendo il 100% dell'asse ereditario tra i parenti fino al sesto grado. In questo scenario scompare il concetto di "Quota Disponibile", poiché non essendovi espressione di volontà, tutto viene devoluto per legge.</p>
+            <p>Le ripartizioni mutano sensibilmente rispetto al regime testamentario:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Coniuge e un figlio:</strong> 50% al coniuge e 50% al figlio.</li>
+              <li><strong>Coniuge e due o più figli:</strong> Al coniuge spetta 1/3 dell'eredità, mentre i restanti 2/3 vengono suddivisi in parti uguali tra la prole.</li>
+              <li><strong>Coniuge in assenza di figli, con fratelli/ascendenti:</strong> Al coniuge spettano 2/3 dell'eredità, mentre il residuo 1/3 va diviso tra genitori e fratelli del defunto (garantendo comunque ai genitori un minimo di 1/4).</li>
+            </ul>
+            <p>Una particolarità giuridica riguarda i <strong>fratelli unilaterali</strong> (che condividono un solo genitore col defunto): per il Codice Civile (Art. 570 c.c.), questi conseguono la metà della quota spettante ai fratelli germani (che condividono entrambi i genitori).</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Casistiche Particolari: Divorzio, Separazione e Diritto di Abitazione</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Quali sono i diritti del coniuge separato o divorziato?</h4>
+              <p>Il coniuge separato, purché non gli sia stata addebitata la colpa della separazione con sentenza passata in giudicato (la cosiddetta <em>separazione con addebito</em>), gode degli stessi identici diritti successori del coniuge non separato (Art. 548 c.c.). Viceversa, la pronuncia definitiva di divorzio spezza definitivamente il vincolo matrimoniale, facendo decadere in tronco ogni diritto ereditario in capo all'ex coniuge (salvo l'eventuale diritto a un assegno a carico dell'eredità se versava in stato di bisogno e godeva già di un assegno divorzile).</p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <h4 class="font-bold text-gray-900 mb-1">Che cos'è il Diritto di Abitazione (Art. 540 c.c.)?</h4>
+              <p>Al coniuge superstite o alla parte dell'unione civile, anche in concorso con altri eredi (ad esempio i figli del primo matrimonio del defunto), sono riservati i diritti reali di abitazione sulla casa adibita a residenza familiare e di uso sui mobili che la corredano, se di proprietà del defunto o comuni. Questo diritto si configura come un <em>prelegato ex lege</em>: il suo valore economico va a gravare primariamente sulla quota disponibile, e solo se questa è insufficiente intacca la quota di riserva del coniuge e, da ultimo, quella dei figli.</p>
+            </div>
+
+          </div>
+        </details>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La divisione ereditaria si risolve in un'aritmetica di frazioni applicata a una massa patrimoniale ricostruita. Il motore distingue due regimi radicalmente diversi a seconda che esista o meno un testamento valido, perché le quote spettanti cambiano in entrambi i casi.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Successione legittima: in assenza di testamento</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Composizione della famiglia</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Coniuge</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Figli</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Ascendenti</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Solo coniuge</td><td class="px-3 py-2 border-t border-gray-200">Intero patrimonio</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e un figlio</td><td class="px-3 py-2 border-t border-gray-200">1/2</td><td class="px-3 py-2 border-t border-gray-200">1/2</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e più figli</td><td class="px-3 py-2 border-t border-gray-200">1/3</td><td class="px-3 py-2 border-t border-gray-200">2/3 in parti uguali</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Solo figli</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">Intero, in parti uguali</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e ascendenti</td><td class="px-3 py-2 border-t border-gray-200">2/3</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/3</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Solo ascendenti</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">Intero patrimonio</td></tr></tbody></table></div>
+            <p>In questo regime l'intero patrimonio viene distribuito fra i chiamati per legge, senza che residui alcuna quota libera. La successione legittima opera anche in via parziale, quando il testamento disponga soltanto di una porzione del patrimonio: il residuo si devolve secondo queste regole.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Successione necessaria: in presenza di testamento</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Composizione della famiglia</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Coniuge</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Figli</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Ascendenti</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Disponibile</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Solo coniuge</td><td class="px-3 py-2 border-t border-gray-200">1/2</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/2</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e un figlio</td><td class="px-3 py-2 border-t border-gray-200">1/3</td><td class="px-3 py-2 border-t border-gray-200">1/3</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/3</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e più figli</td><td class="px-3 py-2 border-t border-gray-200">1/4</td><td class="px-3 py-2 border-t border-gray-200">1/2 in parti uguali</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/4</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Un figlio senza coniuge</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/2</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/2</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Più figli senza coniuge</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">2/3 in parti uguali</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/3</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e ascendenti</td><td class="px-3 py-2 border-t border-gray-200">1/2</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/4</td><td class="px-3 py-2 border-t border-gray-200">1/4</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Solo ascendenti</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">1/3</td><td class="px-3 py-2 border-t border-gray-200">2/3</td></tr></tbody></table></div>
+            <p>La <strong>quota disponibile</strong> è la porzione di cui il testatore può liberamente disporre a favore di chiunque, anche estraneo alla famiglia. Le restanti quote costituiscono la <em>legittima</em> o quota di riserva, intangibile: un testamento che la leda non è nullo, ma è impugnabile dal legittimario pretermesso o leso mediante l'azione di riduzione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">La riunione fittizia: come si determina la massa di calcolo</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Relictum = Valore dei beni presenti alla morte</li>
+              <li>Debiti   = Passivita ereditarie da sottrarre</li>
+              <li>Donatum  = Valore delle donazioni fatte in vita dal defunto</li>
+              <li>Massa di calcolo = (Relictum - Debiti) + Donatum</li>
+              <li>Le quote di legittima si applicano alla Massa di calcolo, non al solo Relictum</li>
+            </ul>
+            <p>L'operazione di <strong>riunione fittizia</strong> è puramente contabile e non comporta la restituzione materiale dei beni donati. Serve a impedire che il testatore aggiri la tutela dei legittimari svuotando il patrimonio con donazioni in vita: se le donazioni hanno eroso la legittima, il legittimario può agire in riduzione per ottenerne il ridimensionamento, partendo dalle disposizioni testamentarie e risalendo poi alle donazioni dalla più recente alla più remota.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio numerico completo</h3>
+            <p>Patrimonio alla morte di 400.000 euro, debiti per 50.000 euro, donazione effettuata in vita a un figlio per 100.000 euro. Il defunto lascia il coniuge e due figli e ha redatto testamento.</p>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Passaggio</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Calcolo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Relictum netto</td><td class="px-3 py-2 border-t border-gray-200">400.000 - 50.000</td><td class="px-3 py-2 border-t border-gray-200">350.000 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Riunione fittizia</td><td class="px-3 py-2 border-t border-gray-200">350.000 + 100.000</td><td class="px-3 py-2 border-t border-gray-200">450.000 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Legittima del coniuge</td><td class="px-3 py-2 border-t border-gray-200">450.000 x 1/4</td><td class="px-3 py-2 border-t border-gray-200">112.500 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Legittima complessiva dei figli</td><td class="px-3 py-2 border-t border-gray-200">450.000 x 1/2</td><td class="px-3 py-2 border-t border-gray-200">225.000 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota per ciascun figlio</td><td class="px-3 py-2 border-t border-gray-200">225.000 / 2</td><td class="px-3 py-2 border-t border-gray-200">112.500 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota disponibile</td><td class="px-3 py-2 border-t border-gray-200">450.000 x 1/4</td><td class="px-3 py-2 border-t border-gray-200">112.500 EUR</td></tr></tbody></table></div>
+            <p>Il figlio che ha già ricevuto 100.000 euro in donazione dovrà imputare tale valore alla propria quota di legittima, ricevendo dal relictum soltanto la differenza di 12.500 euro. È il meccanismo dell'imputazione ex se, che evita che il beneficiario di una donazione cumuli il vantaggio già ricevuto con la quota intera.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Codice civile, articoli 536 e seguenti</strong> — individuano i legittimari e determinano le quote di riserva nelle diverse composizioni familiari.</li>
+              <li><strong>Codice civile, articolo 556</strong> — disciplina la riunione fittizia e la determinazione della massa su cui calcolare la legittima.</li>
+              <li><strong>Codice civile, articoli 553 e seguenti</strong> — regolano l'azione di riduzione delle disposizioni testamentarie e delle donazioni lesive.</li>
+              <li><strong>Codice civile, articoli 565 e seguenti</strong> — disciplinano la successione legittima in assenza di testamento.</li>
+              <li><strong>Codice civile, articolo 540</strong> — riconosce al coniuge superstite i diritti di abitazione sulla casa familiare e di uso sui mobili che la arredano.</li>
+              <li><strong>D.Lgs. 31 ottobre 1990 n. 346</strong> — testo unico sull'imposta di successione e donazione, che regola franchigie, aliquote e dichiarazione.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il trattamento fiscale della successione</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Beneficiario</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Franchigia</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Aliquota sull'eccedenza</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Coniuge e parenti in linea retta</td><td class="px-3 py-2 border-t border-gray-200">1.000.000 EUR ciascuno</td><td class="px-3 py-2 border-t border-gray-200">4%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Fratelli e sorelle</td><td class="px-3 py-2 border-t border-gray-200">100.000 EUR ciascuno</td><td class="px-3 py-2 border-t border-gray-200">6%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Altri parenti fino al quarto grado e affini</td><td class="px-3 py-2 border-t border-gray-200">Nessuna</td><td class="px-3 py-2 border-t border-gray-200">6%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Soggetti estranei</td><td class="px-3 py-2 border-t border-gray-200">Nessuna</td><td class="px-3 py-2 border-t border-gray-200">8%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Beneficiario con disabilità grave</td><td class="px-3 py-2 border-t border-gray-200">1.500.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">Aliquota del rapporto di parentela</td></tr></tbody></table></div>
+            <p>Alle imposte di successione si aggiungono, per i beni immobili compresi nell'asse, l'imposta ipotecaria nella misura del 2% e quella catastale nella misura dell'1% del valore catastale, ridotte a importo fisso quando ricorrano i requisiti per l'agevolazione prima casa in capo a uno degli eredi. La dichiarazione di successione va presentata entro <strong>dodici mesi</strong> dall'apertura della successione.</p>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le quote calcolate hanno finalità orientativa e presuppongono una situazione familiare lineare. Fattispecie quali la rappresentazione, l'accrescimento, la presenza di figli premorti, le donazioni indirette, i patti di famiglia o i trust richiedono una valutazione professionale. La divisione ereditaria e la dichiarazione di successione sono atti che richiedono l'assistenza di un notaio o di un legale specializzato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono calcolati con il motore della pagina. Le quote dei figli indicate per ciascuno sono ottenute dividendo la quota complessiva.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: nessun testamento, moglie e tre figli</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Attivo: 240.000 €, nessun debito, nessuna donazione</li>
+            <li>Coniuge: 1/3 = 80.000,00 €</li>
+            <li>Figli: 2/3 = 160.000,00 €, cioè 53.333,33 € ciascuno</li>
+            </ul>
+            <p>Se la casa familiare vale 180.000 €, alla moglie spetta anche il diritto di abitarla per tutta la vita: i figli ne diventano comproprietari, ma senza poterla utilizzare finché la madre vi abita.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: testamento tutto alla compagna convivente, con un figlio</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Attivo 300.000 €, debiti 20.000 €: massa 280.000,00 €</li>
+            <li>Legittima del figlio: 1/2 = 140.000,00 €</li>
+            <li>Quota disponibile: 1/2 = 140.000,00 €</li>
+            </ul>
+            <p>Il testamento non è nullo, ma il figlio può agire in riduzione per ottenere 140.000 €. La convivente, che non è erede per legge, conserva la quota disponibile. L'azione di riduzione si prescrive in dieci anni dall'accettazione dell'eredità da parte della beneficiaria.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: nessun testamento, marito e genitori, senza figli</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Attivo 180.000 €, debiti 30.000 €: massa 150.000,00 €</li>
+            <li>Coniuge: 2/3 = 100.000,00 €</li>
+            <li>Ascendenti: 1/3 = 50.000,00 €</li>
+            </ul>
+            <p>Se la defunta avesse anche fratelli, l'1/3 si dividerebbe fra genitori e fratelli, ma ai genitori resterebbe almeno 1/4 dell'eredità, cioè 37.500 €.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: debiti superiori all'attivo e una donazione al figlio maggiore</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Attivo 50.000 €, debiti 80.000 €, donazione 60.000 €</li>
+            <li>Relictum netto: 0 €; massa per la legittima: 60.000,00 €</li>
+            <li>Due figli, testamento: legittima complessiva 2/3 = 40.000,00 €</li>
+            </ul>
+            <p>I debiti non riducono la massa sotto zero e non intaccano il valore della donazione. Per il figlio che non ha ricevuto nulla, però, accettare l'eredità significa rispondere di debiti superiori ai beni: conviene valutare la rinuncia o l'accettazione con beneficio d'inventario.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso diseredare un figlio nel mio testamento?</h3>
+              <p>Nel nostro ordinamento la diseredazione di un legittimario non produce l'effetto voluto. Il figlio escluso conserva il diritto alla quota di riserva e può esercitare l'azione di riduzione per ottenerla. Il testatore può disporre liberamente soltanto della quota disponibile, che varia dal terzo alla metà del patrimonio secondo la composizione della famiglia.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il coniuge separato ha diritto all'eredità?</h3>
+              <p>Il coniuge separato senza addebito conserva integralmente i diritti successori, come se la separazione non fosse intervenuta. Il coniuge cui la separazione sia stata addebitata con sentenza perde invece la qualità di legittimario e ha diritto soltanto a un assegno vitalizio, e solo se al momento dell'apertura della successione godeva degli alimenti. Il divorzio fa cessare ogni diritto successorio.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Le donazioni fatte in vita rientrano nel calcolo dell'eredità?</h3>
+              <p>Sì, ai soli fini del calcolo della legittima, mediante la riunione fittizia. Le donazioni si sommano contabilmente al patrimonio netto per determinare la massa su cui misurare le quote di riserva. Se risultano lesive, il legittimario può chiederne la riduzione, aggredendo dapprima le disposizioni testamentarie e poi le donazioni a partire dalla più recente.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Che cos'è il diritto di abitazione del coniuge superstite?</h3>
+              <p>È un diritto che la legge attribuisce al coniuge superstite sulla casa adibita a residenza familiare e sui mobili che la corredano, e si aggiunge alla quota di eredità spettante. Grava sulla quota disponibile e, se questa non basta, sulla quota di riserva del coniuge e poi su quella dei figli. Riduce il valore dell'immobile che si trasferisce agli altri eredi, i quali ne ricevono di fatto la sola nuda proprietà.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso rinunciare all'eredità se il defunto aveva debiti?</h3>
+              <p>Sì. La rinuncia va fatta con dichiarazione ricevuta da un notaio o dal cancelliere del tribunale del luogo di apertura della successione, finché non si prescrive il diritto di accettare, di regola in dieci anni. Chi è nel possesso dei beni ereditari deve però fare l'inventario entro tre mesi dall'apertura della successione, altrimenti è considerato erede puro e semplice. In alternativa è possibile accettare con beneficio d'inventario, che limita la responsabilità per i debiti al valore dei beni ricevuti tenendo distinto il patrimonio dell'erede da quello del defunto. Attenzione agli atti che comportano accettazione tacita, che precludono la rinuncia.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">I nipoti ereditano se il figlio è premorto al genitore?</h3>
+              <p>Sì, per rappresentazione. I discendenti del figlio premorto subentrano nella posizione che sarebbe spettata al loro genitore e ne ricevono la quota, dividendola fra loro per stirpi e non per teste. Lo stesso meccanismo opera in caso di rinuncia o di indegnità a succedere del chiamato, salvo che il testatore abbia disposto diversamente.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore delle quote ereditarie è uno strumento <strong>100% client-side, privo di qualsiasi backend</strong>. La composizione del nucleo familiare, il valore del patrimonio, le donazioni pregresse e la presenza o meno di un testamento restano confinati nella memoria del tuo browser e possono restare salvati nel localStorage del dispositivo per ritrovarli alla visita successiva, senza essere inviati ad alcun server.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Si tratta di informazioni fra le più riservate che una persona possa trattare online: rivelano un lutto o una sua previsione, la consistenza del patrimonio familiare e potenziali conflitti fra eredi. Nessuno di questi dati viene trasmesso, registrato o profilato, perché non esiste alcun server di destinazione. L'architettura garantisce il pieno rispetto del Regolamento UE 2016/679 (GDPR) e ne attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, unitamente alla minimizzazione dei dati dell'articolo 5, paragrafo 1, lettera c.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. FOOTER -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 5. SCRIPTS -->
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/successioni.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; console.warn('[AdSense] Error:', error); }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => requestAnimationFrame(initVisibleAds));
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-qe-figli'] = function (campo) {
+      var n = parseInt(campo.value, 10);
+      var massa = Number((document.getElementById('res-massa').textContent || '').replace(/[^\d,]/g, '').replace(',', '.'));
+      if (!(n > 0) || !(massa > 0)) return '';
+      var testamento = document.getElementById('calc-testamento').value === 'si';
+      var coniuge = document.getElementById('calc-coniuge').value === 'si';
+      var quota = testamento ? (coniuge ? (n === 1 ? 1 / 3 : 1 / 2) : (n === 1 ? 1 / 2 : 2 / 3)) : (coniuge ? (n === 1 ? 1 / 2 : 2 / 3) : 1);
+      var euro = function (v) { return v.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; };
+      return (testamento ? 'Legittima di ciascun figlio: ' : 'Quota di ciascun figlio: ') + euro(massa * quota / n) + '.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

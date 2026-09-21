@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore e Verificatore Codice Fiscale — StrumentiUtili.it</title>
+  <meta name="description" content="Genera e verifica il Codice Fiscale in modo locale e privato nel browser. Calcolo corretto del codice catastale, controllo del carattere di controllo e gestione omocodia." />
+  <link rel="canonical" href="https://strumentiutili.it/burocrazia/codice-fiscale/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generatore e Verificatore Codice Fiscale — StrumentiUtili.it" />
+  <meta property="og:description" content="Genera e verifica il Codice Fiscale direttamente nel browser con privacy totale e controllo formale del codice." />
+  <meta property="og:url" content="https://strumentiutili.it/burocrazia/codice-fiscale/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generatore e Verificatore Codice Fiscale — StrumentiUtili.it" />
+  <meta name="twitter:description" content="Genera e verifica il Codice Fiscale direttamente nel browser con privacy totale e controllo formale del codice." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo Codice Fiscale Online",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://strumentiutili.it/burocrazia/codice-fiscale/",
+    "description": "Genera e verifica il Codice Fiscale italiano direttamente nel browser con privacy totale.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Fiscalità", "item": "https://strumentiutili.it/burocrazia/" },
+      { "@type": "ListItem", "position": 3, "name": "Codice Fiscale", "item": "https://strumentiutili.it/burocrazia/codice-fiscale/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col pb-28">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-4">
+        <a href="/lavoro/" class="text-gray-600 hover:text-indigo-600">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-indigo-600 font-semibold">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Nuevo Contenedor Principal Dividido -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+    
+    <!-- COLUMNA IZQUIERDA: Herramienta -->
+    <main class="w-full lg:w-8/12 xl:w-9/12">
+      
+      <!-- 1. Anuncio 'Above the Fold' -->
+      <div class="ad-skeleton-horizontal mb-6">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <a href="/burocrazia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Fiscalità</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Codice Fiscale (CF) — Generatore e Verificatore</h1>
+        <p class="text-sm text-gray-600 mt-2">Genera o verifica la struttura del Codice Fiscale in modo completamente offline per proteggere i tuoi dati personali.</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div class="mb-6 border-b border-gray-200">
+          <nav class="flex gap-4 -mb-px">
+            <button id="tabGen" class="tab active pb-3 px-1 border-b-2 border-indigo-600 font-medium text-indigo-600">Generatore</button>
+            <button id="tabVer" class="tab pb-3 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Verificatore</button>
+            <button id="tabDecode" class="tab pb-3 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Decodifica</button>
+          </nav>
+        </div>
+
+        <div id="genArea">
+          <form id="genForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Cognome</label>
+              <input id="cognome" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Nome</label>
+              <input id="nome" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Data di nascita</label>
+              <input id="data" type="date" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Sesso</label>
+              <select id="sesso" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="M">Maschio</option>
+                <option value="F">Femmina</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Luogo di nascita</label>
+              <div class="flex flex-wrap gap-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <label class="inline-flex items-center gap-2 cursor-pointer"><input type="radio" name="nascitaTipo" value="italia" class="text-indigo-600 focus:ring-indigo-500" checked /> Nato in Italia</label>
+                <label class="inline-flex items-center gap-2 cursor-pointer"><input type="radio" name="nascitaTipo" value="estero" class="text-indigo-600 focus:ring-indigo-500" /> Nato all'Estero</label>
+              </div>
+            </div>
+            <div class="relative md:col-span-2">
+              <label id="luogoLabel" class="block text-sm font-medium text-gray-700">Comune di nascita</label>
+              <input id="comune" list="comuni" autocomplete="off" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. Roma o H501" />
+              <datalist id="comuni"></datalist>
+              <div id="selectedComune" class="text-sm text-gray-500 mt-1">Seleziona il comune o lo stato per inserire automaticamente il codice catastale.</div>
+              <div id="comune-suggestions" class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-50 hidden" style="max-height:200px; overflow:auto;"></div>
+            </div>
+
+            <div class="md:col-span-2 flex items-end gap-3 pt-2">
+              <button type="button" id="genera" class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Genera CF</button>
+              <button type="button" id="generaLimpa" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+          </form>
+
+          <div class="mt-6 p-6 bg-indigo-50 border border-indigo-100 rounded-xl">
+            <h3 class="text-xs font-bold text-indigo-800 uppercase tracking-wider">Codice Fiscale Generato</h3>
+            <div id="cfResult" class="mt-2 text-3xl font-black text-indigo-700 font-mono tracking-widest break-all">—</div>
+          </div>
+        </div>
+
+        <div id="verArea" style="display:none;">
+          <div class="grid grid-cols-1 gap-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Codice Fiscale da verificare</label>
+              <input id="cfToCheck" class="mt-1 w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono uppercase text-lg" placeholder="Esempio: RSSMRA85M01H501U" />
+            </div>
+            <div class="flex gap-3 pt-2">
+              <button id="verifica" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Verifica Validità</button>
+              <button id="verReset" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+            <div class="mt-4 p-5 border border-gray-200 rounded-xl bg-gray-50 min-h-[100px] flex flex-col justify-center">
+              <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider">Esito del Controllo</h3>
+              <div id="verResult" class="mt-2 text-lg font-medium text-gray-900">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="decodeArea" style="display:none;">
+          <div class="grid grid-cols-1 gap-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Inserisci un Codice Fiscale (16 caratteri)</label>
+              <input id="cfToDecode" class="mt-1 w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono uppercase text-lg" placeholder="Esempio: RSSMRA85M01H501U" />
+            </div>
+            <div class="flex gap-3 pt-2">
+              <button id="decodeBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition shadow-sm">Decodifica Dati</button>
+              <button id="decodeReset" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+            </div>
+
+            <div id="decodeResult" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" style="display:none;">
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Data di Nascita</div>
+                <div id="dec-birth" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Età stimata</div>
+                <div id="dec-age" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Sesso</div>
+                <div id="dec-sex" class="text-lg font-semibold text-gray-900 mt-1">—</div>
+              </div>
+              <div class="p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <div class="text-xs font-bold text-gray-500 uppercase">Comune / Stato</div>
+                <div id="dec-comune" class="text-lg font-semibold text-gray-900 mt-1 truncate">—</div>
+              </div>
+              <div class="md:col-span-2 p-4 border border-gray-200 rounded-xl bg-indigo-50">
+                <div class="text-xs font-bold text-indigo-800 uppercase">Codice Catastale</div>
+                <div id="dec-code" class="text-xl font-bold text-indigo-900 font-mono mt-1">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Algoritmo di Calcolo e Verifica del Codice Fiscale</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Il Codice Fiscale italiano è un codice alfanumerico di 16 caratteri che identifica in modo univoco le persone fisiche. Il nostro strumento non interroga database esterni per tutelare i tuoi dati, ma calcola e verifica la correttezza formale applicando il <strong>Decreto Ministeriale del 12/03/1974</strong> interamente nel tuo browser.
+        </p>
+
+        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Struttura della Codifica Anagrafica</h3>
+        <ul class="list-disc pl-6 text-gray-700 mb-4 space-y-2">
+          <li><strong>Cognome (3 lettere):</strong> Vengono prese le consonanti nel loro ordine. Se non bastano, si aggiungono le vocali. Se il cognome ha meno di 3 lettere, si completa con la lettera "X".</li>
+          <li><strong>Nome (3 lettere):</strong> Se il nome ha 4 o più consonanti, si prendono la 1°, 3° e 4°. Altrimenti si segue la regola standard.</li>
+          <li><strong>Data di Nascita e Sesso (5 caratteri):</strong> Ultime due cifre dell'anno, una lettera specifica per il mese e il giorno. Per le donne, al giorno di nascita si somma 40.</li>
+          <li><strong>Codice Catastale (4 caratteri):</strong> Identifica il Comune italiano (es. H501 per Roma) o lo Stato estero. Il nostro tool integra un database locale per l'autocompletamento offline.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Il Carattere di Controllo (CIN) e l'Omocodia</h3>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Il 16° carattere viene calcolato tramite un algoritmo matematico: i 15 caratteri precedenti vengono convertiti in valori numerici, sommati e divisi per 26. Il resto della divisione determina la lettera finale di controllo.<br><br>
+          Il verificatore supporta l'<strong>Omocodia</strong>: se due persone generano lo stesso codice, l'Agenzia delle Entrate sostituisce i numeri con lettere specifiche.
+        </p>
+      </section>
+    
+      <!-- Anuncio extra para móviles -->
+      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+    </main>
+
+    <!-- COLUMNA DERECHA: Sticky Sidebar (Oculto en móviles, visible en PC) -->
+    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
+      <div class="sticky-sidebar">
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+        
+        <!-- 2. Anuncio 'Sticky' Vertical -->
+        <div class="ad-skeleton-vertical">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="w-full text-center overflow-hidden mb-8">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/codice-fiscale.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    // Utility per CF: usa il modulo centralizzato
+    const foreignEntries = (window.CodiceFiscale && window.CodiceFiscale.STATI_ESTERI)
+      ? Object.entries(window.CodiceFiscale.STATI_ESTERI).map(([name, code]) => ({ name: String(name).trim().toUpperCase(), upName: String(name).trim().toUpperCase(), code: String(code).trim().toUpperCase() }))
+      : [
+          { name: 'ARGENTINA', upName: 'ARGENTINA', code: 'Z600' },
+          { name: 'SPAGNA', upName: 'SPAGNA', code: 'Z114' },
+          { name: 'GERMANIA', upName: 'GERMANIA', code: 'Z110' },
+          { name: 'FRANCIA', upName: 'FRANCIA', code: 'Z120' },
+          { name: 'STATI UNITI D\'AMERICA', upName: 'STATI UNITI D\'AMERICA', code: 'Z404' },
+          { name: 'BRASILE', upName: 'BRASILE', code: 'Z602' },
+          { name: 'REGNO UNITO', upName: 'REGNO UNITO', code: 'Z115' },
+          { name: 'SVIZZERA', upName: 'SVIZZERA', code: 'Z133' }
+        ];
+    const localMap = {
+      'ROMA': 'H501',
+      'MILANO': 'F205',
+      'NAPOLI': 'F839',
+      'TORINO': 'L219',
+      'PALERMO': 'G273',
+      'BOLOGNA': 'A944',
+      'FIRENZE': 'D612'
+    };
+    const comuniMap = Object.assign({}, localMap);
+    foreignEntries.forEach((entry) => { comuniMap[entry.name] = entry.code; });
+    let comuniList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+    let italianList = [];
+    let foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+    let selectedBirthMode = 'italia';
+
+    function updateBirthModeUI(){
+      const mode = selectedBirthMode;
+      const label = document.getElementById('luogoLabel');
+      const input = document.getElementById('comune');
+      if (label) {
+        label.textContent = mode === 'italia' ? 'Comune di nascita' : 'Stato Estero di nascita';
+      }
+      if (input) {
+        input.placeholder = mode === 'italia' ? 'Es. Roma o H501' : 'Es. Argentina o Z600';
+      }
+      if (document.getElementById('comuni')) {
+        const datalist = document.getElementById('comuni');
+        datalist.innerHTML = '';
+        const entries = mode === 'italia' ? italianList : foreignList;
+        const source = entries.length ? entries : foreignList;
+        source.forEach((entry) => {
+          const opt = document.createElement('option');
+          opt.value = entry.name;
+          datalist.appendChild(opt);
+        });
+      }
+      if (typeof setupComuneTypeahead === 'function') {
+        setupComuneTypeahead();
+      }
+    }
+
+    function applyComuneDataset(data){
+      if (!data || !Array.isArray(data)) {
+        italianList = [];
+        foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+        comuniList = [...foreignList];
+        updateBirthModeUI();
+        return;
+      }
+      const lookup = window.CodiceFiscale ? window.CodiceFiscale.buildComuneLookup(data) : { map: {}, list: [] };
+      Object.assign(comuniMap, lookup.map);
+
+      italianList = [];
+      foreignList = [...foreignEntries].sort((a, b) => a.name.localeCompare(b.name));
+      lookup.list.forEach((item) => {
+        if (!item || !item.code) return;
+        const name = String(item.name || item.nome || '').toUpperCase();
+        const code = String(item.code).toUpperCase();
+        if (code.startsWith('Z')) {
+          if (!foreignList.some((entry) => entry.name === name || entry.code === code)) {
+            foreignList.push({ name, upName: name, code });
+          }
+        } else {
+          if (!italianList.some((entry) => entry.name === name || entry.code === code)) {
+            italianList.push({ name, upName: name, code });
+          }
+        }
+      });
+      italianList = italianList.sort((a, b) => a.name.localeCompare(b.name));
+      foreignList = foreignList.sort((a, b) => a.name.localeCompare(b.name));
+      comuniList = [...italianList, ...foreignList].sort((a, b) => a.name.localeCompare(b.name));
+      window.comuniMap = comuniMap;
+      window.comuniList = comuniList;
+      window.COMUNI_MAP = comuniMap;
+
+      const datalist = document.getElementById('comuni');
+      if (datalist) {
+        datalist.innerHTML = '';
+        const entries = selectedBirthMode === 'italia' ? italianList : foreignList;
+        const source = entries.length ? entries : foreignList;
+        source.forEach((entry) => {
+          const opt = document.createElement('option');
+          opt.value = entry.name;
+          datalist.appendChild(opt);
+        });
+      }
+      setupComuneTypeahead();
+    }
+
+    async function loadComuniFromRemote(){
+      const localUrl = '/data/comuni.json';
+      const remoteUrl = 'https://raw.githubusercontent.com/matteocontrini/comuni-json/master/comuni.json';
+      let data = null;
+
+      try {
+        const resLocal = await fetch(localUrl);
+        if (resLocal && resLocal.ok) data = await resLocal.json();
+      } catch (e) {
+        // fallirà verso remote
+      }
+
+      if (!data) {
+        try {
+          const res = await fetch(remoteUrl);
+          if (res && res.ok) data = await res.json();
+        } catch (e) {
+          console.warn('Impossibile scaricare dataset dei comuni', e);
+        }
+      }
+
+      if (!data || !Array.isArray(data)) {
+        applyComuneDataset([]);
+        return;
+      }
+      applyComuneDataset(data);
+    }
+
+    function setupComuneTypeahead(){
+      const input = document.getElementById('comune');
+      const suggBox = document.getElementById('comune-suggestions');
+      const selected = document.getElementById('selectedComune');
+      if (!input || !suggBox) return;
+
+      let activeIndex = -1;
+      let currentSuggestions = [];
+
+      function clearSuggestions(){
+        suggBox.innerHTML = '';
+        suggBox.classList.add('hidden');
+        activeIndex = -1;
+        currentSuggestions = [];
+      }
+
+      function renderSuggestions(items){
+        clearSuggestions();
+        if (!items || items.length === 0) return;
+        currentSuggestions = items;
+        const ul = document.createElement('ul');
+        ul.className = 'divide-y divide-gray-100';
+        items.forEach((it, idx) => {
+          const li = document.createElement('li');
+          li.className = 'px-4 py-2 cursor-pointer hover:bg-indigo-50 text-sm';
+          li.textContent = `${it.name} — ${it.code}`;
+          li.dataset.index = idx;
+          li.addEventListener('mousedown', (ev)=>{
+            ev.preventDefault();
+            selectSuggestion(idx);
+          });
+          ul.appendChild(li);
+        });
+        suggBox.appendChild(ul);
+        suggBox.classList.remove('hidden');
+      }
+
+      function selectSuggestion(idx){
+        const it = currentSuggestions[idx];
+        if (!it) return;
+        input.value = it.name;
+        selected.textContent = selectedBirthMode === 'italia' ? `Comune selezionato: ${it.name}` : `Stato selezionato: ${it.name}`;
+        clearSuggestions();
+      }
+
+      function findMatches(q){
+        if (!q) return [];
+        const source = selectedBirthMode === 'italia' ? italianList : foreignList;
+        const upq = q.toUpperCase();
+        const res = source.filter(c => c.upName.startsWith(upq)).concat(source.filter(c => !c.upName.startsWith(upq) && c.upName.includes(upq)));
+        const seen = new Set();
+        const out = [];
+        for (const r of res) {
+          if (!seen.has(r.code)) { seen.add(r.code); out.push(r); }
+          if (out.length >= 10) break;
+        }
+        return out;
+      }
+
+      input.addEventListener('input', ()=>{
+        const q = input.value.trim();
+        const source = selectedBirthMode === 'italia' ? italianList : foreignList;
+        if (/^[A-Z0-9]{4}$/.test(q.toUpperCase())){
+          const found = source.find(c => c.code === q.toUpperCase()) || comuniList.find(c => c.code === q.toUpperCase());
+          if (found) {
+            input.value = found.name;
+            selected.textContent = selectedBirthMode === 'italia' ? `Comune selezionato: ${found.name}` : `Stato selezionato: ${found.name}`;
+          } else {
+            selected.textContent = 'Codice inserito manualmente.';
+          }
+          clearSuggestions();
+          return;
+        }
+        const matches = findMatches(q);
+        renderSuggestions(matches);
+      });
+
+      input.addEventListener('keydown', (ev)=>{
+        if (suggBox.classList.contains('hidden')) return;
+        const items = suggBox.querySelectorAll('li');
+        if (ev.key === 'ArrowDown') {
+          ev.preventDefault();
+          activeIndex = Math.min(activeIndex + 1, items.length - 1);
+          items[activeIndex].scrollIntoView({ block: 'nearest' });
+          items.forEach((el, i) => el.classList.toggle('bg-indigo-50', i === activeIndex));
+        } else if (ev.key === 'ArrowUp') {
+          ev.preventDefault();
+          activeIndex = Math.max(activeIndex - 1, 0);
+          items[activeIndex].scrollIntoView({ block: 'nearest' });
+          items.forEach((el, i) => el.classList.toggle('bg-indigo-50', i === activeIndex));
+        } else if (ev.key === 'Enter') {
+          if (activeIndex >= 0) { ev.preventDefault(); selectSuggestion(activeIndex); }
+        } else if (ev.key === 'Escape') {
+          clearSuggestions();
+        }
+      });
+
+      input.addEventListener('blur', ()=> { setTimeout(()=>clearSuggestions(), 150); });
+    }
+
+    function getComuneCode(input){
+      return window.CodiceFiscale ? window.CodiceFiscale.resolveComuneCode(input, comuniMap) : 'Z000';
+    }
+
+    function generateCF(cognome, nome, data, sesso, comuneInput){
+      return window.CodiceFiscale ? window.CodiceFiscale.generateCodiceFiscale(nome, cognome, data, sesso, comuneInput) : null;
+    }
+
+    function getBirthModeValue(){
+      return document.querySelector('input[name="nascitaTipo"]:checked')?.value || 'italia';
+    }
+
+    document.querySelectorAll('input[name="nascitaTipo"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        selectedBirthMode = getBirthModeValue();
+        updateBirthModeUI();
+      });
+    });
+
+    const genBtn = document.getElementById('genera');
+    if (genBtn) genBtn.disabled = true;
+    loadComuniFromRemote().then(()=>{
+      const b = document.getElementById('genera'); if (b) b.disabled = false;
+    });
+    updateBirthModeUI();
+
+    // Gestione Tabs Migliorata per UI
+    function switchTab(activeId, showAreaId) {
+      ['tabGen', 'tabVer', 'tabDecode'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) {
+          el.classList.remove('border-indigo-600', 'text-indigo-600');
+          el.classList.add('border-transparent', 'text-gray-500');
+        }
+      });
+      ['genArea', 'verArea', 'decodeArea'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.style.display = 'none';
+      });
+      
+      const activeTab = document.getElementById(activeId);
+      activeTab.classList.remove('border-transparent', 'text-gray-500');
+      activeTab.classList.add('border-indigo-600', 'text-indigo-600');
+      document.getElementById(showAreaId).style.display = 'block';
+    }
+
+    document.getElementById('tabGen').addEventListener('click', ()=> switchTab('tabGen', 'genArea'));
+    document.getElementById('tabVer').addEventListener('click', ()=> switchTab('tabVer', 'verArea'));
+    if(document.getElementById('tabDecode')) {
+      document.getElementById('tabDecode').addEventListener('click', ()=> switchTab('tabDecode', 'decodeArea'));
+    }
+
+    document.getElementById('genera').addEventListener('click', ()=>{
+      const cogn = document.getElementById('cognome').value.trim();
+      const nome = document.getElementById('nome').value.trim();
+      const data = document.getElementById('data').value;
+      const sesso = document.getElementById('sesso').value;
+      const comune = document.getElementById('comune').value.trim();
+      if (!cogn || !nome || !data) return alert('Compila Cognome, Nome e Data.');
+      const cf = generateCF(cogn,nome,data,sesso,comune);
+      document.getElementById('cfResult').textContent = cf || 'Errore nel calcolo';
+    });
+
+    document.getElementById('generaLimpa').addEventListener('click', ()=>{
+      document.getElementById('cognome').value='';
+      document.getElementById('nome').value='';
+      document.getElementById('data').value='';
+      document.getElementById('sesso').value='M';
+      document.getElementById('comune').value='';
+      document.getElementById('cfResult').textContent='—';
+    });
+
+    document.getElementById('verifica').addEventListener('click', ()=>{
+      const cf = (document.getElementById('cfToCheck').value||'').trim().toUpperCase();
+      if (!cf) return alert('Inserisci un CF da verificare.');
+      if (!/^[A-Z0-9]{16}$/.test(cf)){
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-amber-600';
+        document.getElementById('verResult').textContent = 'Formato non valido (deve essere di 16 caratteri).';
+        return;
+      }
+      const result = window.CodiceFiscale ? window.CodiceFiscale.validateCodiceFiscale(cf) : { valid: false };
+      if (result.valid) {
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-emerald-600';
+        document.getElementById('verResult').textContent = 'Codice Fiscale valido (controllo carattere OK).';
+        if (result.canonical) {
+          document.getElementById('verResult').textContent += ' Canonica: ' + result.canonical;
+        }
+      } else {
+        document.getElementById('verResult').className = 'mt-2 text-lg font-bold text-rose-600';
+        document.getElementById('verResult').textContent = 'Codice Fiscale non valido (carattere di controllo errato).';
+      }
+    });
+
+    document.getElementById('verReset').addEventListener('click', ()=>{
+      document.getElementById('cfToCheck').value='';
+      document.getElementById('verResult').className = 'mt-2 text-lg font-medium text-gray-900';
+      document.getElementById('verResult').textContent='—';
+    });
+  </script>
+
+  <script>
+    (function(){
+      const decodeBtn = document.getElementById('decodeBtn');
+      const decodeReset = document.getElementById('decodeReset');
+      const cfToDecode = document.getElementById('cfToDecode');
+      const decodeResult = document.getElementById('decodeResult');
+
+      function renderDecodeResult(obj){
+        if (!obj){ decodeResult.style.display='none'; return; }
+        decodeResult.style.display='grid';
+        document.getElementById('dec-birth').textContent = obj.birthIso || '—';
+        document.getElementById('dec-age').textContent = (obj.age != null) ? (obj.age + ' anni') : '—';
+        document.getElementById('dec-sex').textContent = obj.sex || '—';
+        document.getElementById('dec-comune').textContent = obj.comuneName || (obj.isForeign ? 'Stato estero' : 'Comune non trovato');
+        document.getElementById('dec-code').textContent = obj.comuneCode || '—';
+      }
+
+      if (decodeBtn) decodeBtn.addEventListener('click', ()=>{
+        const val = (cfToDecode.value||'').trim().toUpperCase();
+        if (!/^[A-Z0-9]{16}$/.test(val)) { alert('Inserisci un Codice Fiscale valido di 16 caratteri.'); return; }
+        if (!window.CodiceFiscale || typeof window.CodiceFiscale.parseCodiceFiscaleReverse !== 'function') {
+          alert('Funzione di decodifica non disponibile.'); return;
+        }
+        const res = window.CodiceFiscale.parseCodiceFiscaleReverse(val);
+        renderDecodeResult(res);
+      });
+
+      if (decodeReset) decodeReset.addEventListener('click', ()=>{
+        cfToDecode.value = '';
+        renderDecodeResult(null);
+      });
+    })();
+  </script>
+</body>
+</html>

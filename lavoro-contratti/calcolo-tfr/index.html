@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore TFR e Liquidazione 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Calcolo del trattamento di fine rapporto accumulato, del contributo aggiuntivo INPS dello 0,50%, della tassazione separata con aliquota media IRPEF 2026 e del TFR netto.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Quota annua con divisore 13,5 e contributo aggiuntivo dello 0,50%",
+          "TFR lordo accumulato per anni di servizio",
+          "Tassazione separata con reddito di riferimento e aliquota media IRPEF 2026",
+          "TFR netto stimato",
+          "Nessun dato retributivo inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Lavoro & Contratti",
+            "item": "https://strumentiutili.it/lavoro-contratti/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Calcolo TFR",
+            "item": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#howto",
+        "name": "Come calcolare il TFR netto",
+        "description": "Procedura per stimare il trattamento di fine rapporto lordo e netto partendo da retribuzione e anni di servizio.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Busta paga o Certificazione Unica"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci la retribuzione",
+            "text": "Indica la retribuzione annua lorda utile ai fini del TFR.",
+            "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#ral"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci l'imponibile INPS",
+            "text": "Indica l'imponibile previdenziale annuo, o lo stesso valore della RAL se non lo conosci.",
+            "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#imponibile-inps"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Indica gli anni di servizio",
+            "text": "Inserisci gli anni lavorati presso lo stesso datore.",
+            "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#anni-servizio"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Calcola il netto",
+            "text": "Premi Calcola TFR per vedere quota annua, TFR lordo, imposta e netto.",
+            "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#res-netto"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Perché si divide per 13,5 e non per 12 o per 13?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il divisore 13,5 è fissato direttamente dal codice civile e non corrisponde al numero di mensilità. Produce un accantonamento pari a circa il 7,41% della retribuzione annua, misura frutto di una scelta legislativa di equilibrio fra tutela del lavoratore e sostenibilità per l'impresa. Poiché la retribuzione annua utile comprende di norma anche tredicesima ed eventuale quattordicesima, l'accantonamento risulta prossimo a una mensilità per anno di servizio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quando posso chiedere un anticipo del TFR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'anticipazione richiede almeno otto anni di servizio presso lo stesso datore di lavoro e può essere richiesta una sola volta nel corso del rapporto, nel limite del settanta per cento di quanto maturato. Le causali ammesse per legge sono le spese sanitarie straordinarie e l'acquisto della prima casa per sé o per i figli. I contratti collettivi possono ampliare sia le causali sia i limiti quantitativi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come funziona la tassazione del TFR alla liquidazione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si applica la tassazione separata, che sottrae il trattamento alla progressività ordinaria dell'anno di erogazione. L'aliquota si determina sulla media dei redditi di un periodo pluriennale di riferimento, e l'Agenzia delle Entrate procede successivamente a una riliquidazione che può generare un conguaglio a debito o a credito. Le rivalutazioni annuali sono invece già state tassate con l'imposta sostitutiva del diciassette per cento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conviene lasciare il TFR in azienda o destinarlo a un fondo pensione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sul piano fiscale il fondo pensione è quasi sempre più conveniente, perché la tassazione all'erogazione decresce con l'anzianità di partecipazione fino a una soglia minima nettamente inferiore all'aliquota media applicata al TFR ordinario. Vanno però considerati il contributo datoriale previsto dagli accordi collettivi, il rischio di mercato del comparto scelto e la minore liquidabilità. La scelta va calibrata sull'orizzonte temporale residuo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il TFR spetta anche in caso di dimissioni o licenziamento per giusta causa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, in entrambi i casi. Il trattamento di fine rapporto è retribuzione differita e matura per il solo fatto della prestazione lavorativa: spetta qualunque sia la causa della cessazione, comprese le dimissioni volontarie e il licenziamento per giusta causa. Non è ammessa alcuna forma di decurtazione a titolo sanzionatorio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo ha l'azienda per liquidare il TFR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il codice civile non fissa un termine generale, che è invece stabilito dai contratti collettivi e si colloca di regola fra i trenta e i quarantacinque giorni dalla cessazione. Decorso il termine maturano interessi e rivalutazione monetaria. Il credito per TFR si prescrive in cinque anni dalla cessazione del rapporto, termine entro cui va necessariamente esercitata l'azione."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+<!-- Google Consent Mode v2 -->
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calcolo TFR e Liquidazione — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il TFR con quota annua corretta: RAL / 13,5 meno 0,5% dell'imponibile INPS per il Fondo di Garanzia.">
+  <link rel="canonical" href="https://strumentiutili.it/lavoro-contratti/calcolo-tfr/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calcolo TFR e Liquidazione">
+  <meta property="og:description" content="Stima TFR locale con deduzione del Fondo di Garanzia INPS sulla base imponibile previdenziale.">
+  <meta property="og:url" content="https://strumentiutili.it/lavoro-contratti/calcolo-tfr/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calcolo TFR e Liquidazione">
+  <meta name="twitter:description" content="Calcolo TFR client-side con formula corretta e privacy totale.">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-indigo-600 font-semibold">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/lavoro-contratti/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Lavoro &amp; Contratti</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>💼</span> Lavoro &amp; Carriera
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo TFR e Liquidazione</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale &amp; Privata: calcola il Trattamento di Fine Rapporto (con quota INPS) direttamente nel tuo browser.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <!-- Formulario -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Dati di base</h2>
+          <div class="space-y-5">
+            <div class="block">
+              <div class="flex items-center gap-2">
+                <label for="ral" class="text-sm font-bold text-gray-700">RAL / Retribuzione annua lorda (€)</label>
+                <button type="button" data-guida-toggle="guida-tfr-ral" aria-expanded="false" aria-controls="guida-tfr-ral" aria-label="Guida al campo Retribuzione annua" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-tfr-ral" aria-describedby="guida-tfr-ral" id="ral" type="number" min="0" step="100" value="36000" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+              <div id="guida-tfr-ral" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa comprende:</strong> la retribuzione utile ai fini del TFR: stipendio base, tredicesima, quattordicesima, superminimi e voci corrisposte con continuità. Sono esclusi i rimborsi spese e, salvo diversa previsione del contratto collettivo, gli importi occasionali.</p>
+                <p><strong class="text-indigo-900">Dove trovarla:</strong> la RAL è indicata nella lettera di assunzione o nell'ultimo accordo di aumento; la retribuzione utile effettiva risulta dal prospetto TFR in busta paga, spesso alla voce di dicembre.</p>
+              </div>
+            </div>
+
+            <div class="block">
+              <div class="flex items-center gap-2">
+                <label for="imponibile-inps" class="text-sm font-bold text-gray-700">Imponibile INPS annuo (€)</label>
+                <button type="button" data-guida-toggle="guida-tfr-inps" aria-expanded="false" aria-controls="guida-tfr-inps" aria-label="Guida al campo Imponibile INPS" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-tfr-inps" aria-describedby="guida-tfr-inps" id="imponibile-inps" type="number" min="0" step="100" value="36000" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+              <div class="text-xs text-gray-500 mt-2 font-medium">Usa l'imponibile previdenziale effettivo se diverso dalla RAL, così la deduzione del Fondo di Garanzia resta corretta.</div>
+              <div id="guida-tfr-inps" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Perché serve:</strong> lo 0,50% di questo importo viene sottratto ogni anno dalla quota di TFR: è il contributo aggiuntivo che il datore versa all'INPS e recupera sulla liquidazione.</p>
+                <p><strong class="text-indigo-900">Dove trovarlo:</strong> nella Certificazione Unica, fra i dati previdenziali, oppure sommando l'imponibile previdenziale delle buste paga dell'anno. Se non lo conosci, lasciare lo stesso valore della RAL dà un risultato molto vicino.</p>
+              </div>
+            </div>
+
+            <div class="block">
+              <div class="flex items-center gap-2">
+                <label for="anni-servizio" class="text-sm font-bold text-gray-700">Anni di servizio</label>
+                <button type="button" data-guida-toggle="guida-tfr-anni" aria-expanded="false" aria-controls="guida-tfr-anni" aria-label="Guida al campo Anni di servizio" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-tfr-anni" aria-describedby="guida-tfr-anni" id="anni-servizio" type="number" min="0" step="1" value="5" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+              <div id="guida-tfr-anni" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa indicare:</strong> gli anni lavorati presso lo stesso datore, compresi i periodi di assenza retribuita come malattia, maternità e ferie, per i quali il TFR matura comunque. Per periodi parziali, ogni mese con almeno 15 giorni vale un dodicesimo della quota annua.</p>
+                <p><strong class="text-indigo-900">Limite del calcolo:</strong> il simulatore usa la retribuzione attuale per tutti gli anni e non somma la rivalutazione annua dell'1,5% più il 75% dell'inflazione: per carriere lunghe il TFR reale risulta più alto, soprattutto negli anni di inflazione elevata.</p>
+                <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+              </div>
+            </div>
+
+            <button id="calcola-tfr" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl shadow-sm transition mt-2">Calcola TFR</button>
+          </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full min-h-[400px]">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Risultati</h2>
+          
+          <div class="flex-grow flex flex-col justify-between space-y-4">
+            <div class="p-5 border border-gray-200 rounded-xl bg-gray-50 space-y-3 shadow-inner">
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Imponibile INPS considerato</span>
+                <span id="res-imponibile-inps" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Contributo aggiuntivo INPS recuperato (0,50%)</span>
+                <span id="res-fondo-garanzia" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Quota annuale TFR</span>
+                <span id="res-quota" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-bold text-indigo-700">TFR lordo accumulato</span>
+                <span id="res-lordo" class="font-bold text-indigo-700">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center pt-1">
+                <span class="text-sm font-bold text-rose-700">Tassazione separata stimata</span>
+                <span id="res-tassa" class="font-bold text-rose-700">€ 0,00</span>
+              </div>
+            </div>
+
+            <div class="mt-6 text-center p-6 border-2 border-emerald-400 rounded-2xl bg-emerald-50 shadow-sm">
+              <div class="text-emerald-800 font-bold uppercase tracking-wider mb-2 text-sm">TFR Netto Stimato</div>
+              <div id="res-netto" class="text-4xl lg:text-5xl font-black text-emerald-600 tracking-tight">€ 0,00</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+   <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+     <div class="sticky-sidebar space-y-6">
+       <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+         <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+         <ul class="space-y-3 text-sm font-bold text-gray-600">
+           <li><a href="/lavoro-contratti/lettera-dimissioni-preavviso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Lettera Dimissioni (CCNL)</a></li>
+           <li><a href="/lavoro-contratti/analizzatore-busta-paga/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔍</span> Analizzatore Busta Paga</a></li>
+           <li><a href="/lavoro-contratti/calcolo-naspi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📉</span> Simulatore NASpI 2026</a></li>
+         </ul>
+         <details class="group mt-3 pt-3 border-t border-gray-100">
+           <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+             <span>Altri strumenti in questa categoria</span>
+             <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+           </summary>
+           <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+             <li><a href="/lavoro-contratti/stipendio-netto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Calcolo Stipendio Netto</a></li>
+             <li><a href="/lavoro-contratti/giorni-lavorativi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📅</span> Giorni Lavorativi</a></li>
+             <li><a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Prestazione Occasionale</a></li>
+             <li><a href="/lavoro-contratti/ritenuta-acconto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Ritenuta d'Acconto</a></li>
+           </ul>
+         </details>
+         <a href="/lavoro-contratti/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Lavoro &amp; Contratti</span><span aria-hidden="true">→</span></a>
+       </nav>
+       <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+     </div>
+   </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Scaglioni IRPEF e parametri TFR aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">Codice civile art. 2120, L. 297/1982 art. 3 (accantonamento e contributo aggiuntivo dello 0,50%), D.P.R. 917/1986 (TUIR) artt. 17 e 19, L. 190/2014 (imposta sostitutiva del 17% sulla rivalutazione), L. 199/2025 (scaglioni IRPEF 2026).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Calcolo del TFR 2026, Rivalutazione e Tassazione Separata</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il Trattamento di Fine Rapporto (TFR), disciplinato dall'<strong>Articolo 2120 del Codice Civile</strong> italiano, rappresenta un'indennità salariale a maturazione progressiva e liquidazione differita. L'elaborazione di tale spettanza comporta la manipolazione di dati reddituali sensibili. Sfruttando l'architettura Zero-Backend, questo simulatore garantisce che il calcolo del TFR avvenga esclusivamente in locale nel browser dell'utente (Client-Side). Questo paradigma elimina la trasmissione di dati verso server cloud, conformandosi in modo inoppugnabile al principio di <strong>Privacy by Design (Articolo 25 del GDPR)</strong> e annullando ogni rischio di data breach.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-6">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 1. Accantonamento Annuale e Fondo di Garanzia INPS</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Il calcolo dell'accantonamento lordo annuale si determina dividendo la Retribuzione Annua Utile per il coefficiente divisore legale di <strong>13,5</strong>. Tuttavia, l'importo effettivamente accantonato è inferiore. La legge (Art. 3, L. 297/1982) prescrive al datore di lavoro di detrarre un importo pari allo <strong>0,50% dell'imponibile previdenziale</strong> del dipendente.
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto font-mono text-gray-800 font-bold text-sm">
+              Quota TFR Netta = (RAL / 13,5) - (Imponibile INPS × 0,005)
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Questa riduzione corrisponde al contributo previdenziale aggiuntivo dello 0,50% dovuto all'INPS, che la legge consente al datore di recuperare sulla quota di TFR. Il Fondo di Garanzia, che paga la liquidazione in caso di insolvenza o fallimento del datore, è invece finanziato da un contributo distinto a carico dell'azienda.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-6">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📈</span> 2. Rivalutazione ISTAT e Imposta Sostitutiva (17%)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Il capitale giacente in azienda al 31 dicembre dell'anno precedente non rimane statico, ma viene obbligatoriamente rivalutato. L'indicizzazione tutela il potere d'acquisto del lavoratore contro l'inflazione e si basa su un coefficiente misto:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-2">
+              <li>Una componente fissa dell'<strong>1,50% annuo</strong>.</li>
+              <li>Una componente variabile pari al <strong>75% dell'aumento dell'indice ISTAT (FOI)</strong> rispetto al mese di dicembre dell'anno precedente.</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Sulla quota di rivalutazione lorda maturata si applica un'<strong>imposta sostitutiva definitiva del 17%</strong> (aliquota elevata dall'11% al 17% dalla L. 190/2014). Questo prelievo viene trattenuto alla fonte dal datore di lavoro e versato all'Erario tramite modello F24 (codici tributo 1712 e 1713).
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-6">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 3. Tassazione Separata TFR: Aliquote IRPEF 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Al momento della cessazione del rapporto, il TFR erogato non si somma al reddito ordinario del lavoratore. Per evitare la penalizzazione derivante dalla progressività marginale dell'imposta, si applica il regime della <strong>Tassazione Separata</strong> (Art. 17 e 19 TUIR).
+            </p>
+            <h4 class="font-bold text-gray-900 text-sm">Algoritmo di Liquidazione (Ritenuta Provvisoria):</h4>
+            <ol class="list-decimal pl-5 text-sm text-gray-700 space-y-2">
+              <li><strong>Base Imponibile:</strong> Si isola il TFR maturato decurtando le rivalutazioni annuali (già tassate al 17%).</li>
+              <li><strong>Reddito di Riferimento (RR):</strong> Si proietta la base imponibile in una media annuale teorica moltiplicando la base per 12 e dividendola per gli anni di servizio effettivi.</li>
+              <li><strong>Applicazione Scaglioni 2026:</strong> Sul RR si calcola l'IRPEF teorica utilizzando gli scaglioni aggiornati dalla L. 199/2025: <strong>23%</strong> fino a 28.000€, <strong>33%</strong> da 28.000€ a 50.000€, e <strong>43%</strong> oltre i 50.000€.</li>
+              <li><strong>Aliquota Media:</strong> Si estrae il rapporto percentuale tra IRPEF teorica e Reddito di Riferimento. Tale aliquota non può mai essere inferiore al 23%.</li>
+            </ol>
+            <p class="text-sm text-gray-500 italic mt-3 border-t pt-3">
+              Nota Fiscale: L'importo trattenuto dal datore di lavoro costituisce una liquidazione provvisoria. L'Agenzia delle Entrate procederà successivamente a riliquidare d'ufficio l'imposta applicando l'aliquota media dei 5 anni precedenti al diritto alla percezione, notificando un eventuale conguaglio.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>💳</span> 4. Anticipo del TFR: Requisiti e Limiti Legali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Il lavoratore subordinato vanta il diritto di richiedere un anticipo sulla liquidazione accumulata, subordinato al rispetto di vincoli rigorosi stabiliti dal Codice Civile:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+              <li><strong>Anzianità minima:</strong> Almeno 8 anni di servizio continuativo presso la medesima azienda.</li>
+              <li><strong>Limite quantitativo:</strong> Erogazione massima pari al 70% del trattamento maturato alla data della richiesta.</li>
+              <li><strong>Plafond aziendale:</strong> L'azienda è tenuta a soddisfare le richieste entro il limite del 10% degli aventi titolo, e comunque non oltre il 4% della forza lavoro totale.</li>
+              <li><strong>Causali ammesse:</strong> Spese sanitarie per terapie o interventi straordinari riconosciuti; acquisto della prima casa di abitazione (per sé o per i figli); spese da sostenere durante i periodi di fruizione dei congedi parentali o per la formazione.</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="border-t border-gray-200 pt-5 mt-6 text-xs text-gray-500">
+          <strong>Clausola di Esclusione della Responsabilità Legale e Fiscale (Disclaimer YMYL):</strong> Il presente applicativo web è destinato unicamente a finalità illustrative, didattiche e di stima generale. Le elaborazioni fornite costituiscono simulazioni algoritmiche fondate sul quadro legislativo e previdenziale della Repubblica Italiana per l'anno d'imposta 2026. Le stime prodotte non rappresentano in alcun caso una liquidazione fiscale definitiva, un prospetto ufficiale conforme a CCNL o un parere professionale vincolante ai sensi del D.Lgs. 139/2005. L'effettivo carico tributario subisce variazioni a seguito di conguagli a consuntivo esperiti dall'Agenzia delle Entrate. Prima di intraprendere decisioni operative, si invita l'utente a rivolgersi formalmente a un Dottore Commercialista o a un Consulente del Lavoro iscritto all'albo.
+        </div>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Codice civile, articolo 2120</strong> — disciplina fondamentale del trattamento di fine rapporto: base di calcolo, divisore, rivalutazione annuale e diritto all'anticipazione.</li>
+              <li><strong>Legge 29 maggio 1982 n. 297</strong> — riforma che ha introdotto l'attuale meccanismo di accantonamento e istituito il Fondo di Garanzia presso l'INPS.</li>
+              <li><strong>D.Lgs. 5 dicembre 2005 n. 252</strong> — disciplina la previdenza complementare e le modalità di destinazione del TFR ai fondi pensione.</li>
+              <li><strong>D.P.R. 22 dicembre 1986 n. 917 (TUIR), articolo 19</strong> — regola la tassazione separata del trattamento di fine rapporto e il criterio dell'aliquota media.</li>
+              <li><strong>Legge 27 dicembre 2006 n. 296, commi 755 e seguenti</strong> — istituisce il Fondo di Tesoreria INPS per le imprese con almeno cinquanta dipendenti.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Parametri di calcolo applicati</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Funzione</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Divisore fisso</td><td class="px-3 py-2 border-t border-gray-200">13,5</td><td class="px-3 py-2 border-t border-gray-200">Determina la quota annua di accantonamento</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Rivalsa contributiva INPS</td><td class="px-3 py-2 border-t border-gray-200">0,50%</td><td class="px-3 py-2 border-t border-gray-200">Detratta dalla quota annua accantonata</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Componente fissa di rivalutazione</td><td class="px-3 py-2 border-t border-gray-200">1,50%</td><td class="px-3 py-2 border-t border-gray-200">Riconosciuta indipendentemente dall'inflazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Componente variabile</td><td class="px-3 py-2 border-t border-gray-200">75% della variazione FOI</td><td class="px-3 py-2 border-t border-gray-200">Legata all'indice dei prezzi al consumo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta sostitutiva sulla rivalutazione</td><td class="px-3 py-2 border-t border-gray-200">17%</td><td class="px-3 py-2 border-t border-gray-200">Applicata annualmente sulla sola rivalutazione</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Destinazione del TFR: le tre alternative</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Mantenimento in azienda</strong>: per le imprese sotto i cinquanta dipendenti il TFR resta accantonato presso il datore di lavoro, che ne risponde direttamente.</li>
+              <li><strong>Fondo di Tesoreria INPS</strong>: per le imprese con almeno cinquanta dipendenti il trattamento viene versato all'istituto, che ne garantisce l'erogazione.</li>
+              <li><strong>Previdenza complementare</strong>: il conferimento a un fondo pensione comporta una tassazione agevolata all'erogazione, decrescente con l'anzianità di partecipazione, e l'accesso al contributo datoriale previsto dagli accordi collettivi.</li>
+            </ul>
+            <p>La scelta è tendenzialmente irreversibile nel senso della previdenza complementare: il TFR conferito a un fondo pensione non può essere riportato in azienda. Il regime fiscale all'erogazione è però sensibilmente più favorevole, poiché la tassazione decresce con gli anni di partecipazione fino a una soglia minima, contro l'aliquota media applicata al TFR ordinario.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il Fondo di Garanzia</h3>
+            <p>In caso di insolvenza del datore di lavoro, il Fondo di Garanzia istituito presso l'INPS subentra nel pagamento del trattamento di fine rapporto e delle ultime tre mensilità di retribuzione. L'intervento presuppone l'accertamento dello stato di insolvenza, tipicamente mediante procedura concorsuale o, per i datori non assoggettabili, mediante esecuzione forzata infruttuosa. È una tutela sostanziale che rende il credito per TFR strutturalmente più sicuro rispetto agli altri crediti di lavoro.</p>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> l'indice FOI utilizzato per la componente variabile della rivalutazione è pubblicato mensilmente dall'ISTAT. In presenza di variazioni negative dell'indice la rivalutazione si riduce alla sola componente fissa dell'1,5%, senza mai generare una decurtazione del montante accantonato. Il calcolo prodotto è una stima: l'importo definitivo dipende dalle voci retributive concretamente computabili secondo il contratto collettivo applicato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-6 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl">
+            <p>I casi seguenti sono calcolati con il motore della pagina e gli scaglioni IRPEF 2026. Non includono la rivalutazione annua, che aumenterebbe il TFR accumulato.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: impiegata con 28.000 € di RAL che si dimette dopo 4 anni</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Quota annua: 28.000 / 13,5 − 140,00 (0,50%) = 1.934,07 €</li>
+            <li>TFR lordo: 1.934,07 × 4 = 7.736,28 €</li>
+            <li>Reddito di riferimento: 1.934,07 × 12 = 23.208,84 €, aliquota media 23%</li>
+            <li>Imposta: 1.779,34 €; TFR netto: 5.956,94 €</li>
+            </ul>
+            <p>Le dimissioni non riducono il TFR: spetta per intero anche se il rapporto termina per scelta della lavoratrice.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: tecnico con 45.000 € di RAL dopo 12 anni</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Quota annua: 45.000 / 13,5 − 225,00 = 3.108,33 €</li>
+            <li>TFR lordo: 37.299,96 €</li>
+            <li>Reddito di riferimento: 37.299,96 / 12 × 12 = 37.299,96 €, aliquota media 25,49%</li>
+            <li>Imposta: 9.508,99 €; TFR netto: 27.790,97 €</li>
+            </ul>
+            <p>Con esattamente 12 anni di servizio il reddito di riferimento coincide con il TFR totale. Superati gli 8 anni di anzianità, il tecnico può già chiedere un anticipo fino al 70% del maturato, ad esempio per l'acquisto della prima casa.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: dirigente con 60.000 € di RAL, dopo 5 o dopo 25 anni</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Quota annua in entrambi i casi: 60.000 / 13,5 − 300,00 = 4.144,44 €</li>
+            <li>Dopo 5 anni: lordo 20.722,20 €, imposta al 27,37%, netto 15.050,54 €</li>
+            <li>Dopo 25 anni: lordo 103.611,00 €, imposta al 27,37%, netto 75.252,71 €</li>
+            </ul>
+            <p>L'aliquota è la stessa perché il reddito di riferimento, TFR diviso anni per 12, è pari a dodici quote annue: dipende dalla retribuzione, non dall'anzianità. Un TFR più grande non viene tassato di più in proporzione. L'Agenzia delle Entrate può poi riliquidare l'imposta con l'aliquota media dei cinque anni precedenti, con un conguaglio a debito o a credito.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché si divide per 13,5 e non per 12 o per 13?</h3>
+              <p>Il divisore 13,5 è fissato direttamente dal codice civile e non corrisponde al numero di mensilità. Produce un accantonamento pari a circa il 7,41% della retribuzione annua, misura frutto di una scelta legislativa di equilibrio fra tutela del lavoratore e sostenibilità per l'impresa. Poiché la retribuzione annua utile comprende di norma anche tredicesima ed eventuale quattordicesima, l'accantonamento risulta prossimo a una mensilità per anno di servizio.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Quando posso chiedere un anticipo del TFR?</h3>
+              <p>L'anticipazione richiede almeno otto anni di servizio presso lo stesso datore di lavoro e può essere richiesta una sola volta nel corso del rapporto, nel limite del settanta per cento di quanto maturato. Le causali ammesse per legge sono le spese sanitarie straordinarie e l'acquisto della prima casa per sé o per i figli. I contratti collettivi possono ampliare sia le causali sia i limiti quantitativi.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Come funziona la tassazione del TFR alla liquidazione?</h3>
+              <p>Si applica la tassazione separata, che sottrae il trattamento alla progressività ordinaria dell'anno di erogazione. L'aliquota si determina sulla media dei redditi di un periodo pluriennale di riferimento, e l'Agenzia delle Entrate procede successivamente a una riliquidazione che può generare un conguaglio a debito o a credito. Le rivalutazioni annuali sono invece già state tassate con l'imposta sostitutiva del diciassette per cento.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene lasciare il TFR in azienda o destinarlo a un fondo pensione?</h3>
+              <p>Sul piano fiscale il fondo pensione è quasi sempre più conveniente, perché la tassazione all'erogazione decresce con l'anzianità di partecipazione fino a una soglia minima nettamente inferiore all'aliquota media applicata al TFR ordinario. Vanno però considerati il contributo datoriale previsto dagli accordi collettivi, il rischio di mercato del comparto scelto e la minore liquidabilità. La scelta va calibrata sull'orizzonte temporale residuo.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il TFR spetta anche in caso di dimissioni o licenziamento per giusta causa?</h3>
+              <p>Sì, in entrambi i casi. Il trattamento di fine rapporto è retribuzione differita e matura per il solo fatto della prestazione lavorativa: spetta qualunque sia la causa della cessazione, comprese le dimissioni volontarie e il licenziamento per giusta causa. Non è ammessa alcuna forma di decurtazione a titolo sanzionatorio.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Quanto tempo ha l'azienda per liquidare il TFR?</h3>
+              <p>Il codice civile non fissa un termine generale, che è invece stabilito dai contratti collettivi e si colloca di regola fra i trenta e i quarantacinque giorni dalla cessazione. Decorso il termine maturano interessi e rivalutazione monetaria. Il credito per TFR si prescrive in cinque anni dalla cessazione del rapporto, termine entro cui va necessariamente esercitata l'azione.</p>
+            </div>
+          </div>
+        </details>
+
+        </section>
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+<script defer src="/js/data-loader.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/tfr.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-tfr-anni'] = function (campo) {
+      var anni = parseFloat(campo.value);
+      var ral = parseFloat(document.getElementById('ral').value);
+      if (!(anni > 0) || !(ral > 0) || !window.TFRCalculator || !window.StrumentiData) return '';
+      var imponibile = parseFloat(document.getElementById('imponibile-inps').value) || ral;
+      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
+      var campoLive = campo;
+      window.StrumentiData.getRegoleFiscali().then(function (regole) {
+        var r = window.TFRCalculator.calculateTFR(ral, imponibile, anni, regole);
+        var card = document.getElementById('guida-tfr-anni');
+        var p = card && card.querySelector('[data-guida-live]');
+        if (p && campoLive.value == anni) {
+          p.textContent = 'Con ' + euro(ral) + ' l\'anno maturano ' + euro(r.quotaAnnua) + ' di TFR per anno: in ' + String(anni).replace('.', ',') + ' anni ' + euro(r.tfrLordo) + ' lordi, tassati circa al ' + String(r.aliquotaApplicata).replace('.', ',') + '%.';
+          p.hidden = false;
+        }
+      });
+      return '';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

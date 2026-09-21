@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modello F24 ordinario: compilalo online e scarica il PDF ufficiale — StrumentiUtili.it</title>
+  <meta name="description" content="Compila il Modello F24 Ordinario online per IRPEF, IVA, IRES, INPS e IMU. Calcolo saldo automatico, validazione compensazioni 2026 e generazione PDF a norma ISO." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/" />
+
+  <!-- Favicon e Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Modello F24 Ordinario Editabile Online — StrumentiUtili.it" />
+  <meta property="og:description" content="Compila il Modello F24 Ordinario in totale privacy nel browser. Calcolo crediti/debiti e generazione PDF/A." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* --- Compilatore guidato dei modelli AA9/12 e AA7/10 -------------------
+       CSS scritto a mano: la build Tailwind analizza solo i file .html, quindi
+       le classi generate da JavaScript non finirebbero nel foglio compilato. */
+    .mp-scelta { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-bottom: 1.5rem; }
+    @media (min-width: 640px) { .mp-scelta { grid-template-columns: 1fr 1fr; } }
+    .mp-scelta-btn { text-align: left; padding: 1rem 1.15rem; border: 2px solid #e5e7eb; border-radius: .9rem;
+      background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s, background .15s; }
+    .mp-scelta-btn strong { display: block; font-size: 1.05rem; color: #111827; }
+    .mp-scelta-btn span { display: block; font-size: .78rem; color: #6b7280; margin-top: .15rem; line-height: 1.35; }
+    .mp-scelta-btn:hover { border-color: #c7d2fe; }
+    .mp-scelta-btn.mp-scelta-attiva { border-color: #4f46e5; background: #eef2ff; box-shadow: 0 1px 3px rgba(79,70,229,.18); }
+    .mp-scelta-btn.mp-scelta-attiva strong { color: #3730a3; }
+
+    .mp-guscio { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
+    @media (min-width: 900px) { .mp-guscio { grid-template-columns: 245px minmax(0, 1fr); } }
+
+    .mp-passi { display: flex; flex-direction: row; gap: .35rem; overflow-x: auto; padding-bottom: .35rem; }
+    @media (min-width: 900px) { .mp-passi { flex-direction: column; overflow: visible; position: sticky; top: 6rem; } }
+    .mp-passo-voce { display: flex; align-items: center; gap: .55rem; padding: .5rem .6rem; border-radius: .55rem;
+      border: 1px solid transparent; background: transparent; cursor: pointer; text-align: left; white-space: nowrap; }
+    @media (min-width: 900px) { .mp-passo-voce { white-space: normal; } }
+    .mp-passo-voce:hover { background: #f3f4f6; }
+    .mp-passo-numero { flex: 0 0 auto; width: 1.4rem; height: 1.4rem; border-radius: 999px; background: #e5e7eb;
+      color: #4b5563; font-size: .68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+    .mp-passo-nome { font-size: .76rem; color: #4b5563; line-height: 1.25; }
+    .mp-passo-attivo { background: #eef2ff; border-color: #c7d2fe; }
+    .mp-passo-attivo .mp-passo-numero { background: #4f46e5; color: #fff; }
+    .mp-passo-attivo .mp-passo-nome { color: #3730a3; font-weight: 700; }
+    .mp-passo-saltato .mp-passo-nome { color: #9ca3af; }
+
+    .mp-pannello { background: #fff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04); min-width: 0; }
+    @media (min-width: 640px) { .mp-pannello { padding: 2rem; } }
+    .mp-titolo { font-size: 1.3rem; font-weight: 800; color: #111827; margin: 0 0 .4rem; }
+    .mp-descrizione { font-size: .86rem; color: #4b5563; line-height: 1.6; margin: 0 0 1.25rem; }
+    .mp-saltato { font-size: .82rem; color: #6b7280; background: #f9fafb; border: 1px dashed #e5e7eb;
+      border-radius: .6rem; padding: .85rem 1rem; line-height: 1.55; }
+
+    .mp-griglia { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+    .mp-campo { grid-column: span 12; min-width: 0; }
+    @media (min-width: 720px) {
+      .mp-c3 { grid-column: span 3; } .mp-c4 { grid-column: span 4; }
+      .mp-c6 { grid-column: span 6; } .mp-c8 { grid-column: span 8; } .mp-c12 { grid-column: span 12; }
+    }
+
+    .mp-etichetta-riga { display: flex; align-items: center; gap: .4rem; margin-bottom: .3rem; }
+    .mp-etichetta { font-size: .72rem; font-weight: 700; color: #374151; line-height: 1.3; }
+    .mp-obb { color: #dc2626; }
+    .mp-info { flex: 0 0 auto; width: 1.15rem; height: 1.15rem; border-radius: 999px; border: none;
+      background: #eef2ff; color: #4f46e5; font-size: .68rem; font-weight: 800; font-style: italic;
+      cursor: pointer; line-height: 1; }
+    .mp-info:hover { background: #e0e7ff; }
+    .mp-info:focus-visible { outline: 2px solid #4f46e5; outline-offset: 1px; }
+
+    .mp-input { width: 100%; padding: .5rem .7rem; border: 1px solid #d1d5db; border-radius: .5rem;
+      font-size: .875rem; color: #111827; background: #fff; box-sizing: border-box; }
+    .mp-input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 2px rgba(79,70,229,.25); }
+    .mp-maiuscolo { text-transform: uppercase; }
+
+    .mp-guida { margin-top: .45rem; border: 1px solid #c7d2fe; background: #eef2ff; border-radius: .55rem;
+      padding: .65rem .8rem; font-size: .76rem; color: #374151; line-height: 1.55; }
+    .mp-guida[hidden] { display: none !important; }
+    .mp-nota { font-size: .76rem; color: #6b7280; line-height: 1.55; margin: .3rem 0 .6rem; }
+    .mp-errore { font-size: .74rem; color: #b91c1c; font-weight: 600; margin: .35rem 0 0; }
+
+    .mp-fieldset { border: 1px solid #e5e7eb; border-radius: .75rem; padding: 1rem; margin: 0; min-width: 0; }
+    .mp-legenda { font-size: .8rem; font-weight: 800; color: #111827; padding: 0 .35rem; }
+    .mp-radio-gruppo { display: flex; flex-direction: column; gap: .45rem; }
+    .mp-radio-gruppo-inline { flex-direction: row; flex-wrap: wrap; gap: .75rem; }
+    .mp-radio, .mp-checkbox, .mp-switch { display: flex; align-items: flex-start; gap: .55rem; cursor: pointer; }
+    .mp-radio input, .mp-checkbox input, .mp-switch input { margin-top: .2rem; flex: 0 0 auto;
+      width: 1rem; height: 1rem; accent-color: #4f46e5; }
+    .mp-radio-testo { display: block; font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-radio-testo strong { display: block; font-weight: 700; color: #111827; }
+    .mp-radio-testo em { display: block; font-style: normal; font-size: .75rem; color: #6b7280; margin-top: .12rem; line-height: 1.5; }
+    .mp-radio-inline span { font-size: .8rem; color: #374151; }
+    .mp-checkbox span { font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-switch { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: .6rem; padding: .7rem .85rem; }
+    .mp-switch span { font-size: .82rem; font-weight: 600; color: #374151; }
+    .mp-switch-grande { margin-bottom: 1.25rem; }
+
+    .mp-riga { border-top: 1px dashed #e5e7eb; padding-top: .9rem; margin-top: .9rem; }
+    .mp-riga:first-of-type { border-top: none; padding-top: 0; margin-top: .5rem; }
+    .mp-riga-numero { display: inline-block; font-size: .68rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .04em; color: #6b7280; margin-bottom: .6rem; }
+
+    .mp-nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap;
+      margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #e5e7eb; }
+    .mp-conta { font-size: .74rem; color: #6b7280; font-weight: 600; }
+    .mp-btn { padding: .6rem 1rem; border-radius: .55rem; font-size: .84rem; font-weight: 700;
+      cursor: pointer; border: 1px solid #d1d5db; background: #fff; color: #374151; }
+    .mp-btn:hover:not(:disabled) { background: #f9fafb; }
+    .mp-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .mp-btn-forte { background: #4f46e5; border-color: transparent; color: #fff; }
+    .mp-btn-forte:hover:not(:disabled) { background: #4338ca; }
+    .mp-btn-lieve { background: #fff; }
+
+    .mp-avviso { border-radius: .6rem; padding: .8rem 1rem; font-size: .82rem; line-height: 1.55; margin-bottom: 1.25rem; }
+    .mp-avviso[hidden] { display: none !important; }
+    .mp-avviso-info { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
+    .mp-avviso-ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .mp-avviso-errore { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    .mp-calcolato { display: block; background: #f1f5f9; color: #0f172a; font-weight: 700;
+      border-style: dashed; text-align: right; }
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <!-- Script AdSense -->
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="/js/codice-fiscale.js"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fiscalità",
+            "item": "https://strumentiutili.it/cittadino-tasse/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Suite F24 Editabile",
+            "item": "https://strumentiutili.it/cittadino-tasse/f24-editabile/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "F24 Ordinario",
+            "item": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Modello F24 Ordinario Editabile",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/",
+        "description": "Compilatore online del modello F24 Ordinario con sezioni Erario, INPS e IMU, calcolo di debiti, crediti e saldo e generazione del PDF interamente nel browser.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "@id": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Validazione del codice fiscale del contribuente",
+          "Righe dinamiche per le sezioni Erario, INPS e IMU e tributi locali",
+          "Totali di debiti, crediti e saldo con arrotondamento dei tributi locali",
+          "Avvisi per saldo negativo, saldo zero e compensazioni",
+          "Generazione locale del PDF senza invio di dati a server"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#howto",
+        "name": "Come compilare il modello F24 Ordinario",
+        "description": "Procedura per compilare un F24 Ordinario con tributi erariali, contributi INPS e IMU e controllarne il saldo.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT10M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Dichiarazione dei redditi o avvisi di pagamento con codici tributo e importi"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci i dati del contribuente",
+            "text": "Indica il codice fiscale e i dati anagrafici del soggetto a cui si riferisce il debito.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#mp-app"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Compila la sezione Erario",
+            "text": "Aggiungi una riga per ogni codice tributo con anno di riferimento, importo a debito o credito.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#container-ord-erario"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Aggiungi contributi e tributi locali",
+            "text": "Compila le righe INPS con sede, causale e matricola e le righe IMU con codice catastale del Comune.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#container-ord-imu"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Controlla il saldo e genera il PDF",
+            "text": "Verifica totali e avvisi nel riepilogo, quindi genera il PDF del modello.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#tot-saldo"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Cosa accade in caso di Utilizzo di Credito Inesistente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La compensazione in F24 di un credito ancorato a una situazione non reale o generato tramite artifici contabili e frode configura la fattispecie di \"inesistenza del credito\". A norma della Riforma introdotta dal D.Lgs. 87/2024, la sanzione irrogabile è pari al 70% del credito indebitamente utilizzato. In conclamati casi di frode o simulazione contabile, tale aliquota viene incrementata dalla metà al doppio, attestandosi tra il 105% e il 140% del valore, con termine di decadenza per l'accertamento prorogato all'ottavo anno successivo all'utilizzo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual è la differenza sanzionatoria per un Credito Non Spettante?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A differenza del credito inesistente, il \"credito non spettante\" deriva da meri errori formali (ad esempio, il superamento in buona fede del plafond annuo consentito) o da violazioni rilevabili in via immediata tramite il controllo automatizzato (ex art. 36-bis D.P.R. 600/73). La sanzione per questa infrazione (anch'essa revisionata dal D.Lgs. 87/2024) è ridotta al 25% dell'importo indebitamente utilizzato in compensazione, e i termini di accertamento rimangono fissati alla prescrizione ordinaria (quinto anno successivo alla presentazione della dichiarazione)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa comporta tentare la compensazione violando il blocco dei 50.000 euro?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il tentativo di inoltrare un Modello F24 recante compensazioni, mentre pendono iscrizioni a ruolo definitive e non sospese superiori alla soglia dei 50.000 euro (L. 199/2025), comporta lo scarto informatico immediato della delega. Ai fini fiscali, il versamento è considerato come \"mai effettuato\", innescando a carico del contribuente l'applicazione delle sanzioni pecuniarie previste per l'omesso versamento, le quali ammontano al 25% dell'importo del tributo originariamente dovuto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa devo fare in caso di errore nell'indicazione del codice tributo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'inserimento di un codice tributo inesatto indirizza il versamento verso un capitolo di bilancio errato. Per sanare la posizione senza incorrere in sanzioni o accertamenti ingiustificati, il contribuente deve inoltrare tempestivamente una comunicazione di rettifica formale avvalendosi del canale telematico CIVIS (messo a disposizione dall'Agenzia delle Entrate), richiedendo la riassegnazione interna dell'incasso alla voce impositiva corretta."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block" data-f24-model="ordinario">
+
+  <!-- Header Navigazione Principale -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Strumento F24 Ordinario -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Pubblicità Above the Fold -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/cittadino-tasse/f24-editabile/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla Suite F24 Editabile</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🏛️</span> Cittadino &amp; Tasse 2026
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Compila online il modello F24 ordinario</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Compila il modello F24 Ordinario per il pagamento di IRPEF, IVA, IRES, contributi INPS e tributi locali. Il sistema calcola automaticamente il saldo e valida la sintassi del Codice Fiscale o Partita IVA.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg">
+            <span>🔒 Privacy Garantita:</span> Nessun dato personale o fiscale viene inviato a server esterni.
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPILATORE GUIDATO DEL MODELLO F24 ORDINARIO -->
+      <section id="mp-app" class="mb-8"
+               data-schema="/data/modello-f24-ordinario-schema.json"
+               data-stato="modello_f24_ordinario"
+               data-modello="F24">
+
+        <div class="mb-6 border-b border-gray-200 pb-4">
+          <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ 100% nel browser - nessun dato inviato a un server</span>
+          <h2 class="text-2xl font-bold text-gray-900">Compila il modello F24 ordinario</h2>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            Una procedura guidata ti accompagna sezione per sezione: per ogni casella trovi la spiegazione
+            tratta dalle avvertenze ufficiali dell'Agenzia delle Entrate. I totali di sezione e il saldo finale
+            vengono calcolati automaticamente. Alla fine scarichi il
+            <strong>modello ministeriale vero e proprio, già compilato</strong> in tutte e tre le copie.
+          </p>
+        </div>
+
+        <div class="mp-guscio">
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <div class="mp-pannello">
+            <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
+            <div id="mp-corpo"></div>
+            <div id="mp-nav" class="mp-nav"></div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24/modello-e-istruzioni-f24"
+             target="_blank" rel="noopener"
+             class="text-xs font-bold text-indigo-600 hover:text-indigo-800">🏛️ Pagina ufficiale del modello F24</a>
+          <a href="/assets/pdf/istruzioni-f24-ordinario.pdf" target="_blank" rel="noopener"
+             class="text-xs font-bold text-indigo-600 hover:text-indigo-800">📘 Avvertenze per la compilazione (PDF)</a>
+          <button id="mp-azzera" type="button" class="text-xs font-bold text-gray-500 hover:text-red-600 transition">
+            🗑️ Cancella i dati del modello
+          </button>
+        </div>
+
+        <noscript>
+          <p class="mt-4 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-4">
+            Il compilatore funziona interamente nel browser e richiede JavaScript.
+          </p>
+        </noscript>
+      </section>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sidebar Fissa -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Riepilogo Matematico</h3>
+            <span id="active-model-badge" class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">ORDINARIO</span>
+          </div>
+
+          <div id="panel-totali-f24" class="space-y-3 border-b border-gray-800 pb-4 text-sm">
+            <div class="flex justify-between text-rose-300">
+              <span>Totale Debiti (+):</span>
+              <span id="tot-debiti" data-riepilogo="debiti" class="font-bold font-mono">0,00 €</span>
+            </div>
+            <div class="flex justify-between text-emerald-300">
+              <span>Totale Crediti (-):</span>
+              <span id="tot-crediti" data-riepilogo="crediti" class="font-bold font-mono">0,00 €</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Saldo Finale da Versare</span>
+            <span id="tot-saldo" data-riepilogo="saldo" class="text-3xl font-extrabold text-amber-400 font-mono tracking-tight">0,00 €</span>
+            <div id="saldo-warning" data-riepilogo="avviso" class="text-[10px] text-rose-400 mt-2 font-semibold hidden"></div>
+          </div>
+
+          <div class="pt-4 space-y-2">
+            <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>📄</span> Vai al compilatore
+            </a>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">
+              Totali di sezione e saldo finale sono calcolati dalla procedura guidata; il PDF scaricato è il
+              modello ufficiale dell'Agenzia delle Entrate, compilato in tutte e tre le copie.
+            </p>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+            <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+            <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta Luce</a></li>
+              <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+              <li><a href="/cittadino-tasse/simulatore-isee/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📊</span> Simulatore ISEE 2026</a></li>
+              <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👴</span> Simulatore Pensione 2026</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenata debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di compilazione e compensazione aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e di prassi</p>
+            <p class="text-gray-600 leading-relaxed">D.Lgs. 241/1997 artt. 17 e seguenti, D.L. 78/2010 art. 31, L. 244/2007 art. 1 c. 53, L. 213/2023 e L. 199/2025 (compensazioni e ruoli scaduti), D.Lgs. 87/2024 (sanzioni), istruzioni ministeriali al modello F24 e tabelle dei codici tributo dell'Agenzia delle Entrate.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <!-- Párrafo introductorio visible -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico e Normativo al Modello F24 Ordinario (Aggiornato 2026)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il <strong>Modello F24 Ordinario</strong> rappresenta l'architrave documentale dell'ordinamento tributario italiano, istituito originariamente dall'art. 17 del D.Lgs. 241/1997. Questo strumento universale di "versamento unificato" è obbligatorio per i contribuenti (sia persone fisiche che titolari di Partita IVA) per assolvere il pagamento di un vastissimo spettro di obbligazioni: dalle imposte dirette sui redditi (IRPEF, IRES, cedolare secca), alle imposte indirette (IVA), fino ad abbracciare l'intera galassia dei contributi previdenziali (INPS) e dei tributi devoluti agli Enti Locali (IMU, TARI). La sua architettura è stata profondamente riscritta dalle recenti manovre finanziarie, in particolare dalla Legge 213/2023 (Legge di Bilancio 2024), dal D.Lgs. 87/2024 (Riforma delle Sanzioni) e dalla recentissima Legge 199/2025 (Legge di Bilancio 2026), che hanno inasprito i divieti e ridisegnato il perimetro delle compensazioni. Il software messo a disposizione in questa pagina permette la compilazione algebrica rigorosa e la generazione del formato PDF/A a norma ISO, garantendo che nessuna informazione sensibile (es. codice fiscale, ammontare dei debiti) abbandoni mai la memoria locale del dispositivo dell'utente.
+        </p>
+
+        <!-- Bloque de contenuto denso desplegable -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo e Regole di Compensazione</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">La Ratio della Compensazione e i Limiti Economici</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'essenza giuridica del Modello F24 risiede nell'istituto della "compensazione fiscale", una meccanica che autorizza il contribuente a estinguere un debito verso la Pubblica Amministrazione utilizzando crediti maturati nei confronti dello Stato o di altri enti. L'ordinamento impone tuttavia stringenti argini quantitativi per preservare il gettito erariale. L'utilizzo di crediti d'imposta ordinari (quali IVA, IRPEF, IRES) per un ammontare annuo cumulativo superiore a 5.000 euro impone per legge l'apposizione preventiva del visto di conformità sulla dichiarazione fiscale da cui il credito scaturisce, certificato da un Dottore Commercialista, Esperto Contabile o CAF abilitato. 
+              </p>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Per i crediti d'imposta agevolativi, come quelli derivanti dagli investimenti del piano Transizione 4.0/5.0 o dal credito per attività di Ricerca e Sviluppo (da allocare tassativamente nel Quadro RU del Modello Redditi), il limite annuo generale di utilizzo dei crediti del quadro RU è di 250.000 euro (art. 1, c. 53, L. 244/2007), ma diverse discipline agevolative, fra cui quelle appena citate, ne escludono espressamente l'applicazione: il limite va quindi verificato credito per credito. Le eccedenze non godute non si disperdono, ma vengono reintrodotte nel plafond a partire dal terzo periodo d'imposta successivo. Parallelamente, il limite generale assoluto per l'esecuzione di compensazioni orizzontali ordinarie è stato confermato, anche per le annualità 2025 e 2026, alla soglia massima di 2.000.000 di euro annui per contribuente.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Restrizioni e Sbarramenti Strutturali (Novità 2026)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'architettura del Modello F24 è governata da rigorosi blocchi procedimentali:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li><strong>Obbligo di Trasmissione Telematica Assoluta:</strong> A partire dal 1° luglio 2024, il legislatore ha decretato l'obbligo inderogabile di adoperare esclusivamente i servizi telematici forniti dall'Agenzia delle Entrate (piattaforma Entratel o l'applicativo F24 Web/Online) per qualsiasi modello F24 che rechi al suo interno la compensazione di un credito (anche solo per importi minimi), a prescindere dalla natura del credito e indipendentemente dal fatto che il saldo matematico finale dell'F24 risulti positivo o a debito. Il ricorso ai portali di home banking privati (CBI) è categoricamente precluso qualora l'utente compili la colonna degli importi a credito compensati.</li>
+                <li><strong>Divieto di Compensazione per Carichi a Ruolo:</strong> Il sistema è blindato da due soglie limite per i contribuenti morosi. La prima, fondata sull'art. 31 del D.L. 78/2010, vieta qualsivoglia compensazione orizzontale in presenza di debiti iscritti a ruolo per imposte erariali (purché scaduti e non pagati) di importo superiore a 1.500 euro. La seconda soglia, introdotta dalla L. 213/2023 e ulteriormente inasprita dalla recente Legge 199/2025 (Legge di Bilancio 2026), si fissa a <strong>50.000 euro</strong> (dimezzando il precedente limite di 100.000 euro). Superato tale importo per carichi affidati all'Agente della Riscossione o in virtù di atti di recupero coattivo, si innesca il divieto totale di compensazione sull'intero modello F24. L'unica eccezione a questi blocchi si verifica qualora i ruoli siano oggetto di una rateazione regolare (senza che sia subentrata decadenza) o godano di formale sospensione giudiziale o amministrativa.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+        
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Aritmetica, Decimali e Casuistica Reale</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">La Formula del Saldo Unificato</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'operazione algebrica sottostante alla liquidazione del Modello F24 aggrega analiticamente le poste a debito sottratte dalle poste a credito. La formula di liquidazione del versamento unitario si esprime come:
+              </p>
+               <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$Saldo_{F24} = \sum_{i=1}^{n} Debiti_i - \sum_{j=1}^{m} Crediti_j$$
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                <strong>Vincolo del Saldo Non Negativo:</strong> È fondamentale rammentare che il modello F24 non può mai chiudersi originando un saldo aritmetico negativo. L'F24 non è uno strumento concepito dall'ordinamento per domandare rimborsi di liquidità diretta allo Stato. Qualora la somma dei crediti superi l'ammontare dei debiti dichiarati, il contribuente è tenuto ad abbattere manualmente l'importo dei crediti portati in compensazione fino ad uguagliare esattamente il debito totale. L'eccedenza residuale del credito verrà conservata per versamenti futuri, e la presente delega si chiuderà forzatamente con un saldo di versamento pari a 0,00 euro. Le deleghe a "Saldo Zero" mantengono l'obbligo di trasmissione telematica ai fini della regolarità contabile.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Gestione dei Decimali e Arrotondamenti</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Un aspetto peculiare della compilazione tecnica del modello, fonte di frequenti avvisi di irregolarità, riguarda la gestione matematica delle frazioni di euro. Le disposizioni ministeriali prevedono un approccio dicotomico a seconda della sezione interessata:
+              </p>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
+                <li>Nella <strong>Sezione Erario</strong> e nella <strong>Sezione INPS</strong>, gli importi economici debbono essere iscritti con assoluta precisione centesimale, riportando fedelmente le due cifre decimali dopo la virgola (es. 450,22).</li>
+                <li>Invece, all'interno della <strong>Sezione IMU e Tributi Locali</strong>, la normativa impone l'arrotondamento all'unità di euro più prossima (per difetto se la frazione è inferiore a 50 centesimi, per eccesso se pari o superiore). Di conseguenza, gli importi trascritti in questa sezione non devono recare cifre decimali (es. 850,51 si arrotonda a 851,00).</li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mt-4">
+              <h3 class="text-base font-bold text-gray-900 mb-2">Esempio Pratico e Complesso: Calcolo e Compensazione Orizzontale</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Si supponga la predisposizione di un F24 per una ditta individuale a giugno 2026, avente le seguenti posizioni debitorie e creditorie:
+              </p>
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
+                <p><strong>1. Sezione Erario (Debito 1):</strong> Debito d'acconto IRPEF (codice tributo 4033) per un importo di <strong>1.500,00 €</strong>.</p>
+                <p><strong>2. Sezione Regioni (Debito 2):</strong> Addizionale regionale all'IRPEF (codice tributo 3801) per un importo di <strong>350,00 €</strong>.</p>
+                <p><strong>3. Sezione INPS (Debito 3):</strong> Contributi Gestione Separata (causale contributo PXX, propria dei professionisti iscritti alla Gestione Separata) per <strong>800,00 €</strong>.</p>
+                <p><strong>4. Sezione Erario (Credito):</strong> Credito IVA maturato nell'esercizio 2025 (codice tributo 6099) pari a <strong>1.200,00 €</strong> (utilizzabile senza Visto di Conformità poiché inferiore a 5.000 €).</p>
+                <p>--</p>
+                <p><strong>Sommatoria Debiti Tributari:</strong> 1.500,00 + 350,00 + 800,00 = <strong>2.650,00 €</strong></p>
+                <p><strong>Crediti Compensati (Orizzontalmente):</strong> <strong>1.200,00 €</strong></p>
+                <p><strong>Saldo Netto Finale da Versare all'Erario:</strong> 2.650,00 - 1.200,00 = <strong>1.450,00 €</strong></p>
+              </div>
+              <p class="text-xs text-gray-500 mt-3">Nota Operativa: In presenza della riga di compensazione credito (codice 6099), la delega di 1.450,00 € andrà obbligatoriamente evasa tramite i portali dell'Agenzia delle Entrate, rendendo nulla la presentazione della contabile allo sportello o sull'home banking convenzionale.</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- PREGUNTAS FRECUENTES E SANZIONI (DESPLEGABLES INDIVIDUALES) -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Risoluzione degli Errori e Sanzioni Procedurali (D.Lgs. 87/2024)</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+                <p>I casi seguenti sono stati inseriti nel compilatore di questa pagina e i totali corrispondono a quelli calcolati dal riepilogo. I codici tributo sono quelli in uso nel 2026.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: professionista con Partita IVA a fine giugno</h3>
+                <p>Un ingegnere in regime ordinario, iscritto alla Gestione Separata, chiude la dichiarazione dei redditi 2026 con questi importi da versare entro il 30 giugno:</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Erario 4001, anno 2025: saldo IRPEF 1.240,50 €</li>
+                <li>Erario 4033, anno 2026: primo acconto IRPEF 1.096,00 €</li>
+                <li>INPS causale PXX: saldo contributi 2025 2.180,00 €</li>
+                <li>Totale debiti e saldo da versare: 4.516,50 €</li>
+                </ul>
+                <p>Senza compensazioni il saldo coincide con i debiti. Il professionista ha Partita IVA, quindi deve pagare con strumenti telematici: home banking o servizi dell'Agenzia delle Entrate. In alternativa può rateizzare saldo e primo acconto fino a novembre, aggiungendo gli interessi previsti per ogni rata.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: credito IRPEF usato per pagare l'IMU</h3>
+                <p>Una pensionata senza Partita IVA ha un credito IRPEF di 850 € dalla dichiarazione e deve pagare 412,60 € di acconto IMU sulla seconda casa. Inserendo tutto il credito, il riepilogo segnala che il saldo non può essere negativo.</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>IMU 3918: 412,60 €, arrotondati a 413 €</li>
+                <li>Erario 4001 anno 2025, colonna crediti: 413,00 € invece di 850,00 €</li>
+                <li>Saldo: 0,00 €</li>
+                <li>Credito residuo da usare in un F24 successivo: 437,00 €</li>
+                </ul>
+                <p>Il modello chiude a zero e va trasmesso con i servizi dell'Agenzia delle Entrate, direttamente con Fisconline o tramite un CAF. Allo sportello non verrebbe accettato, perché non c'è nulla da addebitare.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: cedolare secca e IMU su due Comuni</h3>
+                <p>Un proprietario versa a giugno il primo acconto della cedolare secca e l'acconto IMU di due appartamenti in Comuni diversi.</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Erario 1840, anno 2026: 620,00 €</li>
+                <li>IMU 3918, primo Comune: 234,49 €, arrotondati a 234 €</li>
+                <li>IMU 3918, secondo Comune: 101,50 €, arrotondati a 102 €</li>
+                <li>Totale da versare: 956,00 €</li>
+                </ul>
+                <p>Ogni riga IMU riporta il codice catastale del proprio Comune: sommare i due importi su una sola riga assegnerebbe tutto il versamento a un unico ente, e l'altro Comune lo considererebbe omesso.</p>
+              </div>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa accade in caso di Utilizzo di Credito Inesistente?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La compensazione in F24 di un credito ancorato a una situazione non reale o generato tramite artifici contabili e frode configura la fattispecie di "inesistenza del credito". A norma della Riforma introdotta dal D.Lgs. 87/2024, la sanzione irrogabile è pari al 70% del credito indebitamente utilizzato. In conclamati casi di frode o simulazione contabile, tale aliquota viene incrementata dalla metà al doppio, attestandosi tra il 105% e il 140% del valore, con termine di decadenza per l'accertamento prorogato all'ottavo anno successivo all'utilizzo.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Qual è la differenza sanzionatoria per un Credito Non Spettante?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                A differenza del credito inesistente, il "credito non spettante" deriva da meri errori formali (ad esempio, il superamento in buona fede del plafond annuo consentito) o da violazioni rilevabili in via immediata tramite il controllo automatizzato (ex art. 36-bis D.P.R. 600/73). La sanzione per questa infrazione (anch'essa revisionata dal D.Lgs. 87/2024) è ridotta al 25% dell'importo indebitamente utilizzato in compensazione, e i termini di accertamento rimangono fissati alla prescrizione ordinaria (quinto anno successivo alla presentazione della dichiarazione).
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa comporta tentare la compensazione violando il blocco dei 50.000 euro?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il tentativo di inoltrare un Modello F24 recante compensazioni, mentre pendono iscrizioni a ruolo definitive e non sospese superiori alla soglia dei 50.000 euro (L. 199/2025), comporta lo scarto informatico immediato della delega. Ai fini fiscali, il versamento è considerato come "mai effettuato", innescando a carico del contribuente l'applicazione delle sanzioni pecuniarie previste per l'omesso versamento, le quali ammontano al 25% dell'importo del tributo originariamente dovuto.
+              </p>
+            </details>
+
+             <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Cosa devo fare in caso di errore nell'indicazione del codice tributo?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                L'inserimento di un codice tributo inesatto indirizza il versamento verso un capitolo di bilancio errato. Per sanare la posizione senza incorrere in sanzioni o accertamenti ingiustificati, il contribuente deve inoltrare tempestivamente una comunicazione di rettifica formale avvalendosi del canale telematico CIVIS (messo a disposizione dall'Agenzia delle Entrate), richiedendo la riassegnazione interna dell'incasso alla voce impositiva corretta.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Pubblicità Extra per Dispositivi Mobili -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/compilatore-moduli.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

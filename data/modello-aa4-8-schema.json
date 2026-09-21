@@ -1,0 +1,588 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello AA4/8. Il PDF dell'Agenzia e' gia' compilabile: scripts/prepara-modelli-codice-fiscale.py ne sistema i pettini e il codice tipologia richiedente. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-aa4-8.pdf.",
+ "tabelle": {},
+ "modelli": {
+  "AA48": {
+   "codice": "AA4/8",
+   "nome": "Modello AA4/8",
+   "sottotitolo": "Codice fiscale e tessera sanitaria — persone fisiche",
+   "descrizione": "Domanda di attribuzione del codice fiscale, comunicazione di variazione dati, richiesta del tesserino o del duplicato della Tessera Sanitaria, comunicazione di decesso. Per le persone fisiche.",
+   "pdf": "/assets/pdf/modello-aa4-8-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-aa4-8.pdf",
+   "testata": {
+    "riferimentoNomeFile": "anagrafica.cognome"
+   },
+   "passi": [
+    {
+     "id": "richiesta",
+     "titolo": "Che cosa chiedi",
+     "descrizione": "Il Quadro A del modello. Si indica chi presenta la domanda e che cosa si chiede: le richieste si possono anche combinare.",
+     "campi": [
+      {
+       "id": "tipologia",
+       "type": "radio",
+       "label": "Chi presenta la domanda",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "D",
+         "label": "D — per me stesso (richiesta diretta)",
+         "pdf": "richiesta diretta"
+        },
+        {
+         "value": "T",
+         "label": "T — per un'altra persona (soggetto terzo)",
+         "pdf": "richiesta per soggetto terzo"
+        }
+       ],
+       "help": "La richiesta diretta si presenta con un documento d'identità valido. Quella per un soggetto terzo vale per esempio per il genitore che chiede il codice fiscale del figlio, per l'erede di un deceduto o per chi indica in dichiarazione un familiare a carico. In entrambi i casi puoi delegare un'altra persona a presentare il modello."
+      },
+      {
+       "id": "codiceTipologiaD",
+       "pdf": "codice_tipologia_richiedente",
+       "type": "select",
+       "options": [
+        {
+         "value": "01",
+         "label": "01 — Studente non residente, per iscrizione a scuola o università"
+        },
+        {
+         "value": "02",
+         "label": "02 — Lavoratore non residente"
+        },
+        {
+         "value": "03",
+         "label": "03 — Soggetto temporaneamente presente sul territorio dello Stato"
+        },
+        {
+         "value": "04",
+         "label": "04 — Altre tipologie di richiesta diretta"
+        }
+       ],
+       "label": "Codice tipologia richiedente",
+       "width": "twothirds",
+       "showIf": {
+        "campo": "tipologia",
+        "in": [
+         "D"
+        ]
+       },
+       "help": "Si compila soltanto quando chiedi l'attribuzione di un nuovo codice fiscale (casella 1). Negli altri casi lascia vuoto."
+      },
+      {
+       "id": "codiceTipologiaT",
+       "pdf": "codice_tipologia_richiedente",
+       "type": "select",
+       "options": [
+        {
+         "value": "10",
+         "label": "10 — Genitore (o chi ne fa le veci) per un minore"
+        },
+        {
+         "value": "11",
+         "label": "11 — Rappresentante di soggetto con limitata capacità di agire"
+        },
+        {
+         "value": "12",
+         "label": "12 — Chi deve indicare il codice fiscale di un familiare a carico"
+        },
+        {
+         "value": "13",
+         "label": "13 — Erede per un deceduto (dichiarazione di successione, altro)"
+        },
+        {
+         "value": "14",
+         "label": "14 — Ente o associazione di assistenza sociale, per uno straniero in condizione disagiata"
+        },
+        {
+         "value": "15",
+         "label": "15 — Istituto di detenzione, per un detenuto da avviare al lavoro"
+        },
+        {
+         "value": "16",
+         "label": "16 — Organo della giustizia, per il recupero di crediti erariali"
+        },
+        {
+         "value": "17",
+         "label": "17 — Soggetto tenuto a indicare il codice fiscale di terzi (banca, ente previdenziale, ASD)"
+        },
+        {
+         "value": "18",
+         "label": "18 — Altre tipologie di richiesta per soggetto terzo"
+        }
+       ],
+       "label": "Codice tipologia richiedente",
+       "width": "twothirds",
+       "showIf": {
+        "campo": "tipologia",
+        "in": [
+         "T"
+        ]
+       },
+       "help": "Si compila soltanto quando chiedi l'attribuzione di un nuovo codice fiscale (casella 1). Se sei un erede che richiede il codice fiscale di un deceduto (codice 13) devi barrare anche la comunicazione di decesso e indicarne la data."
+      },
+      {
+       "id": "attribuzione",
+       "pdf": "attribuzione codice fiscale",
+       "type": "check",
+       "label": "1 · Attribuzione del codice fiscale",
+       "width": "half",
+       "help": "Per chi il codice fiscale non ce l'ha ancora. Di norma viene attribuito in automatico: dal Comune per i neonati, dallo Sportello Unico per l'Immigrazione o dalla Questura per i cittadini stranieri. Questo modello serve quando quel passaggio non è avvenuto."
+      },
+      {
+       "id": "tesserino",
+       "pdf": "attribuzione tesserino",
+       "type": "check",
+       "label": "Richiesta del tesserino di codice fiscale",
+       "width": "half",
+       "showIf": {
+        "campo": "attribuzione",
+        "vero": true
+       },
+       "help": "Da barrare solo da chi NON ha diritto all'assistenza del Servizio Sanitario Nazionale. Chi ne ha diritto riceve la Tessera Sanitaria in automatico e non deve barrare nulla; lo stesso vale per i neonati, che ricevono una tessera valida un anno."
+      },
+      {
+       "id": "variazione",
+       "pdf": "variazione dati",
+       "type": "check",
+       "label": "2 · Variazione dei dati",
+       "width": "half",
+       "help": "Per comunicare che sono cambiati i dati anagrafici, il domicilio fiscale o la residenza estera di chi il codice fiscale ce l'ha già."
+      },
+      {
+       "id": "cfVariazione",
+       "pdf": "codice fiscale_1",
+       "type": "cf",
+       "label": "Codice fiscale di cui variare i dati",
+       "width": "half",
+       "required": true,
+       "showIf": {
+        "campo": "variazione",
+        "vero": true
+       }
+      },
+      {
+       "id": "decesso",
+       "pdf": "comunicazione decesso",
+       "type": "check",
+       "label": "3 · Comunicazione di decesso",
+       "width": "half",
+       "help": "Serve il codice fiscale del deceduto e la data del decesso."
+      },
+      {
+       "id": "cfDecesso",
+       "pdf": "codice fiscale_2",
+       "type": "cf",
+       "label": "Codice fiscale del deceduto",
+       "width": "half",
+       "required": true,
+       "showIf": {
+        "campo": "decesso",
+        "vero": true
+       }
+      },
+      {
+       "id": "dataDecesso",
+       "pdf": "data decesso",
+       "type": "data",
+       "label": "Data del decesso",
+       "width": "third",
+       "required": true,
+       "showIf": {
+        "campo": "decesso",
+        "vero": true
+       }
+      },
+      {
+       "id": "certificato",
+       "pdf": "richiesta certificato",
+       "type": "check",
+       "label": "4 · Richiesta del certificato di codice fiscale",
+       "width": "half",
+       "help": "Si può chiedere anche insieme all'attribuzione del codice fiscale o alla variazione dei dati."
+      },
+      {
+       "id": "cfCertificato",
+       "pdf": "codice fiscale_3",
+       "type": "cf",
+       "label": "Codice fiscale per cui chiedi il certificato",
+       "width": "half",
+       "required": true,
+       "showIf": {
+        "campo": "certificato",
+        "vero": true
+       }
+      },
+      {
+       "id": "duplicato",
+       "pdf": "richiesta duplicato",
+       "type": "check",
+       "label": "5 · Duplicato del tesserino o della Tessera Sanitaria",
+       "width": "half",
+       "help": "Attenzione: il duplicato della Tessera Sanitaria in scadenza non va richiesto. La nuova tessera viene emessa in automatico e recapitata alla residenza, se il diritto all'assistenza non è decaduto."
+      },
+      {
+       "id": "cfDuplicato",
+       "pdf": "codice fiscale_4",
+       "type": "cf",
+       "label": "Codice fiscale per cui chiedi il duplicato",
+       "width": "half",
+       "required": true,
+       "showIf": {
+        "campo": "duplicato",
+        "vero": true
+       }
+      },
+      {
+       "id": "motivazione",
+       "pdf": "motivazione",
+       "type": "select",
+       "label": "Motivazione del duplicato",
+       "width": "third",
+       "showIf": {
+        "campo": "duplicato",
+        "vero": true
+       },
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Furto o smarrimento"
+        },
+        {
+         "value": "2",
+         "label": "2 — Mancato recapito"
+        },
+        {
+         "value": "3",
+         "label": "3 — Sostituzione tecnica di una tessera deteriorata"
+        }
+       ],
+       "help": "Obbligatoria per il duplicato della Tessera Sanitaria."
+      }
+     ]
+    },
+    {
+     "id": "anagrafica",
+     "titolo": "Dati anagrafici",
+     "descrizione": "Il Quadro B. Va compilato sempre, qualunque sia il tipo di richiesta, con i dati della persona a cui si riferisce il codice fiscale.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "quadroB_cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half",
+       "help": "Per esteso, senza abbreviazioni e senza titoli, come sul documento d'identità. Niente caratteri speciali: Müller si scrive MUELLER."
+      },
+      {
+       "id": "nome",
+       "pdf": "quadroB_nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "sesso",
+       "pdf": "quadroc_sesso",
+       "type": "select",
+       "label": "Sesso",
+       "required": true,
+       "width": "quarter",
+       "options": [
+        {
+         "value": "M",
+         "label": "M — maschile"
+        },
+        {
+         "value": "F",
+         "label": "F — femminile"
+        }
+       ]
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "data di nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "quadroB_comune",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita",
+       "required": true,
+       "width": "half",
+       "help": "Il comune per esteso. Chi è nato all'estero indica lo Stato."
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "quadroB_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "required": true,
+       "width": "quarter",
+       "help": "La sigla automobilistica di due lettere: Roma = RM. Per chi è nato all'estero, EE."
+      }
+     ]
+    },
+    {
+     "id": "residenza",
+     "titolo": "Residenza in Italia",
+     "opzionale": true,
+     "descrizione": "Il Quadro C. Chi risiede in Italia indica la residenza anagrafica. Chi risiede all'estero indica qui il domicilio fiscale, cioè il luogo dove produce il reddito, e compila anche il quadro della residenza estera. Se non ha né l'uno né l'altro, salta questo quadro.",
+     "campi": [
+      {
+       "id": "comune",
+       "pdf": "quadroC_comune",
+       "type": "testo",
+       "label": "Comune",
+       "width": "half"
+      },
+      {
+       "id": "provincia",
+       "pdf": "quadroC_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla automobilistica: Roma = RM."
+      },
+      {
+       "id": "cap",
+       "pdf": "quadroC_cap",
+       "type": "cap",
+       "label": "C.A.P.",
+       "width": "quarter"
+      },
+      {
+       "id": "tipologiaVia",
+       "pdf": "TIPOLOGIA",
+       "type": "select",
+       "label": "Tipologia",
+       "width": "quarter",
+       "options": [
+        {
+         "value": "Via",
+         "label": "Via"
+        },
+        {
+         "value": "Viale",
+         "label": "Viale"
+        },
+        {
+         "value": "Piazza",
+         "label": "Piazza"
+        },
+        {
+         "value": "Piazzale",
+         "label": "Piazzale"
+        },
+        {
+         "value": "Corso",
+         "label": "Corso"
+        },
+        {
+         "value": "Largo",
+         "label": "Largo"
+        },
+        {
+         "value": "Vicolo",
+         "label": "Vicolo"
+        },
+        {
+         "value": "Lungomare",
+         "label": "Lungomare"
+        }
+       ],
+       "help": "L'indirizzo va spezzato nei suoi elementi. VIA PARIGI 51/B si scrive: tipologia VIA, indirizzo PARIGI, numero civico 51/B."
+      },
+      {
+       "id": "indirizzo",
+       "pdf": "quadroC_indirizzo post",
+       "type": "testo",
+       "label": "Indirizzo (solo il nome)",
+       "width": "half",
+       "help": "Solo il toponimo, senza la tipologia: per VIA PARIGI si scrive PARIGI."
+      },
+      {
+       "id": "civico",
+       "pdf": "quadroC_numero civico",
+       "type": "testo",
+       "label": "Numero civico",
+       "width": "quarter",
+       "help": "Compreso ogni altro riferimento: 51/B, oppure 10 PAL. A."
+      },
+      {
+       "id": "frazione",
+       "pdf": "quadroC_frazione",
+       "type": "testo",
+       "label": "Frazione / altro",
+       "width": "half",
+       "help": "Frazione, località, scala, interno, chilometro, «presso», e ogni altra indicazione utile a individuare l'indirizzo senza equivoci."
+      }
+     ]
+    },
+    {
+     "id": "estero",
+     "titolo": "Residenza estera",
+     "opzionale": true,
+     "descrizione": "Il Quadro D. È obbligatorio per chi non risiede in Italia, e va compilato in tutti i suoi campi, senza abbreviazioni.",
+     "campi": [
+      {
+       "id": "statoEstero",
+       "pdf": "quadroD_stato estero",
+       "type": "testo",
+       "label": "Stato estero",
+       "width": "half"
+      },
+      {
+       "id": "statoFederato",
+       "pdf": "quadroD_stato federato",
+       "type": "testo",
+       "label": "Stato federato, provincia, contea",
+       "width": "half"
+      },
+      {
+       "id": "localita",
+       "pdf": "quadroD_località di residenza",
+       "type": "testo",
+       "label": "Località di residenza",
+       "width": "half"
+      },
+      {
+       "id": "codicePostale",
+       "pdf": "quadroD_codice postale",
+       "type": "testo",
+       "label": "Codice postale",
+       "width": "quarter"
+      },
+      {
+       "id": "indirizzoEstero",
+       "pdf": "quadroD_indirizzo",
+       "type": "testo",
+       "label": "Indirizzo",
+       "width": "full"
+      }
+     ]
+    },
+    {
+     "id": "altriCodici",
+     "titolo": "Altri codici fiscali e allegati",
+     "opzionale": true,
+     "descrizione": "Il Quadro E e la sezione allegati. Servono a chi si è visto attribuire più di un codice fiscale e vuole collegarli a quello corretto, e a chi allega documenti.",
+     "campi": [
+      {
+       "id": "altroCf1",
+       "pdf": "quadro E_codice fiscale_1",
+       "type": "cf",
+       "label": "Altro codice fiscale già attribuito",
+       "width": "half",
+       "help": "Capita quando la stessa persona risulta registrata due volte con dati leggermente diversi. Indicando qui il codice da collegare, l'ufficio li unifica."
+      },
+      {
+       "id": "altroCf2",
+       "pdf": "quadro E_codice fiscale_2",
+       "type": "cf",
+       "label": "Ulteriore codice fiscale",
+       "width": "half"
+      },
+      {
+       "id": "allegati1",
+       "pdf": "allegati 1",
+       "type": "testo",
+       "label": "Allegati · prima riga",
+       "width": "full",
+       "help": "L'elenco dei documenti allegati al modello, che attestano quanto dichiarato: per esempio «copia del passaporto» o «attestazione di identità del minore»."
+      },
+      {
+       "id": "allegati2",
+       "pdf": "allegati 2",
+       "type": "testo",
+       "label": "Allegati · seconda riga",
+       "width": "full"
+      }
+     ]
+    },
+    {
+     "id": "sottoscrizione",
+     "titolo": "Sottoscrizione e delega",
+     "descrizione": "Il modello va firmato dal richiedente, a pena di nullità. Se lo presenta un delegato, va compilata anche la delega e firmata dal delegante.",
+     "campi": [
+      {
+       "id": "cfRichiedenteEnte",
+       "pdf": "sottoscrizione_codice fiscale_1",
+       "type": "cfNum",
+       "label": "Codice fiscale del richiedente diverso da persona fisica",
+       "width": "half",
+       "help": "Le 11 cifre della banca, dell'ente previdenziale o dell'organo di giustizia che presenta la richiesta. Solo in questo caso; se chiedi per te o come persona fisica, lascia vuoto."
+      },
+      {
+       "id": "cfSottoscrittore",
+       "pdf": "cf_sottoscrittore",
+       "type": "cf",
+       "label": "Codice fiscale di chi firma",
+       "width": "half",
+       "help": "Si compila quando la richiesta è per un soggetto terzo: è il codice fiscale del genitore, dell'erede o del rappresentante legale che firma. Nella richiesta diretta basta la firma."
+      },
+      {
+       "id": "dataFirma",
+       "pdf": "data sottoscrizione",
+       "type": "data",
+       "label": "Data della firma",
+       "width": "third"
+      },
+      {
+       "id": "delegante",
+       "pdf": "delega_io sottoscritto",
+       "type": "testo",
+       "label": "Delega · io sottoscritto/a",
+       "width": "half",
+       "help": "Da compilare solo se porti il modello all'ufficio tramite un'altra persona. Il delegato deve esibire il proprio documento e la copia di quello del delegante."
+      },
+      {
+       "id": "delegato",
+       "pdf": "delega",
+       "type": "testo",
+       "label": "delego",
+       "width": "half"
+      },
+      {
+       "id": "delegatoNatoA",
+       "pdf": "delega_nato a",
+       "type": "testo",
+       "label": "Delegato · nato/a a",
+       "width": "half"
+      },
+      {
+       "id": "delegatoNatoIl",
+       "pdf": "delega_il",
+       "type": "testo",
+       "label": "il",
+       "width": "quarter",
+       "help": "Data di nascita del delegato, per esempio 07/03/1985."
+      },
+      {
+       "id": "cfDelegato",
+       "pdf": "cf_delega",
+       "type": "cf",
+       "label": "Codice fiscale del delegato",
+       "width": "half"
+      },
+      {
+       "id": "dataDelega",
+       "pdf": "data delega",
+       "type": "data",
+       "label": "Data della delega",
+       "width": "third"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

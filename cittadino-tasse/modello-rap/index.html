@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modello RAP online: registrare comodato d'uso gratuito e preliminare — StrumentiUtili.it</title>
+  <meta name="description" content="Compila il modello RAP dell'Agenzia delle Entrate nel browser: registrazione del contratto di comodato d'uso gratuito, del preliminare di compravendita e del verbale di distribuzione utili. Guida campo per campo e PDF ufficiale pronto da stampare." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/modello-rap/" />
+
+  <!-- Favicon e Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Modello RAP online: registrare comodato d'uso gratuito e preliminare — StrumentiUtili.it" />
+  <meta property="og:description" content="Registrare un comodato d'uso gratuito o un preliminare di compravendita: il modello RAP compilato nel browser, senza inviare nulla a un server." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/modello-rap/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* --- Compilatore guidato dei modelli AA9/12 e AA7/10 -------------------
+       CSS scritto a mano: la build Tailwind analizza solo i file .html, quindi
+       le classi generate da JavaScript non finirebbero nel foglio compilato. */
+    .mp-scelta { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-bottom: 1.5rem; }
+    @media (min-width: 640px) { .mp-scelta { grid-template-columns: 1fr 1fr; } }
+    .mp-scelta-btn { text-align: left; padding: 1rem 1.15rem; border: 2px solid #e5e7eb; border-radius: .9rem;
+      background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s, background .15s; }
+    .mp-scelta-btn strong { display: block; font-size: 1.05rem; color: #111827; }
+    .mp-scelta-btn span { display: block; font-size: .78rem; color: #6b7280; margin-top: .15rem; line-height: 1.35; }
+    .mp-scelta-btn:hover { border-color: #c7d2fe; }
+    .mp-scelta-btn.mp-scelta-attiva { border-color: #4f46e5; background: #eef2ff; box-shadow: 0 1px 3px rgba(79,70,229,.18); }
+    .mp-scelta-btn.mp-scelta-attiva strong { color: #3730a3; }
+
+    .mp-guscio { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
+    @media (min-width: 900px) { .mp-guscio { grid-template-columns: 245px minmax(0, 1fr); } }
+
+    .mp-passi { display: flex; flex-direction: row; gap: .35rem; overflow-x: auto; padding-bottom: .35rem; }
+    @media (min-width: 900px) { .mp-passi { flex-direction: column; overflow: visible; position: sticky; top: 6rem; } }
+    .mp-passo-voce { display: flex; align-items: center; gap: .55rem; padding: .5rem .6rem; border-radius: .55rem;
+      border: 1px solid transparent; background: transparent; cursor: pointer; text-align: left; white-space: nowrap; }
+    @media (min-width: 900px) { .mp-passo-voce { white-space: normal; } }
+    .mp-passo-voce:hover { background: #f3f4f6; }
+    .mp-passo-numero { flex: 0 0 auto; width: 1.4rem; height: 1.4rem; border-radius: 999px; background: #e5e7eb;
+      color: #4b5563; font-size: .68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+    .mp-passo-nome { font-size: .76rem; color: #4b5563; line-height: 1.25; }
+    .mp-passo-attivo { background: #eef2ff; border-color: #c7d2fe; }
+    .mp-passo-attivo .mp-passo-numero { background: #4f46e5; color: #fff; }
+    .mp-passo-attivo .mp-passo-nome { color: #3730a3; font-weight: 700; }
+    .mp-passo-saltato .mp-passo-nome { color: #9ca3af; }
+
+    .mp-pannello { background: #fff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04); min-width: 0; }
+    @media (min-width: 640px) { .mp-pannello { padding: 2rem; } }
+    .mp-titolo { font-size: 1.3rem; font-weight: 800; color: #111827; margin: 0 0 .4rem; }
+    .mp-descrizione { font-size: .86rem; color: #4b5563; line-height: 1.6; margin: 0 0 1.25rem; }
+    .mp-saltato { font-size: .82rem; color: #6b7280; background: #f9fafb; border: 1px dashed #e5e7eb;
+      border-radius: .6rem; padding: .85rem 1rem; line-height: 1.55; }
+
+    .mp-griglia { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+    .mp-campo { grid-column: span 12; min-width: 0; }
+    @media (min-width: 720px) {
+      .mp-c3 { grid-column: span 3; } .mp-c4 { grid-column: span 4; }
+      .mp-c6 { grid-column: span 6; } .mp-c8 { grid-column: span 8; } .mp-c12 { grid-column: span 12; }
+    }
+
+    .mp-etichetta-riga { display: flex; align-items: center; gap: .4rem; margin-bottom: .3rem; }
+    .mp-etichetta { font-size: .72rem; font-weight: 700; color: #374151; line-height: 1.3; }
+    .mp-obb { color: #dc2626; }
+    .mp-info { flex: 0 0 auto; width: 1.15rem; height: 1.15rem; border-radius: 999px; border: none;
+      background: #eef2ff; color: #4f46e5; font-size: .68rem; font-weight: 800; font-style: italic;
+      cursor: pointer; line-height: 1; }
+    .mp-info:hover { background: #e0e7ff; }
+    .mp-info:focus-visible { outline: 2px solid #4f46e5; outline-offset: 1px; }
+
+    .mp-input { width: 100%; padding: .5rem .7rem; border: 1px solid #d1d5db; border-radius: .5rem;
+      font-size: .875rem; color: #111827; background: #fff; box-sizing: border-box; }
+    .mp-input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 2px rgba(79,70,229,.25); }
+    .mp-maiuscolo { text-transform: uppercase; }
+
+    .mp-guida { margin-top: .45rem; border: 1px solid #c7d2fe; background: #eef2ff; border-radius: .55rem;
+      padding: .65rem .8rem; font-size: .76rem; color: #374151; line-height: 1.55; }
+    .mp-guida[hidden] { display: none !important; }
+    .mp-nota { font-size: .76rem; color: #6b7280; line-height: 1.55; margin: .3rem 0 .6rem; }
+    .mp-errore { font-size: .74rem; color: #b91c1c; font-weight: 600; margin: .35rem 0 0; }
+
+    .mp-fieldset { border: 1px solid #e5e7eb; border-radius: .75rem; padding: 1rem; margin: 0; min-width: 0; }
+    .mp-legenda { font-size: .8rem; font-weight: 800; color: #111827; padding: 0 .35rem; }
+    .mp-radio-gruppo { display: flex; flex-direction: column; gap: .45rem; }
+    .mp-radio-gruppo-inline { flex-direction: row; flex-wrap: wrap; gap: .75rem; }
+    .mp-radio, .mp-checkbox, .mp-switch { display: flex; align-items: flex-start; gap: .55rem; cursor: pointer; }
+    .mp-radio input, .mp-checkbox input, .mp-switch input { margin-top: .2rem; flex: 0 0 auto;
+      width: 1rem; height: 1rem; accent-color: #4f46e5; }
+    .mp-radio-testo { display: block; font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-radio-testo strong { display: block; font-weight: 700; color: #111827; }
+    .mp-radio-testo em { display: block; font-style: normal; font-size: .75rem; color: #6b7280; margin-top: .12rem; line-height: 1.5; }
+    .mp-radio-inline span { font-size: .8rem; color: #374151; }
+    .mp-checkbox span { font-size: .82rem; color: #374151; line-height: 1.45; }
+    .mp-switch { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: .6rem; padding: .7rem .85rem; }
+    .mp-switch span { font-size: .82rem; font-weight: 600; color: #374151; }
+    .mp-switch-grande { margin-bottom: 1.25rem; }
+
+    .mp-riga { border-top: 1px dashed #e5e7eb; padding-top: .9rem; margin-top: .9rem; }
+    .mp-riga:first-of-type { border-top: none; padding-top: 0; margin-top: .5rem; }
+    .mp-riga-numero { display: inline-block; font-size: .68rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .04em; color: #6b7280; margin-bottom: .6rem; }
+
+    .mp-nav { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap;
+      margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #e5e7eb; }
+    .mp-conta { font-size: .74rem; color: #6b7280; font-weight: 600; }
+    .mp-btn { padding: .6rem 1rem; border-radius: .55rem; font-size: .84rem; font-weight: 700;
+      cursor: pointer; border: 1px solid #d1d5db; background: #fff; color: #374151; }
+    .mp-btn:hover:not(:disabled) { background: #f9fafb; }
+    .mp-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .mp-btn-forte { background: #4f46e5; border-color: transparent; color: #fff; }
+    .mp-btn-forte:hover:not(:disabled) { background: #4338ca; }
+    .mp-btn-lieve { background: #fff; }
+
+    .mp-avviso { border-radius: .6rem; padding: .8rem 1rem; font-size: .82rem; line-height: 1.55; margin-bottom: 1.25rem; }
+    .mp-avviso[hidden] { display: none !important; }
+    .mp-avviso-info { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
+    .mp-avviso-ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .mp-avviso-errore { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    .mp-calcolato { display: block; background: #f1f5f9; color: #0f172a; font-weight: 700;
+      border-style: dashed; text-align: right; }
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px; /* Riserva lo spazio per evitare il CLS */
+      background-color: #f8fafc; /* Grigio ultra chiaro neutro */
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <!-- Script AdSense -->
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/@pdf-lib/fontkit/dist/fontkit.umd.min.js" crossorigin="anonymous"></script>
+  <script defer src="/js/codice-fiscale.js"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cittadino e Tasse",
+            "item": "https://strumentiutili.it/cittadino-tasse/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Modello RAP",
+            "item": "https://strumentiutili.it/cittadino-tasse/modello-rap/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Compilatore Modello RAP",
+        "url": "https://strumentiutili.it/cittadino-tasse/modello-rap/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi browser moderno",
+        "inLanguage": "it-IT",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Compila nel browser il modello RAP dell'Agenzia delle Entrate per registrare un contratto di comodato d'uso gratuito, un contratto preliminare di compravendita o un verbale di distribuzione degli utili societari. I dati non lasciano il dispositivo.",
+        "featureList": [
+          "Procedura guidata sui quadri del modello",
+          "Spiegazioni tratte dalle istruzioni ufficiali",
+          "Compilazione del PDF ministeriale originale",
+          "Dati catastali degli immobili e quadro dei soci",
+          "Elaborazione interamente nel browser, senza server"
+        ],
+        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/schede/pagamenti/registrazione-atti/modelli-e-istruzioni-registrazione-atti"
+      },
+      {
+        "@type": "HowTo",
+        "name": "Come registrare un contratto di comodato d'uso gratuito con il modello RAP",
+        "inLanguage": "it-IT",
+        "totalTime": "PT15M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Indica l'ufficio e il tipo di atto",
+            "text": "Scegli l'ufficio territoriale dell'Agenzia delle Entrate, indica il codice 1 per il comodato, la data dell'atto e quanti fogli e copie lo compongono."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Inserisci chi chiede la registrazione",
+            "text": "Il richiedente e' il soggetto obbligato a registrare: nel comodato puo' essere chi da' il bene o chi lo riceve."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Elenca le parti",
+            "text": "Il comodante fra i danti causa, il comodatario fra gli aventi causa, ognuno con codice fiscale e dati anagrafici."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Compila il quadro del comodato",
+            "text": "Durata, tipo di comodato, natura del bene e, se e' un immobile, i dati catastali presi dalla visura."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Scarica e presenta",
+            "text": "Il compilatore riempie il PDF ufficiale. Stampalo, firmalo e presentalo insieme a una copia dell'atto e dei documenti d'identita' delle parti."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Registrare il comodato serve davvero per lo sconto IMU del 50%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si'. La riduzione del 50% della base imponibile IMU per l'abitazione concessa in comodato a un figlio o a un genitore richiede un contratto registrato, oltre agli altri requisiti di legge: il comodante deve possedere al massimo un'altra abitazione, principale e nello stesso Comune, e l'immobile non deve essere di categoria A/1, A/8 o A/9. Senza registrazione lo sconto non spetta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali atti si registrano con il modello RAP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tre tipologie: il contratto di comodato d'uso gratuito (codice 1), il contratto preliminare di compravendita (codice 2) e il verbale di distribuzione degli utili societari (codice 3). Per i contratti di locazione si usa invece il modello RLI."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cosa devo allegare alla richiesta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'atto firmato dalle parti con i suoi allegati e la copia dei documenti d'identita' in corso di validita' di chi lo ha sottoscritto, riuniti in un unico file nei formati ammessi TIF, TIFF o PDF/A."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto si paga per registrare un preliminare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'imposta di registro e' dovuta in misura fissa sull'atto, piu' lo 0,50% sulla caparra confirmatoria e il 3% sugli acconti non soggetti a IVA. Le somme versate si recuperano poi come credito sull'imposta dovuta per il rogito definitivo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati vengono inviati da qualche parte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La compilazione e la creazione del PDF avvengono interamente nel browser, sul tuo dispositivo. Nessun dato viene trasmesso a un server: puoi staccare la connessione dopo aver aperto la pagina e lo strumento continua a funzionare."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block" data-f24-model="elide">
+
+  <!-- Header Navigazione Principale -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Compilatore del modello RAP -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Pubblicità Above the Fold -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">&larr; Torna a Cittadino &amp; Tasse</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>&#127963;&#65039;</span> Cittadino &amp; Tasse
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Modello RAP: registrare un atto privato online</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Il <strong>modello RAP</strong> serve a chiedere all'Agenzia delle Entrate la registrazione di tre
+          tipi di atto privato: il <strong>contratto di comodato d'uso gratuito</strong>, il
+          <strong>contratto preliminare di compravendita</strong> &mdash; il compromesso &mdash; e il
+          <strong>verbale di distribuzione degli utili</strong> societari. Qui lo compili passo per passo e
+          scarichi il PDF ministeriale gi&agrave; riempito.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg">
+            <span>&#128274; Privacy garantita:</span> nessun dato viene inviato a server esterni.
+          </div>
+        </div>
+      </section>
+
+      <!-- BANNER INTELLIGENTE: dallo sconto IMU per comodato -->
+      <aside id="ponte-imu" hidden
+             class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl" aria-hidden="true">&#127969;</span>
+          <div class="flex-1">
+            <h2 class="text-sm font-bold text-amber-900">Hai calcolato l'IMU con la riduzione per comodato</h2>
+            <p class="mt-1 text-xs text-amber-800 leading-relaxed">
+              Nel <a href="/cittadino-tasse/calcolo-imu/" class="underline font-semibold">calcolatore IMU</a>
+              risulta spuntata la riduzione del 50% per comodato a parenti. Quello sconto spetta
+              <strong>solo se il contratto &egrave; registrato</strong>: &egrave; esattamente quello che fai
+              con questo modello, indicando il codice 1 come tipologia di atto.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button type="button" id="ponte-imu-usa"
+                      class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+                Imposta il comodato nel modello
+              </button>
+              <button type="button" id="ponte-imu-ignora"
+                      class="text-xs font-bold text-amber-700 hover:text-amber-900 px-3 py-2">
+                No, grazie
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- BANNER INTELLIGENTE: dal calcolo delle imposte di acquisto casa -->
+      <aside id="ponte-casa" hidden
+             class="mb-6 rounded-xl border border-sky-200 bg-sky-50 p-5 shadow-sm">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl" aria-hidden="true">&#128273;</span>
+          <div class="flex-1">
+            <h2 class="text-sm font-bold text-sky-900">Hai calcolato le imposte di un acquisto casa</h2>
+            <p class="mt-1 text-xs text-sky-800 leading-relaxed">
+              Nel <a href="/cittadino-tasse/imposte-acquisto-casa/" class="underline font-semibold">calcolatore delle imposte di acquisto</a>
+              risulta un prezzo di <strong id="ponte-casa-prezzo"></strong>. Se prima del rogito firmate un
+              compromesso, va registrato con questo modello: vuoi riportare qui il prezzo?
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button type="button" id="ponte-casa-usa"
+                      class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+                S&igrave;, prepara il preliminare
+              </button>
+              <button type="button" id="ponte-casa-ignora"
+                      class="text-xs font-bold text-sky-700 hover:text-sky-900 px-3 py-2">
+                No, grazie
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- COMPILATORE GUIDATO DEL MODELLO RAP -->
+      <section id="mp-app" class="mb-8"
+               data-schema="/data/modello-rap-schema.json"
+               data-stato="modello_rap"
+               data-modello="RAP">
+
+        <div class="mb-6 border-b border-gray-200 pb-4">
+          <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">&#9889; 100% nel browser - nessun dato inviato a un server</span>
+          <h2 class="text-2xl font-bold text-gray-900">Compila il modello RAP</h2>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            I primi quattro passi valgono per tutti. Poi si attiva <strong>solo il quadro del proprio
+            atto</strong>: comodato, preliminare oppure distribuzione utili. Le spiegazioni di ogni campo
+            vengono dalle istruzioni ufficiali dell'Agenzia delle Entrate.
+          </p>
+        </div>
+
+        <div class="mp-guscio">
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <div class="mp-pannello">
+            <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
+            <div id="mp-corpo"></div>
+            <div id="mp-nav" class="mp-nav"></div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/registrazione-atti/modelli-e-istruzioni-registrazione-atti"
+             target="_blank" rel="noopener"
+             class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#127963;&#65039; Pagina ufficiale del modello RAP</a>
+          <a href="/assets/pdf/istruzioni-rap.pdf" target="_blank" rel="noopener"
+             class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#128218; Istruzioni per la compilazione (PDF)</a>
+          <a href="/cittadino-tasse/calcolo-imu/" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#127969; Ricalcola l'IMU con lo sconto del comodato</a>
+          <button id="mp-azzera" type="button" class="text-xs font-bold text-gray-500 hover:text-red-600 transition">
+            &#128465;&#65039; Cancella i dati del modello
+          </button>
+        </div>
+
+        <noscript>
+          <p class="mt-4 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-4">
+            Il compilatore funziona interamente nel browser e richiede JavaScript.
+          </p>
+        </noscript>
+      </section>
+
+      <div class="mb-8 rounded-xl border border-gray-200 bg-white p-5">
+        <h2 class="text-sm font-bold text-gray-900">Che cosa allegare alla richiesta</h2>
+        <ul class="mt-2 space-y-1.5 text-xs text-gray-600 leading-relaxed list-disc list-inside">
+          <li>L'<strong>atto firmato dalle parti</strong>, con i suoi eventuali allegati.</li>
+          <li>La <strong>copia dei documenti d'identit&agrave;</strong> in corso di validit&agrave; di chi lo
+              ha sottoscritto.</li>
+          <li>Tutto riunito in <strong>un unico file</strong>, nei formati ammessi TIF, TIFF o PDF/A.</li>
+        </ul>
+        <p class="mt-3 text-xs text-gray-500">
+          Il testo dell'atto deve essere leggibile da procedure automatiche, quindi dattiloscritto o in
+          formato elettronico: un atto scritto a mano fa fallire l'invio telematico.
+        </p>
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sidebar Fissa -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Quale codice scegliere</h3>
+            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">RAP</span>
+          </div>
+          <dl class="space-y-3 text-xs leading-relaxed">
+            <div><dt class="font-bold text-indigo-300">1 &middot; Comodato</dt>
+              <dd class="text-gray-300">Presti un bene gratuitamente. Con un'abitazione ai parenti apre lo
+                sconto IMU del 50%.</dd></div>
+            <div><dt class="font-bold text-indigo-300">2 &middot; Preliminare</dt>
+              <dd class="text-gray-300">Il compromesso, prima del rogito dal notaio.</dd></div>
+            <div><dt class="font-bold text-indigo-300">3 &middot; Distribuzione utili</dt>
+              <dd class="text-gray-300">Il verbale con cui la societ&agrave; distribuisce l'utile ai soci.</dd></div>
+          </dl>
+          <p class="text-[11px] text-gray-400 leading-relaxed pt-1 border-t border-gray-800">
+            Per i <strong class="text-gray-200">contratti di locazione</strong> non si usa il RAP ma il
+            <a href="/cittadino-tasse/modello-rli/" class="underline hover:text-white">modello RLI</a>.
+          </p>
+          <div class="pt-1 space-y-2">
+            <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+              <span>&#128196;</span> Vai al compilatore
+            </a>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">
+              Il PDF scaricato &egrave; il modello ufficiale dell'Agenzia delle Entrate e resta modificabile.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-indigo-100 p-5">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3 border-b border-gray-100 pb-2">Prima e dopo</h3>
+          <a href="/cittadino-tasse/calcolo-imu/" class="block rounded-lg bg-indigo-50 border border-indigo-100 p-3 hover:bg-indigo-100 transition">
+            <span class="text-xs font-bold text-indigo-800 flex items-center gap-2"><span aria-hidden="true">&#127969;</span> Sconto IMU del 50%</span>
+            <span class="mt-1 block text-[11px] text-indigo-700 leading-relaxed">
+              Registrato il comodato, ricalcola l'IMU con la base imponibile dimezzata.
+            </span>
+          </a>
+          <a href="/cittadino-tasse/imposte-acquisto-casa/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
+            <span class="text-xs font-bold text-gray-800 flex items-center gap-2"><span aria-hidden="true">&#128273;</span> Imposte di acquisto</span>
+            <span class="mt-1 block text-[11px] text-gray-600 leading-relaxed">
+              Quanto pagherai al rogito, e quanto anticipi registrando il compromesso.
+            </span>
+          </a>
+          <a href="/cittadino-tasse/f24-editabile/f24-elide/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
+            <span class="text-xs font-bold text-gray-800 flex items-center gap-2"><span aria-hidden="true">&#129534;</span> Come si paga</span>
+            <span class="mt-1 block text-[11px] text-gray-600 leading-relaxed">
+              L'imposta di registro sugli atti privati si versa con il modello F24 Elide.
+            </span>
+          </a>
+        </div>
+
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#127968;</span> Modello RLI (locazioni)</a></li>
+            <li><a href="/cittadino-tasse/modello-69/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#128220;</span> Modello 69</a></li>
+            <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#127969;</span> Calcolatore IMU</a></li>
+            <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#128273;</span> Imposte acquisto casa</a></li>
+            <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#9878;&#65039;</span> Usufrutto e nuda propriet&agrave;</a></li>
+            <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">&#129534;</span> Modello F24 Elide</a></li>
+          </ul>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">&rarr;</span></a>
+        </nav>
+
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+
+      <!-- Scheda di affidabilit&agrave; E-E-A-T -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h2 class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
+        <div class="mt-3 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Il modulo</h3>
+            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+              &Egrave; il PDF ufficiale dell&rsquo;Agenzia delle Entrate, nella versione aggiornata al marzo
+              2026, presa dalla pagina
+              <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/registrazione-atti/modelli-e-istruzioni-registrazione-atti" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">Registrazione atti &mdash; Modelli e istruzioni</a>.
+              Il file non ha campi compilabili: le 295 caselle sono state ricostruite misurando i riquadri
+              bianchi del disegno, e poi verificate riempiendole una a una.
+            </p>
+          </div>
+          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Le spiegazioni</h3>
+            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+              Ogni campo riporta il testo delle
+              <a href="/assets/pdf/istruzioni-rap.pdf" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">istruzioni ministeriali</a>:
+              la tabella dei codici carica, la regola sui fogli da 4 facciate e 100 righe, la differenza fra
+              caparra confirmatoria e penitenziale.
+            </p>
+          </div>
+          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">I tuoi dati</h3>
+            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+              Non escono dal dispositivo. La compilazione e la scrittura del PDF avvengono in JavaScript nel
+              browser: dopo aver aperto la pagina puoi staccare la connessione e lo strumento continua a
+              funzionare. Quello che digiti resta in memoria locale finch&eacute; non premi
+              &laquo;Cancella i dati del modello&raquo;.
+            </p>
+          </div>
+          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Limiti dichiarati</h3>
+            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
+              Lo strumento compila e non presenta. Il RAP si invia per via telematica dall&rsquo;area
+              riservata dell&rsquo;Agenzia, allegando l&rsquo;atto e i documenti d&rsquo;identit&agrave;; il
+              PDF che scarichi qui ti serve a preparare e controllare i dati, e a portarli allo sportello o
+              all&rsquo;intermediario. Le imposte le liquida il servizio online dell&rsquo;Agenzia. Questo
+              sito non &egrave; l&rsquo;Agenzia delle Entrate e non sostituisce un professionista.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENUTO SEO -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 su-seo-expansion">
+        <h2 class="text-xl font-bold text-gray-900">Il comodato d&rsquo;uso gratuito e lo sconto IMU</h2>
+        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
+          Il comodato &egrave; il prestito gratuito di un bene. Nella grande maggioranza dei casi chi cerca
+          questo modulo ha in mente una cosa sola: <strong>dare casa a un figlio o a un genitore e pagare
+          met&agrave; dell&rsquo;IMU</strong>. Quella riduzione del 50% della base imponibile esiste davvero,
+          ma ha una condizione che molti scoprono tardi: <strong>il contratto deve essere registrato</strong>.
+        </p>
+        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
+          Registrarlo significa esattamente compilare questo modello, indicando il codice 1 come tipologia di
+          atto. Gli altri requisiti di legge restano: il comodante deve possedere al massimo un&rsquo;altra
+          abitazione, che sia la sua principale e nello stesso Comune, e l&rsquo;immobile non pu&ograve;
+          essere di categoria A/1, A/8 o A/9.
+        </p>
+
+        <details class="mt-5 group border-t border-gray-100 pt-4">
+          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
+            <span>Comodato verbale o scritto: cambia qualcosa?</span>
+            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              Il modello distingue il <strong>comodato verbale</strong> (codice 1) da quello
+              <strong>in forma scritta</strong> (codice 2). Entrambi si registrano, ma solo il secondo ha un
+              testo da allegare. Ai fini dello sconto IMU serve comunque una registrazione: il comodato
+              verbale si registra proprio per questo.
+            </p>
+            <p>
+              Se non c&rsquo;&egrave; una data di fine, si compila solo il campo &laquo;dal&raquo; e si barra
+              <strong>contratto a tempo indeterminato</strong>.
+            </p>
+          </div>
+        </details>
+
+        <details class="mt-4 group border-t border-gray-100 pt-4">
+          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
+            <span>Il preliminare: quanto si paga a registrarlo</span>
+            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              Il compromesso va registrato entro 30 giorni dalla firma. Si paga l&rsquo;imposta di registro in
+              <strong>misura fissa</strong> sull&rsquo;atto, pi&ugrave; lo <strong>0,50% sulla caparra
+              confirmatoria</strong> e il <strong>3% sugli acconti</strong> non soggetti a IVA. Le somme non
+              sono perse: si recuperano come credito sull&rsquo;imposta dovuta per il rogito definitivo.
+            </p>
+            <p>
+              Per questo il modello separa <strong>caparra confirmatoria</strong>, <strong>acconto</strong> e
+              <strong>caparra penitenziale</strong>: non sono sinonimi e non si tassano allo stesso modo. La
+              confirmatoria &egrave; la garanzia reciproca in caso di inadempimento; la penitenziale &egrave;
+              il prezzo del recesso; l&rsquo;acconto &egrave; una parte del prezzo gi&agrave; versata.
+            </p>
+            <p>
+              Quanto pagherai al rogito lo vedi con il
+              <a href="/cittadino-tasse/imposte-acquisto-casa/" class="text-indigo-600 hover:underline">calcolatore delle imposte di acquisto casa</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="mt-4 group border-t border-gray-100 pt-4">
+          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
+            <span>Danti causa e aventi causa: chi va dove</span>
+            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              Sono i due termini che bloccano pi&ugrave; spesso la compilazione. Il
+              <strong>dante causa</strong> &egrave; chi trasmette il diritto, l&rsquo;<strong>avente
+              causa</strong> chi lo acquisisce.
+            </p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Nel comodato: il <strong>comodante</strong> &egrave; dante causa, il
+                  <strong>comodatario</strong> avente causa.</li>
+              <li>Nel preliminare: il <strong>promissario venditore</strong> &egrave; dante causa, il
+                  <strong>promissario acquirente</strong> avente causa.</li>
+            </ul>
+            <p>
+              Chi &egrave; nato all&rsquo;estero scrive lo Stato al posto del comune e mette
+              <strong>EE</strong> come provincia.
+            </p>
+          </div>
+        </details>
+
+        <details class="mt-4 group border-t border-gray-100 pt-4">
+          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
+            <span>Richiedente e rappresentante legale non sono la stessa persona</span>
+            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              L&rsquo;esempio delle istruzioni &egrave; chiarissimo: se la parte del contratto &egrave; un
+              <strong>minore</strong>, il richiedente la registrazione &egrave; <em>lui</em>, e nella sezione
+              &laquo;Richiedente&raquo; vanno i suoi dati. Il genitore o il tutore va nella sezione
+              <strong>Rappresentante legale</strong>, con il <strong>codice carica 2</strong>. A firmare
+              &egrave; il rappresentante.
+            </p>
+            <p>
+              Lo stesso vale per societ&agrave; ed enti: richiedente &egrave; la societ&agrave;, rappresentante
+              chi firma per lei, con codice carica 1. Per un verbale di distribuzione utili il richiedente
+              &egrave; <em>sempre</em> la societ&agrave; che li distribuisce.
+            </p>
+          </div>
+        </details>
+
+        <details class="mt-4 group border-t border-gray-100 pt-4">
+          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
+            <span>Gli errori che fanno fallire l&rsquo;invio</span>
+            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
+            <ul class="list-disc list-inside space-y-2">
+              <li><strong>Atto scritto a mano.</strong> Il testo deve essere leggibile da procedure
+                  automatiche: dattiloscritto o in formato elettronico. Altrimenti l&rsquo;invio telematico
+                  non va a buon fine e la ricevuta lo dice.</li>
+              <li><strong>Fogli contati male.</strong> Un foglio &egrave; al massimo 4 facciate e 100 righe:
+                  quattro facciate con 101 righe valgono due fogli.</li>
+              <li><strong>Particella nella casella sbagliata.</strong> Se &egrave; una sola serie di cifre va
+                  a sinistra della barra. Per un immobile graffato si riporta solo la prima particella.</li>
+              <li><strong>Conto corrente non intestato al richiedente.</strong> L&rsquo;addebito delle imposte
+                  funziona solo se il conto &egrave; del richiedente o dell&rsquo;intermediario, e se
+                  cointestato serve la firma disgiunta.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <!-- FAQ -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+
+        <details class="mt-3 group border-t border-gray-100 pt-3">
+          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
+            <span>Posso usare il RAP per un contratto d&rsquo;affitto?</span>
+            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
+            No. Le locazioni hanno il loro modello, l&rsquo;
+            <a href="/cittadino-tasse/modello-rli/" class="text-indigo-600 hover:underline">RLI</a>, che gestisce
+            anche la cedolare secca. Il RAP copre comodato, preliminare e verbale di distribuzione utili.
+          </p>
+        </details>
+
+        <details class="mt-3 group border-t border-gray-100 pt-3">
+          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
+            <span>Quanto costa registrare un comodato?</span>
+            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
+            Si paga l&rsquo;imposta di registro in misura fissa e l&rsquo;imposta di bollo sugli esemplari e
+            sugli allegati. Il servizio online dell&rsquo;Agenzia calcola gli importi e li addebita sul conto
+            indicato. Rispetto al risparmio IMU, per un&rsquo;abitazione, sono cifre modeste.
+          </p>
+        </details>
+
+        <details class="mt-3 group border-t border-gray-100 pt-3">
+          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
+            <span>Che cos&rsquo;&egrave; la condizione sospensiva?</span>
+            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
+            Un evento futuro e incerto, scritto nell&rsquo;atto, che ne sospende l&rsquo;efficacia finch&eacute;
+            non si verifica. Barrando la casella, l&rsquo;imposta su quella parte resta sospesa; quando la
+            condizione si avvera hai 30 giorni per comunicarlo all&rsquo;ufficio con il Modello 2 e versare
+            l&rsquo;imposta.
+          </p>
+        </details>
+
+        <details class="mt-3 group border-t border-gray-100 pt-3">
+          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
+            <span>Il modello si presenta solo online?</span>
+            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
+            Il RAP nasce per l&rsquo;invio telematico dall&rsquo;area riservata del sito
+            dell&rsquo;Agenzia, direttamente o tramite un intermediario abilitato. Il PDF compilato che
+            scarichi qui serve a preparare e controllare i dati prima dell&rsquo;invio, e a portarli allo
+            sportello o al professionista che invia per te.
+          </p>
+        </details>
+
+        <details class="mt-3 group border-t border-gray-100 pt-3">
+          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
+            <span>Che cosa succede dopo la registrazione?</span>
+            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
+          </summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
+            Chi chiede la registrazione conserva in originale l&rsquo;atto firmato insieme alla richiesta e
+            alle ricevute rilasciate dal servizio online, e consegna alle altre parti la copia delle ricevute
+            da cui risulta la registrazione e l&rsquo;esito del pagamento delle imposte.
+          </p>
+        </details>
+      </section>
+
+      <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/compilatore-moduli.js"></script>
+
+  <!-- PONTI: dallo sconto IMU del comodato e dalle imposte di acquisto casa -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.AppStorage) return;
+
+      const mostra = (banner, bottoneUsa, bottoneNo, azione) => {
+        banner.hidden = false;
+        bottoneNo.addEventListener('click', () => { banner.hidden = true; });
+        bottoneUsa.addEventListener('click', () => {
+          const quanti = window.CompilatoreModuli ? window.CompilatoreModuli.precompila(...azione()) : 0;
+          banner.hidden = true;
+          if (quanti) {
+            const app = document.getElementById('mp-app');
+            if (app) app.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      };
+
+      // --- comodato: chi ha spuntato la riduzione IMU deve registrare il contratto
+      const imu = window.AppStorage.load('form_data__cittadino_tasse_calcolo_imu_', null);
+      const bannerImu = document.getElementById('ponte-imu');
+      if (imu && imu['calc-comodato'] && bannerImu) {
+        mostra(bannerImu,
+               document.getElementById('ponte-imu-usa'),
+               document.getElementById('ponte-imu-ignora'),
+               () => [{ 'atto.tipologiaAtto': '1', 'comodato.immobile': true },
+                      { attiva: ['comodato'] }]);
+      }
+
+      // --- preliminare: il prezzo calcolato per l'acquisto casa
+      const casa = window.AppStorage.load('form_data__cittadino_tasse_imposte_acquisto_casa_', null);
+      const prezzo = casa && casa['calc-prezzo'];
+      const bannerCasa = document.getElementById('ponte-casa');
+      if (prezzo && bannerCasa) {
+        const numero = Number(String(prezzo).replace(',', '.'));
+        document.getElementById('ponte-casa-prezzo').textContent = Number.isFinite(numero)
+          ? numero.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })
+          : String(prezzo);
+        mostra(bannerCasa,
+               document.getElementById('ponte-casa-usa'),
+               document.getElementById('ponte-casa-ignora'),
+               () => [{ 'atto.tipologiaAtto': '2',
+                        'preliminare.beneImmobile': true,
+                        'preliminare.prezzo': String(prezzo).replace('.', ',') },
+                      { attiva: ['preliminare'] }]);
+      }
+    });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

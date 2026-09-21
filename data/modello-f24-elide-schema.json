@@ -1,0 +1,558 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello F24 Elide creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-elide.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ]
+ },
+ "modelli": {
+  "ELIDE": {
+   "codice": "F24 Elide",
+   "nome": "Modello F24 Elide",
+   "sottotitolo": "Versamenti con elementi identificativi",
+   "descrizione": "Versamenti per i quali non è prevista la compensazione con crediti ed è richiesta l'indicazione di particolari elementi identificativi, come l'IVA per l'immatricolazione di veicoli acquistati nella UE o l'imposta di registro sui contratti di locazione.",
+   "pdf": "/assets/pdf/modello-f24-elide-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-f24-elide.pdf",
+   "testata": {
+    "riferimentoNomeFile": "contribuente.cf"
+   },
+   "riepilogo": {
+    "debiti": {
+     "somma": [
+      "erario.riga.debito"
+     ]
+    },
+    "crediti": {
+     "somma": []
+    },
+    "saldo": {
+     "somma": [
+      "erario.riga.debito"
+     ]
+    }
+   },
+   "passi": [
+    {
+     "id": "contribuente",
+     "titolo": "Chi versa",
+     "descrizione": "I dati di chi effettua il pagamento. Il contribuente è tenuto a riportare codice fiscale, dati anagrafici e domicilio fiscale.",
+     "campi": [
+      {
+       "id": "cf",
+       "pdf": "cf_contribuente",
+       "type": "cfOpiva",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half",
+       "help": "I 16 caratteri del codice fiscale, oppure le 11 cifre della partita IVA. È il dato che collega il versamento alla tua posizione: un errore qui produce un pagamento che non ti viene attribuito."
+      },
+      {
+       "id": "cognome",
+       "pdf": "cognome_denominazione",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half",
+       "help": "Solo per le persone fisiche."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "data_nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "data_nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "data_nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "sesso",
+       "pdf": "sesso",
+       "type": "select",
+       "options": "sesso",
+       "label": "Sesso",
+       "width": "quarter"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla di due lettere; EE per chi è nato all'estero."
+      },
+      {
+       "id": "domicilioComune",
+       "pdf": "domicilio_comune",
+       "type": "testo",
+       "label": "Domicilio fiscale · comune",
+       "width": "half"
+      },
+      {
+       "id": "domicilioProvincia",
+       "pdf": "domicilio_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter"
+      },
+      {
+       "id": "domicilioVia",
+       "pdf": "domicilio_via",
+       "type": "testo",
+       "label": "Via e numero civico",
+       "width": "half"
+      },
+      {
+       "id": "cfCoobbligato",
+       "pdf": "cf_coobbligato",
+       "type": "cfOpiva",
+       "label": "Codice fiscale del coobbligato, erede, genitore, tutore o curatore",
+       "width": "half",
+       "help": "Da compilare insieme al codice identificativo, quando il versamento è effettuato da un soggetto diverso dal contribuente. Chi paga per conto altrui deve anche firmare il modello."
+      },
+      {
+       "id": "codiceIdentificativo",
+       "pdf": "codice_identificativo_coobbligato",
+       "type": "testo",
+       "label": "Codice identificativo",
+       "width": "quarter",
+       "help": "Dalla tabella «codici identificativi» dell'Agenzia delle Entrate: per esempio 02 per genitore o tutore, 03 per curatore fallimentare, 07 per erede."
+      }
+     ]
+    },
+    {
+     "id": "erario",
+     "titolo": "Sezione Erario ed altro",
+     "descrizione": "I versamenti con elementi identificativi. Se paghi in relazione a più atti devi compilare tanti modelli quanti sono gli atti.",
+     "campi": [
+      {
+       "id": "codiceUfficio",
+       "pdf": "erario_codice_ufficio",
+       "type": "testo",
+       "label": "Codice ufficio",
+       "width": "quarter",
+       "help": "Il codice dell'ufficio destinatario del pagamento, o dell'ufficio che ha emesso l'atto. Si compila solo se la tipologia di versamento lo richiede."
+      },
+      {
+       "id": "codiceAtto",
+       "pdf": "erario_codice_atto",
+       "type": "testo",
+       "label": "Codice atto",
+       "width": "half",
+       "help": "Il codice dell'atto a cui si riferisce il pagamento."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe dei versamenti",
+       "help": "Una riga per ogni versamento. Attenzione: errori nella compilazione possono portare a richieste di pagamento di somme già versate.",
+       "righeMax": 28,
+       "sottocampi": [
+        {
+         "id": "tipo",
+         "type": "testo",
+         "label": "Tipo",
+         "width": "quarter",
+         "help": "La tipologia di versamento, dalla «tabella dei tipi di versamento con elementi identificativi» dell'Agenzia delle Entrate. Per l'IVA sull'immatricolazione di veicoli UE indica il tipo di veicolo: A per autoveicolo, M per motoveicolo, R per rimorchio."
+        },
+        {
+         "id": "elementi",
+         "type": "testo",
+         "label": "Elementi identificativi",
+         "width": "half",
+         "help": "Il dato che identifica l'operazione, fino a 17 caratteri. Per l'immatricolazione di veicoli è il numero di telaio. Per gli altri versamenti è indicato nella risoluzione che ha istituito il codice tributo."
+        },
+        {
+         "id": "codice",
+         "type": "testo",
+         "label": "Codice",
+         "width": "quarter",
+         "help": "Il codice tributo del versamento, reperibile sul sito dell'Agenzia delle Entrate."
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter",
+         "help": "L'anno cui si riferisce il versamento, in quattro cifre."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "Gli importi vanno sempre indicati con due cifre decimali, anche quando sono zero. Con più decimali si arrotonda la seconda cifra: 52,752 diventa 52,75; 52,755 e 52,758 diventano 52,76. In questo modello non è prevista la compensazione con crediti."
+        }
+       ],
+       "righe": [
+        {
+         "tipo": "erario_1_tipo",
+         "elementi": "erario_1_elementi",
+         "codice": "erario_1_codice",
+         "anno": "erario_1_anno",
+         "debito": {
+          "euro": "erario_1_debito",
+          "cent": "erario_1_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_2_tipo",
+         "elementi": "erario_2_elementi",
+         "codice": "erario_2_codice",
+         "anno": "erario_2_anno",
+         "debito": {
+          "euro": "erario_2_debito",
+          "cent": "erario_2_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_3_tipo",
+         "elementi": "erario_3_elementi",
+         "codice": "erario_3_codice",
+         "anno": "erario_3_anno",
+         "debito": {
+          "euro": "erario_3_debito",
+          "cent": "erario_3_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_4_tipo",
+         "elementi": "erario_4_elementi",
+         "codice": "erario_4_codice",
+         "anno": "erario_4_anno",
+         "debito": {
+          "euro": "erario_4_debito",
+          "cent": "erario_4_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_5_tipo",
+         "elementi": "erario_5_elementi",
+         "codice": "erario_5_codice",
+         "anno": "erario_5_anno",
+         "debito": {
+          "euro": "erario_5_debito",
+          "cent": "erario_5_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_6_tipo",
+         "elementi": "erario_6_elementi",
+         "codice": "erario_6_codice",
+         "anno": "erario_6_anno",
+         "debito": {
+          "euro": "erario_6_debito",
+          "cent": "erario_6_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_7_tipo",
+         "elementi": "erario_7_elementi",
+         "codice": "erario_7_codice",
+         "anno": "erario_7_anno",
+         "debito": {
+          "euro": "erario_7_debito",
+          "cent": "erario_7_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_8_tipo",
+         "elementi": "erario_8_elementi",
+         "codice": "erario_8_codice",
+         "anno": "erario_8_anno",
+         "debito": {
+          "euro": "erario_8_debito",
+          "cent": "erario_8_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_9_tipo",
+         "elementi": "erario_9_elementi",
+         "codice": "erario_9_codice",
+         "anno": "erario_9_anno",
+         "debito": {
+          "euro": "erario_9_debito",
+          "cent": "erario_9_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_10_tipo",
+         "elementi": "erario_10_elementi",
+         "codice": "erario_10_codice",
+         "anno": "erario_10_anno",
+         "debito": {
+          "euro": "erario_10_debito",
+          "cent": "erario_10_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_11_tipo",
+         "elementi": "erario_11_elementi",
+         "codice": "erario_11_codice",
+         "anno": "erario_11_anno",
+         "debito": {
+          "euro": "erario_11_debito",
+          "cent": "erario_11_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_12_tipo",
+         "elementi": "erario_12_elementi",
+         "codice": "erario_12_codice",
+         "anno": "erario_12_anno",
+         "debito": {
+          "euro": "erario_12_debito",
+          "cent": "erario_12_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_13_tipo",
+         "elementi": "erario_13_elementi",
+         "codice": "erario_13_codice",
+         "anno": "erario_13_anno",
+         "debito": {
+          "euro": "erario_13_debito",
+          "cent": "erario_13_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_14_tipo",
+         "elementi": "erario_14_elementi",
+         "codice": "erario_14_codice",
+         "anno": "erario_14_anno",
+         "debito": {
+          "euro": "erario_14_debito",
+          "cent": "erario_14_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_15_tipo",
+         "elementi": "erario_15_elementi",
+         "codice": "erario_15_codice",
+         "anno": "erario_15_anno",
+         "debito": {
+          "euro": "erario_15_debito",
+          "cent": "erario_15_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_16_tipo",
+         "elementi": "erario_16_elementi",
+         "codice": "erario_16_codice",
+         "anno": "erario_16_anno",
+         "debito": {
+          "euro": "erario_16_debito",
+          "cent": "erario_16_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_17_tipo",
+         "elementi": "erario_17_elementi",
+         "codice": "erario_17_codice",
+         "anno": "erario_17_anno",
+         "debito": {
+          "euro": "erario_17_debito",
+          "cent": "erario_17_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_18_tipo",
+         "elementi": "erario_18_elementi",
+         "codice": "erario_18_codice",
+         "anno": "erario_18_anno",
+         "debito": {
+          "euro": "erario_18_debito",
+          "cent": "erario_18_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_19_tipo",
+         "elementi": "erario_19_elementi",
+         "codice": "erario_19_codice",
+         "anno": "erario_19_anno",
+         "debito": {
+          "euro": "erario_19_debito",
+          "cent": "erario_19_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_20_tipo",
+         "elementi": "erario_20_elementi",
+         "codice": "erario_20_codice",
+         "anno": "erario_20_anno",
+         "debito": {
+          "euro": "erario_20_debito",
+          "cent": "erario_20_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_21_tipo",
+         "elementi": "erario_21_elementi",
+         "codice": "erario_21_codice",
+         "anno": "erario_21_anno",
+         "debito": {
+          "euro": "erario_21_debito",
+          "cent": "erario_21_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_22_tipo",
+         "elementi": "erario_22_elementi",
+         "codice": "erario_22_codice",
+         "anno": "erario_22_anno",
+         "debito": {
+          "euro": "erario_22_debito",
+          "cent": "erario_22_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_23_tipo",
+         "elementi": "erario_23_elementi",
+         "codice": "erario_23_codice",
+         "anno": "erario_23_anno",
+         "debito": {
+          "euro": "erario_23_debito",
+          "cent": "erario_23_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_24_tipo",
+         "elementi": "erario_24_elementi",
+         "codice": "erario_24_codice",
+         "anno": "erario_24_anno",
+         "debito": {
+          "euro": "erario_24_debito",
+          "cent": "erario_24_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_25_tipo",
+         "elementi": "erario_25_elementi",
+         "codice": "erario_25_codice",
+         "anno": "erario_25_anno",
+         "debito": {
+          "euro": "erario_25_debito",
+          "cent": "erario_25_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_26_tipo",
+         "elementi": "erario_26_elementi",
+         "codice": "erario_26_codice",
+         "anno": "erario_26_anno",
+         "debito": {
+          "euro": "erario_26_debito",
+          "cent": "erario_26_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_27_tipo",
+         "elementi": "erario_27_elementi",
+         "codice": "erario_27_codice",
+         "anno": "erario_27_anno",
+         "debito": {
+          "euro": "erario_27_debito",
+          "cent": "erario_27_debito_cent"
+         }
+        },
+        {
+         "tipo": "erario_28_tipo",
+         "elementi": "erario_28_elementi",
+         "codice": "erario_28_codice",
+         "anno": "erario_28_anno",
+         "debito": {
+          "euro": "erario_28_debito",
+          "cent": "erario_28_debito_cent"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chiusura",
+     "titolo": "Saldo finale e firma",
+     "descrizione": "Il saldo finale è la somma di tutti gli importi a debito: in questo modello non ci sono crediti da compensare.",
+     "campi": [
+      {
+       "id": "saldoFinale",
+       "pdf": "saldo_finale",
+       "pdfCentesimi": "saldo_finale_cent",
+       "type": "importoEuro",
+       "label": "Saldo finale (euro)",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "erario.riga.debito"
+        ]
+       },
+       "help": "Calcolato come somma degli importi a debito. Se paghi con assegno o vaglia, il titolo deve essere di importo pari a questo saldo."
+      },
+      {
+       "id": "firma",
+       "pdf": "firma",
+       "type": "testo",
+       "label": "Firma (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata. Se paghi per conto di un altro contribuente, la firma è la tua."
+      },
+      {
+       "id": "delegaA",
+       "pdf": "delega_a",
+       "type": "testo",
+       "label": "Delega irrevocabile a (banca o Poste)",
+       "width": "half"
+      },
+      {
+       "id": "agenzia",
+       "pdf": "agenzia",
+       "type": "testo",
+       "label": "Agenzia",
+       "width": "quarter"
+      },
+      {
+       "id": "provinciaAgenzia",
+       "pdf": "provincia_agenzia",
+       "type": "provincia",
+       "label": "Prov.",
+       "width": "quarter"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

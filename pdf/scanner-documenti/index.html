@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Scanner Documenti e Carte d'Identità (CIE) — StrumentiUtili.it</title>
+  <meta name="description" content="Scansiona documenti, scontrini, patenti e carte d'identità (CIE) dal tuo browser. Ritaglio automatico IA e salvataggio in PDF 100% privato.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/scanner-documenti/">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Scanner Documenti e Carte d'Identità (CIE) — StrumentiUtili.it">
+  <meta property="og:description" content="Trasforma foto di documenti, ricevute e carte d'identità (CIE) in PDF direttamente dal browser. Nessun upload delle immagini.">
+  <meta property="og:url" content="https://strumentiutili.it/pdf/scanner-documenti/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scanner Documenti e Carte d'Identità (CIE)">
+  <meta name="twitter:description" content="Scanner documenti gratuito direttamente dal browser. 100% Privacy.">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+
+    #drop-zone { -webkit-tap-highlight-color: transparent; user-select: none; }
+    #preview-grid canvas { width: 100%; height: 100%; object-fit: contain; }
+    #crop-modal, #crop-container { overscroll-behavior: none; }
+    #crop-canvas { display: block; max-width: 100%; max-height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+    .scanner-no-touch { touch-action: none; }
+    #crop-container::-webkit-scrollbar { width: 6px; height: 6px; }
+    #crop-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.25); border-radius: 999px; }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Scanner documenti",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/pdf/scanner-documenti/",
+        "description": "Trasformazione di foto di documenti in un PDF: riconoscimento dei bordi del foglio, correzione della prospettiva e filtri di leggibilità, eseguiti nel browser senza inviare le immagini a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/pdf/scanner-documenti/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Riconoscimento automatico dei bordi del foglio con OpenCV",
+          "Correzione della prospettiva e raddrizzamento",
+          "Filtri a colori, in scala di grigi e in bianco e nero per il testo",
+          "Ritaglio manuale dei quattro angoli",
+          "Creazione di un PDF A4 multipagina",
+          "Elaborazione nel browser senza upload"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti PDF",
+            "item": "https://strumentiutili.it/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Scanner Documenti",
+            "item": "https://strumentiutili.it/pdf/scanner-documenti/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/pdf/scanner-documenti/#howto",
+        "name": "Come creare un PDF dalla foto di un documento",
+        "description": "Procedura per fotografare un documento cartaceo e ottenere un PDF raddrizzato e leggibile.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il documento cartaceo e la fotocamera del dispositivo"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Scatta o carica la foto",
+            "text": "Appoggia il documento su una superficie di colore diverso e fotografalo, oppure seleziona le immagini dal dispositivo.",
+            "url": "https://strumentiutili.it/pdf/scanner-documenti/#drop-zone"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Controlla il ritaglio",
+            "text": "Verifica l'anteprima: se l'etichetta indica «Manuale», toccala e sistema i quattro angoli.",
+            "url": "https://strumentiutili.it/pdf/scanner-documenti/#preview-grid"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Scegli il filtro",
+            "text": "Usa «Bianco e nero» per i testi, «A colori» per documenti con timbri o firme.",
+            "url": "https://strumentiutili.it/pdf/scanner-documenti/#scan-filter"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Genera il PDF",
+            "text": "Premi Genera PDF e salva il file sul dispositivo.",
+            "url": "https://strumentiutili.it/pdf/scanner-documenti/#generate-pdf"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/scanner-documenti/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il PDF prodotto è ricercabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: contiene le immagini delle pagine. Per cercare il testo serve un riconoscimento OCR, disponibile nello strumento dedicato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che risoluzione ha il risultato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il raddrizzamento è applicato alla foto originale, con un limite di 3.000 × 4.000 pixel per pagina: su un foglio A4 sono circa 250 punti per pollice, adatti alla stampa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché a volte compare «Manuale»?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Significa che il contorno del foglio non è stato riconosciuto, di solito per scarso contrasto con il piano d'appoggio o per un'ombra sul bordo. Tocca l'anteprima e sistema i quattro angoli."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Lo strumento legge il chip della carta d'identità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Acquisisce solo l'immagine del documento: non dialoga con il microchip, né via NFC né con lettori di smart card."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le foto vengono caricate da qualche parte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vengono elaborate nella memoria del browser e il PDF viene salvato sul tuo dispositivo; nessuna immagine viene inviata a server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📄</span> Scanner documenti
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Scanner Documenti IA (Crea PDF da Foto)</h1>
+        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+          Trasforma foto di carte d'identità (CIE), contratti e ricevute in PDF multipagina direttamente dal tuo browser. Modifica l'orientamento delle immagini acquisite e genera il documento in locale.
+        </p>
+
+        <div class="mt-4 flex items-start gap-3 rounded-lg bg-emerald-50 border border-emerald-200 p-4 shadow-sm">
+          <div class="text-xl">🔒</div>
+          <div>
+            <div class="font-semibold text-emerald-900">Privacy Assoluta (Zero-Upload)</div>
+            <p class="text-sm text-emerald-800 mt-1">
+              Le immagini restano nella memoria del dispositivo e non vengono inviate a server. Il riconoscimento dei bordi usa algoritmi di visione artificiale classici (OpenCV), non un modello addestrato.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <!-- Controlli e Upload -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-1 h-fit">
+          <h2 class="text-xl font-bold text-gray-900 mb-1">1. Carica le foto</h2>
+          <p class="text-sm text-gray-500 mb-5">Scatta una foto, usa la libreria del tuo dispositivo o sfoglia le immagini sul PC.</p>
+
+          <input id="img-upload" type="file" accept="image/*" multiple class="hidden">
+          <input id="img-camera" type="file" accept="image/*" capture="environment" class="hidden">
+
+          <div id="drop-zone" role="button" tabindex="0" aria-label="Seleziona immagini dal dispositivo" class="bg-gray-50 hover:bg-indigo-50 border-2 border-dashed border-gray-300 hover:border-indigo-500 transition-colors p-7 text-center rounded-xl cursor-pointer select-none">
+            <div class="text-4xl mb-3">📂</div>
+            <div class="text-sm font-medium text-gray-700">Seleziona i file dal dispositivo</div>
+            <div class="text-xs text-indigo-600 font-bold mt-2">Immagini già salvate, galleria o file sul PC</div>
+          </div>
+          <button type="button" id="btn-fotocamera" class="mt-3 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3 rounded-xl text-sm shadow-sm transition flex items-center justify-center gap-2">
+            <span aria-hidden="true">📷</span> Scatta una foto ora
+          </button>
+          <button type="button" data-guida-toggle="guida-scanner-foto" aria-expanded="false" aria-controls="guida-scanner-foto" aria-label="Guida al campo Foto da acquisire" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come scattare la foto</button>
+          <div id="guida-scanner-foto" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Superficie e luce:</strong> appoggia il documento su una superficie di colore diverso dal foglio e illumina in modo uniforme: il rilevamento dei bordi si basa sul contrasto fra foglio e piano d'appoggio.</p>
+            <p><strong class="text-indigo-900">Inquadratura:</strong> lascia qualche centimetro di margine attorno al documento e includi tutti e quattro gli angoli, anche se la foto è storta: la prospettiva viene corretta.</p>
+            <p><strong class="text-indigo-900">Ombre:</strong> evita che la tua ombra cada sul bordo del foglio: è la causa più frequente di rilevamento mancato.</p>
+            <p><strong class="text-indigo-900">Più pagine:</strong> puoi caricare più foto insieme; diventano pagine del PDF nell'ordine in cui compaiono le anteprime.</p>
+          </div>
+
+          <div class="mt-6">
+            <div class="flex items-center gap-2 mb-2">
+              <label for="scan-filter" class="text-sm font-bold text-gray-800">Filtro scansione</label>
+              <button type="button" data-guida-toggle="guida-scanner-filtro" aria-expanded="false" aria-controls="guida-scanner-filtro" aria-label="Guida al campo Filtro immagine" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-scanner-filtro" aria-describedby="guida-scanner-filtro" id="scan-filter" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+              <option value="color" selected>A colori — Migliorato</option>
+              <option value="bw">Bianco e nero — Testo nitido</option>
+              <option value="grayscale">Scala di grigi</option>
+            </select>
+            <div id="guida-scanner-filtro" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">A colori — Migliorato:</strong> uniforma l'illuminazione e ravviva il contrasto mantenendo i colori: adatto a documenti con timbri, firme o parti colorate.</p>
+              <p><strong class="text-indigo-900">Bianco e nero:</strong> sogliatura adattiva pensata per il testo: pagine bianchissime e caratteri netti, file più leggero. Da evitare su foto e timbri, che si impastano.</p>
+              <p><strong class="text-indigo-900">Scala di grigi:</strong> via di mezzo: attenua ombre e sfondi ingialliti conservando le sfumature.</p>
+              <p><strong class="text-indigo-900">Cambio al volo:</strong> cambiando filtro le pagine già caricate vengono rielaborate: non serve rifare le foto.</p>
+            </div>
+          </div>
+
+          <div class="mt-5 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+            <div id="auto-crop-riga" class="flex items-start gap-3 cursor-pointer">
+              <input data-guida="guida-scanner-ritaglio" aria-describedby="guida-scanner-ritaglio" id="auto-crop" type="checkbox" checked class="mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+              
+              <div class="flex items-center gap-2">
+                <label for="auto-crop">
+                <span class="block text-sm font-bold text-indigo-900">Ritaglio automatico (IA)</span>
+                <span class="block text-xs text-indigo-700 mt-0.5">Rileva e raddrizza automaticamente i bordi del documento.</span>
+              </label>
+                <button type="button" data-guida-toggle="guida-scanner-ritaglio" aria-expanded="false" aria-controls="guida-scanner-ritaglio" aria-label="Guida al campo Ritaglio automatico" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+            </div>
+            <div id="guida-scanner-ritaglio" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Come funziona:</strong> il programma cerca il contorno del foglio e ne raddrizza la prospettiva. Quando ci riesce, l'anteprima mostra l'etichetta «✓ Auto»; altrimenti mostra «Manuale» e conserva l'intera foto.</p>
+                <p><strong class="text-indigo-900">Correzione a mano:</strong> tocca o clicca un'anteprima per aprire la finestra di ritaglio e trascinare i quattro angoli: il risultato viene ricalcolato all'istante.</p>
+                <p><strong class="text-indigo-900">Quando disattivarlo:</strong> se stai fotografando un documento che occupa tutta l'inquadratura o una pagina con bordi irregolari, togli la spunta e regola gli angoli a mano.</p>
+              </div>
+          </div>
+
+          <div id="status-msg" class="mt-5 text-sm font-bold text-amber-600">
+            Caricamento motore IA (Computer Vision) in corso... Attendi.
+          </div>
+          <button type="button" data-guida-toggle="guida-scanner-pdf" aria-expanded="false" aria-controls="guida-scanner-pdf" aria-label="Guida al campo Creazione del PDF" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come viene creato il PDF</button>
+          <div id="guida-scanner-pdf" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Pagine:</strong> ogni immagine diventa una pagina A4, verticale od orizzontale secondo la forma del documento, con l'immagine adattata alla pagina.</p>
+            <p><strong class="text-indigo-900">Qualità:</strong> le pagine sono immagini JPEG di qualità alta, con un limite di 3.000 × 4.000 pixel: su un A4 corrisponde a circa 250 punti per pollice.</p>
+            <p><strong class="text-indigo-900">Testo non ricercabile:</strong> il PDF contiene immagini: per poter cercare il testo serve un riconoscimento OCR, con lo strumento dedicato.</p>
+            <p><strong class="text-indigo-900">Nessuna protezione:</strong> il file non è cifrato né firmato: se contiene dati personali, conservalo in una cartella protetta.</p>
+          </div>
+
+          <button id="generate-pdf" type="button" disabled class="mt-6 w-full bg-indigo-600 text-white font-bold px-4 py-3.5 rounded-lg hover:bg-indigo-700 active:bg-indigo-800 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            <span>📄</span> Genera PDF
+          </button>
+        </section>
+
+        <!-- Anteprima -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 xl:col-span-2">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <h2 class="text-xl font-bold text-gray-900">2. Anteprima documenti</h2>
+              <p class="text-sm text-gray-500 mt-1">Usa l'icona della matita ✏️ sulla miniatura per aggiustare i bordi, e le frecce 🔄 per ruotare l'immagine.</p>
+            </div>
+          </div>
+
+          <div id="empty-state" class="border-2 border-dashed border-gray-200 bg-gray-50 rounded-xl min-h-[300px] flex items-center justify-center text-center p-8">
+            <div>
+              <div class="text-5xl mb-4">📄</div>
+              <div class="font-bold text-gray-800">Nessun documento caricato</div>
+              <p class="text-sm text-gray-500 mt-1 max-w-sm mx-auto">Scatta una foto dal cellulare o seleziona un'immagine per iniziare a creare il tuo PDF locale.</p>
+            </div>
+          </div>
+
+          <div id="preview-grid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Le immagini scansionate verranno iniettate qui -->
+          </div>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🗜️</span> Comprimi e Converti PDF</a></li>
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📂</span> Unisci e Dividi PDF</a></li>
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Firma PDF</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Anonimizza PDF (Redact)</a></li>
+              <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Validatore PDF/A</a></li>
+            </ul>
+          </details>
+          <a href="/pdf/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Strumenti PDF</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Blocco SEO -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Rilevamento dei bordi verificato su foto di prova a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Le foto vengono lette, raddrizzate e unite in PDF nel browser: nessuna immagine viene inviata a server. Le librerie OpenCV.js e pdf-lib sono scaricate da CDN al primo utilizzo e non ricevono le immagini (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti tecniche e normative</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 2016/679 (GDPR), artt. 5, 9, 25 e 32; provvedimenti del Garante per la protezione dei dati personali sulla raccolta di copie dei documenti di identità; documentazione OpenCV 4.8 (Canny, findContours, getPerspectiveTransform, warpPerspective); ISO 32000 (formato PDF); libreria pdf-lib.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Visione Artificiale Client-Side, Protocolli Smart Card CIE 3.0 e Compliance GDPR (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Trasformare la foto di un documento in un PDF leggibile richiede due passaggi: individuare i bordi del foglio nella foto e raddrizzare la prospettiva, in modo che il risultato assomigli a una scansione. Questa guida spiega come lo strumento esegue queste operazioni con la libreria di visione artificiale OpenCV compilata in WebAssembly, quali sono i suoi limiti e quali cautele valgono quando si fotografano documenti d'identità o dati sanitari.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Soppressione del Data Processor (Art. 28) ed Interfacciamento CIE 3.0</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'acquisizione digitale di documenti di riconoscimento personali e attestati di reddito comporta il trattamento di dati anagrafici e biometrici definiti come "categorie particolari di dati" dall'Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). L'impiego di piattaforme SaaS tradizionali o di API di scansione ospitate su server cloud terzi costringe l'operatore ad inviare l'immagine non rielaborata dell'identità del cliente verso reti esterne, innescando l'obbligo formale di censimento nel Registro delle Attività di Trattamento (Art. 30 GDPR), la redazione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR) e la stipula di un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore cloud.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura Zero-Backend (Serverless Client-Side) di questo applicativo incarna in forma algebrica il principio di Data Protection by Design e by Default (Articolo 25 GDPR). Rifiutando qualsiasi trasmissione telematica verso l'esterno (Zero-Upload), le immagini catturate dalla webcam o dalla fotocamera dello smartphone vengono conservate ed elaborate unicamente nella memoria RAM volatile del browser locale. Non essendoci trasmissione, per questa operazione non c'è un fornitore esterno da nominare responsabile del trattamento. Restano gli obblighi generali: base giuridica della raccolta, informativa, sicurezza dei dispositivi e tempi di conservazione dei file prodotti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Questo strumento non dialoga con il microchip della Carta d'identità elettronica e non legge tessere via NFC o con lettori USB: acquisisce soltanto l'immagine del documento, ne raddrizza i bordi e la inserisce in un PDF. La copia fotografica di un documento d'identità resta un dato personale da conservare con attenzione: va salvata in una cartella protetta e cancellata quando non serve più. Ricorda inoltre che la richiesta di copia di un documento d'identità è ammessa solo quando una norma o una finalità legittima la giustifica.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e formule: rilevamento dei bordi, matrice prospettica 3×3 e risoluzione del risultato</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Isolamento dei Contorni tramite Canny Edge Detector</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il motore matematico compilato in WebAssembly (`OpenCV.js`) analizza il frame acquisito converting preliminarmente l'immagine in scala di grigi. L'algoritmo di Canny Edge Detection calcola il gradiente di intensità luminosa $G$ e l'orientamento della direzione $\Theta$ per ogni singolo pixel tramite gli operatori differenziali di Sobel $G_x$ e $G_y$:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$G = \sqrt{G_x^2 + G_y^2}, \quad \Theta = \arctan\left(\frac{G_y}{G_x}\right)$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I contorni estratti vengono filtrati per isolare il quadrilatero convesso di area maggiore, scartando le forme troppo piccole (meno dell'8% dell'immagine) o che coprono quasi tutto il fotogramma. Poiché i bordi rilevati sono spesso interrotti da ombre e riflessi, prima della ricerca dei contorni viene applicata una chiusura morfologica che ricongiunge i segmenti vicini, e il contorno viene ridotto al suo inviluppo convesso. Se con le soglie standard non emerge alcun quadrilatero, il rilevamento viene ripetuto con soglie più basse, utili per i fogli chiari su superfici chiare.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Omografia e Matrice di Trasformazione Prospettica 3x3</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Ottenute le coordinate spaziali distorte dei quattro vertici sorgente del documento nel frame $\mathbf{S}_i(x_i, y_i)$ per $i \in \{1,2,3,4\}$, la funzione `cv.getPerspectiveTransform` costruisce la matrice di omografia prospettica 3x3 ($\mathbf{M}$). La matrice mappa i punti sorgente sulle coordinate rettangolari ideali di destinazione $\mathbf{D}_i(x'_i, y'_i)$ con scala metrica prestabilita:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-xs">
+              $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \mathbf{M} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} m_{00} & m_{01} & m_{02} \\ m_{10} & m_{11} & m_{12} \\ m_{20} & m_{21} & m_{22} \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La trasformazione `cv.warpPerspective` applica la matrice $\mathbf{M}$ interpolando i pixel con algoritmo bilineare, "raddrizzando" e appiattendo visivamente il documento come su un piano ottico planare.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Risoluzione, memoria ed elaborazione in background</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione non avviene su un flusso video: ogni foto viene trattata una volta sola, quando la carichi. Il rilevamento dei bordi lavora su una copia ridotta a 1.200 pixel sul lato lungo, abbastanza per individuare il foglio senza impegnare memoria inutilmente; il raddrizzamento viene poi applicato all'immagine originale, con un limite di 3.000 × 4.000 pixel per la pagina prodotta. Su un foglio A4 questo corrisponde a circa 250 punti per pollice, sufficienti per la stampa e per una successiva lettura OCR. Tutto il calcolo di visione artificiale avviene in un <code>Web Worker</code> separato, così l'interfaccia resta reattiva, e le immagini vengono passate fra i thread come oggetti trasferibili, senza duplicarle in memoria.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casi d'uso: pratiche, moduli cartacei e giustificativi di spesa</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: documenti da allegare a una pratica.</strong><br />
+              Un consulente deve digitalizzare i documenti di un cliente durante un incontro fuori ufficio. Fotografarli con l'app della fotocamera significa spesso ritrovarseli sincronizzati sul cloud personale dello smartphone.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Con questo strumento le foto vengono scelte dal browser, raddrizzate e unite in un PDF salvato dove decide l'operatore: le immagini non vengono inviate a server. Il PDF prodotto non è cifrato né firmato: se serve, va protetto o firmato con gli strumenti dedicati.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: moduli cartacei da archiviare.</strong><br />
+              Una segreteria riceve ogni giorno moduli compilati a mano e deve archiviarli in formato digitale.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Fotografando i fogli e usando il filtro «Bianco e nero», il testo resta nitido e il file leggero. Le pagine vengono accodate in un unico PDF nell'ordine in cui compaiono le anteprime, che si possono eliminare singolarmente prima di generare il documento.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 3: ricevute e giustificativi di spesa.</strong><br />
+              Chi presenta note spese deve allegare scontrini e ricevute, spesso stropicciati e fotografati di sbieco.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il raddrizzamento prospettico rende ogni ricevuta leggibile come se fosse stata appoggiata su uno scanner piano. Per gli scontrini molto chiari su superfici chiare può essere necessario sistemare a mano i quattro angoli, toccando l'anteprima.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti con lo strumento su foto di prova costruite al computer (un foglio A4 con testo, deformato in prospettiva su uno sfondo), confrontando gli angoli rilevati con quelli reali del foglio.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: foglio inquadrato di sbieco su un tavolo scuro</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Foto 1200 × 1600, foglio con prospettiva accentuata</li>
+            <li>Angoli reali: (190,210) (980,150) (1060,1400) (120,1330)</li>
+            <li>Angoli rilevati: (189,211) (979,149) (1059,1399) (120,1329)</li>
+            <li>Pagina raddrizzata: 941 × 1252 pixel, PDF A4</li>
+            </ul>
+            <p>Lo scarto è di uno o due pixel: il foglio viene ritagliato esattamente sul bordo e raddrizzato. L'etichetta sull'anteprima indica «✓ Auto».</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: foglio chiaro su superficie chiara, foto leggermente sfocata</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Sfondo grigio chiaro (RGB 196) e foglio quasi bianco (RGB 252)</li>
+            <li>Rilevamento con le soglie standard: nessun contorno</li>
+            <li>Secondo tentativo con soglie più basse: angoli rilevati a meno di 2 pixel da quelli reali</li>
+            </ul>
+            <p>È la situazione più difficile, e la più comune sui tavoli da ufficio chiari. Se anche il secondo tentativo fallisce, l'anteprima resta «Manuale» e gli angoli si sistemano a mano in pochi secondi.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: foto senza documento</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Immagine di colore uniforme, senza foglio</li>
+            <li>Rilevamento: nessun contorno, in entrambi i tentativi</li>
+            <li>Risultato: l'immagine viene mantenuta intera, etichetta «Manuale»</li>
+            </ul>
+            <p>È il comportamento voluto: quando non c'è un foglio riconoscibile, lo strumento non inventa un ritaglio. Meglio una foto intera da correggere a mano che un ritaglio sbagliato che taglia via metà documento.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e anomalie: bordi non rilevati, foto molto grandi e cautele sui documenti</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Bordi non rilevati (sfondo poco contrastato):</strong><br />
+              Il rilevamento si basa sul salto di luminosità fra il documento e il piano d'appoggio. Con un foglio bianco su un tavolo chiaro il salto può essere troppo debole: in questo caso viene eseguito un secondo tentativo con soglie più basse, che nelle prove ha recuperato anche una foto sfocata di un foglio chiaro su fondo chiaro. Se nemmeno questo basta, l'anteprima viene contrassegnata come «Manuale» e mantiene l'intera foto: toccandola si apre la finestra di ritaglio, dove si trascinano i quattro angoli. Per ridurre il problema conviene appoggiare il documento su una superficie di colore diverso ed evitare ombre sul bordo.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Foto molto grandi e dispositivi lenti:</strong><br />
+              Le foto da 24 o 48 megapixel richiedono molta memoria. Il rilevamento dei bordi viene eseguito su una copia ridotta a 1.200 pixel sul lato lungo, mentre il raddrizzamento è applicato all'immagine originale e limitato a 3.000 × 4.000 pixel: la qualità resta adeguata alla stampa senza saturare la memoria del dispositivo. Caricando molte foto insieme, le anteprime restano tutte in memoria: sui telefoni conviene procedere a gruppi e generare più PDF.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Sanzioni per Esfiltrazione di Dati d'Identità (Articolo 83 GDPR):</strong><br />
+              Il caricamento sconsiderato di passaporti, carte d'identità o patenti su server cloud non protetti gestiti da soggetti terzi privi di DPA costituisce una violazione sistemica dell'Articolo 9 e dell'Articolo 32 del GDPR. Le sanzioni previste dall'articolo 83 possono raggiungere 20 milioni di euro o il 4% del fatturato mondiale annuo. Elaborando le immagini nel browser questo passaggio non comporta alcun invio a terzi; restano da valutare la legittimità della raccolta della copia e la sicurezza del luogo in cui il PDF viene salvato.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il PDF prodotto è ricercabile?</h3>
+            <p>No: contiene le immagini delle pagine. Per cercare il testo serve un riconoscimento OCR, disponibile nello strumento dedicato.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Che risoluzione ha il risultato?</h3>
+            <p>Il raddrizzamento è applicato alla foto originale, con un limite di 3.000 × 4.000 pixel per pagina: su un foglio A4 sono circa 250 punti per pollice, adatti alla stampa.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Perché a volte compare «Manuale»?</h3>
+            <p>Significa che il contorno del foglio non è stato riconosciuto, di solito per scarso contrasto con il piano d'appoggio o per un'ombra sul bordo. Tocca l'anteprima e sistema i quattro angoli.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Lo strumento legge il chip della carta d'identità?</h3>
+            <p>No. Acquisisce solo l'immagine del documento: non dialoga con il microchip, né via NFC né con lettori di smart card.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Le foto vengono caricate da qualche parte?</h3>
+            <p>No. Vengono elaborate nella memoria del browser e il PDF viene salvato sul tuo dispositivo; nessuna immagine viene inviata a server.</p>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Modale di Ritaglio Manuale -->
+  <div id="crop-modal" class="fixed inset-0 bg-gray-950/95 hidden z-[60] flex flex-col touch-none" role="dialog" aria-modal="true" aria-labelledby="crop-title">
+    <div class="p-4 text-white flex justify-between items-center gap-4 bg-black shadow-md shrink-0">
+      <div>
+        <h3 id="crop-title" class="text-base sm:text-lg font-bold">Regola i bordi</h3>
+        <p class="text-xs text-gray-400 mt-0.5 hidden sm:block">Trascina i quattro angoli del documento.</p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="btn-cancel-crop" type="button" class="px-3 sm:px-4 py-2 text-gray-300 hover:text-white font-medium rounded-lg hover:bg-white/10 transition">Annulla</button>
+        <button id="btn-apply-crop" type="button" class="px-3 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg text-white font-semibold transition">Applica</button>
+      </div>
+    </div>
+
+    <div id="crop-container" class="flex-1 relative overflow-hidden flex items-center justify-center p-4 scanner-no-touch">
+      <canvas id="crop-canvas" class="cursor-crosshair shadow-2xl max-w-full max-h-full" style="touch-action:none;"></canvas>
+    </div>
+    <div class="bg-black border-t border-white/10 px-4 py-3 text-center shrink-0">
+      <p class="text-xs font-semibold text-gray-300">💡 Trascina ogni punto sull'angolo reale del documento.</p>
+    </div>
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librerie e Script -->
+<script defer src="https://docs.opencv.org/4.8.0/opencv.js" defer></script>
+<script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+<script defer src="/js/main.js"></script>
+<script defer src="/js/dropzone.js"></script>
+<script defer src="/js/scanner.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('preview-grid');
+      const empty = document.getElementById('empty-state');
+      if (!grid || !empty) return;
+
+      const observer = new MutationObserver(() => {
+        empty.style.display = grid.children.length === 0 ? 'flex' : 'none';
+      });
+      observer.observe(grid, { childList: true });
+      empty.style.display = grid.children.length === 0 ? 'flex' : 'none';
+    });
+  </script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

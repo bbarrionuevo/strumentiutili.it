@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lettera di Dimissioni e Preavviso: CCNL Turismo e Pubblici Esercizi - StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il preavviso per dimissioni con CCNL Turismo e Pubblici Esercizi e genera una lettera di dimissioni pronta da scaricare in PDF." />
+  <link rel="canonical" href="https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; width: 100%; min-width: 0; }
+    .ad-slot-mobile { display: block; width: 100%; min-width: 0; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lettera di Dimissioni e Calcolo Preavviso",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/",
+    "description": "Calcola l'esatto periodo di preavviso per le tue dimissioni (CCNL Commercio e Metalmeccanici) e genera la lettera in PDF. 100% Gratuito e Privato.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "lavoro-contratti", "item": "https://strumentiutili.it/lavoro-contratti/" },
+      { "@type": "ListItem", "position": 3, "name": "Lettera di Dimissioni e Calcolo Preavviso", "item": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#come-usare",
+    "name": "Come preparare una lettera di dimissioni e stimare il preavviso CCNL",
+    "description": "Procedura per individuare il contratto applicato, stimare il preavviso e preparare una lettera di accompagnamento.",
+    "inLanguage": "it-IT",
+    "tool": [{ "@type": "HowToTool", "name": "Ultima busta paga e dati del rapporto di lavoro" }],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Individua il CCNL", "text": "Controlla nella busta paga o nella lettera di assunzione il contratto collettivo effettivamente applicato.", "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#input-ccnl" },
+      { "@type": "HowToStep", "position": 2, "name": "Scegli livello e anzianità", "text": "Inserisci il livello contrattuale e la fascia di anzianità che risultano dai documenti del rapporto.", "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#input-livello" },
+      { "@type": "HowToStep", "position": 3, "name": "Indica la data di comunicazione", "text": "Usa la data in cui la comunicazione perviene al datore, perché la decorrenza dipende dalla regola del CCNL selezionato.", "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#input-data-notifica" },
+      { "@type": "HowToStep", "position": 4, "name": "Controlla ultimo giorno e trattenuta", "text": "Leggi il periodo stimato e, se prevedi un'uscita anticipata, usa la sezione facoltativa per confrontare l'indennità stimata.", "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#out-ultimo-giorno" },
+      { "@type": "HowToStep", "position": 5, "name": "Genera la lettera e completa la procedura ufficiale", "text": "Il PDF è una comunicazione di supporto: le dimissioni volontarie soggette alla disciplina ordinaria richiedono anche il modulo telematico del Ministero del Lavoro.", "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-turismo/#btn-generate-pdf" }
+    ]
+  }
+  </script>
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "La lettera di dimissioni da sola è sufficiente a chiudere il rapporto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Dal 2016 le dimissioni sono efficaci solo se rassegnate mediante la procedura telematica del Ministero del Lavoro. Una lettera consegnata in azienda, anche se protocollata e controfirmata, non produce la cessazione del rapporto. La lettera resta utile per documentare la data di comunicazione, rilevante ai fini del computo del preavviso, ma non sostituisce l'adempimento telematico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa succede se non rispetto il periodo di preavviso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il datore di lavoro ha diritto a trattenere dalle competenze di fine rapporto un'indennità pari alla retribuzione che sarebbe spettata per i giorni di preavviso non lavorati. La trattenuta è legittima e opera automaticamente sulle spettanze finali. Se le competenze residue non coprono l'importo, il datore può agire per il recupero della differenza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Il datore può rifiutare le mie dimissioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Le dimissioni sono un atto unilaterale recettizio: producono effetto per il solo fatto di essere portate a conoscenza del destinatario attraverso la procedura prevista, senza necessità di accettazione. Il datore può soltanto rinunciare al preavviso, anticipando la cessazione e corrispondendo la relativa indennità sostitutiva."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ferie e malattia sospendono il decorso del preavviso?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La malattia e l'infortunio hanno effetto sospensivo: il preavviso si interrompe e riprende a decorrere al termine dell'evento, spostando in avanti la data di cessazione. Le ferie godute durante il preavviso seguono invece la disciplina del contratto collettivo applicato, che in molti casi ne esclude la computabilità. È opportuno concordare per iscritto la gestione delle ferie residue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ho diritto alla NASpI se mi dimetto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In via ordinaria no, poiché la prestazione presuppone la perdita involontaria dell'occupazione. Il diritto sussiste però in caso di dimissioni per giusta causa, ad esempio per mancato pagamento della retribuzione o per molestie, e nel periodo tutelato di maternità e paternità. La giusta causa va documentata e può essere contestata: è consigliabile un'assistenza qualificata prima di procedere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso ritirare le dimissioni dopo averle trasmesse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, entro sette giorni dalla data di trasmissione, mediante revoca effettuata con la stessa procedura telematica. La revoca non richiede motivazione e ripristina integralmente il rapporto di lavoro. Trascorso il termine le dimissioni diventano irrevocabili e un eventuale ripensamento richiede il consenso del datore di lavoro."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <!-- Header Navigazione Principale -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-indigo-600 font-semibold">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA CENTRALE (APP) -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/lavoro-contratti/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna a Lavoro &amp; Contratti</a>
+      
+      <div class="mb-6 border-b border-gray-200 pb-4">
+        <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ 100% Privacy - Dati in RAM</span>
+        <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Lettera di Dimissioni e Calcolo Preavviso: CCNL Turismo e Pubblici Esercizi</h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Calcola matematicamente l'esatto <strong>ultimo giorno di lavoro</strong> in base alle decorrenze fisse del tuo CCNL ed evita le trattenute in busta paga. Compila i campi per generare istantaneamente la lettera in PDF da consegnare in azienda.
+        </p>
+      </div>
+
+      <!-- FORM INTERFACCIA -->
+      <form id="dimissioni-form" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-8 space-y-8">
+        
+        <!-- SEZIONE 1: Dati Lavorativi e CCNL -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">1. Inquadramento Contrattuale</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+           <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Contratto Collettivo (CCNL) *</label>
+              <select id="input-ccnl" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-indigo-900 transition su-save-state">
+                <option value="commercio">CCNL Commercio e Terziario</option>
+                <option value="metalmeccanici">CCNL Metalmeccanici Industria</option>
+                <option value="turismo" selected>CCNL Turismo e Pubblici Esercizi</option>
+                <option value="studi_professionali">CCNL Studi Professionali</option>
+                <option value="multiservizi">CCNL Imprese di Pulizia / Multiservizi</option>
+                <option value="edilizia">CCNL Edilizia (Industria)</option>
+                <option value="alimentare">CCNL Industria Alimentare</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Livello di Inquadramento *</label>
+              <select id="input-livello" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state">
+                <!-- Popolato via JS in base al CCNL -->
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Anzianità di Servizio Maturata *</label>
+              <select id="input-anzianita" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state">
+                <option value="0-5">Fino a 5 anni compiuti</option>
+                <option value="5-10">Oltre 5 anni e fino a 10 anni</option>
+                <option value=">10">Oltre 10 anni compiuti</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Data Consegna Dimissioni *</label>
+              <input type="date" id="input-data-notifica" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state" />
+            </div>
+          </div>
+          <div id="shift-warning" class="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-lg text-xs text-amber-800 leading-relaxed hidden">
+            <!-- Warning sulle decorrenze fisse (es. 1° o 16° del mese) -->
+          </div>
+        </div>
+        <!-- SEZIONE 1.5: Calcolo Indennità Mancato Preavviso -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">Opzionale: Rischio Trattenuta in Busta Paga</h2>
+          <p class="text-xs text-gray-600 mb-4">Se intendi lasciare l'azienda <strong>prima</strong> della fine del preavviso, calcola la penalità economica (Indennità di mancato preavviso) che l'azienda potrebbe trattenerti.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">RAL (Retribuzione Annua Lorda) €</label>
+              <input type="number" id="input-ral" step="100" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="Es. 25000" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Ultimo Giorno *Effettivo* (Anticipato)</label>
+              <input type="date" id="input-data-anticipata" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+            </div>
+            <div class="md:col-span-2 flex items-center gap-2 mt-2">
+              <input type="checkbox" id="input-esenzione" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 su-save-state">
+              <label for="input-esenzione" class="text-xs font-bold text-gray-700">Esenzione Concordata (Accordo scritto con l'azienda per non pagare la penale)</label>
+            </div>
+          </div>
+          
+          <!-- Box Risultato Penale -->
+          <div id="box-penale" class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-lg hidden">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-bold text-rose-900">Rischio Trattenuta (Stimato):</span>
+              <span id="out-penale" class="text-xl font-extrabold text-rose-700">€ 0,00</span>
+            </div>
+            <p id="out-giorni-mancanti" class="text-xs text-rose-700 mt-1">Giorni non lavorati: 0</p>
+          </div>
+        </div>
+        <!-- SEZIONE 2: Dati Generali per Lettera -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">2. Dati per la Lettera PDF</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Ragione Sociale Azienda (Datore di Lavoro) *</label>
+              <input type="text" id="input-azienda" required placeholder="Es. Rossi S.p.A." class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state" />
+            </div>
+            
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Nome Lavoratore *</label>
+              <input type="text" id="input-nome" required placeholder="Mario" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 mb-1">Cognome Lavoratore *</label>
+              <input type="text" id="input-cognome" required placeholder="Rossi" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition su-save-state" />
+            </div>
+            
+            <!-- NUOVO CAMPO: Codice Fiscale con validazione -->
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 mb-1">Codice Fiscale Lavoratore *</label>
+              <input type="text" id="input-cf" required maxlength="16" placeholder="16 caratteri alfanumerici" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 uppercase transition su-save-state" />
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- COLONNA DESTRA (ASIDE & ADSENSE) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Responso Algoritmo</h3>
+            <span class="text-[10px] font-bold bg-emerald-500 px-2 py-0.5 rounded text-white shadow-sm">ATTIVO</span>
+          </div>
+          
+          <div class="pt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Durata Preavviso</span>
+            <span id="out-preavviso" class="text-2xl font-bold text-white tracking-tight">Compila i campi</span>
+          </div>
+
+          <div class="pt-2 border-t border-gray-800 mt-2">
+            <span class="text-xs text-gray-400 uppercase block font-semibold mb-1 mt-2">Ultimo Giorno Lavorativo</span>
+            <span id="out-ultimo-giorno" class="text-3xl font-extrabold text-amber-400 font-mono tracking-tight">-</span>
+            <p class="text-[10px] text-gray-500 mt-2 leading-tight">
+              Data calcolata in base ai giorni di calendario. Eventuali malattie o ferie posticiperanno questa data.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-2">
+            <button id="btn-generate-pdf" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+              <span>📄</span> Scarica Lettera PDF
+            </button>
+            <p class="text-[9px] text-gray-500 text-center leading-tight mt-3">
+              Al download i dati verranno distrutti localmente (Garbage Collection).
+            </p>
+          </div>
+        </div>
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/lavoro-contratti/calcolo-tfr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💼</span> Calcolo TFR Liquidazione</a></li>
+            <li><a href="/lavoro-contratti/calcolo-naspi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📉</span> Simulatore NASpI 2026</a></li>
+            <li><a href="/lavoro-contratti/giorni-lavorativi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📅</span> Giorni Lavorativi</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/lavoro-contratti/analizzatore-busta-paga/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔍</span> Analizzatore Busta Paga</a></li>
+              <li><a href="/lavoro-contratti/stipendio-netto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Calcolo Stipendio Netto</a></li>
+              <li><a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Prestazione Occasionale</a></li>
+              <li><a href="/lavoro-contratti/ritenuta-acconto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Ritenuta d'Acconto</a></li>
+            </ul>
+          </details>
+          <a href="/lavoro-contratti/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Lavoro &amp; Contratti</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenata debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- DOSSIER SEO E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">CCNL, livello e anzianità verificabili</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">Cosa controlla il motore</p>
+            <p class="text-emerald-900 leading-relaxed">Incrocia CCNL, livello, anzianità e data di comunicazione per proporre la decorrenza e l'ultimo giorno secondo le regole implementate.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">Cosa verificare prima dell'invio</p>
+            <p class="text-gray-600 leading-relaxed">Controlla testo del CCNL, eventuali accordi migliorativi e assenze che incidono sul rapporto. Il PDF non sostituisce il modulo telematico obbligatorio.</p>
+          </div>
+        </div>
+      </section>
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Manuale Giuslavoristico: Calcolo del Preavviso e Art. 2118 C.C.</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il recesso unilaterale dal contratto di lavoro subordinato a tempo indeterminato è disciplinato dall'<strong>Art. 2118 del Codice Civile</strong>. Affinché le dimissioni non configurino un onere economico sotto forma di "Indennità sostitutiva di mancato preavviso" trattenuta nell'ultima busta paga, il lavoratore è tenuto a rispettare le tempistiche e i periodi di latenza imposti dal proprio Contratto Collettivo Nazionale di Lavoro (CCNL). L'applicativo in pagina decodifica l'algoritmo di calcolo per i due maggiori contratti italiani.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📅</span> CCNL Commercio: La Regola della Decorrenza Fissa (Shift)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Una peculiarità strutturale del CCNL Commercio e Terziario è il divieto di far decorrere il periodo di preavviso dal giorno esatto della comunicazione. Esiste una "Decorrenza Differita" matematicamente codificata:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>Se le dimissioni vengono comunicate tra il 1° e il 15° giorno del mese, il calcolo del preavviso si innesca forzatamente a partire dal <strong>16° giorno</strong> del mese solare corrente.</li>
+              <li>Se la comunicazione avviene dal 16° giorno alla fine del mese, il calcolo dei giorni si attiva a partire dal <strong>1° giorno del mese solare successivo</strong>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> CCNL Metalmeccanici Industria: Calcolo Lineare Mensile</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>In divergenza totale rispetto al Commercio, il Contratto Collettivo Metalmeccanico rigetta i blocchi bimensili. La decorrenza del preavviso avvia il proprio ciclo vitale direttamente dal giorno di calendario immediatamente successivo alla consegna della notifica di dimissioni.</p>
+            <p>Inoltre, l'estensione dei periodi per i livelli di inquadramento superiori (es. Categorie IV, V) non è espressa in giorni standardizzati, bensì in "Mensilità" (es. 1 mese e 15 giorni). Il calcolo si poggia sullo scadere del mese di calendario corrispondente, indipendentemente dal fatto che il mese sia di 28, 30 o 31 giorni.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Effetto Sospensivo: Ferie, Malattia e Infortunio</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>L'elaborato matematico del presente strumento fornisce la data ultima di servizio supponendo l'esecuzione continuativa e ininterrotta della prestazione lavorativa. La giurisprudenza dispone che istituti quali la <strong>malattia, l'infortunio o il godimento delle ferie</strong> operino con "effetto sospensivo" sul trascorrere del tempo.</p>
+            <p>Se il lavoratore usufruisce di 5 giorni di malattia durante il preavviso, la data di cessazione del rapporto si sposterà in avanti di 5 giorni esatti. I dati immessi in questo applicativo vengono autodistrutti dalla memoria alla generazione del PDF (Privacy by Design).</p>
+          </div>
+        </details>
+
+        <!-- NUOVO BLOCCO: GUIDA PASSO-PASSO -->
+        <details class="bg-emerald-50/50 rounded-xl border border-emerald-100 group" open>
+          <summary class="font-bold text-emerald-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-emerald-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🚀</span> Guida Pratica: Cosa fare dopo aver scaricato questo PDF?</span>
+            <span class="text-emerald-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-emerald-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            
+            <p>Scaricare la lettera è solo il primo step. Per rassegnare le dimissioni in modo legalmente inattaccabile, devi seguire esattamente questa procedura cronologica:</p>
+            
+            <div class="space-y-4">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">1</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Consegna la Lettera all'Azienda (Inizio Preavviso)</h4>
+                  <p class="mt-1">Stampa il PDF in duplice copia e firmalo. Consegnalo a mano al tuo responsabile o all'ufficio HR, facendoti firmare la seconda copia per ricevuta (oppure invialo tramite PEC). <strong>Questo passaggio è fondamentale ex Art. 2118 c.c. per far partire formalmente l'orologio del preavviso</strong> che abbiamo appena calcolato.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">2</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Compila le Dimissioni Telematiche Obbligatorie</h4>
+                  <p class="mt-1">La lettera cartacea non basta più (D.Lgs. 151/2015). Per rendere effettive le dimissioni, <strong>devi accedere al portale ClicLavoro del Ministero del Lavoro (o tramite INPS)</strong> utilizzando il tuo SPID o CIE. Compila il modulo online inserendo come "Data di decorrenza" il giorno <em>successivo</em> al tuo ultimo giorno di lavoro indicato nel nostro PDF.</p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">3</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Lavora il Periodo di Preavviso</h4>
+                  <p class="mt-1">Continua a lavorare regolarmente fino alla data calcolata. Ricorda che se ti ammali o prendi ferie, l'ultimo giorno di lavoro slitterà in avanti. Non rispettare il preavviso darà all'azienda il diritto di trattenere un'indennità economica dalla tua ultima busta paga.</p>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="flex gap-4">
+                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">4</div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Controllo Ultima Busta Paga e TFR</h4>
+                  <p class="mt-1">Il mese successivo alla fine del rapporto, riceverai l'ultima busta paga (cedolino di cessazione). Verifica che ti siano state liquidate le ferie e i permessi non goduti, i ratei di tredicesima/quattordicesima e l'intero importo del TFR (Trattamento di Fine Rapporto).</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧭</span> Field guide: prepara la data senza confondere i documenti</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Quattro informazioni determineranno la simulazione: il CCNL applicato, il livello, l'anzianità e la data in cui la comunicazione raggiunge il datore. Recuperale prima dall'ultima busta paga e dalla lettera di assunzione: il nome della mansione commerciale non è sempre il livello contrattuale.</p>
+            <ol class="list-decimal pl-5 space-y-3">
+              <li><strong>Trascrivi il CCNL esattamente come compare in busta paga.</strong> La stessa professione può essere inquadrata da contratti diversi; il menu serve a selezionare la regola, non a indovinare il contratto.</li>
+              <li><strong>Usa l'anzianità maturata alla data della comunicazione.</strong> Se sei vicino alla soglia dei cinque o dieci anni, confronta la decorrenza effettiva con un consulente del lavoro prima di fissare una nuova assunzione.</li>
+              <li><strong>Distingui tre date.</strong> Data della lettera, data di ricezione e data di cessazione possono non coincidere. Il calcolatore parte dalla data di comunicazione inserita e applica poi la regola prevista dal CCNL selezionato.</li>
+              <li><strong>Conserva una copia del PDF e della comunicazione.</strong> Il documento generato aiuta a ordinare le informazioni, ma la procedura telematica ordinaria del Ministero resta il passaggio che rende efficace la comunicazione nei casi in cui è richiesta.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📌</span> Casi pratici: tre calendari che danno risultati diversi</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguono le regole disponibili nel motore della pagina e mostrano perché cambiare solo il contratto o la data può spostare l'ultimo giorno. Non considerano ferie, malattia, accordi individuali o rinnovi contrattuali.</p>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Caso 1 — Commercio, livelli IV-V, fino a 5 anni, comunicazione il 12 marzo</h3>
+              <p>La regola bimensile non fa partire il preavviso il 12 marzo: la decorrenza selezionata dal motore è il 16 marzo. Con 15 giorni di calendario, l'ultimo giorno stimato è il 30 marzo. Chi pianifica un ingresso il 1° aprile deve quindi controllare prima la data di ricezione, non solo il giorno in cui ha scritto la lettera.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Caso 2 — Metalmeccanici, categorie IV-V, oltre 10 anni, comunicazione il 10 aprile</h3>
+              <p>Qui la decorrenza è dal giorno successivo: 11 aprile. Il motore associa a questo livello e anzianità 2 mesi e 15 giorni; l'ultimo giorno stimato diventa il 25 giugno. È il caso utile per vedere la differenza fra giorni fissi e mesi di calendario.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Caso 3 — Turismo, livelli IV-V, fino a 5 anni, comunicazione il 7 maggio</h3>
+              <p>Per la regola implementata del CCNL Turismo il conteggio parte dal giorno di ricezione. Con 20 giorni di preavviso, il calcolatore restituisce il 26 maggio come ultimo giorno stimato. Rispetto al caso Commercio non c'è attesa fino al 16 o al primo del mese successivo.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il calcolo della data di ultimo giorno di lavoro non è una semplice addizione di giorni. Richiede l'incrocio di tre variabili contrattuali: la durata del preavviso, che dipende da contratto collettivo, livello e anzianità, e la regola di decorrenza, che stabilisce da quale giorno il termine inizia a decorrere.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Le tre regole di decorrenza</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Decorrenza bimensile fissa</strong>: il preavviso decorre dal giorno 1 o dal giorno 16 del mese, il primo utile successivo alla comunicazione. Adottata dal CCNL Commercio e Terziario e dagli Studi Professionali.</li>
+              <li><strong>Decorrenza dal giorno successivo</strong>: il termine parte dal giorno immediatamente seguente la ricezione. Adottata da Metalmeccanici Industria, Edilizia, Multiservizi e Industria Alimentare.</li>
+              <li><strong>Decorrenza dal giorno di ricezione</strong>: il termine include il giorno stesso in cui la comunicazione perviene al datore. Adottata dal CCNL Turismo e Pubblici Esercizi.</li>
+            </ul>
+            <p>La differenza è tutt'altro che teorica. Una comunicazione trasmessa il 2 del mese in regime di decorrenza bimensile fissa non produce effetti fino al giorno 16: quattordici giorni di attesa che si sommano integralmente alla durata del preavviso, prolungando il rapporto e spostando la data di cessazione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Durata del preavviso: esempio del CCNL Commercio</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Livello</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Fino a 5 anni</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Da 5 a 10 anni</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Oltre 10 anni</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Quadri e Livello I</td><td class="px-3 py-2 border-t border-gray-200">45 giorni</td><td class="px-3 py-2 border-t border-gray-200">60 giorni</td><td class="px-3 py-2 border-t border-gray-200">90 giorni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Livelli II e III</td><td class="px-3 py-2 border-t border-gray-200">20 giorni</td><td class="px-3 py-2 border-t border-gray-200">30 giorni</td><td class="px-3 py-2 border-t border-gray-200">45 giorni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Livelli IV e V</td><td class="px-3 py-2 border-t border-gray-200">15 giorni</td><td class="px-3 py-2 border-t border-gray-200">20 giorni</td><td class="px-3 py-2 border-t border-gray-200">30 giorni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Livelli VI e VII</td><td class="px-3 py-2 border-t border-gray-200">10 giorni</td><td class="px-3 py-2 border-t border-gray-200">15 giorni</td><td class="px-3 py-2 border-t border-gray-200">15 giorni</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Durata del preavviso: esempio del CCNL Metalmeccanici Industria</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Categoria</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Fino a 5 anni</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Da 5 a 10 anni</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Oltre 10 anni</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Categoria I</td><td class="px-3 py-2 border-t border-gray-200">7 giorni</td><td class="px-3 py-2 border-t border-gray-200">15 giorni</td><td class="px-3 py-2 border-t border-gray-200">20 giorni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Categorie II e III</td><td class="px-3 py-2 border-t border-gray-200">10 giorni</td><td class="px-3 py-2 border-t border-gray-200">20 giorni</td><td class="px-3 py-2 border-t border-gray-200">1 mese</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Categorie IV e V</td><td class="px-3 py-2 border-t border-gray-200">1 mese e 15 giorni</td><td class="px-3 py-2 border-t border-gray-200">2 mesi</td><td class="px-3 py-2 border-t border-gray-200">2 mesi e 15 giorni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Categorie VI e VII</td><td class="px-3 py-2 border-t border-gray-200">2 mesi</td><td class="px-3 py-2 border-t border-gray-200">3 mesi</td><td class="px-3 py-2 border-t border-gray-200">4 mesi</td></tr></tbody></table></div>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio applicato</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Dipendente CCNL Commercio, Livello III, anzianita 7 anni</li>
+              <li>Dimissioni comunicate il 3 marzo</li>
+              <li>Decorrenza bimensile fissa =&gt; il preavviso parte dal 16 marzo</li>
+              <li>Durata preavviso = 30 giorni</li>
+              <li>Ultimo giorno di lavoro = 14 aprile</li>
+              <li>Giorni complessivi dalla comunicazione = 42</li>
+            </ul>
+            <p>Lo stesso dipendente, se inquadrato nel CCNL Metalmeccanici alle Categorie II e III con identica anzianità, avrebbe avuto venti giorni di preavviso con decorrenza dal 4 marzo, con cessazione il 23 marzo. Il divario di ventidue giorni fra due situazioni apparentemente equivalenti dimostra perché la verifica del contratto applicato preceda logicamente ogni altra considerazione.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">L'indennità sostitutiva del preavviso</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Indennita = Retribuzione globale di fatto giornaliera x Giorni di preavviso non lavorati</li>
+              <li>Se il lavoratore non rispetta il preavviso: importo trattenuto dal datore</li>
+              <li>Se il datore rinuncia al preavviso: importo corrisposto al lavoratore</li>
+            </ul>
+            <p>La retribuzione di riferimento è quella globale di fatto, comprensiva dei ratei di mensilità aggiuntive e delle voci a carattere continuativo. Il periodo di preavviso, anche se non lavorato perché sostituito dall'indennità, resta computabile ai fini dell'anzianità di servizio e della maturazione del trattamento di fine rapporto.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Codice civile, articolo 2118</strong> — disciplina il recesso dal contratto a tempo indeterminato e l'obbligo di preavviso o della relativa indennità sostitutiva.</li>
+              <li><strong>Codice civile, articolo 2119</strong> — regola il recesso per giusta causa, che esonera dall'obbligo di preavviso.</li>
+              <li><strong>D.Lgs. 14 settembre 2015 n. 151, articolo 26</strong> — introduce l'obbligo di trasmissione telematica delle dimissioni e della risoluzione consensuale.</li>
+              <li><strong>D.Lgs. 30 giugno 2003 n. 196 e Regolamento UE 2016/679</strong> — disciplinano il trattamento dei dati personali del lavoratore nell'ambito del rapporto di lavoro.</li>
+              <li><strong>Contratti collettivi nazionali di categoria</strong> — fonte diretta della durata del preavviso e della regola di decorrenza applicabile.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">La procedura telematica obbligatoria</h3>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li><strong>Trasmissione telematica</strong>: le dimissioni vanno rassegnate esclusivamente con la procedura online del Ministero del Lavoro, direttamente o tramite un soggetto abilitato quali patronati, organizzazioni sindacali, consulenti del lavoro ed enti bilaterali.</li>
+              <li><strong>Inefficacia della forma libera</strong>: la lettera cartacea, anche consegnata a mano e controfirmata, non produce effetti giuridici se non seguita dalla procedura telematica.</li>
+              <li><strong>Revoca entro sette giorni</strong>: il lavoratore può revocare le dimissioni entro sette giorni dalla trasmissione, sempre in via telematica e senza necessità di motivazione.</li>
+              <li><strong>Eccezioni alla procedura</strong>: lavoro domestico, dimissioni nelle sedi protette di conciliazione e dimissioni della lavoratrice o del lavoratore nel periodo tutelato, che richiedono la convalida presso l'Ispettorato del Lavoro.</li>
+            </ol>
+            <p>La lettera di dimissioni conserva comunque una funzione essenziale: documenta la data di comunicazione, dalla quale dipende il calcolo del preavviso, esplicita l'eventuale volontà di rinuncia o di monetizzazione e costituisce prova nei rapporti fra le parti. La procedura telematica assolve alla funzione di validità, la lettera a quella probatoria e organizzativa.</p>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le durate del preavviso e le regole di decorrenza sono soggette a rinnovo contrattuale e possono essere modificate dalle parti collettive. La contrattazione aziendale o individuale può prevedere condizioni di miglior favore. Prima di trasmettere le dimissioni è opportuno verificare il testo del contratto collettivo applicato e, nei casi complessi, consultare un consulente del lavoro o un patronato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">La lettera di dimissioni da sola è sufficiente a chiudere il rapporto?</h3>
+              <p>No. Dal 2016 le dimissioni sono efficaci solo se rassegnate mediante la procedura telematica del Ministero del Lavoro. Una lettera consegnata in azienda, anche se protocollata e controfirmata, non produce la cessazione del rapporto. La lettera resta utile per documentare la data di comunicazione, rilevante ai fini del computo del preavviso, ma non sostituisce l'adempimento telematico.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa succede se non rispetto il periodo di preavviso?</h3>
+              <p>Il datore di lavoro ha diritto a trattenere dalle competenze di fine rapporto un'indennità pari alla retribuzione che sarebbe spettata per i giorni di preavviso non lavorati. La trattenuta è legittima e opera automaticamente sulle spettanze finali. Se le competenze residue non coprono l'importo, il datore può agire per il recupero della differenza.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Il datore può rifiutare le mie dimissioni?</h3>
+              <p>No. Le dimissioni sono un atto unilaterale recettizio: producono effetto per il solo fatto di essere portate a conoscenza del destinatario attraverso la procedura prevista, senza necessità di accettazione. Il datore può soltanto rinunciare al preavviso, anticipando la cessazione e corrispondendo la relativa indennità sostitutiva.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Ferie e malattia sospendono il decorso del preavviso?</h3>
+              <p>La malattia e l'infortunio hanno effetto sospensivo: il preavviso si interrompe e riprende a decorrere al termine dell'evento, spostando in avanti la data di cessazione. Le ferie godute durante il preavviso seguono invece la disciplina del contratto collettivo applicato, che in molti casi ne esclude la computabilità. È opportuno concordare per iscritto la gestione delle ferie residue.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Ho diritto alla NASpI se mi dimetto?</h3>
+              <p>In via ordinaria no, poiché la prestazione presuppone la perdita involontaria dell'occupazione. Il diritto sussiste però in caso di dimissioni per giusta causa, ad esempio per mancato pagamento della retribuzione o per molestie, e nel periodo tutelato di maternità e paternità. La giusta causa va documentata e può essere contestata: è consigliabile un'assistenza qualificata prima di procedere.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso ritirare le dimissioni dopo averle trasmesse?</h3>
+              <p>Sì, entro sette giorni dalla data di trasmissione, mediante revoca effettuata con la stessa procedura telematica. La revoca non richiede motivazione e ripristina integralmente il rapporto di lavoro. Trascorso il termine le dimissioni diventano irrevocabili e un eventuale ripensamento richiede il consenso del datore di lavoro.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il generatore della lettera di dimissioni è uno strumento <strong>100% client-side, senza alcun backend</strong>. Il tuo nome, la qualifica, il datore di lavoro, il contratto collettivo applicato e le date che inserisci vengono composti nel documento direttamente dal browser, sul tuo dispositivo. Il PDF nasce localmente e nessun dato raggiunge i nostri server, perché nessun server di elaborazione esiste.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">La riservatezza è qui particolarmente critica: l'intenzione di dimettersi è un'informazione che, se divulgata prima del momento scelto, può compromettere il rapporto di lavoro in corso e le trattative per una nuova posizione. Con un'elaborazione integralmente locale nessuno può venirne a conoscenza, noi compresi. L'impostazione rispetta il Regolamento UE 2016/679 (GDPR) e ne attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5, paragrafo 1, lettera c.</p>
+        </div>
+
+        </section>
+
+      <!-- Pubblicità Mobile -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link agli script esterni -->
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/hr-dimissioni.js"></script>
+  <script defer src="/js/codice-fiscale.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() { if (!adsenseReady()) return; document.querySelectorAll(AD_SELECTOR).forEach(initAd); }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+
+  <script id="pseo-default-ccnl">
+    window.addEventListener('load', function () {
+      var select = document.getElementById('input-ccnl');
+      if (!select || !select.querySelector('option[value="' + "turismo" + '"]')) return;
+      select.value = "turismo";
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    }, { once: true });
+  </script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

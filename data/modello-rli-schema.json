@@ -1,0 +1,1717 @@
+{
+  "versione": "2025-10-20",
+  "nota": "Mappatura dei campi del modello RLI creati da scripts/prepara-modello-rli.py. Modello e istruzioni aggiornati dall'Agenzia delle Entrate il 20 ottobre 2025. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-rli.pdf.",
+  "tabelle": {
+    "tipologiaContratto": [
+      {
+        "value": "L1",
+        "label": "L1 — Locazione di immobile a uso abitativo (registro 2%)"
+      },
+      {
+        "value": "L2",
+        "label": "L2 — Locazione agevolata di immobile a uso abitativo (registro 2% sul 70% del canone)"
+      },
+      {
+        "value": "L3",
+        "label": "L3 — Locazione di immobile a uso abitativo soggetta a IVA (registro € 67)"
+      },
+      {
+        "value": "L4",
+        "label": "L4 — Locazione finanziaria di immobile a uso abitativo (registro € 200)"
+      },
+      {
+        "value": "S1",
+        "label": "S1 — Locazione di immobile a uso diverso dall'abitativo (registro 2%)"
+      },
+      {
+        "value": "S2",
+        "label": "S2 — Locazione di immobile strumentale con locatore soggetto a IVA (registro 1%)"
+      },
+      {
+        "value": "S3",
+        "label": "S3 — Locazione finanziaria di immobile a uso diverso dall'abitativo (registro € 200)"
+      },
+      {
+        "value": "T1",
+        "label": "T1 — Affitto di fondo rustico (registro 0,50%)"
+      },
+      {
+        "value": "T2",
+        "label": "T2 — Affitto di fondo rustico agevolato (registro € 67)"
+      },
+      {
+        "value": "T3",
+        "label": "T3 — Affitto di terreni e aree non edificabili, cave e torbiere (registro 2%)"
+      },
+      {
+        "value": "T4",
+        "label": "T4 — Affitto di terreni destinati a parcheggio soggetto a IVA (registro € 67)"
+      }
+    ],
+    "eventiEccezionali": [
+      {
+        "value": "1",
+        "label": "1 — Agevolazioni per calamità naturali o altri eventi eccezionali"
+      },
+      {
+        "value": "2",
+        "label": "2 — Modifica del calcolo automatico delle imposte per situazioni particolari"
+      }
+    ],
+    "casiParticolari": [
+      {
+        "value": "1",
+        "label": "1 — Canone diverso per una o più annualità"
+      },
+      {
+        "value": "2",
+        "label": "2 — Contratto di sublocazione"
+      },
+      {
+        "value": "3",
+        "label": "3 — Canone diverso per una o più annualità, con imposta assolta per l'intera durata"
+      }
+    ],
+    "esenzioni": [
+      {
+        "value": "1",
+        "label": "1 — Esente dall'imposta di bollo"
+      },
+      {
+        "value": "2",
+        "label": "2 — Esente dall'imposta di registro e di bollo"
+      },
+      {
+        "value": "3",
+        "label": "3 — Esente dalla sola imposta di registro"
+      }
+    ],
+    "tipoGaranzia": [
+      {
+        "value": "1",
+        "label": "1 — Fideiussione prestata da terzi"
+      },
+      {
+        "value": "2",
+        "label": "2 — Garanzia di terzi diversa dalla fideiussione"
+      },
+      {
+        "value": "3",
+        "label": "3 — Affitto di terreni agricoli con diritti all'aiuto comunitario (PAC)"
+      },
+      {
+        "value": "4",
+        "label": "4 — Affitto di terreni agricoli con PAC e garanzia prestata da terzi"
+      }
+    ],
+    "adempimentiSuccessivi": [
+      {
+        "value": "1",
+        "label": "1 — Annualità successiva"
+      },
+      {
+        "value": "2",
+        "label": "2 — Proroga"
+      },
+      {
+        "value": "3",
+        "label": "3 — Cessione"
+      },
+      {
+        "value": "4",
+        "label": "4 — Risoluzione"
+      },
+      {
+        "value": "5",
+        "label": "5 — Conguaglio d'imposta (solo per via telematica)"
+      },
+      {
+        "value": "6",
+        "label": "6 — Subentro"
+      },
+      {
+        "value": "7",
+        "label": "7 — Risoluzione con pagamento contestuale del corrispettivo"
+      }
+    ],
+    "tipologiaProroga": [
+      {
+        "value": "1",
+        "label": "1 — Proroga di un contratto in regime ordinario (registro)"
+      },
+      {
+        "value": "2",
+        "label": "2 — Proroga di un contratto in regime di cedolare secca"
+      },
+      {
+        "value": "3",
+        "label": "3 — Proroga di un contratto misto (almeno un locatore in cedolare e uno in ordinario)"
+      }
+    ],
+    "tipologiaSubentro": [
+      {
+        "value": "1",
+        "label": "1 — Decesso di una o più parti del contratto"
+      },
+      {
+        "value": "2",
+        "label": "2 — Trasferimento di diritti reali sugli immobili locati"
+      },
+      {
+        "value": "3",
+        "label": "3 — Trasformazione della società o dell'ente"
+      },
+      {
+        "value": "4",
+        "label": "4 — Fusione della società o dell'ente"
+      },
+      {
+        "value": "5",
+        "label": "5 — Scissione della società o dell'ente"
+      },
+      {
+        "value": "6",
+        "label": "6 — Altri casi"
+      }
+    ],
+    "tipologiaRegime": [
+      {
+        "value": "1",
+        "label": "1 — Tutti i locatori optano per la cedolare secca"
+      },
+      {
+        "value": "2",
+        "label": "2 — Almeno un locatore non opta per la cedolare secca"
+      },
+      {
+        "value": "3",
+        "label": "3 — Nessun locatore opta per la cedolare secca"
+      }
+    ],
+    "tardivita": [
+      {
+        "value": "1",
+        "label": "1 — Pagamento tardivo e almeno un locatore cambia regime (non trasmissibile online)"
+      },
+      {
+        "value": "2",
+        "label": "2 — Pagamento tardivo senza cambio di regime"
+      }
+    ],
+    "tipoSoggetto": [
+      {
+        "value": "1",
+        "label": "1 — Parte del contratto"
+      },
+      {
+        "value": "2",
+        "label": "2 — Mediatore del contratto (solo in sede di registrazione)"
+      },
+      {
+        "value": "3",
+        "label": "3 — Parte del contratto non registrata"
+      }
+    ],
+    "codiceCaricaRli": [
+      {
+        "value": "1",
+        "label": "1 — Rappresentante legale, negoziale o di fatto, socio amministratore"
+      },
+      {
+        "value": "2",
+        "label": "2 — Rappresentante di minore, inabilitato o interdetto, curatore dell'eredità giacente, amministratore di sostegno"
+      },
+      {
+        "value": "3",
+        "label": "3 — Curatore fallimentare"
+      },
+      {
+        "value": "4",
+        "label": "4 — Commissario liquidatore (liquidazione coatta amministrativa o amministrazione straordinaria)"
+      },
+      {
+        "value": "5",
+        "label": "5 — Commissario giudiziale, custode giudiziario o amministratore dei beni sequestrati"
+      },
+      {
+        "value": "7",
+        "label": "7 — Erede"
+      },
+      {
+        "value": "8",
+        "label": "8 — Liquidatore (liquidazione volontaria)"
+      },
+      {
+        "value": "11",
+        "label": "11 — Soggetto esercente l'attività tutoria del minore o interdetto"
+      },
+      {
+        "value": "13",
+        "label": "13 — Amministratore di condominio"
+      },
+      {
+        "value": "14",
+        "label": "14 — Soggetto che sottoscrive per conto di una pubblica amministrazione"
+      },
+      {
+        "value": "15",
+        "label": "15 — Commissario liquidatore di una pubblica amministrazione"
+      }
+    ],
+    "tipologiaConduttore": [
+      {
+        "value": "3",
+        "label": "3 — Caso ordinario (nessuna situazione particolare)"
+      },
+      {
+        "value": "1",
+        "label": "1 — Cooperativa o ente senza scopo di lucro che subloca a studenti universitari"
+      },
+      {
+        "value": "2",
+        "label": "2 — Persona fisica con codice fiscale provvisorio, o ente senza scopo di lucro"
+      }
+    ],
+    "tipologiaImmobile": [
+      {
+        "value": "1",
+        "label": "1 — Immobile principale"
+      },
+      {
+        "value": "2",
+        "label": "2 — Pertinenza locata insieme all'immobile principale"
+      },
+      {
+        "value": "3",
+        "label": "3 — Pertinenza locata separatamente, in regime ordinario"
+      },
+      {
+        "value": "4",
+        "label": "4 — Pertinenza locata separatamente, già in cedolare secca"
+      }
+    ],
+    "catastoTU": [
+      {
+        "value": "U",
+        "label": "U — Catasto edilizio urbano"
+      },
+      {
+        "value": "T",
+        "label": "T — Catasto terreni"
+      }
+    ],
+    "interoPorzione": [
+      {
+        "value": "I",
+        "label": "I — Immobile intero"
+      },
+      {
+        "value": "P",
+        "label": "P — Porzione di immobile"
+      }
+    ],
+    "sesso": [
+      {
+        "value": "M",
+        "label": "M — Maschile"
+      },
+      {
+        "value": "F",
+        "label": "F — Femminile"
+      }
+    ],
+    "impegnoPresentazione": [
+      {
+        "value": "1",
+        "label": "1 — Richiesta predisposta da chi è obbligato a registrare il contratto"
+      },
+      {
+        "value": "2",
+        "label": "2 — Richiesta predisposta dall'intermediario che la invia"
+      }
+    ],
+    "agevolazioni": [
+      {
+        "value": "1",
+        "label": "1 — Enti del Terzo Settore (art. 82, c. 3, D.Lgs. 117/2017)"
+      }
+    ]
+  },
+  "modelli": {
+    "RLI": {
+      "codice": "RLI",
+      "nome": "Modello RLI",
+      "sottotitolo": "Registrazione dei contratti di locazione e affitto di immobili",
+      "descrizione": "Richiesta di registrazione e adempimenti successivi per i contratti di locazione e affitto di immobili, opzione e revoca della cedolare secca, comunicazione dei dati catastali.",
+      "pdf": "/assets/pdf/modello-rli-compilabile.pdf",
+      "istruzioni": "/assets/pdf/istruzioni-rli.pdf",
+      "testata": {
+        "copie": [
+          {
+            "da": "richiedente.cfRichiedente",
+            "tipo": "cf",
+            "a": [
+              "cf_testata_p2",
+              "cf_testata_p3",
+              "cf_testata_p4",
+              "cf_testata_p5"
+            ]
+          },
+          {
+            "valore": "1",
+            "a": [
+              "modulo_n_p3",
+              "modulo_n_p4"
+            ]
+          }
+        ],
+        "riferimentoNomeFile": "richiedente.cfRichiedente"
+      },
+      "passi": [
+        {
+          "id": "contratto",
+          "titolo": "Quadro A — Il contratto",
+          "descrizione": "I dati essenziali del contratto di locazione o affitto: che tipo è, quanto dura e quanto si paga. Da qui dipende il calcolo delle imposte.",
+          "campi": [
+            {
+              "id": "tipologiaContratto",
+              "pdf": "tipologia_contratto",
+              "type": "select",
+              "options": "tipologiaContratto",
+              "label": "Tipologia di contratto",
+              "required": true,
+              "width": "full",
+              "help": "Il codice va indicato per qualsiasi adempimento. Nella categoria L1 rientrano i contratti a canone libero 4+4, quelli a canone concordato 3+2, i transitori fino a 18 mesi, quelli per studenti universitari e quelli fino a 30 giorni. I contratti a canone concordato e quelli per studenti in comuni ad alta densità abitativa, come tutti i contratti a regime fiscale agevolato dell'art. 8 legge 431/1998, vanno invece indicati con il codice L2."
+            },
+            {
+              "id": "durataDal",
+              "pdf": "durata_dal",
+              "type": "data",
+              "label": "Durata · dal",
+              "required": true,
+              "width": "third",
+              "help": "La data di inizio della locazione. In caso di proroga indica il periodo di durata precedente. Anche per un contratto a tempo indeterminato questo campo va compilato."
+            },
+            {
+              "id": "durataAl",
+              "pdf": "durata_al",
+              "type": "data",
+              "label": "Durata · al",
+              "required": true,
+              "width": "third",
+              "help": "La data di fine della locazione."
+            },
+            {
+              "id": "importoCanone",
+              "pdf": "importo_canone",
+              "type": "importo",
+              "label": "Importo del canone (euro)",
+              "required": true,
+              "width": "third",
+              "help": "Il canone annuo o, per i contratti di durata inferiore a un anno, l'importo dell'intera durata. In caso di comproprietà indica il canone per intero, indipendentemente dalla quota di possesso. Se hai indicato il codice 1 o 3 nei «casi particolari», qui va solo il canone della prima annualità: gli altri vanno nel quadro E. Per un contratto di affitto indica il corrispettivo pattuito per l'intera durata."
+            },
+            {
+              "id": "pagamentoInteraDurata",
+              "pdf": "pagamento_intera_durata",
+              "type": "checkX",
+              "label": "Pagamento per l'intera durata",
+              "width": "half",
+              "help": "Per i contratti pluriennali l'imposta di registro può essere pagata tutta subito oppure anno per anno. Chi paga per l'intera durata ha diritto a uno sconto pari alla metà del tasso di interesse legale moltiplicato per il numero di annualità. ATTENZIONE: questa casella va SEMPRE barrata con i codici T1, T2, T3 o T4."
+            },
+            {
+              "id": "eventiEccezionali",
+              "pdf": "eventi_eccezionali",
+              "type": "select",
+              "options": "eventiEccezionali",
+              "label": "Eventi eccezionali",
+              "width": "half",
+              "help": "Codice 1 se fruisci di agevolazioni previste per calamità naturali o altri eventi eccezionali; codice 2 se devi modificare il calcolo automatico delle imposte per situazioni particolari."
+            },
+            {
+              "id": "casiParticolari",
+              "pdf": "casi_particolari",
+              "type": "select",
+              "options": "casiParticolari",
+              "label": "Casi particolari",
+              "width": "half",
+              "help": "Segnala situazioni particolari del contratto. Con il codice 1 o 3 devi compilare anche il quadro E con i canoni delle annualità successive. Il codice 2 (sublocazione) esclude di norma la cedolare secca. Se compili questa casella è obbligatorio allegare il contratto."
+            },
+            {
+              "id": "esenzioni",
+              "pdf": "esenzioni",
+              "type": "select",
+              "options": "esenzioni",
+              "label": "Esenzioni",
+              "width": "half",
+              "help": "Da compilare solo se il contratto gode di un'esenzione di legge. Non va compilata quando le imposte di registro e bollo sono semplicemente sostituite dalla cedolare secca."
+            },
+            {
+              "id": "agevolazioni",
+              "pdf": "agevolazioni",
+              "type": "select",
+              "options": "agevolazioni",
+              "label": "Agevolazioni",
+              "width": "half",
+              "help": "Casella introdotta con il modello aggiornato al 20 ottobre 2025. Indica il codice 1 per usufruire delle agevolazioni previste per gli Enti del Terzo Settore (art. 82, comma 3, del D.Lgs. 117/2017): in quel caso l'imposta di registro si applica in misura fissa agli atti, contratti e convenzioni relativi alle attività di interesse generale dell'art. 5 del Codice del Terzo Settore. L'agevolazione vale a condizione che tali attività siano svolte in base ad accreditamento, contratto o convenzione con amministrazioni pubbliche, con l'Unione europea o con altri organismi pubblici internazionali."
+            },
+            {
+              "id": "contrattoTempoIndeterminato",
+              "pdf": "contratto_tempo_indeterminato",
+              "type": "checkX",
+              "label": "Contratto a tempo indeterminato",
+              "width": "half",
+              "help": "Barra solo per i contratti a tempo indeterminato previsti da specifiche normative, per i quali l'imposta si applica in base alla durata dichiarata in sede di registrazione (per esempio i contratti ATER, ex IACP)."
+            },
+            {
+              "id": "clausolaPenaleVolontaria",
+              "pdf": "clausola_penale_volontaria",
+              "type": "checkX",
+              "label": "Clausola penale volontaria",
+              "width": "half",
+              "help": "Barra se nel contratto è prevista una clausola penale apposta volontariamente dalle parti."
+            }
+          ]
+        },
+        {
+          "id": "garanzie",
+          "titolo": "Quadro A — Garanzie",
+          "descrizione": "Da compilare solo se nel contratto è presente una garanzia prestata da terzi (una fideiussione, per esempio) o se si tratta di affitto di terreni agricoli con diritti PAC.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "tipoGaranzia",
+              "pdf": "tipo_garanzie_pac",
+              "type": "select",
+              "options": "tipoGaranzia",
+              "label": "Tipo di garanzia e/o PAC",
+              "width": "full",
+              "help": "Indica di che garanzia si tratta. Il codice scelto determina cosa scrivere nell'importo qui sotto."
+            },
+            {
+              "id": "garanziaSoggettaIva",
+              "pdf": "garanzia_soggetta_iva",
+              "type": "checkX",
+              "label": "Garanzia soggetta a IVA",
+              "width": "half",
+              "help": "Barra se la garanzia rientra nell'ambito di applicazione dell'IVA."
+            },
+            {
+              "id": "importoGaranzia",
+              "pdf": "importo_garanzia",
+              "type": "importo",
+              "label": "Importo della garanzia prestata da terzi e/o PAC (euro)",
+              "width": "half",
+              "help": "Con i codici 1 o 2 indica l'importo della somma garantita; se la garanzia è in denaro o titoli e il valore è inferiore, indica quello. Con il codice 3 indica l'importo attualizzato dei diritti soggetti all'aiuto. Con il codice 4 indica la somma del valore della garanzia e dell'importo attualizzato dei diritti."
+            },
+            {
+              "id": "cfGarante",
+              "pdf": "cf_garante",
+              "type": "cf",
+              "label": "Codice fiscale del garante",
+              "width": "half",
+              "help": "I 16 caratteri del codice fiscale di chi presta la garanzia."
+            },
+            {
+              "id": "cfSecondoGarante",
+              "pdf": "cf_secondo_garante",
+              "type": "cf",
+              "label": "Codice fiscale del secondo garante",
+              "width": "half",
+              "help": "Solo se i garanti sono due."
+            }
+          ]
+        },
+        {
+          "id": "registrazione",
+          "quadro": "I",
+          "titolo": "Sezione I — Registrazione del contratto",
+          "descrizione": "Compila questa sezione se stai registrando il contratto per la prima volta. Se invece stai comunicando un adempimento su un contratto già registrato, salta al passo successivo.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "ufficioTerritoriale",
+              "pdf": "ufficio_territoriale",
+              "type": "testo",
+              "label": "Ufficio territoriale di",
+              "width": "full",
+              "help": "L'ufficio dell'Agenzia delle Entrate presso cui presenti la richiesta. Il contratto può essere registrato in qualunque ufficio territoriale: quello scelto sarà poi competente per tutti gli adempimenti successivi."
+            },
+            {
+              "id": "nPagine",
+              "pdf": "n_pagine",
+              "type": "numero",
+              "label": "N. pagine del contratto",
+              "width": "quarter",
+              "help": "Il numero di pagine di cui è composto il contratto stipulato fra le parti. Il foglio è composto da quattro facciate, la pagina da una facciata; il foglio non può contenere più di cento linee. Serve per calcolare l'imposta di bollo."
+            },
+            {
+              "id": "nCopie",
+              "pdf": "n_copie",
+              "type": "numero",
+              "label": "N. copie",
+              "width": "quarter",
+              "help": "Il numero di esemplari cartacei del contratto sottoscritti dalle parti (minimo uno). Chi registra presso l'ufficio deve presentare due originali, oppure un originale e una fotocopia."
+            },
+            {
+              "id": "dataStipula",
+              "pdf": "data_stipula",
+              "type": "data",
+              "label": "Data di stipula",
+              "required": true,
+              "width": "half",
+              "help": "Il giorno in cui il contratto è stato firmato. La registrazione va effettuata entro 30 giorni da questa data."
+            },
+            {
+              "id": "allegatiScritturePrivate",
+              "pdf": "allegati_scritture_private",
+              "type": "numero",
+              "label": "Allegati · scritture private e inventari",
+              "width": "third",
+              "help": "Il numero di fogli o esemplari del documento da allegare per i quali è dovuta l'imposta di bollo. Gli allegati diversi da ricevute, quietanze, mappe, planimetrie o disegni si contano qui."
+            },
+            {
+              "id": "allegatiRicevute",
+              "pdf": "allegati_ricevute_quietanze",
+              "type": "numero",
+              "label": "Allegati · ricevute e quietanze",
+              "width": "third"
+            },
+            {
+              "id": "allegatiMappe",
+              "pdf": "allegati_mappe_planimetrie",
+              "type": "numero",
+              "label": "Allegati · mappe, planimetrie e disegni",
+              "width": "third"
+            },
+            {
+              "id": "contrattoSoggettoIva",
+              "pdf": "contratto_soggetto_iva",
+              "type": "checkX",
+              "label": "Contratto soggetto a IVA",
+              "width": "half",
+              "help": "Barra se il contratto è soggetto all'imposta sul valore aggiunto."
+            },
+            {
+              "id": "condizioneSospensiva",
+              "pdf": "condizione_sospensiva",
+              "type": "checkX",
+              "label": "Condizione sospensiva",
+              "width": "half",
+              "help": "Barra in presenza di atto sospeso. Ricorda che entro 20 giorni dall'avverarsi della condizione va data comunicazione all'ufficio presso cui è stata effettuata la registrazione."
+            }
+          ]
+        },
+        {
+          "id": "adempimenti",
+          "quadro": "II",
+          "titolo": "Sezione II — Adempimenti successivi",
+          "descrizione": "Da compilare solo per un contratto già registrato: annualità successive, proroghe, cessioni, risoluzioni, subentri, oppure per esercitare o revocare la cedolare secca o comunicare i dati catastali.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "adempimentoSuccessivo",
+              "pdf": "adempimenti_successivi",
+              "type": "select",
+              "options": "adempimentiSuccessivi",
+              "label": "Adempimento che stai comunicando",
+              "width": "full",
+              "help": "Scegli l'adempimento. In ogni caso vanno indicati gli estremi di registrazione o il codice identificativo del contratto. ATTENZIONE: in caso di presentazione tardiva, la scelta della cedolare secca decorre dall'annualità successiva."
+            },
+            {
+              "id": "tipologiaProroga",
+              "pdf": "tipologia_proroga",
+              "type": "select",
+              "options": "tipologiaProroga",
+              "label": "Tipologia di proroga",
+              "width": "half",
+              "showIf": {
+                "campo": "adempimentoSuccessivo",
+                "in": [
+                  "2"
+                ]
+              },
+              "help": "In sede di proroga l'opzione per la cedolare secca va sempre confermata dal locatore che intende mantenerla."
+            },
+            {
+              "id": "tipologiaSubentro",
+              "pdf": "tipologia_subentro",
+              "type": "select",
+              "options": "tipologiaSubentro",
+              "label": "Tipologia di subentro",
+              "width": "half",
+              "showIf": {
+                "campo": "adempimentoSuccessivo",
+                "in": [
+                  "6"
+                ]
+              },
+              "help": "Il motivo del subentro. Va compilato anche il quadro B con i dati di chi non è più parte del contratto (casella «cedente») e di chi subentra (casella «cessionario/subentrante»)."
+            },
+            {
+              "id": "tipologiaRegime",
+              "pdf": "tipologia_regime",
+              "type": "select",
+              "options": "tipologiaRegime",
+              "label": "Tipologia di regime",
+              "width": "half",
+              "help": "Comunica il regime di tassazione del contratto. Va compilata anche in caso di risoluzione, per indicare il regime che era applicato. Compilarla comporta la presenza dei quadri relativi ai soggetti, agli immobili e all'opzione o revoca della cedolare secca."
+            },
+            {
+              "id": "cdc",
+              "pdf": "cdc",
+              "type": "checkX",
+              "label": "CDC — comunicazione dei dati catastali",
+              "width": "half",
+              "help": "Barra per comunicare i dati catastali degli immobili locati: in tal caso va compilato il quadro C. Non serve se i dati sono già stati comunicati in precedenza."
+            },
+            {
+              "id": "tardivita",
+              "pdf": "tardivita_annualita_successiva",
+              "type": "select",
+              "options": "tardivita",
+              "label": "Tardività annualità successiva",
+              "width": "half",
+              "showIf": {
+                "campo": "adempimentoSuccessivo",
+                "in": [
+                  "1"
+                ]
+              },
+              "help": "Da usare se il pagamento per l'annualità successiva è tardivo. Con il codice 1 l'adempimento non può essere trasmesso telematicamente: occorre rivolgersi all'ufficio."
+            },
+            {
+              "id": "annualita",
+              "pdf": "annualita",
+              "type": "anno",
+              "label": "Annualità",
+              "width": "quarter",
+              "showIf": {
+                "campo": "adempimentoSuccessivo",
+                "in": [
+                  "1"
+                ]
+              },
+              "help": "L'anno per cui effettui il pagamento. Per un contratto registrato il 1° luglio 2018, l'annualità successiva va dal 1° luglio 2019 al 30 giugno 2020: indica 2019."
+            },
+            {
+              "id": "dataInizioCanoneRinegoziato",
+              "pdf": "data_inizio_canone_rinegoziato",
+              "type": "data",
+              "label": "Data inizio canone rinegoziato",
+              "width": "half",
+              "help": "Solo in caso di rinegoziazione del canone."
+            },
+            {
+              "id": "dataFineAdempimento",
+              "pdf": "data_fine_adempimento",
+              "type": "data",
+              "label": "Data di fine proroga, cessione, risoluzione o subentro",
+              "width": "half",
+              "help": "A seconda dell'adempimento scelto: la data di fine proroga, la data di decorrenza della cessione o del subentro, oppure il giorno in cui il contratto si considera risolto."
+            },
+            {
+              "id": "corrispettivo",
+              "pdf": "corrispettivo_cessione_risoluzione",
+              "type": "importo",
+              "label": "Corrispettivo di cessione o risoluzione (euro)",
+              "width": "half",
+              "help": "Se per la cessione o la risoluzione è stato pattuito un corrispettivo, indicane l'ammontare."
+            },
+            {
+              "id": "codiceIdentificativoContratto",
+              "pdf": "codice_identificativo_contratto",
+              "type": "testo",
+              "label": "Codice identificativo del contratto",
+              "width": "full",
+              "help": "Il codice identificativo assegnato alla registrazione. In alternativa puoi indicare gli estremi di registrazione nei campi qui sotto."
+            },
+            {
+              "id": "rifCodUfficio",
+              "pdf": "rif_cod_ufficio",
+              "type": "testo",
+              "label": "Estremi · codice ufficio",
+              "width": "quarter",
+              "help": "Gli estremi di registrazione del contratto, alternativi al codice identificativo: li trovi sulla ricevuta di registrazione."
+            },
+            {
+              "id": "rifAnno",
+              "pdf": "rif_anno",
+              "type": "anno",
+              "label": "Estremi · anno",
+              "width": "quarter"
+            },
+            {
+              "id": "rifSerie",
+              "pdf": "rif_serie",
+              "type": "testo",
+              "label": "Estremi · serie",
+              "width": "quarter"
+            },
+            {
+              "id": "rifNumero",
+              "pdf": "rif_numero",
+              "type": "testo",
+              "label": "Estremi · numero",
+              "width": "quarter"
+            },
+            {
+              "id": "rifSottonumero",
+              "pdf": "rif_sottonumero",
+              "type": "testo",
+              "label": "Estremi · sottonumero",
+              "width": "quarter"
+            }
+          ]
+        },
+        {
+          "id": "richiedente",
+          "titolo": "Sezione III — Chi presenta la richiesta",
+          "descrizione": "I dati di chi richiede la registrazione o comunica l'adempimento. La richiesta deve essere sottoscritta, a pena di nullità, dal locatore, dal conduttore o dal mediatore: se i locatori o i conduttori sono più di uno basta la firma di uno di essi.",
+          "campi": [
+            {
+              "id": "cfRichiedente",
+              "pdf": "cf_richiedente",
+              "type": "cf",
+              "label": "Codice fiscale del richiedente",
+              "required": true,
+              "width": "half",
+              "help": "Il codice fiscale di chi richiede la registrazione. Se a richiederla è un soggetto diverso da una persona fisica, va indicato il codice fiscale della società o dell'ente. Viene riportato automaticamente in alto su tutte le pagine del modello."
+            },
+            {
+              "id": "tipoSoggetto",
+              "pdf": "tipo_soggetto",
+              "type": "select",
+              "options": "tipoSoggetto",
+              "label": "Tipo soggetto",
+              "required": true,
+              "width": "half",
+              "help": "Il codice 1 vale anche per chi comunica una cessione o un subentro. Il codice 2 si usa solo in sede di registrazione. Il codice 3 serve a chi chiede un adempimento successivo senza aver comunicato prima il subentro: in tal caso nel quadro B vanno indicati i dati del soggetto a cui si è subentrati."
+            },
+            {
+              "id": "cognomeRichiedente",
+              "pdf": "richiedente_cognome",
+              "type": "testo",
+              "label": "Cognome, oppure denominazione o ragione sociale",
+              "required": true,
+              "width": "half",
+              "help": "Il cognome della persona fisica, oppure la denominazione della società o dell'ente."
+            },
+            {
+              "id": "nomeRichiedente",
+              "pdf": "richiedente_nome",
+              "type": "testo",
+              "label": "Nome",
+              "width": "half",
+              "help": "Solo per le persone fisiche."
+            },
+            {
+              "id": "nModuli",
+              "pdf": "n_moduli_compilati",
+              "type": "numero",
+              "label": "N. moduli compilati",
+              "width": "quarter",
+              "help": "Quanti moduli RLI compongono la richiesta. Se locatori, conduttori o immobili non stanno nei righi disponibili occorre usare più moduli: indica qui il totale. Se il modulo è uno solo, scrivi 1."
+            },
+            {
+              "id": "firmaRichiedente",
+              "pdf": "firma_richiedente",
+              "type": "testo",
+              "label": "Firma del richiedente (nome da stampare)",
+              "width": "half",
+              "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata. Chi sottoscrive attesta che i dati dichiarati coincidono con quelli del contratto."
+            }
+          ]
+        },
+        {
+          "id": "rappresentante",
+          "titolo": "Rappresentante legale e delega",
+          "descrizione": "Il rappresentante legale va indicato se chi richiede la registrazione agisce per conto di un altro soggetto (società, ente, minore, interdetto). La delega si compila se il modello viene consegnato materialmente da un'altra persona.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "cognomeRappresentante",
+              "pdf": "rappresentante_cognome",
+              "type": "testo",
+              "label": "Rappresentante · cognome",
+              "width": "half",
+              "help": "I dati anagrafici di chi agisce in nome e per conto di un altro soggetto."
+            },
+            {
+              "id": "nomeRappresentante",
+              "pdf": "rappresentante_nome",
+              "type": "testo",
+              "label": "Rappresentante · nome",
+              "width": "half"
+            },
+            {
+              "id": "cfRappresentante",
+              "pdf": "cf_rappresentante",
+              "type": "cf",
+              "label": "Rappresentante · codice fiscale",
+              "width": "half"
+            },
+            {
+              "id": "codiceCarica",
+              "pdf": "codice_carica",
+              "type": "select",
+              "options": "codiceCaricaRli",
+              "label": "Codice carica",
+              "width": "half",
+              "help": "Il tipo di carica ricoperta da chi presenta la richiesta per conto di altri."
+            },
+            {
+              "id": "cfDelegato",
+              "pdf": "cf_delegato",
+              "type": "cf",
+              "label": "Delega · codice fiscale del delegato",
+              "width": "half",
+              "help": "Se deleghi un terzo alla presentazione del modello, indica il suo codice fiscale. Va allegata la fotocopia di un documento d'identità in corso di validità del delegante."
+            },
+            {
+              "id": "firmaDelegante",
+              "pdf": "firma_delegante",
+              "type": "testo",
+              "label": "Delega · firma del delegante (nome da stampare)",
+              "width": "half"
+            }
+          ]
+        },
+        {
+          "id": "locatori",
+          "titolo": "Quadro B — Locatori",
+          "descrizione": "Chi concede l'immobile in locazione. Per ogni locatore va indicato un numero d'ordine progressivo: se sono più di quattro occorre usare più moduli proseguendo la numerazione.",
+          "ripetibili": [
+            {
+              "id": "locatore",
+              "label": "Locatori",
+              "help": "Compila un riquadro per ogni locatore. Chi è nato all'estero indica lo Stato al posto del comune e la sigla EE come provincia.",
+              "righeMax": 4,
+              "sottocampi": [
+                {
+                  "id": "numero",
+                  "type": "numero",
+                  "label": "Numero locatore",
+                  "width": "quarter",
+                  "help": "Numero d'ordine progressivo: 1 per il primo locatore, 2 per il secondo e così via."
+                },
+                {
+                  "id": "cf",
+                  "type": "cf",
+                  "label": "Codice fiscale",
+                  "width": "half"
+                },
+                {
+                  "id": "cognome",
+                  "type": "testo",
+                  "label": "Cognome, oppure denominazione o ragione sociale",
+                  "width": "half"
+                },
+                {
+                  "id": "nome",
+                  "type": "testo",
+                  "label": "Nome",
+                  "width": "half"
+                },
+                {
+                  "id": "dataNascita",
+                  "type": "data",
+                  "label": "Data di nascita",
+                  "width": "third"
+                },
+                {
+                  "id": "sesso",
+                  "type": "select",
+                  "options": "sesso",
+                  "label": "Sesso",
+                  "width": "quarter"
+                },
+                {
+                  "id": "comuneNascita",
+                  "type": "testo",
+                  "label": "Comune (o Stato estero) di nascita",
+                  "width": "third"
+                },
+                {
+                  "id": "provinciaNascita",
+                  "type": "provincia",
+                  "label": "Provincia",
+                  "width": "quarter",
+                  "help": "Sigla di due lettere; EE per chi è nato all'estero."
+                },
+                {
+                  "id": "qualifica",
+                  "type": "checkX",
+                  "label": "Casella «Locatore» (codice 1)",
+                  "width": "quarter",
+                  "help": "Da compilare, indicando il codice 1, solo se nel contratto di locazione non sono stati indicati tutti i cointestatari dell'immobile."
+                },
+                {
+                  "id": "soggettivitaIva",
+                  "type": "checkX",
+                  "label": "Soggettività IVA",
+                  "width": "quarter",
+                  "help": "Barra se il locatore agisce in qualità di soggetto IVA."
+                },
+                {
+                  "id": "cedente",
+                  "type": "checkX",
+                  "label": "Cedente",
+                  "width": "quarter",
+                  "help": "Da barrare solo in caso di cessione o subentro, per indicare chi esce dal contratto."
+                },
+                {
+                  "id": "cessionario",
+                  "type": "checkX",
+                  "label": "Cessionario / subentrante",
+                  "width": "quarter",
+                  "help": "Da barrare solo in caso di cessione o subentro, per indicare chi entra nel contratto."
+                }
+              ],
+              "righe": [
+                {
+                  "numero": "locatore1_numero",
+                  "cf": "locatore1_cf",
+                  "cognome": "locatore1_cognome",
+                  "nome": "locatore1_nome",
+                  "dataNascita": "locatore1_data_nascita",
+                  "sesso": "locatore1_sesso",
+                  "comuneNascita": "locatore1_comune_nascita",
+                  "provinciaNascita": "locatore1_provincia_nascita",
+                  "qualifica": "locatore1_qualifica",
+                  "soggettivitaIva": "locatore1_soggettivita_iva",
+                  "cedente": "locatore1_cedente",
+                  "cessionario": "locatore1_cessionario"
+                },
+                {
+                  "numero": "locatore2_numero",
+                  "cf": "locatore2_cf",
+                  "cognome": "locatore2_cognome",
+                  "nome": "locatore2_nome",
+                  "dataNascita": "locatore2_data_nascita",
+                  "sesso": "locatore2_sesso",
+                  "comuneNascita": "locatore2_comune_nascita",
+                  "provinciaNascita": "locatore2_provincia_nascita",
+                  "qualifica": "locatore2_qualifica",
+                  "soggettivitaIva": "locatore2_soggettivita_iva",
+                  "cedente": "locatore2_cedente",
+                  "cessionario": "locatore2_cessionario"
+                },
+                {
+                  "numero": "locatore3_numero",
+                  "cf": "locatore3_cf",
+                  "cognome": "locatore3_cognome",
+                  "nome": "locatore3_nome",
+                  "dataNascita": "locatore3_data_nascita",
+                  "sesso": "locatore3_sesso",
+                  "comuneNascita": "locatore3_comune_nascita",
+                  "provinciaNascita": "locatore3_provincia_nascita",
+                  "qualifica": "locatore3_qualifica",
+                  "soggettivitaIva": "locatore3_soggettivita_iva",
+                  "cedente": "locatore3_cedente",
+                  "cessionario": "locatore3_cessionario"
+                },
+                {
+                  "numero": "locatore4_numero",
+                  "cf": "locatore4_cf",
+                  "cognome": "locatore4_cognome",
+                  "nome": "locatore4_nome",
+                  "dataNascita": "locatore4_data_nascita",
+                  "sesso": "locatore4_sesso",
+                  "comuneNascita": "locatore4_comune_nascita",
+                  "provinciaNascita": "locatore4_provincia_nascita",
+                  "qualifica": "locatore4_qualifica",
+                  "soggettivitaIva": "locatore4_soggettivita_iva",
+                  "cedente": "locatore4_cedente",
+                  "cessionario": "locatore4_cessionario"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "conduttori",
+          "titolo": "Quadro B — Conduttori",
+          "descrizione": "Chi prende l'immobile in locazione. Anche qui serve un numero d'ordine progressivo per ciascuno.",
+          "ripetibili": [
+            {
+              "id": "conduttore",
+              "label": "Conduttori",
+              "help": "Compila un riquadro per ogni conduttore. La casella «Tipologia conduttore» è obbligatoria: in assenza di situazioni particolari si indica il codice 3.",
+              "righeMax": 4,
+              "sottocampi": [
+                {
+                  "id": "numero",
+                  "type": "numero",
+                  "label": "Numero conduttore",
+                  "width": "quarter",
+                  "help": "Numero d'ordine progressivo."
+                },
+                {
+                  "id": "cf",
+                  "type": "cf",
+                  "label": "Codice fiscale",
+                  "width": "half"
+                },
+                {
+                  "id": "cognome",
+                  "type": "testo",
+                  "label": "Cognome, oppure denominazione o ragione sociale",
+                  "width": "half"
+                },
+                {
+                  "id": "nome",
+                  "type": "testo",
+                  "label": "Nome",
+                  "width": "half"
+                },
+                {
+                  "id": "dataNascita",
+                  "type": "data",
+                  "label": "Data di nascita",
+                  "width": "third"
+                },
+                {
+                  "id": "sesso",
+                  "type": "select",
+                  "options": "sesso",
+                  "label": "Sesso",
+                  "width": "quarter"
+                },
+                {
+                  "id": "comuneNascita",
+                  "type": "testo",
+                  "label": "Comune (o Stato estero) di nascita",
+                  "width": "third"
+                },
+                {
+                  "id": "provinciaNascita",
+                  "type": "provincia",
+                  "label": "Provincia",
+                  "width": "quarter",
+                  "help": "Sigla di due lettere; EE per chi è nato all'estero."
+                },
+                {
+                  "id": "qualifica",
+                  "type": "select",
+                  "options": "tipologiaConduttore",
+                  "label": "Tipologia conduttore",
+                  "width": "half",
+                  "help": "Obbligatoria. Nel caso ordinario si indica il codice 3."
+                },
+                {
+                  "id": "soggettivitaIva",
+                  "type": "checkX",
+                  "label": "Soggettività IVA",
+                  "width": "quarter",
+                  "help": "Barra se il conduttore agisce in qualità di soggetto IVA."
+                },
+                {
+                  "id": "cedente",
+                  "type": "checkX",
+                  "label": "Cedente",
+                  "width": "quarter"
+                },
+                {
+                  "id": "cessionario",
+                  "type": "checkX",
+                  "label": "Cessionario / subentrante",
+                  "width": "quarter"
+                }
+              ],
+              "righe": [
+                {
+                  "numero": "conduttore1_numero",
+                  "cf": "conduttore1_cf",
+                  "cognome": "conduttore1_cognome",
+                  "nome": "conduttore1_nome",
+                  "dataNascita": "conduttore1_data_nascita",
+                  "sesso": "conduttore1_sesso",
+                  "comuneNascita": "conduttore1_comune_nascita",
+                  "provinciaNascita": "conduttore1_provincia_nascita",
+                  "qualifica": "conduttore1_qualifica",
+                  "soggettivitaIva": "conduttore1_soggettivita_iva",
+                  "cedente": "conduttore1_cedente",
+                  "cessionario": "conduttore1_cessionario"
+                },
+                {
+                  "numero": "conduttore2_numero",
+                  "cf": "conduttore2_cf",
+                  "cognome": "conduttore2_cognome",
+                  "nome": "conduttore2_nome",
+                  "dataNascita": "conduttore2_data_nascita",
+                  "sesso": "conduttore2_sesso",
+                  "comuneNascita": "conduttore2_comune_nascita",
+                  "provinciaNascita": "conduttore2_provincia_nascita",
+                  "qualifica": "conduttore2_qualifica",
+                  "soggettivitaIva": "conduttore2_soggettivita_iva",
+                  "cedente": "conduttore2_cedente",
+                  "cessionario": "conduttore2_cessionario"
+                },
+                {
+                  "numero": "conduttore3_numero",
+                  "cf": "conduttore3_cf",
+                  "cognome": "conduttore3_cognome",
+                  "nome": "conduttore3_nome",
+                  "dataNascita": "conduttore3_data_nascita",
+                  "sesso": "conduttore3_sesso",
+                  "comuneNascita": "conduttore3_comune_nascita",
+                  "provinciaNascita": "conduttore3_provincia_nascita",
+                  "qualifica": "conduttore3_qualifica",
+                  "soggettivitaIva": "conduttore3_soggettivita_iva",
+                  "cedente": "conduttore3_cedente",
+                  "cessionario": "conduttore3_cessionario"
+                },
+                {
+                  "numero": "conduttore4_numero",
+                  "cf": "conduttore4_cf",
+                  "cognome": "conduttore4_cognome",
+                  "nome": "conduttore4_nome",
+                  "dataNascita": "conduttore4_data_nascita",
+                  "sesso": "conduttore4_sesso",
+                  "comuneNascita": "conduttore4_comune_nascita",
+                  "provinciaNascita": "conduttore4_provincia_nascita",
+                  "qualifica": "conduttore4_qualifica",
+                  "soggettivitaIva": "conduttore4_soggettivita_iva",
+                  "cedente": "conduttore4_cedente",
+                  "cessionario": "conduttore4_cessionario"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "immobili",
+          "titolo": "Quadro C — Gli immobili",
+          "descrizione": "I dati catastali degli immobili locati, presi dalla visura catastale. In caso di immobile principale con pertinenze, indica prima l'immobile principale e subito dopo le pertinenze.",
+          "ripetibili": [
+            {
+              "id": "immobile",
+              "label": "Immobili",
+              "help": "Tutti i dati vanno ricavati dalla documentazione catastale. Se gli immobili sono più di quattro occorre usare più moduli, proseguendo la numerazione.",
+              "righeMax": 4,
+              "sottocampi": [
+                {
+                  "id": "numero",
+                  "type": "numero",
+                  "label": "Numero immobile",
+                  "width": "quarter",
+                  "help": "Numero d'ordine progressivo, immobile principale per primo."
+                },
+                {
+                  "id": "tipologia",
+                  "type": "select",
+                  "options": "tipologiaImmobile",
+                  "label": "Tipologia immobile",
+                  "width": "half",
+                  "help": "Distingue l'immobile principale dalle pertinenze e dal modo in cui queste sono locate."
+                },
+                {
+                  "id": "codiceComune",
+                  "type": "testo",
+                  "label": "Codice comune (catastale)",
+                  "width": "third",
+                  "help": "Il codice del comune riportato nel documento catastale: 4 o 5 caratteri a seconda dei casi. Non è il CAP."
+                },
+                {
+                  "id": "tu",
+                  "type": "select",
+                  "options": "catastoTU",
+                  "label": "T/U",
+                  "width": "quarter",
+                  "help": "«T» se l'immobile è censito al catasto terreni, «U» se al catasto edilizio urbano."
+                },
+                {
+                  "id": "ip",
+                  "type": "select",
+                  "options": "interoPorzione",
+                  "label": "I/P",
+                  "width": "quarter",
+                  "help": "«I» se si tratta dell'immobile intero (particella o unità immobiliare), «P» se di una porzione."
+                },
+                {
+                  "id": "sezioneUrbana",
+                  "type": "testo",
+                  "label": "Sezione urbana / comune catastale",
+                  "width": "quarter",
+                  "help": "Le lettere o i numeri indicati nel documento catastale, se presenti. Nelle zone a sistema tavolare va indicato il codice «Comune catastale»."
+                },
+                {
+                  "id": "foglio",
+                  "type": "testo",
+                  "label": "Foglio",
+                  "width": "quarter",
+                  "help": "Il numero di foglio del documento catastale."
+                },
+                {
+                  "id": "particella",
+                  "type": "testo",
+                  "label": "Particella",
+                  "width": "quarter",
+                  "help": "Il numero di particella. Se è composto da due parti separate dalla barra, qui va la prima (fino a cinque cifre). Se la particella è una sola serie di cifre, va scritta qui. Per un immobile graffato riporta solo la prima particella."
+                },
+                {
+                  "id": "particellaSeconda",
+                  "type": "testo",
+                  "label": "Particella · parte dopo la barra",
+                  "width": "quarter",
+                  "help": "La seconda parte della particella (fino a quattro cifre), solo se presente."
+                },
+                {
+                  "id": "subalterno",
+                  "type": "testo",
+                  "label": "Subalterno",
+                  "width": "quarter",
+                  "help": "Il numero di subalterno del documento catastale, se presente."
+                },
+                {
+                  "id": "inViaAccatastamento",
+                  "type": "checkX",
+                  "label": "In via di accatastamento",
+                  "width": "half",
+                  "help": "Barra se l'immobile è in via di accatastamento. In tal caso vanno comunque compilati tipologia immobile, codice comune, T/U, I/P, categoria catastale e rendita, anche se presunta."
+                },
+                {
+                  "id": "categoriaCatastale",
+                  "type": "testo",
+                  "label": "Categoria catastale",
+                  "width": "quarter",
+                  "help": "La categoria indicata nel documento catastale (per esempio A/2, C/1)."
+                },
+                {
+                  "id": "renditaCatastale",
+                  "type": "importo",
+                  "label": "Rendita catastale (euro)",
+                  "width": "third",
+                  "help": "La rendita indicata nel documento catastale. Se l'immobile è in via di accatastamento indica quella proposta o presunta. Per gli immobili al catasto terreni indica il reddito dominicale."
+                },
+                {
+                  "id": "comune",
+                  "type": "testo",
+                  "label": "Comune",
+                  "width": "half",
+                  "help": "Il comune amministrativo in cui si trova l'immobile. Per un immobile all'estero indica qui lo Stato."
+                },
+                {
+                  "id": "provincia",
+                  "type": "provincia",
+                  "label": "Provincia",
+                  "width": "quarter",
+                  "help": "Sigla di due lettere; EE per un immobile all'estero."
+                },
+                {
+                  "id": "tipologiaVia",
+                  "type": "testo",
+                  "label": "Tipologia (via, piazza, ecc.)",
+                  "width": "quarter"
+                },
+                {
+                  "id": "indirizzo",
+                  "type": "testo",
+                  "label": "Indirizzo",
+                  "width": "half"
+                },
+                {
+                  "id": "civico",
+                  "type": "testo",
+                  "label": "N. civico",
+                  "width": "quarter"
+                }
+              ],
+              "righe": [
+                {
+                  "numero": "immobile1_numero",
+                  "tipologia": "immobile1_tipologia",
+                  "codiceComune": "immobile1_codice_comune",
+                  "tu": "immobile1_tu",
+                  "ip": "immobile1_ip",
+                  "sezioneUrbana": "immobile1_sezione_urbana",
+                  "foglio": "immobile1_foglio",
+                  "particella": "immobile1_particella",
+                  "particellaSeconda": "immobile1_particella_seconda",
+                  "subalterno": "immobile1_subalterno",
+                  "inViaAccatastamento": "immobile1_in_via_accatastamento",
+                  "categoriaCatastale": "immobile1_categoria_catastale",
+                  "renditaCatastale": "immobile1_rendita_catastale",
+                  "comune": "immobile1_comune",
+                  "provincia": "immobile1_provincia",
+                  "tipologiaVia": "immobile1_tipologia_via",
+                  "indirizzo": "immobile1_indirizzo",
+                  "civico": "immobile1_civico"
+                },
+                {
+                  "numero": "immobile2_numero",
+                  "tipologia": "immobile2_tipologia",
+                  "codiceComune": "immobile2_codice_comune",
+                  "tu": "immobile2_tu",
+                  "ip": "immobile2_ip",
+                  "sezioneUrbana": "immobile2_sezione_urbana",
+                  "foglio": "immobile2_foglio",
+                  "particella": "immobile2_particella",
+                  "particellaSeconda": "immobile2_particella_seconda",
+                  "subalterno": "immobile2_subalterno",
+                  "inViaAccatastamento": "immobile2_in_via_accatastamento",
+                  "categoriaCatastale": "immobile2_categoria_catastale",
+                  "renditaCatastale": "immobile2_rendita_catastale",
+                  "comune": "immobile2_comune",
+                  "provincia": "immobile2_provincia",
+                  "tipologiaVia": "immobile2_tipologia_via",
+                  "indirizzo": "immobile2_indirizzo",
+                  "civico": "immobile2_civico"
+                },
+                {
+                  "numero": "immobile3_numero",
+                  "tipologia": "immobile3_tipologia",
+                  "codiceComune": "immobile3_codice_comune",
+                  "tu": "immobile3_tu",
+                  "ip": "immobile3_ip",
+                  "sezioneUrbana": "immobile3_sezione_urbana",
+                  "foglio": "immobile3_foglio",
+                  "particella": "immobile3_particella",
+                  "particellaSeconda": "immobile3_particella_seconda",
+                  "subalterno": "immobile3_subalterno",
+                  "inViaAccatastamento": "immobile3_in_via_accatastamento",
+                  "categoriaCatastale": "immobile3_categoria_catastale",
+                  "renditaCatastale": "immobile3_rendita_catastale",
+                  "comune": "immobile3_comune",
+                  "provincia": "immobile3_provincia",
+                  "tipologiaVia": "immobile3_tipologia_via",
+                  "indirizzo": "immobile3_indirizzo",
+                  "civico": "immobile3_civico"
+                },
+                {
+                  "numero": "immobile4_numero",
+                  "tipologia": "immobile4_tipologia",
+                  "codiceComune": "immobile4_codice_comune",
+                  "tu": "immobile4_tu",
+                  "ip": "immobile4_ip",
+                  "sezioneUrbana": "immobile4_sezione_urbana",
+                  "foglio": "immobile4_foglio",
+                  "particella": "immobile4_particella",
+                  "particellaSeconda": "immobile4_particella_seconda",
+                  "subalterno": "immobile4_subalterno",
+                  "inViaAccatastamento": "immobile4_in_via_accatastamento",
+                  "categoriaCatastale": "immobile4_categoria_catastale",
+                  "renditaCatastale": "immobile4_rendita_catastale",
+                  "comune": "immobile4_comune",
+                  "provincia": "immobile4_provincia",
+                  "tipologiaVia": "immobile4_tipologia_via",
+                  "indirizzo": "immobile4_indirizzo",
+                  "civico": "immobile4_civico"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cedolare",
+          "titolo": "Quadro D — Cedolare secca",
+          "descrizione": "Da compilare per registrare contratti a uso abitativo e per gli immobili di categoria C/1, oppure quando eserciti o revochi l'opzione per la cedolare secca. Per ogni immobile va compilata una riga per ciascun proprietario che figura come locatore.",
+          "opzionale": true,
+          "ripetibili": [
+            {
+              "id": "riga",
+              "label": "Righe del regime di tassazione",
+              "help": "Indica il numero d'ordine dell'immobile e del locatore (quelli assegnati nei quadri B e C), la quota di possesso e se quel locatore opta per la cedolare secca. «SÌ» in caso di adesione, «NO» in caso di non adesione o revoca. L'opzione è esercitata distintamente da ciascun locatore e vale solo per chi l'ha esercitata.",
+              "righeMax": 10,
+              "sottocampi": [
+                {
+                  "id": "immobile",
+                  "type": "numero",
+                  "label": "N. immobile",
+                  "width": "quarter",
+                  "help": "Il numero d'ordine dell'immobile indicato nel quadro C."
+                },
+                {
+                  "id": "locatore",
+                  "type": "numero",
+                  "label": "N. locatore",
+                  "width": "quarter",
+                  "help": "Il numero d'ordine del locatore indicato nel quadro B."
+                },
+                {
+                  "id": "possesso",
+                  "type": "importo",
+                  "label": "% possesso",
+                  "width": "quarter",
+                  "help": "La quota di possesso di quel locatore su quell'immobile, in percentuale."
+                },
+                {
+                  "id": "si",
+                  "type": "checkX",
+                  "label": "Cedolare secca · SÌ",
+                  "width": "quarter",
+                  "help": "Barra se questo locatore opta per la cedolare secca su questo immobile."
+                },
+                {
+                  "id": "no",
+                  "type": "checkX",
+                  "label": "Cedolare secca · NO",
+                  "width": "quarter",
+                  "help": "Barra in caso di non adesione o di revoca dell'opzione."
+                }
+              ],
+              "righe": [
+                {
+                  "immobile": "tassazione1_immobile",
+                  "locatore": "tassazione1_locatore",
+                  "possesso": "tassazione1_possesso",
+                  "si": "tassazione1_cedolare_si",
+                  "no": "tassazione1_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione2_immobile",
+                  "locatore": "tassazione2_locatore",
+                  "possesso": "tassazione2_possesso",
+                  "si": "tassazione2_cedolare_si",
+                  "no": "tassazione2_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione3_immobile",
+                  "locatore": "tassazione3_locatore",
+                  "possesso": "tassazione3_possesso",
+                  "si": "tassazione3_cedolare_si",
+                  "no": "tassazione3_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione4_immobile",
+                  "locatore": "tassazione4_locatore",
+                  "possesso": "tassazione4_possesso",
+                  "si": "tassazione4_cedolare_si",
+                  "no": "tassazione4_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione5_immobile",
+                  "locatore": "tassazione5_locatore",
+                  "possesso": "tassazione5_possesso",
+                  "si": "tassazione5_cedolare_si",
+                  "no": "tassazione5_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione6_immobile",
+                  "locatore": "tassazione6_locatore",
+                  "possesso": "tassazione6_possesso",
+                  "si": "tassazione6_cedolare_si",
+                  "no": "tassazione6_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione7_immobile",
+                  "locatore": "tassazione7_locatore",
+                  "possesso": "tassazione7_possesso",
+                  "si": "tassazione7_cedolare_si",
+                  "no": "tassazione7_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione8_immobile",
+                  "locatore": "tassazione8_locatore",
+                  "possesso": "tassazione8_possesso",
+                  "si": "tassazione8_cedolare_si",
+                  "no": "tassazione8_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione9_immobile",
+                  "locatore": "tassazione9_locatore",
+                  "possesso": "tassazione9_possesso",
+                  "si": "tassazione9_cedolare_si",
+                  "no": "tassazione9_cedolare_no"
+                },
+                {
+                  "immobile": "tassazione10_immobile",
+                  "locatore": "tassazione10_locatore",
+                  "possesso": "tassazione10_possesso",
+                  "si": "tassazione10_cedolare_si",
+                  "no": "tassazione10_cedolare_no"
+                }
+              ]
+            },
+            {
+              "id": "dichiarazione",
+              "label": "Dichiarazione dei locatori",
+              "help": "Va compilata ogni volta che si esercita o si revoca l'opzione per la cedolare secca. Per ogni locatore che ha espresso l'opzione o la revoca indica il codice fiscale e fai apporre la firma. Se a firmare non è chi ha richiesto la registrazione, allega la fotocopia di un documento d'identità in corso di validità.",
+              "righeMax": 4,
+              "sottocampi": [
+                {
+                  "id": "cf",
+                  "type": "cf",
+                  "label": "Codice fiscale del locatore",
+                  "width": "half"
+                },
+                {
+                  "id": "firma",
+                  "type": "testo",
+                  "label": "Firma (nome da stampare)",
+                  "width": "half"
+                }
+              ],
+              "righe": [
+                {
+                  "cf": "dichiarazione1_cf",
+                  "firma": "dichiarazione1_firma"
+                },
+                {
+                  "cf": "dichiarazione2_cf",
+                  "firma": "dichiarazione2_firma"
+                },
+                {
+                  "cf": "dichiarazione3_cf",
+                  "firma": "dichiarazione3_firma"
+                },
+                {
+                  "cf": "dichiarazione4_cf",
+                  "firma": "dichiarazione4_firma"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "canoni",
+          "titolo": "Quadro E — Canoni diversi per annualità",
+          "descrizione": "Da compilare solo se nel contratto è previsto un canone differente per una o più annualità, cioè se nel quadro A hai indicato il codice 1 o 3 nei «casi particolari».",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "canone2",
+              "pdf": "canone_annualita_2",
+              "type": "importo",
+              "label": "2ª annualità · importo del canone (euro)",
+              "width": "half",
+              "help": "Il canone della prima annualità è già indicato nel quadro A: qui vanno solo quelli dalla seconda in poi, fino alla nona."
+            },
+            {
+              "id": "canone3",
+              "pdf": "canone_annualita_3",
+              "type": "importo",
+              "label": "3ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone4",
+              "pdf": "canone_annualita_4",
+              "type": "importo",
+              "label": "4ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone5",
+              "pdf": "canone_annualita_5",
+              "type": "importo",
+              "label": "5ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone6",
+              "pdf": "canone_annualita_6",
+              "type": "importo",
+              "label": "6ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone7",
+              "pdf": "canone_annualita_7",
+              "type": "importo",
+              "label": "7ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone8",
+              "pdf": "canone_annualita_8",
+              "type": "importo",
+              "label": "8ª annualità · importo del canone (euro)",
+              "width": "half"
+            },
+            {
+              "id": "canone9",
+              "pdf": "canone_annualita_9",
+              "type": "importo",
+              "label": "9ª annualità · importo del canone (euro)",
+              "width": "half"
+            }
+          ]
+        },
+        {
+          "id": "telematico",
+          "titolo": "Intermediario e imposte",
+          "descrizione": "Il riquadro dell'intermediario si compila solo se la richiesta viene trasmessa da un professionista abilitato. Gli importi delle imposte sono quelli calcolati dal simulatore in questa pagina.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "cfIntermediario",
+              "pdf": "cf_intermediario",
+              "type": "cf",
+              "label": "Intermediario · codice fiscale",
+              "width": "half",
+              "help": "Il riquadro va compilato e firmato soltanto se la richiesta è trasmessa tramite un intermediario abilitato, che inserisce il proprio codice fiscale e la data di assunzione dell'impegno a trasmettere."
+            },
+            {
+              "id": "dataImpegno",
+              "pdf": "data_impegno",
+              "type": "data",
+              "label": "Intermediario · data dell'impegno",
+              "width": "quarter"
+            },
+            {
+              "id": "impegno",
+              "pdf": "impegno_presentazione",
+              "type": "select",
+              "options": "impegnoPresentazione",
+              "label": "Impegno alla presentazione",
+              "width": "half",
+              "help": "Codice 1 se la richiesta è predisposta da chi è obbligato a registrare il contratto (locatore, conduttore, agenzia immobiliare); codice 2 se è predisposta dall'intermediario che la invia."
+            },
+            {
+              "id": "firmaIntermediario",
+              "pdf": "firma_intermediario",
+              "type": "testo",
+              "label": "Intermediario · firma (nome da stampare)",
+              "width": "half"
+            },
+            {
+              "id": "impostaRegistro",
+              "pdf": "imposta_registro",
+              "type": "importo",
+              "label": "Imposta di registro (euro)",
+              "width": "third",
+              "help": "Se hai usato il simulatore in questa pagina, qui trovi già l'importo calcolato. In caso di presentazione telematica le imposte vengono ricalcolate dal servizio dell'Agenzia e addebitate sul conto indicato."
+            },
+            {
+              "id": "sanzioniRegistro",
+              "pdf": "sanzioni_registro",
+              "type": "importo",
+              "label": "Registro · sanzioni (euro)",
+              "width": "third"
+            },
+            {
+              "id": "interessiRegistro",
+              "pdf": "interessi_registro",
+              "type": "importo",
+              "label": "Registro · interessi (euro)",
+              "width": "third"
+            },
+            {
+              "id": "impostaBollo",
+              "pdf": "imposta_bollo",
+              "type": "importo",
+              "label": "Imposta di bollo (euro)",
+              "width": "third",
+              "help": "L'imposta di bollo è dovuta per ogni foglio di quattro facciate, per ciascuna copia del contratto. La cedolare secca la sostituisce."
+            },
+            {
+              "id": "sanzioniBollo",
+              "pdf": "sanzioni_bollo",
+              "type": "importo",
+              "label": "Bollo · sanzioni (euro)",
+              "width": "third"
+            },
+            {
+              "id": "interessiBollo",
+              "pdf": "interessi_bollo",
+              "type": "importo",
+              "label": "Bollo · interessi (euro)",
+              "width": "third"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

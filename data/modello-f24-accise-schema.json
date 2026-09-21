@@ -1,0 +1,1255 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello F24 Accise creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-accise.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ]
+ },
+ "modelli": {
+  "ACCISE": {
+   "codice": "F24 Accise",
+   "nome": "Modello F24 Accise",
+   "sottotitolo": "Accise, monopoli e versamenti non compensabili",
+   "descrizione": "Il modello di pagamento unificato con la sezione dedicata alle accise di competenza dell'Agenzia delle Dogane e ai versamenti dell'Amministrazione autonoma dei Monopoli di Stato, accanto alle sezioni erario, INPS, regioni e tributi locali.",
+   "pdf": "/assets/pdf/modello-f24-accise-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-f24-accise.pdf",
+   "testata": {
+    "riferimentoNomeFile": "contribuente.cf"
+   },
+   "riepilogo": {
+    "debiti": {
+     "somma": [
+      "erario.riga.debito",
+      "inps.riga.debito",
+      "regioni.riga.debito",
+      "imu.riga.debito",
+      "accise.riga.debito"
+     ]
+    },
+    "crediti": {
+     "somma": [
+      "erario.riga.credito",
+      "inps.riga.credito",
+      "regioni.riga.credito",
+      "imu.riga.credito"
+     ]
+    },
+    "saldo": {
+     "differenza": [
+      {
+       "somma": [
+        "erario.riga.debito",
+        "inps.riga.debito",
+        "regioni.riga.debito",
+        "imu.riga.debito",
+        "accise.riga.debito"
+       ]
+      },
+      {
+       "somma": [
+        "erario.riga.credito",
+        "inps.riga.credito",
+        "regioni.riga.credito",
+        "imu.riga.credito"
+       ]
+      }
+     ]
+    }
+   },
+   "passi": [
+    {
+     "id": "contribuente",
+     "titolo": "Chi versa",
+     "descrizione": "I dati di chi effettua il pagamento. Il codice fiscale è l'unico dato davvero indispensabile: è quello che collega il versamento alla tua posizione.",
+     "campi": [
+      {
+       "id": "cf",
+       "pdf": "cf_contribuente",
+       "type": "cfOpiva",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half",
+       "help": "I 16 caratteri del codice fiscale, oppure le 11 cifre della partita IVA per società ed enti. Da questo dato dipende l'attribuzione del versamento: un errore qui significa un pagamento che non risulta sulla tua posizione."
+      },
+      {
+       "id": "annoNonSolare",
+       "pdf": "anno_imposta_non_solare",
+       "type": "checkX",
+       "label": "Anno d'imposta non coincidente con l'anno solare",
+       "width": "half",
+       "help": "Barra solo se il tuo periodo d'imposta non va dal 1° gennaio al 31 dicembre, caso tipico di alcune società."
+      },
+      {
+       "id": "cognome",
+       "pdf": "cognome_denominazione",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half",
+       "help": "Solo per le persone fisiche."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "data_nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "data_nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "data_nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "sesso",
+       "pdf": "sesso",
+       "type": "select",
+       "options": "sesso",
+       "label": "Sesso",
+       "width": "quarter"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla di due lettere; EE per chi è nato all'estero."
+      },
+      {
+       "id": "domicilioComune",
+       "pdf": "domicilio_comune",
+       "type": "testo",
+       "label": "Domicilio fiscale · comune",
+       "width": "half"
+      },
+      {
+       "id": "domicilioProvincia",
+       "pdf": "domicilio_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter"
+      },
+      {
+       "id": "domicilioVia",
+       "pdf": "domicilio_via",
+       "type": "testo",
+       "label": "Via e numero civico",
+       "width": "half"
+      },
+      {
+       "id": "cfCoobbligato",
+       "pdf": "cf_coobbligato",
+       "type": "cfOpiva",
+       "label": "Codice fiscale del coobbligato, erede, genitore, tutore o curatore",
+       "width": "half",
+       "help": "Da compilare solo se chi versa lo fa per conto di un altro soggetto."
+      },
+      {
+       "id": "codiceIdentificativoCoobbligato",
+       "pdf": "codice_identificativo_coobbligato",
+       "type": "testo",
+       "label": "Codice identificativo",
+       "width": "quarter",
+       "help": "Il codice che qualifica il rapporto con il contribuente, dalla tabella dei codici identificativi dell'Agenzia."
+      }
+     ]
+    },
+    {
+     "id": "erario",
+     "quadro": "ERARIO",
+     "titolo": "Sezione Erario",
+     "descrizione": "Imposte dirette, IVA, ritenute alla fonte e altri tributi erariali: è la sezione che si usa più spesso.",
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe della sezione Erario",
+       "help": "Compila una riga per ogni tributo o contributo da versare. Gli importi si indicano sempre con due cifre decimali; se hai più decimali, arrotonda la seconda cifra.",
+       "righeMax": 6,
+       "sottocampi": [
+        {
+         "id": "tributo",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Il codice che identifica l'imposta da versare, per esempio 4001 per il saldo IRPEF o 6099 per l'IVA. Lo trovi nella tabella dei codici tributo dell'Agenzia delle Entrate o nella comunicazione che ti ha richiesto il pagamento. Un codice sbagliato manda il versamento a un tributo diverso da quello dovuto."
+        },
+        {
+         "id": "rateazione",
+         "type": "testo",
+         "label": "Rateazione / regione / prov. / mese rif.",
+         "width": "quarter",
+         "help": "Campo a uso multiplo. Per i versamenti rateizzati indica rata e numero totale di rate nel formato NNRR (per esempio 0106 per la prima di sei rate). Per le ritenute indica il mese di riferimento su quattro cifre: novembre è 0011. Per IRAP e addizionali regionali indica il codice dell'ente territoriale destinatario."
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter",
+         "help": "L'anno d'imposta cui si riferisce il versamento, in quattro cifre. Se il tuo periodo d'imposta non coincide con l'anno solare, indica il primo dei due anni solari interessati."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "L'importo che versi per questo tributo. Gli importi vanno sempre indicati con le due cifre decimali, anche quando sono zero: scrivi 1250,00 e non 1250."
+        },
+        {
+         "id": "credito",
+         "type": "importoEuro",
+         "label": "Importo a credito compensato (euro)",
+         "width": "quarter",
+         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+        }
+       ],
+       "righe": [
+        {
+         "tributo": "erario_1_tributo",
+         "rateazione": "erario_1_rateazione",
+         "anno": "erario_1_anno",
+         "debito": {
+          "euro": "erario_1_debito",
+          "cent": "erario_1_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_1_credito",
+          "cent": "erario_1_credito_cent"
+         }
+        },
+        {
+         "tributo": "erario_2_tributo",
+         "rateazione": "erario_2_rateazione",
+         "anno": "erario_2_anno",
+         "debito": {
+          "euro": "erario_2_debito",
+          "cent": "erario_2_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_2_credito",
+          "cent": "erario_2_credito_cent"
+         }
+        },
+        {
+         "tributo": "erario_3_tributo",
+         "rateazione": "erario_3_rateazione",
+         "anno": "erario_3_anno",
+         "debito": {
+          "euro": "erario_3_debito",
+          "cent": "erario_3_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_3_credito",
+          "cent": "erario_3_credito_cent"
+         }
+        },
+        {
+         "tributo": "erario_4_tributo",
+         "rateazione": "erario_4_rateazione",
+         "anno": "erario_4_anno",
+         "debito": {
+          "euro": "erario_4_debito",
+          "cent": "erario_4_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_4_credito",
+          "cent": "erario_4_credito_cent"
+         }
+        },
+        {
+         "tributo": "erario_5_tributo",
+         "rateazione": "erario_5_rateazione",
+         "anno": "erario_5_anno",
+         "debito": {
+          "euro": "erario_5_debito",
+          "cent": "erario_5_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_5_credito",
+          "cent": "erario_5_credito_cent"
+         }
+        },
+        {
+         "tributo": "erario_6_tributo",
+         "rateazione": "erario_6_rateazione",
+         "anno": "erario_6_anno",
+         "debito": {
+          "euro": "erario_6_debito",
+          "cent": "erario_6_debito_cent"
+         },
+         "credito": {
+          "euro": "erario_6_credito",
+          "cent": "erario_6_credito_cent"
+         }
+        }
+       ]
+      }
+     ],
+     "campi": [
+      {
+       "id": "codiceUfficio",
+       "pdf": "erario_codice_ufficio",
+       "type": "testo",
+       "label": "Codice ufficio",
+       "width": "quarter",
+       "help": "Si compila solo per i versamenti collegati a un atto: è il codice dell'ufficio che ha emesso l'atto."
+      },
+      {
+       "id": "codiceAtto",
+       "pdf": "erario_codice_atto",
+       "type": "testo",
+       "label": "Codice atto",
+       "width": "half",
+       "help": "Il codice dell'atto oggetto di definizione, riportato nella comunicazione ricevuta."
+      },
+      {
+       "id": "totaleA",
+       "pdf": "erario_totale_a",
+       "label": "Totale A — debiti",
+       "calcolo": {
+        "somma": [
+         "erario.riga.debito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "erario_totale_a_cent",
+       "width": "third"
+      },
+      {
+       "id": "totaleB",
+       "pdf": "erario_totale_b",
+       "label": "Totale B — crediti",
+       "calcolo": {
+        "somma": [
+         "erario.riga.credito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "erario_totale_b_cent",
+       "width": "third"
+      },
+      {
+       "id": "saldo",
+       "pdf": "erario_saldo",
+       "label": "Saldo (A − B)",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "erario.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "erario.riga.credito"
+          ]
+         }
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "erario_saldo_cent",
+       "width": "third"
+      }
+     ]
+    },
+    {
+     "id": "inps",
+     "quadro": "INPS",
+     "titolo": "Sezione INPS",
+     "descrizione": "Contributi previdenziali INPS: artigiani, commercianti, gestione separata, dipendenti.",
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe della sezione INPS",
+       "help": "Compila una riga per ogni tributo o contributo da versare. Gli importi si indicano sempre con due cifre decimali; se hai più decimali, arrotonda la seconda cifra.",
+       "righeMax": 4,
+       "sottocampi": [
+        {
+         "id": "sede",
+         "type": "testo",
+         "label": "Codice sede",
+         "width": "quarter",
+         "help": "Il codice della sede INPS competente, che trovi sui modelli di pagamento inviati dall'istituto."
+        },
+        {
+         "id": "causale",
+         "type": "testo",
+         "label": "Causale contributo",
+         "width": "quarter",
+         "help": "La sigla della causale, per esempio CF per i contributi fissi di artigiani e commercianti, CXX per la gestione separata, DM10 per i dipendenti."
+        },
+        {
+         "id": "matricola",
+         "type": "testo",
+         "label": "Matricola INPS / codice INPS / filiale azienda",
+         "width": "half",
+         "help": "Il numero che identifica la tua posizione presso l'INPS."
+        },
+        {
+         "id": "periodoDa",
+         "type": "testo",
+         "label": "Periodo di riferimento · da mm/aaaa",
+         "width": "quarter",
+         "help": "Mese e anno di inizio del periodo, nel formato mmaaaa."
+        },
+        {
+         "id": "periodoA",
+         "type": "testo",
+         "label": "Periodo di riferimento · a mm/aaaa",
+         "width": "quarter",
+         "help": "Mese e anno di fine del periodo. Per un versamento riferito a un solo mese, ripeti lo stesso valore."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "L'importo che versi per questo tributo. Gli importi vanno sempre indicati con le due cifre decimali, anche quando sono zero: scrivi 1250,00 e non 1250."
+        },
+        {
+         "id": "credito",
+         "type": "importoEuro",
+         "label": "Importo a credito compensato (euro)",
+         "width": "quarter",
+         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+        }
+       ],
+       "righe": [
+        {
+         "sede": "inps_1_sede",
+         "causale": "inps_1_causale",
+         "matricola": "inps_1_matricola",
+         "periodoDa": "inps_1_periodo_da",
+         "periodoA": "inps_1_periodo_a",
+         "debito": {
+          "euro": "inps_1_debito",
+          "cent": "inps_1_debito_cent"
+         },
+         "credito": {
+          "euro": "inps_1_credito",
+          "cent": "inps_1_credito_cent"
+         }
+        },
+        {
+         "sede": "inps_2_sede",
+         "causale": "inps_2_causale",
+         "matricola": "inps_2_matricola",
+         "periodoDa": "inps_2_periodo_da",
+         "periodoA": "inps_2_periodo_a",
+         "debito": {
+          "euro": "inps_2_debito",
+          "cent": "inps_2_debito_cent"
+         },
+         "credito": {
+          "euro": "inps_2_credito",
+          "cent": "inps_2_credito_cent"
+         }
+        },
+        {
+         "sede": "inps_3_sede",
+         "causale": "inps_3_causale",
+         "matricola": "inps_3_matricola",
+         "periodoDa": "inps_3_periodo_da",
+         "periodoA": "inps_3_periodo_a",
+         "debito": {
+          "euro": "inps_3_debito",
+          "cent": "inps_3_debito_cent"
+         },
+         "credito": {
+          "euro": "inps_3_credito",
+          "cent": "inps_3_credito_cent"
+         }
+        },
+        {
+         "sede": "inps_4_sede",
+         "causale": "inps_4_causale",
+         "matricola": "inps_4_matricola",
+         "periodoDa": "inps_4_periodo_da",
+         "periodoA": "inps_4_periodo_a",
+         "debito": {
+          "euro": "inps_4_debito",
+          "cent": "inps_4_debito_cent"
+         },
+         "credito": {
+          "euro": "inps_4_credito",
+          "cent": "inps_4_credito_cent"
+         }
+        }
+       ]
+      }
+     ],
+     "campi": [
+      {
+       "id": "totaleC",
+       "pdf": "inps_totale_c",
+       "label": "Totale C — debiti",
+       "calcolo": {
+        "somma": [
+         "inps.riga.debito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "inps_totale_c_cent",
+       "width": "third"
+      },
+      {
+       "id": "totaleD",
+       "pdf": "inps_totale_d",
+       "label": "Totale D — crediti",
+       "calcolo": {
+        "somma": [
+         "inps.riga.credito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "inps_totale_d_cent",
+       "width": "third"
+      },
+      {
+       "id": "saldo",
+       "pdf": "inps_saldo",
+       "label": "Saldo (C − D)",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "inps.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "inps.riga.credito"
+          ]
+         }
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "inps_saldo_cent",
+       "width": "third"
+      }
+     ],
+     "opzionale": true
+    },
+    {
+     "id": "regioni",
+     "quadro": "REGIONI",
+     "titolo": "Sezione Regioni",
+     "descrizione": "Tributi di competenza regionale, come l'IRAP e l'addizionale regionale all'IRPEF.",
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe della sezione Regioni",
+       "help": "Compila una riga per ogni tributo o contributo da versare. Gli importi si indicano sempre con due cifre decimali; se hai più decimali, arrotonda la seconda cifra.",
+       "righeMax": 4,
+       "sottocampi": [
+        {
+         "id": "regione",
+         "type": "testo",
+         "label": "Codice regione",
+         "width": "quarter",
+         "help": "Il codice della regione destinataria del versamento, dalla tabella dei codici regione dell'Agenzia delle Entrate (per esempio 12 per il Lazio, 03 per la Lombardia)."
+        },
+        {
+         "id": "tributo",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Il codice del tributo regionale, per esempio 3800 per il saldo IRAP."
+        },
+        {
+         "id": "rateazione",
+         "type": "testo",
+         "label": "Rateazione / mese rif.",
+         "width": "quarter",
+         "help": "Rata e numero totale di rate nel formato NNRR, oppure il mese di riferimento."
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter"
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "L'importo che versi per questo tributo. Gli importi vanno sempre indicati con le due cifre decimali, anche quando sono zero: scrivi 1250,00 e non 1250."
+        },
+        {
+         "id": "credito",
+         "type": "importoEuro",
+         "label": "Importo a credito compensato (euro)",
+         "width": "quarter",
+         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+        }
+       ],
+       "righe": [
+        {
+         "regione": "regioni_1_regione",
+         "tributo": "regioni_1_tributo",
+         "rateazione": "regioni_1_rateazione",
+         "anno": "regioni_1_anno",
+         "debito": {
+          "euro": "regioni_1_debito",
+          "cent": "regioni_1_debito_cent"
+         },
+         "credito": {
+          "euro": "regioni_1_credito",
+          "cent": "regioni_1_credito_cent"
+         }
+        },
+        {
+         "regione": "regioni_2_regione",
+         "tributo": "regioni_2_tributo",
+         "rateazione": "regioni_2_rateazione",
+         "anno": "regioni_2_anno",
+         "debito": {
+          "euro": "regioni_2_debito",
+          "cent": "regioni_2_debito_cent"
+         },
+         "credito": {
+          "euro": "regioni_2_credito",
+          "cent": "regioni_2_credito_cent"
+         }
+        },
+        {
+         "regione": "regioni_3_regione",
+         "tributo": "regioni_3_tributo",
+         "rateazione": "regioni_3_rateazione",
+         "anno": "regioni_3_anno",
+         "debito": {
+          "euro": "regioni_3_debito",
+          "cent": "regioni_3_debito_cent"
+         },
+         "credito": {
+          "euro": "regioni_3_credito",
+          "cent": "regioni_3_credito_cent"
+         }
+        },
+        {
+         "regione": "regioni_4_regione",
+         "tributo": "regioni_4_tributo",
+         "rateazione": "regioni_4_rateazione",
+         "anno": "regioni_4_anno",
+         "debito": {
+          "euro": "regioni_4_debito",
+          "cent": "regioni_4_debito_cent"
+         },
+         "credito": {
+          "euro": "regioni_4_credito",
+          "cent": "regioni_4_credito_cent"
+         }
+        }
+       ]
+      }
+     ],
+     "campi": [
+      {
+       "id": "totaleE",
+       "pdf": "regioni_totale_e",
+       "label": "Totale E — debiti",
+       "calcolo": {
+        "somma": [
+         "regioni.riga.debito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "regioni_totale_e_cent",
+       "width": "third"
+      },
+      {
+       "id": "totaleF",
+       "pdf": "regioni_totale_f",
+       "label": "Totale F — crediti",
+       "calcolo": {
+        "somma": [
+         "regioni.riga.credito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "regioni_totale_f_cent",
+       "width": "third"
+      },
+      {
+       "id": "saldo",
+       "pdf": "regioni_saldo",
+       "label": "Saldo (E − F)",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "regioni.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "regioni.riga.credito"
+          ]
+         }
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "regioni_saldo_cent",
+       "width": "third"
+      }
+     ],
+     "opzionale": true
+    },
+    {
+     "id": "imu",
+     "quadro": "IMU",
+     "titolo": "Sezione IMU e altri tributi locali",
+     "descrizione": "IMU, TASI, TARI e altri tributi comunali. Per l'IMU si compila una riga per ogni comune in cui possiedi immobili.",
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe della sezione IMU e tributi locali",
+       "help": "Compila una riga per ogni tributo o contributo da versare. Gli importi si indicano sempre con due cifre decimali; se hai più decimali, arrotonda la seconda cifra.",
+       "righeMax": 4,
+       "sottocampi": [
+        {
+         "id": "ente",
+         "type": "testo",
+         "label": "Codice ente / codice comune",
+         "width": "quarter",
+         "help": "Il codice catastale del comune destinatario, per esempio H501 per Roma. È lo stesso codice che compare nel codice fiscale di chi è nato in quel comune."
+        },
+        {
+         "id": "tributo",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Per esempio 3918 per l'IMU su altri fabbricati, 3912 per l'abitazione principale."
+        },
+        {
+         "id": "rateazione",
+         "type": "testo",
+         "label": "Rateazione / mese rif.",
+         "width": "quarter"
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter"
+        },
+        {
+         "id": "ravv",
+         "type": "checkX",
+         "label": "Ravv.",
+         "width": "quarter",
+         "help": "Barra se stai versando con ravvedimento operoso, cioè in ritardo e con sanzione ridotta."
+        },
+        {
+         "id": "immobVariati",
+         "type": "checkX",
+         "label": "Immob. variati",
+         "width": "quarter",
+         "help": "Barra se nel corso dell'anno sono variati gli immobili posseduti."
+        },
+        {
+         "id": "acconto",
+         "type": "checkX",
+         "label": "Acc.",
+         "width": "quarter",
+         "help": "Barra se il versamento è l'acconto."
+        },
+        {
+         "id": "saldo",
+         "type": "checkX",
+         "label": "Saldo",
+         "width": "quarter",
+         "help": "Barra se il versamento è il saldo. Se paghi acconto e saldo in un'unica soluzione, barra entrambe."
+        },
+        {
+         "id": "numImmobili",
+         "type": "numero",
+         "label": "Numero immobili",
+         "width": "quarter",
+         "help": "Quanti immobili sono compresi in questa riga."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "L'importo che versi per questo tributo. Gli importi vanno sempre indicati con le due cifre decimali, anche quando sono zero: scrivi 1250,00 e non 1250."
+        },
+        {
+         "id": "credito",
+         "type": "importoEuro",
+         "label": "Importo a credito compensato (euro)",
+         "width": "quarter",
+         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+        }
+       ],
+       "righe": [
+        {
+         "ente": "imu_1_ente",
+         "ravv": "imu_1_ravv",
+         "immobVariati": "imu_1_immob_variati",
+         "acconto": "imu_1_acconto",
+         "saldo": "imu_1_saldo",
+         "numImmobili": "imu_1_num_immobili",
+         "tributo": "imu_1_tributo",
+         "rateazione": "imu_1_rateazione",
+         "anno": "imu_1_anno",
+         "debito": {
+          "euro": "imu_1_debito",
+          "cent": "imu_1_debito_cent"
+         },
+         "credito": {
+          "euro": "imu_1_credito",
+          "cent": "imu_1_credito_cent"
+         }
+        },
+        {
+         "ente": "imu_2_ente",
+         "ravv": "imu_2_ravv",
+         "immobVariati": "imu_2_immob_variati",
+         "acconto": "imu_2_acconto",
+         "saldo": "imu_2_saldo",
+         "numImmobili": "imu_2_num_immobili",
+         "tributo": "imu_2_tributo",
+         "rateazione": "imu_2_rateazione",
+         "anno": "imu_2_anno",
+         "debito": {
+          "euro": "imu_2_debito",
+          "cent": "imu_2_debito_cent"
+         },
+         "credito": {
+          "euro": "imu_2_credito",
+          "cent": "imu_2_credito_cent"
+         }
+        },
+        {
+         "ente": "imu_3_ente",
+         "ravv": "imu_3_ravv",
+         "immobVariati": "imu_3_immob_variati",
+         "acconto": "imu_3_acconto",
+         "saldo": "imu_3_saldo",
+         "numImmobili": "imu_3_num_immobili",
+         "tributo": "imu_3_tributo",
+         "rateazione": "imu_3_rateazione",
+         "anno": "imu_3_anno",
+         "debito": {
+          "euro": "imu_3_debito",
+          "cent": "imu_3_debito_cent"
+         },
+         "credito": {
+          "euro": "imu_3_credito",
+          "cent": "imu_3_credito_cent"
+         }
+        },
+        {
+         "ente": "imu_4_ente",
+         "ravv": "imu_4_ravv",
+         "immobVariati": "imu_4_immob_variati",
+         "acconto": "imu_4_acconto",
+         "saldo": "imu_4_saldo",
+         "numImmobili": "imu_4_num_immobili",
+         "tributo": "imu_4_tributo",
+         "rateazione": "imu_4_rateazione",
+         "anno": "imu_4_anno",
+         "debito": {
+          "euro": "imu_4_debito",
+          "cent": "imu_4_debito_cent"
+         },
+         "credito": {
+          "euro": "imu_4_credito",
+          "cent": "imu_4_credito_cent"
+         }
+        }
+       ]
+      }
+     ],
+     "campi": [
+      {
+       "id": "identificativoOperazione",
+       "pdf": "imu_identificativo_operazione",
+       "type": "testo",
+       "label": "Identificativo operazione",
+       "width": "half",
+       "help": "Da compilare solo se il Comune lo richiede: è il codice dell'operazione cui si riferisce il versamento, comunicato dal Comune stesso."
+      },
+      {
+       "id": "detrazione",
+       "pdf": "imu_detrazione",
+       "type": "importoEuro",
+       "pdfCentesimi": "imu_detrazione_cent",
+       "label": "Detrazione (euro)",
+       "width": "quarter",
+       "help": "Solo per IMU e tributi locali: la detrazione a cui hai diritto, per esempio quella per l'abitazione principale. L'importo a debito va indicato già al netto della detrazione."
+      },
+      {
+       "id": "totaleG",
+       "pdf": "imu_totale_g",
+       "label": "Totale G — debiti",
+       "calcolo": {
+        "somma": [
+         "imu.riga.debito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "imu_totale_g_cent",
+       "width": "third"
+      },
+      {
+       "id": "totaleH",
+       "pdf": "imu_totale_h",
+       "label": "Totale H — crediti",
+       "calcolo": {
+        "somma": [
+         "imu.riga.credito"
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "imu_totale_h_cent",
+       "width": "third"
+      },
+      {
+       "id": "saldoSez",
+       "pdf": "imu_saldo",
+       "label": "Saldo (G − H)",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "imu.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "imu.riga.credito"
+          ]
+         }
+        ]
+       },
+       "type": "importoEuro",
+       "pdfCentesimi": "imu_saldo_cent",
+       "width": "third"
+      }
+     ],
+     "opzionale": true
+    },
+    {
+     "id": "accise",
+     "titolo": "Sezione Accise e Monopoli",
+     "opzionale": true,
+     "descrizione": "Accise di competenza dell'Agenzia delle Dogane e versamenti dell'Amministrazione autonoma dei Monopoli di Stato. In questa sezione non è ammessa la compensazione con crediti.",
+     "campi": [
+      {
+       "id": "codiceUfficio",
+       "pdf": "accise_codice_ufficio",
+       "type": "testo",
+       "label": "Codice ufficio",
+       "width": "quarter",
+       "help": "Il codice dell'ufficio che ha emesso l'atto da definire, se l'ufficio emittente lo richiede."
+      },
+      {
+       "id": "codiceAtto",
+       "pdf": "accise_codice_atto",
+       "type": "testo",
+       "label": "Codice atto",
+       "width": "half",
+       "help": "Il codice dell'atto oggetto di definizione, se richiesto dall'ufficio emittente. Se paghi in relazione a più atti devi compilare tanti modelli quanti sono gli atti."
+      },
+      {
+       "id": "totaleO",
+       "pdf": "accise_totale_o",
+       "pdfCentesimi": "accise_totale_o_cent",
+       "type": "importoEuro",
+       "label": "Totale O — debiti",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "accise.riga.debito"
+        ]
+       },
+       "help": "Somma degli importi a debito della sezione, calcolata dal compilatore."
+      },
+      {
+       "id": "saldo",
+       "pdf": "accise_saldo",
+       "pdfCentesimi": "accise_saldo_cent",
+       "type": "importoEuro",
+       "label": "Saldo della sezione",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "accise.riga.debito"
+        ]
+       },
+       "help": "Senza crediti da compensare il saldo coincide con il totale O."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe della sezione accise e monopoli",
+       "help": "Una riga per ogni versamento. Errori nella compilazione possono portare a richieste di pagamento di somme già versate.",
+       "righeMax": 7,
+       "sottocampi": [
+        {
+         "id": "ente",
+         "type": "testo",
+         "label": "Ente",
+         "width": "quarter",
+         "help": "Il codice dell'ente di competenza: D per l'Agenzia delle Dogane, cioè le accise, M per l'Amministrazione autonoma dei Monopoli di Stato. In questa sezione si possono indicare solo codici tributo riferiti all'ente scritto qui."
+        },
+        {
+         "id": "prov",
+         "type": "provincia",
+         "label": "Prov.",
+         "width": "quarter",
+         "help": "Per le accise, la sigla della provincia in cui avviene l'immissione in consumo."
+        },
+        {
+         "id": "tributo",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Il codice tributo del versamento, dall'elenco pubblicato sul sito dell'Agenzia delle Entrate."
+        },
+        {
+         "id": "identificativo",
+         "type": "testo",
+         "label": "Codice identificativo",
+         "width": "half",
+         "help": "Per le accise è il «codice ditta», nove caratteri alfanumerici senza il prefisso IT00 dove compare. Per i versamenti dei Monopoli è il «codice concessione», quando richiesto."
+        },
+        {
+         "id": "rateazione",
+         "type": "testo",
+         "label": "Rateazione",
+         "width": "quarter",
+         "help": "Solo per i pagamenti rateali: due cifre per la rata che stai versando e due per il numero totale di rate. 0120 è la prima di venti rate, 0220 la seconda."
+        },
+        {
+         "id": "mese",
+         "type": "numero",
+         "label": "Mese",
+         "width": "quarter",
+         "help": "Il mese di riferimento in due cifre. Per il versamento delle accise non va indicato, come l'anno di riferimento."
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter",
+         "help": "L'anno d'imposta in quattro cifre. Per il versamento delle accise non va indicato."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "In questa sezione non è ammessa la compensazione: c'è solo la colonna dei debiti. Gli importi vanno sempre con due decimali, anche quando sono zero."
+        }
+       ],
+       "righe": [
+        {
+         "ente": "accise_1_ente",
+         "prov": "accise_1_prov",
+         "tributo": "accise_1_tributo",
+         "identificativo": "accise_1_identificativo",
+         "rateazione": "accise_1_rateazione",
+         "mese": "accise_1_mese",
+         "anno": "accise_1_anno",
+         "debito": {
+          "euro": "accise_1_debito",
+          "cent": "accise_1_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_2_ente",
+         "prov": "accise_2_prov",
+         "tributo": "accise_2_tributo",
+         "identificativo": "accise_2_identificativo",
+         "rateazione": "accise_2_rateazione",
+         "mese": "accise_2_mese",
+         "anno": "accise_2_anno",
+         "debito": {
+          "euro": "accise_2_debito",
+          "cent": "accise_2_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_3_ente",
+         "prov": "accise_3_prov",
+         "tributo": "accise_3_tributo",
+         "identificativo": "accise_3_identificativo",
+         "rateazione": "accise_3_rateazione",
+         "mese": "accise_3_mese",
+         "anno": "accise_3_anno",
+         "debito": {
+          "euro": "accise_3_debito",
+          "cent": "accise_3_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_4_ente",
+         "prov": "accise_4_prov",
+         "tributo": "accise_4_tributo",
+         "identificativo": "accise_4_identificativo",
+         "rateazione": "accise_4_rateazione",
+         "mese": "accise_4_mese",
+         "anno": "accise_4_anno",
+         "debito": {
+          "euro": "accise_4_debito",
+          "cent": "accise_4_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_5_ente",
+         "prov": "accise_5_prov",
+         "tributo": "accise_5_tributo",
+         "identificativo": "accise_5_identificativo",
+         "rateazione": "accise_5_rateazione",
+         "mese": "accise_5_mese",
+         "anno": "accise_5_anno",
+         "debito": {
+          "euro": "accise_5_debito",
+          "cent": "accise_5_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_6_ente",
+         "prov": "accise_6_prov",
+         "tributo": "accise_6_tributo",
+         "identificativo": "accise_6_identificativo",
+         "rateazione": "accise_6_rateazione",
+         "mese": "accise_6_mese",
+         "anno": "accise_6_anno",
+         "debito": {
+          "euro": "accise_6_debito",
+          "cent": "accise_6_debito_cent"
+         }
+        },
+        {
+         "ente": "accise_7_ente",
+         "prov": "accise_7_prov",
+         "tributo": "accise_7_tributo",
+         "identificativo": "accise_7_identificativo",
+         "rateazione": "accise_7_rateazione",
+         "mese": "accise_7_mese",
+         "anno": "accise_7_anno",
+         "debito": {
+          "euro": "accise_7_debito",
+          "cent": "accise_7_debito_cent"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chiusura",
+     "titolo": "Saldo finale e firma",
+     "descrizione": "Il saldo finale è la somma dei saldi di tutte le sezioni: è la cifra che verrà effettivamente addebitata.",
+     "campi": [
+      {
+       "id": "saldoFinale",
+       "pdf": "saldo_finale",
+       "pdfCentesimi": "saldo_finale_cent",
+       "type": "importoEuro",
+       "label": "Saldo finale (euro)",
+       "width": "third",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "erario.riga.debito",
+           "inps.riga.debito",
+           "regioni.riga.debito",
+           "imu.riga.debito",
+           "accise.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "erario.riga.credito",
+           "inps.riga.credito",
+           "regioni.riga.credito",
+           "imu.riga.credito"
+          ]
+         }
+        ]
+       },
+       "help": "Calcolato come somma di tutti i debiti meno somma di tutti i crediti compensati. Se il risultato è zero il modello va comunque presentato, ma solo per via telematica."
+      },
+      {
+       "id": "firma",
+       "pdf": "firma",
+       "type": "testo",
+       "label": "Firma (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata."
+      },
+      {
+       "id": "delegaA",
+       "pdf": "delega_a",
+       "type": "testo",
+       "label": "Delega irrevocabile a (banca o Poste)",
+       "width": "half",
+       "help": "La banca, l'ufficio postale o l'agente della riscossione a cui affidi il pagamento."
+      },
+      {
+       "id": "agenzia",
+       "pdf": "agenzia",
+       "type": "testo",
+       "label": "Agenzia",
+       "width": "quarter"
+      },
+      {
+       "id": "provinciaAgenzia",
+       "pdf": "provincia_agenzia",
+       "type": "provincia",
+       "label": "Prov.",
+       "width": "quarter"
+      },
+      {
+       "id": "iban",
+       "pdf": "iban",
+       "type": "iban",
+       "label": "IBAN per l'addebito in conto",
+       "width": "half",
+       "help": "Da compilare solo se chiedi l'addebito sul conto corrente. Scrivi l'IBAN per intero, comprese le lettere IT: sul modulo sono già stampate e il compilatore le toglie da solo. Lo spazio è stampato solo sulla prima copia, quella per la banca."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo IVA — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola IVA con aliquote 22%, 10%, 5% e 4% direttamente nel browser. Aggiungi o scorpora l'IVA senza inviare dati a server esterni." />
+  <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/calcolo-iva/" />
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Calcolo IVA — StrumentiUtili.it" />
+  <meta property="og:description" content="Calcola IVA con aliquote 22%, 10%, 5% e 4% direttamente nel browser, con aggiunta e scorporo in locale." />
+  <meta property="og:url" content="https://strumentiutili.it/fisco-professioni/calcolo-iva/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calcolo IVA — StrumentiUtili.it" />
+  <meta name="twitter:description" content="Calcola IVA con aliquote 22%, 10%, 5% e 4% direttamente nel browser, con aggiunta e scorporo in locale." />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle { 
+      display: block !important; 
+      width: 100%; 
+      min-width: 0; 
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calcolatore IVA",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/fisco-professioni/calcolo-iva/",
+        "description": "Calcolo dell'IVA da aggiungere a un imponibile o da scorporare da un prezzo lordo con le aliquote italiane del 22%, 10%, 5% e 4%.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Aggiunta dell'IVA all'imponibile",
+          "Scorporo dell'IVA dal prezzo lordo",
+          "Aliquote del 22%, 10%, 5% e 4%",
+          "Esempio immediato nei due sensi durante la digitazione",
+          "Nessun dato inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "fisco-professioni",
+            "item": "https://strumentiutili.it/fisco-professioni/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Calcolo IVA",
+            "item": "https://strumentiutili.it/fisco-professioni/calcolo-iva/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#howto",
+        "name": "Come aggiungere o scorporare l'IVA",
+        "description": "Procedura per calcolare IVA, imponibile e totale partendo dal prezzo netto o dal prezzo lordo.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT1M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Importo e aliquota IVA applicabile"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Scegli la modalità",
+            "text": "Seleziona Aggiungi IVA se parti dall'imponibile, Scorporo IVA se parti dal totale.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#mode"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci l'importo e l'aliquota",
+            "text": "Digita l'importo e scegli l'aliquota corretta per il bene o il servizio.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#amount"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Calcola",
+            "text": "Premi Calcola per ottenere imponibile, IVA e totale.",
+            "url": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#totale"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/fisco-professioni/calcolo-iva/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qual è la formula per scorporare l'IVA da un prezzo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si divide il prezzo lordo per 1 più l'aliquota: per il 22% si divide per 1,22, per il 10% per 1,10, per il 4% per 1,04. L'IVA è la differenza fra prezzo lordo e imponibile. Sottrarre direttamente la percentuale dal totale dà un imponibile troppo basso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I forfettari devono aggiungere l'IVA in fattura?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. I contribuenti in regime forfettario non addebitano IVA sulle vendite e non la detraggono sugli acquisti: in fattura indicano la norma di esonero e, sopra 77,47 €, applicano la marca da bollo da 2 €. Per loro l'IVA pagata ai fornitori è un costo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cos'è il reverse charge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È un meccanismo in cui il fornitore emette fattura senza IVA e l'imposta viene integrata e contemporaneamente detratta dal cliente soggetto IVA. Si applica, fra gli altri casi, a subappalti edili, cessioni di rottami e servizi resi da fornitori esteri: in questi casi non si usa l'aliquota ordinaria in fattura."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 font-semibold">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/fisco-professioni/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Fisco &amp; Professioni</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🧮</span> Gestione Fiscale
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo IVA</h1>
+        <p class="text-sm text-gray-600 mt-2">Scegli se aggiungere l'IVA al prezzo netto o scorporarla dal prezzo lordo. Elaborazione matematica al 100% locale, senza invio di dati finanziari.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <form id="ivaForm" class="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="mb-4">
+            <div class="flex items-center gap-2">
+              <label for="mode" class="text-sm font-medium text-gray-700">Modalità</label>
+              <button type="button" data-guida-toggle="guida-iva-modalita" aria-expanded="false" aria-controls="guida-iva-modalita" aria-label="Guida al campo Aggiungere o scorporare" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-iva-modalita" aria-describedby="guida-iva-modalita" id="mode" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="add">Aggiungi IVA</option>
+              <option value="remove">Scorporo IVA</option>
+            </select>
+            <div id="guida-iva-modalita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Aggiungi IVA:</strong> quando parti dall'imponibile: un preventivo di 1.500 € più IVA, il prezzo di listino di un fornitore, il compenso concordato con un cliente.</p>
+              <p><strong class="text-indigo-900">Scorporo IVA:</strong> quando parti dal totale pagato: uno scontrino, un prezzo esposto al pubblico, una spesa da registrare. Lo scorporo divide per 1,22, non sottrae il 22%.</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex items-center gap-2">
+              <label for="amount" class="text-sm font-medium text-gray-700">Importo (€)</label>
+              <button type="button" data-guida-toggle="guida-iva-importo" aria-expanded="false" aria-controls="guida-iva-importo" aria-label="Guida al campo Importo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-iva-importo" aria-describedby="guida-iva-importo" id="amount" type="number" min="0" step="0.01" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. 100.00" />
+            <div id="guida-iva-importo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Formato:</strong> usa il punto per i decimali, ad esempio 64.90. Per importi con più righe a IVA diverse calcola ogni aliquota separatamente.</p>
+              <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex items-center gap-2">
+              <label for="rate" class="text-sm font-medium text-gray-700">Aliquota IVA</label>
+              <button type="button" data-guida-toggle="guida-iva-aliquota" aria-expanded="false" aria-controls="guida-iva-aliquota" aria-label="Guida al campo Aliquota" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-iva-aliquota" aria-describedby="guida-iva-aliquota" id="rate" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+              <option value="22">22% (ordinaria)</option>
+              <option value="10">10%</option>
+              <option value="5">5%</option>
+              <option value="4">4%</option>
+            </select>
+            <div id="guida-iva-aliquota" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">22%:</strong> aliquota ordinaria: la maggior parte di beni e servizi, compresi elettronica, abbigliamento, consulenze e servizi professionali.</p>
+              <p><strong class="text-indigo-900">10% e 5%:</strong> il 10% si applica tra l'altro a somministrazione in bar e ristoranti, energia elettrica e gas per uso domestico, molti interventi edilizi di recupero; il 5% a prestazioni socio-sanitarie delle cooperative sociali e ad alcuni prodotti specifici.</p>
+              <p><strong class="text-indigo-900">4%:</strong> beni di prima necessità come pane, latte, frutta e verdura, libri e giornali, acquisto della prima casa da impresa. In caso di dubbio l'aliquota corretta è indicata nelle tabelle allegate al D.P.R. 633/1972.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" id="calcIva" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-lg transition shadow-sm">Calcola</button>
+            <button type="button" id="resetIva" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2.5 rounded-lg transition">Reimposta</button>
+          </div>
+        </form>
+
+        <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full">
+          <h2 class="text-lg font-bold text-gray-900 mb-4">Risultati</h2>
+          <div id="ivaResults" class="space-y-4 flex-1">
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div class="text-sm font-medium text-gray-500">Imponibile (Netto)</div>
+              <div id="imponibile" class="text-2xl font-bold text-gray-900">—</div>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div class="text-sm font-medium text-gray-500">Importo IVA</div>
+              <div id="importoIva" class="text-2xl font-bold text-rose-600">—</div>
+            </div>
+            <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-100">
+              <div class="text-sm font-medium text-indigo-800">Totale (Lordo)</div>
+              <div id="totale" class="text-3xl font-black text-indigo-700">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/generatore-xml-fatturapa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> Generatore FatturaPA XML</a></li>
+            <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
+            <li><a href="/fisco-professioni/partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧮</span> Partita IVA Forfettaria</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/fisco-professioni/contributo-unificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Contributo Unificato 2026</a></li>
+              <li><a href="/fisco-professioni/interessi-moratori/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💶</span> Interessi Moratori B2B</a></li>
+              <li><a href="/fisco-professioni/modelli-partita-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏢</span> Modelli AA9/12 e AA7/10</a></li>
+              <li><a href="/fisco-professioni/parcella-avvocato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Parcella Avvocato</a></li>
+              <li><a href="/fisco-professioni/ravvedimento-operoso/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⏱️</span> Ravvedimento Operoso</a></li>
+              <li><a href="/fisco-professioni/rivalutazione-istat/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Rivalutazione ISTAT FOI</a></li>
+              <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Simulatore Rata Mutuo</a></li>
+              <li><a href="/fisco-professioni/usufrutto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📜</span> Usufrutto e Nuda Proprietà</a></li>
+            </ul>
+          </details>
+          <a href="/fisco-professioni/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Fisco &amp; Professioni</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Aliquote IVA aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.P.R. 633/1972 (disciplina IVA) e Tabella A parti II, II-bis e III (aliquote ridotte del 4%, 5% e 10%), Direttiva 2006/112/CE, D.Lgs. 87/2024 (sanzioni).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <details class="group mb-4" open>
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            Inquadramento Normativo e Adempimenti F24 (Aggiornamento 2026)
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              L'imposizione fiscale e i criteri di territorialità, detraibilità e rivalsa dell'Imposta sul Valore Aggiunto (IVA) trovano la loro radice giuridica nel D.P.R. 26 ottobre 1972, n. 633, e nelle direttive di armonizzazione fiscale del mercato unico europeo, specificamente la Direttiva 2006/112/CE. Nell'esecuzione dei cicli attivi, come la Fatturazione Elettronica B2B/B2C tramite Sistema di Interscambio, il procedimento inverso all'applicazione – denominato tecnicamente Scorporo dell'Imposta – diviene uno step obbligatorio per gli operatori del commercio al minuto. Ai sensi dell'art. 22 del D.P.R. 633/72, i prezzi esposti al pubblico devono essere comprensivi di imposta, richiedendo l'isolamento contabile a posteriori del fatturato imponibile (Ricavo netto) per la corretta redazione del Libro Giornale e per i versamenti periodici o annuali.
+            </p>
+            <p>
+              Il versamento del tributo IVA a debito, risultante dalle liquidazioni periodiche, deve essere effettuato tramite il modello F24 Ordinario, il cui utilizzo è regolamentato dal D.Lgs. 241/1997, dal D.L. 223/2006, nonché dalle recenti Legge 213/2023 e Legge 199/2025 (Legge di Bilancio 2026). Un aspetto fondamentale e bloccante dell'operatività contabile odierna risiede nell'obbligo telematico: a far data dal 1° luglio 2024, è scattato l'obbligo assoluto di utilizzare esclusivamente i servizi telematici dell'Agenzia delle Entrate (Entratel o F24 Web/Online) per qualsiasi modello F24 che includa la compensazione di un credito, indipendentemente dalla natura o dall'importo del credito stesso, e anche qualora il saldo finale sia positivo. L'utilizzo dell'home banking tradizionale è pertanto del tutto precluso in presenza di compensazioni. 
+            </p>
+            <p>
+              Inoltre, il sistema tributario impone severi divieti di compensazione per carichi a ruolo pendenti. Il primo blocco, stabilito dall'art. 31 del D.L. 78/2010, vieta la compensazione orizzontale in presenza di debiti erariali iscritti a ruolo (scaduti e non pagati) superiori a 1.500€. Il secondo blocco, originariamente introdotto dalla Legge 213/2023 con soglia a 100.000€, è stato inasprito dalla Legge 199/2025 (Legge di Bilancio 2026), che ha dimezzato la soglia a 50.000€. Al superamento di tale limite per carichi affidati all'Agente della Riscossione o atti di recupero, scatta il divieto totale di compensazione; tentare di aggirare tale blocco comporta lo scarto telematico del modello F24, rendendo il versamento IVA omesso e innescando l'applicazione delle sanzioni per omesso versamento, che dal 1° settembre 2024 (D.Lgs. 87/2024) ammontano al 25% del tributo.
+            </p>
+          </div>
+        </details>
+
+        <details class="group mb-4">
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            Meccanica e Formule Matematiche
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              La matematica dello scorporo è frequentemente mal compresa dagli operatori sprovvisti di basi ragionieristiche, i quali attuano detrazioni percentuali fallaci. L'algoritmo IVA si basa su un'equazione di proporzionalità diretta: la base imponibile (100) più la percentuale di aliquota (r) stanno alla base imponibile (100), come il prezzo lordo incassato sta al prezzo netto.
+            </p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>L'equazione fondamentale si esprime come: (100 + r) : 100 = Prezzo Lordo : Prezzo Netto.</li>
+              <li>Per estrarre il valore al netto dell'imposta: Base Imponibile = Prezzo Lordo / (1 + (Aliquota IVA / 100)).</li>
+              <li>Per determinare l'imposta da versare all'Erario: IVA Scorporata = Prezzo Lordo - Base Imponibile.</li>
+            </ul>
+            <p>
+              L'architettura tributaria del 2026 prevede diversi scaglioni di imposizione a seconda del comparto merceologico, che si riflettono matematicamente sul coefficiente divisore di estrazione. L'Aliquota Ordinaria (22%) si applica a elettronica, servizi generali e lusso, e il divisore per lo scorporo è 1,22. L'Aliquota Ridotta (10%) si applica a ristorazione, energia elettrica e farmaci, con un divisore di 1,10. L'Aliquota Agevolata (5%) riguarda il settore socio-sanitario ed erbe aromatiche, impiegando il divisore 1,05. Infine, l'Aliquota Super Agevolata (4%), dedicata a beni essenziali, editoria e ortofrutta, richiede il divisore 1,04.
+            </p>
+          </div>
+        </details>
+
+        <details class="group mb-4">
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            Casuistica Reale e Risoluzione dei Calcoli
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              Si assuma la vendita over the counter di un apparato elettronico assoggettato ad aliquota ordinaria del 22%, battuto sul registratore di cassa telematico al prezzo finale di 4.850,00 €. L'esercente necessita di desumere la quota erariale trattenuta a titolo di imposta e il proprio ricavo puro. Procedendo con la formula del divisore corretto, il Ricavo Netto (Base Imponibile) si ottiene dividendo 4.850,00 per 1,22, che produce il risultato esatto di 3.975,41 €. L'IVA a debito per l'Erario si calcola per differenza: 4.850,00 - 3.975,41 = 874,59 €.
+            </p>
+            <p>
+              L'errore cognitivo più diffuso in queste mansioni porterebbe a detrarre seccamente il 22% dal totale incassato (4.850,00 - 22% = 3.783,00 €). Questo calcolo è inaccettabile poiché sotto-stimerebbe la base imponibile di quasi 200 €, causando a catena un versamento IVA ipertrofico, indebito e un'erosione ingiustificata del margine di profitto esposto in bilancio. Allo stesso modo, sopravvive sul mercato retail la prassi occulta del "falso sconto": un commerciante che promette lo "Sconto IVA" non sta abbassando il prezzo del 22%. Matematicamente, lo scorporo reale riduce l'onere del consumatore di circa il 18,03% rispetto al prezzo lordo. L'Antitrust sanziona le campagne promozionali che decantano il "Togliamo il 22%" se il commerciante applica invece il coefficiente di scorporo 1,22, palesandosi l'inganno matematico a danno del consumatore.
+            </p>
+            <p>
+              Un'ulteriore casistica critica per il 2026 riguarda la permanenza nel Regime Forfettario. La normativa prevede un limite annuo di fatturato incassato pari a 85.000 €. Tuttavia, se nell'anno solare si incassano oltre 100.000 €, la decadenza dal regime non avviene l'anno successivo, ma in via istantanea. Il professionista o l'impresa è obbligato ad applicare l'IVA ordinaria già a partire dalla specifica fattura che comporta il superamento dei 100.000 €, subendo inoltre l'immediato passaggio alla liquidazione trimestrale e all'IRPEF progressiva per l'intero residuo dell'anno. Incassare una fattura che porta il volume d'affari da 95.000 € a 105.000 € omettendo di integrare l'IVA sul documento "invalicante" comporta l'irrogazione di sanzioni per infedele fatturazione, variabili dal 70% al 140% post riforma, per l'omessa applicazione dell'imposta sul valore aggiunto sull'intero importo del documento.
+            </p>
+          </div>
+        </details>
+
+        <details class="group mb-4">
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">👥 Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>I casi seguenti sono stati riprodotti nel calcolatore della pagina.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: preventivo di un grafico in regime ordinario</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Imponibile concordato: 1.500,00 €</li>
+            <li>IVA 22%: 330,00 €</li>
+            <li>Totale fattura: 1.830,00 €</li>
+            </ul>
+            <p>Il cliente con Partita IVA detrae i 330 € e il costo reale per lui resta 1.500 €. Per un privato il costo è invece di 1.830 €: prima di confrontare due preventivi conviene sempre verificare se i prezzi sono «più IVA» o «IVA inclusa». Se il cliente è un sostituto d'imposta, dal totale va poi sottratta la ritenuta del 20% calcolata sui soli 1.500 €.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: scontrino del ristorante da registrare come spesa</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Totale pagato: 64,90 € con IVA al 10%</li>
+            <li>Imponibile: 64,90 / 1,10 = 59,00 €</li>
+            <li>IVA: 5,90 €</li>
+            </ul>
+            <p>Calcolare il 10% di 64,90 € e sottrarlo darebbe 58,41 € di imponibile, 59 centesimi in meno del corretto. Su un anno di trasferte l'errore si accumula e altera la contabilità delle spese.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: il falso «sconto IVA» del negozio</h3>
+            <p>Un televisore costa 1.220,00 € e il venditore promette di «togliere l'IVA».</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Scorporo corretto al 22%: imponibile 1.000,00 €, IVA 220,00 €</li>
+            <li>Sconto del 22% sul prezzo: 1.220 × 0,78 = 951,60 €</li>
+            <li>Differenza fra le due promesse: 48,40 €</li>
+            </ul>
+            <p>Lo «sconto IVA» è solo una promozione commerciale: l'IVA resta dovuta sul prezzo effettivamente praticato, che sia 1.000 € o 951,60 €. Lo scontrino riporterà comunque l'imposta calcolata sul nuovo prezzo.</p>
+          </div>
+        </details>
+
+        <details class="group mb-4">
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            FAQ, Errori Operativi e Sanzioni Economiche
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <p>
+              Il calcolo dell'IVA diviene un campo minato quando applicato al Reverse Charge (Inversione Contabile ex art. 17). Nelle prestazioni di servizi edilizi o nel commercio di componentistica informatica tra soggetti IVA, il cedente emette fattura senza esposizione d'imposta. Se i software gestionali non sono parametrizzati per trasferire l'onere dell'integrazione contabile, l'azienda fornitrice rischia di addebitare al lordo; il ricevente, se detrae tale imposta addebitata erroneamente, incorre nella violazione formale per "indebita detrazione" e viene punito con sanzioni pecuniarie e interessi moratori da parte dell'Agenzia delle Entrate. 
+            </p>
+            <p>
+              Sul piano puramente computazionale relativo alla Fatturazione Elettronica, il Rounding Error (errore di arrotondamento centesimale) invalida migliaia di file XML verso il Sistema di Interscambio. Sommare l'IVA arrotondata ai centesimi su ogni singola riga di una fattura multi-articolo non produce quasi mai lo stesso risultato derivante dall'applicare l'aliquota IVA alla somma delle basi imponibili. La Direttiva Europea impone la tolleranza al centesimo di Euro o prescrive di calcolare l'imposta in calce sull'imponibile di riepilogo, evitando la parcellizzazione dell'errore.
+            </p>
+            <p>
+              In caso di omesso o tardivo versamento dell'IVA liquidata, si rende necessaria l'applicazione del Ravvedimento Operoso (Art. 13 D.Lgs. 472/1997 e 471/1997, aggiornati dalla Riforma delle Sanzioni D.Lgs. 87/2024 e dal D.Lgs. 173/2024). La sanzione edittale base per gli omessi o tardivi versamenti commessi dal 1° settembre 2024 è scesa dal 30% al 25%. Se il ritardo non supera i 90 giorni, la sanzione base subisce un dimezzamento automatico al 12,5%. Le frazioni di riduzione si applicano in cascata: Ravvedimento Sprint (entro i primi 14 giorni) al 0,0833% per ogni giorno di ritardo; Breve (dal 15° al 30° giorno) all'1,2500% fissa; Intermedio (dal 31° al 90° giorno) all'1,3889%; Lungo (entro 1 anno) al 3,1250%; Lunghissimo (oltre 1 anno) al 3,5714%. Il calcolo matematico finale richiede la corresponsione degli interessi legali determinati pro-rata temporis; il tasso d'interesse legale è stato ridotto all'1,60% annuo a partire dal 1° gennaio 2026.
+            </p>
+            <p>
+              Infine, la compensazione indebita di crediti IVA nel Modello F24 è soggetta a un duplice binario sanzionatorio. La compensazione di un credito inesistente – ancorato a una situazione non reale, privo di presupposti normativi o caratterizzato da frode – comporta l'irrogazione di una sanzione base del 70%, che può aumentare dal 105% al 140% in caso di frode o simulazione (D.Lgs. 87/2024). Il termine di decadenza per l'accertamento di crediti inesistenti è esteso al 31 dicembre dell'ottavo anno successivo all'utilizzo. Qualora si tratti invece di credito non spettante (errori formali, superamento di limiti quantitativi annui o violazioni rilevabili in sede di controllo automatizzato), la sanzione è pari al 25% dell'importo indebitamente utilizzato in compensazione, con un termine di decadenza ordinario fissato al quinto anno successivo alla dichiarazione.
+            </p>
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="group mb-4">
+          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">❓ Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la formula per scorporare l'IVA da un prezzo?</h3>
+            <p>Si divide il prezzo lordo per 1 più l'aliquota: per il 22% si divide per 1,22, per il 10% per 1,10, per il 4% per 1,04. L'IVA è la differenza fra prezzo lordo e imponibile. Sottrarre direttamente la percentuale dal totale dà un imponibile troppo basso.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">I forfettari devono aggiungere l'IVA in fattura?</h3>
+            <p>No. I contribuenti in regime forfettario non addebitano IVA sulle vendite e non la detraggono sugli acquisti: in fattura indicano la norma di esonero e, sopra 77,47 €, applicano la marca da bollo da 2 €. Per loro l'IVA pagata ai fornitori è un costo.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Che cos'è il reverse charge?</h3>
+            <p>È un meccanismo in cui il fornitore emette fattura senza IVA e l'imposta viene integrata e contemporaneamente detratta dal cliente soggetto IVA. Si applica, fra gli altri casi, a subappalti edili, cessioni di rottami e servizi resi da fornitori esteri: in questi casi non si usa l'aliquota ordinaria in fattura.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore IVA opera <strong>100% lato client, senza alcun server di elaborazione</strong>. Gli imponibili, le aliquote e gli importi lordi che digiti restano nel browser: per comodità l'ultimo importo inserito viene ricordato nella memoria locale del dispositivo e si cancella svuotando i dati del sito. Non esiste alcuna trasmissione di rete, alcun registro delle operazioni effettuate e alcuna possibilità tecnica per noi di conoscere i valori inseriti.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Gli importi di fatturato e i corrispettivi sono dati economici che rivelano l'andamento di un'attività professionale o d'impresa. Escludendo per costruzione il loro invio a un backend, lo strumento realizza la conformità al Regolamento UE 2016/679 (GDPR) sul piano architetturale anziché su quello delle dichiarazioni: i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5 sono soddisfatti perché il dato non viene mai raccolto. Lo strumento può essere usato anche offline, una volta caricata la pagina.</p>
+        </div>
+
+        </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+
+  <script defer src="/js/codice-fiscale.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script>
+    document.getElementById('calcIva').addEventListener('click', ()=>{
+      const mode = document.getElementById('mode').value;
+      const amt = parseFloat(document.getElementById('amount').value) || 0;
+      const rate = parseFloat(document.getElementById('rate').value) || 22;
+      if (amt <= 0) return alert('Inserisci un importo valido.');
+
+      const fmt = v => v.toLocaleString('it-IT', {style:'currency', currency:'EUR'});
+
+      const res = {
+        base: amt,
+        iva: amt * (rate / 100),
+        withIVA: amt + (amt * (rate / 100)),
+        withoutIVA_from_total: amt / (1 + (rate / 100)),
+        iva_from_total: amt - (amt / (1 + (rate / 100))),
+        withIVA_from_total: amt
+      };
+
+      if (mode === 'add'){
+        document.getElementById('imponibile').textContent = fmt(Number(res.base.toFixed(2)));
+        document.getElementById('importoIva').textContent = fmt(res.iva);
+        document.getElementById('totale').textContent = fmt(res.withIVA);
+      } else {
+        document.getElementById('imponibile').textContent = fmt(res.withoutIVA_from_total);
+        document.getElementById('importoIva').textContent = fmt(res.iva_from_total);
+        document.getElementById('totale').textContent = fmt(res.withIVA_from_total);
+      }
+    });
+
+    document.getElementById('resetIva').addEventListener('click', ()=>{
+      document.getElementById('amount').value = '';
+      document.getElementById('rate').value = '22';
+      document.getElementById('mode').value = 'add';
+      document.getElementById('imponibile').textContent = '—';
+      document.getElementById('importoIva').textContent = '—';
+      document.getElementById('totale').textContent = '—';
+    });
+  </script>
+
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-iva-importo'] = function (campo) {
+      var importo = parseFloat(campo.value);
+      if (!(importo > 0)) return '';
+      var aliquota = parseFloat(document.getElementById('rate').value) || 22;
+      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
+      return 'Al ' + aliquota + '%: se ' + euro(importo) + ' è l\'imponibile il totale è ' + euro(importo * (1 + aliquota / 100)) + '; se è il totale, l\'imponibile è ' + euro(importo / (1 + aliquota / 100)) + '.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

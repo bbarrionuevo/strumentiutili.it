@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Convertitore e Validatore PDF/A Online — StrumentiUtili.it</title>
+  <meta name="description" content="Converti un PDF in PDF/A-1b o PDF/A-2b con profilo colore sRGB e controlla i requisiti di base di un file PDF/A. Elaborazione nel browser, senza upload." />
+  <link rel="canonical" href="https://strumentiutili.it/pdf/convertitore-pdfa/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Convertitore e Validatore PDF/A — StrumentiUtili.it" />
+  <meta property="og:description" content="Converti un PDF in PDF/A-1b o PDF/A-2b e controlla i requisiti di base, direttamente nel browser." />
+  <meta property="og:url" content="https://strumentiutili.it/pdf/convertitore-pdfa/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Convertitore e Validatore PDF/A" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script defer src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Convertitore e validatore PDF/A",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/pdf/convertitore-pdfa/",
+        "description": "Conversione di PDF in PDF/A-1b o PDF/A-2b nel browser, con pagine ricostruite come immagini, livello di testo ricercabile, profilo colore sRGB e metadati coerenti, e controllo dei requisiti di base di un file PDF/A.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/pdf/convertitore-pdfa/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Conversione in PDF/A-1b e PDF/A-2b verificata con veraPDF",
+          "Livello di testo invisibile per mantenere il documento ricercabile",
+          "Profilo colore sRGB incorporato come OutputIntent",
+          "Controllo di dichiarazione PDF/A, script, cifratura, font e profilo colore",
+          "Elaborazione nel browser senza upload"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti PDF",
+            "item": "https://strumentiutili.it/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Convertitore e Validatore PDF/A",
+            "item": "https://strumentiutili.it/pdf/convertitore-pdfa/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/pdf/convertitore-pdfa/#howto",
+        "name": "Come convertire un PDF in PDF/A",
+        "description": "Procedura per ottenere un PDF/A-1b o PDF/A-2b da un PDF qualsiasi e controllarlo prima del deposito.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il PDF da convertire"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica il PDF",
+            "text": "Trascina il file nell'area tratteggiata del convertitore o sfoglialo dal dispositivo.",
+            "url": "https://strumentiutili.it/pdf/convertitore-pdfa/#drop-zone-convert"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli il livello",
+            "text": "Seleziona PDF/A-1b, oppure PDF/A-2b se il sistema di destinazione lo accetta.",
+            "url": "https://strumentiutili.it/pdf/convertitore-pdfa/#pdfa-standard"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Converti e scarica",
+            "text": "Premi Converti in PDF/A e scarica il file.",
+            "url": "https://strumentiutili.it/pdf/convertitore-pdfa/#btn-convert"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Controlla il risultato",
+            "text": "Apri la scheda Validatore e carica il file scaricato; per depositi importanti verificalo anche con veraPDF.",
+            "url": "https://strumentiutili.it/pdf/convertitore-pdfa/#tabValidate"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/convertitore-pdfa/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il processo civile telematico richiede il PDF/A?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per l'atto principale le specifiche tecniche chiedono un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma non il PDF/A. Il PDF/A è invece richiesto nei processi amministrativo e tributario telematici."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso convertire l'atto principale con questo strumento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non è consigliato: le pagine diventano immagini e l'atto non sarebbe più testo nativo. Esporta il PDF/A dal programma di videoscrittura e usa questo strumento per gli allegati."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il file convertito resta ricercabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, se l'originale conteneva testo: sopra ogni immagine viene scritto un livello di testo invisibile. Le scansioni senza OCR restano non ricercabili."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il validatore certifica la conformità PDF/A?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, controlla i requisiti violati più spesso: dichiarazione, script, cifratura, font e profilo colore. Per una verifica completa della norma ISO 19005 usa veraPDF."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché il file PDF/A pesa più dell'originale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ogni pagina viene salvata come immagine a 150 DPI. Per un documento di solo testo il peso cresce di alcune decine di kilobyte per pagina."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>📄</span> PDF &amp; Burocrazia PA
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Convertitore e Validatore PDF/A (ISO 19005)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Converti o controlla la conformità dei tuoi file PDF nello standard di conservazione <strong>PDF/A</strong>, richiesto dai processi telematici amministrativo e tributario e indicato dalle Linee guida AgID per la conservazione.
+        </p>
+        <div class="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg w-fit shadow-sm">
+          <span>🔒 Privacy Garantita:</span> Elaborazione totalmente nella memoria RAM del tuo dispositivo.
+        </div>
+      </section>
+
+      <!-- CARD PRINCIPALE CON SCHEDE -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6 flex-1">
+        
+        <div class="border-b border-gray-100 pb-4">
+          <nav class="flex flex-wrap gap-3">
+            <button id="tabConvert" type="button" class="px-5 py-2.5 text-sm font-bold rounded-lg bg-indigo-600 text-white shadow-sm transition">Convertitore PDF/A</button>
+            <button id="tabValidate" type="button" class="px-5 py-2.5 text-sm font-bold rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Validatore Conformità ISO</button>
+          </nav>
+        </div>
+
+        <!-- AREA CONVERTITORE -->
+        <div id="convertArea" class="space-y-6">
+          <div>
+            <label class="block text-sm font-bold text-gray-800 mb-2">Seleziona o trascina il file PDF</label>
+            <input id="pdf-file-input" type="file" accept="application/pdf" class="hidden" />
+            
+            <div id="drop-zone-convert" role="button" tabindex="0" class="border-2 border-dashed border-gray-300 hover:border-indigo-500 bg-gray-50 hover:bg-indigo-50 transition-colors rounded-xl p-8 text-center cursor-pointer select-none">
+              <div class="text-4xl mb-3">📄</div>
+              <div class="text-sm font-medium text-gray-700">Trascina qui il tuo PDF oppure <span class="text-indigo-600 font-bold">sfoglia</span></div>
+              <div class="text-xs text-gray-500 mt-2 font-semibold">Zero Upload - Elaborazione Locale</div>
+            </div>
+            <button type="button" data-guida-toggle="guida-pdfa-file" aria-expanded="false" aria-controls="guida-pdfa-file" aria-label="Guida al campo PDF da convertire" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quale file caricare</button>
+            <div id="guida-pdfa-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">PDF nativi e scansioni:</strong> vanno bene entrambi: ogni pagina viene ridisegnata come immagine, quindi anche font mancanti e trasparenze diventano conformi.</p>
+              <p><strong class="text-indigo-900">Atti dei processi telematici:</strong> l'atto principale deve restare testo nativo, non un'immagine. Esportalo in PDF/A dal programma di videoscrittura: in Word da Salva con nome › PDF › Opzioni › «Conforme a ISO 19005-1 (PDF/A)», in LibreOffice da File › Esporta come PDF › «Archivio (PDF/A, ISO 19005)». Usa questo strumento per gli allegati.</p>
+              <p><strong class="text-indigo-900">PDF firmati:</strong> la conversione crea un file nuovo e la firma digitale non resta valida: converti prima e firma dopo.</p>
+              <p><strong class="text-indigo-900">File protetti:</strong> i PDF con password di apertura non si convertono, perché PDF/A vieta la cifratura. Rimuovi la protezione con il programma che la conosce.</p>
+            </div>
+          </div>
+
+          <div id="settings-box" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 p-5 rounded-xl border border-gray-200">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="pdfa-standard" class="text-xs font-bold text-gray-800">Standard PDF/A</label>
+                <button type="button" data-guida-toggle="guida-pdfa-livello" aria-expanded="false" aria-controls="guida-pdfa-livello" aria-label="Guida al campo Livello PDF/A" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-pdfa-livello" aria-describedby="guida-pdfa-livello" id="pdfa-standard" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="1b" selected>PDF/A-1b (massima compatibilità)</option>
+                <option value="2b">PDF/A-2b (ISO 19005-2)</option>
+              </select>
+              <div id="guida-pdfa-livello" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">PDF/A-1b:</strong> ISO 19005-1 del 2005, basato su PDF 1.4. È il livello più compatibile e quello indicato dalle specifiche che chiedono «PDF/A-1a o PDF/A-1b».</p>
+                <p><strong class="text-indigo-900">PDF/A-2b:</strong> ISO 19005-2 del 2011, basato su PDF 1.7. Ammette trasparenze e compressione JPEG2000: sceglilo se il sistema di destinazione accetta PDF/A-2.</p>
+                <p><strong class="text-indigo-900">La lettera «b»:</strong> indica la conformità di base, che garantisce la riproduzione fedele dell'aspetto. Il livello «a» richiede anche i tag di accessibilità, che una conversione in immagini non può fornire.</p>
+                <p><strong class="text-indigo-900">Differenza nel file:</strong> in questo strumento le pagine vengono ricostruite allo stesso modo: cambiano solo la dichiarazione nei metadati e le regole con cui il file va validato.</p>
+              </div>
+            </div>
+
+            <div>
+              <label for="color-profile" class="block text-xs font-bold text-gray-800 mb-1">Profilo Colore</label>
+              <select id="color-profile" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="sRGB" selected>sRGB IEC61966-2.1</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="file-info" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-sm space-y-1 shadow-sm">
+            <div class="font-bold text-indigo-900" id="info-name">—</div>
+            <div class="text-xs font-medium text-indigo-700" id="info-details">—</div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button id="btn-convert" type="button" disabled class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold px-6 py-3.5 rounded-lg text-sm transition shadow-sm flex items-center justify-center gap-2">
+              <span>⚡</span> Converti in PDF/A
+            </button>
+            <button id="btn-reset-convert" type="button" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-6 py-3.5 rounded-lg text-sm transition">
+              Pulisci
+            </button>
+          </div>
+
+          <div id="status-progress" class="hidden text-sm font-bold text-indigo-700 flex items-center justify-center gap-2 bg-indigo-50 p-4 rounded-xl border border-indigo-100 w-full sm:w-fit">
+            <span class="animate-spin">⏳</span> <span id="status-text">Elaborazione in corso...</span>
+          </div>
+          <button type="button" data-guida-toggle="guida-pdfa-conversione" aria-expanded="false" aria-controls="guida-pdfa-conversione" aria-label="Guida al campo Conversione" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa cambia nel file</button>
+          <div id="guida-pdfa-conversione" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Pagine:</strong> ogni pagina diventa un'immagine JPEG a 150 DPI su fondo bianco, con le stesse dimensioni dell'originale.</p>
+            <p><strong class="text-indigo-900">Testo:</strong> sopra l'immagine viene scritto un livello di testo invisibile nelle stesse posizioni, così il PDF resta ricercabile e copiabile. Le lettere che non appartengono agli alfabeti latini occidentali, come quelle greche o cirilliche, non entrano nel livello di testo.</p>
+            <p><strong class="text-indigo-900">Cosa si perde:</strong> link, segnalibri, moduli compilabili, allegati e firme digitali. Il testo non è più modificabile e un documento di solo testo diventa più pesante.</p>
+            <p><strong class="text-indigo-900">Conformità:</strong> il file contiene profilo colore sRGB, metadati XMP coerenti con le proprietà del documento e identificativo del file. I risultati dello strumento hanno superato la validazione veraPDF per PDF/A-1b e PDF/A-2b.</p>
+          </div>
+
+          <div id="result-box-convert" class="hidden p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-4 shadow-sm">
+            <div class="flex items-center gap-2 font-black text-emerald-800 text-lg">
+              <span>✓</span> Conversione PDF/A completata!
+            </div>
+            <p class="text-sm font-medium text-emerald-700 leading-relaxed">
+              Ogni pagina è stata ricostruita come immagine a 150 DPI, con testo invisibile ricercabile, profilo colore sRGB e metadati PDF/A. Il testo non è più modificabile: controlla il file prima di inviarlo.
+            </p>
+            <button id="btn-download" type="button" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl transition shadow-sm flex items-center justify-center gap-2">
+              <span>📄</span> Scarica PDF/A
+            </button>
+          </div>
+        </div>
+
+        <!-- AREA VALIDATORE -->
+        <div id="validateArea" class="space-y-6" style="display: none;">
+          <div>
+            <label class="block text-sm font-bold text-gray-800 mb-2">Carica un PDF per verificarne la conformità</label>
+            <input id="val-file-input" type="file" accept="application/pdf" class="hidden" />
+            
+            <div id="drop-zone-validate" role="button" tabindex="0" class="border-2 border-dashed border-gray-300 hover:border-indigo-500 bg-gray-50 hover:bg-indigo-50 transition-colors rounded-xl p-8 text-center cursor-pointer select-none">
+              <div class="text-4xl mb-3">🔍</div>
+              <div class="text-sm font-medium text-gray-700">Trascina qui il file PDF da verificare oppure <span class="text-indigo-600 font-bold">sfoglia</span></div>
+              <div class="text-xs text-gray-500 mt-2 font-semibold">Controllo di base: dichiarazione, script, font, cifratura e colore</div>
+            </div>
+            <button type="button" data-guida-toggle="guida-pdfa-validatore" aria-expanded="false" aria-controls="guida-pdfa-validatore" aria-label="Guida al campo Validatore" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa controlla il validatore</button>
+            <div id="guida-pdfa-validatore" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Controlli:</strong> dichiarazione pdfaid nei metadati XMP (anche compressi), JavaScript e azioni automatiche, cifratura, font non incorporati usati per testo visibile, presenza di un OutputIntent con profilo ICC.</p>
+              <p><strong class="text-indigo-900">Esito verde:</strong> nel file non ci sono gli errori più frequenti, ma la conformità non è certificata: la norma comprende centinaia di regole. Per una verifica completa usa veraPDF, che si installa sul computer.</p>
+              <p><strong class="text-indigo-900">Esito giallo:</strong> manca l'OutputIntent. È un errore solo se il file usa colori del dispositivo (RGB o CMYK) senza profilo, cosa molto frequente.</p>
+              <p><strong class="text-indigo-900">Esito rosso:</strong> il file non si dichiara PDF/A oppure viola un requisito: convertilo con la scheda Convertitore PDF/A.</p>
+            </div>
+          </div>
+
+          <div id="val-result-box" class="hidden space-y-4">
+            <div id="val-status-header" class="p-5 rounded-xl font-bold text-base border flex items-center gap-2 shadow-sm">
+              <!-- Esito Dinamico -->
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 space-y-4 shadow-sm">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Report Analisi Strutturale</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">Schema Metadati XMP</div>
+                  <div id="val-xmp-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">Livello Dichiarato</div>
+                  <div id="val-level-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">Assenza Script Eseguibili</div>
+                  <div id="val-js-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">OutputIntent Colore</div>
+                  <div id="val-color-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">Font Incorporati</div>
+                  <div id="val-font-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+                <div class="p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
+                  <div class="text-xs text-gray-500 font-bold uppercase">Cifratura</div>
+                  <div id="val-crypt-status" class="font-bold text-gray-900 mt-1">—</div>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 leading-relaxed">Controllo preliminare dei requisiti più spesso violati: la norma ISO 19005 comprende centinaia di regole. Per una verifica completa usa <a href="https://verapdf.org/" target="_blank" rel="noopener" class="text-indigo-600 underline">veraPDF</a>, il validatore open source della PDF Association, che si installa sul computer e non richiede l'invio del file.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Firma PDF</a></li>
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🗜️</span> Comprimi e Converti PDF</a></li>
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📂</span> Unisci e Dividi PDF</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/pdf/anonimizza/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Anonimizza PDF (Redact)</a></li>
+              <li><a href="/pdf/scanner-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Scanner Documenti</a></li>
+            </ul>
+          </details>
+          <a href="/pdf/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Strumenti PDF</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Conformità dei file prodotti verificata con veraPDF a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF viene letto, ridisegnato e ricostruito nel browser: né il file originale né quello convertito vengono inviati a server. Le librerie pdf.js e pdf-lib sono scaricate da CDN al primo utilizzo e non ricevono il documento (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e tecniche</p>
+            <p class="text-gray-600 leading-relaxed">ISO 19005-1:2005 e ISO 19005-2:2011 (PDF/A), specifiche tecniche del processo civile telematico, del processo amministrativo telematico (DPCM 40/2016, allegato A) e del processo tributario telematico, Linee guida AgID sulla formazione, gestione e conservazione dei documenti informatici (allegato 2, formati di file), validatore veraPDF 1.24 della PDF Association, librerie pdf.js e pdf-lib.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Standard ISO 19005 (PDF/A), Ingegneria della Conservazione Sostitutiva e Compliance GDPR (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il formato PDF/A (PDF for Archiving), definito dalla norma ISO 19005, è la versione del PDF pensata per la conservazione a lungo termine. Il file deve contenere tutto ciò che serve a riprodurlo nello stesso modo in futuro: font incorporati, colori con profilo ICC e metadati XMP, senza script, contenuti esterni né cifratura. In Italia le Linee guida AgID indicano il PDF/A tra i formati per la conservazione, e le specifiche tecniche di alcuni processi telematici lo richiedono. Questa guida spiega cosa impone lo standard, come lavorano il convertitore e il validatore della pagina e quando conviene invece esportare il PDF/A dal programma che ha creato il documento.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Specifiche ISO 19005, CAD D.Lgs. 82/2005, PCT D.M. 44/2011 e GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Le Linee guida AgID sulla formazione, gestione e conservazione dei documenti informatici (allegato 2) indicano il PDF/A tra i formati idonei alla conservazione dei documenti impaginati. Le regole dei processi telematici sono diverse. Nel processo civile telematico l'atto principale deve essere un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma il PDF/A non è obbligatorio. Le specifiche del processo amministrativo telematico e del processo tributario telematico richiedono invece il PDF/A (PDF/A-1a o PDF/A-1b) anche per gli atti, sempre ottenuti dal documento testuale. Un file che non rispetta le specifiche può essere rifiutato dai controlli automatici del sistema di deposito.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Parallelamente, la gestione dei documenti amministrativi, contabili e sanitari soggetti a conservazione sostitutiva (contratti, fatture, cartelle cliniche, sentenze) sconta il ferreo regime di conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). Affidare la conversione o validazione strutturale di documenti riservati a microservizi Cloud SaaS commerciali terzi genera un flusso di dati verso l'esterno che impone l'obbligo di censimento nei Registri del Trattamento (Articolo 30 GDPR), la conduzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Articolo 35 GDPR) e la stipula di un Data Processing Agreement (DPA ex Articolo 28 GDPR) con il fornitore esterno.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura Zero-Backend applica il principio della protezione dei dati fin dalla progettazione (articolo 25 GDPR): il PDF viene letto, ridisegnato e salvato nella memoria del browser, senza essere trasmesso a server. Chi gestisce atti o referti non deve quindi valutare un fornitore esterno per la conversione. Restano a carico dello studio o della struttura le altre misure, come la custodia dei file sul computer e la scelta dei canali di invio.
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Vincoli ISO 19005 e funzionamento del convertitore: rasterizzazione, OutputIntent ICC e metadati XMP</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La norma ISO 19005 definisce una serie di vincoli sintattici e strutturali draconiani volti a garantire che un documento sia totalmente auto-contenuto (*self-contained*). La tabella seguente riassume i vincoli architetturali differenziali tra un PDF standard e lo standard ISO 19005 (PDF/A):
+            </p>
+
+            <!-- Tabella Comparativa PDF Standard vs PDF/A -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-2 mb-4">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-gray-100 text-gray-800">
+                    <th class="py-2.5 px-3 border-b font-bold">Caratteristica Architetturale</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Vincoli PDF Standard (ISO 32000)</th>
+                    <th class="py-2.5 px-3 border-b font-bold">Requisiti ISO 19005 (PDF/A)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="py-2 px-3 font-bold">Gestione Tipografica (Font)</td>
+                    <td class="py-2 px-3">Possono essere referenziati per nome al sistema operativo host.</td>
+                    <td class="py-2 px-3 font-semibold text-indigo-900">Obbligo di incorporare i font del testo visibile (ammesso il subsetting); esente il solo testo invisibile.</td>
+                  </tr>
+                  <tr class="bg-gray-50/50">
+                    <td class="py-2 px-3 font-bold">Riproduzione del Colore</td>
+                    <td class="py-2 px-3">Dipendente dal dispositivo (es. DeviceRGB) senza calibrazione.</td>
+                    <td class="py-2 px-3 font-semibold text-indigo-900">Spazi colore basati su profili ICC, oppure un OutputIntent con profilo ICC incorporato se si usano colori del dispositivo.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 font-bold">Crittografia e Protezione</td>
+                    <td class="py-2 px-3">Pienamente supportata (DRM, password di apertura/modifica).</td>
+                    <td class="py-2 px-3 font-semibold text-rose-700">Severamente proibita in tutte le versioni per garantire l'accessibilità futura.</td>
+                  </tr>
+                  <tr class="bg-gray-50/50">
+                    <td class="py-2 px-3 font-bold">Elementi Dinamici e Attivi</td>
+                    <td class="py-2 px-3">Supporto per JavaScript, form XFA, audio, video integrati.</td>
+                    <td class="py-2 px-3 font-semibold text-rose-700">Totalmente proibiti per evitare comportamenti non deterministici a runtime.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 font-bold">Metadati Descrittivi</td>
+                    <td class="py-2 px-3">Opzionali e con schemi informali liberi.</td>
+                    <td class="py-2 px-3 font-semibold text-indigo-900">Obbligo di inclusione strutturata tramite flussi XML basati su standard XMP.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. Perché non basta aggiungere i metadati</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Molti convertitori si limitano a scrivere nei metadati XMP le proprietà <code>pdfaid:part</code> e <code>pdfaid:conformance</code>. Il file si dichiara PDF/A ma il contenuto resta quello di prima. Un validatore ISO come veraPDF, applicato a un file ottenuto così, segnala le violazioni delle clausole 6.1.3 (manca l'identificativo nel trailer), 6.2.3.3 (colori del dispositivo senza OutputIntent), 6.3.4 (font non incorporati) e 6.7.3 (metadati XMP non coerenti con il dizionario Info). I portali che eseguono un controllo completo rifiutano questi file.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Come lavora questo convertitore</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
+              <li>pdf.js disegna ogni pagina a 150 DPI su fondo bianco, così font, trasparenze e oggetti non ammessi diventano pixel;</li>
+              <li>pdf-lib crea un nuovo documento e inserisce ogni pagina come immagine JPEG, con la stessa dimensione in punti dell'originale;</li>
+              <li>il testo estratto da pdf.js viene riscritto sopra l'immagine nella modalità di rendering 3 (invisibile). PDF/A la consente senza incorporare il font, quindi il documento resta ricercabile;</li>
+              <li>il catalogo riceve un OutputIntent con un profilo ICC sRGB versione 2 incorporato (profilo compatto di 456 byte, licenza CC0);</li>
+              <li>il dizionario Info e i metadati XMP riportano gli stessi titolo, programma e date, insieme alla dichiarazione pdfaid del livello scelto;</li>
+              <li>il trailer contiene l'identificativo del file e il documento viene salvato senza object stream, che PDF/A-1 non ammette.</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              I file prodotti con i due livelli sono stati controllati con veraPDF 1.24, che ha dato esito positivo per PDF/A-1b e per PDF/A-2b.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Limiti della conversione in immagini</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La ricostruzione rende conforme qualsiasi PDF leggibile, ma il documento cambia natura. Il testo non si può più modificare. Link, segnalibri, campi dei moduli e allegati vengono persi, e una firma digitale presente non è più valida. Un documento di solo testo diventa più pesante: nel test, un referto di due pagine è passato da 1 KB a 57 KB. Il livello «a» (accessibile) non si può ottenere, perché richiede la struttura logica del documento. Se hai il file sorgente (Word, LibreOffice), esporta il PDF/A direttamente dal programma di videoscrittura: ottieni un file più leggero e con testo vettoriale.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Deposito Atti PCT/PAT, Conservazione Referti Medici e Fatturazione PDF/A-3 (Factur-X)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Scenario 1: allegati da depositare nel processo tributario o amministrativo.</strong><br />
+              Un difensore deve allegare al ricorso la copia di un avviso ricevuto come PDF generico, e il sistema di deposito richiede il PDF/A. Converte il file in PDF/A-1b, lo controlla con il validatore della pagina e, per un deposito importante, anche con veraPDF. L'atto principale invece va esportato in PDF/A dal programma di videoscrittura, perché deve restare testo nativo e non un'immagine.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Scenario 2: referti da archiviare.</strong><br />
+              Un ambulatorio vuole archiviare referti prodotti da software diversi, alcuni con font non incorporati. La conversione in PDF/A-2b fissa l'aspetto di ogni pagina così come appare oggi e mantiene il testo ricercabile. Non sostituisce però un sistema di conservazione a norma: la conservazione con valore legale richiede un conservatore e le procedure previste dalle Linee guida AgID.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Scenario 3: PDF/A-3 e file incorporati.</strong><br />
+              Il livello PDF/A-3 (ISO 19005-3) consente di incorporare file di qualsiasi formato, per esempio l'XML di una fattura nei formati ibridi europei Factur-X e ZUGFeRD. In Italia la fattura elettronica valida resta il file XML FatturaPA trasmesso tramite il Sistema di Interscambio: un PDF/A-3 può esserne solo una copia di cortesia. Questo strumento produce PDF/A-1b e PDF/A-2b e non gestisce file incorporati.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti con lo strumento; i file prodotti sono stati validati con veraPDF 1.24, e il testo è stato estratto con pdf.js per confrontarlo con l'originale.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: referto testuale di due pagine convertito in PDF/A-1b</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>File originale: 1,1 KB, font Helvetica non incorporato, nessuna dichiarazione PDF/A</li>
+            <li>Validatore della pagina sull'originale: «Il file non si dichiara PDF/A»</li>
+            <li>File convertito: 57 KB, formato pagina A4 invariato</li>
+            <li>veraPDF, profilo PDF/A-1B: conforme</li>
+            <li>Testo estratto dal file convertito: «Codice fiscale: RSSMRA80A01H501U» alla stessa posizione dell'originale</li>
+            </ul>
+            <p>Il peso cresce di circa 28 KB per pagina, perché ogni pagina diventa un'immagine; la ricerca e la copia del testo continuano a funzionare. Scegliendo PDF/A-2b si ottiene un file dello stesso peso, conforme al profilo PDF/A-2B.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: file che si dichiara PDF/A senza esserlo</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Stesso referto, con la sola aggiunta dei metadati pdfaid:part=1 e conformance=B</li>
+            <li>veraPDF: non conforme, clausole 6.1.3, 6.2.3.3, 6.3.4 e 6.7.3</li>
+            <li>Validatore della pagina: dichiarazione PDF/A-1b presente, font Helvetica non incorporato, profilo colore assente</li>
+            </ul>
+            <p>È l'errore tipico dei convertitori che scrivono solo i metadati; questa pagina usava lo stesso metodo prima della revisione. Un controllo che cerca soltanto la dichiarazione considera il file valido, mentre i sistemi di deposito con validazione completa lo rifiutano.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: PDF di fotografie con un logo trasparente in PDF/A-2b</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>File originale: 2 pagine A4 (una fotografia JPEG e un logo PNG con trasparenza), 300 KB</li>
+            <li>File convertito: 340 KB</li>
+            <li>veraPDF, profilo PDF/A-2B: conforme</li>
+            </ul>
+            <p>La trasparenza del logo viene fusa su fondo bianco, quindi l'aspetto non cambia. Le pagine contengono solo immagini e nessun testo: il file resta non ricercabile, come l'originale. Per renderlo ricercabile serve prima un riconoscimento del testo (OCR).</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e anomalie: file rifiutati, documenti voluminosi, PDF protetti e GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Causa Principale di Reiezione dai Portali PA ("File Non Conforme"):</strong><br />
+              Le cause più frequenti di rifiuto sono i font non incorporati, la mancanza del profilo colore, gli elementi attivi come JavaScript, moduli XFA o azioni `/Launch`, e i file che dichiarano PDF/A nei metadati senza rispettarne i requisiti. Il validatore della pagina controlla dichiarazione, script, cifratura, font e profilo colore; per una verifica completa della norma usa veraPDF.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Documenti voluminosi e lentezza:</strong><br />
+              La conversione ridisegna una pagina per volta a 150 DPI. Durante il disegno una pagina A4 occupa circa 9 MB di memoria, e nel file finale ogni pagina di testo aggiunge qualche decina di kilobyte (di più se contiene fotografie). Per fascicoli di centinaia di pagine, soprattutto su smartphone, conviene dividere prima il file con lo strumento Unisci e Dividi e convertire le parti separatamente.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Proibizione Assoluta della Crittografia e Password in PDF/A:</strong><br />
+              Tutti i livelli dello standard ISO 19005 proibiscono tassativamente l'impiego di password di apertura o algoritmi di cifratura DRM (es. AES-128/256). La ratio normativa risiede nel fatto che la perdita delle chiavi di cifratura o l'obsolescenza degli algoritmi crittografici renderebbe il documento del tutto inaccessibile dopo decenni di conservazione. Qualsiasi tentativo di convertire un PDF protetto da password richiede la preventiva de-cifratura ed espunzione del dizionario `/Encrypt`.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Sanzioni GDPR per il Trattamento Non Autorizzato su Cloud (Articolo 83):</strong><br />
+              Inviare documenti legali, atti giudiziari o cartelle cliniche a portali online di conversione gratuiti gestiti da società prive di nomina a Responsabile del Trattamento (DPA ex Art. 28 GDPR) può costituire un trattamento illecito, esposto alle sanzioni amministrative pecuniarie previste dall'Articolo 83, paragrafo 5 del GDPR: sanzioni fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. Con l'elaborazione nel browser il documento non viene comunicato a terzi per la conversione, quindi questo rischio specifico non si pone.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il processo civile telematico richiede il PDF/A?</h3>
+            <p>Per l'atto principale le specifiche tecniche chiedono un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma non il PDF/A. Il PDF/A è invece richiesto nei processi amministrativo e tributario telematici.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso convertire l'atto principale con questo strumento?</h3>
+            <p>Non è consigliato: le pagine diventano immagini e l'atto non sarebbe più testo nativo. Esporta il PDF/A dal programma di videoscrittura e usa questo strumento per gli allegati.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il file convertito resta ricercabile?</h3>
+            <p>Sì, se l'originale conteneva testo: sopra ogni immagine viene scritto un livello di testo invisibile. Le scansioni senza OCR restano non ricercabili.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il validatore certifica la conformità PDF/A?</h3>
+            <p>No, controlla i requisiti violati più spesso: dichiarazione, script, cifratura, font e profilo colore. Per una verifica completa della norma ISO 19005 usa veraPDF.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il file PDF/A pesa più dell'originale?</h3>
+            <p>Ogni pagina viene salvata come immagine a 150 DPI. Per un documento di solo testo il peso cresce di alcune decine di kilobyte per pagina.</p>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/pdfa.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

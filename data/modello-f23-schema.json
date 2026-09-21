@@ -1,0 +1,495 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello F23 creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f23.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ]
+ },
+ "modelli": {
+  "F23": {
+   "codice": "F23",
+   "nome": "Modello F23",
+   "sottotitolo": "Tasse, imposte, sanzioni e altre entrate",
+   "descrizione": "Il modello per pagare tasse, imposte, sanzioni pecuniarie e somme dovute a seguito di contravvenzioni e verbali-ingiunzioni: imposta di registro sugli atti giudiziari e sulle locazioni, formalità ipotecarie, dichiarazioni di successione, sanzioni.",
+   "pdf": "/assets/pdf/modello-f23-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-f23.pdf",
+   "testata": {
+    "riferimentoNomeFile": "contribuente.cf"
+   },
+   "riepilogo": {
+    "debiti": {
+     "somma": [
+      "tributi.riga.importo"
+     ]
+    },
+    "saldo": {
+     "somma": [
+      "tributi.riga.importo"
+     ]
+    }
+   },
+   "passi": [
+    {
+     "id": "pagamento",
+     "titolo": "Dove paghi",
+     "descrizione": "Si compila il campo 1 oppure il campo 2, non tutti e due: o versi direttamente a un concessionario della riscossione, oppure deleghi una banca o un ufficio postale.",
+     "campi": [
+      {
+       "id": "versamentoDirettoA",
+       "pdf": "versamento_diretto_a",
+       "type": "testo",
+       "label": "1 · Versamento diretto al concessionario di",
+       "width": "half",
+       "help": "La provincia del concessionario della riscossione presso cui esegui il pagamento."
+      },
+      {
+       "id": "delegaA",
+       "pdf": "delega_a",
+       "type": "testo",
+       "label": "2 · Delega irrevocabile a",
+       "width": "half",
+       "help": "La banca o l'ufficio postale a cui affidi il pagamento. Puoi pagare presso qualsiasi sportello, indipendentemente dal tuo domicilio fiscale e da dove si trova l'ufficio che ha chiesto il pagamento."
+      },
+      {
+       "id": "agenziaUfficio",
+       "pdf": "agenzia_ufficio",
+       "type": "testo",
+       "label": "Agenzia o ufficio",
+       "width": "half"
+      },
+      {
+       "id": "provinciaAgenzia",
+       "pdf": "provincia_agenzia",
+       "type": "provincia",
+       "label": "Prov.",
+       "width": "quarter"
+      },
+      {
+       "id": "numeroRiferimento",
+       "pdf": "numero_riferimento",
+       "type": "testo",
+       "label": "3 · Numero di riferimento",
+       "width": "half",
+       "help": "Spazio riservato all'ufficio che chiede il pagamento. Se hai ricevuto un modello già compilato, ricopia qui il numero che vi è stampato."
+      }
+     ]
+    },
+    {
+     "id": "contribuente",
+     "titolo": "Chi versa (campo 4)",
+     "descrizione": "I dati di chi effettua il pagamento. Il campo 4 va sempre compilato e chi versa deve anche firmare il modello.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "contribuente_cognome",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "required": true,
+       "width": "half",
+       "help": "Chi effettua il pagamento. Per le società si scrive la denominazione o la ragione sociale."
+      },
+      {
+       "id": "nome",
+       "pdf": "contribuente_nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half",
+       "help": "Solo per le persone fisiche."
+      },
+      {
+       "id": "cf",
+       "pdf": "contribuente_cf",
+       "type": "cfOpiva",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half",
+       "help": "I 16 caratteri del codice fiscale oppure le 11 cifre della partita IVA. Un errore qui impedisce all'ufficio di abbinare il versamento all'atto."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "contribuente_nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "contribuente_nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "contribuente_nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "sesso",
+       "pdf": "contribuente_sesso",
+       "type": "select",
+       "options": "sesso",
+       "label": "Sesso",
+       "width": "quarter"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "contribuente_comune_nascita",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita, oppure sede sociale",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "contribuente_provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla di due lettere; EE per chi è nato all'estero."
+      }
+     ]
+    },
+    {
+     "id": "controparte",
+     "titolo": "Controparte (campo 5)",
+     "opzionale": true,
+     "descrizione": "L'altra parte dell'atto, quando serve: per esempio il locatore o il conduttore di un contratto di locazione. Per la registrazione di più contratti dello stesso proprietario il campo 5 non va compilato.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "controparte_cognome",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "required": false,
+       "width": "half",
+       "help": "L'altra parte dell'atto. Per le società si scrive la denominazione o la ragione sociale."
+      },
+      {
+       "id": "nome",
+       "pdf": "controparte_nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half",
+       "help": "Solo per le persone fisiche."
+      },
+      {
+       "id": "cf",
+       "pdf": "controparte_cf",
+       "type": "cfOpiva",
+       "label": "Codice fiscale",
+       "required": false,
+       "width": "half",
+       "help": "I 16 caratteri del codice fiscale oppure le 11 cifre della partita IVA. Un errore qui impedisce all'ufficio di abbinare il versamento all'atto."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "controparte_nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "controparte_nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "controparte_nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "sesso",
+       "pdf": "controparte_sesso",
+       "type": "select",
+       "options": "sesso",
+       "label": "Sesso",
+       "width": "quarter"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "controparte_comune_nascita",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita, oppure sede sociale",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "controparte_provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla di due lettere; EE per chi è nato all'estero."
+      }
+     ]
+    },
+    {
+     "id": "versamento",
+     "titolo": "Dati del versamento",
+     "descrizione": "I dati che collegano il pagamento all'atto. Se hai ricevuto un modello già compilato dall'ufficio, ricopia qui esattamente quello che vi è stampato: un errore di trascrizione impedisce di abbinare il versamento e può portare a una seconda richiesta di pagamento.",
+     "campi": [
+      {
+       "id": "ufficioCodice",
+       "pdf": "ufficio_codice",
+       "type": "testo",
+       "label": "6 · Ufficio o ente",
+       "required": true,
+       "width": "quarter",
+       "help": "Obbligatorio: il codice dell'ufficio o dell'ente a cui va riferito il versamento, per esempio l'ufficio dell'Agenzia delle Entrate per i contratti di locazione, gli atti giudiziari e le dichiarazioni di successione. L'elenco è disponibile presso il concessionario, la banca o la posta."
+      },
+      {
+       "id": "ufficioSubCodice",
+       "pdf": "ufficio_sub_codice",
+       "type": "testo",
+       "label": "Sub-codice",
+       "width": "quarter",
+       "help": "Spazio riservato all'ufficio o all'ente richiedente: uffici giudiziari, ASL, INPS, INAIL."
+      },
+      {
+       "id": "codiceTerritoriale",
+       "pdf": "codice_territoriale",
+       "type": "testo",
+       "label": "7 · Codice territoriale",
+       "width": "quarter",
+       "help": "Lo compilano uffici giudiziari, forze di polizia e polizia municipale con il codice catastale del comune in cui hanno sede: per esempio H501 per Roma."
+      },
+      {
+       "id": "contenzioso",
+       "pdf": "contenzioso",
+       "type": "testo",
+       "label": "8 · Contenzioso",
+       "width": "quarter",
+       "help": "Si compila solo per i pagamenti relativi ad atti in pendenza di giudizio, con la codifica della tabella A delle istruzioni."
+      },
+      {
+       "id": "causale",
+       "pdf": "causale",
+       "type": "testo",
+       "label": "9 · Causale",
+       "width": "quarter",
+       "help": "Da riportare solo per i pagamenti elencati nella tabella B delle istruzioni. Non si compila per i contratti di locazione delle annualità successive alla prima."
+      },
+      {
+       "id": "attoAnno",
+       "pdf": "atto_anno",
+       "type": "anno",
+       "label": "10 · Estremi dell'atto · anno",
+       "width": "quarter",
+       "help": "L'anno di stipula per gli atti pubblici e le formalità ipotecarie, l'anno di registrazione per le annualità di locazione successive alla prima, l'anno della violazione in caso di ravvedimento."
+      },
+      {
+       "id": "attoNumero",
+       "pdf": "atto_numero",
+       "type": "testo",
+       "label": "Numero",
+       "width": "half",
+       "help": "Il numero di repertorio per gli atti pubblici, serie e numero di registrazione separati da una barra per le locazioni, gli estremi dell'atto notificato per la definizione agevolata delle sanzioni."
+      }
+     ]
+    },
+    {
+     "id": "tributi",
+     "titolo": "Tributi da versare",
+     "descrizione": "Una riga per ogni codice tributo. Lo stesso codice non può comparire due volte: se hai più importi con lo stesso codice, sommali in una riga sola.",
+     "campi": [
+      {
+       "id": "complessivo",
+       "pdf": "totale_complessivo",
+       "pdfCentesimi": "totale_complessivo_cent",
+       "type": "importoEuro",
+       "label": "Importo complessivo (euro)",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "tributi.riga.importo"
+        ]
+       },
+       "help": "Somma di tutti gli importi, calcolata dal compilatore."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe dei tributi (campi 11-14)",
+       "help": "Gli eventuali interessi vanno sommati al tributo a cui si riferiscono e indicati insieme a quello, senza una riga a parte.",
+       "righeMax": 8,
+       "sottocampi": [
+        {
+         "id": "codice",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Il codice del tributo che stai pagando, per esempio 109T per l'imposta di registro. Lo stesso codice non può comparire due volte: se hai più importi con lo stesso codice, sommali in una riga sola. L'elenco completo è disponibile presso il concessionario, la banca o la posta."
+        },
+        {
+         "id": "descrizione",
+         "type": "testo",
+         "label": "Descrizione",
+         "width": "half",
+         "help": "Spazio riservato all'ufficio o all'ente che chiede il pagamento: di norma resta vuoto, oppure riporta quello che c'è scritto sul modello ricevuto."
+        },
+        {
+         "id": "importo",
+         "type": "importoEuro",
+         "label": "Importo (euro)",
+         "width": "quarter",
+         "help": "Sempre con due cifre decimali, anche quando sono zero: 52 euro si scrive 52,00. Con più decimali si arrotonda al centesimo più vicino: 52,752 diventa 52,75; 52,755 e 52,758 diventano 52,76. Gli eventuali interessi si sommano al tributo a cui si riferiscono."
+        },
+        {
+         "id": "destinatario",
+         "type": "testo",
+         "label": "Codice destinatario",
+         "width": "quarter",
+         "help": "Si compila solo in casi particolari: per l'imposta RC auto, la sigla della provincia del PRA di iscrizione del veicolo. Negli altri casi resta vuoto."
+        }
+       ],
+       "righe": [
+        {
+         "codice": "tributo_1_codice",
+         "descrizione": "tributo_1_descrizione",
+         "importo": {
+          "euro": "tributo_1_importo",
+          "cent": "tributo_1_importo_cent"
+         },
+         "destinatario": "tributo_1_destinatario"
+        },
+        {
+         "codice": "tributo_2_codice",
+         "descrizione": "tributo_2_descrizione",
+         "importo": {
+          "euro": "tributo_2_importo",
+          "cent": "tributo_2_importo_cent"
+         },
+         "destinatario": "tributo_2_destinatario"
+        },
+        {
+         "codice": "tributo_3_codice",
+         "descrizione": "tributo_3_descrizione",
+         "importo": {
+          "euro": "tributo_3_importo",
+          "cent": "tributo_3_importo_cent"
+         },
+         "destinatario": "tributo_3_destinatario"
+        },
+        {
+         "codice": "tributo_4_codice",
+         "descrizione": "tributo_4_descrizione",
+         "importo": {
+          "euro": "tributo_4_importo",
+          "cent": "tributo_4_importo_cent"
+         },
+         "destinatario": "tributo_4_destinatario"
+        },
+        {
+         "codice": "tributo_5_codice",
+         "descrizione": "tributo_5_descrizione",
+         "importo": {
+          "euro": "tributo_5_importo",
+          "cent": "tributo_5_importo_cent"
+         },
+         "destinatario": "tributo_5_destinatario"
+        },
+        {
+         "codice": "tributo_6_codice",
+         "descrizione": "tributo_6_descrizione",
+         "importo": {
+          "euro": "tributo_6_importo",
+          "cent": "tributo_6_importo_cent"
+         },
+         "destinatario": "tributo_6_destinatario"
+        },
+        {
+         "codice": "tributo_7_codice",
+         "descrizione": "tributo_7_descrizione",
+         "importo": {
+          "euro": "tributo_7_importo",
+          "cent": "tributo_7_importo_cent"
+         },
+         "destinatario": "tributo_7_destinatario"
+        },
+        {
+         "codice": "tributo_8_codice",
+         "descrizione": "tributo_8_descrizione",
+         "importo": {
+          "euro": "tributo_8_importo",
+          "cent": "tributo_8_importo_cent"
+         },
+         "destinatario": "tributo_8_destinatario"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chiusura",
+     "titolo": "Importo in lettere e firma",
+     "descrizione": "L'ultima parte del modello: l'importo complessivo scritto in lettere, la firma e, se vuoi pagare con addebito, gli estremi del conto corrente.",
+     "campi": [
+      {
+       "id": "importoInLettere",
+       "pdf": "importo_in_lettere",
+       "type": "testo",
+       "label": "Importo complessivo in lettere",
+       "width": "twothirds",
+       "help": "L'importo totale scritto per esteso, per esempio «duecentocinquanta/00»."
+      },
+      {
+       "id": "firma",
+       "pdf": "firma",
+       "type": "testo",
+       "label": "Firma (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata. Chi versa è tenuto a firmare il modello."
+      },
+      {
+       "id": "addebitoConto",
+       "pdf": "addebito_conto",
+       "type": "testo",
+       "label": "Addebito in conto · numero",
+       "width": "quarter",
+       "help": "Da compilare solo se chiedi l'addebito sul conto corrente bancario. Il modello del 2002 chiede ancora numero di conto, ABI e CAB invece dell'IBAN."
+      },
+      {
+       "id": "addebitoAbi",
+       "pdf": "addebito_abi",
+       "type": "testo",
+       "label": "Codice ABI",
+       "width": "quarter",
+       "help": "Le cinque cifre che identificano la banca: sono il terzo gruppo dell'IBAN, subito dopo la lettera del CIN."
+      },
+      {
+       "id": "addebitoCab",
+       "pdf": "addebito_cab",
+       "type": "testo",
+       "label": "CAB",
+       "width": "quarter",
+       "help": "Le cinque cifre dello sportello: nell'IBAN vengono subito dopo l'ABI."
+      },
+      {
+       "id": "addebitoFirma",
+       "pdf": "addebito_firma",
+       "type": "testo",
+       "label": "Firma per l'addebito (nome da stampare)",
+       "width": "half",
+       "help": "L'autorizzazione all'addebito va firmata a parte, sotto gli estremi del conto."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

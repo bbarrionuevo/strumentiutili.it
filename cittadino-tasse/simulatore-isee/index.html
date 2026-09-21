@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulatore ISEE Ordinario 2026 — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il tuo ISEE Ordinario 2026 direttamente nel browser. Simulazione completa di reddito, patrimonio e scala di equivalenza nel rispetto della privacy.">
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/simulatore-isee/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Simulatore ISEE Ordinario 2026" />
+  <meta property="og:description" content="Calcolo locale dell'ISEE Ordinario con franchigie su conti correnti, immobili e scala di equivalenza INPS." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/simulatore-isee/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+      width: 100%;
+      min-width: 0;
+    }
+    .ad-slot-mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Simulatore ISEE Ordinario 2026",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Stima dell'ISEE ordinario da composizione del nucleo, redditi, affitto, patrimonio mobiliare e immobiliare, con scala di equivalenza e franchigie, calcolata interamente nel browser.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Scala di equivalenza con maggiorazioni per figli, genitori lavoratori e disabilità",
+          "Deduzione del canone di locazione entro i limiti di legge",
+          "Franchigie sul patrimonio mobiliare e sulla casa di abitazione",
+          "Calcolo di ISR, ISP, ISE e ISEE",
+          "Nessun dato inviato a server esterni"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cittadino & Tasse",
+            "item": "https://strumentiutili.it/cittadino-tasse/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Simulatore ISEE",
+            "item": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#howto",
+        "name": "Come stimare il proprio ISEE",
+        "description": "Procedura per stimare l'ISEE ordinario prima di presentare la DSU, partendo da redditi e patrimoni del nucleo.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Dichiarazioni dei redditi 2025 e estratti conto al 31 dicembre 2024"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Definisci il nucleo",
+            "text": "Indica numero di componenti, figli minorenni, genitori lavoratori e componenti con disabilità.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#componenti"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci redditi e affitto",
+            "text": "Somma i redditi 2024 del nucleo e indica il canone annuo se vivete in affitto.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#reddito"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Inserisci i patrimoni",
+            "text": "Indica conti e investimenti esclusi i titoli di Stato, valore IMU e mutuo della casa e altri immobili.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#mobiliare"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Calcola",
+            "text": "Premi Calcola ISEE per ottenere scala di equivalenza, indicatori intermedi e ISEE.",
+            "url": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#res-isee"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/simulatore-isee/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Come funziona l'ISEE Corrente e quali sono i termini di decadenza?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ai sensi dell'art. 9 del DPCM 159/2013, i cittadini che subiscano una contrazione del reddito del nucleo superiore al 25% o un depauperamento del patrimonio superiore al 20% possono richiedere l'attualizzazione dell'indicatore tramite l'ISEE Corrente. È fondamentale prestare attenzione ai termini di validità: l'ISEE Corrente basato sulla variazione dei redditi ha una validità contratta a soli6 mesidalla data di rilascio (a differenza dell'attestazione ordinaria che scade il 31 dicembre). Lasciar spirare la scadenza semestrale senza reiterare la richiesta provoca la decadenza istantanea dell'agevolazione e la sospensione dell'erogazione di prestazioni come l'Assegno Unico o l'Assegno di Inclusione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali errori si commettono frequentemente con i Titoli di Stato nella DSU?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nella DSU precompilata fornita dall'INPS, i sistemi informatici estromettono automaticamente i BTP e i Buoni Postali entro il plafond di 50.000 euro. Tuttavia, gli utenti che optano per la compilazione manuale o autodichiarata tendono spesso a sommare erroneamente tali asset nel saldo attivo complessivo dei rapporti finanziari, gonfiando artificiosamente il patrimonio mobiliare (PM). Questo sovra-dimensionamento innalza l'ISEE di migliaia di euro, causando l'illegittima esclusione del nucleo dalle fasce di sussidio spettanti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come si determina il nucleo familiare in caso di coniugi con residenza separata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le regole ISEE divergono nettamente dallo stato di famiglia anagrafico comunale. I coniugi non legalmente separati o divorziati, anche se in possesso di residenze anagrafiche disgiunte, fanno parte obbligatoriamente del medesimo nucleo familiare ISEE. Presentare DSU separate per fittizia separazione di fatto allo scopo di abbattere l'indicatore costituisce una dichiarazione mendace resa a pubblico ufficiale (D.P.R. 445/2000). Gli incroci automatizzati dell'INPS con l'Anagrafe Tributaria intercettano il disallineamento, innescando la revoca di tutti i benefici percepiti, l'obbligo di restituzione coattiva delle somme con sanzioni civili e il deferimento all'Autorità Giudiziaria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali sono le sanzioni per chi presenta una DSU non veritiera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La sottoscrizione di una DSU contenente dati omessi o falsi integra gli estremi del reato di falsità ideologica commessa dal privato in atto pubblico (Art. 483 C.P.). Oltre alle sanzioni penali, l'art. 75 del D.P.R. 445/2000 dispone la decadenza immediata da tutti i benefici conseguiti e il \"blacklisting\" istituzionale dell'utente, configurando un divieto assoluto di accedere a qualsiasi ulteriore agevolazione o contributo pubblico per un periodo di due anni."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Cittadino-tasse</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Simulatore ISEE Ordinario 2026</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale: nessun dato patrimoniale o reddituale viene trasmesso online. Il calcolo avviene interamente nel tuo dispositivo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <!-- Formulario -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Inserisci i Dati (DSU)</h2>
+          <div class="space-y-6">
+            
+            <!-- 1. Nucleo Familiare -->
+            <div class="p-5 bg-gray-50 border border-gray-200 rounded-xl">
+              <h3 class="font-bold text-gray-800 mb-4">1. Nucleo Familiare</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="block">
+                  <div class="flex items-center gap-2">
+                    <label for="componenti" class="text-sm font-medium text-gray-700">Numero componenti</label>
+                    <button type="button" data-guida-toggle="guida-isee-componenti" aria-expanded="false" aria-controls="guida-isee-componenti" aria-label="Guida al campo Componenti del nucleo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                  </div>
+                  <input data-guida="guida-isee-componenti" aria-describedby="guida-isee-componenti" id="componenti" type="number" min="1" value="3" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <div id="guida-isee-componenti" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                    <p><strong class="text-indigo-900">Chi conta:</strong> le persone nello stato di famiglia anagrafico alla data della DSU, più alcune persone che fanno sempre parte del nucleo anche se residenti altrove: il coniuge non legalmente separato e i figli maggiorenni fino a 26 anni, non coniugati e senza figli, fiscalmente a carico dei genitori.</p>
+                    <p><strong class="text-indigo-900">Esempio:</strong> una coppia sposata con residenze diverse per lavoro e un figlio universitario di 22 anni a carico, fuori sede, forma un nucleo di 3 componenti: scala di equivalenza 2,04.</p>
+                  </div>
+                </div>
+                <div class="block">
+                  <div class="flex items-center gap-2">
+                    <label for="figli" class="text-sm font-medium text-gray-700">Di cui figli minorenni</label>
+                    <button type="button" data-guida-toggle="guida-isee-figli" aria-expanded="false" aria-controls="guida-isee-figli" aria-label="Guida al campo Figli minorenni" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                  </div>
+                  <input data-guida="guida-isee-figli" aria-describedby="guida-isee-figli" id="figli" type="number" min="0" value="1" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <div id="guida-isee-figli" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                    <p><strong class="text-indigo-900">Perché contano:</strong> i figli minorenni attivano la maggiorazione per genitori lavoratori; dal terzo figlio si aggiungono maggiorazioni della scala e franchigie più ampie su affitto, patrimonio mobiliare e casa.</p>
+                    <p><strong class="text-indigo-900">Nuclei con due o più figli:</strong> la Legge di Bilancio 2026 ha introdotto, per l'accesso ad alcune prestazioni come l'Assegno Unico, maggiorazioni della scala già dal secondo figlio e una franchigia sulla casa più ampia. Il simulatore applica le maggiorazioni ordinarie del D.P.C.M. 159/2013: con due o più figli il valore reale per quelle prestazioni può risultare più basso.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 space-y-3">
+                <label class="flex items-center text-sm text-gray-700 cursor-pointer">
+                  <input data-guida="guida-isee-lavoratori" aria-describedby="guida-isee-lavoratori" id="genitori-lavoratori" type="checkbox" class="mr-3 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Entrambi i genitori (o unico genitore) lavorano
+                </label>
+                <button type="button" data-guida-toggle="guida-isee-lavoratori" aria-expanded="false" aria-controls="guida-isee-lavoratori" aria-label="Guida al campo Genitori lavoratori" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quando spuntarla</button>
+                <div id="guida-isee-lavoratori" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Requisito:</strong> entrambi i genitori, o l'unico presente nel nucleo, hanno lavorato come dipendenti o autonomi per almeno sei mesi nell'anno di riferimento dei redditi, il 2024 per le DSU del 2026, e nel nucleo ci sono figli minorenni.</p>
+                  <p><strong class="text-indigo-900">Valore:</strong> la scala aumenta di 0,20. La maggiorazione sale a 0,30 se c'è almeno un figlio sotto i tre anni: il simulatore applica sempre 0,20, quindi in quel caso il risultato è leggermente più alto del reale.</p>
+                </div>
+                <label class="flex items-center text-sm text-gray-700 cursor-pointer">
+                  <input id="nucleo-monoparentale" type="checkbox" class="mr-3 rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"> Nucleo monoparentale (un solo genitore con figli)
+                </label>
+                <div class="block mt-4 pt-4 border-t border-gray-200">
+                  <div class="flex items-center gap-2">
+                    <label for="disabili" class="text-sm font-medium text-gray-700 block mb-2">Componenti con disabilità media/grave:</label>
+                    <button type="button" data-guida-toggle="guida-isee-disabili" aria-expanded="false" aria-controls="guida-isee-disabili" aria-label="Guida al campo Componenti con disabilità" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                  </div>
+                  <input data-guida="guida-isee-disabili" aria-describedby="guida-isee-disabili" id="disabili" type="number" min="0" value="0" class="w-24 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <div id="guida-isee-disabili" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                    <p><strong class="text-indigo-900">Chi indicare:</strong> i componenti con disabilità media, grave o non autosufficienza secondo le definizioni dell'Allegato 3 del D.P.C.M. 159/2013, ad esempio l'invalidità civile dal 67% o la condizione di handicap grave ai sensi della L. 104/1992.</p>
+                    <p><strong class="text-indigo-900">Effetto:</strong> ogni componente aumenta la scala di equivalenza di 0,50. In una famiglia di 3 persone con un figlio disabile la scala passa da 2,04 a 2,54, riducendo l'ISEE di circa un quinto.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Reddituale -->
+            <div class="p-5 bg-gray-50 border border-gray-200 rounded-xl">
+              <h3 class="font-bold text-gray-800 mb-4">2. Situazione Reddituale (Anno 2024)</h3>
+              <div class="block">
+                <div class="flex items-center gap-2">
+                  <label for="reddito" class="text-sm font-medium text-gray-700">Somma dei redditi netti del nucleo (€)</label>
+                  <button type="button" data-guida-toggle="guida-isee-reddito" aria-expanded="false" aria-controls="guida-isee-reddito" aria-label="Guida al campo Redditi del nucleo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-isee-reddito" aria-describedby="guida-isee-reddito" id="reddito" type="number" min="0" step="100" value="25000" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div id="guida-isee-reddito" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Quale anno:</strong> i redditi del secondo anno precedente la DSU: per le DSU presentate nel 2026 contano quelli del 2024, come risultano dal 730 o dal modello Redditi e dalla Certificazione Unica.</p>
+                  <p><strong class="text-indigo-900">Cosa include:</strong> il reddito complessivo IRPEF di ogni componente più i redditi soggetti a imposta sostitutiva o esenti, come la cedolare secca o il regime forfettario. Il calcolo ufficiale sottrae poi alcune voci, fra cui il 20% dei redditi da lavoro dipendente fino a 3.000 €: il simulatore non le applica e tende quindi a sovrastimare l'ISR.</p>
+                </div>
+              </div>
+              <div class="block mt-4">
+                <div class="flex items-center gap-2">
+                  <label for="affitto" class="text-sm font-medium text-gray-700">Canone annuo di locazione (se in affitto) (€)</label>
+                  <button type="button" data-guida-toggle="guida-isee-affitto" aria-expanded="false" aria-controls="guida-isee-affitto" aria-label="Guida al campo Canone di locazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-isee-affitto" aria-describedby="guida-isee-affitto" id="affitto" type="number" min="0" step="100" value="0" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div id="guida-isee-affitto" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Requisiti:</strong> canone annuo dell'abitazione in cui il nucleo risiede, con contratto registrato intestato a un componente del nucleo.</p>
+                  <p><strong class="text-indigo-900">Limite:</strong> si sottrae dai redditi fino a 7.000 €, più 500 € per ogni figlio convivente dal terzo in poi. Un affitto di 650 € al mese, 7.800 € l'anno, vale quindi 7.000 € di deduzione.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Patrimoniale -->
+            <div class="p-5 bg-gray-50 border border-gray-200 rounded-xl">
+              <h3 class="font-bold text-gray-800 mb-4">3. Situazione Patrimoniale (Al 31/12/2024)</h3>
+              <div class="block">
+                <div class="flex items-center gap-2">
+                  <label for="mobiliare" class="text-sm font-medium text-gray-700">Patrimonio Mobiliare (Conti, depositi, carte) (€)</label>
+                  <button type="button" data-guida-toggle="guida-isee-mobiliare" aria-expanded="false" aria-controls="guida-isee-mobiliare" aria-label="Guida al campo Patrimonio mobiliare" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-isee-mobiliare" aria-describedby="guida-isee-mobiliare" id="mobiliare" type="number" min="0" step="100" value="12000" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div id="guida-isee-mobiliare" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Valore da indicare:</strong> per conti e carte prepagate il maggiore fra saldo al 31 dicembre 2024 e giacenza media annua; per azioni, fondi e polizze il valore alla stessa data. Vanno inclusi anche i rapporti esteri e le cripto-attività.</p>
+                  <p><strong class="text-indigo-900">Da escludere:</strong> titoli di Stato e buoni fruttiferi postali fino a 50.000 € complessivi per nucleo: se hai BTP per 40.000 € non vanno sommati qui.</p>
+                  <p><strong class="text-indigo-900">Franchigia:</strong> 6.000 € per un componente, 8.000 € per due, 10.000 € da tre in su, più 1.000 € per ogni figlio dal terzo: il simulatore la sottrae automaticamente.</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                <div class="block">
+                  <div class="flex items-center gap-2">
+                    <label for="valore-casa" class="text-sm font-medium text-gray-700">Valore IMU Casa di Abitazione (€)</label>
+                    <button type="button" data-guida-toggle="guida-isee-casa" aria-expanded="false" aria-controls="guida-isee-casa" aria-label="Guida al campo Casa di abitazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                  </div>
+                  <input data-guida="guida-isee-casa" aria-describedby="guida-isee-casa" id="valore-casa" type="number" min="0" step="100" value="0" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <div id="guida-isee-casa" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                    <p><strong class="text-indigo-900">Valore IMU, non di mercato:</strong> si indica il valore ai fini IMU: rendita catastale × 1,05 × 160 per un'abitazione. Una rendita di 700 € corrisponde a 117.600 €, anche se la casa sul mercato ne vale il doppio.</p>
+                    <p><strong class="text-indigo-900">Come conta:</strong> dal valore si sottrae il mutuo residuo al 31 dicembre 2024 e la franchigia; solo due terzi dell'eccedenza entrano nel patrimonio.</p>
+                    <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+                  </div>
+                </div>
+                <label class="block">
+                  <span class="text-sm font-medium text-gray-700">Mutuo residuo Casa (€)</span>
+                  <input id="mutuo-casa" type="number" min="0" step="100" value="0" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                </label>
+              </div>
+              <div class="block mt-4">
+                <div class="flex items-center gap-2">
+                  <label for="altri-immobili" class="text-sm font-medium text-gray-700">Valore altri immobili (al netto dei mutui) (€)</label>
+                  <button type="button" data-guida-toggle="guida-isee-altri" aria-expanded="false" aria-controls="guida-isee-altri" aria-label="Guida al campo Altri immobili" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+                </div>
+                <input data-guida="guida-isee-altri" aria-describedby="guida-isee-altri" id="altri-immobili" type="number" min="0" step="100" value="0" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div id="guida-isee-altri" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                  <p><strong class="text-indigo-900">Cosa inserire:</strong> la somma dei valori IMU di seconde case, terreni e immobili all'estero, ciascuno al netto del proprio mutuo residuo. Un mutuo superiore al valore di un immobile non riduce il valore degli altri.</p>
+                  <p><strong class="text-indigo-900">Quote:</strong> per gli immobili in comproprietà si considera solo la quota posseduta dai componenti del nucleo.</p>
+                </div>
+              </div>
+            </div>
+
+            <button id="calcola-isee" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-3.5 rounded-xl shadow-sm transition">Calcola ISEE</button>
+
+          </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Risultato della Simulazione</h2>
+          
+          <div class="flex-grow space-y-4">
+            <div class="p-4 border border-indigo-200 rounded-xl bg-indigo-50 flex justify-between items-center shadow-sm">
+              <span class="text-indigo-900 font-bold">Scala di Equivalenza (SE)</span>
+              <span id="res-se" class="text-2xl font-black text-indigo-700">0.00</span>
+            </div>
+            
+            <div class="p-5 border border-gray-200 rounded-xl space-y-3">
+              <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                <span class="text-sm text-gray-600 font-medium">Indicatore Situazione Reddituale (ISR)</span>
+                <span id="res-isr" class="font-semibold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                <span class="text-sm text-gray-600 font-medium">Patrimonio Mobiliare Rilevante</span>
+                <span id="res-pm" class="font-semibold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b border-gray-100">
+                <span class="text-sm text-gray-600 font-medium">Patrimonio Immobiliare Rilevante</span>
+                <span id="res-pi" class="font-semibold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center pt-1">
+                <span class="text-sm text-gray-900 font-bold">Indicatore Situazione Patrimoniale (ISP)</span>
+                <span id="res-isp" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+            </div>
+
+            <div class="p-4 border border-gray-200 rounded-xl bg-gray-50 flex justify-between items-center">
+              <span class="text-gray-700 font-bold">Indicatore Situazione Economica (ISE)</span>
+              <span id="res-ise" class="text-xl font-bold text-gray-900">€ 0,00</span>
+            </div>
+
+            <div class="mt-6 text-center p-6 border border-emerald-100 rounded-2xl bg-emerald-50 shadow-inner">
+              <div class="text-emerald-800 font-bold uppercase tracking-wider mb-2 text-xs">Valore ISEE Ordinario Stimato</div>
+              <div id="res-isee" class="text-4xl lg:text-5xl font-black text-emerald-600 tracking-tight">€ 0,00</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+            <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👴</span> Simulatore Pensione 2026</a></li>
+            <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta Luce</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> F24 Ordinario Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Scala di equivalenza e franchigie aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">I dati del nucleo, compresi quelli sulla disabilità, sono elaborati solo nel browser e non vengono inviati a server. Per comodità i valori inseriti restano memorizzati nel dispositivo e si cancellano svuotando i dati del sito, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.P.C.M. 159/2013 e relativo Allegato 1 (scala di equivalenza), L. 213/2023 (esclusione dei titoli di Stato fino a 50.000 euro), Legge di Bilancio 2026, D.P.R. 445/2000 artt. 75 e 76 (dichiarazioni sostitutive).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <!-- Párrafo introductorio visible -->
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico, Algoritmi e Guida Normativa all'ISEE 2026</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          L'<strong>Indicatore della Situazione Economica Equivalente (ISEE)</strong> rappresenta l'infrastruttura di valutazione della capacità reddituale e patrimoniale dei nuclei familiari in Italia, disciplinata dal D.P.C.M. 5 dicembre 2013, n. 159. L'impianto regolatorio è stato profondamente innovato dalle disposizioni della Legge di Bilancio 2026 e recepito sul piano operativo dal Messaggio INPS n. 102 del 12 gennaio 2026. Tali aggiornamenti introducono il concetto di "ISEE mirato", una metrica ricalibrata per favorire l'accesso alle prestazioni essenziali di welfare e sostegno (Assegno di Inclusione, Assegno Unico e Universale, Supporto per la Formazione e il Lavoro, Bonus Nido, agevolazioni universitarie). Questo simulatore calcola il valore ISEE in modo 100% Client-Side nel tuo browser, garantendo che nessuna informazione reddituale o finanziaria venga inviata a server esterni.
+        </p>
+
+        <!-- Bloque de contenuto denso desplegable 1: Inquadramento e Novità 2026 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo e Novità della Legge di Bilancio 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Scomputo dei Titoli di Stato e Prodotti del Risparmio Postale</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Una delle innovazioni di maggior impatto nell'ISEE 2026 è il consolidamento operativo dell'esclusione dal calcolo dell'Indicatore della Situazione Patrimoniale (ISP) dei Titoli di Stato italiani (BOT, BTP, CCT, CTZ, BTP Valore) e dei prodotti del risparmio postale garantiti dallo Stato (Buoni Postali Fruttiferi e Libretti di Risparmio). La norma fissa una soglia esente complessiva fino alla capienza limite di <strong>50.000 euro per nucleo familiare</strong>. Tali asset patrimoniali, se contenuti entro questa franchigia, non concorrono ad incrementare il patrimonio mobiliare rilevante.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Inclusione Obbligatoria di Criptovalute e Attività Estere</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Parallelamente alle esenzioni sui Titoli pubblici, il legislatore ha reso stringente e obbligatoria la dichiarazione e l'inclusione nel quadro FC2 delle criptovalute, dei crypto-asset, delle giacenze su conti correnti esteri e delle attività finanziarie detenute fuori dal territorio nazionale, allineando i controlli della DSU alle direttive europee antiriciclaggio e al quadro di monitoraggio fiscale del Modello Redditi (Quadro RW).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Nuove Franchigie sull'Abitazione Principale</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La regolamentazione 2026 innalza significativamente la protezione della casa di proprietà a uso residenziale. La franchigia da applicare sul valore IMU della prima casa (decurtato del capitale residuo della quota capitale del mutuo al 31/12/2024) viene dedotta per una quota base fissa pari a <strong>91.500 euro</strong>. Tale soglia di salvaguardia viene elevata d'ufficio a <strong>120.000 euro</strong> per i nuclei familiari residenti nei Comuni capoluogo di Città metropolitana, prevedendo un ulteriore scarto di deduzione di <strong>2.500 euro per ogni figlio convivente</strong> successivo al primo.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 2: Algoritmo Matematico e Scala di Equivalenza -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Algoritmo Matematico, Equazioni e Scala di Equivalenza INPS</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Formule per la Determinazione dell'ISE e dell'ISEE</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                La determinazione dell'ISEE Ordinario 2026 richiede il calcolo sequenziale dell'Indicatore della Situazione Economica (ISE), che sintetizza la ricchezza complessiva, normalizzata successivamente attraverso il divisore della Scala di Equivalenza (SE):
+              </p>
+              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
+                $$ISE = ISR + [(PM + PI) \times 0,20]$$
+                $$ISEE = \frac{ISE}{SE}$$
+              </div>
+              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-3 mb-4">
+                <li>
+                  <strong>ISR (Indicatore Situazione Reddituale):</strong> Somma dei redditi netti ai fini IRPEF percepiti dai componenti del nucleo nell'anno $t-2$ (esercizio 2024 per le DSU 2026), al netto dei canoni di locazione annui pagati per la casa di abitazione (fino al tetto massimo di legge).
+                </li>
+                <li>
+                  <strong>PM (Patrimonio Mobiliare Rilevante):</strong> Si assume il valore maggiore tra il saldo attivo al 31 dicembre 2024 e la giacenza media annua dei conti correnti, decurtato dei Titoli di Stato esenti (fino a 50.000 €) e della franchigia mobiliare di base (6.000 € per il primo componente, incrementata di 2.000 € per ogni componente successivo fino al cap di 10.000 €).
+                </li>
+                <li>
+                  <strong>PI (Patrimonio Immobiliare Rilevante):</strong> Somma dei valori IMU degli immobili posseduti al 31/12/2024. Per la prima casa si applica lo scomputo del mutuo residuo e della franchigia base (91.500 € o 120.000 € per Città Metropolitane + 2.500 € per ciascun figlio dopo il primo).
+                </li>
+                <li>
+                  <strong>ISP (Indicatore Situazione Patrimoniale):</strong> È la somma del Patrimonio Mobiliare netto e del Patrimonio Immobiliare netto, $ISP = PM_{netto} + PI_{netto}$, e concorre all'ISE per il 20%.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Parametri e Maggiorazioni della Scala di Equivalenza (SE)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Il parametro divisore SE normalizza l'ISE in funzione della numerosità e della composizione del nucleo familiare:
+              </p>
+              
+              <!-- TABELLA SCALA EQUIVALENZA -->
+              <div class="overflow-x-auto my-4">
+                <table class="w-full text-xs text-left text-gray-700 border border-gray-200 rounded-lg">
+                  <thead class="bg-gray-100 text-gray-900 font-bold uppercase tracking-wider">
+                    <tr>
+                      <th class="p-3 border-b">Componenti del Nucleo Familiare</th>
+                      <th class="p-3 border-b">Parametro Base (SE)</th>
+                      <th class="p-3 border-b">Maggiorazioni Applicabili 2026</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white">
+                    <tr>
+                      <td class="p-3 font-semibold">1 Componente</td>
+                      <td class="p-3">1,00</td>
+                      <td class="p-3">+0,10 per nuclei con due figli a carico</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold">2 Componenti</td>
+                      <td class="p-3">1,57</td>
+                      <td class="p-3">+0,25 per nuclei con tre figli a carico</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold">3 Componenti</td>
+                      <td class="p-3">2,04</td>
+                      <td class="p-3">+0,40 per nuclei con quattro figli a carico</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold">4 Componenti</td>
+                      <td class="p-3">2,46</td>
+                      <td class="p-3">+0,55 per nuclei con cinque o più figli a carico</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold">5 Componenti</td>
+                      <td class="p-3">2,85</td>
+                      <td class="p-3">+0,50 per ciascun componente con disabilità media/grave</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Si applica inoltre la maggiorazione di <strong>+0,20</strong>, elevata a +0,30 in presenza di almeno un figlio sotto i tre anni, per i nuclei con figli minorenni in cui entrambi i genitori (o l'unico genitore presente) abbiano svolto attività di lavoro o d'impresa per almeno sei mesi nell'anno di riferimento dei redditi (2024).
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 3: Casuistica Reale Svolta -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Simulazione Svolta Passo-Passo</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Profilazione del Nucleo Tipo (Famiglia di 4 Persone)</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                Si ipotizzi la simulazione per un nucleo familiare residente in un Comune non capoluogo di città metropolitana, composto da 4 persone (due genitori lavoratori e due figli minori):
+              </p>
+              
+              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
+                <p><strong>Dati di Input:</strong><br>
+                - Reddito Complessivo Netto 2024 (ISR): <strong>35.000,00 €</strong><br>
+                - Giacenza/Saldo Banche 31/12/2024: 20.000,00 €<br>
+                - Investimento in BTP (Titoli di Stato): 40.000,00 €<br>
+                - Valore IMU Casa di Proprietà: 110.000,00 € (Senza Mutuo)</p>
+
+                <p><strong>1. Calcolo del Patrimonio Mobiliare (PM):</strong><br>
+                I BTP (40.000 €) vengono interamente estromessi poiché inferiori al limite di 50.000 €.<br>
+                PM Lordo = 20.000,00 €.<br>
+                Franchigia Mobiliare (4 componenti) = 10.000,00 €, il massimo previsto dalla franchigia di base.<br>
+                $PM_{netto} = 20.000,00 - 10.000,00 = \mathbf{10.000,00\ \text{€}}$</p>
+
+                <p><strong>2. Calcolo del Patrimonio Immobiliare (PI):</strong><br>
+                Valore Casa = 110.000,00 €.<br>
+                Franchigia 2026 = 91.500,00 € + 2.500,00 € (per il secondo figlio) = 94.000,00 €.<br>
+                Eccedenza = 110.000,00 - 94.000,00 = 16.000,00 €, che concorre per due terzi.<br>
+                $PI_{netto} = 16.000,00 \times \frac{2}{3} = \mathbf{10.666,67\ \text{€}}$</p>
+
+                <p><strong>3. Determinazione dell'ISP e dell'ISE:</strong><br>
+                ISP = PM + PI = 10.000,00 + 10.666,67 = 20.666,67 €.<br>
+                $Quota\ ISP = 20.666,67 \times 0,20 = \mathbf{4.133,33\ \text{€}}$<br>
+                $ISE = ISR + 0,20 \times ISP = 35.000,00 + 4.133,33 = \mathbf{39.133,33\ \text{€}}$</p>
+
+                <p><strong>4. Determinazione della Scala di Equivalenza (SE):</strong><br>
+                Base 4 componenti = 2,46.<br>
+                Maggiorazione secondo figlio = +0,10.<br>
+                Maggiorazione genitori entrambi lavoratori, con figli di più di tre anni = +0,20.<br>
+                $SE = 2,46 + 0,10 + 0,20 = \mathbf{2,76}$</p>
+
+                <p class="text-emerald-700 font-bold border-t border-gray-200 pt-2">
+                  Risultato Finale ISEE Ordinario 2026:<br>
+                  $ISEE = \frac{39.133,33}{2,76} = \mathbf{14.178,74\ \text{€}}$
+                </p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bloque de contenuto denso desplegable 4: FAQ, ISEE Corrente ed Errore Procedurali -->
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, ISEE Corrente e Sanzioni per Dichiarazione Mendace</h3>
+          <div class="space-y-3">
+            
+            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+                <p>I casi seguenti riguardano nuclei con al massimo un figlio, per i quali le regole ordinarie e quelle della Legge di Bilancio 2026 coincidono. Sono stati riprodotti nel simulatore della pagina.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: lavoratrice che vive sola in affitto</h3>
+                <p>Reddito 2024 di 18.000 €, affitto di 650 € al mese, 9.000 € sul conto corrente.</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>ISR: 18.000 − 7.000 (affitto, entro il limite) = 11.000,00 €</li>
+                <li>Patrimonio mobiliare: 9.000 − 6.000 di franchigia = 3.000,00 €</li>
+                <li>ISE: 11.000 + 3.000 × 20% = 11.600,00 €</li>
+                <li>ISEE con scala 1,00: 11.600,00 €</li>
+                </ul>
+                <p>Degli 800 € di affitto annuo oltre il limite non resta traccia nel calcolo: con un canone più alto l'ISEE non scende ulteriormente.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: coppia di lavoratori con un figlio di 5 anni e mutuo</h3>
+                <p>Redditi complessivi 42.000 €, conti per 25.000 €, casa con valore IMU di 140.000 € e mutuo residuo di 60.000 €.</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Scala: 2,04 + 0,20 (genitori lavoratori) = 2,24</li>
+                <li>Patrimonio mobiliare: 25.000 − 10.000 = 15.000,00 €</li>
+                <li>Casa: 140.000 − 60.000 = 80.000 €, sotto la franchigia di 91.500 €: 0,00 €</li>
+                <li>ISE: 42.000 + 15.000 × 20% = 45.000,00 €</li>
+                <li>ISEE: 45.000 / 2,24 = 20.089,29 €</li>
+                </ul>
+                <p>Con questo ISEE la quota base dell'Assegno Unico per il figlio è di circa 190 € al mese. Estinguere anticipatamente il mutuo, invece, avrebbe un effetto sull'ISEE: il valore netto della casa salirebbe a 140.000 € e ne entrerebbero 32.333 € nel patrimonio, alzando l'ISEE di quasi 2.900 €.</p>
+
+                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: BTP inseriti per errore nel patrimonio mobiliare</h3>
+                <p>Nucleo di 3 persone con un figlio, redditi di 30.000 €, 15.000 € sul conto e 45.000 € in BTP.</p>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                <li>Corretto, BTP esclusi: patrimonio 15.000 − 10.000 = 5.000 €; ISE 31.000 €; ISEE 15.196,08 €</li>
+                <li>Errato, BTP sommati: patrimonio 60.000 − 10.000 = 50.000 €; ISE 40.000 €; ISEE 19.607,84 €</li>
+                </ul>
+                <p>L'errore alza l'ISEE di oltre 4.400 € e può far perdere l'accesso a prestazioni con soglie come il bonus nido o le tariffe ridotte delle mense scolastiche.</p>
+              </div>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Come funziona l'ISEE Corrente e quali sono i termini di decadenza?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Ai sensi dell'art. 9 del DPCM 159/2013, i cittadini che subiscano una contrazione del reddito del nucleo superiore al 25% o un depauperamento del patrimonio superiore al 20% possono richiedere l'attualizzazione dell'indicatore tramite l'ISEE Corrente. È fondamentale prestare attenzione ai termini di validità: l'ISEE Corrente basato sulla variazione dei redditi ha una validità contratta a soli <strong>6 mesi</strong> dalla data di rilascio (a differenza dell'attestazione ordinaria che scade il 31 dicembre). Lasciar spirare la scadenza semestrale senza reiterare la richiesta provoca la decadenza istantanea dell'agevolazione e la sospensione dell'erogazione di prestazioni come l'Assegno Unico o l'Assegno di Inclusione.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali errori si commettono frequentemente con i Titoli di Stato nella DSU?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Nella DSU precompilata fornita dall'INPS, i sistemi informatici estromettono automaticamente i BTP e i Buoni Postali entro il plafond di 50.000 euro. Tuttavia, gli utenti che optano per la compilazione manuale o autodichiarata tendono spesso a sommare erroneamente tali asset nel saldo attivo complessivo dei rapporti finanziari, gonfiando artificiosamente il patrimonio mobiliare (PM). Questo sovra-dimensionamento innalza l'ISEE di migliaia di euro, causando l'illegittima esclusione del nucleo dalle fasce di sussidio spettanti.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Come si determina il nucleo familiare in caso di coniugi con residenza separata?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Le regole ISEE divergono nettamente dallo stato di famiglia anagrafico comunale. I coniugi non legalmente separati o divorziati, anche se in possesso di residenze anagrafiche disgiunte, fanno parte obbligatoriamente del medesimo nucleo familiare ISEE. Presentare DSU separate per fittizia separazione di fatto allo scopo di abbattere l'indicatore costituisce una dichiarazione mendace resa a pubblico ufficiale (D.P.R. 445/2000). Gli incroci automatizzati dell'INPS con l'Anagrafe Tributaria intercettano il disallineamento, innescando la revoca di tutti i benefici percepiti, l'obbligo di restituzione coattiva delle somme con sanzioni civili e il deferimento all'Autorità Giudiziaria.
+              </p>
+            </details>
+
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quali sono le sanzioni per chi presenta una DSU non veritiera?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                La sottoscrizione di una DSU contenente dati omessi o falsi integra gli estremi del reato di falsità ideologica commessa dal privato in atto pubblico (Art. 483 C.P.). Oltre alle sanzioni penali, l'art. 75 del D.P.R. 445/2000 dispone la decadenza immediata da tutti i benefici conseguiti e il "blacklisting" istituzionale dell'utente, configurando un divieto assoluto di accedere a qualsiasi ulteriore agevolazione o contributo pubblico per un periodo di due anni.
+              </p>
+            </details>
+
+          </div>
+        </div>
+
+      <!-- su-seo-expansion -->
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il simulatore ISEE è un'applicazione <strong>100% client-side, priva di qualsiasi backend</strong>. La composizione del nucleo familiare, i redditi di ciascun componente, il patrimonio mobiliare e immobiliare, la presenza di componenti con disabilità e ogni altro elemento della DSU vengono elaborati esclusivamente nel tuo browser. Per comodità i valori inseriti restano memorizzati nel dispositivo e si cancellano svuotando i dati del sito.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">Si tratta della categoria di dati più delicata fra quelle trattate dagli strumenti di questo portale. I dati relativi alla disabilità appartengono alle categorie particolari tutelate dall'articolo 9 del Regolamento UE 2016/679 (GDPR), mentre reddito e patrimonio del nucleo delineano un profilo socio-economico estremamente dettagliato. Proprio per questo l'architettura esclude alla radice ogni trasmissione: nessun dato viene inviato, memorizzato o profilato, in piena attuazione dei principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e della minimizzazione dell'articolo 5. La simulazione ha valore puramente indicativo e non sostituisce la DSU presentata all'INPS o a un CAF abilitato.</p>
+        </div>
+
+        </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script defer src="/js/storage-helper.js"></script>
+<script defer src="/js/data-loader.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/isee.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    window.SuGuidaLive['guida-isee-casa'] = function (campo) {
+      var valore = parseFloat(campo.value);
+      if (!(valore > 0)) return '';
+      var mutuo = parseFloat(document.getElementById('mutuo-casa').value) || 0;
+      var figli = parseInt(document.getElementById('figli').value, 10) || 0;
+      var franchigia = 91500 + Math.max(0, figli - 2) * 2500;
+      var netto = Math.max(0, valore - mutuo);
+      var rilevante = Math.max(0, netto - franchigia) * 2 / 3;
+      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
+      return 'Valore netto ' + euro(netto) + ', franchigia ' + euro(franchigia) + ': nel patrimonio entrano ' + euro(rilevante) + (rilevante === 0 ? ', la casa non incide sull\'ISEE.' : ', che pesano sull\'ISE per ' + euro(rilevante * 0.2) + '.');
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

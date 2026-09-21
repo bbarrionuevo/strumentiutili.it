@@ -1,0 +1,1101 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del Modello 69 creati da scripts/prepara-modello-69.py. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-69.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ]
+ },
+ "modelli": {
+  "MOD69": {
+   "codice": "Modello 69",
+   "nome": "Modello 69",
+   "sottotitolo": "Richiesta di registrazione e adempimenti successivi",
+   "descrizione": "Il modello con cui si chiede la registrazione degli atti, esclusi quelli emessi dagli organi giurisdizionali, e si comunicano gli adempimenti successivi dei contratti di locazione e affitto: cessioni, risoluzioni e proroghe, anche tacite.",
+   "pdf": "/assets/pdf/modello-69-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-69.pdf",
+   "testata": {
+    "riferimentoNomeFile": "atto.cfRichiedente"
+   },
+   "passi": [
+    {
+     "id": "atto",
+     "titolo": "L'atto e l'adempimento",
+     "descrizione": "Il Quadro A. Questi dati compaiono in alto su tutte e tre le pagine del modello: li scrivi una volta sola.",
+     "campi": [
+      {
+       "id": "ufficioDi",
+       "pdf": "ufficio_di",
+       "type": "testo",
+       "label": "All'ufficio di",
+       "required": true,
+       "width": "half",
+       "help": "L'ufficio dell'Agenzia delle Entrate a cui presenti la richiesta. Le scritture private non autenticate si possono registrare in qualunque ufficio; ma una volta registrato il contratto, tutti gli adempimenti successivi vanno comunicati sempre allo stesso ufficio."
+      },
+      {
+       "id": "adempimento",
+       "type": "radioX",
+       "label": "Che cosa stai chiedendo",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "reg",
+         "label": "Reg — registrazione di un atto",
+         "pdf": "adempimento_reg"
+        },
+        {
+         "value": "pro",
+         "label": "Pro — proroga di una locazione o di un affitto",
+         "pdf": "adempimento_pro"
+        },
+        {
+         "value": "ces",
+         "label": "Ces — cessione del contratto",
+         "pdf": "adempimento_ces"
+        },
+        {
+         "value": "ris",
+         "label": "Ris — risoluzione del contratto",
+         "pdf": "adempimento_ris"
+        }
+       ],
+       "help": "Reg per registrare un atto nuovo. Pro, Ces e Ris riguardano i contratti di locazione e affitto già registrati: la proroga (anche tacita), la cessione a un altro soggetto e la risoluzione anticipata."
+      },
+      {
+       "id": "tipologiaAtto",
+       "pdf": "tipologia_atto",
+       "type": "testo",
+       "label": "Tipologia dell'atto",
+       "required": true,
+       "width": "full",
+       "help": "Se chiedi la registrazione, scrivi che tipo di atto è: vendita, permuta, costituzione o cessione di usufrutto, divisione, denuncia di contratto verbale, locazione, comodato. Se invece comunichi un adempimento successivo, riporta qui l'identificativo telematico del contratto oppure gli estremi di registrazione: codice ufficio, anno, serie, numero e sottonumero."
+      },
+      {
+       "id": "cfRichiedente",
+       "pdf": "cf_richiedente",
+       "type": "cfOpiva",
+       "label": "Codice fiscale di chi chiede la registrazione",
+       "required": true,
+       "width": "half",
+       "help": "Compare in alto su tutte e tre le pagine: lo scrivi una volta sola e il compilatore lo ripete."
+      },
+      {
+       "id": "dataStipula",
+       "pdf": "data_stipula",
+       "type": "data",
+       "label": "Data di stipula o dell'adempimento",
+       "required": true,
+       "width": "third",
+       "help": "A seconda del caso: la data di stipula dell'atto se stai registrando, la data di inizio della proroga, la data della cessione o quella della risoluzione."
+      },
+      {
+       "id": "dataFineProroga",
+       "pdf": "data_fine_proroga",
+       "type": "data",
+       "label": "Data di fine proroga",
+       "width": "third",
+       "showIf": {
+        "campo": "adempimento",
+        "in": [
+         "pro"
+        ]
+       },
+       "help": "Solo per locazioni e affitti: il giorno in cui finisce il periodo di proroga."
+      },
+      {
+       "id": "nRepertorio",
+       "pdf": "n_repertorio",
+       "type": "testo",
+       "label": "Numero di repertorio",
+       "width": "third",
+       "help": "Solo se l'atto è annotato a repertorio: è il numero con cui lo classifica il notaio o l'ufficiale rogante, per esempio il Segretario comunale."
+      },
+      {
+       "id": "foglio",
+       "pdf": "foglio",
+       "type": "testo",
+       "label": "Foglio n. / di tot.",
+       "width": "third",
+       "help": "Se i righi di un quadro non bastano si usano più fogli: qui si scrive per esempio «1/2» sul primo e «2/2» sul secondo. Con un foglio solo puoi lasciare vuoto oppure scrivere 1/1."
+      },
+      {
+       "id": "usoAbitativo",
+       "pdf": "uso_abitativo",
+       "type": "checkX",
+       "label": "Uso abitativo",
+       "width": "half",
+       "help": "Da barrare se c'è almeno un negozio con codice 7202 (locazione non finanziaria di fabbricato) su un'abitazione i cui canoni potrebbero andare a cedolare secca. È la casella che apre i quadri E ed F e la sezione della delega."
+      }
+     ]
+    },
+    {
+     "id": "soggetti",
+     "titolo": "Soggetti dell'atto",
+     "descrizione": "Il Quadro B. Vanno indicati solo i soggetti destinatari degli effetti giuridici immediati dell'atto: per una locazione, il proprietario e il conduttore.",
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Soggetti",
+       "righeMax": 6,
+       "help": "Se i soggetti sono più di sei servono altri fogli, continuando la numerazione.",
+       "sottocampi": [
+        {
+         "id": "nOrd",
+         "type": "numero",
+         "label": "N. ord.",
+         "width": "quarter",
+         "help": "Numero progressivo del soggetto. Se usi più fogli, continua la numerazione: 7, 8 e così via."
+        },
+        {
+         "id": "cf",
+         "type": "cfOpiva",
+         "label": "Codice fiscale",
+         "width": "half",
+         "help": "Va sempre indicato, salvo i casi di esclusione previsti dal D.P.R. 605/1973 o quando il codice non è mai stato attribuito: in quel caso si scrivono solo i dati anagrafici."
+        },
+        {
+         "id": "cognome",
+         "type": "testo",
+         "label": "Cognome, denominazione o ragione sociale",
+         "width": "half",
+         "help": "Per le persone fisiche cognome per esteso, senza abbreviazioni; per le donne coniugate il cognome da nubile. Per società ed enti la denominazione o la ragione sociale."
+        },
+        {
+         "id": "nome",
+         "type": "testo",
+         "label": "Nome",
+         "width": "half"
+        },
+        {
+         "id": "comuneNascita",
+         "type": "testo",
+         "label": "Comune o Stato estero di nascita",
+         "width": "half",
+         "help": "Solo per le persone fisiche."
+        },
+        {
+         "id": "provinciaNascita",
+         "type": "provincia",
+         "label": "Provincia",
+         "width": "quarter",
+         "help": "Sigla di due lettere; EE per chi è nato all'estero."
+        },
+        {
+         "id": "dataNascita",
+         "type": "data",
+         "label": "Data di nascita",
+         "width": "third"
+        },
+        {
+         "id": "sesso",
+         "type": "select",
+         "options": "sesso",
+         "label": "Sesso",
+         "width": "quarter"
+        },
+        {
+         "id": "domicilio",
+         "type": "testo",
+         "label": "Domicilio fiscale: C.A.P. e comune",
+         "width": "half"
+        },
+        {
+         "id": "provinciaDomicilio",
+         "type": "provincia",
+         "label": "Prov.",
+         "width": "quarter"
+        },
+        {
+         "id": "via",
+         "type": "testo",
+         "label": "Via o piazza",
+         "width": "half"
+        },
+        {
+         "id": "civico",
+         "type": "testo",
+         "label": "N. civico",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "nOrd": "b1_n_ord",
+         "cf": "b1_cf",
+         "cognome": "b1_cognome",
+         "nome": "b1_nome",
+         "comuneNascita": "b1_comune_nascita",
+         "provinciaNascita": "b1_provincia_nascita",
+         "dataNascita": "b1_data_nascita",
+         "sesso": "b1_sesso",
+         "domicilio": "b1_domicilio",
+         "provinciaDomicilio": "b1_provincia_domicilio",
+         "via": "b1_via",
+         "civico": "b1_civico"
+        },
+        {
+         "nOrd": "b2_n_ord",
+         "cf": "b2_cf",
+         "cognome": "b2_cognome",
+         "nome": "b2_nome",
+         "comuneNascita": "b2_comune_nascita",
+         "provinciaNascita": "b2_provincia_nascita",
+         "dataNascita": "b2_data_nascita",
+         "sesso": "b2_sesso",
+         "domicilio": "b2_domicilio",
+         "provinciaDomicilio": "b2_provincia_domicilio",
+         "via": "b2_via",
+         "civico": "b2_civico"
+        },
+        {
+         "nOrd": "b3_n_ord",
+         "cf": "b3_cf",
+         "cognome": "b3_cognome",
+         "nome": "b3_nome",
+         "comuneNascita": "b3_comune_nascita",
+         "provinciaNascita": "b3_provincia_nascita",
+         "dataNascita": "b3_data_nascita",
+         "sesso": "b3_sesso",
+         "domicilio": "b3_domicilio",
+         "provinciaDomicilio": "b3_provincia_domicilio",
+         "via": "b3_via",
+         "civico": "b3_civico"
+        },
+        {
+         "nOrd": "b4_n_ord",
+         "cf": "b4_cf",
+         "cognome": "b4_cognome",
+         "nome": "b4_nome",
+         "comuneNascita": "b4_comune_nascita",
+         "provinciaNascita": "b4_provincia_nascita",
+         "dataNascita": "b4_data_nascita",
+         "sesso": "b4_sesso",
+         "domicilio": "b4_domicilio",
+         "provinciaDomicilio": "b4_provincia_domicilio",
+         "via": "b4_via",
+         "civico": "b4_civico"
+        },
+        {
+         "nOrd": "b5_n_ord",
+         "cf": "b5_cf",
+         "cognome": "b5_cognome",
+         "nome": "b5_nome",
+         "comuneNascita": "b5_comune_nascita",
+         "provinciaNascita": "b5_provincia_nascita",
+         "dataNascita": "b5_data_nascita",
+         "sesso": "b5_sesso",
+         "domicilio": "b5_domicilio",
+         "provinciaDomicilio": "b5_provincia_domicilio",
+         "via": "b5_via",
+         "civico": "b5_civico"
+        },
+        {
+         "nOrd": "b6_n_ord",
+         "cf": "b6_cf",
+         "cognome": "b6_cognome",
+         "nome": "b6_nome",
+         "comuneNascita": "b6_comune_nascita",
+         "provinciaNascita": "b6_provincia_nascita",
+         "dataNascita": "b6_data_nascita",
+         "sesso": "b6_sesso",
+         "domicilio": "b6_domicilio",
+         "provinciaDomicilio": "b6_provincia_domicilio",
+         "via": "b6_via",
+         "civico": "b6_civico"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "negozi",
+     "titolo": "Dati descrittivi dell'atto",
+     "descrizione": "Il Quadro C. Sul modello cartaceo lo compilano i notai e gli altri ufficiali roganti per gli atti pubblici e le scritture private autenticate, oppure l'ufficio per le scritture private non autenticate. Qui lo trovi comunque, se ti serve prepararlo.",
+     "opzionale": true,
+     "campi": [
+      {
+       "id": "totaleValore",
+       "pdf": "c_totale_valore",
+       "type": "euro",
+       "label": "Totale valore (euro)",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "negozi.riga.valore"
+        ]
+       },
+       "help": "Somma dei valori dei negozi, calcolata dal compilatore."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Negozi giuridici",
+       "righeMax": 6,
+       "sottocampi": [
+        {
+         "id": "nOrd",
+         "type": "numero",
+         "label": "N. ord.",
+         "width": "quarter",
+         "help": "Numero progressivo del codice negozio."
+        },
+        {
+         "id": "codiceNegozio",
+         "type": "testo",
+         "label": "Codice negozio",
+         "width": "quarter",
+         "help": "Il codice del negozio giuridico, dalla codifica dell'allegato 5 al D.M. 15/12/1977. Il più frequente è 7202, la locazione non finanziaria di fabbricato."
+        },
+        {
+         "id": "iva",
+         "type": "checkX",
+         "label": "(1) Soggetto a IVA",
+         "width": "quarter"
+        },
+        {
+         "id": "agevolazioni",
+         "type": "checkX",
+         "label": "(2) Con agevolazioni",
+         "width": "quarter",
+         "help": "Per esempio la locazione a canone concordato dell'art. 2, comma 3 della legge 431/1998."
+        },
+        {
+         "id": "effettiSospesi",
+         "type": "checkX",
+         "label": "(3) Effetti sospesi o non definitivi",
+         "width": "quarter"
+        },
+        {
+         "id": "valore",
+         "type": "euro",
+         "label": "Valore (euro)",
+         "width": "third",
+         "help": "L'imponibile o il corrispettivo dichiarato nell'atto; se è indeterminato, quello presunto. Per locazioni e affitti si indica il canone annuale, oppure quello complessivo se il contratto dura meno di un anno."
+        },
+        {
+         "id": "dantiCausa",
+         "type": "testo",
+         "label": "Danti causa",
+         "width": "quarter",
+         "help": "I numeri d'ordine del Quadro B dei soggetti che nel negozio sono danti causa, per esempio i proprietari. Se sono più di quattro, si usano le caselle dei righi successivi."
+        },
+        {
+         "id": "aventiCausa",
+         "type": "testo",
+         "label": "Aventi causa",
+         "width": "quarter",
+         "help": "I numeri d'ordine del Quadro B dei soggetti che sono aventi causa, per esempio gli inquilini."
+        }
+       ],
+       "righe": [
+        {
+         "nOrd": "c1_n_ord",
+         "codiceNegozio": "c1_codice_negozio",
+         "iva": "c1_iva",
+         "agevolazioni": "c1_agevolazioni",
+         "effettiSospesi": "c1_effetti_sospesi",
+         "valore": "c1_valore",
+         "dantiCausa": "c1_danti_causa",
+         "aventiCausa": "c1_aventi_causa"
+        },
+        {
+         "nOrd": "c2_n_ord",
+         "codiceNegozio": "c2_codice_negozio",
+         "iva": "c2_iva",
+         "agevolazioni": "c2_agevolazioni",
+         "effettiSospesi": "c2_effetti_sospesi",
+         "valore": "c2_valore",
+         "dantiCausa": "c2_danti_causa",
+         "aventiCausa": "c2_aventi_causa"
+        },
+        {
+         "nOrd": "c3_n_ord",
+         "codiceNegozio": "c3_codice_negozio",
+         "iva": "c3_iva",
+         "agevolazioni": "c3_agevolazioni",
+         "effettiSospesi": "c3_effetti_sospesi",
+         "valore": "c3_valore",
+         "dantiCausa": "c3_danti_causa",
+         "aventiCausa": "c3_aventi_causa"
+        },
+        {
+         "nOrd": "c4_n_ord",
+         "codiceNegozio": "c4_codice_negozio",
+         "iva": "c4_iva",
+         "agevolazioni": "c4_agevolazioni",
+         "effettiSospesi": "c4_effetti_sospesi",
+         "valore": "c4_valore",
+         "dantiCausa": "c4_danti_causa",
+         "aventiCausa": "c4_aventi_causa"
+        },
+        {
+         "nOrd": "c5_n_ord",
+         "codiceNegozio": "c5_codice_negozio",
+         "iva": "c5_iva",
+         "agevolazioni": "c5_agevolazioni",
+         "effettiSospesi": "c5_effetti_sospesi",
+         "valore": "c5_valore",
+         "dantiCausa": "c5_danti_causa",
+         "aventiCausa": "c5_aventi_causa"
+        },
+        {
+         "nOrd": "c6_n_ord",
+         "codiceNegozio": "c6_codice_negozio",
+         "iva": "c6_iva",
+         "agevolazioni": "c6_agevolazioni",
+         "effettiSospesi": "c6_effetti_sospesi",
+         "valore": "c6_valore",
+         "dantiCausa": "c6_danti_causa",
+         "aventiCausa": "c6_aventi_causa"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "immobili",
+     "titolo": "Dati catastali degli immobili",
+     "descrizione": "Il Quadro D. Si compila solo per locazioni, affitti e comodati di immobili, con i dati presi dalla visura catastale.",
+     "opzionale": true,
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Immobili",
+       "righeMax": 12,
+       "help": "Per un identificativo «graffato», cioè formato da più stringhe, si riportano tutte di seguito ripetendo lo stesso numero d'ordine.",
+       "sottocampi": [
+        {
+         "id": "nOrd",
+         "type": "numero",
+         "label": "N. ord.",
+         "width": "quarter",
+         "help": "Numero progressivo dell'immobile. Con un identificativo «graffato» si ripete lo stesso numero su ogni riga della stessa unità immobiliare."
+        },
+        {
+         "id": "codiceComune",
+         "type": "testo",
+         "label": "Codice comune",
+         "width": "quarter",
+         "help": "Il codice riportato sul documento catastale, di quattro o cinque caratteri."
+        },
+        {
+         "id": "tu",
+         "type": "select",
+         "label": "T/U",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "T",
+           "label": "T — catasto terreni"
+          },
+          {
+           "value": "U",
+           "label": "U — catasto edilizio urbano"
+          }
+         ]
+        },
+        {
+         "id": "ip",
+         "type": "select",
+         "label": "I/P",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "I",
+           "label": "I — immobile intero"
+          },
+          {
+           "value": "P",
+           "label": "P — porzione di immobile"
+          }
+         ]
+        },
+        {
+         "id": "sezione",
+         "type": "testo",
+         "label": "Sezione urbana / comune catastale",
+         "width": "quarter",
+         "help": "Le lettere o i numeri del documento catastale, se ci sono. Nelle zone a sistema tavolare si indica il codice «Comune catastale»."
+        },
+        {
+         "id": "foglio",
+         "type": "testo",
+         "label": "Foglio",
+         "width": "quarter"
+        },
+        {
+         "id": "particella",
+         "type": "testo",
+         "label": "Particella",
+         "width": "quarter",
+         "help": "La parte a sinistra della barra, fino a cinque cifre. Se la particella è composta da una sola serie di cifre, va scritta tutta qui."
+        },
+        {
+         "id": "particellaDen",
+         "type": "testo",
+         "label": "Particella · dopo la barra",
+         "width": "quarter",
+         "help": "La seconda parte della particella, fino a quattro cifre. Spesso resta vuota."
+        },
+        {
+         "id": "subalterno",
+         "type": "testo",
+         "label": "Subalterno",
+         "width": "quarter"
+        },
+        {
+         "id": "accatastamento",
+         "type": "checkX",
+         "label": "In via di accatastamento",
+         "width": "third"
+        }
+       ],
+       "righe": [
+        {
+         "nOrd": "d1_n_ord",
+         "codiceComune": "d1_codice_comune",
+         "tu": "d1_tu",
+         "ip": "d1_ip",
+         "sezione": "d1_sezione",
+         "foglio": "d1_foglio",
+         "particella": "d1_particella",
+         "particellaDen": "d1_particella_den",
+         "subalterno": "d1_subalterno",
+         "accatastamento": "d1_accatastamento"
+        },
+        {
+         "nOrd": "d2_n_ord",
+         "codiceComune": "d2_codice_comune",
+         "tu": "d2_tu",
+         "ip": "d2_ip",
+         "sezione": "d2_sezione",
+         "foglio": "d2_foglio",
+         "particella": "d2_particella",
+         "particellaDen": "d2_particella_den",
+         "subalterno": "d2_subalterno",
+         "accatastamento": "d2_accatastamento"
+        },
+        {
+         "nOrd": "d3_n_ord",
+         "codiceComune": "d3_codice_comune",
+         "tu": "d3_tu",
+         "ip": "d3_ip",
+         "sezione": "d3_sezione",
+         "foglio": "d3_foglio",
+         "particella": "d3_particella",
+         "particellaDen": "d3_particella_den",
+         "subalterno": "d3_subalterno",
+         "accatastamento": "d3_accatastamento"
+        },
+        {
+         "nOrd": "d4_n_ord",
+         "codiceComune": "d4_codice_comune",
+         "tu": "d4_tu",
+         "ip": "d4_ip",
+         "sezione": "d4_sezione",
+         "foglio": "d4_foglio",
+         "particella": "d4_particella",
+         "particellaDen": "d4_particella_den",
+         "subalterno": "d4_subalterno",
+         "accatastamento": "d4_accatastamento"
+        },
+        {
+         "nOrd": "d5_n_ord",
+         "codiceComune": "d5_codice_comune",
+         "tu": "d5_tu",
+         "ip": "d5_ip",
+         "sezione": "d5_sezione",
+         "foglio": "d5_foglio",
+         "particella": "d5_particella",
+         "particellaDen": "d5_particella_den",
+         "subalterno": "d5_subalterno",
+         "accatastamento": "d5_accatastamento"
+        },
+        {
+         "nOrd": "d6_n_ord",
+         "codiceComune": "d6_codice_comune",
+         "tu": "d6_tu",
+         "ip": "d6_ip",
+         "sezione": "d6_sezione",
+         "foglio": "d6_foglio",
+         "particella": "d6_particella",
+         "particellaDen": "d6_particella_den",
+         "subalterno": "d6_subalterno",
+         "accatastamento": "d6_accatastamento"
+        },
+        {
+         "nOrd": "d7_n_ord",
+         "codiceComune": "d7_codice_comune",
+         "tu": "d7_tu",
+         "ip": "d7_ip",
+         "sezione": "d7_sezione",
+         "foglio": "d7_foglio",
+         "particella": "d7_particella",
+         "particellaDen": "d7_particella_den",
+         "subalterno": "d7_subalterno",
+         "accatastamento": "d7_accatastamento"
+        },
+        {
+         "nOrd": "d8_n_ord",
+         "codiceComune": "d8_codice_comune",
+         "tu": "d8_tu",
+         "ip": "d8_ip",
+         "sezione": "d8_sezione",
+         "foglio": "d8_foglio",
+         "particella": "d8_particella",
+         "particellaDen": "d8_particella_den",
+         "subalterno": "d8_subalterno",
+         "accatastamento": "d8_accatastamento"
+        },
+        {
+         "nOrd": "d9_n_ord",
+         "codiceComune": "d9_codice_comune",
+         "tu": "d9_tu",
+         "ip": "d9_ip",
+         "sezione": "d9_sezione",
+         "foglio": "d9_foglio",
+         "particella": "d9_particella",
+         "particellaDen": "d9_particella_den",
+         "subalterno": "d9_subalterno",
+         "accatastamento": "d9_accatastamento"
+        },
+        {
+         "nOrd": "d10_n_ord",
+         "codiceComune": "d10_codice_comune",
+         "tu": "d10_tu",
+         "ip": "d10_ip",
+         "sezione": "d10_sezione",
+         "foglio": "d10_foglio",
+         "particella": "d10_particella",
+         "particellaDen": "d10_particella_den",
+         "subalterno": "d10_subalterno",
+         "accatastamento": "d10_accatastamento"
+        },
+        {
+         "nOrd": "d11_n_ord",
+         "codiceComune": "d11_codice_comune",
+         "tu": "d11_tu",
+         "ip": "d11_ip",
+         "sezione": "d11_sezione",
+         "foglio": "d11_foglio",
+         "particella": "d11_particella",
+         "particellaDen": "d11_particella_den",
+         "subalterno": "d11_subalterno",
+         "accatastamento": "d11_accatastamento"
+        },
+        {
+         "nOrd": "d12_n_ord",
+         "codiceComune": "d12_codice_comune",
+         "tu": "d12_tu",
+         "ip": "d12_ip",
+         "sezione": "d12_sezione",
+         "foglio": "d12_foglio",
+         "particella": "d12_particella",
+         "particellaDen": "d12_particella_den",
+         "subalterno": "d12_subalterno",
+         "accatastamento": "d12_accatastamento"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "delega",
+     "titolo": "Delega alla presentazione",
+     "descrizione": "Da compilare se il modello lo presenta un delegato, con l'eventuale esercizio dell'opzione per la cedolare secca. Serve la fotocopia di un documento valido per ogni delegante, e ogni delegante firma a penna accanto al proprio codice fiscale.",
+     "opzionale": true,
+     "campi": [
+      {
+       "id": "delegatoCognome",
+       "pdf": "delegato_cognome",
+       "type": "testo",
+       "label": "Delegato · cognome",
+       "width": "half"
+      },
+      {
+       "id": "delegatoNome",
+       "pdf": "delegato_nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half"
+      },
+      {
+       "id": "delegatoCf",
+       "pdf": "delegato_cf",
+       "type": "cf",
+       "label": "Codice fiscale del delegato",
+       "width": "half"
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Chi delega (i locatori)",
+       "righeMax": 5,
+       "help": "I codici fiscali dei locatori che delegano. La firma va messa a penna sul modello stampato, nello spazio accanto.",
+       "sottocampi": [
+        {
+         "id": "cf",
+         "type": "cf",
+         "label": "Codice fiscale del delegante",
+         "width": "half"
+        }
+       ],
+       "righe": [
+        {
+         "cf": "delega1_cf"
+        },
+        {
+         "cf": "delega2_cf"
+        },
+        {
+         "cf": "delega3_cf"
+        },
+        {
+         "cf": "delega4_cf"
+        },
+        {
+         "cf": "delega5_cf"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "pertinenze",
+     "titolo": "Immobili e pertinenze",
+     "descrizione": "Il Quadro E. Si compila solo se c'è almeno un negozio 7202 su un'abitazione che può andare a cedolare secca. Serve a collegare le pertinenze all'immobile principale.",
+     "opzionale": true,
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Associazioni immobile · pertinenze",
+       "righeMax": 4,
+       "sottocampi": [
+        {
+         "id": "negozio",
+         "type": "numero",
+         "label": "N. ord. negozio 7202",
+         "width": "quarter",
+         "help": "Il numero d'ordine del codice negozio 7202 indicato nel Quadro C."
+        },
+        {
+         "id": "principale",
+         "type": "testo",
+         "label": "Immobile principale",
+         "width": "quarter",
+         "help": "Il numero d'ordine, preso dal Quadro D, dell'abitazione i cui canoni possono andare a cedolare secca."
+        },
+        {
+         "id": "pertinenza1",
+         "type": "testo",
+         "label": "Pertinenza 1",
+         "width": "quarter",
+         "help": "Il numero d'ordine, preso dal Quadro D, di una pertinenza dell'immobile principale: cantina, box, posto auto."
+        },
+        {
+         "id": "pertinenza2",
+         "type": "testo",
+         "label": "Pertinenza 2",
+         "width": "quarter"
+        },
+        {
+         "id": "pertinenza3",
+         "type": "testo",
+         "label": "Pertinenza 3",
+         "width": "quarter"
+        },
+        {
+         "id": "pertinenza4",
+         "type": "testo",
+         "label": "Pertinenza 4",
+         "width": "quarter"
+        },
+        {
+         "id": "pertinenza5",
+         "type": "testo",
+         "label": "Pertinenza 5",
+         "width": "quarter"
+        },
+        {
+         "id": "pertinenza6",
+         "type": "testo",
+         "label": "Pertinenza 6",
+         "width": "quarter"
+        },
+        {
+         "id": "pertinenza7",
+         "type": "testo",
+         "label": "Pertinenza 7",
+         "width": "quarter"
+        }
+       ],
+       "righe": [
+        {
+         "negozio": "e1_negozio",
+         "principale": "e1_principale",
+         "pertinenza1": "e1_pertinenza1",
+         "pertinenza2": "e1_pertinenza2",
+         "pertinenza3": "e1_pertinenza3",
+         "pertinenza4": "e1_pertinenza4",
+         "pertinenza5": "e1_pertinenza5",
+         "pertinenza6": "e1_pertinenza6",
+         "pertinenza7": "e1_pertinenza7"
+        },
+        {
+         "negozio": "e2_negozio",
+         "principale": "e2_principale",
+         "pertinenza1": "e2_pertinenza1",
+         "pertinenza2": "e2_pertinenza2",
+         "pertinenza3": "e2_pertinenza3",
+         "pertinenza4": "e2_pertinenza4",
+         "pertinenza5": "e2_pertinenza5",
+         "pertinenza6": "e2_pertinenza6",
+         "pertinenza7": "e2_pertinenza7"
+        },
+        {
+         "negozio": "e3_negozio",
+         "principale": "e3_principale",
+         "pertinenza1": "e3_pertinenza1",
+         "pertinenza2": "e3_pertinenza2",
+         "pertinenza3": "e3_pertinenza3",
+         "pertinenza4": "e3_pertinenza4",
+         "pertinenza5": "e3_pertinenza5",
+         "pertinenza6": "e3_pertinenza6",
+         "pertinenza7": "e3_pertinenza7"
+        },
+        {
+         "negozio": "e4_negozio",
+         "principale": "e4_principale",
+         "pertinenza1": "e4_pertinenza1",
+         "pertinenza2": "e4_pertinenza2",
+         "pertinenza3": "e4_pertinenza3",
+         "pertinenza4": "e4_pertinenza4",
+         "pertinenza5": "e4_pertinenza5",
+         "pertinenza6": "e4_pertinenza6",
+         "pertinenza7": "e4_pertinenza7"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cedolare",
+     "titolo": "Ulteriori dati e cedolare secca",
+     "descrizione": "Il Quadro F. Anche questo si compila solo con almeno un negozio 7202 su un'abitazione. Va compilata una riga per ogni locatore di ogni immobile.",
+     "opzionale": true,
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Immobili e locatori",
+       "righeMax": 10,
+       "sottocampi": [
+        {
+         "id": "negozio",
+         "type": "numero",
+         "label": "N. ord. negozio 7202",
+         "width": "quarter"
+        },
+        {
+         "id": "nOrdImm",
+         "type": "numero",
+         "label": "N. ord. immobile",
+         "width": "quarter",
+         "help": "Il numero d'ordine dell'immobile nel Quadro D. Vanno elencati tutti gli immobili dei negozi 7202."
+        },
+        {
+         "id": "categoria",
+         "type": "testo",
+         "label": "Categoria catastale",
+         "width": "quarter",
+         "help": "La categoria riportata sul documento catastale, per esempio A/2 o C/6."
+        },
+        {
+         "id": "usoAbitativo",
+         "type": "select",
+         "label": "Uso abitativo",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "SI",
+           "label": "SI — locato a uso abitativo"
+          },
+          {
+           "value": "NO",
+           "label": "NO"
+          }
+         ]
+        },
+        {
+         "id": "rendita",
+         "type": "euro",
+         "label": "Rendita catastale (euro)",
+         "width": "third",
+         "help": "La rendita riportata sul documento catastale, non rivalutata."
+        },
+        {
+         "id": "canoneConcordato",
+         "type": "checkX",
+         "label": "Canone concordato",
+         "width": "third",
+         "help": "Da barrare per i contratti stipulati secondo gli articoli 2, comma 3, e 8 della legge 431/1998 nei comuni ad alta tensione abitativa. In quel caso la cedolare secca si applica con l'aliquota agevolata del 10 per cento."
+        },
+        {
+         "id": "nOrdSog",
+         "type": "numero",
+         "label": "N. ord. locatore",
+         "width": "quarter",
+         "help": "Il numero d'ordine del locatore nel Quadro B. Per ogni immobile va compilata una riga per ciascun proprietario che figura come locatore."
+        },
+        {
+         "id": "possesso",
+         "type": "testo",
+         "label": "% di possesso",
+         "width": "quarter",
+         "help": "La quota di possesso dell'immobile in percentuale, con due decimali: per esempio 50,00."
+        },
+        {
+         "id": "opzioneCedolare",
+         "type": "select",
+         "label": "Opzione cedolare secca",
+         "width": "quarter",
+         "options": [
+          {
+           "value": "Si",
+           "label": "Si — opto per la cedolare secca"
+          },
+          {
+           "value": "No",
+           "label": "No"
+          }
+         ]
+        }
+       ],
+       "righe": [
+        {
+         "negozio": "f1_negozio",
+         "nOrdImm": "f1_n_ord_imm",
+         "categoria": "f1_categoria",
+         "usoAbitativo": "f1_uso_abitativo",
+         "rendita": "f1_rendita",
+         "canoneConcordato": "f1_canone_concordato",
+         "nOrdSog": "f1_n_ord_sog",
+         "possesso": "f1_possesso",
+         "opzioneCedolare": "f1_opzione_cedolare"
+        },
+        {
+         "negozio": "f2_negozio",
+         "nOrdImm": "f2_n_ord_imm",
+         "categoria": "f2_categoria",
+         "usoAbitativo": "f2_uso_abitativo",
+         "rendita": "f2_rendita",
+         "canoneConcordato": "f2_canone_concordato",
+         "nOrdSog": "f2_n_ord_sog",
+         "possesso": "f2_possesso",
+         "opzioneCedolare": "f2_opzione_cedolare"
+        },
+        {
+         "negozio": "f3_negozio",
+         "nOrdImm": "f3_n_ord_imm",
+         "categoria": "f3_categoria",
+         "usoAbitativo": "f3_uso_abitativo",
+         "rendita": "f3_rendita",
+         "canoneConcordato": "f3_canone_concordato",
+         "nOrdSog": "f3_n_ord_sog",
+         "possesso": "f3_possesso",
+         "opzioneCedolare": "f3_opzione_cedolare"
+        },
+        {
+         "negozio": "f4_negozio",
+         "nOrdImm": "f4_n_ord_imm",
+         "categoria": "f4_categoria",
+         "usoAbitativo": "f4_uso_abitativo",
+         "rendita": "f4_rendita",
+         "canoneConcordato": "f4_canone_concordato",
+         "nOrdSog": "f4_n_ord_sog",
+         "possesso": "f4_possesso",
+         "opzioneCedolare": "f4_opzione_cedolare"
+        },
+        {
+         "negozio": "f5_negozio",
+         "nOrdImm": "f5_n_ord_imm",
+         "categoria": "f5_categoria",
+         "usoAbitativo": "f5_uso_abitativo",
+         "rendita": "f5_rendita",
+         "canoneConcordato": "f5_canone_concordato",
+         "nOrdSog": "f5_n_ord_sog",
+         "possesso": "f5_possesso",
+         "opzioneCedolare": "f5_opzione_cedolare"
+        },
+        {
+         "negozio": "f6_negozio",
+         "nOrdImm": "f6_n_ord_imm",
+         "categoria": "f6_categoria",
+         "usoAbitativo": "f6_uso_abitativo",
+         "rendita": "f6_rendita",
+         "canoneConcordato": "f6_canone_concordato",
+         "nOrdSog": "f6_n_ord_sog",
+         "possesso": "f6_possesso",
+         "opzioneCedolare": "f6_opzione_cedolare"
+        },
+        {
+         "negozio": "f7_negozio",
+         "nOrdImm": "f7_n_ord_imm",
+         "categoria": "f7_categoria",
+         "usoAbitativo": "f7_uso_abitativo",
+         "rendita": "f7_rendita",
+         "canoneConcordato": "f7_canone_concordato",
+         "nOrdSog": "f7_n_ord_sog",
+         "possesso": "f7_possesso",
+         "opzioneCedolare": "f7_opzione_cedolare"
+        },
+        {
+         "negozio": "f8_negozio",
+         "nOrdImm": "f8_n_ord_imm",
+         "categoria": "f8_categoria",
+         "usoAbitativo": "f8_uso_abitativo",
+         "rendita": "f8_rendita",
+         "canoneConcordato": "f8_canone_concordato",
+         "nOrdSog": "f8_n_ord_sog",
+         "possesso": "f8_possesso",
+         "opzioneCedolare": "f8_opzione_cedolare"
+        },
+        {
+         "negozio": "f9_negozio",
+         "nOrdImm": "f9_n_ord_imm",
+         "categoria": "f9_categoria",
+         "usoAbitativo": "f9_uso_abitativo",
+         "rendita": "f9_rendita",
+         "canoneConcordato": "f9_canone_concordato",
+         "nOrdSog": "f9_n_ord_sog",
+         "possesso": "f9_possesso",
+         "opzioneCedolare": "f9_opzione_cedolare"
+        },
+        {
+         "negozio": "f10_negozio",
+         "nOrdImm": "f10_n_ord_imm",
+         "categoria": "f10_categoria",
+         "usoAbitativo": "f10_uso_abitativo",
+         "rendita": "f10_rendita",
+         "canoneConcordato": "f10_canone_concordato",
+         "nOrdSog": "f10_n_ord_sog",
+         "possesso": "f10_possesso",
+         "opzioneCedolare": "f10_opzione_cedolare"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

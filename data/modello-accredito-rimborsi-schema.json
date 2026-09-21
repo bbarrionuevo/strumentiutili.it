@@ -1,0 +1,376 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello per la richiesta di pagamento dei rimborsi fiscali tramite bonifico, creati da scripts/prepara-modello-accredito-rimborsi.py. I testi di aiuto sono tratti dalle istruzioni stampate nello stesso PDF ufficiale.",
+ "tabelle": {},
+ "modelli": {
+  "RIMBORSI": {
+   "codice": "Accredito rimborsi",
+   "nome": "Richiesta di accredito dei rimborsi fiscali",
+   "sottotitolo": "Pagamento con bonifico — persone fisiche",
+   "descrizione": "Il modello con cui una persona fisica comunica all'Agenzia delle Entrate l'IBAN su cui ricevere i rimborsi fiscali con bonifico, o annulla una richiesta gia' fatta.",
+   "pdf": "/assets/pdf/modello-accredito-rimborsi-compilabile.pdf",
+   "istruzioni": "/assets/pdf/modello-accredito-rimborsi-ufficiale.pdf",
+   "testata": {
+    "riferimentoNomeFile": "richiesta.codiceFiscale"
+   },
+   "passi": [
+    {
+     "id": "richiesta",
+     "titolo": "Che cosa chiedi",
+     "descrizione": "Con questo modello si chiede che i rimborsi fiscali arrivino con bonifico sul proprio conto, oppure si annulla una richiesta gia' presentata.",
+     "campi": [
+      {
+       "id": "tipo",
+       "type": "radioX",
+       "label": "Tipo di richiesta",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 — Accredito dei rimborsi fiscali sul proprio conto",
+         "pdf": "tipo_accredito"
+        },
+        {
+         "value": "2",
+         "label": "2 — Annullamento della richiesta di accreditamento",
+         "pdf": "tipo_annullamento"
+        }
+       ],
+       "help": "Con l'annullamento il riquadro delle coordinate bancarie non va compilato."
+      },
+      {
+       "id": "cognome",
+       "pdf": "cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half",
+       "help": "Per esteso, senza abbreviare nulla."
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune di nascita",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "La sigla di due lettere: per Roma, RM."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      }
+     ]
+    },
+    {
+     "id": "residenza",
+     "titolo": "Dove abiti e come contattarti",
+     "descrizione": "La residenza anagrafica o, se diverso, il domicilio fiscale, riferiti al momento in cui presenti il modello. I recapiti sono facoltativi.",
+     "campi": [
+      {
+       "id": "comune",
+       "pdf": "residenza_comune",
+       "type": "testo",
+       "label": "Comune",
+       "width": "half",
+       "help": "Senza abbreviazioni."
+      },
+      {
+       "id": "provincia",
+       "pdf": "residenza_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter"
+      },
+      {
+       "id": "frazione",
+       "pdf": "frazione",
+       "type": "testo",
+       "label": "Frazione",
+       "width": "quarter"
+      },
+      {
+       "id": "via",
+       "pdf": "via",
+       "type": "testo",
+       "label": "Via, piazza, ecc.",
+       "width": "half"
+      },
+      {
+       "id": "civico",
+       "pdf": "civico",
+       "type": "testo",
+       "label": "Numero civico",
+       "width": "quarter"
+      },
+      {
+       "id": "cap",
+       "pdf": "cap",
+       "type": "cap",
+       "label": "C.A.P.",
+       "width": "quarter"
+      },
+      {
+       "id": "email",
+       "pdf": "email",
+       "type": "email",
+       "label": "Indirizzo di posta elettronica",
+       "width": "half",
+       "help": "Facoltativo, ma utile se l'ufficio deve chiederti un chiarimento."
+      },
+      {
+       "id": "telefonoPrefisso",
+       "pdf": "telefono_prefisso",
+       "type": "testo",
+       "label": "Telefono · prefisso",
+       "width": "quarter"
+      },
+      {
+       "id": "telefonoNumero",
+       "pdf": "telefono_numero",
+       "type": "testo",
+       "label": "Numero",
+       "width": "quarter",
+       "help": "Va bene anche il cellulare."
+      },
+      {
+       "id": "faxPrefisso",
+       "pdf": "fax_prefisso",
+       "type": "testo",
+       "label": "Fax · prefisso",
+       "width": "quarter"
+      },
+      {
+       "id": "faxNumero",
+       "pdf": "fax_numero",
+       "type": "testo",
+       "label": "Numero",
+       "width": "quarter"
+      }
+     ]
+    },
+    {
+     "id": "conto",
+     "titolo": "Il conto su cui ricevere il rimborso",
+     "descrizione": "Il conto puo' essere italiano o estero, purche' gestito nel circuito SEPA. Deve essere intestato a te: l'Agenzia non accredita su conti di terzi.",
+     "campi": [
+      {
+       "id": "iban",
+       "pdf": "iban",
+       "type": "ibanCompleto",
+       "label": "IBAN del conto italiano",
+       "width": "full",
+       "help": "I 27 caratteri dell'IBAN italiano, IT compreso. Lo trovi sull'estratto conto o lo chiedi alla tua banca. Un carattere sbagliato qui significa un rimborso che non arriva: il compilatore verifica le cifre di controllo mentre scrivi."
+      }
+     ]
+    },
+    {
+     "id": "estero",
+     "titolo": "Conto estero",
+     "opzionale": true,
+     "descrizione": "Da compilare solo se il conto e' all'estero. Per i conti nell'area euro servono BIC e IBAN; fuori dall'area euro, le coordinate bancarie locali.",
+     "campi": [
+      {
+       "id": "banca",
+       "pdf": "estero_banca",
+       "type": "testo",
+       "label": "Denominazione della banca",
+       "width": "full"
+      },
+      {
+       "id": "intestatoA",
+       "pdf": "estero_intestato_a",
+       "type": "testo",
+       "label": "Conto intestato a",
+       "width": "full"
+      },
+      {
+       "id": "bic",
+       "pdf": "estero_bic",
+       "type": "testo",
+       "label": "BIC (se UEM)",
+       "width": "third"
+      },
+      {
+       "id": "ibanEstero",
+       "pdf": "estero_iban",
+       "type": "testo",
+       "label": "IBAN (se UEM)",
+       "width": "half"
+      },
+      {
+       "id": "coordinate",
+       "pdf": "estero_coordinate",
+       "type": "testo",
+       "label": "Coordinate bancarie (se extra UEM)",
+       "width": "full"
+      },
+      {
+       "id": "indirizzoBanca",
+       "pdf": "estero_indirizzo_banca",
+       "type": "testo",
+       "label": "Indirizzo della banca",
+       "width": "full"
+      }
+     ]
+    },
+    {
+     "id": "firma",
+     "titolo": "Data e firma",
+     "descrizione": "Il modello va sottoscritto a pena di nullita', con firma digitale o autografa, indicando la data di presentazione.",
+     "campi": [
+      {
+       "id": "giorno",
+       "pdf": "firma_giorno",
+       "type": "numero",
+       "label": "Data · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "mese",
+       "pdf": "firma_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "anno",
+       "pdf": "firma_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "firma",
+       "pdf": "firma",
+       "type": "testo",
+       "label": "Firma (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non puo' contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata, oppure firma il file digitalmente e invialo via PEC. Con la firma sollevi l'Agenzia da responsabilita' per eventuali errori nei dati del conto."
+      }
+     ]
+    },
+    {
+     "id": "delega",
+     "titolo": "Delega alla presentazione",
+     "opzionale": true,
+     "descrizione": "Si puo' delegare un'altra persona a consegnare il modello, ma solo per la consegna allo sportello: con l'invio via PEC la delega non e' ammessa.",
+     "campi": [
+      {
+       "id": "sottoscritto",
+       "pdf": "delega_sottoscritto",
+       "type": "testo",
+       "label": "Il sottoscritto",
+       "width": "half"
+      },
+      {
+       "id": "delegato",
+       "pdf": "delega_sig",
+       "type": "testo",
+       "label": "delega il Sig.",
+       "width": "half"
+      },
+      {
+       "id": "cfDelegato",
+       "pdf": "delega_cf",
+       "type": "cf",
+       "label": "Codice fiscale del delegato",
+       "width": "half"
+      },
+      {
+       "id": "natoA",
+       "pdf": "delega_nato_a",
+       "type": "testo",
+       "label": "Nato a",
+       "width": "half"
+      },
+      {
+       "id": "provinciaDelegato",
+       "pdf": "delega_provincia",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter"
+      },
+      {
+       "id": "il",
+       "pdf": "delega_il",
+       "type": "testo",
+       "label": "il",
+       "width": "quarter",
+       "help": "Data di nascita del delegato."
+      },
+      {
+       "id": "giorno",
+       "pdf": "delega_giorno",
+       "type": "numero",
+       "label": "Data della delega · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "mese",
+       "pdf": "delega_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "anno",
+       "pdf": "delega_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "firmaDichiarante",
+       "pdf": "delega_firma",
+       "type": "testo",
+       "label": "Firma del dichiarante (nome da stampare)",
+       "width": "half",
+       "help": "Vanno allegate le fotocopie dei documenti d'identita' di delegante e delegato, entrambi in corso di validita'."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

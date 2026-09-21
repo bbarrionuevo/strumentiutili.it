@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth scroll-pt-24">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analizzatore Bolletta Luce 3.0 (OCR) — StrumentiUtili.it</title>
+  <meta name="description" content="Carica la tua bolletta elettrica in PDF. L'intelligenza artificiale estrae i costi in locale e ti avvisa se la tua tariffa sul mercato libero è troppo cara (PUN vs Spread)." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/" />
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Scansiona e Analizza la tua Bolletta Elettrica" />
+  <meta property="og:description" content="Analisi tariffaria 100% Client-Side. Scopri i costi occulti e i rincari del tuo fornitore di energia." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Analizzatore Bolletta Luce",
+        "url": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "description": "Lettura locale del PDF o della foto della bolletta elettrica con estrazione di prezzo della materia energia, quota fissa e fasce orarie, confrontati con il PUN medio e con soglie di riferimento.",
+        "@id": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Estrazione del testo da PDF digitali con pdf.js",
+          "OCR di foto e scansioni in un Web Worker locale",
+          "Confronto dello spread con il PUN medio di riferimento",
+          "Controllo della quota fissa annua di commercializzazione",
+          "Diagnosi delle fasce orarie F1 e F3 e correzione manuale dei valori letti"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#howto",
+        "name": "Come verificare se la bolletta della luce è cara",
+        "description": "Procedura per confrontare prezzo dell'energia e quota fissa della propria bolletta con i valori di mercato, senza caricare il documento su server.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT2M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Bolletta elettrica in PDF o fotografia della pagina di dettaglio"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica la bolletta",
+            "text": "Trascina il PDF scaricato dall'area clienti o una foto nitida della pagina con il dettaglio della spesa per la materia energia.",
+            "url": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#drop-area"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Controlla il prezzo letto",
+            "text": "Verifica che il prezzo in €/kWh corrisponda a quello in bolletta e correggilo cliccando sul valore se necessario.",
+            "url": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#res-kwh"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Controlla i costi fissi",
+            "text": "Verifica la quota fissa annua; se la bolletta la indica al mese, moltiplicala per dodici.",
+            "url": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#res-fissi"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Leggi il verdetto",
+            "text": "Consulta gli avvisi su spread, quota fissa e fasce orarie e il giudizio complessivo sul contratto.",
+            "url": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#res-verdetto"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Perché la bolletta aumenta anche se il mio consumo resta identico?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nella maggior parte dei casi la causa non è il consumo ma una variazione delle condizioni economiche dopo la scadenza del periodo promozionale, oppure l'indicizzazione automatica al PUN in un contratto a prezzo variabile. Confrontando lo spread di due bollette successive si isola immediatamente la responsabilità: se il prezzo unitario è salito mentre il PUN è rimasto stabile, l'aumento è una scelta commerciale del venditore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conviene di più un contratto a prezzo fisso o a prezzo variabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il prezzo fisso acquista una copertura contro il rialzo e si paga con uno spread strutturalmente più alto, quindi conviene in fasi di forte volatilità o a chi abbia bisogno di certezza di spesa. Il prezzo variabile indicizzato al PUN costa mediamente meno nel lungo periodo ma espone alle oscillazioni del mercato all'ingrosso. La variabile decisiva non è il tipo di indicizzazione ma l'ampiezza dello spread applicato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La quota fissa è davvero ineliminabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Una parte della quota fissa corrisponde a costi regolati di commercializzazione, ma la componente aggiunta dal venditore è puramente commerciale e varia da zero a oltre duecento euro l'anno. Esistono offerte prive di quota fissa sulla materia energia: su utenze a basso consumo sono quasi sempre le più convenienti, perché il costo fisso incide in modo inversamente proporzionale ai kilowattora prelevati."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa significa che una bolletta è stimata e non effettiva?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quando il distributore non acquisisce la lettura del contatore, il venditore fattura sulla base di un consumo presunto ricavato dallo storico. Alla lettura successiva scatta il conguaglio, che può risultare rilevante. Comunicare l'autolettura nei giorni indicati in fattura evita l'accumulo di partite differite e rende la spesa aderente al consumo reale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso contestare un conguaglio molto elevato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Il primo passo è il reclamo scritto al venditore, che deve rispondere entro i termini fissati dall'ARERA. Se il conguaglio riguarda consumi anteriori a due anni opera la prescrizione breve. In caso di risposta insoddisfacente si può attivare la procedura di conciliazione presso il Servizio Conciliazione dell'ARERA, gratuita e obbligatoria prima di un'eventuale azione giudiziaria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L'analizzatore sostituisce un comparatore ufficiale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, e ha una funzione diversa. Un comparatore elenca offerte disponibili sul mercato; questo strumento diagnostica la bolletta che stai già pagando, isolando lo spread e la quota fissa per dirti se l'attuale contratto sia allineato ai valori di mercato. Per la ricerca di nuove offerte il riferimento istituzionale resta il Portale Offerte gestito dall'Acquirente Unico."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-indigo-600 font-bold">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF &amp; IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+      </nav>
+      <div class="w-full md:w-auto md:ml-4 mt-2 md:mt-0 order-last md:order-none">
+        <input id="search" type="search" placeholder="🔍 Cerca strumenti..." class="w-full md:w-64 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <div class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/cittadino-tasse/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-6">← Torna a Cittadino & Tasse</a>
+      
+      <div class="mb-8 border-b border-gray-200 pb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
+          <span>✨ Intelligenza Artificiale Locale</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
+          Analizzatore Bolletta Luce (Mercato Libero)
+        </h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Trascina il PDF o la foto della tua bolletta elettrica. L'algoritmo estrarrà i dati sensibili per dirti se il tuo gestore applica rincari abusivi rispetto all'indice PUN, lavorando unicamente all'interno del tuo computer (nessun invio in cloud).
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+        
+        <!-- DROPZONE -->
+        <div id="drop-area" class="border-2 border-dashed border-indigo-300 bg-indigo-50/30 hover:bg-indigo-50 transition-colors p-10 rounded-2xl text-center cursor-pointer flex flex-col items-center justify-center">
+          <div class="text-5xl mb-4">📄</div>
+          <h3 class="text-lg font-bold text-indigo-900 mb-1">Trascina qui il PDF della Bolletta</h3>
+          <p class="text-sm text-gray-500 mb-4">oppure la foto dello "Scontrino dell'Energia" (Pagina 2)</p>
+          <button class="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-lg shadow-sm hover:bg-indigo-700 transition">Sfoglia File</button>
+          <input type="file" id="file-input" accept=".pdf, image/png, image/jpeg" class="hidden" />
+          <div class="mt-4 text-xs font-semibold text-gray-400 flex items-center gap-1">
+            <span>🔒 Elaborazione sicura e locale (Zero-Upload)</span>
+          </div>
+        </div>
+        <button type="button" data-guida-toggle="guida-bol-file" aria-expanded="false" aria-controls="guida-bol-file" aria-label="Guida al campo Quale documento caricare" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quale documento caricare</button>
+        <div id="guida-bol-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Formato migliore:</strong> il PDF originale scaricato dall'area clienti del fornitore o ricevuto via email. Contiene testo digitale che viene letto all'istante, senza riconoscimento ottico e quindi senza errori di lettura sulle cifre.</p>
+          <p><strong class="text-indigo-900">Pagina giusta:</strong> serve la sezione con il dettaglio della spesa per la materia energia, chiamata Scontrino dell'Energia nelle bollette più recenti: lì il prezzo è espresso in €/kWh e la quota fissa in €/mese. Il frontespizio con il solo totale da pagare non basta. Dei PDF vengono lette le prime due pagine.</p>
+          <p><strong class="text-indigo-900">Se usi una foto:</strong> accettati JPG e PNG. Inquadra la pagina dritta, con luce uniforme e senza tagliare le cifre dei prezzi. Al primo utilizzo il browser scarica il modello di lingua italiana per l'OCR; la foto invece non esce mai dal dispositivo.</p>
+        </div>
+
+        <!-- STATO ELABORAZIONE -->
+        <div id="loading-state" class="hidden mt-8 text-center py-10">
+          <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-indigo-200 border-t-indigo-600 mb-4"></div>
+          <h3 class="text-lg font-bold text-gray-900">Estrazione dei dati in corso...</h3>
+          <p class="text-sm text-gray-500 mt-1">Esecuzione del motore OCR e analisi dei pattern tariffari.</p>
+        </div>
+
+        <!-- DASHBOARD RISULTATI -->
+        <div id="results-dashboard" class="hidden mt-8 space-y-6">
+          <h2 class="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">Responso Analitico</h2>
+          
+          <div id="alerts-container" class="space-y-3">
+            <!-- Gli alert dinamici appariranno qui -->
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-1">Prezzo Materia Energia</span>
+              <div class="flex items-baseline gap-2">
+                <span data-guida="guida-bol-kwh" aria-describedby="guida-bol-kwh" id="res-kwh" class="text-3xl font-extrabold text-gray-900">--</span>
+                <span class="text-sm font-semibold text-gray-600">€ / kWh</span>
+              </div>
+              <p id="nota-res-kwh" class="text-xs text-gray-500 mt-2">Rispetto al PUN medio di riferimento (0,125 €/kWh)</p>
+              <button type="button" data-guida-toggle="guida-bol-kwh" aria-expanded="false" aria-controls="guida-bol-kwh" aria-label="Guida al campo Prezzo materia energia" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come verificarlo</button>
+              <div id="guida-bol-kwh" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa indica:</strong> il prezzo unitario della sola energia venduta dal fornitore, al netto di trasporto, oneri di sistema, accise e IVA. Non coincide con il totale della bolletta diviso per i kWh consumati, che risulta sempre molto più alto.</p>
+                <p><strong class="text-indigo-900">Correggerlo a mano:</strong> se la lettura è errata o manca, clicca sul numero, scrivi il prezzo riportato in bolletta, ad esempio 0,185, e premi Invio: la diagnosi si aggiorna. Nelle offerte multiorarie viene letto il primo prezzo trovato, di solito quello della fascia F1: puoi sostituirlo con la media ponderata delle tre fasce.</p>
+                <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-1">Costi Fissi Commercializzazione</span>
+              <div class="flex items-baseline gap-2">
+                <span data-guida="guida-bol-fissi" aria-describedby="guida-bol-fissi" id="res-fissi" class="text-3xl font-extrabold text-gray-900">--</span>
+                <span class="text-sm font-semibold text-gray-600">€ / anno</span>
+              </div>
+              <p id="nota-res-fissi" class="text-xs text-gray-500 mt-2">Limite di mercato consigliato: &lt; 120,00 €</p>
+              <button type="button" data-guida-toggle="guida-bol-fissi" aria-expanded="false" aria-controls="guida-bol-fissi" aria-label="Guida al campo Costi fissi di commercializzazione" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come verificarlo</button>
+              <div id="guida-bol-fissi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Cosa indica:</strong> la quota fissa che il venditore addebita ogni mese indipendentemente dai consumi, moltiplicata per dodici. È una voce commerciale e cambia molto da un'offerta all'altra.</p>
+                <p><strong class="text-indigo-900">Da non confondere:</strong> in bolletta compaiono anche quote fisse per trasporto e gestione del contatore e la quota potenza in €/kW al mese. Sono tariffe regolate, uguali per tutti i venditori, e non vanno inserite qui.</p>
+                <p><strong class="text-indigo-900">Correzione ed esempio:</strong> il valore si inserisce su base annua: 8,50 €/mese vanno scritti come 102. Una quota di 12 €/mese vale 144 € l'anno, 24 € sopra la soglia di riferimento: su un'utenza da 1.500 kWh equivale a pagare 1,6 centesimi in più per ogni kWh.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 mt-4">
+            <h3 class="text-sm font-bold text-indigo-900 mb-2 flex items-center gap-2"><span>💡</span> Il verdetto dell'algoritmo</h3>
+            <p id="res-verdetto" class="text-sm text-indigo-800 leading-relaxed font-medium">In attesa dei dati...</p>
+          </div>
+          
+          <div class="text-center pt-4">
+            <button id="btn-reset" class="text-sm font-bold text-gray-500 hover:text-indigo-600 transition underline">Analizza un'altra bolletta</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR DESTRA -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/simulatore-isee/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📊</span> Simulatore ISEE 2026</a></li>
+            <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU 2026</a></li>
+            <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
+          <li><a href="/cittadino-tasse/consumo-elettrodomestici/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔌</span> Consumo Elettrodomestici</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/aliquote-irpef/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Aliquote IRPEF 2026</a></li>
+              <li><a href="/cittadino-tasse/assegno-unico/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👶</span> Assegno Unico 2026</a></li>
+              <li><a href="/cittadino-tasse/calcolo-bollo-auto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🚗</span> Calcolo Bollo Auto</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🛢️</span> F24 Accise Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> F24 Ordinario Editabile</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📃</span> F24 Semplificato Editabile</a></li>
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Modelli F24 e F23</a></li>
+              <li><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📑</span> Modello F23 Editabile</a></li>
+              <li><a href="/cittadino-tasse/modello-rli/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Modello RLI Editabile</a></li>
+              <li><a href="/cittadino-tasse/passaggio-di-proprieta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏎️</span> Passaggio di Proprietà</a></li>
+              <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👴</span> Simulatore Pensione 2026</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- BLOCCO SEO E-E-A-T INFERIORE -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Parametri di mercato aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF o la foto della bolletta vengono letti nella memoria del browser: il testo dei PDF digitali è estratto con pdf.js, le immagini sono riconosciute da Tesseract in un Web Worker locale. Nessun file, POD o dato anagrafico viene caricato su server, in linea con i principi di minimizzazione e privacy by design degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">Delibere ARERA sulla trasparenza dei documenti di fatturazione (Bolletta 2.0 e revisione 315/2024/R/com), Delibera AEEG 181/06 sulle fasce orarie, D.P.R. 633/1972 per l'IVA sulle forniture di energia. PUN medio e soglie di riferimento sono letti da un file di parametri aggiornato periodicamente.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Analisi della Bolletta 3.0, Algoritmi di Rilevamento Tariffario e Tutela della Privacy</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il Mercato Libero dell'energia in Italia è contrassegnato da un'elevata asimmetria informativa. Le compagnie energetiche diluiscono i reali margini di profitto all'interno di documenti densi di acronimi e voci regolamentate. Il processo di lettura ed estrazione di questi dati, storicamente ostico per il consumatore, trova oggi una soluzione tecnologica mediante l'impiego di motori OCR (Optical Character Recognition) e algoritmi di parsing sintattico eseguiti nativamente nel browser. L'adozione di un'architettura <strong>Zero-Backend</strong> assume qui un'importanza capitale: la fattura elettrica contiene dati ultra-sensibili, dalle coordinate POD ai consuntivi di prelievo, il cui caricamento su server cloud espone l'utente a gravi rischi di profilazione. Di seguito si esaminano le direttive strutturali dell'ARERA, i parametri operativi del PUN e la meccanica diagnostica applicata dal nostro software.
+        </p>
+
+        <!-- Accordion 1 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚡</span> Delibera ARERA 315/2024/R/com e la struttura della "Bolletta 3.0"</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Dal 1° luglio 2025, l'Autorità di Regolazione per Energia Reti e Ambiente (ARERA) ha imposto un formato standardizzato e unificato, denominato "Bolletta 3.0", obbligatorio per tutti gli operatori del mercato libero. Questa standardizzazione fornisce al nostro parser OCR una griglia semantica prevedibile. Il documento si divide strutturalmente in due macro-sezioni primarie.
+            </p>
+            <p>
+              La prima pagina (Frontespizio Unificato) riporta i metadati contrattuali: il codice identificativo del punto di fornitura (POD), la potenza impegnata (es. 3 kW per un contatore domestico) e la sintesi degli oneri. La vera essenza del calcolo risiede nella seconda pagina, nominata <strong>"Scontrino dell'Energia"</strong>. Questa sezione isola in maniera granulare la logica algoritmica applicata dal fornitore, permettendo al software di discriminare tra i costi fissi commerciali e l'applicazione moltiplicativa della tariffa volumetrica sui kilowattora (kWh) prelevati.
+            </p>
+          </div>
+        </details>
+
+        <!-- Accordion 2 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> KPI Critici: Quota Consumi, Quota Fissa e Fasce Orarie</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Il motore diagnostico non si affida empiricamente alla divisione dell'importo finale della bolletta per i kWh consumati, poiché tale approccio risulterebbe pesantemente distorto dall'incidenza sproporzionata dei costi fissi nei mesi a basso consumo. Al contrario, il parser isola matematicamente tre vettori specifici:
+            </p>
+            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-2">
+              <li><strong>Quota Consumi (Materia Energia):</strong> L'algoritmo estrae la scomposizione della "Vendita energia" (prezzo stabilito commercialmente dal fornitore), separandola nettamente dalle voci "Rete e oneri", che costituiscono pedaggi di sistema e di trasporto invariabili imposti da ARERA.</li>
+              <li><strong>Quota Fissa (Commercializzazione):</strong> Identifica il ricarico fisso mensile (es. euro/mese) imposto dal venditore indipendentemente dai volumi prelevati.</li>
+              <li><strong>Gestione Multioraria (F1, F2, F3):</strong> Ove applicabile, lo strumento cattura il costo disaggregato. La logica di calcolo verifica la sperequazione tariffaria tra la fascia di punta F1 (giorni feriali, ore diurne) e la fascia di vuoto F3 (notti e festivi). Se la tariffa F1 costa oltre il 10% in più della F3 (costo F1 > costo F3 × 1,10), l'algoritmo segnala la convenienza di spostare i cicli degli elettrodomestici energivori alle sere, ai fine settimana e ai festivi.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Accordion 3 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📈</span> L'Indice PUN, lo Spread e la Diagnosi di Tariffe Abusive</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              Il parametro cardinale per determinare l'equità di un contratto nel mercato libero è il <strong>PUN (Prezzo Unico Nazionale)</strong>, il quale riflette il costo all'ingrosso della Borsa Elettrica Italiana. L'analisi statistica per le misurazioni di mercato fissa ordinariamente un PUN medio di stima a <strong>0,125 €/kWh</strong>. 
+            </p>
+            <p>
+              L'algoritmo JavaScript implementa una funzione di valutazione (<code>runEvaluationLogic</code>) che estrae il prezzo unitario della materia prima dalla bolletta e lo confronta con il PUN. Il sistema tollera uno <em>Spread Massimo Fisiologico</em> di 0,04 €/kWh (il ricarico legittimo del fornitore). Qualora il costo ecceda tale somma (es. prezzo > 0,165 €/kWh), viene lanciato un "CRITICAL Alert", notificando al consumatore l'applicazione di sovrapprezzi abusivi. 
+            </p>
+            <p>
+              Congiuntamente, il programma annualizza i costi fissi estratti (prezzo mensile x 12). La soglia limite di equità commerciale per i costi di commercializzazione al dettaglio (Quota Fissa) è fissata dallo strumento come soglia prudenziale di riferimento, e non da una norma, a <strong>120,00 € annui</strong>. Oltrepassare tale parametro innesca un "WARNING", svelando all'utente esborsi esorbitanti legati puramente al mantenimento contrattuale.
+            </p>
+          </div>
+        </details>
+
+        <!-- Accordion 4 -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design: L'Infrastruttura Zero-Backend e il GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>
+              L'invio di una fattura elettrica integrale verso servizi di analisi cloud di terze parti rappresenta una grave rottura della riservatezza informatica. Il documento ingloba le coordinate residenziali dell'utente, i dati fiscali, e talvolta le metriche di occupazione dell'immobile (estrapolabili dall'assorbimento elettrico orario). L'Articolo 25 del Regolamento Europeo 2016/679 (GDPR) prescrive severi obblighi in ordine alla Privacy by Design.
+            </p>
+            <p>
+              Al fine di eludere il conferimento di dati sensibili a Data Processor esterni, l'applicativo eroga la totalità della computazione ottica e logica nella memoria locale del terminale. L'instanziazione dei <em>Web Workers</em> permette la deserializzazione dei documenti PDF (tramite librerie come pdf.js) o la classificazione dei pixel fotografici, garantendo un isolamento ermetico (Zero-Upload). La bolletta non abbandona mai il dispositivo: conclusa l'operazione diagnostica, la frammentazione della RAM mediante il Garbage Collector annienta definitivamente ogni traccia dei calcoli vettoriali.
+            </p>
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Una bolletta elettrica non è un numero unico ma la somma di quattro famiglie di voci con logiche di formazione del tutto diverse. L'analizzatore le scompone e le ricalcola separatamente, perché è solo isolando la componente negoziabile che si può stabilire se un'offerta sia conveniente o predatoria.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Le quattro componenti della spesa</h3>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li><strong>Spesa per la materia energia.</strong> È l'unica voce realmente contrattabile sul mercato libero. Si compone di un corrispettivo variabile a kWh e, quasi sempre, di una quota fissa annua indipendente dal consumo.</li>
+              <li><strong>Spesa per il trasporto e la gestione del contatore.</strong> Tariffa regolata e identica per tutti i fornitori a parità di zona e potenza impegnata. Nessuna offerta commerciale può modificarla.</li>
+              <li><strong>Oneri di sistema.</strong> Componenti parafiscali destinate a finalità generali, anch'esse regolate e non negoziabili.</li>
+              <li><strong>Imposte.</strong> Accise erariali sul consumo e IVA, quest'ultima applicata sull'intero imponibile comprensivo delle accise.</li>
+            </ol>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il nucleo del confronto: spread sul PUN</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Spesa materia energia = (Consumo_kWh x Prezzo_unitario) + Quota_fissa_annua</li>
+              <li>Spread applicato = Prezzo_unitario_offerta - PUN_medio</li>
+              <li>PUN medio di riferimento 2026 = 0,125 EUR/kWh</li>
+              <li>Soglia di spread fisiologico   = 0,040 EUR/kWh</li>
+              <li>Sovracosto annuo = max(0 ; Spread - 0,040) x Consumo_kWh</li>
+              <li>Quota fissa considerata anomala oltre 120,00 EUR/anno</li>
+            </ul>
+            <p>Il PUN, Prezzo Unico Nazionale, è il valore all'ingrosso dell'energia determinato in borsa. Nessun venditore può acquistare sotto quel prezzo, quindi il margine lordo del fornitore coincide con lo <strong>spread</strong> che applica sopra il PUN. Uno spread compreso entro quattro centesimi al kilowattora remunera in modo equo l'attività di vendita, la gestione del rischio e i costi di dispacciamento. Oltre quella soglia si entra nel territorio dell'offerta non competitiva.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio applicato: utenza domestica da 2.700 kWh annui</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Offerta A</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Offerta B</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Differenza</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Prezzo unitario</td><td class="px-3 py-2 border-t border-gray-200">0,155 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">0,205 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">+0,050</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spread sul PUN</td><td class="px-3 py-2 border-t border-gray-200">0,030 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">0,080 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">+0,050</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spesa energia variabile</td><td class="px-3 py-2 border-t border-gray-200">418,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">553,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">+135,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota fissa annua</td><td class="px-3 py-2 border-t border-gray-200">72,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">180,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">+108,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale componente negoziabile</td><td class="px-3 py-2 border-t border-gray-200">490,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">733,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">+243,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Giudizio dell'analizzatore</td><td class="px-3 py-2 border-t border-gray-200">Spread nella norma</td><td class="px-3 py-2 border-t border-gray-200">Spread doppio e quota fissa oltre soglia</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr></tbody></table></div>
+            <p>L'offerta B costa 243 euro in più all'anno a parità di energia consumata e a parità di servizio erogato, perché trasporto, oneri e imposte sono identici. Il dato controintuitivo è che il sovrapprezzo si nasconde per metà nella quota fissa, voce che molti contratti presentano in euro al mese e che il consumatore tende a sottovalutare: dieci euro mensili valgono 120 euro l'anno, un quarto dell'intera bolletta di un'utenza frugale.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Perché il consumo orario conta</h3>
+            <p>Nelle offerte multiorarie il consumo si distribuisce su tre fasce. La fascia F1 copre i giorni feriali dalle 8 alle 19, la F2 le prime ore del mattino, la sera feriale e il sabato diurno, la F3 le notti, le domeniche e i festivi. Un profilo domestico tipico concentra fra il 55% e il 65% dei prelievi in F2 e F3. Un'offerta che pubblicizza un prezzo aggressivo sulla sola F1 risulta quindi svantaggiosa per la maggioranza delle famiglie, mentre premia le utenze con attività diurna continuativa.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">L'effetto moltiplicativo delle imposte</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Imponibile = Materia energia + Trasporto + Oneri + Accise</li>
+              <li>IVA = Imponibile x aliquota</li>
+              <li>Aliquota 10% sulle forniture per uso domestico</li>
+              <li>Aliquota 22% sulle forniture per usi diversi da quello domestico</li>
+            </ul>
+            <p>Poiché l'IVA si applica a valle, ogni euro di spread eccessivo genera dieci centesimi aggiuntivi di imposta per l'utenza domestica e ventidue per quella non domestica. Il danno reale di un contratto sfavorevole è quindi sistematicamente superiore alla differenza nominale di prezzo unitario.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Delibera ARERA 501/2014/R/com</strong> — introduce la cosiddetta Bolletta 2.0 e impone lo schema sintetico con le macrovoci di spesa obbligatorie per tutti i venditori.</li>
+              <li><strong>Delibera AEEG 181/06</strong> — definisce le fasce orarie F1, F2 e F3 e i criteri di attribuzione dei prelievi nei contratti multiorari.</li>
+<li><strong>Delibera ARERA 315/2024/R/com</strong> — rivede la Bolletta 2.0 con il frontespizio unificato e lo Scontrino dell'Energia, la sezione che riporta il prezzo unitario della materia energia e la quota fissa.</li>
+              <li><strong>D.Lgs. 6 settembre 2005 n. 206 (Codice del Consumo)</strong> — disciplina le pratiche commerciali scorrette, gli obblighi informativi precontrattuali e il diritto di ripensamento entro quattordici giorni.</li>
+              <li><strong>Legge 4 agosto 2017 n. 124</strong> — legge annuale per il mercato e la concorrenza, che ha definito il percorso di superamento dei regimi di maggior tutela.</li>
+              <li><strong>D.Lgs. 8 novembre 2021 n. 210</strong> — recepisce la direttiva europea sul mercato interno dell'energia elettrica e rafforza le tutele del cliente finale.</li>
+              <li><strong>D.P.R. 26 ottobre 1972 n. 633</strong> — disciplina IVA applicabile alle forniture di energia, con le aliquote differenziate per uso domestico e non domestico.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Diritti del consumatore da conoscere</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Preavviso sulle variazioni unilaterali</strong>: ogni modifica delle condizioni economiche va comunicata per iscritto con almeno tre mesi di anticipo, e il cliente può recedere senza penali.</li>
+              <li><strong>Recesso sempre libero</strong>: nel mercato libero il cliente domestico può cambiare fornitore in qualsiasi momento senza costi né penali, con la sola gestione del preavviso tecnico.</li>
+              <li><strong>Prescrizione biennale</strong>: i conguagli riferiti a consumi risalenti a oltre due anni non sono più esigibili, salvo responsabilità accertata del cliente.</li>
+              <li><strong>Bonus sociale automatico</strong>: per i nuclei con ISEE sotto la soglia prevista lo sconto viene riconosciuto d'ufficio sulla base della DSU, senza necessità di presentare domanda.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> il valore del PUN varia quotidianamente in funzione della domanda, del prezzo del gas e della produzione rinnovabile. Il parametro impiegato dall'analizzatore è una media di riferimento aggiornata al 2026 e serve a stabilire un ordine di grandezza dello spread, non a replicare il prezzo orario di borsa. Per una contestazione formale al fornitore o uno Sportello per il consumatore è opportuno allegare le bollette originali.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati verificati caricando nello strumento bollette PDF con i valori indicati. Il consumo di riferimento è di 2.700 kWh l'anno, tipico di una famiglia di tre persone con contatore da 3 kW. Gli importi sono al netto dell'IVA, salvo dove indicato.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: promozione scaduta su un contratto a prezzo fisso</h3>
+            <p>Dopo i primi dodici mesi il fornitore applica le condizioni standard. La nuova bolletta riporta 0,185 €/kWh per la materia energia e una quota fissa di 12,00 €/mese. L'analizzatore legge entrambi i valori e segnala due anomalie: lo spread di 0,060 €/kWh supera la soglia e i costi fissi arrivano a 144,00 € l'anno.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Eccedenza di spread: (0,185 − 0,165) × 2.700 kWh = 54,00 €</li>
+            <li>Quota fissa oltre la soglia: 144,00 − 120,00 = 24,00 €</li>
+            <li>Sovracosto minimo: 78,00 €, cioè 85,80 € con IVA al 10%</li>
+            </ul>
+            <p>Il confronto con l'offerta del caso 2 è ancora più netto: (0,185 − 0,143) × 2.700 = 113,40 € di energia e 61,20 € di quota fissa, 174,60 € l'anno prima delle imposte. Il cambio di fornitore è gratuito e non interrompe la fornitura.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: offerta variabile indicizzata al PUN</h3>
+            <p>Il contratto prevede PUN più 0,018 €/kWh. Nel mese fatturato il prezzo risulta 0,143 €/kWh, con quota fissa di 6,90 €/mese, pari a 82,80 € l'anno. Entrambi i controlli sono positivi e il verdetto è favorevole.</p>
+            <p>Il limite da conoscere: lo strumento confronta il prezzo con un PUN medio fisso di 0,125 €/kWh. Se in un mese di rincari il PUN salisse a 0,150, la stessa offerta costerebbe 0,168 €/kWh e verrebbe segnalata come cara, anche se lo spread contrattuale resta 0,018. Per le offerte variabili il dato decisivo è lo spread scritto nelle condizioni economiche, non il prezzo di un singolo mese.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: offerta multioraria e correzione manuale</h3>
+            <p>La bolletta riporta F1 a 0,160 €/kWh, F2 a 0,148 e F3 a 0,135, con quota fissa di 9,50 €/mese, cioè 114,00 € l'anno. L'analizzatore legge il primo prezzo, quello della F1, lo giudica in linea e avverte che la F1 costa il 19% in più della F3.</p>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Ripartizione dei consumi: F1 40%, F2 25%, F3 35%</li>
+            <li>Prezzo medio = 0,40 × 0,160 + 0,25 × 0,148 + 0,35 × 0,135 = 0,148 €/kWh</li>
+            <li>Spostare 300 kWh da F1 a F3: 300 × 0,025 = 7,50 € l'anno</li>
+            </ul>
+            <p>Scrivendo 0,148 nel riquadro del prezzo, la diagnosi usa il costo medio reale invece del solo prezzo di punta. Il calcolo mostra anche che spostare i consumi fra le fasce fa risparmiare pochi euro, mentre scegliere un'offerta con spread più basso incide molto di più.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché la bolletta aumenta anche se il mio consumo resta identico?</h3>
+              <p>Nella maggior parte dei casi la causa non è il consumo ma una variazione delle condizioni economiche dopo la scadenza del periodo promozionale, oppure l'indicizzazione automatica al PUN in un contratto a prezzo variabile. Confrontando lo spread di due bollette successive si isola immediatamente la responsabilità: se il prezzo unitario è salito mentre il PUN è rimasto stabile, l'aumento è una scelta commerciale del venditore.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene di più un contratto a prezzo fisso o a prezzo variabile?</h3>
+              <p>Il prezzo fisso acquista una copertura contro il rialzo e si paga con uno spread strutturalmente più alto, quindi conviene in fasi di forte volatilità o a chi abbia bisogno di certezza di spesa. Il prezzo variabile indicizzato al PUN costa mediamente meno nel lungo periodo ma espone alle oscillazioni del mercato all'ingrosso. La variabile decisiva non è il tipo di indicizzazione ma l'ampiezza dello spread applicato.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">La quota fissa è davvero ineliminabile?</h3>
+              <p>No. Una parte della quota fissa corrisponde a costi regolati di commercializzazione, ma la componente aggiunta dal venditore è puramente commerciale e varia da zero a oltre duecento euro l'anno. Esistono offerte prive di quota fissa sulla materia energia: su utenze a basso consumo sono quasi sempre le più convenienti, perché il costo fisso incide in modo inversamente proporzionale ai kilowattora prelevati.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa significa che una bolletta è stimata e non effettiva?</h3>
+              <p>Quando il distributore non acquisisce la lettura del contatore, il venditore fattura sulla base di un consumo presunto ricavato dallo storico. Alla lettura successiva scatta il conguaglio, che può risultare rilevante. Comunicare l'autolettura nei giorni indicati in fattura evita l'accumulo di partite differite e rende la spesa aderente al consumo reale.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso contestare un conguaglio molto elevato?</h3>
+              <p>Sì. Il primo passo è il reclamo scritto al venditore, che deve rispondere entro i termini fissati dall'ARERA. Se il conguaglio riguarda consumi anteriori a due anni opera la prescrizione breve. In caso di risposta insoddisfacente si può attivare la procedura di conciliazione presso il Servizio Conciliazione dell'ARERA, gratuita e obbligatoria prima di un'eventuale azione giudiziaria.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">L'analizzatore sostituisce un comparatore ufficiale?</h3>
+              <p>No, e ha una funzione diversa. Un comparatore elenca offerte disponibili sul mercato; questo strumento diagnostica la bolletta che stai già pagando, isolando lo spread e la quota fissa per dirti se l'attuale contratto sia allineato ai valori di mercato. Per la ricerca di nuove offerte il riferimento istituzionale resta il Portale Offerte gestito dall'Acquirente Unico.</p>
+            </div>
+          </div>
+        </details>
+
+        </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<!-- LIBRERIE ESTERNE -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- IL TUO SCRIPT PRINCIPALE -->
+  <script defer src="/js/analizzatore-bolletta.js"></script>
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } 
+        catch (error) { delete ad.dataset.suAdInit; console.warn('[AdSense] Error:', error); }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => requestAnimationFrame(initVisibleAds));
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) { clearInterval(timer); }
+        }, 100);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+      else start();
+    })();
+  </script>
+  <script id="su-guida-live">
+(function () {
+      var p = { pun: 0.125, spread: 0.04 };
+      fetch('/data/regole-fiscali-2026.json').then(function (r) { return r.json(); }).then(function (d) {
+        var m = d && d.mercato_energia_2026;
+        if (m) { p.pun = m.pun_medio_stimato_kwh; p.spread = m.spread_massimo_fisiologico; }
+      }).catch(function () {});
+      var kwh = function (n) { return n.toFixed(3).replace('.', ','); };
+      window.SuGuidaLive = window.SuGuidaLive || {};
+      window.SuGuidaLive['guida-bol-kwh'] = function (campo) {
+        var v = parseFloat((campo.textContent || '').replace(/[^0-9.,]/g, '').replace(',', '.'));
+        if (!(v > 0) || v > 2) return '';
+        var spread = v - p.pun;
+        if (spread > p.spread) {
+          var eccedenza = new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format((spread - p.spread) * 2700);
+          return 'Con ' + kwh(v) + ' €/kWh lo spread sul PUN è ' + kwh(spread) + ' €/kWh, oltre la soglia di ' + kwh(p.spread) + '. Su un consumo tipico di 2.700 kWh l\'anno l\'eccedenza vale ' + eccedenza + ' più IVA.';
+        }
+        if (spread >= 0) return 'Con ' + kwh(v) + ' €/kWh lo spread sul PUN è ' + kwh(spread) + ' €/kWh, entro la soglia di ' + kwh(p.spread) + ': prezzo in linea con il mercato.';
+        return 'Con ' + kwh(v) + ' €/kWh il prezzo è sotto il PUN di riferimento: capita con le promozioni a tempo, quindi controlla quando scadono le condizioni.';
+      };
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>
+

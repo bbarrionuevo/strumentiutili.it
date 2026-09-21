@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth scroll-pt-24">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied", ad_storage: "denied", ad_user_data: "denied",
+        analytics_storage: "denied", functionality_storage: "denied", personalization_storage: "denied",
+        security_storage: "granted", wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true); gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generatore CV ATS-Friendly Gratis (PDF) — StrumentiUtili.it</title>
+  <meta name="description" content="Crea un curriculum vitae leggibile dai sistemi ATS e dall'Intelligenza Artificiale: formato monocolonna, intestazioni standard italiane, font sicuri ed esportazione PDF nativa. 100% nel browser, nessun dato caricato online." />
+  <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/" />
+
+  <style>
+    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; } .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) { .ad-slot-desktop { display: block; } .ad-slot-mobile { display: none; } }
+
+    /* Anteprima CV: stili dichiarati qui perché gli elementi sono generati via JS */
+    .cv-sheet { background: #fff; color: #111827; font-family: Helvetica, Arial, sans-serif; font-variant-ligatures: none; font-size: 11px; line-height: 1.45; padding: 28px 30px; min-height: 420px; box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.06); border: 1px solid #e5e7eb; border-radius: 6px; overflow-wrap: anywhere; }
+    .cv-sheet .cv-foto { display: block; width: 70px; height: 90px; object-fit: cover; margin: 0 auto 12px; }
+    .cv-sheet .cv-nome { font-size: 19px; font-weight: 700; margin: 0; }
+    .cv-sheet .cv-titolo { font-size: 12px; margin: 2px 0 6px; }
+    .cv-sheet .cv-contatti { font-size: 10px; color: #374151; margin: 0; }
+    .cv-sheet .cv-sezione { font-size: 12.5px; font-weight: 700; margin: 16px 0 6px; padding-bottom: 3px; border-bottom: 1px solid #9ca3af; }
+    .cv-sheet .cv-voce { margin-bottom: 9px; }
+    .cv-sheet .cv-voce-titolo { font-weight: 700; margin: 0; }
+    .cv-sheet .cv-periodo { color: #4b5563; font-size: 10px; margin: 0 0 2px; }
+    .cv-sheet .cv-par { margin: 0; white-space: pre-wrap; }
+    .cv-sheet .cv-bullet { margin: 0; padding-left: 10px; text-indent: -10px; }
+    .cv-sheet .cv-gdpr { font-size: 9px; color: #4b5563; margin-top: 16px; }
+    .cv-sheet .cv-vuoto { color: #9ca3af; text-align: center; padding: 60px 0; }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#app",
+        "name": "Generatore CV ATS-Friendly",
+        "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/",
+        "description": "Creazione nel browser di un curriculum vitae in PDF testuale a colonna unica, con intestazioni standard, date in formato mese e anno, foto facoltativa e autorizzazione al trattamento dei dati.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Impaginazione a colonna unica leggibile dagli ATS",
+          "Date in formato «Mese Anno - Mese Anno»",
+          "Anteprima identica al PDF",
+          "Conversione delle lettere non supportate dal font PDF",
+          "Salvataggio solo sul dispositivo"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#howto",
+        "name": "Come creare un curriculum leggibile dagli ATS",
+        "description": "Procedura per compilare un CV in PDF testuale adatto ai software di selezione.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT20M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Annuncio di lavoro e percorso professionale"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Inserisci dati e contatti",
+            "text": "Nome, titolo professionale, email, telefono e città.",
+            "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#cv-sez-dati"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scrivi il profilo",
+            "text": "Tre o quattro righe con le parole chiave dell'annuncio.",
+            "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#cv-sez-profilo"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Aggiungi esperienze e istruzione",
+            "text": "Dalla più recente, con mese e anno e risultati misurabili.",
+            "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#cv-sez-esperienza"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Scarica il PDF",
+            "text": "Controlla l'anteprima e premi Scarica PDF ATS.",
+            "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#cv-download"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il CV generato supera tutti i sistemi ATS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nessun formato garantisce il passaggio: il punteggio dipende soprattutto dalla corrispondenza fra esperienze, competenze e annuncio. Il generatore elimina gli ostacoli tecnici più comuni, come colonne, tabelle e testo in immagini."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Meglio il PDF o il Word?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il PDF testuale prodotto qui è letto correttamente dagli ATS più diffusi. Se il portale chiede espressamente un file .doc o .docx, rispetta la richiesta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quante pagine deve avere il curriculum?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Una pagina fino a circa 5 anni di esperienza, due per profili senior. Il generatore va a pagina nuova automaticamente quando il contenuto supera il foglio A4."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I dati restano salvati se chiudo la pagina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, nel localStorage di questo browser, per ritrovare il CV alla visita successiva. Su un computer condiviso usa «Cancella tutti i dati» al termine."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-3 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-indigo-600 font-bold">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF &amp; IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <div class="w-full lg:col-span-8 lg:col-start-1 block">
+
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="mb-8 border-b border-gray-200 pb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
+          <span>🔒 Privacy Assoluta (Zero-Upload)</span>
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
+          Generatore CV ATS-Friendly
+        </h1>
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Compila il curriculum e scarica un PDF progettato per essere letto correttamente dai software di selezione (ATS) e dai sistemi di Intelligenza Artificiale usati dalle aziende italiane ed europee. Anteprima in tempo reale, salvataggio automatico sul tuo dispositivo, nessun dato inviato online.
+        </p>
+      </div>
+
+      <!-- BANNER EDUCATIVO -->
+      <section class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 md:p-6 mb-6">
+        <h2 class="text-lg font-bold text-indigo-900 mb-3 flex items-center gap-2"><span>🤖</span> Perché questo formato supera ATS e Intelligenza Artificiale</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-indigo-900">
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Una sola colonna.</strong> Gli ATS leggono il testo riga per riga: i layout a due colonne mescolano date, ruoli e competenze.</li>
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Testo vero, zero grafica.</strong> Niente tabelle, icone o barre di competenza: il parser vede solo il flusso di testo.</li>
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Helvetica senza legature.</strong> Ogni lettera resta un carattere distinto: "fi" e "ffi" non diventano glifi illeggibili.</li>
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Intestazioni standard.</strong> Profilo Professionale, Esperienza Lavorativa, Istruzione e Competenze vengono classificate senza errori.</li>
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Contatti nel corpo.</strong> Email e telefono non stanno in header o footer, zone che molti parser ignorano.</li>
+          <li class="bg-white rounded-lg border border-indigo-100 p-3"><strong>Date univoche.</strong> Il formato "Gennaio 2021 - Marzo 2026" permette di calcolare con precisione gli anni di esperienza.</li>
+        </ul>
+      </section>
+
+      <!-- WORKSPACE -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+          <!-- COSTRUTTORE -->
+          <div id="cv-builder" class="space-y-6">
+
+            <fieldset class="space-y-4">
+              <legend id="cv-sez-dati" class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-2 w-full">Dati personali e contatti</legend>
+              <button type="button" data-guida-toggle="guida-cv-dati" aria-expanded="false" aria-controls="guida-cv-dati" aria-label="Guida al campo Dati personali" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa inserire e cosa evitare</button>
+              <div id="guida-cv-dati" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Contatti:</strong> email con nome e cognome, cellulare con prefisso +39 e città. Nel corpo del documento, non in intestazione: molti ATS ignorano header e footer.</p>
+                <p><strong class="text-indigo-900">Da non inserire:</strong> data di nascita, stato civile, codice fiscale e indirizzo completo non servono in fase di selezione e il datore di lavoro non può usarli per decidere (D.Lgs. 198/2006 e D.Lgs. 216/2003).</p>
+                <p><strong class="text-indigo-900">Link:</strong> profilo LinkedIn personalizzato e portfolio o repository pertinenti, uno per riga, senza «https://».</p>
+              </div>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Nome e cognome *</span>
+                <input data-cv="candidato.nomeCognome" type="text" autocomplete="name" placeholder="Giulia Bianchi" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Titolo professionale</span>
+                <input data-cv="candidato.titoloProfessionale" type="text" placeholder="Sviluppatrice Backend Senior" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label class="block">
+                  <span class="text-sm font-bold text-gray-700">Email *</span>
+                  <input data-cv="candidato.contattiNelBody.email" type="email" autocomplete="email" placeholder="nome@esempio.it" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-bold text-gray-700">Telefono</span>
+                  <input data-cv="candidato.contattiNelBody.telefono" type="tel" autocomplete="tel" placeholder="+39 333 1234567" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </label>
+              </div>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Città di residenza</span>
+                <input data-cv="candidato.contattiNelBody.posizione" type="text" placeholder="Roma, Italia" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Link rilevanti (uno per riga)</span>
+                <textarea data-cv="candidato.contattiNelBody.linkRilevanti" rows="2" placeholder="linkedin.com/in/nomecognome" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+              </label>
+
+              <!-- FOTO OPZIONALE -->
+              <div class="border border-gray-200 rounded-xl p-4 bg-gray-50">
+                <label class="flex items-center justify-between gap-4 cursor-pointer">
+                  <span>
+                    <span class="text-sm font-bold text-gray-800 block">Aggiungi fototessera</span>
+                    <span class="text-xs text-gray-500">Facoltativa. Disattivata di default.</span>
+                  </span>
+                  <input data-opt="fotoAttiva" type="checkbox" class="w-5 h-5 accent-indigo-600" />
+                </label>
+                <div id="cv-foto-panel" class="hidden mt-4 space-y-3">
+                  <div role="alert" class="p-4 text-sm font-medium rounded-lg border bg-orange-50 text-orange-800 border-orange-200">
+                    ⚠️ Consigliato per i sistemi ATS e IA: Le aziende tecnologiche e le policy europee sull'inclusione (DEI) preferiscono CV senza foto per evitare bias algoritmici. Se scegli di inserirla, verrà impaginata in sicurezza al centro per non rompere la lettura macchina.
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <img id="cv-foto-thumb" alt="Anteprima fototessera" class="hidden w-16 h-20 object-cover rounded border border-gray-300" />
+                    <label class="bg-white border border-gray-300 hover:border-indigo-400 text-gray-700 font-bold text-sm px-4 py-2 rounded-lg cursor-pointer transition">
+                      Scegli foto
+                      <input data-opt="fotoFile" type="file" accept="image/jpeg,image/png,image/webp" class="hidden" />
+                    </label>
+                    <button type="button" data-action="rimuovi-foto" class="text-sm font-bold text-gray-500 hover:text-red-600 underline">Rimuovi</button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="space-y-2">
+              <legend id="cv-sez-profilo" class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-2 w-full">Profilo Professionale</legend>
+              <button type="button" data-guida-toggle="guida-cv-profilo" aria-expanded="false" aria-controls="guida-cv-profilo" aria-label="Guida al campo Profilo professionale" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come scrivere il profilo</button>
+              <div id="guida-cv-profilo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Struttura:</strong> ruolo e anni di esperienza, due o tre competenze principali, un risultato misurabile. Tre o quattro righe, senza «io» e senza aggettivi generici come «dinamico» o «motivato».</p>
+                <p><strong class="text-indigo-900">Parole chiave:</strong> riprendi i termini esatti dell'annuncio, anche nella forma: se l'offerta chiede «gestione magazzino», scrivi «gestione magazzino» e non «logistica interna».</p>
+              </div>
+              <textarea data-cv="profiloProfessionale" rows="4" placeholder="Ingegnere del software con 6 anni di esperienza in architetture distribuite..." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+              <p class="text-xs text-gray-500">3-4 righe con le parole chiave dell'annuncio a cui ti candidi: è la prima sezione che l'IA usa per il matching.</p>
+            </fieldset>
+
+            <fieldset class="space-y-3">
+              <legend id="cv-sez-esperienza" class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-2 w-full">Esperienza Lavorativa</legend>
+              <button type="button" data-guida-toggle="guida-cv-esperienza" aria-expanded="false" aria-controls="guida-cv-esperienza" aria-label="Guida al campo Esperienza lavorativa" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Come descrivere le esperienze</button>
+              <div id="guida-cv-esperienza" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Ordine:</strong> dalla più recente. Per il lavoro attuale spunta la casella «Lavoro attuale»: il periodo diventa «Mese Anno - Presente».</p>
+                <p><strong class="text-indigo-900">Descrizione:</strong> una riga introduttiva e poi punti che iniziano con «-», uno per risultato: il generatore li trasforma in elenco puntato. Usa numeri concreti: «riduzione dei tempi del 40%», «team di 5 persone».</p>
+                <p><strong class="text-indigo-900">Buchi nel percorso:</strong> periodi di formazione, volontariato o cura familiare possono essere indicati come voci a sé: meglio di un intervallo vuoto che l'ATS conteggia come inattività.</p>
+              </div>
+              <div id="cv-lista-esperienze" data-lista="esperienzaLavorativa" class="space-y-4"></div>
+              <button type="button" data-action="aggiungi-esperienza" class="w-full border-2 border-dashed border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-bold text-sm px-4 py-2.5 rounded-lg transition">+ Aggiungi esperienza</button>
+            </fieldset>
+
+            <fieldset class="space-y-3">
+              <legend class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-2 w-full">Istruzione</legend>
+              <div id="cv-lista-istruzione" data-lista="istruzione" class="space-y-4"></div>
+              <button type="button" data-action="aggiungi-istruzione" class="w-full border-2 border-dashed border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-bold text-sm px-4 py-2.5 rounded-lg transition">+ Aggiungi titolo di studio</button>
+            </fieldset>
+
+            <fieldset class="space-y-4">
+              <legend id="cv-sez-competenze" class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-2 w-full">Competenze</legend>
+              <button type="button" data-guida-toggle="guida-cv-competenze" aria-expanded="false" aria-controls="guida-cv-competenze" aria-label="Guida al campo Competenze e autorizzazione" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Competenze, lingue e privacy</button>
+              <div id="guida-cv-competenze" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Competenze tecniche:</strong> parole separate da virgole, senza livelli grafici: «Excel (tabelle pivot)», «SAP MM», «AutoCAD».</p>
+                <p><strong class="text-indigo-900">Lingue:</strong> livello del Quadro comune europeo (A1-C2) e, se c'è, la certificazione: «Inglese (B2 - Cambridge First)».</p>
+                <p><strong class="text-indigo-900">Autorizzazione al trattamento:</strong> per i curricula inviati spontaneamente il consenso non è richiesto dalla legge (art. 111-bis del Codice privacy), ma molte aziende italiane se lo aspettano ancora: lasciala attiva salvo indicazioni diverse nell'annuncio.</p>
+              </div>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Competenze tecniche</span>
+                <textarea data-cv="competenze.hardSkills" rows="3" placeholder="Architettura di sistema, Node.js, PostgreSQL, Docker" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-gray-700">Lingue</span>
+                <textarea data-cv="competenze.lingue" rows="2" placeholder="Italiano (Madrelingua), Inglese (C1 - IELTS)" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input data-opt="autorizzazioneGdpr" type="checkbox" checked class="w-5 h-5 mt-0.5 accent-indigo-600" />
+                <span class="text-sm text-gray-700">Aggiungi in fondo l'autorizzazione al trattamento dei dati personali (Reg. UE 2016/679), richiesta da molte aziende italiane.</span>
+              </label>
+            </fieldset>
+
+            <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-100">
+              <button type="button" data-action="carica-esempio" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 underline">Carica esempio</button>
+              <button type="button" data-action="cancella-dati" class="text-sm font-bold text-gray-500 hover:text-red-600 underline">Cancella tutti i dati</button>
+            </div>
+          </div>
+
+          <!-- ANTEPRIMA -->
+          <div class="xl:sticky xl:top-24 self-start space-y-4">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-bold text-gray-900">Anteprima</h2>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2 py-0.5">Salvataggio automatico</span>
+            </div>
+            <div id="cv-preview" class="cv-sheet" aria-live="polite"></div>
+            <button type="button" id="cv-download" class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-bold px-4 py-3.5 rounded-xl shadow-sm transition">Scarica PDF ATS</button>
+            <p id="cv-status" role="status" class="text-sm font-medium text-center min-h-[1.25rem]"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TEMPLATE VOCI (nel markup HTML per essere inclusi nel build Tailwind) -->
+      <template id="tpl-esperienza">
+        <div class="cv-item border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Esperienza</span>
+            <div class="flex items-center gap-1">
+              <button type="button" data-action="su" title="Sposta su" aria-label="Sposta su" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-indigo-400 text-gray-600">↑</button>
+              <button type="button" data-action="giu" title="Sposta giù" aria-label="Sposta giù" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-indigo-400 text-gray-600">↓</button>
+              <button type="button" data-action="rimuovi" title="Rimuovi" aria-label="Rimuovi" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-red-400 hover:text-red-600 text-gray-600">✕</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <label class="block"><span class="text-xs font-bold text-gray-700">Ruolo</span><input data-field="ruolo" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+            <label class="block"><span class="text-xs font-bold text-gray-700">Datore di lavoro</span><input data-field="datoreDiLavoro" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+          </div>
+          <label class="block"><span class="text-xs font-bold text-gray-700">Luogo</span><input data-field="luogo" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <span class="text-xs font-bold text-gray-700">Inizio</span>
+              <div class="flex gap-2 mt-1">
+                <select data-field="inizioMese" aria-label="Mese di inizio" class="w-full border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></select>
+                <input data-field="inizioAnno" type="text" inputmode="numeric" maxlength="4" placeholder="Anno" aria-label="Anno di inizio" class="w-20 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-gray-700">Fine</span>
+              <div class="flex gap-2 mt-1">
+                <select data-field="fineMese" aria-label="Mese di fine" class="w-full border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-gray-100"></select>
+                <input data-field="fineAnno" type="text" inputmode="numeric" maxlength="4" placeholder="Anno" aria-label="Anno di fine" class="w-20 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-gray-100" />
+              </div>
+              <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-700 cursor-pointer"><input data-field="inCorso" type="checkbox" class="accent-indigo-600" /> Lavoro attuale</label>
+            </div>
+          </div>
+          <label class="block"><span class="text-xs font-bold text-gray-700">Descrizione (una riga che inizia con "-" diventa un punto elenco)</span><textarea data-field="descrizioneTestuale" rows="3" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></textarea></label>
+          <label class="block"><span class="text-xs font-bold text-gray-700">Tecnologie e strumenti</span><input data-field="tecnologie" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+        </div>
+      </template>
+
+      <template id="tpl-istruzione">
+        <div class="cv-item border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Titolo di studio</span>
+            <div class="flex items-center gap-1">
+              <button type="button" data-action="su" title="Sposta su" aria-label="Sposta su" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-indigo-400 text-gray-600">↑</button>
+              <button type="button" data-action="giu" title="Sposta giù" aria-label="Sposta giù" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-indigo-400 text-gray-600">↓</button>
+              <button type="button" data-action="rimuovi" title="Rimuovi" aria-label="Rimuovi" class="w-8 h-8 rounded-lg border border-gray-300 bg-white hover:border-red-400 hover:text-red-600 text-gray-600">✕</button>
+            </div>
+          </div>
+          <label class="block"><span class="text-xs font-bold text-gray-700">Titolo conseguito</span><input data-field="titoloConseguito" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+          <label class="block"><span class="text-xs font-bold text-gray-700">Istituto</span><input data-field="istituto" type="text" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" /></label>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <span class="text-xs font-bold text-gray-700">Inizio</span>
+              <div class="flex gap-2 mt-1">
+                <select data-field="inizioMese" aria-label="Mese di inizio" class="w-full border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></select>
+                <input data-field="inizioAnno" type="text" inputmode="numeric" maxlength="4" placeholder="Anno" aria-label="Anno di inizio" class="w-20 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-gray-700">Fine</span>
+              <div class="flex gap-2 mt-1">
+                <select data-field="fineMese" aria-label="Mese di fine" class="w-full border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-gray-100"></select>
+                <input data-field="fineAnno" type="text" inputmode="numeric" maxlength="4" placeholder="Anno" aria-label="Anno di fine" class="w-20 border border-gray-300 rounded-lg px-2 py-2 bg-white focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-gray-100" />
+              </div>
+              <label class="flex items-center gap-2 mt-2 text-xs font-bold text-gray-700 cursor-pointer"><input data-field="inCorso" type="checkbox" class="accent-indigo-600" /> In corso</label>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- SIDEBAR DESTRA (Silo Identità & Burocrazia) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/identita-burocrazia/fototessera/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📸</span> Fototessera ICAO</a></li>
+            <li><a href="/identita-burocrazia/codice-fiscale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🪪</span> Codice Fiscale</a></li>
+            <li><a href="/identita-burocrazia/autocertificazione/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Autocertificazione</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚖️</span> Calcolo Quote Ereditarie</a></li>
+              <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Password Sicure</a></li>
+              <li><a href="/identita-burocrazia/validatore-iban/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Validatore IBAN</a></li>
+            </ul>
+          </details>
+          <a href="/identita-burocrazia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Identità &amp; Burocrazia</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- BLOCCO SEO E-E-A-T INFERIORE -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di impaginazione ATS e riferimenti normativi verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">I dati del curriculum restano nel browser: sono salvati solo nel localStorage di questo dispositivo e il PDF è composto da un Web Worker locale con la libreria jsPDF scaricata da cdnjs. Il pulsante «Cancella tutti i dati» elimina il salvataggio (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e tecniche</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 2024/1689 (AI Act), allegato III punto 4 sui sistemi di selezione del personale; Regolamento UE 2016/679 e D.Lgs. 196/2003 art. 111-bis sui curricula inviati spontaneamente; D.Lgs. 198/2006 (Codice pari opportunità) e D.Lgs. 216/2003 sul divieto di discriminazioni nell'accesso al lavoro; specifica PDF ISO 32000 per i 14 font standard.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Guida Tecnica: Come ATS e Intelligenza Artificiale Leggono il Curriculum Vitae</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La maggior parte delle candidature inviate a medie e grandi aziende non viene letta per prima da un recruiter, ma da un <strong>Applicant Tracking System (ATS)</strong>: un software che estrae il testo dal PDF, lo classifica in campi strutturati (ruoli, date, titoli di studio, competenze) e produce un punteggio di compatibilità con l'annuncio. Un curriculum graficamente curato ma tecnicamente illeggibile può essere scartato prima di arrivare a un essere umano.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔍</span> Come funziona il parsing di un PDF</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Un parser ATS non "vede" l'impaginazione: legge la sequenza di caratteri memorizzata nel file (il <em>text stream</em>) seguendo le coordinate da sinistra a destra e dall'alto verso il basso. In un layout a due colonne la prima riga della colonna sinistra viene concatenata alla prima riga della colonna destra, producendo frasi prive di senso come "Inglese C1 Software Architect 2023".</p>
+            <p>Per questo il generatore impagina il contenuto in un <strong>flusso monocolonna</strong>, senza tabelle, caselle di testo o elementi canvas. Le competenze sono espresse in parole, non con barre grafiche o stelline che il parser non può interpretare.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🔤</span> Font, legature, intestazioni e date</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il PDF usa <strong>Helvetica</strong>, uno dei 14 font standard del formato PDF, con codifica WinAnsi che copre le lettere accentate dell'Europa occidentale. Le lettere di altri alfabeti latini, come «Ș» o «Ł», vengono convertite nella lettera base («S», «L») per restare leggibili dal parser. Il motore di esportazione scrive ogni carattere singolarmente, quindi non esistono <strong>legature tipografiche</strong>: combinazioni come "fi" o "ffi" restano lettere separate, mentre molti font decorativi le fondono in un unico glifo che i parser meno recenti non decodificano.</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Intestazioni esatte:</strong> Profilo Professionale, Esperienza Lavorativa, Istruzione, Competenze.</li>
+              <li><strong>Contatti nel corpo del documento:</strong> header e footer vengono spesso esclusi per non catturare i numeri di pagina.</li>
+              <li><strong>Date nel formato Mese Anno - Mese Anno</strong> (es. "Gennaio 2021 - Marzo 2026"), da cui l'ATS calcola la durata di ogni esperienza.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Foto nel CV, bias algoritmici e AI Act</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>In Italia la foto non è obbligatoria. Il Regolamento UE 2024/1689 (<strong>AI Act</strong>) classifica come sistemi ad alto rischio le intelligenze artificiali impiegate per selezionare e valutare i candidati, imponendo alle aziende particolare attenzione alla discriminazione. Per questa ragione molte realtà tecnologiche e multinazionali adottano politiche di selezione "blind" e preferiscono curricula senza immagine.</p>
+            <p>Se decidi comunque di inserirla, il generatore la ridimensiona nel formato fototessera 35×45 e la colloca <strong>centrata sopra al testo</strong>, su una fascia dedicata: nessuna riga di testo le scorre accanto, così l'ordine di lettura resta intatto.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design e GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Un curriculum contiene nome, recapiti, città di residenza, percorso professionale e, talvolta, una fotografia: dati personali tutelati dal <strong>Regolamento UE 2016/679 (GDPR)</strong>. Molti "CV builder" online richiedono la registrazione e conservano questi dati sui propri server.</p>
+            <p>Questo strumento è <strong>Zero-Backend</strong>: l'anteprima e il PDF vengono generati da JavaScript all'interno del tuo browser, con la composizione del documento affidata a un Web Worker che non blocca la pagina. I dati sono salvati esclusivamente nel <code>localStorage</code> del tuo dispositivo e puoi eliminarli in ogni momento con "Cancella tutti i dati".</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati compilati nel generatore; i testi riportati sono quelli dell'anteprima, identici a quelli del PDF.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: il CV di esempio per una candidatura da sviluppatrice</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Pulsante «Carica esempio»: Giulia Bianchi, Sviluppatrice Backend Senior</li>
+            <li>Periodi generati: «Febbraio 2023 - Presente», «Novembre 2021 - Gennaio 2023»</li>
+            <li>Sezioni: Profilo Professionale, Esperienza Lavorativa, Istruzione, Competenze</li>
+            </ul>
+            <p>Le date in forma «Mese Anno» permettono all'ATS di calcolare la durata di ogni esperienza: in totale circa 4 anni e 11 mesi a settembre 2026. Scrivendo solo gli anni, «2021 - 2023», la durata stimata oscillerebbe fra pochi mesi e tre anni.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: candidato con lettere dell'alfabeto rumeno</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Nome inserito: Ștefan Popescu</li>
+            <li>Nome nel CV: Stefan Popescu</li>
+            </ul>
+            <p>Il font standard del PDF non contiene la «Ș»: il generatore usa la lettera base, così il nome resta leggibile e ricercabile. Senza questa conversione la lettera sparirebbe e l'ATS registrerebbe «tefan».</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: magazziniere che si candida senza foto</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Profilo: «Magazziniere con 8 anni di esperienza in gestione magazzino, patentino carrelli elevatori e uso di terminali RF»</li>
+            <li>Competenze: Gestione magazzino, SAP EWM, Carrello elevatore (patentino), Inventario</li>
+            <li>Foto: disattivata</li>
+            </ul>
+            <p>Le parole «gestione magazzino» e «carrello elevatore» compaiono sia nel profilo sia nelle competenze, come nell'annuncio. Nel settore della logistica la foto non aggiunge punteggio al matching e può esporre a valutazioni non pertinenti.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: rientro al lavoro dopo due anni di assistenza a un familiare</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Ultima esperienza: Impiegata amministrativa, Marzo 2016 - Settembre 2023</li>
+            <li>Voce aggiuntiva: Corso di contabilità e paghe (IFTS), Ottobre 2024 - Giugno 2025</li>
+            <li>Profilo: «Impiegata amministrativa con 7 anni di esperienza in contabilità fornitori e fatturazione elettronica, aggiornata su gestione paghe»</li>
+            </ul>
+            <p>Senza la voce di formazione l'ATS registrerebbe un intervallo di due anni senza attività. Inserita fra le esperienze o nell'istruzione con mese e anno, la formazione riduce il periodo scoperto a un anno e aggiunge le parole chiave «paghe» e «contabilità» richieste da molti annunci amministrativi. Nel colloquio il periodo di assistenza si può spiegare apertamente: non va nascosto con date inesatte.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Cosa estrae l'ATS da ogni sezione</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Sezione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Dato estratto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Errore che lo rende illeggibile</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Nome e titolo</td><td class="px-3 py-2 border-t border-gray-200">Anagrafica del candidato e ruolo attuale</td><td class="px-3 py-2 border-t border-gray-200">Un titolo generico come «Curriculum vitae» al posto del nome</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Contatti</td><td class="px-3 py-2 border-t border-gray-200">Email, telefono e città per la ricerca per zona</td><td class="px-3 py-2 border-t border-gray-200">Contatti inseriti solo in intestazione o in un'immagine</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Profilo Professionale</td><td class="px-3 py-2 border-t border-gray-200">Parole chiave per il confronto con l'annuncio</td><td class="px-3 py-2 border-t border-gray-200">Frasi motivazionali senza competenze o ruoli</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Esperienza Lavorativa</td><td class="px-3 py-2 border-t border-gray-200">Ruolo, azienda, date e durata complessiva</td><td class="px-3 py-2 border-t border-gray-200">Date solo con l'anno o in formati misti come «03/21» e «2022»</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Istruzione</td><td class="px-3 py-2 border-t border-gray-200">Titolo, istituto e anno di conseguimento</td><td class="px-3 py-2 border-t border-gray-200">Voti e tesi al posto del nome del titolo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Competenze</td><td class="px-3 py-2 border-t border-gray-200">Elenco delle competenze usate come filtri</td><td class="px-3 py-2 border-t border-gray-200">Livelli espressi con stelle, barre o percentuali</td></tr></tbody></table></div>
+            <p>Prima di inviare il PDF conviene fare una prova: aprilo, seleziona tutto il testo con Ctrl+A e incollalo in un editor. Se l'ordine delle righe è quello del documento e non mancano lettere, un parser lo leggerà nello stesso modo.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il CV generato supera tutti i sistemi ATS?</h3>
+            <p>Nessun formato garantisce il passaggio: il punteggio dipende soprattutto dalla corrispondenza fra esperienze, competenze e annuncio. Il generatore elimina gli ostacoli tecnici più comuni, come colonne, tabelle e testo in immagini.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Meglio il PDF o il Word?</h3>
+            <p>Il PDF testuale prodotto qui è letto correttamente dagli ATS più diffusi. Se il portale chiede espressamente un file .doc o .docx, rispetta la richiesta.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Quante pagine deve avere il curriculum?</h3>
+            <p>Una pagina fino a circa 5 anni di esperienza, due per profili senior. Il generatore va a pagina nuova automaticamente quando il contenuto supera il foglio A4.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">I dati restano salvati se chiudo la pagina?</h3>
+            <p>Sì, nel localStorage di questo browser, per ritrovare il CV alla visita successiva. Su un computer condiviso usa «Cancella tutti i dati» al termine.</p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Ad Mobile Bottom -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGICO -->
+  <script defer src="/js/storage-helper.js"></script>
+  <script defer src="/js/generatore-cv-ats.js"></script>
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

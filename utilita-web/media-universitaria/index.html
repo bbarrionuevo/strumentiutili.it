@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Media Universitaria e Voto di Laurea (App Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola la tua media ponderata e aritmetica, e proietta il tuo Voto di Laurea di partenza. I tuoi esami vengono salvati automaticamente nel tuo browser." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/media-universitaria/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Libretto Universitario e Calcolo Media Ponderata" />
+  <meta property="og:description" content="Gestisci i tuoi esami universitari, calcola la media ponderata e il voto di laurea. Salvataggio automatico 100% offline." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/media-universitaria/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- PROTOCOLLO ADS -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Libretto Universitario e Calcolo Media",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "EducationalApplication",
+        "url": "https://strumentiutili.it/utilita-web/media-universitaria/",
+        "description": "Libretto universitario nel browser per calcolare media ponderata sui CFU, media aritmetica e base del voto di laurea in centodecimi, con valore della lode configurabile.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "@id": "https://strumentiutili.it/utilita-web/media-universitaria/#app",
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Media ponderata sui CFU e media aritmetica",
+          "Base del voto di laurea in centodecimi",
+          "Lode configurabile a 30, 31 o 33",
+          "Libretto salvato solo sul dispositivo",
+          "Nessun dato inviato a server"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/utilita-web/media-universitaria/#howto",
+        "name": "Come calcolare la media ponderata universitaria",
+        "description": "Procedura per inserire gli esami e ottenere media ponderata e base del voto di laurea.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Libretto online dell'ateneo"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Imposta il valore della lode",
+            "text": "Scegli 30, 31 o 33 secondo il regolamento del tuo corso.",
+            "url": "https://strumentiutili.it/utilita-web/media-universitaria/#config-lode"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inserisci gli esami",
+            "text": "Per ogni esame con voto indica voto e CFU, escludendo le idoneità.",
+            "url": "https://strumentiutili.it/utilita-web/media-universitaria/#form-esame"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Leggi medie e base di laurea",
+            "text": "Controlla media ponderata, media aritmetica, CFU totali e base in centodecimi.",
+            "url": "https://strumentiutili.it/utilita-web/media-universitaria/#res-media-pond"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/media-universitaria/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "La media si calcola sugli esami o anche sulle idoneità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo sugli esami con voto in trentesimi. Le idoneità danno CFU per la laurea ma non entrano né nel numeratore né nel denominatore della media ponderata."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come si passa dalla media al voto di laurea?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La media ponderata si moltiplica per 11 e si divide per 3: con 27 di media la base è 99. La commissione aggiunge poi i punti per la tesi e gli eventuali bonus previsti dal regolamento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso autocertificare la media calcolata qui?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, ma deve coincidere con quella ufficiale dell'ateneo: verifica valore della lode ed esami esclusi. Una media sbagliata in un'autocertificazione è una dichiarazione non veritiera, anche se l'errore è involontario il beneficio decade."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove vengono salvati gli esami inseriti?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo nel browser di questo dispositivo. Aprendo la pagina su un altro telefono o computer il libretto è vuoto; su un computer condiviso conviene svuotarlo al termine."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+  <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+  <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+  <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+  <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+  <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+  <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+  <a href="/utilita-web/" class="text-gray-600 font-semibold">🛠️ Utilità &amp; Web</a>
+</nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/utilita-web/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Utilità &amp; Web</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Libretto Universitario e Calcolo Media</h1>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          Aggiungi i tuoi esami. Il sistema calcolerà istantaneamente la tua Media Ponderata e il tuo Voto di Laurea di partenza. 
+        </p>
+        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit">
+          <span>💾 Salvataggio Automatico:</span> Il libretto è salvato nel tuo browser. Se chiudi la pagina, ritroverai tutto qui.
+        </div>
+        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg w-fit mt-2">
+          <span>🛠️ Categoria:</span> Utilità &amp; Web
+        </div>
+      </section>
+
+      <!-- SEZIONE RISULTATI (DASHBOARD) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="bg-indigo-600 text-white p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold opacity-80 mb-1">Media Ponderata</span>
+          <span id="res-media-pond" class="text-4xl font-extrabold tracking-tight">0.00</span>
+        </div>
+        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">Voto di Laurea (Base)</span>
+          <div class="flex items-baseline justify-center gap-1">
+            <span id="res-voto-laurea" class="text-4xl font-extrabold text-gray-900 tracking-tight">0</span>
+            <span class="text-sm font-bold text-gray-400">/110</span>
+          </div>
+        </div>
+        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm text-center flex flex-col justify-center">
+          <span class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">CFU Acquisiti</span>
+          <span id="res-cfu-tot" class="text-3xl font-bold text-indigo-600">0</span>
+        </div>
+      </div>
+
+      <!-- INTERFACCIA INSERIMENTO ESAMI -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-6">
+        
+        <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+          <h2 class="text-lg font-bold text-gray-900">Aggiungi nuovo esame</h2>
+          <!-- Configurazione 30 e Lode -->
+          <div class="flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+            <span>Valore 30 e Lode:</span>
+            <select data-guida="guida-uni-lode" aria-describedby="guida-uni-lode" id="config-lode" class="bg-white border border-gray-300 rounded px-1 outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer">
+              <option value="30">30</option>
+              <option value="31">31</option>
+              <option value="33">33</option>
+            </select>
+          </div>
+        </div>
+
+        <form id="form-esame" class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
+          <div class="sm:col-span-5">
+            <label class="block text-xs font-bold text-gray-700 mb-1">Nome Esame (Opzionale)</label>
+            <input type="text" id="input-nome" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. Analisi Matematica 1" />
+          </div>
+          
+          <div class="sm:col-span-2">
+            <div class="flex items-center gap-2 mb-1">
+              <label for="input-voto" class="text-xs font-bold text-gray-700">Voto *</label>
+              <button type="button" data-guida-toggle="guida-uni-voto" aria-expanded="false" aria-controls="guida-uni-voto" aria-label="Guida al campo Voto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <select data-guida="guida-uni-voto" aria-describedby="guida-uni-voto" id="input-voto" required class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer">
+              <option value="" disabled selected>-</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="30L">30 e Lode</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <div class="flex items-center gap-2 mb-1">
+              <label for="input-cfu" class="text-xs font-bold text-gray-700">CFU *</label>
+              <button type="button" data-guida-toggle="guida-uni-cfu" aria-expanded="false" aria-controls="guida-uni-cfu" aria-label="Guida al campo CFU" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-uni-cfu" aria-describedby="guida-uni-cfu" type="number" id="input-cfu" min="1" max="60" required class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Es. 6" />
+          </div>
+
+          <div class="sm:col-span-3">
+            <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-lg shadow-sm transition">
+              + Aggiungi
+            </button>
+          </div>
+        </form>
+        <button type="button" data-guida-toggle="guida-uni-lode" aria-expanded="false" aria-controls="guida-uni-lode" aria-label="Guida al campo Valore della lode" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quanto vale la lode</button>
+        <div id="guida-uni-cfu" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Dove trovarli:</strong> nel libretto online dell'ateneo o nel piano di studi: ogni CFU corrisponde a 25 ore di lavoro dello studente.</p>
+          <p><strong class="text-indigo-900">Peso sulla media:</strong> un esame da 12 CFU pesa quanto quattro esami da 3 CFU: per alzare la media conviene puntare sugli esami con più crediti.</p>
+          <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+        </div>
+        <div id="guida-uni-voto" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Esami con voto:</strong> inserisci solo gli esami valutati in trentesimi. Idoneità, tirocini e attività con giudizio «approvato» non entrano nella media: non vanno aggiunti.</p>
+          <p><strong class="text-indigo-900">Esami integrati:</strong> se un esame è diviso in moduli con un solo voto finale, inseriscilo una volta con la somma dei CFU dei moduli.</p>
+        </div>
+        <div id="guida-uni-lode" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Dove verificarlo:</strong> nel regolamento didattico del corso di studio o nel regolamento per la prova finale, alla voce sul calcolo della media. Molti atenei la contano 30, alcuni 31, 32 o 33.</p>
+          <p><strong class="text-indigo-900">Effetto:</strong> cambiare il valore ricalcola subito tutte le medie, senza modificare gli esami inseriti.</p>
+          <p data-guida-live hidden class="font-bold text-indigo-900"></p>
+        </div>
+
+        <!-- LISTA ESAMI (TABELLA) -->
+        <div class="mt-8">
+          <div class="flex justify-between items-end mb-3">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">Il Tuo Libretto</h3>
+            <span class="text-xs text-gray-500 font-medium">Media Aritmetica: <strong id="res-media-arit" class="text-gray-800">0.00</strong></span>
+          </div>
+          
+          <div class="overflow-x-auto border border-gray-200 rounded-lg">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+              <thead class="bg-gray-50 text-gray-600 border-b border-gray-200 uppercase text-xs">
+                <tr>
+                  <th class="px-4 py-3 font-bold">Esame</th>
+                  <th class="px-4 py-3 font-bold w-20 text-center">Voto</th>
+                  <th class="px-4 py-3 font-bold w-20 text-center">CFU</th>
+                  <th class="px-4 py-3 w-16"></th>
+                </tr>
+              </thead>
+              <tbody id="lista-esami" class="divide-y divide-gray-100 text-gray-800">
+                <!-- Generato tramite Javascript -->
+              </tbody>
+            </table>
+            
+            <div id="empty-state" class="p-8 text-center text-gray-500 text-sm">
+              Non hai ancora inserito nessun esame.
+            </div>
+          </div>
+          
+          <div class="mt-4 flex justify-end">
+            <button id="btn-clear-all" class="text-xs text-red-600 font-bold hover:text-red-800 underline transition hidden">
+              Svuota tutto il libretto
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/utilita-web/calcolo-percentuale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📉</span> Calcolo Percentuali</a></li>
+            <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Contaparole</a></li>
+            <li><a href="/utilita-web/calcolo-bmr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔬</span> Calcolo BMR</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/utilita-web/budget-planner/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💰</span> Budget Planner 50/30/20</a></li>
+              <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🖼️</span> Converti Immagini</a></li>
+              <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⬛</span> Generatore QR</a></li>
+              <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Interessi Composti</a></li>
+              <li><a href="/utilita-web/acortador-url/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔗</span> URL Shortener</a></li>
+            </ul>
+          </details>
+          <a href="/utilita-web/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Utilità &amp; Web</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di calcolo della media e riferimenti normativi verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Nomi degli esami, voti e crediti restano nel browser: il libretto è salvato solo nel localStorage di questo dispositivo e il pulsante «Svuota tutto il libretto» lo cancella. Nessun dato viene inviato a server, nel rispetto dei principi degli artt. 5 e 25 del GDPR.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
+            <p class="text-gray-600 leading-relaxed">D.M. 22 ottobre 2004 n. 270 (crediti formativi universitari), D.P.R. 445/2000 artt. 46, 71, 74, 75 e 76 come modificati dal D.L. 76/2020, L. 183/2011 art. 15 (decertificazione), art. 483 del codice penale, regolamenti didattici di ateneo per il valore della lode e i punti di laurea.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Architettura del Libretto Universitario, Calcolo Ponderale e Autocertificazione (D.P.R. 445/2000)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          La gestione del libretto accademico, il calcolo della media ponderata e la proiezione centodecimale del Voto di Laurea trascendono il mero monitoraggio della carriera studentesca, assumendo un valore giuridico e amministrativo vitale nell'interfacciamento con la Pubblica Amministrazione (es. calcoli ISEE, borse di studio Diritto allo Studio Universitario) e nel rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR).
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: D.M. 270/2004, Zero-Backend e D.P.R. 445/2000</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'impalcatura didattica delle università italiane, uniformata ai dettami dello Spazio Europeo dell'Istruzione Superiore (Processo di Bologna), è stata storicamente codificata dal D.M. 509/1999 e successivamente cristallizzata dal Decreto Ministeriale 22 ottobre 2004, n. 270. Tale architettura introduce la metrica del Credito Formativo Universitario (CFU), equivalente allo standard ECTS (European Credit Transfer and Accumulation System). Il sistema normativo fissa il volume di apprendimento convenzionale a 25 ore per singolo CFU, imponendo che la valutazione del profitto avvenga obbligatoriamente su una scala in trentesimi, con sufficienza legale incardinata a 18/30. La prova finale, al contrario, rispetta il vetusto ma inalterato Regio Decreto 4 giugno 1938, n. 1269, perpetuando il computo massimo su base 110.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La gestione digitale di siffatti dati (voti, esami, medie) afferisce direttamente alla sfera della privacy dello studente. L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Sfruttando la memoria locale del browser (Web Storage API), la nostra architettura Zero-Backend definisce un ecosistema in cui l'intero ciclo di vita del dato avviene esclusivamente all'interno della sandbox del browser dell'utente. Da un punto di vista normativo, questo approccio rivoluziona radicalmente la gestione della conformità al Regolamento Generale sulla Protezione dei Dati (GDPR). L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure tecniche e organizzative a tutela della privacy siano integrate direttamente nell'architettura del sistema fin dalla fase di progettazione concettuale. L'infrastruttura client-side incarna questo principio in modo matematico: applicando le impostazioni più restrittive in maniera predefinita e impedendo fisicamente l'esfiltrazione dei dati (Zero-Upload), il rischio di data breach in transito o a riposo su infrastrutture esterne viene completamente azzerato.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Parallelamente, il calcolo algoritmico della media è sovente impiegato per la successiva stipula di Dichiarazioni Sostitutive. Il corpus legislativo su cui si incardina l'intero impianto della de-burocratizzazione italiana e della semplificazione del procedimento amministrativo è rappresentato dal Testo Unico in materia di Documentazione Amministrativa (D.P.R. 28 dicembre 2000, n. 445). Gli articoli dominanti, l'Art. 46 (Dichiarazioni sostitutive di certificazione) e l'Art. 47 (Dichiarazioni sostitutive dell'atto di notorietà), traslano l'onere probatorio dalle segreterie al cittadino. Lo studente è autorizzato ad auto-attestare lo status del proprio libretto universitario e la media conseguita, avvalendosi di applicativi di calcolo rigorosi per non incorrere in vizi di forma.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Varianza Ponderale e Traslazione Base 110</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione matriciale del rendimento studentesco rifugge dalla basilare Media Aritmetica per ancorarsi indissolubilmente alla Media Ponderata, una funzione in cui ogni esito è moltiplicato per il proprio peso specifico (il CFU). L'equazione algoritmica fondamentale che sorregge l'applicativo è definita come segue:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              Media_{Ponderata} = [ Σ_{i=1}^{n} (Voto_i × CFU_i) ] / [ Σ_{i=1}^{n} CFU_i ]
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Per effettuare la traslazione di dominio matematico e proiettare la media (nativa su base 30) verso il punteggio di partenza della seduta di laurea (nativa su base 110), si applica il coefficiente di conversione universale <strong>11/3</strong> (che deriva dalla semplificazione della proporzione <em>Media : 30 = X : 110</em>).
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              Voto_{Base\_Laurea} = Media_{Ponderata} × \frac{11}{3}
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Un aspetto nevralgico della formulazione riguarda le "Idoneità" e i tirocini formativi. Tali attività erogano regolarmente CFU ma sono strutturalmente sprovviste di una valutazione numerica in trentesimi (espresse unicamente con giudizi quali Approvato/Idoneo). Algoritmicamente, i software di gestione carriera (come Esse3) escludono categoricamente i crediti derivanti da idoneità dal denominatore <em>Σ CFU_i</em> della media ponderata, evitando il fatale depotenziamento matematico dell'indicatore.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📈</span> Casuistica Reale: Requisiti di Merito e Variazioni Ponderali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Si ipotizzi la profilazione accademica di uno studente in ingegneria che partecipa a un bando di ateneo per un premio di merito o una collaborazione studentesca che richiede una media ponderata di almeno 25/30. Le borse regionali per il diritto allo studio usano invece di norma requisiti di merito basati sui CFU conseguiti, oltre alle soglie ISEE. Lo studente possiede il seguente libretto:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
+              <li>Analisi Matematica I: Voto 21, CFU 12</li>
+              <li>Fisica Generale: Voto 24, CFU 9</li>
+              <li>Informatica: Voto 30 e Lode (Pesato a 30 dal regolamento d'ateneo), CFU 6</li>
+              <li>Inglese B2: Idoneità, CFU 3</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Procedendo con l'algoritmo di conversione, lo step iniziale esclude brutalmente l'Idoneità di Inglese (3 CFU) dal divisore. Il montante dei CFU assoggettabili diviene pertanto 27 (12+9+6). Si computano i prodotti parziali: (21 × 12 = 252), (24 × 9 = 216), (30 × 6 = 180). Il numeratore totale si attesta a 648. La divisione 648 / 27 genera una media ponderata di <strong>24.00 esatto</strong>. Qualora lo studente avesse inavvertitamente calcolato la media aritmetica (21+24+30)/3 = 25.00, avrebbe dichiarato di possedere un requisito che non ha: una dichiarazione non veritiera nell'autocertificazione, punita dall'art. 483 del codice penale, con decadenza dal beneficio. Il Voto di Laurea di partenza generato da questa media sarà 24.00 × 11/3 = <strong>88/110</strong>.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono calcolati inserendo gli esami nel libretto della pagina.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: l'effetto della lode a 33 sulla media</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Esami: Analisi 24 (12 CFU), Diritto privato 28 (9), Economia aziendale 30 (9), Statistica 22 (6), Inglese 27 (6), Informatica 30 e lode (3)</li>
+            <li>Lode a 30: media ponderata 26,53, base di laurea 97,29</li>
+            <li>Lode a 33: media ponderata 26,73, base di laurea 98,02</li>
+            <li>Media aritmetica con lode a 33: 27,33</li>
+            </ul>
+            <p>La lode vale 3 punti in più ma pesa solo per 3 CFU su 45: la media ponderata sale di 0,20. Nella media aritmetica, che non usa i crediti, la stessa lode sposta il risultato di 0,50 punti, ed è uno dei motivi per cui non va usata per i requisiti dei bandi.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: requisito di media 25/30 per un premio di merito</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Esami: 21 (12 CFU), 24 (9 CFU), 30 (6 CFU); idoneità di inglese esclusa</li>
+            <li>Media ponderata: 24,00, CFU in media: 27</li>
+            <li>Media aritmetica: 25,00</li>
+            <li>Base di laurea: 88,00</li>
+            </ul>
+            <p>Il requisito di 25/30 riferito alla media ponderata non è raggiunto, anche se la media aritmetica lo farebbe sembrare soddisfatto. Un 27 nel prossimo esame da 9 CFU porterebbe la media ponderata a 24,75: servirebbe un 30 per arrivare a 25,50.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: scegliere se rifiutare un 24 in un esame da 12 CFU</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Libretto di partenza senza l'esame: 33 CFU con media 27,55</li>
+            <li>Accettando 24 su 12 CFU: media 26,60</li>
+            <li>Riprovando e ottenendo 28: media 27,67</li>
+            </ul>
+            <p>La differenza fra le due scelte vale oltre un punto di media e circa 4 punti sulla base di laurea in centodecimi. Conviene rifiutare solo se il prossimo appello non ritarda la laurea: un anno fuori corso può far perdere punti bonus previsti dal regolamento.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ ed Errori: Anomalie di Ponderazione e Decadenza ex Art. 75</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Paradosso della "Decertificazione":</strong> Dalla Legge di Stabilità 2012, tutte le pubbliche amministrazioni (Università, Comuni, INPS) hanno il divieto assoluto e imperativo di richiedere o accettare certificati cartacei tra loro, demandando tutto all'autocertificazione. Un funzionario pubblico che respinga una corretta Dichiarazione Sostitutiva (D.S.C.) redatta dallo studente esigendo il certificato storico originale della Segreteria, compie una violazione dei doveri d'ufficio e si espone a procedimento disciplinare, dovendo l'Ateneo esperire i controlli d'ufficio.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Decadenza ed Estensioni Punitive:</strong> Sul piano della deterrenza penale, l'equilibrio del sistema di autocertificazione è garantito dalla clausola deterrenziale incastonata negli Articoli 71, 75 e 76 del D.P.R. 445/2000. Il cittadino che compili attestazioni mendaci (es. arrotondando illecitamente al rialzo la propria media o inserendo CFU di esami non verbalizzati) subisce, in combinato disposto, l'obliterazione dei benefici ricevuti e l'esposizione al procedimento penale (Art. 76, richiamo all'Art. 483 c.p.). In passato, la decadenza incideva solo sul beneficio specifico (es. revoca di una singola borsa di studio). Oggi, i controlli operano un irradiamento punitivo trasversale: dopo le modifiche del D.L. 76/2020 all'art. 75, la dichiarazione non veritiera comporta, oltre alla decadenza e alla restituzione dei benefici, il divieto di accesso a contributi, finanziamenti e agevolazioni per due anni dall'adozione dell'atto di decadenza.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Fallacie Software e Trattamento Lodi:</strong> Nel calcolo algoritmico, un errore fatale (Floating Point Precision Error) insorge nei codici JavaScript non ottimizzati. I computer processano i decimali in virgola mobile standard IEEE 754, innescando approssimazioni del tipo (0.1 + 0.2 = 0.30000000000000004). Con voti e CFU interi la somma dei prodotti è sempre esatta; l'unica approssimazione è nella divisione finale, che il calcolatore arrotonda a due decimali in visualizzazione. Un ulteriore criticità di calibrazione riguarda l'inserimento del "30 e Lode". Molti Regolamenti Didattici d'Ateneo (RDA) ponderano la Lode come 31, 32 o 33 (tipico delle facoltà mediche), mentre altri atenei la sterilizzano matematicamente a 30, limitandosi ad assegnare un extra-point forfettario alla seduta finale. Impostare la lode a 31 in un ateneo che la conta come 30 aumenta il numeratore della media: il valore ottenuto non corrisponde a quello ufficiale e non va riportato in un'autocertificazione.
+            </p>
+          </div>
+        </details>
+
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📌</span> Esempio completo e strategie per il voto di laurea</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>La media ponderata pesa ogni voto per i crediti formativi dell'esame. Un esame da 12 CFU incide sulla media quattro volte più di un esame da 3 CFU. Per questo la stessa serie di voti può produrre medie molto diverse.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio di calcolo su sei esami</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Esame</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Voto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">CFU</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Voto x CFU</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Analisi matematica</td><td class="px-3 py-2 border-t border-gray-200">24</td><td class="px-3 py-2 border-t border-gray-200">12</td><td class="px-3 py-2 border-t border-gray-200">288</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Diritto privato</td><td class="px-3 py-2 border-t border-gray-200">28</td><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">252</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Economia aziendale</td><td class="px-3 py-2 border-t border-gray-200">30</td><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">270</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Statistica</td><td class="px-3 py-2 border-t border-gray-200">22</td><td class="px-3 py-2 border-t border-gray-200">6</td><td class="px-3 py-2 border-t border-gray-200">132</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Lingua inglese</td><td class="px-3 py-2 border-t border-gray-200">27</td><td class="px-3 py-2 border-t border-gray-200">6</td><td class="px-3 py-2 border-t border-gray-200">162</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Informatica</td><td class="px-3 py-2 border-t border-gray-200">30</td><td class="px-3 py-2 border-t border-gray-200">3</td><td class="px-3 py-2 border-t border-gray-200">90</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">45</td><td class="px-3 py-2 border-t border-gray-200">1.194</td></tr></tbody></table></div>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Media ponderata = Somma(Voto x CFU) / Somma(CFU) = 1.194 / 45 = 26,53</li>
+              <li>Media aritmetica = (24 + 28 + 30 + 22 + 27 + 30) / 6 = 26,83</li>
+              <li>Base di partenza in 110 = 26,5333 x 110 / 30 = 97,29</li>
+            </ul>
+            <p>In questo caso la media ponderata è più bassa di quella aritmetica, perché il voto più basso fra quelli pesanti, il 24, riguarda l'esame con più crediti. Il 30 in Informatica pesa poco perché vale solo 3 CFU.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Dove intervenire per alzare la media</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Aumento della media = (Nuovo voto - Media attuale) x CFU esame / CFU totali</li>
+              <li>Esame da 12 CFU con 30, media attuale 26,53, 57 CFU totali  =&gt;  +0,73 punti</li>
+              <li>Esame da 3 CFU con 30, stessa situazione, 48 CFU totali      =&gt;  +0,22 punti</li>
+            </ul>
+            <p>Un ottimo voto in un esame con molti crediti sposta la media più di tre ottimi voti in esami piccoli. Chi pianifica gli ultimi esami dovrebbe quindi dedicare più tempo a quelli con più CFU. Rifiutare un voto basso in un esame pesante può convenire, ma solo se l'appello successivo è compatibile con i tempi della laurea.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Il trattamento della lode e i punti aggiuntivi</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Lode</strong>: molti atenei la contano come 30 nella media, altri le attribuiscono un valore superiore, ad esempio 31, 32 o 33. Il regolamento del corso di studio è l'unica fonte valida.</li>
+              <li><strong>Punti per la tesi</strong>: la commissione assegna un punteggio aggiuntivo che varia per ateneo e tipo di tesi, spesso fino a un massimo di 7 - 11 punti.</li>
+              <li><strong>Bonus di carriera</strong>: alcuni corsi aggiungono punti per laurea in corso, esperienze Erasmus o numero di lodi.</li>
+              <li><strong>Esami esclusi</strong>: le idoneità senza voto e alcune attività a scelta non entrano nella media ponderata ma contano nei CFU complessivi.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le regole di calcolo della base di laurea cambiano da un ateneo all'altro e talvolta da un corso all'altro. Il risultato della simulazione è una stima. Il voto ufficiale è quello determinato dalla commissione secondo il regolamento didattico del tuo corso di studio.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La media si calcola sugli esami o anche sulle idoneità?</h3>
+            <p>Solo sugli esami con voto in trentesimi. Le idoneità danno CFU per la laurea ma non entrano né nel numeratore né nel denominatore della media ponderata.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Come si passa dalla media al voto di laurea?</h3>
+            <p>La media ponderata si moltiplica per 11 e si divide per 3: con 27 di media la base è 99. La commissione aggiunge poi i punti per la tesi e gli eventuali bonus previsti dal regolamento.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso autocertificare la media calcolata qui?</h3>
+            <p>Sì, ma deve coincidere con quella ufficiale dell'ateneo: verifica valore della lode ed esami esclusi. Una media sbagliata in un'autocertificazione è una dichiarazione non veritiera, anche se l'errore è involontario il beneficio decade.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Dove vengono salvati gli esami inseriti?</h3>
+            <p>Solo nel browser di questo dispositivo. Aprendo la pagina su un altro telefono o computer il libretto è vuoto; su un computer condiviso conviene svuotarlo al termine.</p>
+            </div>
+          </div>
+        </details>
+
+        </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div> <!-- ESTO CIERRA LA COLUMNA IZQUIERDA DEL SEO -->
+
+  </div> <!-- ESTE ES EL DIV QUE CIERRA LA CUADRÍCULA MAIN Y PROTEGE EL FOOTER -->
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/media-universitaria.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+  <script id="su-guida-live">
+window.SuGuidaLive = window.SuGuidaLive || {};
+    var suLibretto = function () {
+      try { return JSON.parse(localStorage.getItem('su_libretto_uni')) || []; } catch (e) { return []; }
+    };
+    window.SuGuidaLive['guida-uni-cfu'] = function (campo) {
+      var cfu = parseInt(campo.value, 10), voto = document.getElementById('input-voto').value;
+      if (!(cfu > 0) || !voto) return '';
+      var lode = parseInt(document.getElementById('config-lode').value, 10);
+      var num = 0, den = 0;
+      suLibretto().forEach(function (e) { num += (e.voto === '30L' ? lode : parseInt(e.voto, 10)) * parseInt(e.cfu, 10); den += parseInt(e.cfu, 10); });
+      var v = voto === '30L' ? lode : parseInt(voto, 10);
+      var dopo = (num + v * cfu) / (den + cfu);
+      if (!den) return 'Con questo esame la media ponderata sarà ' + dopo.toFixed(2).replace('.', ',') + '.';
+      var prima = num / den;
+      var diff = dopo - prima;
+      return 'La media ponderata passerà da ' + prima.toFixed(2).replace('.', ',') + ' a ' + dopo.toFixed(2).replace('.', ',') + ' (' + (diff >= 0 ? '+' : '') + diff.toFixed(2).replace('.', ',') + ').';
+    };
+    window.SuGuidaLive['guida-uni-lode'] = function (campo) {
+      var lode = parseInt(campo.value, 10);
+      var lodi = suLibretto().filter(function (e) { return e.voto === '30L'; });
+      if (!lodi.length) return 'Nel libretto non ci sono ancora esami con lode.';
+      var cfuLode = lodi.reduce(function (a, e) { return a + parseInt(e.cfu, 10); }, 0);
+      var den = suLibretto().reduce(function (a, e) { return a + parseInt(e.cfu, 10); }, 0);
+      return lodi.length + ' esami con lode per ' + cfuLode + ' CFU: rispetto a 30, la lode a ' + lode + ' aggiunge ' + ((lode - 30) * cfuLode / den).toFixed(2).replace('.', ',') + ' punti alla media ponderata.';
+    };
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

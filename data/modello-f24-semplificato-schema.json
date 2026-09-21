@@ -1,0 +1,605 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi del modello F24 Semplificato creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-semplificato.pdf.",
+ "tabelle": {
+  "sesso": [
+   {
+    "value": "M",
+    "label": "M — maschile"
+   },
+   {
+    "value": "F",
+    "label": "F — femminile"
+   }
+  ],
+  "sezione": [
+   {
+    "value": "ER",
+    "label": "ER — erario (Stato)"
+   },
+   {
+    "value": "RG",
+    "label": "RG — regione"
+   },
+   {
+    "value": "EL",
+    "label": "EL — ente locale (IMU, TARI, imposta di scopo)"
+   }
+  ]
+ },
+ "modelli": {
+  "SEMPLIFICATO": {
+   "codice": "F24 Semplificato",
+   "nome": "Modello F24 Semplificato",
+   "sottotitolo": "Imposte erariali, regionali e degli enti locali",
+   "descrizione": "Il modello di pagamento unificato ridotto a una sola facciata, per versare e compensare imposte erariali, regionali e degli enti locali, IMU e TARI comprese, presso banche, uffici postali e agenti della riscossione.",
+   "pdf": "/assets/pdf/modello-f24-semplificato-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-f24-semplificato.pdf",
+   "testata": {
+    "riferimentoNomeFile": "contribuente.cf"
+   },
+   "riepilogo": {
+    "debiti": {
+     "somma": [
+      "pagamento.riga.debito"
+     ]
+    },
+    "crediti": {
+     "somma": [
+      "pagamento.riga.credito"
+     ]
+    },
+    "saldo": {
+     "differenza": [
+      {
+       "somma": [
+        "pagamento.riga.debito"
+       ]
+      },
+      {
+       "somma": [
+        "pagamento.riga.credito"
+       ]
+      }
+     ]
+    }
+   },
+   "passi": [
+    {
+     "id": "contribuente",
+     "titolo": "Chi versa",
+     "descrizione": "I dati di chi effettua il pagamento. Codice fiscale e dati anagrafici sono sempre obbligatori; codice ufficio e codice atto solo se l'ente impositore li richiede.",
+     "campi": [
+      {
+       "id": "cf",
+       "pdf": "cf_contribuente",
+       "type": "cfOpiva",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half",
+       "help": "I 16 caratteri del codice fiscale, oppure le 11 cifre della partita IVA. È il dato che collega il versamento alla tua posizione: se è sbagliato il pagamento non ti viene attribuito."
+      },
+      {
+       "id": "cognome",
+       "pdf": "cognome_denominazione",
+       "type": "testo",
+       "label": "Cognome, denominazione o ragione sociale",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "width": "half",
+       "help": "Solo per le persone fisiche."
+      },
+      {
+       "id": "nascitaGiorno",
+       "pdf": "data_nascita_giorno",
+       "type": "numero",
+       "label": "Data di nascita · giorno",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaMese",
+       "pdf": "data_nascita_mese",
+       "type": "numero",
+       "label": "Mese",
+       "width": "quarter"
+      },
+      {
+       "id": "nascitaAnno",
+       "pdf": "data_nascita_anno",
+       "type": "anno",
+       "label": "Anno",
+       "width": "quarter"
+      },
+      {
+       "id": "sesso",
+       "pdf": "sesso",
+       "type": "select",
+       "options": "sesso",
+       "label": "Sesso",
+       "width": "quarter"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune (o Stato estero) di nascita",
+       "width": "half"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia",
+       "width": "quarter",
+       "help": "Sigla di due lettere; EE per chi è nato all'estero."
+      },
+      {
+       "id": "codiceUfficio",
+       "pdf": "codice_ufficio",
+       "type": "testo",
+       "label": "Codice ufficio",
+       "width": "quarter",
+       "help": "Da compilare solo se l'ente impositore lo richiede espressamente: di norma resta vuoto."
+      },
+      {
+       "id": "codiceAtto",
+       "pdf": "codice_atto",
+       "type": "testo",
+       "label": "Codice atto",
+       "width": "half",
+       "help": "Da compilare solo se l'ente impositore lo richiede espressamente, per esempio quando paghi in seguito a un avviso: lo trovi sull'atto stesso."
+      },
+      {
+       "id": "cfCoobbligato",
+       "pdf": "cf_coobbligato",
+       "type": "cfOpiva",
+       "label": "Codice fiscale del coobbligato, erede, genitore, tutore o curatore",
+       "width": "half",
+       "help": "Si compila, insieme al codice identificativo, quando il versamento è fatto da una persona diversa dal contribuente. Chi paga per conto di un altro deve anche firmare il modello."
+      },
+      {
+       "id": "codiceIdentificativo",
+       "pdf": "codice_identificativo_coobbligato",
+       "type": "testo",
+       "label": "Codice identificativo",
+       "width": "quarter",
+       "help": "Dalla tabella «codici identificativi» dell'Agenzia delle Entrate: 02 genitore o tutore, 03 curatore fallimentare, 07 erede."
+      }
+     ]
+    },
+    {
+     "id": "pagamento",
+     "titolo": "Motivo del pagamento",
+     "descrizione": "Una riga per ogni tributo da versare o credito da compensare. Attenzione: un errore qui può portare alla richiesta di pagamento di somme che hai già versato.",
+     "campi": [
+      {
+       "id": "identificativoOperazione",
+       "pdf": "identificativo_operazione",
+       "type": "testo",
+       "label": "Identificativo operazione",
+       "width": "half",
+       "help": "Per i tributi locali, il codice dell'operazione comunicato dal Comune: si compila solo quando il Comune lo richiede."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Righe del versamento",
+       "help": "I campi con lo sfondo grigio sul modulo — ravvedimento, immobili variati, acconto, saldo, numero immobili e detrazione — servono solo a chi versa IMU, TARI o imposta di scopo.",
+       "righeMax": 10,
+       "sottocampi": [
+        {
+         "id": "sezione",
+         "type": "select",
+         "options": "sezione",
+         "label": "Sezione",
+         "width": "quarter",
+         "help": "Il destinatario del versamento: ER per l'erario (Stato), RG per la regione, EL per l'ente locale. IMU, TARI e imposta di scopo vanno sempre in EL."
+        },
+        {
+         "id": "tributo",
+         "type": "testo",
+         "label": "Codice tributo",
+         "width": "quarter",
+         "help": "Il codice del tributo che stai pagando, per esempio 3918 per l'IMU sugli altri fabbricati. L'elenco completo è sul sito dell'Agenzia delle Entrate."
+        },
+        {
+         "id": "ente",
+         "type": "testo",
+         "label": "Codice ente",
+         "width": "quarter",
+         "help": "Per i tributi locali è il codice catastale del Comune in cui si trovano gli immobili: quattro caratteri, per esempio H501 per Roma. Per i tributi erariali resta vuoto."
+        },
+        {
+         "id": "ravv",
+         "type": "checkX",
+         "label": "Ravvedimento",
+         "width": "quarter",
+         "help": "Da barrare quando stai pagando in ritardo con il ravvedimento operoso, cioè versando anche sanzione ridotta e interessi. In questo caso l'anno di riferimento è quello in cui l'imposta sarebbe dovuta essere versata."
+        },
+        {
+         "id": "immobVariati",
+         "type": "checkX",
+         "label": "Immobili variati",
+         "width": "quarter",
+         "help": "Da barrare se per uno o più immobili sono intervenute variazioni che richiedono la presentazione della dichiarazione."
+        },
+        {
+         "id": "acconto",
+         "type": "checkX",
+         "label": "Acconto",
+         "width": "quarter",
+         "help": "Da barrare se il pagamento riguarda l'acconto (per l'IMU, la rata di giugno)."
+        },
+        {
+         "id": "saldo",
+         "type": "checkX",
+         "label": "Saldo",
+         "width": "quarter",
+         "help": "Da barrare se il pagamento riguarda il saldo (per l'IMU, la rata di dicembre). Se paghi acconto e saldo in un'unica soluzione barra entrambe le caselle."
+        },
+        {
+         "id": "numImmobili",
+         "type": "numero",
+         "label": "Numero immobili",
+         "width": "quarter",
+         "help": "Quanti immobili riguarda il versamento, al massimo tre cifre."
+        },
+        {
+         "id": "rateazione",
+         "type": "testo",
+         "label": "Rateazione / mese rif.",
+         "width": "quarter",
+         "help": "Se paghi in un'unica soluzione scrivi 0101. Se paghi a rate indica la rata che stai versando e il numero di rate scelte: 0206 vuol dire seconda rata di sei."
+        },
+        {
+         "id": "anno",
+         "type": "anno",
+         "label": "Anno di riferimento",
+         "width": "quarter",
+         "help": "L'anno d'imposta a cui si riferisce il pagamento, in quattro cifre. Con il ravvedimento indica l'anno in cui l'imposta avrebbe dovuto essere versata."
+        },
+        {
+         "id": "detrazione",
+         "type": "importoEuro",
+         "label": "Detrazione (euro)",
+         "width": "quarter",
+         "help": "Solo per IMU, TARI e imposta di scopo: la detrazione a cui hai diritto. L'importo a debito va indicato già al netto della detrazione."
+        },
+        {
+         "id": "debito",
+         "type": "importoEuro",
+         "label": "Importo a debito versato (euro)",
+         "width": "quarter",
+         "help": "Sempre con due cifre decimali, anche quando sono zero: 52 euro si scrive 52,00. Con più decimali si arrotonda la seconda cifra: 52,752 diventa 52,75; 52,755 e 52,758 diventano 52,76."
+        },
+        {
+         "id": "credito",
+         "type": "importoEuro",
+         "label": "Importo a credito compensato (euro)",
+         "width": "quarter",
+         "help": "Il credito che usi in compensazione. Indica nella stessa riga il codice tributo da cui nasce il credito e l'anno d'imposta a cui si riferisce. Il massimo compensabile in un anno è 516.456,90 euro."
+        }
+       ],
+       "righe": [
+        {
+         "sezione": "riga_1_sezione",
+         "tributo": "riga_1_tributo",
+         "ente": "riga_1_ente",
+         "ravv": "riga_1_ravv",
+         "immobVariati": "riga_1_immob_variati",
+         "acconto": "riga_1_acconto",
+         "saldo": "riga_1_saldo",
+         "numImmobili": "riga_1_num_immobili",
+         "rateazione": "riga_1_rateazione",
+         "anno": "riga_1_anno",
+         "detrazione": {
+          "euro": "riga_1_detrazione",
+          "cent": "riga_1_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_1_debito",
+          "cent": "riga_1_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_1_credito",
+          "cent": "riga_1_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_2_sezione",
+         "tributo": "riga_2_tributo",
+         "ente": "riga_2_ente",
+         "ravv": "riga_2_ravv",
+         "immobVariati": "riga_2_immob_variati",
+         "acconto": "riga_2_acconto",
+         "saldo": "riga_2_saldo",
+         "numImmobili": "riga_2_num_immobili",
+         "rateazione": "riga_2_rateazione",
+         "anno": "riga_2_anno",
+         "detrazione": {
+          "euro": "riga_2_detrazione",
+          "cent": "riga_2_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_2_debito",
+          "cent": "riga_2_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_2_credito",
+          "cent": "riga_2_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_3_sezione",
+         "tributo": "riga_3_tributo",
+         "ente": "riga_3_ente",
+         "ravv": "riga_3_ravv",
+         "immobVariati": "riga_3_immob_variati",
+         "acconto": "riga_3_acconto",
+         "saldo": "riga_3_saldo",
+         "numImmobili": "riga_3_num_immobili",
+         "rateazione": "riga_3_rateazione",
+         "anno": "riga_3_anno",
+         "detrazione": {
+          "euro": "riga_3_detrazione",
+          "cent": "riga_3_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_3_debito",
+          "cent": "riga_3_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_3_credito",
+          "cent": "riga_3_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_4_sezione",
+         "tributo": "riga_4_tributo",
+         "ente": "riga_4_ente",
+         "ravv": "riga_4_ravv",
+         "immobVariati": "riga_4_immob_variati",
+         "acconto": "riga_4_acconto",
+         "saldo": "riga_4_saldo",
+         "numImmobili": "riga_4_num_immobili",
+         "rateazione": "riga_4_rateazione",
+         "anno": "riga_4_anno",
+         "detrazione": {
+          "euro": "riga_4_detrazione",
+          "cent": "riga_4_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_4_debito",
+          "cent": "riga_4_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_4_credito",
+          "cent": "riga_4_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_5_sezione",
+         "tributo": "riga_5_tributo",
+         "ente": "riga_5_ente",
+         "ravv": "riga_5_ravv",
+         "immobVariati": "riga_5_immob_variati",
+         "acconto": "riga_5_acconto",
+         "saldo": "riga_5_saldo",
+         "numImmobili": "riga_5_num_immobili",
+         "rateazione": "riga_5_rateazione",
+         "anno": "riga_5_anno",
+         "detrazione": {
+          "euro": "riga_5_detrazione",
+          "cent": "riga_5_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_5_debito",
+          "cent": "riga_5_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_5_credito",
+          "cent": "riga_5_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_6_sezione",
+         "tributo": "riga_6_tributo",
+         "ente": "riga_6_ente",
+         "ravv": "riga_6_ravv",
+         "immobVariati": "riga_6_immob_variati",
+         "acconto": "riga_6_acconto",
+         "saldo": "riga_6_saldo",
+         "numImmobili": "riga_6_num_immobili",
+         "rateazione": "riga_6_rateazione",
+         "anno": "riga_6_anno",
+         "detrazione": {
+          "euro": "riga_6_detrazione",
+          "cent": "riga_6_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_6_debito",
+          "cent": "riga_6_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_6_credito",
+          "cent": "riga_6_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_7_sezione",
+         "tributo": "riga_7_tributo",
+         "ente": "riga_7_ente",
+         "ravv": "riga_7_ravv",
+         "immobVariati": "riga_7_immob_variati",
+         "acconto": "riga_7_acconto",
+         "saldo": "riga_7_saldo",
+         "numImmobili": "riga_7_num_immobili",
+         "rateazione": "riga_7_rateazione",
+         "anno": "riga_7_anno",
+         "detrazione": {
+          "euro": "riga_7_detrazione",
+          "cent": "riga_7_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_7_debito",
+          "cent": "riga_7_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_7_credito",
+          "cent": "riga_7_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_8_sezione",
+         "tributo": "riga_8_tributo",
+         "ente": "riga_8_ente",
+         "ravv": "riga_8_ravv",
+         "immobVariati": "riga_8_immob_variati",
+         "acconto": "riga_8_acconto",
+         "saldo": "riga_8_saldo",
+         "numImmobili": "riga_8_num_immobili",
+         "rateazione": "riga_8_rateazione",
+         "anno": "riga_8_anno",
+         "detrazione": {
+          "euro": "riga_8_detrazione",
+          "cent": "riga_8_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_8_debito",
+          "cent": "riga_8_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_8_credito",
+          "cent": "riga_8_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_9_sezione",
+         "tributo": "riga_9_tributo",
+         "ente": "riga_9_ente",
+         "ravv": "riga_9_ravv",
+         "immobVariati": "riga_9_immob_variati",
+         "acconto": "riga_9_acconto",
+         "saldo": "riga_9_saldo",
+         "numImmobili": "riga_9_num_immobili",
+         "rateazione": "riga_9_rateazione",
+         "anno": "riga_9_anno",
+         "detrazione": {
+          "euro": "riga_9_detrazione",
+          "cent": "riga_9_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_9_debito",
+          "cent": "riga_9_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_9_credito",
+          "cent": "riga_9_credito_cent"
+         }
+        },
+        {
+         "sezione": "riga_10_sezione",
+         "tributo": "riga_10_tributo",
+         "ente": "riga_10_ente",
+         "ravv": "riga_10_ravv",
+         "immobVariati": "riga_10_immob_variati",
+         "acconto": "riga_10_acconto",
+         "saldo": "riga_10_saldo",
+         "numImmobili": "riga_10_num_immobili",
+         "rateazione": "riga_10_rateazione",
+         "anno": "riga_10_anno",
+         "detrazione": {
+          "euro": "riga_10_detrazione",
+          "cent": "riga_10_detrazione_cent"
+         },
+         "debito": {
+          "euro": "riga_10_debito",
+          "cent": "riga_10_debito_cent"
+         },
+         "credito": {
+          "euro": "riga_10_credito",
+          "cent": "riga_10_credito_cent"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "chiusura",
+     "titolo": "Saldo finale e firma",
+     "descrizione": "Il saldo finale è la differenza fra i debiti e i crediti compensati. Non può mai essere negativo: il credito si usa al massimo fino ad azzerare i debiti. Anche quando il saldo è zero il modello va comunque presentato.",
+     "campi": [
+      {
+       "id": "saldoFinale",
+       "pdf": "saldo_finale",
+       "pdfCentesimi": "saldo_finale_cent",
+       "type": "importoEuro",
+       "label": "Saldo finale (euro)",
+       "width": "third",
+       "calcolo": {
+        "differenza": [
+         {
+          "somma": [
+           "pagamento.riga.debito"
+          ]
+         },
+         {
+          "somma": [
+           "pagamento.riga.credito"
+          ]
+         }
+        ]
+       },
+       "help": "Calcolato come totale dei debiti meno totale dei crediti compensati. Se paghi con assegno o vaglia, il titolo deve essere di importo pari a questo saldo."
+      },
+      {
+       "id": "firma",
+       "pdf": "firma",
+       "type": "testo",
+       "label": "Firma (nome da stampare)",
+       "width": "half",
+       "help": "Il PDF non può contenere una firma autografa: scrivi qui il nome e firma a penna sulla copia stampata. Se paghi per conto di un altro contribuente, la firma è la tua."
+      },
+      {
+       "id": "iban",
+       "pdf": "iban",
+       "type": "iban",
+       "label": "IBAN per l'addebito in conto",
+       "width": "half",
+       "help": "Da compilare solo se chiedi l'addebito sul conto corrente. Scrivi l'IBAN per intero, comprese le lettere IT: sul modulo sono già stampate e il compilatore le toglie da solo. Lo spazio è stampato solo sulla copia per la banca."
+      },
+      {
+       "id": "delegaA",
+       "pdf": "delega_a",
+       "type": "testo",
+       "label": "Delega irrevocabile a (banca o Poste)",
+       "width": "half"
+      },
+      {
+       "id": "agenzia",
+       "pdf": "agenzia",
+       "type": "testo",
+       "label": "Agenzia",
+       "width": "quarter"
+      },
+      {
+       "id": "provinciaAgenzia",
+       "pdf": "provincia_agenzia",
+       "type": "provincia",
+       "label": "Prov.",
+       "width": "quarter"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

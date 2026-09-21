@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Anonimizza e Oscura PDF (Redact) — StrumentiUtili</title>
+  <meta name="description" content="Censura dati sensibili, IBAN e nomi dai tuoi documenti PDF in modo permanente. Strumento di redazione PDF 100% locale, senza upload, sicuro e gratuito.">
+  <link rel="canonical" href="https://strumentiutili.it/pdf/anonimizza/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Anonimizza PDF Online in Sicurezza" />
+  <meta property="og:description" content="Oscura i dati sensibili dai tuoi PDF. Nessun file viene inviato su internet, tutto elaborato sul tuo PC." />
+  <meta property="og:url" content="https://strumentiutili.it/pdf/anonimizza/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:locale" content="it_IT" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    /* MARCADOR DE POSICIÓN LEGAL (Placeholder) PARA ADSENSE */
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop {
+      display: none;
+    }
+    .ad-slot-mobile {
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  
+  
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Anonimizzatore PDF",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/pdf/anonimizza/",
+        "description": "Oscuramento distruttivo di aree di un PDF nel browser: la pagina viene ricostruita come immagine con i riquadri neri, così il testo coperto non resta nel file, e i metadati del documento vengono rimossi.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "@id": "https://strumentiutili.it/pdf/anonimizza/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "featureList": [
+          "Selezione delle aree da oscurare con il mouse o il dito",
+          "Ricostruzione della pagina oscurata come immagine a circa 180 DPI",
+          "Rimozione del testo e del livello OCR sotto i riquadri",
+          "Rimozione dei metadati del documento",
+          "Elaborazione nel browser senza upload"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti PDF",
+            "item": "https://strumentiutili.it/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Anonimizza PDF",
+            "item": "https://strumentiutili.it/pdf/anonimizza/"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/pdf/anonimizza/#howto",
+        "name": "Come oscurare dati personali in un PDF",
+        "description": "Procedura per oscurare in modo definitivo nomi e dati sensibili in un documento PDF.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT5M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Il PDF da oscurare"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica il PDF",
+            "text": "Trascina il file nell'area tratteggiata o sfoglialo dal dispositivo.",
+            "url": "https://strumentiutili.it/pdf/anonimizza/#drop-redact-file"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Scegli la pagina",
+            "text": "Indica il numero della pagina che contiene i dati.",
+            "url": "https://strumentiutili.it/pdf/anonimizza/#redact-page"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Traccia i riquadri",
+            "text": "Trascina sul documento per coprire ogni dato da nascondere.",
+            "url": "https://strumentiutili.it/pdf/anonimizza/#redact-canvas"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Oscura e verifica",
+            "text": "Premi Oscura Definitivamente e prova a copiare il testo della pagina nel file scaricato.",
+            "url": "https://strumentiutili.it/pdf/anonimizza/#apply-redact"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/anonimizza/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il file oscurato è ancora ricercabile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le pagine non oscurate sì. La pagina su cui hai applicato i riquadri diventa un'immagine e il suo testo non è più selezionabile né ricercabile."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso oscurare più pagine in una volta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, le selezioni valgono per la pagina visualizzata. Applica la redazione, carica il file scaricato e ripeti per le altre pagine."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Un documento oscurato è anonimo ai fini del GDPR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo se non è più possibile risalire alla persona con mezzi ragionevoli. Se restano date, luoghi o dettagli che la rendono identificabile, i dati sono pseudonimizzati e restano dati personali."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La qualità della pagina oscurata peggiora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La pagina viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza rispetto all'originale vettoriale."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-indigo-600 font-semibold">📄 PDF</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENITORE PRINCIPALE: Grid Layout -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <!-- COLONNA SINISTRA: Herramienta -->
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <!-- Ad Top -->
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/pdf/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria PDF &amp; Scanner</a>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold mb-3">
+          <span>⬛</span> Redact &amp; GDPR
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Anonimizzatore PDF (Redact)</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+          Evidenzia i dati sensibili per censurarli. I rettangoli neri sono distruttivi: la pagina oscurata viene ricostruita come immagine, quindi il testo coperto non resta nel file. Nessun documento lascia il tuo dispositivo.
+        </p>
+      </div>
+
+      <section class="bg-white p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <input id="redact-file" type="file" accept="application/pdf" class="hidden" />
+          <div id="drop-redact-file" class="bg-gray-50 hover:bg-rose-50 border-2 border-dashed border-gray-300 hover:border-rose-400 transition p-6 text-center rounded-xl cursor-pointer shadow-sm">
+            <div class="text-sm font-medium text-gray-700">Trascina qui il PDF oppure <span class="text-rose-600 font-bold" id="redact-browse">sfoglia</span></div>
+            <div id="redact-filename" class="mt-2 text-xs text-gray-500 font-mono"></div>
+          </div>
+          <button type="button" data-guida-toggle="guida-redact-file" aria-expanded="false" aria-controls="guida-redact-file" aria-label="Guida al campo PDF da oscurare" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Prima di iniziare</button>
+          <div id="guida-redact-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Copia di lavoro:</strong> conserva l'originale e lavora su una copia: il file oscurato viene scaricato con il suffisso «-redacted».</p>
+            <p><strong class="text-indigo-900">Cosa cercare:</strong> nomi, codici fiscali, indirizzi, IBAN, firme, targhe e numeri di pratica. Controlla anche intestazioni, piè di pagina, timbri e allegati.</p>
+            <p><strong class="text-indigo-900">File protetti:</strong> i PDF con password di apertura non si possono caricare: rimuovi prima la protezione con il programma che la conosce.</p>
+          </div>
+          
+          <div class="flex flex-col justify-center bg-gray-50 p-4 border border-gray-200 rounded-xl">
+            <div class="flex items-center gap-2 mb-2">
+              <label for="redact-page" class="text-sm font-bold text-gray-800">Vai alla Pagina N.</label>
+              <button type="button" data-guida-toggle="guida-redact-pagina" aria-expanded="false" aria-controls="guida-redact-pagina" aria-label="Guida al campo Pagina da oscurare" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+            </div>
+            <input data-guida="guida-redact-pagina" aria-describedby="guida-redact-pagina" id="redact-page" type="number" min="1" value="1" class="border border-gray-300 bg-white px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none font-bold" placeholder="Es. 1" />
+            <div id="guida-redact-pagina" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Una pagina per volta:</strong> le selezioni valgono per la pagina visualizzata. Per oscurare più pagine applica la redazione, carica il file «-redacted» e passa alla pagina successiva.</p>
+              <p><strong class="text-indigo-900">Cambio pagina:</strong> cambiando numero le selezioni non applicate vengono annullate.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 border border-gray-300 rounded-xl bg-gray-200 overflow-hidden shadow-inner flex justify-center items-center p-4 min-h-[450px]">
+          <canvas id="redact-canvas" class="bg-white border shadow-sm max-w-full h-auto cursor-crosshair"></canvas>
+        </div>
+        
+        <div class="mt-6 flex gap-3 items-center justify-between flex-wrap pt-4 border-t border-gray-100">
+          <button id="clear-redacts" class="bg-gray-100 border border-gray-200 text-gray-800 font-bold px-6 py-3.5 rounded-xl hover:bg-gray-200 shadow-sm transition w-full sm:w-auto">Annulla Selezioni</button>
+          <button id="apply-redact" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-sm transition w-full sm:w-auto ml-auto">Oscura Definitivamente</button>
+        </div>
+        <div id="redact-msg" class="mt-3 text-sm font-bold text-rose-600 text-right"></div>
+        <button type="button" data-guida-toggle="guida-redact-applica" aria-expanded="false" aria-controls="guida-redact-applica" aria-label="Guida al campo Oscuramento" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa succede quando oscuri</button>
+        <div id="guida-redact-applica" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+          <p><strong class="text-indigo-900">Selezione:</strong> trascina sul documento per disegnare un rettangolo; lascia qualche millimetro di margine sopra e sotto il testo, perché lettere come «g» e «l» sporgono dalla riga.</p>
+          <p><strong class="text-indigo-900">Risultato:</strong> la pagina diventa un'immagine a circa 180 DPI con i riquadri neri incorporati: il testo non è più selezionabile. Le altre pagine restano invariate e i metadati del documento vengono rimossi.</p>
+          <p><strong class="text-indigo-900">Controllo finale:</strong> apri il file scaricato, premi Ctrl+A sulla pagina oscurata e prova a copiare: non deve comparire alcun testo.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/pdf/firma/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✍️</span> Firma PDF</a></li>
+            <li><a href="/pdf/unisci-dividi/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📂</span> Unisci e Dividi PDF</a></li>
+            <li><a href="/pdf/comprimi-converti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🗜️</span> Comprimi e Converti PDF</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/pdf/scanner-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Scanner Documenti</a></li>
+              <li><a href="/pdf/convertitore-pdfa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏛️</span> Validatore PDF/A</a></li>
+            </ul>
+          </details>
+          <a href="/pdf/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Strumenti PDF</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+               style="display:block;width:100%;min-width:0;"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="6912312067"
+               data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <!-- COLONNA INFERIORE: SEO + Ad Mobile (Ordenada debajo de Main en Grid) -->
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- BLOQUE SEO EXPANSO (CON ACORDEONES NATIVOS HTML) -->
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Metodo di redazione e riferimenti GDPR verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF viene aperto, visualizzato e ricostruito nel browser: il documento originale e quello oscurato non vengono inviati a server. Le librerie pdf.js e pdf-lib sono scaricate da CDN al primo utilizzo e non ricevono il file (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e tecniche</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 2016/679 artt. 4, 5, 9 e 25, Garante privacy, Linee guida in materia di trattamento di dati personali nella riproduzione di provvedimenti giurisdizionali (2010), ISO 32000-2 (formato PDF), NSA «Redacting with Confidence» sui rischi della redazione apparente, librerie pdf.js e pdf-lib.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Sanificazione Strutturale del PDF, Ingegneria della Redazione Distruttiva e Compliance GDPR (Zero-Backend)</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          L'oscuramento permanente dei dati identificativi, finanziari e clinici all'interno dei documenti Portable Document Format (PDF) rappresenta un'operazione critica per la sicurezza delle informazioni e la conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). Molti oscuramenti eseguiti con editor grafici o con le annotazioni dei lettori PDF incorrono nella vulnerabilità della "falsa redazione", lasciando i dati riservati pienamente accessibili nel codice sorgente del file. Il seguente trattato disamina l'inquadramento legislativo europeo, il metodo di redazione per rasterizzazione della pagina, le strategie di mitigazione della memoria per grandi volumi documentali e la risoluzione delle casuistiche reali in ambito penale, sanitario e tributario.
+        </p>
+
+        <!-- Inquadramento Normativo -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Sterilizzazione del Data Processor (Art. 28) e Deposito Telematico (PCT/PAT)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La manipolazione e censura dei file PDF contenenti categorie particolari di dati personali (ex Articolo 9 GDPR: dati sanitari, biometrici, orientamento politico, convinzioni religiose) o dati giudiziarie ed economico-finanziari richiede la massima rispondenza ai principi di minimizzazione del trattamento (Articolo 5, paragrafo 1, lettera c) del GDPR).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'Articolo 25 del GDPR codifica i principi inderogabili di Data Protection by Design e by Default. L'infrastruttura di questo applicativo incarna tale precetto in forma matematica: operando al 100% in modalità Client-Side (Zero-Backend / Zero-Upload), impedisce fisicamente al documento non ancora oscurato di abbandonare la RAM volatile del dispositivo dell'utente, azzerando il rischio di intercettazione di rete (attacchi Man-in-the-Middle) o di conservazione non autorizzata su server di terze parti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sul piano delle responsabilità legali, l'elaborazione locale risolve le rilevanti complessità dell'Articolo 28 del GDPR. Qualora uno studio legale, una struttura ospedaliera o un consulente tributario utilizzi una piattaforma Cloud SaaS tradizionale per l'anonimizzazione dei PDF, il fornitore esterno assume giuridicamente la qualifica di Responsabile del Trattamento (Data Processor). Ciò impone al Titolare (Data Controller) la stipula di un vincolante Data Processing Agreement (DPA), la costante verifica delle garanzie di sicurezza ex Articolo 32, la mappatura nel Registro dei Trattamenti (Art. 30) e l'esecuzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35) per accertare i rischi inerenti alla trasmissione.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Con la suite puramente client-side, il fornitore dell'applicativo non riceve né elabora alcun dato personale sui propri server, facendo decadere la qualifica stessa di Data Processor e sollevando l'utente dagli oneri burocratici di auditing e dalle responsabilità legali legate al trasferimento transfrontaliero dei dati extra-UE. In ambito giudiziario, la conformità risponde inoltre alle regole tecniche del Processo Civile Telematico (PCT), del Processo Amministrativo Telematico (PAT) e ai requisiti di invio delle notifiche via Posta Elettronica Certificata (PEC).
+            </p>
+          </div>
+        </details>
+
+        <!-- Meccanica e Formule -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Falsa Redazione vs Redazione Distruttiva dei Content Stream, Web Crypto API e V8 Heap Management</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <h3 class="text-lg font-bold text-gray-900 mb-2">1. La Vulnerabilità Tecnica della Falsa Redazione (Vector Overlay Leak)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'architettura interna del formato PDF renderizza i contenuti sovrapponendo livelli nidificati (content streams, oggetti vettoriali, form XObjects, metadati XMP e annotazioni). L'errore tecnico più diffuso consiste nell'eseguire l'oscuramento disegnando un rettangolo nero opaco sopra il testo sensibile tramite un editor grafico. Questa operazione si limita ad aggiungere un mero nodo grafico nello stack visivo in cima alla pagina. Il testo originale sottostante, l'albero degli oggetti vettoriali, le stringhe delle annotazioni e i livelli di testo invisibili generati dal riconoscimento ottico dei caratteri (OCR) rimangono integralmente intatti nel codice sorgente del file. Un potenziale attaccante non necessita di strumenti avanzati: è sufficiente selezionare l'area nera con il mouse, copiare il contenuto negli appunti e incollarlo in un editor di testo per svelare istantaneamente l'informazione protetta.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Come funziona la redazione distruttiva in questo strumento</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Modificare in modo affidabile i content stream di un PDF qualsiasi è complesso: il testo può essere spezzato in frammenti, codificato con font incorporati o nascosto in livelli OCR. Per garantire che nulla resti sotto i riquadri, lo strumento usa la rasterizzazione della pagina, con `pdf.js` e `pdf-lib` eseguiti nel browser:
+            </p>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
+              <li>la pagina selezionata viene disegnata a circa 180 DPI in un canvas;</li>
+              <li>sul canvas vengono dipinti i rettangoli neri nelle posizioni tracciate;</li>
+              <li>il risultato diventa un'immagine JPEG che sostituisce la pagina originale;</li>
+              <li>viene creato un nuovo PDF che contiene le altre pagine copiate così come sono e la pagina ricostruita, senza gli oggetti della pagina originale né i metadati del documento, come autore e titolo.</li>
+            </ul>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il prezzo della sicurezza è che la pagina oscurata non contiene più testo selezionabile o ricercabile. Le altre pagine restano identiche: se contengono dati personali vanno oscurate anch'esse, caricando il file già redatto e ripetendo l'operazione.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Firma digitale e integrità dopo la redazione</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              La redazione crea un file nuovo: un'eventuale firma digitale presente nel documento originale non è più valida. Se il file oscurato deve avere valore legale va firmato dopo la redazione con il proprio dispositivo di firma (PAdES o CAdES). L'integrità del file può essere documentata con un'impronta crittografica, per esempio:
+            </p>
+            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
+              $$H = \text{SHA-256}(\text{PDF}_{\text{Redacted}})$$
+            </div>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'impronta $H$ è quella che il software di firma cifra con la chiave privata del firmatario: questo strumento non firma i documenti e non accede ai dispositivi di firma.
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Gestione dell'Heap Memory V8 e Web Workers per Grandi Fascicoli</h3>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'elaborazione di fascicoli processuali o perizie scansionate ad alta risoluzione che superano i 500 MB in un browser incontra stringenti limiti fisici d'allocazione memoria nell'heap del motore JavaScript (es. motore V8 di Chrome). Caricare un file massivo in un singolo buffer continuo (`ArrayBuffer`) provoca l'esaurimento della RAM allocabile e il crash imprevisto della tab (*Out of Memory - OOM*).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Lo strumento carica il file intero in memoria: la ricostruzione del documento avviene in un Web Worker, a cui i dati vengono passati come oggetti trasferibili (`Transferable Objects`) senza copiarli, così l'interfaccia resta reattiva. Su smartphone e con fascicoli molto grandi conviene prima estrarre solo le pagine da oscurare con lo strumento Unisci e Dividi.
+            </p>
+          </div>
+        </details>
+
+        <!-- Casuistica Reale -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Risoluzione Passo-Passo in Ambito Penale, Sanitario e Societario</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 1: Deposito Giudiziario di Atti di Indagine e Tutela dei Minori (Ambito Penalistico).</strong><br />
+              Un avvocato penalista deve depositare una memoria difensiva nel Processo Penale Telematico allegando i verbali di sommarie informazioni testimoniali. Gli atti recano i nominativi in chiaro di persone minori di età, vittime di reati sensibili e testimoni protetti.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              L'invio del file non oscurato a portali di conversione online commerciali esporrebbe il professionista alla violazione del segreto professionale e a sanzioni disciplinari dell'Ordine degli Avvocati. Tramite l'Anonimizzatore PDF client-side, il legale carica il fascicolo, traccia i rettangoli di selezione sui dati riservati e applica l'oscuramento distruttivo. Ogni pagina oscurata viene ricostruita come immagine e il file viene scaricato per il deposito telematico. Il file in chiaro resta sul computer dello studio, da cui non è mai stato inviato.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 2: Pseudonimizzazione di Cartelle Cliniche per Trial Farmacologici Universitari (Art. 9 GDPR).</strong><br />
+              Un direttore sanitario ospedaliero deve trasmettere 200 cartelle cliniche in formato PDF al centro di ricerca di un ateneo universitario per uno studio scientifico. I documenti contengono dati identificativi dei pazienti, codici fiscali e storie patologiche.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il medico carica i PDF nell'applicativo locale e oscura nome, codice fiscale e recapiti su ogni pagina che li contiene; le pagine oscurate perdono anche il livello di testo OCR e il file finale non conserva i metadati del software di refertazione. I documenti così ottenuti sono pseudonimizzati, non anonimi: restano dati personali relativi alla salute, e la condivisione per ricerca richiede comunque una base giuridica, il parere del comitato etico e le garanzie previste dal Codice privacy. Per centinaia di cartelle un oscuramento pagina per pagina è poco pratico e va preferita l'estrazione dei dati dal sistema di refertazione.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Caso 3: Riduzione DPI e Offuscamento Dati Finanziari in Operazioni M&amp;A.</strong><br />
+              Un commercialista incaricato di una *Due Diligence* aziendale deve condividere dichiarazioni dei redditi e verbali di CDA contenenti i saldi dei conti correnti bancari personali dei soci. I file scansionati ad altissima risoluzione superano i tetti di allegato PEC (25 MB).
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Sfruttando la suite client-side, il professionista censura i dati bancari riservati sulle pagine interessate e, se il file resta troppo pesante per la PEC, lo riduce successivamente con lo strumento Comprimi PDF. I dati bancari oscurati non sono più presenti nelle pagine ricostruite.
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ ed Errori -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p>I casi seguenti sono stati riprodotti con lo strumento su un PDF di prova di due pagine con dati sanitari fittizi; il testo del file risultante è stato estratto con pdf.js per verificarne il contenuto.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: referto da allegare a una domanda di invalidità</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Pagina 1: «Paziente: Mario Rossi», «Codice fiscale: RSSMRA80A01H501U»</li>
+            <li>Autore nei metadati del file: «Dott. Bianchi»</li>
+            <li>Riquadro sulle righe di nome e codice fiscale, pagina 1</li>
+            <li>Testo estraibile dalla pagina 1 dopo la redazione: nessuno</li>
+            <li>Metadati autore dopo la redazione: vuoti</li>
+            </ul>
+            <p>La pagina 1 è ora un'immagine: il codice fiscale non compare più nemmeno cercando i byte del file. La pagina 2, non oscurata, contiene ancora «Firma del paziente: Mario Rossi» e va trattata con una seconda redazione sul file scaricato.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: il test che rivela una falsa redazione</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>File ricevuto con riquadri neri aggiunti con un editor PDF</li>
+            <li>Seleziona l'area nera, copia e incolla in un editor di testo</li>
+            <li>Se compare il nome, il dato è ancora nel file</li>
+            </ul>
+            <p>Lo stesso controllo va fatto su qualunque documento oscurato prima di pubblicarlo o depositarlo. Sui file prodotti da questo strumento la selezione della pagina oscurata non restituisce testo.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: contratto di affitto da allegare a una richiesta di contributo</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Dati da nascondere: IBAN del locatore e firma del conduttore</li>
+            <li>Pagine interessate: 1 e 4</li>
+            <li>Procedura: redazione di pagina 1, caricamento del file «-redacted», redazione di pagina 4</li>
+            </ul>
+            <p>Le pagine 2 e 3 restano testuali e ricercabili, utile se l'ente deve leggerne le clausole. Il file finale ha due redazioni successive: prima di inviarlo verifica che la seconda sia stata applicata al file già oscurato e non all'originale.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Fallimenti Storici ed Errori Operativi: Il Caso Paul Manafort e Sanzioni GDPR</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Analisi del Caso Giudiziario Paul Manafort (Il Fallimento della Falsa Redazione):</strong><br />
+              Uno dei casi più celebri di data breach causato da falsa redazione si è verificato durante il procedimento giudiziario federale statunitense a carico di Paul Manafort. I legali della difesa depositarono un atto contenente trascrizioni segrete coprendo visivamente il testo con rettangoli neri tramite un lettore PDF comune. I giornalisti d'inchiesta scaricarono il file dal portale del tribunale, evidenziarono i riquadri neri con il cursore e copiarono il testo sottostante negli appunti, pubblicando integralmente le informazioni secretate sulle testate mondiali. Questo strumento evita l'errore sostituendo la pagina oscurata con un'immagine in cui i riquadri neri sono già parte dei pixel: non esiste più un testo da selezionare.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Il Rischio del Testo OCR Trasparente:</strong><br />
+              Molti scanner multifunzione moderni generano file PDF contenenti l'immagine raster della pagina sovrapposta a un livello di testo OCR trasparente situato al di sotto. Applicare un rettangolo nero sull'immagine di scansione copre l'aspetto visivo ma lascia intatto e ricercabile il livello di testo OCR. Con la ricostruzione della pagina come immagine, in questo strumento anche il livello OCR della pagina oscurata viene eliminato; le pagine non oscurate conservano invece il loro testo OCR.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Permanenza in Memoria Volatile e Garanzie di Zeroing:</strong><br />
+              Il file originale resta in memoria finché la scheda è aperta; chiudendola il browser libera la memoria, ma JavaScript non consente di azzerarla in modo garantito. Il rischio concreto è un altro: il file in chiaro resta nella cartella da cui è stato caricato e va conservato o eliminato secondo le regole dello studio.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              <strong>Quadro Sanzionatorio GDPR (Articolo 83):</strong><br />
+              L'omessa anonimizzazione o la fuga accidentale di dati personali e particolari ascrivibile a false redazioni costituisce una violazione grave del GDPR sanzionata ai sensi dell'Articolo 83, paragrafo 5 con sanzioni amministrative pecuniarie fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. Una redazione distruttiva riduce il rischio di diffusione accidentale, ma la conformità dipende anche da cosa si oscura: vanno controllati intestazioni, piè di pagina, allegati e pagine successive.
+            </p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Il file oscurato è ancora ricercabile?</h3>
+            <p>Le pagine non oscurate sì. La pagina su cui hai applicato i riquadri diventa un'immagine e il suo testo non è più selezionabile né ricercabile.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Posso oscurare più pagine in una volta?</h3>
+            <p>No, le selezioni valgono per la pagina visualizzata. Applica la redazione, carica il file scaricato e ripeti per le altre pagine.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">Un documento oscurato è anonimo ai fini del GDPR?</h3>
+            <p>Solo se non è più possibile risalire alla persona con mezzi ragionevoli. Se restano date, luoghi o dettagli che la rendono identificabile, i dati sono pseudonimizzati e restano dati personali.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+            <h3 class="font-bold text-gray-900 text-base mb-1">La qualità della pagina oscurata peggiora?</h3>
+            <p>La pagina viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza rispetto all'originale vettoriale.</p>
+            </div>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer con Pagine Legali -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      
+      <!-- Ad Footer -->
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js" crossorigin="anonymous"></script>
+  
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/pdf-tools.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+    
+      function adsenseReady() {
+        return Array.isArray(window.adsbygoogle);
+      }
+    
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+    
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+          delete ad.dataset.suAdInit;
+          console.warn('[AdSense] Error inicializando anuncio:', error);
+        }
+      }
+    
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+    
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(initVisibleAds);
+        });
+      }
+    
+      function start() {
+        if (adsenseReady()) {
+          observeAds();
+          initVisibleAds();
+          return;
+        }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) {
+            clearInterval(timer);
+            observeAds();
+            initVisibleAds();
+          }
+          if (attempts >= 100) {
+            clearInterval(timer);
+            console.warn('[AdSense] No se pudo detectar adsbygoogle.');
+          }
+        }, 100);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calcolo TFR e Liquidazione — StrumentiUtili.it</title>
+  <meta name="description" content="Calcola il TFR con quota annua corretta: RAL / 13,5 meno 0,5% dell'imponibile INPS per il Fondo di Garanzia.">
+  <link rel="canonical" href="https://strumentiutili.it/lavoro/calcolo-tfr/">
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta property="og:site_name" content="StrumentiUtili.it">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calcolo TFR e Liquidazione">
+  <meta property="og:description" content="Stima TFR locale con deduzione del Fondo di Garanzia INPS sulla base imponibile previdenziale.">
+  <meta property="og:url" content="https://strumentiutili.it/lavoro/calcolo-tfr/">
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calcolo TFR e Liquidazione">
+  <meta name="twitter:description" content="Calcolo TFR client-side con formula corretta e privacy totale.">
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo TFR e Liquidazione",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://strumentiutili.it/lavoro/calcolo-tfr/",
+    "image": "https://strumentiutili.it/assets/og-image.png",
+    "description": "Calcolo locale del TFR con quota annua corretta e deduzione del Fondo di Garanzia INPS sulla base imponibile previdenziale.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://strumentiutili.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Lavoro", "item": "https://strumentiutili.it/lavoro/" },
+      { "@type": "ListItem", "position": 3, "name": "Calcolo TFR", "item": "https://strumentiutili.it/lavoro/calcolo-tfr/" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 pb-28 flex flex-col">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+
+      <nav class="text-sm hidden lg:flex items-center gap-4">
+        <a href="/lavoro/" class="text-indigo-600 font-semibold">💼 Lavoro</a>
+        <a href="/burocrazia/" class="text-gray-600 hover:text-indigo-600">🏛️ Fiscalità</a>
+        <a href="/finanza/" class="text-gray-600 hover:text-indigo-600">🏦 Finanza</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF &amp; Scanner</a>
+        <a href="/ia/" class="text-gray-600 hover:text-indigo-600">🤖 IA Locale</a>
+        <a href="/media/" class="text-gray-600 hover:text-indigo-600">🎨 Media &amp; Testo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal Dividido -->
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:flex-row gap-8 flex-1">
+    
+    <!-- COLUMNA IZQUIERDA: Herramienta -->
+    <main class="w-full lg:w-8/12 xl:w-9/12">
+      
+      <!-- Anuncio 'Above the Fold' -->
+      <div class="ad-skeleton-horizontal mb-6">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="9606012335"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <a href="/lavoro/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria Lavoro</a>
+      
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>💼</span> Lavoro &amp; Carriera
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo TFR e Liquidazione</h1>
+        <p class="text-sm text-gray-600 mt-2">🔒 100% Elaborazione Locale &amp; Privata: calcola il Trattamento di Fine Rapporto (con quota INPS) direttamente nel tuo browser.</p>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+        <!-- Formulario -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Dati di base</h2>
+          <div class="space-y-5">
+            <label class="block">
+              <span class="text-sm font-bold text-gray-700">RAL / Retribuzione annua lorda (€)</span>
+              <input id="ral" type="number" min="0" step="100" value="36000" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+            </label>
+
+            <label class="block">
+              <span class="text-sm font-bold text-gray-700">Imponibile INPS annuo (€)</span>
+              <input id="imponibile-inps" type="number" min="0" step="100" value="36000" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+              <div class="text-xs text-gray-500 mt-2 font-medium">Usa l'imponibile previdenziale effettivo se diverso dalla RAL, così la deduzione del Fondo di Garanzia resta corretta.</div>
+            </label>
+
+            <label class="block">
+              <span class="text-sm font-bold text-gray-700">Anni di servizio</span>
+              <input id="anni-servizio" type="number" min="0" step="1" value="5" class="mt-2 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 outline-none">
+            </label>
+
+            <button id="calcola-tfr" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl shadow-sm transition mt-2">Calcola TFR</button>
+          </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full min-h-[400px]">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Risultati</h2>
+          
+          <div class="flex-grow flex flex-col justify-between space-y-4">
+            <div class="p-5 border border-gray-200 rounded-xl bg-gray-50 space-y-3 shadow-inner">
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Imponibile INPS considerato</span>
+                <span id="res-imponibile-inps" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Deduzione Fondo di Garanzia (0,5%)</span>
+                <span id="res-fondo-garanzia" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-medium text-gray-600">Quota annuale TFR</span>
+                <span id="res-quota" class="font-bold text-gray-900">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                <span class="text-sm font-bold text-indigo-700">TFR lordo accumulato</span>
+                <span id="res-lordo" class="font-bold text-indigo-700">€ 0,00</span>
+              </div>
+              <div class="flex justify-between items-center pt-1">
+                <span class="text-sm font-bold text-rose-700">Tassazione stimata (23%)</span>
+                <span id="res-tassa" class="font-bold text-rose-700">€ 0,00</span>
+              </div>
+            </div>
+
+            <div class="mt-6 text-center p-6 border-2 border-emerald-400 rounded-2xl bg-emerald-50 shadow-sm">
+              <div class="text-emerald-800 font-bold uppercase tracking-wider mb-2 text-sm">TFR Netto Stimato</div>
+              <div id="res-netto" class="text-4xl lg:text-5xl font-black text-emerald-600 tracking-tight">€ 0,00</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SEO Block -->
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Metodologia di Calcolo del TFR (Trattamento di Fine Rapporto)</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Il calcolo del TFR (o liquidazione) non è una semplice divisione matematica. Il nostro simulatore elabora la stima applicando le regole precise stabilite dall'articolo 2120 del Codice Civile e dalle direttive dell'INPS. Ecco come lavora l'algoritmo nel tuo browser:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">1. Determinazione Quota Annua</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              La base di partenza è dividere la Retribuzione Annua Lorda (RAL) per il coefficiente fisso di <strong>13,5</strong>. Tuttavia, per ottenere l'accantonamento reale netto, l'algoritmo deve sottrarre il contributo dello <strong>0,50% destinato al Fondo di Garanzia INPS</strong> calcolato sulla base imponibile previdenziale.
+            </p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-bold text-indigo-800 mb-2">2. Accumulo e Tassazione Separata</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              La quota annua netta viene moltiplicata per gli anni di servizio. Per calcolare il netto da liquidare, applichiamo una tassazione media forfettaria (stimata al 23%, primo scaglione IRPEF), simulando il meccanismo della "tassazione separata" dell'Agenzia delle Entrate.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anuncio extra para móviles -->
+      <div class="mt-8 lg:hidden text-center overflow-hidden bg-gray-50 rounded-xl p-2 border border-gray-100">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+    </main>
+
+    <!-- COLUMNA DERECHA: Sticky Sidebar -->
+    <aside class="hidden lg:block lg:w-4/12 xl:w-3/12">
+      <div class="sticky-sidebar">
+        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 block text-center font-semibold">Pubblicità</span>
+        
+        <!-- Anuncio 'Sticky' Vertical -->
+        <div class="ad-skeleton-vertical">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-9434300808171957"
+               data-ad-slot="9606012335"
+               data-ad-format="vertical"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="w-full text-center overflow-hidden mb-8">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti.html" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy.html" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale.html" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/tfr.js"></script>
+</body>
+</html>

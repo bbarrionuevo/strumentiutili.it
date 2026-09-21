@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- 1. Google Consent Mode v2 -->
+<script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "granted",
+        wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+</script>
+
+<!-- 2. Cookiebot CMP TCF v2.3 -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
+
+<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
+<script data-cookieconsent="ignore">
+    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
+       personalizzati invece di non vederne affatto. Si parte da 1, il valore
+       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+    (function () {
+        function consensoPubblicitario() {
+            var c = window.Cookiebot && window.Cookiebot.consent;
+            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
+        }
+        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
+        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
+        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
+    })();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trascrizione Audio a Testo IA (Offline) — StrumentiUtili.it</title>
+  <meta name="description" content="Trascrivi registrazioni vocali, interviste e file audio (MP3, WAV, M4A, MP4) in testo. Modello Whisper IA eseguito localmente nel browser. Privacy 100%." />
+  <link rel="canonical" href="https://strumentiutili.it/ia/trascrizione-audio/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Trascrizione Audio IA (Whisper) — Offline" />
+  <meta property="og:description" content="Converti file audio in testo gratis senza caricare nulla su internet. 100% Client-side." />
+  <meta property="og:url" content="https://strumentiutili.it/ia/trascrizione-audio/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- REGOLE CSS NATIVE PER ADSENSE (MARCADOR INERTE LEGALE) -->
+  <style>
+    .su-ad {
+      width: 100%;
+      min-height: 250px;
+      background-color: #f8fafc;
+      border: 1px dashed #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 1.5rem;
+    }
+    .su-ad ins.adsbygoogle {
+      display: block !important;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* --- riquadri pubblicitari: spazio riservato per formato --- */
+    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
+       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
+       Il margine ampio serve a non far finire un annuncio appiccicato a un
+       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
+    .su-ad {
+      min-height: 0;
+      margin-block: 2rem;
+      padding: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
+
+    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
+    .su-ad--testata { min-height: 100px; }
+    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
+    .su-ad--contenuto { min-height: 280px; }
+    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
+    .su-ad--laterale { min-height: 280px; }
+    /* fondo pagina: Multiplex, la griglia di suggerimenti */
+    .su-ad--fondo { min-height: 280px; }
+
+    @media (min-width: 1024px) {
+      .su-ad--testata { min-height: 90px; }
+      .su-ad--laterale {
+        min-height: 600px;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
+       contenuto. Resta anche quando l'annuncio e' caricato. */
+    .su-ad-etichetta {
+      font-size: 10px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: #94a3b8;
+      flex: 0 0 auto;
+    }
+
+    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
+       vuoto non sembra un errore di caricamento. */
+    .su-ad-segnaposto {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #cbd5e1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      min-height: inherit;
+    }
+    .su-ad[data-su-stato="pieno"] {
+      background: none;
+      border-color: transparent;
+    }
+    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
+       contenuto, invece di lasciare un rettangolo grigio per sempre. */
+    .su-ad[data-su-stato="vuoto"] {
+      display: none;
+    }
+
+    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
+       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
+       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
+       riquadro pubblicitario della barra laterale. E' esattamente il clic per
+       sbaglio che AdSense sanziona. */
+    details:not([open]) > *:not(summary) { display: none !important; }
+
+    .ad-slot-desktop { display: none; }
+    .ad-slot-mobile { display: block; }
+    @media (min-width: 1024px) {
+      .ad-slot-desktop { display: block; }
+      .ad-slot-mobile { display: none; }
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Strumenti IA",
+            "item": "https://strumentiutili.it/ia/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Trascrizione audio",
+            "item": "https://strumentiutili.it/ia/trascrizione-audio/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Trascrizione audio",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://strumentiutili.it/ia/trascrizione-audio/",
+        "description": "Trascrizione di registrazioni audio e video nel browser con il modello Whisper small quantizzato: testo con punteggiatura, esportazione in TXT e sottotitoli SRT temporizzati, senza inviare i file a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "Trascrizione di MP3, WAV, M4A, OGG, FLAC e video MP4",
+          "Riconoscimento in italiano, inglese, spagnolo, francese, tedesco e portoghese",
+          "Traduzione in inglese offerta dal modello Whisper",
+          "Esportazione in testo semplice e in sottotitoli SRT con i tempi",
+          "Elaborazione nel browser senza upload"
+        ],
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
+        "softwareHelp": "https://strumentiutili.it/contatti.html",
+        "@id": "https://strumentiutili.it/ia/trascrizione-audio/#app",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://strumentiutili.it/ia/trascrizione-audio/#howto",
+        "name": "Come trascrivere una registrazione audio",
+        "description": "Procedura per ottenere il testo di un'intervista o di una riunione senza inviare il file online.",
+        "inLanguage": "it-IT",
+        "totalTime": "PT10M",
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "La registrazione audio o video"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Carica la registrazione",
+            "text": "Seleziona il file audio o video dal dispositivo.",
+            "url": "https://strumentiutili.it/ia/trascrizione-audio/#audio-input"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Indica la lingua",
+            "text": "Scegli la lingua parlata nella registrazione invece del rilevamento automatico.",
+            "url": "https://strumentiutili.it/ia/trascrizione-audio/#language-select"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Avvia la trascrizione",
+            "text": "Premi Avvia trascrizione e lascia la finestra in primo piano.",
+            "url": "https://strumentiutili.it/ia/trascrizione-audio/#btn-transcribe"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Controlla ed esporta",
+            "text": "Rileggi il testo, verifica numeri e nomi, poi copialo o scaricalo in TXT o SRT.",
+            "url": "https://strumentiutili.it/ia/trascrizione-audio/#transcription-result"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/ia/trascrizione-audio/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quali formati audio sono supportati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sono supportati i formati che il browser sa decodificare in modo nativo, tra cui MP3, WAV, M4A, OGG e WEBM, oltre alla traccia audio di molti file video. Il file viene convertito localmente in un segnale mono a 16 kHz prima della trascrizione. Se un formato non viene riconosciuto, conviene convertirlo in MP3 o WAV con un programma installato sul computer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La qualità della registrazione incide sul risultato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In modo determinante. Rumore di fondo, riverbero, voci sovrapposte e microfoni lontani aumentano gli errori. I risultati migliori si ottengono con un microfono vicino a chi parla, in un ambiente silenzioso e con un solo interlocutore alla volta. Aumentare il volume di un file registrato male non recupera l'informazione persa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Lo strumento distingue chi sta parlando?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Whisper produce la trascrizione del parlato con i riferimenti temporali, ma non attribuisce le frasi ai singoli interlocutori. La separazione dei parlanti richiede un modello aggiuntivo. Per interviste e riunioni conviene annotare a mano gli interventi partendo dai tempi del file SRT."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso tradurre l'audio in un'altra lingua?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il modello Whisper supporta nativamente la traduzione verso l'inglese a partire da molte lingue. Per ottenere un testo in una lingua diversa dall'inglese conviene prima trascrivere nella lingua originale e poi usare il traduttore del portale, anch'esso eseguito interamente nel browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cos'è il file SRT e a cosa serve?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È un formato di sottotitoli testuale in cui ogni frase è associata a un tempo di inizio e di fine. È compatibile con i principali lettori video e con le piattaforme di pubblicazione. È utile anche fuori dal video, perché permette di ritrovare rapidamente nella registrazione il punto esatto in cui è stata detta una frase."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché la trascrizione a volte ripete la stessa frase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È un comportamento noto dei modelli autoregressivi nelle parti di silenzio prolungato o di rumore costante, in cui il decoder tende a riprodurre l'ultima frase generata. Tagliare i lunghi silenzi prima della trascrizione riduce molto il fenomeno. Le ripetizioni vanno comunque eliminate in fase di revisione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo impiega l'IA a trascrivere un file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il calcolo avviene sul tuo dispositivo, quindi i tempi dipendono dal processore. In una prova su un computer desktop, 9 secondi di parlato hanno richiesto 31 secondi al primo avvio (compreso il caricamento del modello) e 14 secondi con il modello già in memoria: circa una volta e mezza la durata dell'audio. Un'intervista di mezz'ora richiede quindi tempi nell'ordine dei tre quarti d'ora. Tieni la finestra del browser in primo piano: in secondo piano il sistema rallenta il processo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché il browser ha bisogno di scaricare dei dati la prima volta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il browser scarica i pesi del modello Whisper small quantizzato: circa 250 MB in tutto. Lo scaricamento avviene una sola volta, perché i file restano nella cache del browser, e le sessioni successive partono senza connessione. Con una connessione dati a consumo conviene fare il primo avvio sotto rete Wi-Fi; svuotando i dati del sito, il modello va riscaricato."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-5 flex items-center justify-between gap-4 flex-wrap">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm">SU</a>
+        <div>
+          <a href="/" class="text-2xl font-semibold tracking-tight">StrumentiUtili.it</a>
+          <div class="text-sm text-gray-500">Micro-strumenti gratuiti 100% client-side</div>
+        </div>
+      </div>
+      <nav class="text-sm hidden lg:flex items-center gap-3 xl:gap-4">
+        <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600">💼 Fisco &amp; Professioni</a>
+        <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600">🏛️ Cittadino &amp; Tasse</a>
+        <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600">🤝 Lavoro &amp; Contratti</a>
+        <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600">🪪 Identità</a>
+        <a href="/pdf/" class="text-gray-600 hover:text-indigo-600">📄 PDF</a>
+        <a href="/ia/" class="text-indigo-600 font-semibold">🤖 IA</a>
+        <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600">🛠️ Utilità &amp; Web</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+    
+    <main class="w-full lg:col-span-8 lg:col-start-1 block">
+      
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <a href="/ia/" class="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium mb-4">← Torna alla categoria IA Locale</a>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span>🤖</span> NLP &amp; Intelligenza Artificiale
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Sbobinatore &amp; Trascrizione Audio (Offline)</h1>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Converti file audio e video in testo sfruttando il modello neurale Whisper direttamente nel tuo browser. Le tue registrazioni non vengono <strong>mai</strong> inviate a server esterni, garantendo la massima riservatezza.
+        </p>
+      </section>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        
+        <!-- INPUT AUDIO E MODELLO -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <h2 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4">1. Carica il File e Configura</h2>
+          
+          <label for="audio-input" class="block border-2 border-dashed border-gray-300 hover:border-indigo-500 bg-gray-50 hover:bg-indigo-50/50 transition-colors rounded-xl p-6 text-center cursor-pointer select-none shadow-sm mb-4">
+            <input id="audio-input" type="file" accept="audio/*,video/mp4,video/x-m4v" class="hidden" />
+            <div class="text-3xl mb-2">🎙️</div>
+            <div class="text-sm font-bold text-gray-700">Tocca o trascina un file audio/video</div>
+            <div class="text-xs text-indigo-600 font-bold mt-1">Supportati: MP3, WAV, M4A, FLAC, OGG, AAC, MP4</div>
+            <div id="file-name" class="mt-2 text-xs text-emerald-600 font-mono hidden"></div>
+            <button type="button" data-guida-toggle="guida-trascr-file" aria-expanded="false" aria-controls="guida-trascr-file" aria-label="Guida al campo File audio o video" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quali file funzionano</button>
+            <div id="guida-trascr-file" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+              <p><strong class="text-indigo-900">Formati:</strong> tutto ciò che il browser sa decodificare: MP3, WAV, M4A, OGG, FLAC e video MP4, di cui viene usata la sola traccia audio.</p>
+              <p><strong class="text-indigo-900">Durata:</strong> la registrazione viene caricata interamente in memoria (circa 3,7 MB per minuto). Oltre un'ora la trascrizione viene rifiutata: dividi prima il file.</p>
+              <p><strong class="text-indigo-900">Qualità della registrazione:</strong> un microfono vicino a chi parla vale più di qualsiasi impostazione: rumore di fondo, riverbero e voci sovrapposte sono le cause principali degli errori.</p>
+              <p><strong class="text-indigo-900">Riservatezza:</strong> il file non viene caricato in rete; resta comunque sul dispositivo, insieme alla trascrizione che salvi.</p>
+            </div>
+          </label>
+
+          <!-- SELEZIONE LINGUA E TASK -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <label for="language-select" class="text-xs font-bold text-gray-700 uppercase tracking-wider">Lingua Audio</label>
+                <button type="button" data-guida-toggle="guida-trascr-lingua" aria-expanded="false" aria-controls="guida-trascr-lingua" aria-label="Guida al campo Lingua della registrazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-trascr-lingua" aria-describedby="guida-trascr-lingua" id="language-select" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none bg-white font-medium">
+               <option value="auto">🌐 Rilevamento Automatico</option>
+               <option value="italian" selected>🇮🇹 Italiano</option>
+               <option value="english">🇬🇧 Inglese</option>
+               <option value="spanish">🇪🇸 Spagnolo</option>
+               <option value="french">🇫🇷 Francese</option>
+               <option value="german">🇩🇪 Tedesco</option>
+               <option value="portuguese">🇵🇹 Portoghese</option>
+              </select>
+              <div id="guida-trascr-lingua" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Indicala sempre che puoi:</strong> il rilevamento automatico funziona, ma su registrazioni brevi o rumorose può sbagliare lingua e produrre un testo senza senso.</p>
+                <p><strong class="text-indigo-900">Registrazioni miste:</strong> se nella stessa registrazione si parlano più lingue, il modello tende a riportare tutto nella lingua indicata: dividi l'audio per lingua se il risultato non è utilizzabile.</p>
+                <p><strong class="text-indigo-900">Dialetti e accenti marcati:</strong> il modello se la cava con gli accenti regionali, ma il dialetto stretto viene spesso trascritto in italiano approssimativo.</p>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <label for="task-select" class="text-xs font-bold text-gray-700 uppercase tracking-wider">Azione Richiesta</label>
+                <button type="button" data-guida-toggle="guida-trascr-operazione" aria-expanded="false" aria-controls="guida-trascr-operazione" aria-label="Guida al campo Operazione" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <select data-guida="guida-trascr-operazione" aria-describedby="guida-trascr-operazione" id="task-select" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none bg-white font-medium">
+                <option value="transcribe" selected>✍️ Trascrivi (Lingua originale)</option>
+                <option value="translate">🌐 Traduci in Inglese (Whisper)</option>
+              </select>
+              <div id="guida-trascr-operazione" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Trascrivi:</strong> restituisce il testo nella lingua parlata nella registrazione.</p>
+                <p><strong class="text-indigo-900">Traduci in inglese:</strong> è la traduzione offerta dal modello Whisper e funziona solo verso l'inglese: per altre lingue usa lo strumento Traduttore sul testo trascritto.</p>
+                <p><strong class="text-indigo-900">Punteggiatura:</strong> il modello inserisce da sé maiuscole e punteggiatura: possono comparire differenze rispetto al parlato reale, soprattutto nei numeri e nelle cifre.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100 space-y-3 mb-4">
+            <div class="flex justify-between text-sm font-bold text-gray-700 mb-1">
+              <span>Stato Motore IA:</span>
+              <span id="model-status" class="text-indigo-600">In attesa del file...</span>
+            </div>
+            <div class="w-full bg-indigo-200 h-2.5 rounded-full overflow-hidden">
+              <div id="model-progress" class="bg-indigo-600 h-full transition-all duration-300" style="width:0%"></div>
+            </div>
+          </div>
+
+          <button id="btn-transcribe" disabled class="mt-auto w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold px-4 py-3.5 rounded-lg shadow-sm transition">
+            Avvia Trascrizione
+          </button>
+          <button type="button" data-guida-toggle="guida-trascr-avvio" aria-expanded="false" aria-controls="guida-trascr-avvio" aria-label="Guida al campo Avvio della trascrizione" class="inline-flex items-center justify-center mt-2 px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Cosa aspettarsi</button>
+          <div id="guida-trascr-avvio" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+            <p><strong class="text-indigo-900">Primo avvio:</strong> la barra mostra lo scaricamento del modello, circa 250 MB: con connessione a consumo conviene farlo sotto Wi-Fi. Poi resta nella cache del browser.</p>
+            <p><strong class="text-indigo-900">Tempi:</strong> nella prova su desktop il tempo di elaborazione è stato circa una volta e mezza la durata dell'audio, con il modello già caricato.</p>
+            <p><strong class="text-indigo-900">Finestra in primo piano:</strong> se passi ad altre schede il sistema operativo rallenta l'elaborazione: lascia la pagina in primo piano.</p>
+            <p><strong class="text-indigo-900">Risultato:</strong> il testo compare nel riquadro accanto e può essere copiato, scaricato come TXT o come sottotitoli SRT con i tempi.</p>
+          </div>
+        </div>
+
+        <!-- RISULTATO E TESTO -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
+          <div class="flex justify-between items-end border-b border-gray-100 pb-2 mb-4">
+            <h2 class="text-lg font-bold text-gray-900">2. Testo Trascritto</h2>
+            <div id="transcription-spinner" class="hidden text-indigo-600 text-sm font-bold animate-pulse">Elaborazione...</div>
+          </div>
+
+          <label for="transcription-result" class="sr-only">Testo Trascritto</label>
+          <textarea id="transcription-result" readonly class="flex-1 w-full bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-800 outline-none resize-none font-sans leading-relaxed min-h-[250px]" placeholder="Il testo trascritto apparirà qui in tempo reale..."></textarea>
+          
+          <div class="grid grid-cols-2 gap-3 mt-4">
+            <button id="btn-copy" disabled class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold px-4 py-2.5 rounded-lg shadow-sm transition disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+              📋 Copia Testo
+            </button>
+            <button id="btn-download-srt" disabled class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-lg shadow-sm transition disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+              📥 Scarica SRT
+            </button>
+            <button id="btn-download-txt" disabled class="col-span-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold px-4 py-2.5 rounded-lg shadow-sm transition disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+              📄 Scarica TXT
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti correlati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti Correlati</h3>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/ia/riassunto-testo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Riassunto Testo</a></li>
+            <li><a href="/ia/traduttore/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🌍</span> Traduttore IA</a></li>
+            <li><a href="/ia/assistente-documenti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🤖</span> Assistente IA Documenti</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/ia/ocr-immagini/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">👁️</span> OCR Immagini</a></li>
+            </ul>
+          </details>
+          <a href="/ia/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti IA Locale</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+      
+      <!-- Scheda di affidabilità E-E-A-T -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Modello, tempi e qualità della trascrizione verificati a <time datetime="2026-09">settembre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👨‍💻 Chi lo ha realizzato</p>
+            <p class="text-gray-600 leading-relaxed">Sviluppato e mantenuto da ingegneri software indipendenti. Motore di calcolo basato esclusivamente sulle normative ufficiali vigenti. (Zero-Backend: nessun dato viene inviato a server esterni).</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 Privacy Zero-Backend</p>
+            <p class="text-emerald-900 leading-relaxed">L'audio viene decodificato e trascritto nel browser: nessun file viene inviato a server. Il modello di riconoscimento vocale (circa 250 MB) viene scaricato da una CDN al primo utilizzo e resta nella cache del browser: viaggia il modello, non la tua registrazione (GDPR, artt. 5 e 25).</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti tecniche e normative</p>
+            <p class="text-gray-600 leading-relaxed">Regolamento UE 2016/679 (GDPR), artt. 5, 25 e 32; modello Whisper (OpenAI) nella versione ONNX quantizzata Xenova/whisper-small; documentazione Transformers.js 2.16 e ONNX Runtime Web; specifica Web Audio API; formato sottotitoli SubRip (SRT).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">La Sicurezza della Trascrizione AI in Ambienti Sensibili</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">
+          Il giornalismo investigativo, la ricerca accademica e la refertazione medica generano enormi quantità di registrazioni vocali (interviste, memo, deposizioni). Inviare questi file a servizi di trascrizione in cloud significa comunicare a un fornitore esterno il contenuto di interviste, riunioni o visite: un passaggio che richiede una base giuridica, l'informativa agli interessati e un contratto con il fornitore, e che in ambito professionale può confliggere con il segreto d'ufficio. Questo strumento esegue il modello Whisper nel browser: la registrazione non viene trasmessa. In cambio, la prima trascrizione richiede lo scaricamento del modello, circa 250 megabyte, e i tempi di elaborazione dipendono dal processore del dispositivo.
+        </p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>📖</span> Architettura Whisper, WebAssembly e Quantizzazione INT8</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3">Compilazione WebAssembly del Modello Neurale</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'inclusione di utilità professionali complesse è strategica per la manipolazione di documenti sensibili. Per elaborare file audio nativamente nel tuo browser senza arrestare l'interfaccia utente (UI), lo strumento scarica il modello Whisper small nella versione ONNX quantizzata (Xenova/whisper-small: circa 92 MB per l'encoder e 157 MB per il decoder) e lo esegue in un Web Worker con Transformers.js e ONNX Runtime Web. Il calcolo avviene sul processore, che trasforma lo spettrogramma dell'audio in testo, un token per volta.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Compressione Logica: Quantizzazione e Performance</h3>
+              <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                L'ostacolo ingegneristico più grave per il deployment di modelli linguistici all'interno del browser web è rappresentato dai limiti fisici di allocazione RAM/VRAM imposti dal sistema operativo (Out of Memory - OOM). Il modello usato è quantizzato a 8 bit: i pesi della rete, originariamente in virgola mobile a 32 bit, sono convertiti in interi, riducendo il file a circa un quarto. Restano comunque 250 MB da scaricare e da tenere in memoria: su smartphone datati la trascrizione può non avviarsi, e conviene usare un computer.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Decodifica Formati Audio (Web Audio API) ed Esportazione SRT</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Il motore di decodifica si basa sulla <strong>Web Audio API</strong> nativa di HTML5. È in grado di ingerire, analizzare e uniformare la frequenza di campionamento (resampling a 16.000 Hz) in tempo reale. Questo processo permette di supportare formati multimediali estesi quali <strong>MP3, WAV, M4A, FLAC, OGG, AAC e persino formati video come MP4</strong>, estraendone la traccia acustica direttamente in memoria.
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
+              Al termine dell'elaborazione di inferenza, l'algoritmo non restituisce un mero blocco di testo, ma genera array temporizzati. Il risultato può quindi essere esportato come testo semplice (TXT) oppure come sottotitoli temporizzati (SRT), con marcatori nella forma 00:01:23,400 --> 00:01:25,900, pronti per i programmi di montaggio video. I tempi provengono dai segmenti restituiti dal modello: sono adatti a seguire il parlato, ma su parlato sovrapposto o musica di sottofondo possono risultare imprecisi e vanno ritoccati nel programma di montaggio.
+            </p>
+          </div>
+        </details>
+
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Domande Frequenti (FAQ) e Limiti Operativi</h3>
+          <div class="space-y-3">
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Quanto tempo impiega l'IA a trascrivere un file?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il calcolo avviene sul tuo dispositivo, quindi i tempi dipendono dal processore. In una prova su un computer desktop, 9 secondi di parlato hanno richiesto 31 secondi al primo avvio (compreso il caricamento del modello) e 14 secondi con il modello già in memoria: circa una volta e mezza la durata dell'audio. Un'intervista di mezz'ora richiede quindi tempi nell'ordine dei tre quarti d'ora. Tieni la finestra del browser in primo piano: in secondo piano il sistema rallenta il processo.
+              </p>
+            </details>
+            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
+                <span>Perché il browser ha bisogno di scaricare dei dati la prima volta?</span>
+                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
+                Il browser scarica i pesi del modello Whisper small quantizzato: circa 250 MB in tutto. Lo scaricamento avviene una sola volta, perché i file restano nella cache del browser, e le sessioni successive partono senza connessione. Con una connessione dati a consumo conviene fare il primo avvio sotto rete Wi-Fi; svuotando i dati del sito, il modello va riscaricato.
+              </p>
+            </details>
+          </div>
+        </div>
+      <!-- su-seo-expansion -->
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Prima di diventare testo, la voce registrata attraversa una catena di trasformazioni numeriche. Il modello Whisper non ascolta un file audio ma osserva un'immagine del suono, uno spettrogramma, e la traduce in una sequenza di token testuali.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Fase uno: normalizzazione del segnale</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Qualsiasi formato (MP3, WAV, M4A, OGG) viene decodificato dal browser</li>
+              <li>Frequenza di campionamento finale = 16.000 campioni al secondo, canale mono</li>
+              <li>Un minuto di audio = 60 x 16.000 = 960.000 campioni</li>
+              <li>Occupazione in memoria a 32 bit = 960.000 x 4 byte = circa 3,7 MB al minuto</li>
+            </ul>
+            <p>Il ricampionamento a 16 kHz è sufficiente per la voce umana, la cui informazione utile si concentra sotto gli 8 kHz secondo il teorema del campionamento di Nyquist-Shannon. Ridurre la frequenza rispetto ai 44,1 kHz di un file musicale riduce la memoria richiesta di quasi tre volte senza perdita di intelligibilità.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Fase due: lo spettrogramma log-Mel</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Finestra di analisi = 25 ms (400 campioni)</li>
+              <li>Passo fra finestre = 10 ms (160 campioni)</li>
+              <li>Canali di frequenza sulla scala Mel = 80</li>
+              <li>30 secondi di audio = 3.000 fotogrammi x 80 canali</li>
+            </ul>
+            <p>La scala Mel distribuisce le frequenze secondo la percezione dell'orecchio umano, più fine sulle basse frequenze e più grossolana sulle alte. Il logaritmo delle energie comprime la dinamica, così che un sussurro e una voce forte producano rappresentazioni confrontabili.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Fase tre: segmentazione in finestre da 30 secondi</h3>
+            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+              <li>Lunghezza di ogni segmento = 30 secondi</li>
+              <li>Sovrapposizione fra segmenti consecutivi = 5 secondi</li>
+              <li>Numero di segmenti per un file di durata D = circa D / 25 secondi</li>
+              <li>Esempio: 10 minuti = 600 s  =&gt;  circa 24 segmenti</li>
+            </ul>
+            <p>Whisper è stato addestrato su finestre di esattamente trenta secondi, quindi le registrazioni più lunghe vanno spezzate. La sovrapposizione di cinque secondi evita che una parola tagliata al confine fra due segmenti venga persa o duplicata: il testo delle zone sovrapposte viene riconciliato confrontando i token e i relativi riferimenti temporali.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Fase quattro: decodifica autoregressiva</h3>
+            <p>L'encoder trasforma lo spettrogramma in una rappresentazione astratta, poi il decoder genera il testo un token alla volta, usando a ogni passo tutti i token già prodotti. Il modello Whisper small conta circa 244 milioni di parametri. In precisione a 32 bit occuperebbe quasi un gigabyte, mentre la quantizzazione a 8 bit ne riduce l'ingombro a circa un quarto, rendendo l'esecuzione praticabile nel browser.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Tempi di elaborazione attesi</h3>
+            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Dispositivo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Rapporto indicativo tempo di elaborazione / durata audio</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Desktop recente con CPU a 8 o più core</td><td class="px-3 py-2 border-t border-gray-200">Circa 0,5x - 1x</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Portatile di fascia media</td><td class="px-3 py-2 border-t border-gray-200">Circa 1x - 2x</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Dispositivo datato o in risparmio energetico</td><td class="px-3 py-2 border-t border-gray-200">Oltre 2x</td></tr></tbody></table></div>
+            <p>I valori sono indicativi e dipendono dal numero di core, dalla memoria disponibile e dal surriscaldamento del processore nelle elaborazioni prolungate. Per registrazioni molto lunghe conviene tenere il dispositivo collegato all'alimentazione e chiudere le altre schede.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Regolamento UE 2016/679 (GDPR), articolo 4</strong> — la voce è un dato personale, perché consente di identificare direttamente o indirettamente la persona che parla.</li>
+              <li><strong>Regolamento UE 2016/679, articolo 9</strong> — le registrazioni possono contenere categorie particolari di dati, come informazioni sulla salute, sulle opinioni politiche o sulle convinzioni religiose.</li>
+              <li><strong>Regolamento UE 2024/1689 (AI Act)</strong> — disciplina i sistemi di intelligenza artificiale e vieta o limita alcuni usi del riconoscimento delle emozioni e della categorizzazione biometrica.</li>
+              <li><strong>Codice penale, articolo 617-septies</strong> — punisce la diffusione di riprese o registrazioni fraudolente di conversazioni con finalità di recare danno alla reputazione.</li>
+              <li><strong>Legge 3 febbraio 1963 n. 69, articolo 2</strong> — tutela il segreto professionale del giornalista sulle fonti fiduciarie.</li>
+              <li><strong>Codice di deontologia medica</strong> — impone la riservatezza sulle informazioni del paziente, comprese quelle contenute nelle dettature di referti.</li>
+            </ul>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Registrare una conversazione è lecito?</h3>
+            <p>La giurisprudenza italiana considera lecita la registrazione di una conversazione da parte di chi vi partecipa, anche senza il consenso degli altri interlocutori, e ne ammette l'uso a fini difensivi. Resta invece illecita l'intercettazione di conversazioni fra terze persone a cui non si partecipa. La diffusione del contenuto è un atto distinto dalla registrazione e richiede una base giuridica autonoma, soprattutto quando il contenuto riguarda dati personali di altri.</p>
+            <h3 class="font-bold text-gray-900 text-base mt-4">Buone pratiche per interviste e ricerca</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Informativa preventiva</strong>: nelle interviste di ricerca e giornalistiche è buona prassi informare l'intervistato della registrazione e della successiva trascrizione.</li>
+              <li><strong>Pseudonimizzazione</strong>: nelle trascrizioni destinate a pubblicazione o condivisione vanno rimossi o sostituiti nomi e dettagli identificativi non necessari.</li>
+              <li><strong>Conservazione limitata</strong>: il file audio originale va conservato solo per il tempo necessario e poi eliminato, in coerenza con il principio di limitazione della conservazione.</li>
+              <li><strong>Revisione umana</strong>: una trascrizione automatica può contenere errori su nomi propri, numeri e termini tecnici, che vanno controllati prima dell'uso.</li>
+            </ul>
+            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> la trascrizione automatica non è un verbale e non ha valore certificativo. Per usi processuali o amministrativi la trascrizione va verificata sulla registrazione originale e, quando la legge lo richiede, redatta o asseverata da un soggetto abilitato.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I casi seguenti sono stati riprodotti con lo strumento su una registrazione di prova di 9 secondi, generata con la sintesi vocale del sistema operativo.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: trascrizione di un annuncio parlato</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Audio: «The meeting of the condominium assembly is scheduled for Monday at six in the afternoon...»</li>
+            <li>Testo restituito: «The meeting of the Condominium Assembly is scheduled for Monday at 6 in the afternoon.»</li>
+            <li>«forty eight thousand euros» trascritto come «€48,000»</li>
+            </ul>
+            <p>Il testo è corretto, ma il modello normalizza i numeri detti a voce in cifre e simboli. È un dettaglio importante quando si trascrivono importi o date: vanno sempre verificati sull'audio.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: tempi di elaborazione</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>Primo avvio (con scaricamento del modello): 31 secondi</li>
+            <li>Seconda trascrizione dello stesso file, modello già in memoria: 14 secondi</li>
+            <li>Rapporto fra tempo di calcolo e durata dell'audio: circa 1,5</li>
+            </ul>
+            <p>Il modello Whisper small quantizzato pesa circa 250 MB (92 MB l'encoder, 157 MB il decoder) e resta nella cache del browser. Su un portatile meno potente o su smartphone i tempi si allungano sensibilmente.</p>
+
+            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: sottotitoli SRT</h3>
+            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
+            <li>1 — 00:00:00,000 --&gt; 00:00:05,440 — prima frase</li>
+            <li>2 — 00:00:05,440 --&gt; 00:00:09,000 — seconda frase</li>
+            </ul>
+            <p>I sottotitoli seguono i segmenti individuati dal modello, uno per frase. Per un video pubblicato conviene rivederli in un programma di montaggio: le durate vanno adattate alla velocità di lettura e le righe troppo lunghe spezzate.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Quali formati audio sono supportati?</h3>
+              <p>Sono supportati i formati che il browser sa decodificare in modo nativo, tra cui MP3, WAV, M4A, OGG e WEBM, oltre alla traccia audio di molti file video. Il file viene convertito localmente in un segnale mono a 16 kHz prima della trascrizione. Se un formato non viene riconosciuto, conviene convertirlo in MP3 o WAV con un programma installato sul computer.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">La qualità della registrazione incide sul risultato?</h3>
+              <p>In modo determinante. Rumore di fondo, riverbero, voci sovrapposte e microfoni lontani aumentano gli errori. I risultati migliori si ottengono con un microfono vicino a chi parla, in un ambiente silenzioso e con un solo interlocutore alla volta. Aumentare il volume di un file registrato male non recupera l'informazione persa.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Lo strumento distingue chi sta parlando?</h3>
+              <p>No. Whisper produce la trascrizione del parlato con i riferimenti temporali, ma non attribuisce le frasi ai singoli interlocutori. La separazione dei parlanti richiede un modello aggiuntivo. Per interviste e riunioni conviene annotare a mano gli interventi partendo dai tempi del file SRT.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Posso tradurre l'audio in un'altra lingua?</h3>
+              <p>Il modello Whisper supporta nativamente la traduzione verso l'inglese a partire da molte lingue. Per ottenere un testo in una lingua diversa dall'inglese conviene prima trascrivere nella lingua originale e poi usare il traduttore del portale, anch'esso eseguito interamente nel browser.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Cos'è il file SRT e a cosa serve?</h3>
+              <p>È un formato di sottotitoli testuale in cui ogni frase è associata a un tempo di inizio e di fine. È compatibile con i principali lettori video e con le piattaforme di pubblicazione. È utile anche fuori dal video, perché permette di ritrovare rapidamente nella registrazione il punto esatto in cui è stata detta una frase.</p>
+            </div>
+            <div class="border-l-4 border-indigo-200 pl-4 py-1">
+              <h3 class="font-bold text-gray-900 text-base mb-1">Perché la trascrizione a volte ripete la stessa frase?</h3>
+              <p>È un comportamento noto dei modelli autoregressivi nelle parti di silenzio prolungato o di rumore costante, in cui il decoder tende a riprodurre l'ultima frase generata. Tagliare i lunghi silenzi prima della trascrizione riduce molto il fenomeno. Le ripetizioni vanno comunque eliminate in fase di revisione.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
+          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il trascrittore è un'applicazione <strong>100% client-side, a infrastruttura zero-backend</strong>. Il file audio viene decodificato, ricampionato e trascritto interamente dal browser sul tuo dispositivo, all'interno di un Web Worker isolato. L'unico traffico di rete è il download iniziale del modello Whisper da un archivio pubblico: un flusso in entrata che non contiene nulla di tuo. Le registrazioni, le voci e il testo trascritto, con i nomi, i codici fiscali, gli IBAN o i dati sanitari eventualmente pronunciati, non vengono mai caricati su server.</p>
+          <p class="text-sm text-emerald-900/90 leading-relaxed">La voce è un dato personale e le registrazioni contengono spesso dati di terzi e categorie particolari di dati. Evitare ogni trasmissione è quindi il modo più solido per rispettare il Regolamento UE 2016/679 (GDPR). Non c'è un fornitore esterno che tratti l'audio, non avvengono trasferimenti verso Paesi terzi e nessuna registrazione può essere riutilizzata per addestrare modelli. L'architettura attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5.</p>
+        </div>
+
+        </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+             style="display:block;width:100%;min-width:250px;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="1157333219"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <h4 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h4>
+          <p class="text-sm text-gray-500 mt-1">Portale di micro-strumenti gratuiti — Tutto lato client.</p>
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm text-gray-600">
+          <a href="/contatti/" class="hover:text-indigo-600 transition-colors font-medium">Chi siamo / Contatti</a>
+          <a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors font-medium">Privacy</a>
+          <a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors font-medium">Avviso legale</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/trascrizione.js"></script>
+
+  <!-- GESTOR CENTRALIZADO DE ADSENSE -->
+  <script>
+    (function () {
+      'use strict';
+      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
+      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
+      function getAdWidth(ad) {
+        if (!ad || !ad.isConnected) return 0;
+        const rect = ad.getBoundingClientRect();
+        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
+      }
+      function initAd(ad) {
+        if (!ad || ad.dataset.suAdInit === '1') return;
+        const width = getAdWidth(ad);
+        if (width <= 0) return;
+        ad.dataset.suAdInit = '1';
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
+      }
+      function initVisibleAds() {
+        if (!adsenseReady()) return;
+        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
+      }
+      function observeAds() {
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+              if (entry.contentRect.width <= 0) continue;
+              const ads = entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])');
+              ads.forEach(initAd);
+            }
+          });
+          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
+        }
+        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
+      }
+      function start() {
+        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
+        let attempts = 0;
+        const timer = setInterval(() => {
+          attempts++;
+          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
+          if (attempts >= 100) clearInterval(timer);
+        }, 100);
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
+    })();
+  </script>
+  <script defer src="/js/guida-campi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+</body>
+</html>
