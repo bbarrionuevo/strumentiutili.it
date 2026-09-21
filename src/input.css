@@ -43,3 +43,43 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
   top: 6rem;
   height: max-content;
 }
+
+/* Salta al contenuto: invisibile finche' non riceve il fuoco da tastiera.
+   Va sopra l'intestazione, che e' sticky con z-50. */
+.su-salta {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 100;
+  transform: translateY(-250%);
+  background: #4F46E5;
+  color: #fff;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+  transition: transform 0.15s ease;
+}
+
+.su-salta:focus {
+  transform: translateY(0);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Chi ha chiesto meno animazioni al sistema operativo non deve subire
+   lo scorrimento morbido ne' i sollevamenti delle schede. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card:hover { transform: none; }
+}
