@@ -617,6 +617,19 @@
         }
       ]
     },
+    "_nota_tariffe": "In regioni contiene le tariffe VERIFICATE. Le altre Regioni ricadono sulla tariffa nazionale: per quelle elencate in regioni_con_tariffa_propria questo e un ripiego, non il dato reale, e va detto all utente. Fonte da consultare: tariffario ACI.",
+    "regioni_con_tariffa_propria": [
+      "abruzzo",
+      "calabria",
+      "campania",
+      "emilia_romagna",
+      "lazio",
+      "liguria",
+      "toscana",
+      "veneto",
+      "bolzano"
+    ],
+    "fonte_ufficiale": "https://www.aci.it/i-servizi/servizi-online/calcolo-bollo-auto.html",
     "regioni": {
       "nazionale": {
         "classi_euro": {
@@ -1942,5 +1955,45 @@
       },
       "ultimo_aggiornamento": "2026-09-17"
     }
+  },
+  "esenzione_bollo_2027": {
+    "_nota": "Misura ANNUNCIATA dal Consiglio dei Ministri il 16 settembre 2026, non ancora legge. Le voci con certezza \"annunciata\" sono confermate da piu fonti indipendenti; quelle \"controversa\" no. Aggiornare quando esce il testo definitivo.",
+    "stato": "annunciata",
+    "in_vigore": false,
+    "data_annuncio": "2026-09-16",
+    "fonte": "Consiglio dei Ministri del 16 settembre 2026, in attesa di approvazione parlamentare",
+    "periodo": {
+      "dal": "2027-01-01",
+      "al": "2027-12-31",
+      "nota": "Copre le scadenze ordinarie del bollo che cadono nel 2027."
+    },
+    "auto": {
+      "potenza_massima_kw": 80,
+      "certezza": "annunciata",
+      "nota": "Per le ibride si considera la sola potenza del motore termico."
+    },
+    "moto": {
+      "incluse": true,
+      "limite_potenza_kw": null,
+      "certezza": "controversa",
+      "nota": "Le fonti non concordano: alcune parlano di tutti i motocicli senza limite di potenza, altre solo per chi non possiede un auto agevolabile."
+    },
+    "veicoli_per_persona": 1,
+    "criterio_scelta": "potenza_minore",
+    "criterio_certezza": "annunciata",
+    "requisito_assicurazione": {
+      "richiesto": true,
+      "certezza": "controversa",
+      "nota": "Riportato da una sola fonte."
+    },
+    "limite_isee": null,
+    "domanda_necessaria": false,
+    "superbollo_incluso": false,
+    "superbollo_nota": "L addizionale erariale oltre i 185 kW resta dovuta: l esenzione riguarda la sola tassa automobilistica regionale.",
+    "esclusioni": [
+      "Auto con potenza superiore a 80 kW",
+      "Il superbollo, che continua ad applicarsi",
+      "Le annualita diverse dal 2027"
+    ]
   }
 }

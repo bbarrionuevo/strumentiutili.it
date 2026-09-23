@@ -379,3 +379,24 @@ test('l informativa non descrive piu la CMP di Cookiebot', () => {
   assert.ok(!testo.includes('cancellando la cache'), 'dice ancora di svuotare la cache per ritirare il consenso');
   assert.match(testo, /Gestisci il consenso ai cookie/, 'non rimanda al comando nel piede');
 });
+
+test('ogni pagina ha un solo canonical', () => {
+  // Due canonical identici, o nessuno, confondono i motori. Le pagine
+  // regionali del bollo li avevano doppi perche' ereditati dal modello.
+  const problemi = [];
+  for (const p of PAGINE) {
+    const quanti = (p.html.match(/rel="canonical"/g) || []).length;
+    if (quanti !== 1) problemi.push(p.rel + ' -> ' + quanti);
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('le pagine del bollo rimandano allo strumento sull esenzione 2027', () => {
+  // Chi cerca il bollo nel 2027 deve sapere che potrebbe non doverlo pagare:
+  // senza questo rimando la pagina calcola un importo e tace sulla novita.
+  const problemi = PAGINE
+    .filter((p) => /calcolo-bollo-auto/.test(p.rel))
+    .filter((p) => !p.html.includes('/cittadino-tasse/esenzione-bollo-auto-2027/'))
+    .map((p) => p.rel);
+  assert.deepStrictEqual(problemi, []);
+});

@@ -38,8 +38,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     let superbollo = 0;
 
     // 1. Calcolo Bollo Regionale Base
-    // Se la regione non ha un nodo specifico, usa la tariffa nazionale
-    const regioneData = regoleBollo.regioni[regione] || regoleBollo.regioni["nazionale"];
+      // Se la Regione non ha tariffe proprie caricate si ricade su quelle
+      // nazionali. Prima succedeva in silenzio: la pagina prometteva un calcolo
+      // regionale e mostrava un numero nazionale. Adesso il ripiego si dichiara.
+      const propria = regoleBollo.regioni[regione];
+      const regioneData = propria || regoleBollo.regioni["nazionale"];
+      const conTariffaPropria = (regoleBollo.regioni_con_tariffa_propria || []).indexOf(regione) !== -1;
+      mostraOrigine(propria ? "regionale" : (conTariffaPropria ? "nazionale_provvisoria" : "nazionale"));
     const tariffe = regioneData.classi_euro[euroClass];
 
     if (tariffe && kw > 0) {
@@ -75,6 +80,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     outSuperbollo.textContent = fmt(superbollo);
     outTotale.textContent = fmt(totale);
   }
+
+    // Dice quale tariffa e stata usata. Per le Regioni che hanno tariffe
+    // proprie non ancora caricate e un avviso: il numero e indicativo.
+    function mostraOrigine(origine) {
+      const box = document.getElementById("res-origine");
+      if (!box) return;
+      if (origine === "regionale") {
+        box.className = "mt-3 text-[11px] leading-snug text-gray-300";
+        box.textContent = "Importo calcolato con le tariffe deliberate da questa Regione.";
+        return;
+      }
+      if (origine === "nazionale") {
+        box.className = "mt-3 text-[11px] leading-snug text-gray-300";
+        box.textContent = "Questa Regione applica le tariffe nazionali di riferimento.";
+        return;
+      }
+      box.className = "mt-3 text-[11px] leading-snug text-amber-300";
+      box.innerHTML = "Attenzione: questa Regione delibera tariffe proprie che non abbiamo ancora caricato. " +
+        "L’importo qui sopra usa la tariffa nazionale ed e quindi indicativo: verificalo sul " +
+        "<a href=\"https://www.aci.it/i-servizi/servizi-online/calcolo-bollo-auto.html\" target=\"_blank\" rel=\"noopener nofollow\" class=\"underline\">calcolatore ACI</a>.";
+    }
 
   // Event Listeners
   const inputs = [inputKw, inputEuro, inputRegione, inputImmatricolazione];

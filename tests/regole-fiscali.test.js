@@ -94,20 +94,15 @@ test('nessun valore numerico e NaN o Infinity in tutto il file', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
-// PROBLEMA NOTO, non ancora risolto: esistono 20 pagine regionali ma solo 3
-// regioni hanno tariffe proprie nel JSON (campania, lazio, toscana). Le altre
-// 17 ricadono sulla tariffa nazionale in js/bollo-auto.js:42, pur promettendo
-// nel titolo e nell H1 un calcolo regionale. Il test resta come promemoria:
-// segnala a ogni esecuzione senza bloccare la suite.
-test('ogni pagina regionale del bollo auto ha tariffe proprie', { todo: 'mancano le tariffe di 17 regioni su 20' }, () => {
-  const regioni = Object.keys(regole.bollo_auto_2026.regioni);
-  const cartelle = fs.readdirSync(path.join(RADICE, 'cittadino-tasse'))
-    .filter((n) => n.startsWith('calcolo-bollo-auto-'))
-    .map((n) => n.replace('calcolo-bollo-auto-', ''));
-
-  const senzaTariffe = cartelle.filter((slug) => !regioni.includes(slug));
-  assert.deepStrictEqual(senzaTariffe, [],
-    'pagine regionali che calcolano in realta la tariffa nazionale: ' + senzaTariffe.join(', '));
+// Quello che resta da fare: cinque Regioni deliberano tariffe proprie che non
+// abbiamo ancora caricato (abruzzo, calabria, emilia_romagna, liguria, veneto).
+// Per loro il calcolo usa la tariffa nazionale e lo dichiara con un avviso, ma
+// il numero resta indicativo. Le altre dodici applicano davvero la tariffa
+// nazionale, quindi per loro non manca niente.
+test('le Regioni con tariffa propria hanno le tariffe caricate', { todo: 'mancano 5 Regioni su 9' }, () => {
+  const b = regole.bollo_auto_2026;
+  const mancanti = b.regioni_con_tariffa_propria.filter((r) => !b.regioni[r]);
+  assert.deepStrictEqual(mancanti, [], 'tariffe da caricare dal tariffario ACI: ' + mancanti.join(', '));
 });
 
 // Questo invece deve valere sempre: ogni pagina generata deve almeno comparire
@@ -119,4 +114,62 @@ test('ogni pagina regionale corrisponde a una voce di regioniSEO', () => {
     .map((n) => n.replace('calcolo-bollo-auto-', ''));
   const sconosciute = cartelle.filter((slug) => !slugSEO.includes(slug));
   assert.deepStrictEqual(sconosciute, [], 'pagine senza voce in regioniSEO: ' + sconosciute.join(', '));
+});
+
+// --- Tariffe regionali del bollo ------------------------------------------
+// Il difetto: 17 pagine regionali su 20 calcolavano la tariffa nazionale
+// mentre titolo e H1 promettevano un calcolo regionale, senza dirlo. Adesso
+// la ricaduta sulla tariffa nazionale viene dichiarata, e per le Regioni che
+// hanno tariffe proprie non ancora caricate diventa un avviso.
+
+test('l elenco delle Regioni con tariffa propria esiste ed e coerente', () => {
+  const b = regole.bollo_auto_2026;
+  assert.ok(Array.isArray(b.regioni_con_tariffa_propria), 'manca regioni_con_tariffa_propria');
+  assert.ok(b.regioni_con_tariffa_propria.length >= 5);
+
+  // ogni Regione con tariffe caricate deve comparire nell elenco
+  const caricate = Object.keys(b.regioni).filter((r) => r !== 'nazionale');
+  const fuori = caricate.filter((r) => !b.regioni_con_tariffa_propria.includes(r));
+  assert.deepStrictEqual(fuori, [],
+    'ci sono tariffe caricate per Regioni non dichiarate come aventi tariffa propria');
+});
+
+test('le tariffe caricate sono coerenti fra classi Euro', () => {
+  const b = regole.bollo_auto_2026;
+  for (const [nome, dati] of Object.entries(b.regioni)) {
+    const c = dati.classi_euro;
+    // piu vecchio e il veicolo, piu alta la tariffa
+    assert.ok(c.euro_0.tariffa_base >= c.euro_3.tariffa_base,
+      nome + ': Euro 0 dovrebbe costare piu di Euro 3');
+    assert.ok(c.euro_3.tariffa_base >= c.euro_4_5_6.tariffa_base,
+      nome + ': Euro 3 dovrebbe costare piu di Euro 4-6');
+    // oltre i 100 kW si paga di piu
+    for (const [classe, t] of Object.entries(c)) {
+      assert.ok(t.tariffa_eccedente > t.tariffa_base,
+        nome + '/' + classe + ': la tariffa oltre i 100 kW deve essere maggiore');
+    }
+  }
+});
+
+test('la fonte ufficiale per le tariffe mancanti e indicata', () => {
+  assert.match(regole.bollo_auto_2026.fonte_ufficiale || '', /aci.it/,
+    'senza una fonte da citare l avviso sulle tariffe mancanti non aiuta nessuno');
+});
+
+test('js/bollo-auto.js dichiara quale tariffa sta usando', () => {
+  const codice = fs.readFileSync(path.join(RADICE, 'js', 'bollo-auto.js'), 'utf8');
+  assert.match(codice, /mostraOrigine/, 'manca la funzione che dichiara la tariffa');
+  assert.match(codice, /nazionale_provvisoria/, 'manca il caso della Regione con tariffe non caricate');
+  assert.match(codice, /regioni_con_tariffa_propria/, 'il codice non legge l elenco dal JSON');
+});
+
+test('tutte le pagine del bollo mostrano l origine della tariffa', () => {
+  const dir = path.join(RADICE, 'cittadino-tasse');
+  const pagine = fs.readdirSync(dir).filter((n) => n.startsWith('calcolo-bollo-auto'));
+  const senza = pagine.filter((n) => {
+    const f = path.join(dir, n, 'index.html');
+    if (!fs.existsSync(f)) return false;
+    return !fs.readFileSync(f, 'utf8').includes('id="res-origine"');
+  });
+  assert.deepStrictEqual(senza, [], 'pagine che calcolano senza dire quale tariffa applicano');
 });
