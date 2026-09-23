@@ -7,7 +7,7 @@ on:
 
 jobs:
   calcoli:
-    name: Motori di calcolo fiscale
+    name: Motori di calcolo e layout
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,10 +21,13 @@ jobs:
         run: npm test
 
   build:
-    name: Build CSS
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Il lastmod del sitemap viene da git log: serve la storia intera.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -32,10 +35,18 @@ jobs:
 
       - run: npm ci
 
-      - name: Compila Tailwind
-        run: npm run build
+      # Se il layout generato differisce da quello versionato, qualcuno ha
+      # modificato scripts/build-layout.js senza rieseguire npm run build.
+      - name: Verifica che il layout sia rigenerato
+        run: node scripts/applica-layout.js --check
 
-      # Se il CSS compilato differisce da quello versionato, qualcuno ha
-      # modificato src/input.css senza rigenerare css/styles.css.
+      # Serve la storia completa per il lastmod preso da git.
+      - name: Verifica che il sitemap sia rigenerato
+        run: node scripts/genera-sitemap.js --check
+
+      - name: Compila Tailwind
+        run: npm run build:css
+
+      # Stesso discorso per il CSS rispetto a src/input.css.
       - name: Verifica che css/styles.css sia aggiornato
         run: git diff --exit-code css/styles.css

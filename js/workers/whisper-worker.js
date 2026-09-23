@@ -1,5 +1,5 @@
 // js/workers/whisper-worker.js — Worker dedicado para Whisper AI (Comlink)
-import * as Comlink from 'https://unpkg.com/comlink/dist/esm/comlink.mjs';
+import * as Comlink from 'https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs';
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.16.0';
 
 env.allowLocalModels = false;

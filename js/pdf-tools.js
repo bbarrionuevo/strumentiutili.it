@@ -6,7 +6,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
 
 (async ()=>{
   // Importar Comlink e instanciar el Worker con la ruta exacta corregida
-  const Comlink = await import('https://unpkg.com/comlink/dist/esm/comlink.mjs');
+  const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
   const worker = new Worker('/js/workers/pdf-worker.js'); 
   worker.onerror = (err) => console.error("Error crítico en Web Worker PDF:", err);
   const pdfWorker = Comlink.wrap(worker);

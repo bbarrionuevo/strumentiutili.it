@@ -42,8 +42,19 @@ const LEGALI = [
   { href: '/avviso-legale/', testo: 'Avviso legale' }
 ];
 
+// Origini di terzi presenti in TUTTE le pagine e sul percorso critico: vale la
+// pena aprire la connessione mentre il browser legge ancora l'HTML. Le librerie
+// (unpkg, jsdelivr, cdnjs) cambiano da pagina a pagina e non entrano qui: un
+// preconnect di troppo ruba banda invece di guadagnarne.
+const ORIGINI_CRITICHE = [
+  'https://consent.cookiebot.com',
+  'https://pagead2.googlesyndication.com'
+];
+
 // Marcatori: tutto quello che sta in mezzo e' generato da qui.
 const M = {
+  testeApri: '<!-- su:teste -->',
+  testeChiudi: '<!-- /su:teste -->',
   saltaApri: '<!-- su:salta -->',
   saltaChiudi: '<!-- /su:salta -->',
   testataApri: '<!-- su:testata -->',
@@ -122,6 +133,14 @@ function contestoPagina(rel, html) {
 
   const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
   return { rel, url, tipo, categoria, titolo: m ? testoSemplice(m[1]) : '' };
+}
+
+// ---------------------------------------------------------- teste della pagina
+
+function teste() {
+  return ORIGINI_CRITICHE
+    .map((o) => '  <link rel="preconnect" href="' + o + '" crossorigin>')
+    .join('\n');
 }
 
 // ------------------------------------------------------------- salta al contenuto
@@ -306,8 +325,8 @@ function jsonLdBriciole(ctx) {
 }
 
 module.exports = {
-  RADICE, SITO, CATEGORIE, LEGALI, M, APICE,
+  RADICE, SITO, CATEGORIE, LEGALI, M, APICE, ORIGINI_CRITICHE,
   pagineAttive, urlPagina, contestoPagina, catenaBriciole,
-  saltaAlContenuto, intestazione, piede, briciole, jsonLdBriciole,
+  teste, saltaAlContenuto, intestazione, piede, briciole, jsonLdBriciole,
   esc, testoSemplice
 };

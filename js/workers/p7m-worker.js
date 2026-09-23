@@ -1,5 +1,5 @@
 // js/workers/p7m-worker.js — Estrazione del contenuto XML da .p7m (Comlink)
-import * as Comlink from 'https://unpkg.com/comlink/dist/esm/comlink.mjs';
+import * as Comlink from 'https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs';
 
 const p7mService = {
   async extractXml(buffer) {

@@ -47,6 +47,19 @@ function avvolgi(apri, contenuto, chiudi, rientro) {
 
 // --------------------------------------------------------------- sostituzioni
 
+// I preconnect vanno il piu' presto possibile: subito dopo <head>, cioe' prima
+// dello script di Cookiebot, che e' sincrono e blocca il parsing.
+function applicaTeste(html) {
+  const nuovo = L.teste();
+  const conMarcatori = traMarcatori(html, M.testeApri, M.testeChiudi, nuovo);
+  if (conMarcatori !== null) return conMarcatori;
+
+  const m = html.match(/<head[^>]*>/);
+  if (!m) return html;
+  const punto = m.index + m[0].length;
+  return html.slice(0, punto) + '\n' + avvolgi(M.testeApri, nuovo, M.testeChiudi) + html.slice(punto);
+}
+
 function applicaSalta(html) {
   const nuovo = L.saltaAlContenuto();
   const conMarcatori = traMarcatori(html, M.saltaApri, M.saltaChiudi, nuovo);
@@ -197,6 +210,7 @@ function rimuoviMainJs(html) {
 
 function trasforma(html, ctx) {
   let fuori = html;
+  fuori = applicaTeste(fuori);
   fuori = applicaSalta(fuori);
   fuori = applicaTestata(fuori, ctx);
   fuori = applicaPiede(fuori);

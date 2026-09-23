@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="it" class="scroll-smooth scroll-pt-24">
 <head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <!-- /su:teste -->
 <!-- 1. Google Consent Mode v2 -->
 <script data-cookieconsent="ignore">
     window.dataLayer = window.dataLayer || [];
@@ -683,7 +687,8 @@
     <section id="pdf-ia" class="mb-10">
       <div class="flex items-center gap-3 mb-4">
         <h2 class="text-2xl font-bold text-gray-900">📄 PDF, Scanner &amp; IA Locale</h2>
-        <a href="/pdf/" class="text-sm font-semibold text-indigo-600 hover:underline">Vedi tutti &rarr;</a>
+        <a href="/pdf/" class="text-sm font-semibold text-indigo-600 hover:underline">PDF &amp; Scanner &rarr;</a>
+        <a href="/ia/" class="text-sm font-semibold text-indigo-600 hover:underline">IA Locale &rarr;</a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <!-- SILO-2026:home-card-pdf-ia -->
@@ -840,10 +845,10 @@
         </article>
 
         <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
-          <div><h3 class="font-bold text-gray-900 text-lg">Acortador URL (Shortener)</h3>
+          <div><h3 class="font-bold text-gray-900 text-lg">Accorciatore URL (Shortener)</h3>
             <p class="text-sm text-gray-600 mt-2">Accorcia link lunghi per renderli più leggibili nei tuoi post.</p>
           </div>
-          <div class="mt-4"><a href="/utilita-web/acortador-url/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
+          <div class="mt-4"><a href="/utilita-web/accorciatore-url/" class="text-indigo-600 font-semibold hover:underline">Apri strumento</a></div>
         </article>
 
         <article class="default-hidden hidden bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
@@ -1087,79 +1092,8 @@
   
 
   
-  <!-- JAVASCRIPT AVANZATO PER SEARCH BAR E AUTO-SCROLL (UI/UX) -->
+  <!-- Gestore AdSense. La ricerca vive in js/layout.js, uguale su tutte le pagine. -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchInput = document.getElementById('search');
-      const articles = document.querySelectorAll('main article');
-      const sections = document.querySelectorAll('main section[id]');
-      const header = document.querySelector('header');
-
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          const term = e.target.value.toLowerCase().trim();
-          let firstVisibleSection = null;
-
-          if (term === '') {
-            sections.forEach(section => {
-              section.style.display = '';
-            });
-            articles.forEach(article => {
-              article.style.display = ''; 
-              if (article.classList.contains('default-hidden')) {
-                article.classList.add('hidden');
-              }
-            });
-            return;
-          }
-
-          articles.forEach(article => {
-            const text = article.textContent.toLowerCase();
-            if (text.includes(term)) {
-              article.style.display = 'flex';
-              article.classList.remove('hidden', 'default-hidden', 'md:hidden', 'lg:hidden', 'xl:hidden');
-            } else {
-              article.style.display = 'none';
-            }
-          });
-
-          sections.forEach(section => {
-            if (section.id === 'seo-block') return;
-            
-            const sectionArticles = section.querySelectorAll('article');
-            if (sectionArticles.length > 0) {
-              const visibleArticles = Array.from(sectionArticles).filter(a => a.style.display !== 'none');
-              
-              if (visibleArticles.length === 0) {
-                section.style.display = 'none';
-              } else {
-                section.style.display = 'block';
-                
-                const gridContainer = section.querySelector('.grid');
-                if (gridContainer && gridContainer.classList.contains('hidden-grid')) {
-                  gridContainer.classList.remove('hidden-grid');
-                }
-
-                if (!firstVisibleSection) {
-                  firstVisibleSection = section;
-                }
-              }
-            }
-          });
-
-          if (firstVisibleSection && term.length >= 3) {
-            const headerHeight = header ? header.offsetHeight : 90;
-            const offsetMargin = 24; 
-            const sectionTop = firstVisibleSection.getBoundingClientRect().top + window.pageYOffset;
-            
-            window.scrollTo({
-              top: sectionTop - headerHeight - offsetMargin,
-              behavior: 'smooth'
-            });
-          }
-        });
-      }
-    });
 
     // GESTORE ADSENSE (Zero CLS)
     (function () {

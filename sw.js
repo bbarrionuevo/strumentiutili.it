@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v34';
+const CACHE_NAME = 'strumentiutili-v36';
 
 const APP_SHELL = [
   '/',
@@ -88,7 +88,7 @@ const APP_SHELL = [
   '/utilita-web/generatore-qr/',
   '/utilita-web/convertitore-immagini/',
   '/utilita-web/contaparole/',
-  '/utilita-web/acortador-url/',
+  '/utilita-web/accorciatore-url/',
   '/utilita-web/media-universitaria/',
   '/utilita-web/calcolo-bmr/',
   '/utilita-web/budget-planner/',
@@ -99,7 +99,7 @@ const APP_SHELL = [
   '/avviso-legale.html',
 
   // Script condivisi e utilità
-  '/js/main.js',
+  '/js/layout.js',
   '/js/data-loader.js',
   '/js/dropzone.js',
   '/js/sfondo-persona.js',
@@ -166,7 +166,9 @@ const APP_SHELL = [
   '/js/workers/cv-pdf-worker.js',
 
   // Dataset e asset visivi
-  '/data/comuni.json',
+  // data/comuni.json (4,65 MB) NON entra nella cache iniziale: lo usano tre
+  // pagine su 126 e da solo era un terzo del peso. Lo prende la strategia
+  // di runtime alla prima visita di quelle pagine.
   '/data/regole-fiscali-2026.json',
   '/data/strumenti.json',
   '/data/modelli-piva-schema.json',
@@ -270,6 +272,21 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+// Statici (js, css, dati, immagini): prima la cache, aggiornandola in secondo
+// piano. Prima era rete-per-tutto, quindi i 14 MB precaricati non
+// acceleravano niente e servivano solo offline.
+const STATICI = /^\/(js|css|assets|data)\//;
+
+function aggiornaInSecondoPiano(request) {
+  return fetch(request).then((risposta) => {
+    if (risposta && risposta.status === 200 && risposta.type === 'basic') {
+      const copia = risposta.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(request, copia));
+    }
+    return risposta;
+  });
+}
+
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
@@ -278,6 +295,18 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (isBlockedRequest(url)) return;
 
+  // Statici: risposta immediata dalla cache, aggiornamento silenzioso.
+  if (STATICI.test(url.pathname)) {
+    event.respondWith(
+      caches.match(request).then((inCache) => {
+        const dallaRete = aggiornaInSecondoPiano(request).catch(() => inCache);
+        return inCache || dallaRete;
+      })
+    );
+    return;
+  }
+
+  // Pagine: prima la rete, cosi i calcoli fiscali restano aggiornati.
   event.respondWith(
     fetch(request)
       .then((response) => {

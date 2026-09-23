@@ -9,9 +9,25 @@
   }
 
   async function initScanner() {
-    const Comlink = await import('https://unpkg.com/comlink/dist/esm/comlink.mjs');
-    const worker = new Worker('/js/workers/scanner-worker.js');
-    const scannerWorker = Comlink.wrap(worker);
+    const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
+    // El worker carica OpenCV (9,5 MB) appena viene creato. Si crea solo
+    // quando serve davvero, cioe' al primo documento: chi apre la pagina e
+    // se ne va non scarica niente.
+    let scannerWorker = null;
+    let motorePronto = null;
+
+    function avviaMotore() {
+      if (!motorePronto) {
+        setStatus('Caricamento motore di visione artificiale (circa 10 MB)…', 'amber');
+        const worker = new Worker('/js/workers/scanner-worker.js');
+        scannerWorker = Comlink.wrap(worker);
+        motorePronto = scannerWorker.isReady().then(function () {
+          setStatus('Motore pronto.', 'green');
+          return scannerWorker;
+        });
+      }
+      return motorePronto;
+    }
 
     const uploadInput = document.getElementById('img-upload');
     const dropZone = document.getElementById('drop-zone');
@@ -36,9 +52,7 @@
     let draggedPointIndex = -1;
     let displayScale = 1;
 
-    setStatus('Caricamento motore IA (Computer Vision)... Attendi.', 'amber');
-    await scannerWorker.isReady();
-    setStatus('Motore IA pronto. Carica i tuoi documenti.', 'green');
+    setStatus('Carica i tuoi documenti: il motore parte al primo file.', 'indigo');
 
     function setStatus(message, type) {
       statusMsg.textContent = message;
@@ -97,7 +111,7 @@
           let detectedPoints = null;
           if (chkAutoCrop.checked) {
             // Transferir la memoria de la imagen al Worker para que OpenCV la analice
-            detectedPoints = await scannerWorker.detectCorners(Comlink.transfer(imageData, [imageData.data.buffer]));
+            detectedPoints = await (await avviaMotore()).detectCorners(Comlink.transfer(imageData, [imageData.data.buffer]));
           }
 
           const autoDetected = !!detectedPoints;
@@ -137,7 +151,7 @@
     async function processDocWithWorker(doc) {
       const imgData = imageToImageData(doc.imgElement);
       // Procesar perspectiva y filtros en el Worker sin congelar la pantalla
-      const processedImageData = await scannerWorker.processDocument(
+      const processedImageData = await (await avviaMotore()).processDocument(
         Comlink.transfer(imgData, [imgData.data.buffer]),
         doc.points,
         doc.filter
@@ -301,7 +315,7 @@
           transferables.push(buffer);
         }
 
-        const pdfBuffer = await scannerWorker.generatePdf(Comlink.transfer(imageBuffers, transferables));
+        const pdfBuffer = await (await avviaMotore()).generatePdf(Comlink.transfer(imageBuffers, transferables));
         const pdfBlob = new Blob([pdfBuffer], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdfBlob);
 

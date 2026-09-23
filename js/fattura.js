@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function extractXmlFromP7m(buffer) {
     const fallbackBuffer = buffer.slice(0);
     try {
-      const Comlink = await import('https://unpkg.com/comlink/dist/esm/comlink.mjs');
+      const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
       const worker = new Worker('/js/workers/p7m-worker.js', { type: 'module' });
       const service = Comlink.wrap(worker);
 
