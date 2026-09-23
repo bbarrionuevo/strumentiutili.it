@@ -47,6 +47,81 @@
     salva();
   };
 
+  // --- Corpo del carattere nei PDF dell'Agenzia -----------------------------
+  //
+  // Nei moduli compilabili dell'Agenzia la stringa /DA di ogni campo scrive la
+  // barra del nome del carattere sfuggita in ottale: "\057Helv 0 Tf" invece di
+  // "/Helv 0 Tf". pdf-lib non la riconosce, quindi setFontSize() lancia
+  // "No Tf operator found for DA of field" e il corpo resta su 0, cioe'
+  // automatico. Su 2.481 campi dei 13 modelli, 2.480 sono scritti cosi'.
+  //
+  // Con il corpo automatico pdf-lib ingrandisce il testo finche' riempie il
+  // riquadro: piu' il testo e' corto, piu' le lettere diventano grandi. Nel
+  // modulo F24 Elide la sigla della provincia usciva a 16pt dentro un riquadro
+  // alto 12, tagliata sopra e sotto, mentre il cognome accanto stava a 9.
+  //
+  // Qui il /DA si riscrive per intero, con la barra normale, tenendo il nome
+  // del carattere e il colore che il modulo dichiara.
+
+  const RE_TF = /(?:\\057|\/)([A-Za-z0-9#+._-]+)\s+([\d.]+)\s+Tf/;
+
+  function daDelCampo(campo) {
+    try { return String(campo.acroField.getDefaultAppearance() || ''); }
+    catch (e) { return ''; }
+  }
+
+  function altezzaRiquadro(campo) {
+    try {
+      const widget = campo.acroField.getWidgets()[0];
+      return widget ? widget.getRectangle().height : 0;
+    } catch (e) { return 0; }
+  }
+
+  // Quando il modulo non dichiara un corpo, lo si ricava dall'altezza del
+  // riquadro. La proporzione 0,76 non e' inventata: e' quella dei campi che
+  // l'Agenzia dichiara davvero (8pt nei riquadri alti 10,5 dei modelli F24).
+  // Il tetto di 10pt tiene i riquadri alti in riga con gli AA4/8 e AA5/6, dove
+  // l'Agenzia dichiara appunto 10.
+  function corpoPerAltezza(altezza) {
+    if (!altezza) return 8;
+    const misura = Math.round(altezza * 0.76 * 2) / 2;
+    return Math.min(10, Math.max(6, misura));
+  }
+
+  function corpoDelCampo(campo) {
+    const trovato = RE_TF.exec(daDelCampo(campo));
+    const dichiarato = trovato ? parseFloat(trovato[2]) : 0;
+    if (dichiarato > 0) return dichiarato;          // il modulo ha gia' deciso
+    let multilinea = false;
+    try { multilinea = campo.isMultiline(); } catch (e) { /* niente */ }
+    if (multilinea) return 10;
+    return corpoPerAltezza(altezzaRiquadro(campo));
+  }
+
+  // Riscrive il /DA in una forma che pdf-lib sa leggere, con un corpo fisso.
+  // Restituisce la misura applicata, o 0 se non si e' potuto fare niente.
+  function fissaCorpoDelCampo(campo) {
+    const originale = daDelCampo(campo);
+    const trovato = RE_TF.exec(originale);
+    const nome = trovato ? trovato[1] : 'Helv';
+    const corpo = corpoDelCampo(campo);
+
+    // Si tiene il resto del /DA (di solito "0 g" oppure "0 0 0 rg"): e' il
+    // colore dell'inchiostro e cambia da modulo a modulo.
+    const resto = trovato
+      ? originale.slice(trovato.index + trovato[0].length).trim()
+      : '0 g';
+
+    try {
+      campo.acroField.setDefaultAppearance('/' + nome + ' ' + corpo + ' Tf ' + (resto || '0 g'));
+    } catch (e) {
+      return 0;
+    }
+    // Ora che il /DA e' leggibile, questa non lancia piu'.
+    try { campo.setFontSize(corpo); } catch (e) { /* il /DA da solo basta */ }
+    return corpo;
+  }
+
   function modelloCorrente() {
     return stato.schema.modelli[stato.modello];
   }
@@ -915,15 +990,10 @@
         try {
           const campo = modulo.getTextField(nome);
           const max = campo.getMaxLength();
-          // pdf-lib sceglie da se' il corpo del carattere in base all'altezza del
-          // riquadro: in un riquadro alto, come quello degli allegati dell'AA5/6
-          // che tiene quattro righe, verrebbe fuori un testo da titolo di
-          // giornale. Nei riquadri a piu' righe il corpo si fissa a mano. Se il
-          // modulo non dichiara un carattere in un modo che pdf-lib sa leggere
-          // la chiamata fallisce: pazienza, il testo si scrive lo stesso.
-          try {
-            if (campo.isMultiline()) campo.setFontSize(10);
-          } catch (e) { /* resta la misura scelta da pdf-lib */ }
+          // Senza questo il corpo resta automatico e le lettere escono di
+          // misura diversa in ogni riquadro: vedi il commento sopra
+          // fissaCorpoDelCampo.
+          fissaCorpoDelCampo(campo);
           campo.setText(max && valore.length > max ? valore.slice(0, max) : valore);
           return;
         } catch (e) { /* non e' una casella di testo: si prova col menu */ }
