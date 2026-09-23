@@ -46,8 +46,11 @@ const LEGALI = [
 // pena aprire la connessione mentre il browser legge ancora l'HTML. Le librerie
 // (unpkg, jsdelivr, cdnjs) cambiano da pagina a pagina e non entrano qui: un
 // preconnect di troppo ruba banda invece di guadagnarne.
+// Solo AdSense: da li' si carica anche la CMP nativa di Google, che ha preso il
+// posto di Cookiebot. Il preconnect a consent.cookiebot.com e' stato tolto con
+// quella migrazione: scaldava una connessione verso un dominio che il sito non
+// contatta piu'.
 const ORIGINI_CRITICHE = [
-  'https://consent.cookiebot.com',
   'https://pagead2.googlesyndication.com'
 ];
 
@@ -264,6 +267,15 @@ function piede(bloccoPubblicitario) {
     '          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>',
     '          <ul class="mt-3 space-y-2 text-sm text-gray-600">',
     LEGALI.map(vociLegali).join('\n'),
+    // Il GDPR (art. 7.3) chiede che ritirare il consenso sia facile quanto
+    // darlo. La CMP di Google espone googlefc.showRevocationMessage(): il
+    // bottone resta nascosto finche' js/layout.js non trova quella funzione,
+    // cosi' fuori dallo SEE, dove la CMP non si carica, non compare un comando
+    // che non farebbe nulla.
+    '            <li hidden id="riapri-consenso-voce">',
+    '              <button type="button" id="riapri-consenso"',
+    '                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>',
+    '            </li>',
     '          </ul>',
     '        </nav>',
     '',

@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="it">
 <head>
-  
+  <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <!-- /su:teste -->
+  
   
 
   <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
@@ -28,10 +30,6 @@
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="/css/styles.css">
 
-  <style>
-    .su-ad { width: 100%; min-height: 250px; background-color: #f8fafc; border: 1px dashed #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-sizing: border-box; margin-bottom: 1.5rem; }
-    .su-ad ins.adsbygoogle { display: block !important; width: 100%; min-width: 0; }
-  </style>
 
   
   <script type="application/ld+json">
@@ -170,8 +168,10 @@
   <footer class="bg-white border-t mt-12 w-full block">
     <div class="container mx-auto px-4 py-8 w-full block">
 
-      <div class="su-ad mb-8 text-center w-full">
+      <div class="su-ad su-ad--orizzontale mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
       <ins class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="9606012335" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
       </div>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -206,6 +206,10 @@
             <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
             <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
             <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
           </ul>
         </nav>
 

@@ -95,7 +95,6 @@ def main():
                 # senza rete verso Google: si misura lo spazio riservato, che e'
                 # quello che conta per il salto dell'impaginazione
                 pag.route("**/pagead2.googlesyndication.com/**", lambda r: r.abort())
-                pag.route("**/consent.cookiebot.com/**", lambda r: r.abort())
                 pag.goto("http://127.0.0.1:%d%s" % (PORTA, percorso), wait_until="load")
                 pag.wait_for_timeout(500)
                 riquadri = pag.evaluate(MISURA)

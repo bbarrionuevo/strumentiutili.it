@@ -50,7 +50,7 @@ with sync_playwright() as pw:
             esito = 1
             pag.close()
             continue
-        vivi = [x for x in errori if "Cookiebot" not in x and "consent" not in x.lower()]
+        vivi = [x for x in errori if "consent" not in x.lower()]
         ok = passi > 0 and campi > 0 and genera == 1 and not vivi
         if not ok: esito = 1
         print("%s %-48s passi=%-2d campi=%-3d genera=%d%s"

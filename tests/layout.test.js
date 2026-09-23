@@ -231,10 +231,46 @@ test('ogni pagina apre in anticipo le connessioni ai terzi critici', () => {
       const tag = '<link rel="preconnect" href="' + origine + '" crossorigin>';
       if (!p.html.includes(tag)) problemi.push(p.rel + ' -> ' + origine);
     }
-    // devono stare prima dello script di Cookiebot, che e sincrono
+    // Il preconnect deve precedere lo script di AdSense, altrimenti non serve
+    // a niente: la connessione va aperta prima che il browser la chieda.
     const iPre = p.html.indexOf('rel="preconnect"');
-    const iCmp = p.html.indexOf('consent.cookiebot.com/uc.js');
-    if (iPre !== -1 && iCmp !== -1 && iPre > iCmp) problemi.push(p.rel + ' -> preconnect dopo Cookiebot');
+    const iAds = p.html.indexOf('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+    if (iPre === -1) problemi.push(p.rel + ' -> nessun preconnect');
+    else if (iAds !== -1 && iPre > iAds) problemi.push(p.rel + ' -> preconnect dopo AdSense');
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+// Dopo la migrazione da Cookiebot alla CMP nativa di AdSense: nessuna pagina
+// deve tornare a contattare i domini di Cookiebot, e nessuno script deve
+// rimettere in piedi il vecchio giro del consenso. Il rischio non e teorico:
+// scripts/sistema-consenso-adsense.py reinietterebbe tutto se lo si eseguisse.
+test('nessuna traccia di Cookiebot nelle pagine', () => {
+  const problemi = [];
+  const VIETATI = ['consent.cookiebot.com', 'consentcdn.cookiebot.com', 'data-cookieconsent',
+                   'CookiebotOnAccept', 'CookiebotOnDecline', 'CookiebotOnConsentReady',
+                   'requestNonPersonalizedAds'];
+  for (const p of PAGINE) {
+    for (const v of VIETATI) {
+      if (p.html.includes(v)) problemi.push(p.rel + ' -> ' + v);
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('AdSense si carica una volta sola, in modo asincrono, dentro head', () => {
+  const problemi = [];
+  for (const p of PAGINE) {
+    const quante = (p.html.match(/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/g) || []).length;
+    if (quante !== 1) { problemi.push(p.rel + ' -> ' + quante + ' script AdSense'); continue; }
+
+    const i = p.html.indexOf('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+    const apertura = p.html.lastIndexOf('<script', i);
+    const tag = p.html.slice(apertura, p.html.indexOf('>', i) + 1);
+    if (!/\basync\b/.test(tag)) problemi.push(p.rel + ' -> senza async');
+
+    const fineHead = p.html.indexOf('</head>');
+    if (fineHead !== -1 && i > fineHead) problemi.push(p.rel + ' -> AdSense fuori da head');
   }
   assert.deepStrictEqual(problemi, []);
 });
@@ -277,4 +313,69 @@ test('OpenCV non si scarica al caricamento della pagina', () => {
     .filter((p) => new RegExp("<script[^>]*src=\"[^\"]*opencv[.]js").test(p.html))
     .map((p) => p.rel);
   assert.deepStrictEqual(problemi, []);
+});
+
+test('ogni pagina offre il comando per riaprire il consenso', () => {
+  // GDPR art. 7.3: ritirare il consenso dev'essere facile quanto darlo.
+  // Il bottone parte nascosto e js/layout.js lo mostra solo dove la CMP di
+  // Google esiste davvero, cioe' dove il messaggio viene mostrato.
+  const problemi = [];
+  for (const p of PAGINE) {
+    if (!p.html.includes('id="riapri-consenso"')) problemi.push(p.rel + ' -> senza comando');
+    else if (!p.html.includes('<li hidden id="riapri-consenso-voce">')) problemi.push(p.rel + ' -> non parte nascosto');
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('js/layout.js apre la finestra del consenso con la CMP di Google', () => {
+  const layout = fs.readFileSync('js/layout.js', 'utf8');
+  assert.match(layout, /googlefc/, 'manca il collegamento alla CMP');
+  assert.match(layout, /showRevocationMessage/, 'manca la chiamata che riapre la scelta');
+});
+
+test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata', () => {
+  // Senza il modificatore .su-ad--* il riquadro non riserva spazio e la pagina
+  // salta quando arriva l'annuncio; senza etichetta l'annuncio non si
+  // distingue dal contenuto, che le norme di AdSense chiedono.
+  const problemi = [];
+  for (const p of PAGINE) {
+    // Pattern costruito da stringa: evita le sequenze di escape, che in questo
+    // file sono gia' state mangiate una volta da un passaggio di editing.
+    const re = new RegExp('<div class="su-ad[^"]*"[^>]*>([^]*?)</div>', 'g');
+    for (const m of p.html.matchAll(re)) {
+      const classe = m[0].slice(0, m[0].indexOf('>'));
+      if (!/su-ad--/.test(classe)) problemi.push(p.rel + ' -> riquadro senza formato: ' + classe.slice(0, 60));
+      if (!m[1].includes('su-ad-etichetta')) problemi.push(p.rel + ' -> riquadro senza etichetta');
+      if (!m[1].includes('su-ad-segnaposto')) problemi.push(p.rel + ' -> riquadro senza segnaposto');
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('il foglio di stile nasconde annunci e comandi in stampa', () => {
+  // Meta' degli strumenti produce documenti da stampare: F24, disdette,
+  // autocertificazioni. Sul foglio non devono finire i riquadri pubblicitari.
+  const css = fs.readFileSync('css/styles.css', 'utf8');
+  assert.match(css, /@media print/, 'nessuna regola di stampa in css/styles.css');
+  const i = css.indexOf('@media print');
+  const blocco = css.slice(i, i + 400);
+  for (const sel of ['.su-ad', '.su-salta', '#menu-toggle']) {
+    assert.ok(blocco.includes(sel), sel + ' non nascosto in stampa');
+  }
+});
+
+test('gli script della vecchia CMP non esistono piu', () => {
+  // sistema-consenso-adsense.py reiniettava l'intero blocco di Cookiebot in
+  // ogni pagina: lasciarlo in giro voleva dire poter annullare la migrazione
+  // con una sola esecuzione.
+  for (const f of ['scripts/sistema-consenso-adsense.py', 'scripts/prova-consenso-adsense.py']) {
+    assert.ok(!fs.existsSync(f), f + ' e ancora presente');
+  }
+});
+
+test('l informativa non descrive piu la CMP di Cookiebot', () => {
+  const testo = fs.readFileSync('politica-sulla-privacy.html', 'utf8');
+  assert.ok(!testo.includes('TCF v2.3'), 'dice ancora "TCF v2.3", che era la dicitura di Cookiebot');
+  assert.ok(!testo.includes('cancellando la cache'), 'dice ancora di svuotare la cache per ritirare il consenso');
+  assert.match(testo, /Gestisci il consenso ai cookie/, 'non rimanda al comando nel piede');
 });

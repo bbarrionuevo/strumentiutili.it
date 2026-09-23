@@ -2,7 +2,6 @@
 <html lang="it" class="scroll-smooth">
 <head>
   <!-- su:teste -->
-  
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <!-- /su:teste -->
 
@@ -10,14 +9,18 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
      crossorigin="anonymous"></script>
 
-<!-- 4. CSP Dinamico (Permette download modelli, AdSense e Cookiebot) -->
+<!-- 4. CSP (download dei modelli, AdSense e la sua CMP nativa)
+     fundingchoicesmessages.google.com e' il dominio da cui AdSense carica il
+     messaggio di consenso europeo: senza di lui il banner non comparirebbe su
+     questa pagina, che e' l'unica del sito con una CSP propria.
+     I domini di Cookiebot sono stati tolti con la migrazione alla CMP di Google. -->
 <meta http-equiv="Content-Security-Policy" id="csp-meta" content="
-  default-src 'self'; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://cdn.jsdelivr.net https://pagead2.googlesyndication.com https://consent.cookiebot.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google; 
-  style-src 'self' 'unsafe-inline'; 
-  connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com https://consentcdn.cookiebot.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://cdn.jsdelivr.net; 
-  worker-src 'self' blob: https://cdnjs.cloudflare.com https://esm.run https://cdn.jsdelivr.net; 
-  frame-src 'self' https://consentcdn.cookiebot.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google; 
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.run https://cdn.jsdelivr.net https://pagead2.googlesyndication.com https://fundingchoicesmessages.google.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google;
+  style-src 'self' 'unsafe-inline';
+  connect-src 'self' https://huggingface.co https://raw.githubusercontent.com https://pagead2.googlesyndication.com https://fundingchoicesmessages.google.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://cdn.jsdelivr.net;
+  worker-src 'self' blob: https://cdnjs.cloudflare.com https://esm.run https://cdn.jsdelivr.net;
+  frame-src 'self' https://fundingchoicesmessages.google.com https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google;
   img-src 'self' data: https:;
 ">
 
@@ -810,6 +813,10 @@
             <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
             <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
             <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
           </ul>
         </nav>
 

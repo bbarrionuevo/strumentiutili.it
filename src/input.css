@@ -68,6 +68,112 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
   outline-offset: 2px;
 }
 
+/* --- Riquadri pubblicitari -------------------------------------------------
+   Queste regole stavano solo nel blocco <style> di ogni pagina, e tre pagine
+   (avviso legale, contatti, privacy) ne avevano una versione ridotta: il loro
+   riquadro riservava 250px per un banner da 90px e restava senza etichetta.
+   Qui c'e' la definizione condivisa, che arriva a tutte le pagine tramite
+   css/styles.css. Dove il blocco inline esiste ancora, vince quello: e'
+   identico, quindi non cambia niente. */
+
+.su-ad {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f8fafc;
+  border: 1px dashed #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  /* Margine ampio: un annuncio appiccicato a un pulsante e' il modo piu'
+     rapido per farsi sospendere l'account AdSense. */
+  margin-block: 2rem;
+}
+
+.su-ad > ins.adsbygoogle {
+  display: block !important;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+
+/* L'altezza si riserva in base al FORMATO dell'annuncio, non alla sua
+   posizione: e' il formato a decidere quanto spazio occupera', ed e' cosi' che
+   si evita il salto di impaginazione (Cumulative Layout Shift). */
+.su-ad--testata,
+.su-ad--orizzontale { min-height: 100px; }
+.su-ad--contenuto { min-height: 280px; }
+.su-ad--laterale { min-height: 280px; }
+.su-ad--fondo { min-height: 280px; }
+
+@media (min-width: 1024px) {
+  .su-ad--testata,
+  .su-ad--orizzontale { min-height: 90px; }
+  .su-ad--laterale {
+    min-height: 600px;
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* Le norme di AdSense chiedono che l'annuncio si distingua dal contenuto:
+   l'etichetta resta anche quando l'annuncio e' caricato. */
+.su-ad-etichetta {
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: #94a3b8;
+  flex: 0 0 auto;
+}
+
+.su-ad-segnaposto {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #cbd5e1;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  min-height: inherit;
+}
+
+.su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
+
+/* Niente da mostrare: il riquadro si chiude e lo spazio torna al contenuto,
+   invece di lasciare un rettangolo grigio per sempre. */
+.su-ad[data-su-stato="vuoto"] { display: none; }
+
+/* --- Stampa ---------------------------------------------------------------
+   Meta' degli strumenti produce documenti fatti per essere stampati: F24,
+   autocertificazioni, disdette, lettere di dimissioni, ricevute. Sul foglio non
+   devono finire ne' gli annunci ne' i comandi di navigazione. */
+@media print {
+  .su-ad,
+  .su-salta,
+  #menu-toggle,
+  #menu-mobile,
+  #risultati-menu,
+  .su-ad-etichetta,
+  .su-ad-segnaposto {
+    display: none !important;
+  }
+
+  /* Un'intestazione appiccicata si ripeterebbe su ogni foglio. */
+  header {
+    position: static !important;
+    box-shadow: none !important;
+  }
+
+  body { background: #fff !important; }
+}
+
 /* Chi ha chiesto meno animazioni al sistema operativo non deve subire
    lo scorrimento morbido ne' i sollevamenti delle schede. */
 @media (prefers-reduced-motion: reduce) {

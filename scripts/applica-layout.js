@@ -48,7 +48,7 @@ function avvolgi(apri, contenuto, chiudi, rientro) {
 // --------------------------------------------------------------- sostituzioni
 
 // I preconnect vanno il piu' presto possibile: subito dopo <head>, cioe' prima
-// dello script di Cookiebot, che e' sincrono e blocca il parsing.
+// dello script di AdSense, che da li' carica anche la CMP nativa di Google.
 function applicaTeste(html) {
   const nuovo = L.teste();
   const conMarcatori = traMarcatori(html, M.testeApri, M.testeChiudi, nuovo);

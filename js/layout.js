@@ -13,6 +13,42 @@
     });
   }
 
+  // --------------------------------------------- riapertura del consenso
+
+  // Il GDPR chiede che ritirare il consenso sia facile quanto darlo. La CMP
+  // nativa di AdSense espone googlefc.showRevocationMessage(), ma solo dove la
+  // CMP si carica davvero (nello SEE e nel Regno Unito). Il comando nel piede
+  // parte nascosto e compare solo quando quella funzione esiste: altrove
+  // sarebbe un bottone che non fa niente.
+  function avviaRevocaConsenso() {
+    var voce = document.getElementById('riapri-consenso-voce');
+    var bottone = document.getElementById('riapri-consenso');
+    if (!voce || !bottone) return;
+
+    var tentativi = 0;
+
+    function cmpPronta() {
+      return !!(window.googlefc && typeof window.googlefc.showRevocationMessage === 'function');
+    }
+
+    function mostra() {
+      voce.hidden = false;
+      bottone.addEventListener('click', function () {
+        try { window.googlefc.showRevocationMessage(); } catch (e) { /* niente da fare */ }
+      });
+    }
+
+    // La CMP arriva insieme ad AdSense, quindi dopo il caricamento della
+    // pagina: si controlla per qualche secondo e poi si lascia perdere.
+    function controlla() {
+      if (cmpPronta()) { mostra(); return; }
+      if (++tentativi > 20) return;
+      setTimeout(controlla, 500);
+    }
+
+    controlla();
+  }
+
   // ------------------------------------------------------- menu telefono
 
   function avviaMenu() {
@@ -203,6 +239,7 @@
   function avvia() {
     avviaMenu();
     avviaRicerca();
+    avviaRevocaConsenso();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', avvia);
