@@ -55,7 +55,7 @@ NUOVO = '''<script data-cookieconsent="ignore">
         window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
     })();
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>'''
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>'''
 
 
 def main() -> int:

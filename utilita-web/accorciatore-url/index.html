@@ -2,48 +2,11 @@
 <html lang="it">
 <head>
   <!-- su:teste -->
-  <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin>
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
   <!-- /su:teste -->
-<!-- 1. Google Consent Mode v2 -->
-<script data-cookieconsent="ignore">
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("consent", "default", {
-        ad_personalization: "denied",
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        analytics_storage: "denied",
-        functionality_storage: "denied",
-        personalization_storage: "denied",
-        security_storage: "granted",
-        wait_for_update: 500,
-    });
-    gtag("set", "ads_data_redaction", true);
-    gtag("set", "url_passthrough", false);
-</script>
 
-<!-- 2. Cookiebot CMP TCF v2.3 -->
-<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8feb9929-7837-44e5-8c2f-5e848792c636" data-blockingmode="auto" type="text/javascript"></script>
-
-<!-- 3. Google AdSense: si carica sempre; senza consenso, annunci non personalizzati -->
-<script data-cookieconsent="ignore">
-    /* AdSense si carica sempre: chi rifiuta i cookie vede annunci NON
-       personalizzati invece di non vederne affatto. Si parte da 1, il valore
-       prudente; Cookiebot lo porta a 0 solo quando il consenso c'e' davvero. */
-    window.adsbygoogle = window.adsbygoogle || [];
-    window.adsbygoogle.requestNonPersonalizedAds = 1;
-    (function () {
-        function consensoPubblicitario() {
-            var c = window.Cookiebot && window.Cookiebot.consent;
-            window.adsbygoogle.requestNonPersonalizedAds = (c && c.marketing) ? 0 : 1;
-        }
-        window.addEventListener('CookiebotOnConsentReady', consensoPubblicitario);
-        window.addEventListener('CookiebotOnAccept', consensoPubblicitario);
-        window.addEventListener('CookiebotOnDecline', consensoPubblicitario);
-    })();
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous" data-cookieconsent="ignore"></script>
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957" crossorigin="anonymous"></script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
