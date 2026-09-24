@@ -513,6 +513,20 @@ test('js/layout.js apre la finestra del consenso con la CMP di Google', () => {
   const layout = fs.readFileSync('js/layout.js', 'utf8');
   assert.match(layout, /googlefc/, 'manca il collegamento alla CMP');
   assert.match(layout, /showRevocationMessage/, 'manca la chiamata che riapre la scelta');
+  // L'API ufficiale: la coda di googlefc parte quando la CMP e' pronta, anche
+  // tardi. Un controllo a tempo rinuncia su una rete lenta e il comando per
+  // ritirare il consenso non compare piu'.
+  assert.match(layout, /googlefc\.callbackQueue/, 'la CMP va aspettata con googlefc.callbackQueue');
+  assert.match(layout, /CONSENT_API_READY/, 'manca l attesa di CONSENT_API_READY');
+});
+
+test('l informativa dichiara le memorie tecniche del browser', () => {
+  // Il Garante chiede di informare anche sugli strumenti tecnici esenti da
+  // consenso: localStorage (su_), IndexedDB dei file condivisi, cache offline.
+  const privacy = fs.readFileSync(path.join(RADICE, 'politica-sulla-privacy.html'), 'utf8');
+  for (const voce of ['localStorage', 'su_', 'IndexedDB', 'service worker', 'Cancella i dati salvati']) {
+    assert.ok(privacy.includes(voce), 'l informativa non cita: ' + voce);
+  }
 });
 
 test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata', () => {

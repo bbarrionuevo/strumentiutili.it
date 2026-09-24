@@ -15,38 +15,33 @@
 
   // --------------------------------------------- riapertura del consenso
 
-  // Il GDPR chiede che ritirare il consenso sia facile quanto darlo. La CMP
-  // nativa di AdSense espone googlefc.showRevocationMessage(), ma solo dove la
-  // CMP si carica davvero (nello SEE e nel Regno Unito). Il comando nel piede
-  // parte nascosto e compare solo quando quella funzione esiste: altrove
-  // sarebbe un bottone che non fa niente.
+  // Il GDPR (art. 7.3) chiede che ritirare il consenso sia facile quanto darlo.
+  // Il messaggio lo mostra la CMP di Google configurata in AdSense ("Privacy e
+  // messaggi"), che arriva con adsbygoogle.js. Il comando nel piede parte
+  // nascosto e compare solo quando la CMP e' pronta, cioe' dove il messaggio
+  // viene davvero mostrato: altrove sarebbe un bottone che non fa niente.
+  //
+  // Si usa l'API ufficiale: le funzioni si accodano in googlefc.callbackQueue
+  // e Google le esegue quando la CMP e' caricata, anche se arriva tardi su
+  // una rete lenta (prima si controllava per dieci secondi e poi si
+  // rinunciava). Con un blocco pubblicita' la CMP non arriva e il comando
+  // resta nascosto, come deve.
   function avviaRevocaConsenso() {
     var voce = document.getElementById('riapri-consenso-voce');
     var bottone = document.getElementById('riapri-consenso');
     if (!voce || !bottone) return;
 
-    var tentativi = 0;
-
-    function cmpPronta() {
-      return !!(window.googlefc && typeof window.googlefc.showRevocationMessage === 'function');
-    }
-
-    function mostra() {
-      voce.hidden = false;
-      bottone.addEventListener('click', function () {
-        try { window.googlefc.showRevocationMessage(); } catch (e) { /* niente da fare */ }
-      });
-    }
-
-    // La CMP arriva insieme ad AdSense, quindi dopo il caricamento della
-    // pagina: si controlla per qualche secondo e poi si lascia perdere.
-    function controlla() {
-      if (cmpPronta()) { mostra(); return; }
-      if (++tentativi > 20) return;
-      setTimeout(controlla, 500);
-    }
-
-    controlla();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push({
+      CONSENT_API_READY: function () {
+        if (typeof window.googlefc.showRevocationMessage !== 'function') return;
+        voce.hidden = false;
+        bottone.addEventListener('click', function () {
+          window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+        });
+      }
+    });
   }
 
   // ------------------------------------------------------- menu telefono
