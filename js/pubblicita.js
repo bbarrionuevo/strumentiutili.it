@@ -1,9 +1,9 @@
-// js/pubblicita.js — stato dei riquadri pubblicitari
+// js/pubblicita.js — richiesta e stato dei riquadri pubblicitari
 //
-// Non carica e non inietta annunci: di quello si occupa AdSense e il gestore
-// gia' presente in pagina. Qui si fa una cosa sola, ma che conta su un sito
-// pieno di moduli: tenere il segnaposto grigio finche' l'annuncio non c'e', e
-// toglierlo appena arriva.
+// Non carica la libreria di AdSense (e' nel <head> di ogni pagina) e non crea
+// riquadri. Fa due cose: chiede un annuncio per ogni riquadro visibile, e
+// tiene il segnaposto grigio finche' l'annuncio non c'e', togliendolo appena
+// arriva.
 //
 // Perche' serve. Il riquadro ha un'altezza riservata fin dal primo istante,
 // cosi' la pagina non salta quando l'annuncio si carica (e' il Cumulative
@@ -15,6 +15,14 @@
 //
 // Anteprima: aggiungendo ?anteprima-pubblicita=1 all'indirizzo i segnaposto
 // restano visibili anche dove l'annuncio c'e', per vedere l'impaginazione.
+//
+// Qui si fa anche la richiesta dell'annuncio, adsbygoogle.push({}), una volta
+// per riquadro. Senza quella chiamata un <ins class="adsbygoogle"> resta vuoto
+// per sempre: le pagine piu' recenti (multe, estratto INPS, concordato,
+// esenzione bollo) non avevano la copia in linea che le altre si portano
+// dietro, e i loro annunci non partivano mai. Il segno data-su-ad-init e' lo
+// stesso che usa quella copia: chi arriva primo lo mette, l'altro salta, e
+// nessun riquadro viene chiesto due volte.
 (() => {
   'use strict';
 
@@ -43,10 +51,53 @@
     riquadro.dataset.suStato = 'attesa';
   }
 
+  // Larghezza disponibile: un riquadro nascosto (per esempio quello laterale,
+  // che su telefono non si mostra) misura 0, e chiedere un annuncio largo 0
+  // produce solo l'errore "No slot size for availableWidth=0".
+  function larghezza(ins) {
+    if (!ins.isConnected) return 0;
+    const propria = ins.getBoundingClientRect().width;
+    const genitore = ins.parentElement ? ins.parentElement.getBoundingClientRect().width : 0;
+    return Math.floor(Math.max(propria, genitore));
+  }
+
+  function richiedi(ins) {
+    if (!ins || ins.dataset.suAdInit === '1') return;
+    if (ins.hasAttribute('data-adsbygoogle-status')) return;   // gia' elaborato da AdSense
+    if (larghezza(ins) <= 0) return;
+    ins.dataset.suAdInit = '1';
+    try {
+      // Se adsbygoogle.js non e' ancora arrivato, la richiesta resta in coda
+      // nell'array e AdSense la esegue appena si carica.
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      delete ins.dataset.suAdInit;
+    }
+  }
+
+  function richiediTutti(riquadri) {
+    riquadri.forEach((riquadro) => {
+      riquadro.querySelectorAll('ins.adsbygoogle').forEach(richiedi);
+    });
+  }
+
   function avvia() {
     const riquadri = Array.from(document.querySelectorAll(RIQUADRI));
     if (!riquadri.length) return;
     riquadri.forEach(aggiorna);
+
+    // Due fotogrammi di attesa: l'impaginazione e' finita e le larghezze sono
+    // quelle vere. Un riquadro che diventa visibile dopo (la finestra si
+    // allarga e compare la colonna laterale) si richiede in quel momento.
+    requestAnimationFrame(() => requestAnimationFrame(() => richiediTutti(riquadri)));
+    if ('ResizeObserver' in window) {
+      const misura = new ResizeObserver((voci) => {
+        for (const voce of voci) {
+          if (voce.contentRect.width > 0) richiediTutti([voce.target]);
+        }
+      });
+      riquadri.forEach((riquadro) => misura.observe(riquadro));
+    }
 
     // AdSense scrive data-ad-status sull'<ins> quando ha deciso: si guarda
     // quell'attributo invece di andare a tempo, che su rete lenta sbaglia.

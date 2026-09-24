@@ -38,7 +38,8 @@ test('ogni lastmod e una data vera e non sta nel futuro', () => {
 test('ogni voce ha loc, lastmod e priority', () => {
   const totali = (XML.match(/<url>/g) || []).length;
   assert.strictEqual(voci.length, totali, 'ci sono <url> senza tutti e tre i campi');
-  assert.ok(voci.length > 100, 'solo ' + voci.length + ' URL nel sitemap');
+  // Le varianti pSEO (noindex) non ci sono: restano le pagine vere.
+  assert.ok(voci.length > 80, 'solo ' + voci.length + ' URL nel sitemap');
 });
 
 test('nessuna URL duplicata', () => {
@@ -52,8 +53,10 @@ test('nessuna URL duplicata', () => {
     'le pagine legali comparivano sia come .html sia con la barra finale');
 });
 
-test('il sitemap elenca esattamente le pagine attive', () => {
-  const attese = new Set(L.pagineAttive().map((p) => L.SITO + L.urlPagina(p.rel)));
+test('il sitemap elenca esattamente le pagine attive indicizzabili', () => {
+  const attese = new Set(L.pagineAttive()
+    .filter((p) => !S.noindex(fs.readFileSync(p.assoluto, 'utf8')))
+    .map((p) => L.SITO + L.urlPagina(p.rel)));
   const presenti = new Set(voci.map((v) => v.loc));
 
   const mancanti = [...attese].filter((u) => !presenti.has(u));
@@ -76,18 +79,39 @@ test('le date sono nel formato YYYY-MM-DD e non nel futuro', () => {
   assert.deepStrictEqual(strane.map((v) => v.loc + ' ' + v.lastmod), []);
 });
 
-test('le varianti pSEO hanno priority piu bassa delle pagine originali', () => {
+test('le varianti pSEO sono noindex e fuori dal sitemap', () => {
+  // Sono la stessa pagina con un'altra etichetta (Regione, professione, CCNL):
+  // indicizzate sarebbero contenuto duplicato. Restano raggiungibili, ma una
+  // pagina noindex nel sitemap e' un errore per Search Console.
   const indice = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'strumenti.json'), 'utf8'));
-  const varianti = new Set((indice.strumenti || []).filter((s) => s.variante).map((s) => s.percorso));
-  assert.ok(varianti.size > 20, 'attese piu di 20 varianti, trovate ' + varianti.size);
+  const varianti = (indice.strumenti || []).filter((s) => s.variante).map((s) => s.percorso);
+  assert.ok(varianti.length > 20, 'attese piu di 20 varianti, trovate ' + varianti.length);
 
-  const sbagliate = voci.filter((v) => {
-    const percorso = v.loc.replace(L.SITO, '');
-    if (!varianti.has(percorso)) return false;
-    return Number(v.priority) >= 0.8;
-  });
-  assert.deepStrictEqual(sbagliate.map((v) => v.loc), [],
-    'sono quasi identiche fra loro: non vanno dichiarate come le pagine originali');
+  const senzaNoindex = varianti.filter((v) =>
+    !S.noindex(fs.readFileSync(path.join(L.RADICE, v, 'index.html'), 'utf8')));
+  assert.deepStrictEqual(senzaNoindex, [], 'varianti ancora indicizzabili');
+
+  const presenti = new Set(voci.map((v) => v.loc.replace(L.SITO, '')));
+  assert.deepStrictEqual(varianti.filter((v) => presenti.has(v)), [], 'varianti nel sitemap');
+});
+
+test('una variante non e mai l originale da cui nasce', () => {
+  // lettera-dimissioni-preavviso condivide il prefisso delle sue varianti:
+  // e' gia' stata classificata per errore come variante di se stessa, e con
+  // il noindex sarebbe sparita da Google la pagina vera.
+  const indice = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'strumenti.json'), 'utf8'));
+  const sbagliate = (indice.strumenti || [])
+    .filter((s) => s.variante && s.variante.originale === s.percorso)
+    .map((s) => s.percorso);
+  assert.deepStrictEqual(sbagliate, []);
+});
+
+test('il riconoscimento del noindex', () => {
+  assert.strictEqual(S.noindex('<meta name="robots" content="noindex, follow" />'), true);
+  assert.strictEqual(S.noindex("<meta content='noindex' name='robots'>"), true);
+  assert.strictEqual(S.noindex('<meta name="robots" content="index, follow">'), false);
+  assert.strictEqual(S.noindex('<meta name="description" content="noindex">'), false);
+  assert.strictEqual(S.noindex('<title>Pagina</title>'), false);
 });
 
 test('la home e la pagina con priority piu alta', () => {

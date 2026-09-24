@@ -54,6 +54,10 @@ def titolo(testo: str) -> str:
 
 def variante_di(categoria: str, cartella: str):
     for cat, prefisso, originale, genere in VARIANTI:
+        # l'originale puo' condividere il prefisso delle sue varianti
+        # (lettera-dimissioni-preavviso): non e' una variante di se stesso
+        if f"/{categoria}/{cartella}/" == originale:
+            continue
         if cat == categoria and cartella.startswith(prefisso) and cartella != prefisso.rstrip("-"):
             etichetta = cartella[len(prefisso):].replace("_", " ").replace("-", " ").strip()
             return {"originale": originale, "genere": genere, "etichetta": etichetta}

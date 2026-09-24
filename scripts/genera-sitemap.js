@@ -20,14 +20,22 @@ const L = require('./build-layout.js');
 const RADICE = L.RADICE;
 const SITO = L.SITO;
 
-// Le varianti pSEO (bollo per regione, P.IVA per professione, dimissioni per
-// CCNL) hanno priority piu' bassa delle pagine originali: sono quasi identiche
-// fra loro e non e' onesto dichiararle allo stesso livello.
-function priorita(ctx, variante) {
+function priorita(ctx) {
   if (ctx.tipo === 'home') return '1.0';
   if (ctx.tipo === 'categoria') return '0.9';
   if (ctx.tipo === 'legale') return '0.3';
-  return variante ? '0.5' : '0.8';
+  return '0.8';
+}
+
+// Una pagina con <meta name="robots" content="noindex"> non va nel sitemap:
+// sarebbe chiedere a Google di indicizzare una pagina a cui si dice di non
+// farlo, e Search Console lo segnala come errore ("URL inviato contrassegnato
+// come noindex"). Oggi sono le varianti pSEO (bollo per regione, P.IVA per
+// professione, dimissioni per CCNL): quasi identiche fra loro, restano
+// raggiungibili ma fuori dall'indice.
+function noindex(html) {
+  const m = String(html).match(/<meta\b[^>]*\bname=(['"])robots\1[^>]*>/i);
+  return !!m && /\bcontent=(['"])[^'"]*\bnoindex\b/i.test(m[0]);
 }
 
 // Data dell'ultimo commit che ha toccato ciascun file, in un solo passaggio su
@@ -53,33 +61,22 @@ function dateDaGit() {
   return date;
 }
 
-function varianti() {
-  const insieme = new Set();
-  try {
-    const indice = JSON.parse(fs.readFileSync(path.join(RADICE, 'data', 'strumenti.json'), 'utf8'));
-    for (const voce of indice.strumenti || []) {
-      if (voce.variante) insieme.add(voce.percorso);
-    }
-  } catch (e) { /* senza indice, nessuna variante */ }
-  return insieme;
-}
-
 function genera() {
   const gitDate = dateDaGit();
-  const pSeo = varianti();
   const oggi = new Date().toISOString().slice(0, 10);
 
-  const righe = L.pagineAttive().map((p) => {
+  const righe = L.pagineAttive().flatMap((p) => {
     const html = fs.readFileSync(p.assoluto, 'utf8');
+    if (noindex(html)) return [];
     const ctx = L.contestoPagina(p.rel, html);
     const lastmod = gitDate.get(p.rel) ||
       fs.statSync(p.assoluto).mtime.toISOString().slice(0, 10) || oggi;
-    return {
+    return [{
       url: SITO + ctx.url,
       lastmod,
-      priority: priorita(ctx, pSeo.has(ctx.url)),
+      priority: priorita(ctx),
       ordine: ctx.tipo === 'home' ? 0 : ctx.tipo === 'categoria' ? 1 : ctx.tipo === 'legale' ? 3 : 2
-    };
+    }];
   });
 
   righe.sort((a, b) => a.ordine - b.ordine || a.url.localeCompare(b.url));
@@ -140,7 +137,7 @@ function esegui(opzioni) {
   return { quante, uguale: identico, identico };
 }
 
-module.exports = { genera, esegui, priorita, senzaDate };
+module.exports = { genera, esegui, priorita, senzaDate, noindex };
 
 if (require.main === module) {
   esegui({ soloVerifica: process.argv.includes('--check') });

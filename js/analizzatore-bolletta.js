@@ -163,7 +163,7 @@
   // --- ESTRAZIONE NATIVA (FAST PATH) ---
   async function extractNativePdfText(file) {
     if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js non disponibile.');
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     const buffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
     let fullText = '';
