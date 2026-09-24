@@ -309,7 +309,7 @@
               </label>
               <button type="button" data-guida-toggle="guida-gl-festivita" aria-expanded="false" aria-controls="guida-gl-festivita" aria-label="Guida al campo Festività nazionali" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quali festività sono escluse</button>
               <div id="guida-gl-festivita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Incluse nel calcolo:</strong> 1° e 6 gennaio, Lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 1° novembre, 8, 25 e 26 dicembre. Il Lunedì dell'Angelo cambia ogni anno ed è calcolato con il computo della Pasqua.</p>
+                <p><strong class="text-indigo-900">Incluse nel calcolo:</strong> 1° e 6 gennaio, Lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 4 ottobre (San Francesco d'Assisi, di nuovo festivo dal 2026 per la legge 151/2025), 1° novembre, 8, 25 e 26 dicembre. Il Lunedì dell'Angelo cambia ogni anno ed è calcolato con il computo della Pasqua.</p>
                 <p><strong class="text-indigo-900">Non incluse:</strong> le festività soppresse, come San Giuseppe o l'Ascensione, che restano giorni lavorativi ma danno diritto a permessi retribuiti secondo il contratto collettivo, e le chiusure aziendali collettive.</p>
               </div>
             </div>
@@ -342,7 +342,7 @@
                 </select>
               </div>
               <div id="guida-gl-patrono" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Quale indicare:</strong> il patrono del Comune in cui si trova la sede di lavoro, non quello di residenza. Alcuni esempi: 29 giugno a Roma, 7 dicembre a Milano, 24 giugno a Torino, Genova e Firenze, 19 settembre a Napoli, 4 ottobre a Bologna.</p>
+                <p><strong class="text-indigo-900">Quale indicare:</strong> il patrono del Comune in cui si trova la sede di lavoro, non quello di residenza. Alcuni esempi: 29 giugno a Roma, 7 dicembre a Milano, 24 giugno a Torino, Genova e Firenze, 19 settembre a Napoli, 4 ottobre a Bologna (dal 2026 coincide con la festa nazionale di San Francesco: il giorno si conta una volta sola).</p>
                 <p><strong class="text-indigo-900">Contratti particolari:</strong> alcuni contratti collettivi sostituiscono la festa patronale con un altro giorno o con un permesso retribuito: in quel caso non selezionarla.</p>
               </div>
             </div>
@@ -445,7 +445,7 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
             <p class="text-sm text-gray-700 leading-relaxed mb-3">L'impalcatura giuslavoristica che presidia la determinazione del tempo contrattuale, le ricorrenze civili e religiose, e le relative ricadute sul fronte contributivo e retributivo, si inquadra all'interno della Legge 27 maggio 1949, n. 260. Ad essa fanno storicamente séguito i correttivi dettati dalla Legge 5 marzo 1977, n. 54, che ha operato la declassificazione in giorni feriali di specifiche solennità, inquadrate ora come Festività soppresse. L'identificazione precisa dei giorni solari considerati "festivi" è determinante ai fini della gestione dei permessi orari (ROL, Ex-festività), della maggiorazione della retribuzione per lavoro straordinario, nonché dello slittamento civilistico di adempimenti contrattuali o scadenze tributarie in presenza di giorni non bancabili.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il calendario lavorativo esclude convenzionalmente dai giorni lavorabili i fine settimana (sabato e domenica per l'orario su settimana corta) e le dieci festività nazionali a datazione fissa (1 Gennaio, 6 Gennaio, 25 Aprile, 1 Maggio, 2 Giugno, 15 Agosto, 1 Novembre, 8 Dicembre, 25 Dicembre, 26 Dicembre) alle quali si somma l'attribuzione municipale della Festa del Santo Patrono. L'apparato costituzionale, specificamente l'Articolo 36 della Costituzione Italiana, garantisce il diritto irrinunciabile al riposo settimanale e alle ferie retribuite, rendendo la classificazione dei giorni feriali un elemento di stretta conformità normativa.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il calendario lavorativo esclude convenzionalmente dai giorni lavorabili i fine settimana (sabato e domenica per l'orario su settimana corta) e le festività nazionali a data fissa (1 Gennaio, 6 Gennaio, 25 Aprile, 1 Maggio, 2 Giugno, 15 Agosto, 1 Novembre, 8 Dicembre, 25 Dicembre, 26 Dicembre, più il 4 Ottobre dal 2026 per la Legge 151/2025) alle quali si somma l'attribuzione municipale della Festa del Santo Patrono. L'apparato costituzionale, specificamente l'Articolo 36 della Costituzione Italiana, garantisce il diritto irrinunciabile al riposo settimanale e alle ferie retribuite, rendendo la classificazione dei giorni feriali un elemento di stretta conformità normativa.</p>
             <p class="text-sm text-gray-700 leading-relaxed mb-3">Qualsiasi alterazione o mancato riconoscimento di tali festività nel calcolo dell'orario di lavoro contrattuale si configura come una palese violazione dei diritti sanciti dalla contrattazione collettiva nazionale (CCNL). La corretta applicazione di questo framework normativo è essenziale per non incorrere in sanzioni amministrative ed evitare vertenze sindacali. Le aziende devono mappare rigorosamente il calendario annuo per isolare il monte ore lavorativo effettivo, sul quale si calcolano indennità, scatti di anzianità e contribuzioni previdenziali INPS, senza incappare in violazioni che produrrebbero gravami ispettivi.</p>
           </div>
         </details>
@@ -671,6 +671,7 @@
 
 <script defer src="/js/storage-helper.js"></script>
 
+  <script defer src="/js/festivita.js"></script>
   <script defer src="/js/giorni-lavorativi.js"></script>
 
   <script defer src="/js/guida-campi.js"></script>
