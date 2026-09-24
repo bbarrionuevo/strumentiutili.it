@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v40';
+const CACHE_NAME = 'strumentiutili-v41';
 
 const APP_SHELL = [
   '/',
@@ -71,8 +71,11 @@ const APP_SHELL = [
 
   // --- Silo PDF ---
   '/pdf/',
-  '/pdf/unisci-dividi/',
-  '/pdf/comprimi-converti/',
+  '/pdf/unisci-pdf/',
+  '/pdf/dividi-pdf/',
+  '/pdf/comprimi-pdf/',
+  '/pdf/jpg-in-pdf/',
+  '/pdf/word-in-pdf/',
   '/pdf/firma/',
   '/pdf/anonimizza/',
   '/pdf/convertitore-pdfa/',
