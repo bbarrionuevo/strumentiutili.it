@@ -30,7 +30,6 @@
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="/css/styles.css">
 
-
   
   <script type="application/ld+json">
   {
@@ -223,51 +222,7 @@
   </footer>
   <!-- /su:piede -->
 
-  <script>
-    (function () {
-      'use strict';
-      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
-      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
-      function getAdWidth(ad) {
-        if (!ad || !ad.isConnected) return 0;
-        const rect = ad.getBoundingClientRect();
-        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
-      }
-      function initAd(ad) {
-        if (!ad || ad.dataset.suAdInit === '1') return;
-        const width = getAdWidth(ad);
-        if (width <= 0) return;
-        ad.dataset.suAdInit = '1';
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
-      }
-      function initVisibleAds() {
-        if (!adsenseReady()) return;
-        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
-      }
-      function observeAds() {
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(entries => {
-            for (const entry of entries) {
-              if (entry.contentRect.width <= 0) continue;
-              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
-            }
-          });
-          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
-        }
-        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
-      }
-      function start() {
-        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
-        let attempts = 0;
-        const timer = setInterval(() => {
-          attempts++;
-          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) clearInterval(timer);
-        }, 100);
-      }
-      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
-    })();
-  </script>
+  <script defer src="/js/pubblicita.js"></script>
   <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>

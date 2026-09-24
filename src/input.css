@@ -75,9 +75,9 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
    Queste regole stavano solo nel blocco <style> di ogni pagina, e tre pagine
    (avviso legale, contatti, privacy) ne avevano una versione ridotta: il loro
    riquadro riservava 250px per un banner da 90px e restava senza etichetta.
-   Qui c'e' la definizione condivisa, che arriva a tutte le pagine tramite
-   css/styles.css. Dove il blocco inline esiste ancora, vince quello: e'
-   identico, quindi non cambia niente. */
+   Qui c'e' l'unica definizione, che arriva a tutte le pagine tramite
+   css/styles.css: i blocchi <style> in linea che la ripetevano in 120 pagine
+   sono stati tolti. */
 
 .su-ad {
   width: 100%;
@@ -147,11 +147,20 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
   min-height: inherit;
 }
 
+/* Annuncio arrivato: via il fondo grigio e il bordo tratteggiato del segnaposto. */
+.su-ad[data-su-stato="pieno"] {
+  background: none;
+  border-color: transparent;
+}
 .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
 
 /* Niente da mostrare: il riquadro si chiude e lo spazio torna al contenuto,
    invece di lasciare un rettangolo grigio per sempre. */
 .su-ad[data-su-stato="vuoto"] { display: none; }
+
+/* Il contenuto di un <details> chiuso resta nascosto anche quando un figlio
+   ha una classe di visualizzazione propria (flex, grid). */
+details:not([open]) > *:not(summary) { display: none !important; }
 
 /* --- Stampa ---------------------------------------------------------------
    Meta' degli strumenti produce documenti fatti per essere stampati: F24,

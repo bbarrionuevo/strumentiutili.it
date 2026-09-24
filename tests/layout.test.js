@@ -544,10 +544,28 @@ test('ogni pagina con riquadri pubblicitari chiede davvero gli annunci', () => {
 
   const senza = PAGINE
     .filter((p) => p.html.includes('class="adsbygoogle"'))
-    .filter((p) => !p.html.includes('src="/js/pubblicita.js"') &&
-                   !p.html.includes('adsbygoogle = window.adsbygoogle'))
+    .filter((p) => !p.html.includes('src="/js/pubblicita.js"'))
     .map((p) => p.rel);
   assert.deepStrictEqual(senza, []);
+});
+
+test('gestore degli annunci e stili dei riquadri esistono in un posto solo', () => {
+  // Erano copiati in linea in 120 pagine, in sei varianti diverse: una
+  // correzione non arrivava mai a tutte. Ora vivono in js/pubblicita.js e in
+  // src/input.css; una copia che ricompare in una pagina e' una regressione.
+  const problemi = [];
+  for (const p of PAGINE) {
+    for (const m of p.html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      if (/\ssrc=/.test(m[1] || '')) continue;
+      if (/adsbygoogle\s*=\s*window\.adsbygoogle|data-su-ad-init|suAdInit/.test(m[2])) problemi.push(p.rel + ' -> gestore in linea');
+    }
+    for (const m of p.html.matchAll(/<style>([\s\S]*?)<\/style>/g)) {
+      // Solo le regole dedicate ai riquadri: una regola di stampa che nasconde
+      // "header, footer, .su-ad" e' della pagina, non un doppione.
+      if (/(?:^|[{};])\s*\.(?:su-ad|ad-slot-)[^{};]*\{/.test(m[1])) problemi.push(p.rel + ' -> stili dei riquadri in linea');
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
 });
 
 test('Il tuo spazio: stella sugli strumenti, cancellazione ovunque, spazio.js prima di layout.js', () => {
@@ -566,6 +584,24 @@ test('Il tuo spazio: stella sugli strumenti, cancellazione ovunque, spazio.js pr
     const spazio = p.html.indexOf('src="/js/spazio.js"');
     const layout = p.html.indexOf('src="/js/layout.js"');
     if (spazio === -1 || spazio > layout) problemi.push(p.rel + ' -> spazio.js assente o dopo layout.js');
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('ogni script in linea e JavaScript valido', () => {
+  // Un blocco <script> rotto non da errori in nessun test Node: il browser lo
+  // scarta in silenzio e con lui tutto quello che faceva (calcoli, guide,
+  // annunci). Qui ogni script in linea viene compilato, senza eseguirlo.
+  const vm = require('node:vm');
+  const problemi = [];
+  for (const p of PAGINE) {
+    for (const m of p.html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      const attributi = m[1] || '';
+      if (/\ssrc=/.test(attributi) || /type="(application\/ld\+json|module|text\/template)"/.test(attributi)) continue;
+      if (!m[2].trim()) continue;
+      try { new vm.Script(m[2]); }
+      catch (e) { problemi.push(p.rel + ': ' + e.message); }
+    }
   }
   assert.deepStrictEqual(problemi, []);
 });
