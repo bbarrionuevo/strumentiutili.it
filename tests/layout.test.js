@@ -339,11 +339,12 @@ test('gli script di terzi iniettati da js/ hanno versione e integrita', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
-test('gli hash iniettati da js/ coincidono con quelli usati nelle pagine', () => {
-  // Il controllo qui sopra verifica che un integrity ci sia, non che sia giusto:
-  // un hash scritto a mano lo supererebbe, e uno sbagliato non si nota perche il
-  // browser blocca lo script in silenzio. Qui ogni coppia URL -> hash dichiarata
-  // in js/ viene confrontata con quella che le pagine usano per la stessa URL.
+test('le librerie iniettate da js/ esistono, e se esterne hanno lo stesso hash delle pagine', () => {
+  // Una libreria caricata a richiesta con document.createElement('script') non
+  // si vede leggendo l HTML: se il percorso e sbagliato, o l hash di un CDN non
+  // combacia, il browser la blocca in silenzio. Le librerie servite da vendor/
+  // devono esistere su disco; quelle ancora esterne devono dichiarare lo stesso
+  // integrity che usano le pagine per la stessa URL.
   const dallePagine = new Map();
   for (const p of PAGINE) {
     const re = new RegExp('src="(https://[^"]+)"[^>]*integrity="(sha384-[^"]+)"', 'g');
@@ -352,22 +353,27 @@ test('gli hash iniettati da js/ coincidono con quelli usati nelle pagine', () =>
 
   // [^] al posto di una classe di spazi: il pattern resta senza caratteri di
   // escape e sopravvive a qualsiasi passaggio di editing.
-  const INIETTATO = new RegExp("src = '(https://[^']+)';[^]{0,400}?integrity = '(sha384-[^']+)'", 'g');
+  const ESTERNO = new RegExp("src = '(https://[^']+)';[^]{0,400}?integrity = '(sha384-[^']+)'", 'g');
+  const LOCALE = new RegExp("(?:src|workerSrc) = '(/vendor/[^']+)'", 'g');
   const problemi = [];
-  let confronti = 0;
+  let controlli = 0;
 
   for (const nome of fs.readdirSync(path.join(RADICE, 'js'))) {
     if (!nome.endsWith('.js')) continue;
     const testo = fs.readFileSync(path.join(RADICE, 'js', nome), 'utf8');
-    for (const m of testo.matchAll(INIETTATO)) {
+    for (const m of testo.matchAll(LOCALE)) {
+      controlli++;
+      if (!fs.existsSync(path.join(RADICE, m[1]))) problemi.push(nome + ' -> manca ' + m[1]);
+    }
+    for (const m of testo.matchAll(ESTERNO)) {
       const atteso = dallePagine.get(m[1]);
       if (!atteso) continue;                 // libreria caricata solo da qui
-      confronti++;
+      controlli++;
       if (atteso !== m[2]) problemi.push(nome + ' -> ' + m[1]);
     }
   }
 
-  assert.ok(confronti > 0, 'nessun confronto eseguito: il test non sta verificando niente');
+  assert.ok(controlli > 0, 'nessun controllo eseguito: il test non sta verificando niente');
   assert.deepStrictEqual(problemi, []);
 });
 
@@ -398,7 +404,13 @@ function linkEntranti() {
     const url = p.ctx.url;
     if (url === '/') continue;
     const quanti = PAGINE.filter((q) => q.rel !== p.rel && q.html.indexOf('href="' + url + '"') !== -1).length;
-    if (quanti === 0) (varianti.has(url) ? pseo : normali).push(url);
+    if (quanti > 0) continue;
+    if (varianti.has(url)) { pseo.push(url); continue; }
+    // Una pagina noindex che non sia una variante (come /condividi/, dove si
+    // arriva dal menu Condividi del telefono) non e' fatta per essere trovata
+    // navigando: non conta come orfana.
+    if (/<meta name="robots" content="noindex/.test(p.html)) continue;
+    normali.push(url);
   }
   return { normali: normali, pseo: pseo };
 }
@@ -501,6 +513,36 @@ test('js/layout.js apre la finestra del consenso con la CMP di Google', () => {
   const layout = fs.readFileSync('js/layout.js', 'utf8');
   assert.match(layout, /googlefc/, 'manca il collegamento alla CMP');
   assert.match(layout, /showRevocationMessage/, 'manca la chiamata che riapre la scelta');
+  // L'API ufficiale: la coda di googlefc parte quando la CMP e' pronta, anche
+  // tardi. Un controllo a tempo rinuncia su una rete lenta e il comando per
+  // ritirare il consenso non compare piu'.
+  assert.match(layout, /googlefc\.callbackQueue/, 'la CMP va aspettata con googlefc.callbackQueue');
+  assert.match(layout, /CONSENT_API_READY/, 'manca l attesa di CONSENT_API_READY');
+});
+
+test('l informativa dichiara le memorie tecniche del browser', () => {
+  // Il Garante chiede di informare anche sugli strumenti tecnici esenti da
+  // consenso: localStorage (su_), IndexedDB dei file condivisi, cache offline.
+  const privacy = fs.readFileSync(path.join(RADICE, 'politica-sulla-privacy.html'), 'utf8');
+  for (const voce of ['localStorage', 'su_', 'IndexedDB', 'service worker', 'Cancella i dati salvati']) {
+    assert.ok(privacy.includes(voce), 'l informativa non cita: ' + voce);
+  }
+});
+
+test('statistiche di Vercel: una volta in ogni pagina, dichiarate e fuori dal service worker', () => {
+  // Uno script doppio conterebbe ogni visita due volte; uno mancante lascia
+  // la pagina fuori dalle statistiche.
+  const problemi = [];
+  for (const p of PAGINE) {
+    const n = p.html.split('src="' + L.STATISTICHE + '"').length - 1;
+    if (n !== 1) problemi.push(p.rel + ' -> ' + n);
+  }
+  assert.deepStrictEqual(problemi, []);
+  const privacy = fs.readFileSync(path.join(RADICE, 'politica-sulla-privacy.html'), 'utf8');
+  assert.ok(privacy.includes('Vercel Web Analytics') && privacy.includes('senza cookie'), 'l informativa non le dichiara');
+  // Servite dalla cache, misurerebbero visite che non ci sono state.
+  const sw = fs.readFileSync(path.join(RADICE, 'sw.js'), 'utf8');
+  assert.ok(sw.includes("url.pathname.startsWith('/_vercel/')) return;"), 'sw.js intercetta /_vercel/');
 });
 
 test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata', () => {
@@ -532,10 +574,66 @@ test('ogni pagina con riquadri pubblicitari chiede davvero gli annunci', () => {
 
   const senza = PAGINE
     .filter((p) => p.html.includes('class="adsbygoogle"'))
-    .filter((p) => !p.html.includes('src="/js/pubblicita.js"') &&
-                   !p.html.includes('adsbygoogle = window.adsbygoogle'))
+    .filter((p) => !p.html.includes('src="/js/pubblicita.js"'))
     .map((p) => p.rel);
   assert.deepStrictEqual(senza, []);
+});
+
+test('gestore degli annunci e stili dei riquadri esistono in un posto solo', () => {
+  // Erano copiati in linea in 120 pagine, in sei varianti diverse: una
+  // correzione non arrivava mai a tutte. Ora vivono in js/pubblicita.js e in
+  // src/input.css; una copia che ricompare in una pagina e' una regressione.
+  const problemi = [];
+  for (const p of PAGINE) {
+    for (const m of p.html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      if (/\ssrc=/.test(m[1] || '')) continue;
+      if (/adsbygoogle\s*=\s*window\.adsbygoogle|data-su-ad-init|suAdInit/.test(m[2])) problemi.push(p.rel + ' -> gestore in linea');
+    }
+    for (const m of p.html.matchAll(/<style>([\s\S]*?)<\/style>/g)) {
+      // Solo le regole dedicate ai riquadri: una regola di stampa che nasconde
+      // "header, footer, .su-ad" e' della pagina, non un doppione.
+      if (/(?:^|[{};])\s*\.(?:su-ad|ad-slot-)[^{};]*\{/.test(m[1])) problemi.push(p.rel + ' -> stili dei riquadri in linea');
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('Il tuo spazio: stella sugli strumenti, cancellazione ovunque, spazio.js prima di layout.js', () => {
+  const problemi = [];
+  for (const p of PAGINE) {
+    const stella = p.html.match(/<button type="button" id="su-fissa"[^>]*data-percorso="([^"]*)" data-titolo="([^"]*)"/);
+    if (p.ctx.tipo === 'strumento') {
+      if (!stella) problemi.push(p.rel + ' -> manca la stella');
+      else {
+        if (stella[1] !== p.ctx.url) problemi.push(p.rel + ' -> la stella punta a ' + stella[1]);
+        if (!stella[2]) problemi.push(p.rel + ' -> stella senza titolo');
+      }
+    } else if (stella) problemi.push(p.rel + ' -> stella su una pagina che non e uno strumento');
+
+    if (!p.html.includes('id="su-cancella-dati"')) problemi.push(p.rel + ' -> manca "Cancella i dati salvati"');
+    const spazio = p.html.indexOf('src="/js/spazio.js"');
+    const layout = p.html.indexOf('src="/js/layout.js"');
+    if (spazio === -1 || spazio > layout) problemi.push(p.rel + ' -> spazio.js assente o dopo layout.js');
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('ogni script in linea e JavaScript valido', () => {
+  // Un blocco <script> rotto non da errori in nessun test Node: il browser lo
+  // scarta in silenzio e con lui tutto quello che faceva (calcoli, guide,
+  // annunci). Qui ogni script in linea viene compilato, senza eseguirlo.
+  const vm = require('node:vm');
+  const problemi = [];
+  for (const p of PAGINE) {
+    for (const m of p.html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      const attributi = m[1] || '';
+      if (/\ssrc=/.test(attributi) || /type="(application\/ld\+json|module|text\/template)"/.test(attributi)) continue;
+      if (!m[2].trim()) continue;
+      try { new vm.Script(m[2]); }
+      catch (e) { problemi.push(p.rel + ': ' + e.message); }
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
 });
 
 test('il foglio di stile nasconde annunci e comandi in stampa', () => {

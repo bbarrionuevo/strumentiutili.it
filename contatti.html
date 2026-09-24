@@ -3,6 +3,7 @@
 <head>
   <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!-- /su:teste -->
   
   
@@ -29,7 +30,6 @@
   <link rel="apple-touch-icon" href="/assets/icon.png" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="/css/styles.css">
-
 
   
   <script type="application/ld+json">
@@ -114,7 +114,7 @@
 
   <main id="contenuto" class="container mx-auto px-4 py-8 block min-h-screen">
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -137,7 +137,7 @@
           Ogni singolo strumento presente su questo portale sfrutta tecnologie avanzate come <em>WebAssembly (WASM)</em>. Che tu stia calcolando le tasse per la tua Partita IVA, firmando un contratto PDF o sbobinando un audio con l'IA, <strong>nessun byte di informazione lascia mai il tuo dispositivo</strong>. 
         </p>
         <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded-r-lg text-sm text-indigo-900 mt-6">
-          <strong>🔒 Il nostro patto di fiducia:</strong> Zero cookie traccianti per i tuoi documenti, zero database occulti, zero upload. Il codice viene scaricato sul tuo browser e l'elaborazione avviene localmente. Una volta chiusa la scheda, i dati svaniscono nel nulla.
+          <strong>🔒 Il nostro patto di fiducia:</strong> Zero cookie traccianti per i tuoi documenti, zero database occulti, zero upload. Il codice viene scaricato sul tuo browser e l'elaborazione avviene localmente. I documenti che carichi non vengono salvati da nessuna parte; i valori che scrivi nei calcolatori restano solo nel tuo browser, per ritrovarli la prossima volta, e li cancelli quando vuoi dal piè di pagina.
         </div>
       </section>
 
@@ -210,6 +210,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -219,51 +223,8 @@
   </footer>
   <!-- /su:piede -->
 
-  <script>
-    (function () {
-      'use strict';
-      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
-      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
-      function getAdWidth(ad) {
-        if (!ad || !ad.isConnected) return 0;
-        const rect = ad.getBoundingClientRect();
-        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
-      }
-      function initAd(ad) {
-        if (!ad || ad.dataset.suAdInit === '1') return;
-        const width = getAdWidth(ad);
-        if (width <= 0) return;
-        ad.dataset.suAdInit = '1';
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
-      }
-      function initVisibleAds() {
-        if (!adsenseReady()) return;
-        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
-      }
-      function observeAds() {
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(entries => {
-            for (const entry of entries) {
-              if (entry.contentRect.width <= 0) continue;
-              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
-            }
-          });
-          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
-        }
-        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
-      }
-      function start() {
-        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
-        let attempts = 0;
-        const timer = setInterval(() => {
-          attempts++;
-          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) clearInterval(timer);
-        }, 100);
-      }
-      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
-    })();
-  </script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

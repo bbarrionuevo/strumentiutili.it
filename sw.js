@@ -1,5 +1,12 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v42';
+const CACHE_NAME = 'strumentiutili-v53';
+
+// I file condivisi verso l'app installata (share_target nel manifest) arrivano
+// qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
+// pagina /condividi/. Nessun server li riceve.
+if (typeof importScripts === 'function') {
+  try { importScripts('/js/condivisi.js'); } catch (e) { /* senza, la condivisione porta alla pagina vuota */ }
+}
 
 const APP_SHELL = [
   '/',
@@ -77,6 +84,7 @@ const APP_SHELL = [
   '/pdf/jpg-in-pdf/',
   '/pdf/word-in-pdf/',
   '/pdf/apri-file-p7m/',
+  '/condividi/',
   '/pdf/firma/',
   '/pdf/anonimizza/',
   '/pdf/convertitore-pdfa/',
@@ -96,7 +104,11 @@ const APP_SHELL = [
   '/utilita-web/generatore-qr/',
   '/utilita-web/convertitore-immagini/',
   '/utilita-web/contaparole/',
-  '/utilita-web/accorciatore-url/',
+  '/utilita-web/pulisci-link/',
+  '/utilita-web/calendario-da-stampare/',
+  '/utilita-web/sudoku-del-giorno/',
+  '/utilita-web/accordatore/',
+  '/utilita-web/metronomo/',
   '/utilita-web/media-universitaria/',
   '/utilita-web/calcolo-bmr/',
   '/utilita-web/budget-planner/',
@@ -107,6 +119,7 @@ const APP_SHELL = [
   '/avviso-legale.html',
 
   // Script condivisi e utilità
+  '/js/spazio.js',
   '/js/layout.js',
   '/js/data-loader.js',
   '/js/esenzione-bollo.js',
@@ -135,6 +148,17 @@ const APP_SHELL = [
   '/js/multa-termini.js',
   '/js/multa-lettura.js',
   '/js/ocr-testo.js',
+  '/js/calendario-ics.js',
+  '/js/calendario-vista.js',
+  '/js/calendario-pdf.js',
+  '/js/calendario-stampa.js',
+  '/js/sudoku.js',
+  '/js/sudoku-pdf.js',
+  '/js/sudoku-ui.js',
+  '/js/intonazione.js',
+  '/js/accordatore-ui.js',
+  '/js/metronomo.js',
+  '/js/metronomo-ui.js',
   '/js/multa-ui.js',
   '/js/estratto-import.js',
   '/js/estratto-ui.js',
@@ -162,6 +186,8 @@ const APP_SHELL = [
   '/js/pdf-tools.js',
   '/js/p7m-lettura.js',
   '/js/p7m-ui.js',
+  '/js/condivisi.js',
+  '/js/condivisi-ui.js',
   '/js/traduttore.js',
   '/js/riassunto.js',
   '/js/ocr.js',
@@ -169,20 +195,21 @@ const APP_SHELL = [
   '/js/convertitore-immagini.js',
   '/js/autocertificazione.js',
   '/js/percentuali.js',
+  '/js/festivita.js',
   '/js/giorni-lavorativi.js',
   '/js/media-universitaria.js',
   '/js/calcolo-bmr.js',
   '/js/trascrizione.js',
   '/js/password.js',
   '/js/fototessera.js',
-  '/js/shortener.js',
+  '/js/pulisci-link.js',
+  '/js/pulisci-link-ui.js',
   '/js/simulatore-pensione.js',
   '/js/generatore-cv-ats.js',
   '/js/budget-planner.js',
 
   // Web Workers
   '/js/workers/translation-worker.js',
-  '/js/workers/p7m-worker.js',
   '/js/workers/pdf-worker.js',
   '/js/workers/face-worker.js',
   '/js/workers/cv-pdf-worker.js',
@@ -297,7 +324,7 @@ self.addEventListener('activate', (event) => {
 // Statici (js, css, dati, immagini): prima la cache, aggiornandola in secondo
 // piano. Prima era rete-per-tutto, quindi i 14 MB precaricati non
 // acceleravano niente e servivano solo offline.
-const STATICI = /^\/(js|css|assets|data)\//;
+const STATICI = /^\/(js|css|assets|data|vendor)\//;
 
 function aggiornaInSecondoPiano(request) {
   return fetch(request).then((risposta) => {
@@ -309,13 +336,37 @@ function aggiornaInSecondoPiano(request) {
   });
 }
 
+async function riceviCondivisione(request) {
+  try {
+    const dati = await request.formData();
+    const C = self.Condivisi;
+    const file = dati.getAll('file').filter((f) => f && typeof f !== 'string' && f.size);
+    if (file.length && C) {
+      await C.salva(C.stessoGenere(file));
+      return Response.redirect('/condividi/', 303);
+    }
+    // Solo testo o un link (per esempio da Chrome o WhatsApp): si pulisce.
+    const testo = ['titolo', 'testo', 'link'].map((k) => dati.get(k)).filter(Boolean).join(' ').trim();
+    if (testo) return Response.redirect('/utilita-web/pulisci-link/?text=' + encodeURIComponent(testo), 303);
+  } catch (e) { /* si ripiega sulla pagina di scelta */ }
+  return Response.redirect('/condividi/', 303);
+}
+
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
+  if (request.method === 'POST' && url.origin === self.location.origin && url.pathname === '/condividi/') {
+    event.respondWith(riceviCondivisione(request));
+    return;
+  }
+
   if (request.method !== 'GET') return;
   if (url.origin !== self.location.origin) return;
   if (isBlockedRequest(url)) return;
+  // Le statistiche di Vercel passano dritte: dalla cache misurerebbero visite
+  // finte, e offline non hanno niente da misurare.
+  if (url.pathname.startsWith('/_vercel/')) return;
 
   // Statici: risposta immediata dalla cache, aggiornamento silenzioso.
   if (STATICI.test(url.pathname)) {

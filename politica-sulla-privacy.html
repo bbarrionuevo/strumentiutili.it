@@ -3,6 +3,7 @@
 <head>
   <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!-- /su:teste -->
   
   
@@ -115,7 +116,7 @@
 
   <main id="contenuto" class="max-w-4xl mx-auto px-4 py-12 block min-h-screen">
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -135,18 +136,44 @@
         <ul class="list-disc pl-5 mt-2 space-y-2">
           <li><strong>Nessun file viene caricato su server esterni.</strong></li>
           <li><strong>Non conserviamo, non analizziamo e non abbiamo accesso</strong> ai contenuti elaborati (es. registrazioni audio per la trascrizione IA).</li>
+          <li><strong>Microfono e fotocamera</strong> (accordatore, trascrizione, fototessera, lettura di un documento o di un cartellino) si accendono solo quando li attivi tu e il browser te lo chiede: il segnale si elabora sul dispositivo, non viene registrato né inviato, e si spegne quando fermi lo strumento o chiudi la pagina.</li>
+          <li><strong>Le librerie che fanno il lavoro sono servite dal sito stesso</strong> (pdf.js, pdf-lib e le altre): aprendo uno strumento non contatti CDN di terzi. Fanno eccezione, per ora, i motori di intelligenza artificiale locale e di riconoscimento del testo, che si scaricano da CDN al primo utilizzo: viaggia il programma, non il tuo documento.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Dati salvati nel tuo browser</h3>
+        <p>Per farti ritrovare il lavoro quando torni, alcune informazioni restano <strong>nella memoria del tuo browser (localStorage)</strong>, su questo dispositivo: i valori inseriti nei calcolatori, le partite del sudoku e le impostazioni di strumenti come metronomo e accordatore, gli strumenti fissati tra i preferiti e quelli usati di recente. Non vengono mai inviate a noi né a terzi.</p>
+        <ul class="list-disc pl-5 mt-2 space-y-2">
+          <li>I campi sensibili (IBAN, codice fiscale, password, PIN, carte) <strong>non vengono salvati</strong>.</li>
+          <li>I documenti che carichi (PDF, foto, audio, file .p7m) <strong>non vengono salvati</strong>: restano in memoria finché la pagina è aperta.</li>
+          <li>Puoi cancellare tutto con «Cancella i dati salvati su questo dispositivo», nel piè di ogni pagina, oppure i soli valori di una pagina con il comando «Cancella» che compare in cima quando ci sono.</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mt-8 mb-3">2. Reti Pubblicitarie e Google AdSense</h2>
         <p>Per mantenere i nostri strumenti gratuiti, mostriamo annunci pubblicitari forniti da Google AdSense. Google può utilizzare cookie (o tecnologie di tracciamento simili) per mostrare annunci pertinenti in base alle tue visite precedenti su questo o altri siti web.</p>
         <p>Per raccogliere il consenso utilizziamo la Piattaforma di Gestione del Consenso (CMP) di Google, registrata presso il Transparency &amp; Consent Framework (TCF) dello IAB Europe e integrata con il Google Consent Mode v2. Il messaggio compare automaticamente ai visitatori dello Spazio Economico Europeo e del Regno Unito: finché non esprimi una scelta, i tuoi dati non vengono usati per la profilazione pubblicitaria.</p>
 
-        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-3">3. Cookie utilizzate da questo sito</h2>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-3">3. Statistiche di visita, senza cookie</h2>
+        <p>Per capire quali strumenti servono di più usiamo <strong>Vercel Web Analytics</strong>, il servizio di statistiche della piattaforma che già ospita il sito (Vercel Inc.). Non usa cookie né altre memorie del tuo browser e non crea profili: conta in forma aggregata le pagine visitate, il sito di provenienza, il paese, il tipo di dispositivo, il sistema operativo e il browser.</p>
+        <ul class="list-disc pl-5 mt-2 space-y-2">
+          <li>Per distinguere i visitatori della giornata usa un codice calcolato dalla richiesta, che viene scartato dopo 24 ore: non permette di riconoscerti né di seguirti su altri siti, e l&rsquo;indirizzo IP non viene associato ai dati.</li>
+          <li>Le statistiche passano dallo stesso dominio del sito (<code>/_vercel/insights/</code>), senza servizi di terze parti aggiuntivi.</li>
+          <li>Trattandosi di dati anonimi e aggregati, senza cookie, non serve il consenso (Linee guida del Garante sui cookie del 10 giugno 2021). Dettagli: <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noopener nofollow" class="text-indigo-600 hover:text-indigo-800 font-semibold underline">Vercel Web Analytics &mdash; Privacy and Compliance</a>.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-3">4. Cookie utilizzate da questo sito</h2>
 <div class="mt-4 border border-gray-200 rounded-lg p-6 bg-gray-50 text-sm text-gray-700 space-y-4">
   <p>Essendo un ecosistema basato sulla tecnologia "Zero-Backend", StrumentiUtili.it <strong>non fa uso di cookie di profilazione proprietari</strong>. I tuoi dati restano nel tuo browser. Tuttavia, utilizziamo servizi di terze parti essenziali per il mantenimento del progetto:</p>
   
   <ul class="list-disc pl-5 space-y-2">
-    <li><strong>Cookie Tecnici e di Funzionamento:</strong> Memorizzano le tue preferenze locali (come il consenso al banner della privacy) per evitare di richiederle a ogni singola visita.</li>
+    <li><strong>Strumenti tecnici del sito (nessun consenso richiesto):</strong> il sito non imposta cookie propri. Usa invece alcune memorie del browser che servono solo a far funzionare quello che chiedi e che non vengono mai inviate a noi né a terzi (Linee guida del Garante sui cookie del 10 giugno 2021; art. 122 del Codice privacy):
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><code>localStorage</code>, chiavi che iniziano con <code>su_</code>: valori inseriti nei calcolatori, strumenti preferiti e usati di recente. Restano finché non li cancelli.</li>
+        <li><code>IndexedDB</code> «strumentiutili»: i file che condividi verso l&rsquo;app installata, in attesa che tu scelga lo strumento. Si cancellano da soli entro un&rsquo;ora.</li>
+        <li>Cache del <em>service worker</em>: copie delle pagine e delle librerie del sito, per farlo funzionare anche senza connessione. Non contiene dati personali.</li>
+      </ul>
+      Puoi cancellare le prime due con «Cancella i dati salvati su questo dispositivo», in fondo a ogni pagina, o dalle impostazioni del browser.</li>
+    <li><strong>Statistiche di visita (Vercel Web Analytics):</strong> nessun cookie e nessuna memoria nel browser; vedi il punto 3.</li>
+    <li><strong>Memorizzazione della tua scelta sul consenso:</strong> la piattaforma di gestione del consenso di Google conserva la scelta che esprimi nel messaggio, per non riproportelo a ogni visita.</li>
     <li><strong>Cookie di Google AdSense (Pubblicità):</strong> Google e i suoi partner utilizzano cookie e tecnologie simili per mostrare annunci pubblicitari personalizzati in base alle tue visite precedenti su questo o altri siti web, misurarne l'efficacia e limitare la ripetizione degli annunci.</li>
   </ul>
   
@@ -203,6 +230,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -212,51 +243,8 @@
   </footer>
   <!-- /su:piede -->
 
-  <script>
-    (function () {
-      'use strict';
-      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
-      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
-      function getAdWidth(ad) {
-        if (!ad || !ad.isConnected) return 0;
-        const rect = ad.getBoundingClientRect();
-        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
-      }
-      function initAd(ad) {
-        if (!ad || ad.dataset.suAdInit === '1') return;
-        const width = getAdWidth(ad);
-        if (width <= 0) return;
-        ad.dataset.suAdInit = '1';
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
-      }
-      function initVisibleAds() {
-        if (!adsenseReady()) return;
-        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
-      }
-      function observeAds() {
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(entries => {
-            for (const entry of entries) {
-              if (entry.contentRect.width <= 0) continue;
-              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
-            }
-          });
-          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
-        }
-        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
-      }
-      function start() {
-        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
-        let attempts = 0;
-        const timer = setInterval(() => {
-          attempts++;
-          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) clearInterval(timer);
-        }, 100);
-      }
-      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
-    })();
-  </script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

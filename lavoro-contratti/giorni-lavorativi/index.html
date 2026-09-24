@@ -3,6 +3,7 @@
 <head>
   <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!-- /su:teste -->
 
   <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
@@ -29,107 +30,6 @@
   <link rel="manifest" href="/manifest.json" />
 
   <!-- PROTOCOLLO ADS -->
-  <style>
-    .su-ad {
-      width: 100%;
-      min-height: 250px;
-      background-color: #f8fafc;
-      border: 1px dashed #e2e8f0;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      margin-bottom: 1.5rem;
-    }
-    .su-ad ins.adsbygoogle {
-      display: block !important;
-      width: 100%;
-      min-width: 0;
-    }
-
-    /* --- riquadri pubblicitari: spazio riservato per formato --- */
-    /* Ogni posizione riserva l'altezza del proprio formato, non 250px per
-       tutti: cosi' non si spreca spazio e la pagina non salta al caricamento.
-       Il margine ampio serve a non far finire un annuncio appiccicato a un
-       pulsante, che e' il modo piu' facile per farsi sospendere l'account. */
-    .su-ad {
-      min-height: 0;
-      margin-block: 2rem;
-      padding: 0.5rem;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .su-ad > ins.adsbygoogle { flex: 1 1 auto; align-self: stretch; }
-
-    /* testata: banner orizzontale, 100px da telefono e 90px da computer */
-    .su-ad--testata { min-height: 100px; }
-    /* dentro al contenuto: rettangolo 300x250 o 336x280 */
-    .su-ad--contenuto { min-height: 280px; }
-    /* barra laterale: mezza pagina 300x600, agganciata allo scorrimento */
-    .su-ad--laterale { min-height: 280px; }
-    /* fondo pagina: Multiplex, la griglia di suggerimenti */
-    .su-ad--fondo { min-height: 280px; }
-
-    @media (min-width: 1024px) {
-      .su-ad--testata { min-height: 90px; }
-      .su-ad--laterale {
-        min-height: 600px;
-        position: sticky;
-        top: 6rem;
-      }
-    }
-
-    /* Etichetta: le norme di AdSense chiedono che l'annuncio si distingua dal
-       contenuto. Resta anche quando l'annuncio e' caricato. */
-    .su-ad-etichetta {
-      font-size: 10px;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      color: #94a3b8;
-      flex: 0 0 auto;
-    }
-
-    /* Segnaposto: si vede finche' l'annuncio non arriva, cosi' il riquadro
-       vuoto non sembra un errore di caricamento. */
-    .su-ad-segnaposto {
-      flex: 1 1 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: #cbd5e1;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      min-height: inherit;
-    }
-    .su-ad[data-su-stato="pieno"] {
-      background: none;
-      border-color: transparent;
-    }
-    .su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
-    /* Nessun annuncio da mostrare: il riquadro si chiude e lo spazio torna al
-       contenuto, invece di lasciare un rettangolo grigio per sempre. */
-    .su-ad[data-su-stato="vuoto"] {
-      display: none;
-    }
-
-    /* Un <details> chiuso deve essere davvero chiuso. Su queste pagine le voci
-       dell'elenco "Altri strumenti" mantenevano una casella cliccabile anche da
-       chiuse: invisibili, ma raggiungibili col dito, e finivano a 2px dal
-       riquadro pubblicitario della barra laterale. E' esattamente il clic per
-       sbaglio che AdSense sanziona. */
-    details:not([open]) > *:not(summary) { display: none !important; }
-
-    .ad-slot-desktop { display: none; }
-    .ad-slot-mobile { display: block; }
-    @media (min-width: 1024px) {
-      .ad-slot-desktop { display: block; }
-      .ad-slot-mobile { display: none; }
-    }
-  </style>
 
   
   <link rel="stylesheet" href="/css/styles.css" />
@@ -347,7 +247,7 @@
       </div>
 
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -355,9 +255,9 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Calcolo Giorni Lavorativi e Festività</span></li>
         </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/lavoro-contratti/giorni-lavorativi/" data-titolo="Calcolo Giorni Lavorativi e Festività" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
-
 
       <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Calcolo Giorni Lavorativi e Festività</h1>
@@ -410,7 +310,7 @@
               </label>
               <button type="button" data-guida-toggle="guida-gl-festivita" aria-expanded="false" aria-controls="guida-gl-festivita" aria-label="Guida al campo Festività nazionali" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quali festività sono escluse</button>
               <div id="guida-gl-festivita" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Incluse nel calcolo:</strong> 1° e 6 gennaio, Lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 1° novembre, 8, 25 e 26 dicembre. Il Lunedì dell'Angelo cambia ogni anno ed è calcolato con il computo della Pasqua.</p>
+                <p><strong class="text-indigo-900">Incluse nel calcolo:</strong> 1° e 6 gennaio, Lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 4 ottobre (San Francesco d'Assisi, di nuovo festivo dal 2026 per la legge 151/2025), 1° novembre, 8, 25 e 26 dicembre. Il Lunedì dell'Angelo cambia ogni anno ed è calcolato con il computo della Pasqua.</p>
                 <p><strong class="text-indigo-900">Non incluse:</strong> le festività soppresse, come San Giuseppe o l'Ascensione, che restano giorni lavorativi ma danno diritto a permessi retribuiti secondo il contratto collettivo, e le chiusure aziendali collettive.</p>
               </div>
             </div>
@@ -443,7 +343,7 @@
                 </select>
               </div>
               <div id="guida-gl-patrono" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Quale indicare:</strong> il patrono del Comune in cui si trova la sede di lavoro, non quello di residenza. Alcuni esempi: 29 giugno a Roma, 7 dicembre a Milano, 24 giugno a Torino, Genova e Firenze, 19 settembre a Napoli, 4 ottobre a Bologna.</p>
+                <p><strong class="text-indigo-900">Quale indicare:</strong> il patrono del Comune in cui si trova la sede di lavoro, non quello di residenza. Alcuni esempi: 29 giugno a Roma, 7 dicembre a Milano, 24 giugno a Torino, Genova e Firenze, 19 settembre a Napoli, 4 ottobre a Bologna (dal 2026 coincide con la festa nazionale di San Francesco: il giorno si conta una volta sola).</p>
                 <p><strong class="text-indigo-900">Contratti particolari:</strong> alcuni contratti collettivi sostituiscono la festa patronale con un altro giorno o con un permesso retribuito: in quel caso non selezionarla.</p>
               </div>
             </div>
@@ -493,6 +393,7 @@
               <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
             </summary>
             <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/utilita-web/calendario-da-stampare/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📅</span> Calendario da stampare</a></li>
               <li><a href="/lavoro-contratti/calcolo-tfr/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💼</span> Calcolo TFR Liquidazione</a></li>
               <li><a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📄</span> Prestazione Occasionale</a></li>
               <li><a href="/lavoro-contratti/ritenuta-acconto/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Ritenuta d'Acconto</a></li>
@@ -546,7 +447,7 @@
           </summary>
           <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
             <p class="text-sm text-gray-700 leading-relaxed mb-3">L'impalcatura giuslavoristica che presidia la determinazione del tempo contrattuale, le ricorrenze civili e religiose, e le relative ricadute sul fronte contributivo e retributivo, si inquadra all'interno della Legge 27 maggio 1949, n. 260. Ad essa fanno storicamente séguito i correttivi dettati dalla Legge 5 marzo 1977, n. 54, che ha operato la declassificazione in giorni feriali di specifiche solennità, inquadrate ora come Festività soppresse. L'identificazione precisa dei giorni solari considerati "festivi" è determinante ai fini della gestione dei permessi orari (ROL, Ex-festività), della maggiorazione della retribuzione per lavoro straordinario, nonché dello slittamento civilistico di adempimenti contrattuali o scadenze tributarie in presenza di giorni non bancabili.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il calendario lavorativo esclude convenzionalmente dai giorni lavorabili i fine settimana (sabato e domenica per l'orario su settimana corta) e le dieci festività nazionali a datazione fissa (1 Gennaio, 6 Gennaio, 25 Aprile, 1 Maggio, 2 Giugno, 15 Agosto, 1 Novembre, 8 Dicembre, 25 Dicembre, 26 Dicembre) alle quali si somma l'attribuzione municipale della Festa del Santo Patrono. L'apparato costituzionale, specificamente l'Articolo 36 della Costituzione Italiana, garantisce il diritto irrinunciabile al riposo settimanale e alle ferie retribuite, rendendo la classificazione dei giorni feriali un elemento di stretta conformità normativa.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Il calendario lavorativo esclude convenzionalmente dai giorni lavorabili i fine settimana (sabato e domenica per l'orario su settimana corta) e le festività nazionali a data fissa (1 Gennaio, 6 Gennaio, 25 Aprile, 1 Maggio, 2 Giugno, 15 Agosto, 1 Novembre, 8 Dicembre, 25 Dicembre, 26 Dicembre, più il 4 Ottobre dal 2026 per la Legge 151/2025) alle quali si somma l'attribuzione municipale della Festa del Santo Patrono. L'apparato costituzionale, specificamente l'Articolo 36 della Costituzione Italiana, garantisce il diritto irrinunciabile al riposo settimanale e alle ferie retribuite, rendendo la classificazione dei giorni feriali un elemento di stretta conformità normativa.</p>
             <p class="text-sm text-gray-700 leading-relaxed mb-3">Qualsiasi alterazione o mancato riconoscimento di tali festività nel calcolo dell'orario di lavoro contrattuale si configura come una palese violazione dei diritti sanciti dalla contrattazione collettiva nazionale (CCNL). La corretta applicazione di questo framework normativo è essenziale per non incorrere in sanzioni amministrative ed evitare vertenze sindacali. Le aziende devono mappare rigorosamente il calendario annuo per isolare il monte ore lavorativo effettivo, sul quale si calcolano indennità, scatti di anzianità e contribuzioni previdenziali INPS, senza incappare in violazioni che produrrebbero gravami ispettivi.</p>
           </div>
         </details>
@@ -757,6 +658,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -768,55 +673,12 @@
 
 <script defer src="/js/storage-helper.js"></script>
 
+  <script defer src="/js/festivita.js"></script>
   <script defer src="/js/giorni-lavorativi.js"></script>
 
-  <script>
-    (function () {
-      'use strict';
-      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
-      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
-      function getAdWidth(ad) {
-        if (!ad || !ad.isConnected) return 0;
-        const rect = ad.getBoundingClientRect();
-        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
-      }
-      function initAd(ad) {
-        if (!ad || ad.dataset.suAdInit === '1') return;
-        const width = getAdWidth(ad);
-        if (width <= 0) return;
-        ad.dataset.suAdInit = '1';
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
-      }
-      function initVisibleAds() {
-        if (!adsenseReady()) return;
-        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
-      }
-      function observeAds() {
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(entries => {
-            for (const entry of entries) {
-              if (entry.contentRect.width <= 0) continue;
-              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
-            }
-          });
-          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
-        }
-        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
-      }
-      function start() {
-        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
-        let attempts = 0;
-        const timer = setInterval(() => {
-          attempts++;
-          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) clearInterval(timer);
-        }, 100);
-      }
-      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
-    })();
-  </script>
   <script defer src="/js/guida-campi.js"></script>
   <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

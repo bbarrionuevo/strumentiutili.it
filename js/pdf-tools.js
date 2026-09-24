@@ -1,12 +1,12 @@
 // js/pdf-tools.js — Herramientas PDF (Web Workers + Comlink)
 
 if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
-  try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } catch (e) { }
+  try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs@3.11.174/pdf.worker.min.js'; } catch (e) { }
 }
 
 (async ()=>{
   // Importar Comlink e instanciar el Worker con la ruta exacta corregida
-  const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
+  const Comlink = await import('/vendor/comlink@4.4.2/comlink.mjs');
   const worker = new Worker('/js/workers/pdf-worker.js'); 
   worker.onerror = (err) => console.error("Error crítico en Web Worker PDF:", err);
   const pdfWorker = Comlink.wrap(worker);
@@ -766,6 +766,12 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
       }
     });
   }
+
+  // I gestori qui sopra esistono solo dopo il caricamento asincrono di
+  // Comlink: chi deve consegnare file allo strumento (js/condivisi.js) aspetta
+  // questo segnale.
+  window.SuStrumentoPronto = true;
+  document.dispatchEvent(new Event('su:pronto'));
 
 })();
 

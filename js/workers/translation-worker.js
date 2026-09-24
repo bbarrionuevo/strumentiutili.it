@@ -1,5 +1,5 @@
 // js/workers/translation-worker.js — Worker dedicado para traducción IA con Comlink
-importScripts('https://unpkg.com/comlink@4.4.2/dist/umd/comlink.js');
+importScripts('/vendor/comlink@4.4.2/comlink.js');
 
 let loadedPipelines = new Map();
 

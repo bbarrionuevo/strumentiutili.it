@@ -18,11 +18,10 @@
 //
 // Qui si fa anche la richiesta dell'annuncio, adsbygoogle.push({}), una volta
 // per riquadro. Senza quella chiamata un <ins class="adsbygoogle"> resta vuoto
-// per sempre: le pagine piu' recenti (multe, estratto INPS, concordato,
-// esenzione bollo) non avevano la copia in linea che le altre si portano
-// dietro, e i loro annunci non partivano mai. Il segno data-su-ad-init e' lo
-// stesso che usa quella copia: chi arriva primo lo mette, l'altro salta, e
-// nessun riquadro viene chiesto due volte.
+// per sempre. Prima ogni pagina se ne portava dietro una copia in linea, in
+// sei varianti: le pagine piu' recenti ne erano rimaste senza e i loro annunci
+// non partivano mai. Ora e' solo qui, e il segno data-su-ad-init impedisce di
+// chiedere due volte lo stesso riquadro.
 (() => {
   'use strict';
 

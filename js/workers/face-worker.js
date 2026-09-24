@@ -1,6 +1,6 @@
 // js/workers/face-worker.js — Detección facial biométrica con face-api.js y Comlink
 // Versioni fissate: un aggiornamento della libreria non deve cambiare il comportamento senza verifica
-importScripts('https://unpkg.com/comlink@4.4.2/dist/umd/comlink.js');
+importScripts('/vendor/comlink@4.4.2/comlink.js');
 importScripts('https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.15/dist/face-api.js');
 
 // Safari meno recente non espone OffscreenCanvas nei Worker: in quel caso il rilevamento non può

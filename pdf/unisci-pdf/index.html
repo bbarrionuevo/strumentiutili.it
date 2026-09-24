@@ -3,6 +3,7 @@
 <head>
   <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!-- /su:teste -->
 
   <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
@@ -198,7 +199,7 @@
 
     <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -206,9 +207,9 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Unire PDF</span></li>
         </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/pdf/unisci-pdf/" data-titolo="Unire PDF" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
-
 
       <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Unire PDF</h1>
       <p class="mt-3 text-gray-700 leading-relaxed">
@@ -220,7 +221,7 @@
         <p class="text-sm text-gray-600 mb-4">Puoi selezionarne pi&ugrave; di uno insieme e aggiungerne altri in qualsiasi momento: finiscono in fondo.</p>
 
         <label for="organizer-files" id="drop-organizer-files" class="block cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-indigo-400 hover:bg-indigo-50/40 transition">
-          <input id="organizer-files" type="file" accept="application/pdf" multiple class="sr-only" />
+          <input id="organizer-files" type="file" data-condivisi data-condivisi-attendi accept="application/pdf" multiple class="sr-only" />
           <span class="block text-sm font-semibold text-gray-800">Scegli i PDF</span>
           <span class="block text-xs text-gray-500 mt-1">oppure trascinali qui &middot; <span class="text-indigo-600 font-semibold" id="organizer-browse">sfoglia</span></span>
         </label>
@@ -366,6 +367,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -375,12 +380,14 @@
   </footer>
   <!-- /su:piede -->
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="/vendor/pdfjs@3.11.174/pdf.min.js"></script>
   <script defer src="/js/error-utils.js"></script>
   <script defer src="/js/dropzone.js"></script>
   <script defer src="/js/pdf-tools.js"></script>
   <script defer src="/js/guida-campi.js"></script>
   <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/condivisi.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

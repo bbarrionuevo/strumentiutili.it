@@ -3,6 +3,7 @@
 <head>
   <!-- su:teste -->
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!-- /su:teste -->
   
   
@@ -115,7 +116,7 @@
 
   <main id="contenuto" class="max-w-4xl mx-auto px-4 py-12 flex-1">
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -191,6 +192,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -200,51 +205,8 @@
   </footer>
   <!-- /su:piede -->
 
-  <script>
-    (function () {
-      'use strict';
-      const AD_SELECTOR = 'ins.adsbygoogle:not([data-su-ad-init])';
-      function adsenseReady() { return Array.isArray(window.adsbygoogle); }
-      function getAdWidth(ad) {
-        if (!ad || !ad.isConnected) return 0;
-        const rect = ad.getBoundingClientRect();
-        return Math.floor(Math.max(rect.width, ad.parentElement ? ad.parentElement.getBoundingClientRect().width : 0));
-      }
-      function initAd(ad) {
-        if (!ad || ad.dataset.suAdInit === '1') return;
-        const width = getAdWidth(ad);
-        if (width <= 0) return;
-        ad.dataset.suAdInit = '1';
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (error) { delete ad.dataset.suAdInit; }
-      }
-      function initVisibleAds() {
-        if (!adsenseReady()) return;
-        document.querySelectorAll(AD_SELECTOR).forEach(initAd);
-      }
-      function observeAds() {
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(entries => {
-            for (const entry of entries) {
-              if (entry.contentRect.width <= 0) continue;
-              entry.target.querySelectorAll('ins.adsbygoogle:not([data-su-ad-init])').forEach(initAd);
-            }
-          });
-          document.querySelectorAll('.su-ad').forEach(container => observer.observe(container));
-        }
-        requestAnimationFrame(() => { requestAnimationFrame(initVisibleAds); });
-      }
-      function start() {
-        if (adsenseReady()) { observeAds(); initVisibleAds(); return; }
-        let attempts = 0;
-        const timer = setInterval(() => {
-          attempts++;
-          if (adsenseReady()) { clearInterval(timer); observeAds(); initVisibleAds(); }
-          if (attempts >= 100) clearInterval(timer);
-        }, 100);
-      }
-      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
-    })();
-  </script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

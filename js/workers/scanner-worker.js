@@ -1,6 +1,6 @@
 // js/workers/scanner-worker.js — Motor de visión artificial OpenCV en segundo plano
-importScripts('https://unpkg.com/comlink@4.4.2/dist/umd/comlink.js');
-importScripts('https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js');
+importScripts('/vendor/comlink@4.4.2/comlink.js');
+importScripts('/vendor/pdf-lib@1.17.1/pdf-lib.min.js');
 
 let cvReady = false;
 

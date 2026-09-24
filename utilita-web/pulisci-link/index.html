@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pulire un link: togli utm, fbclid e i parametri di tracciamento — StrumentiUtili.it</title>
+  <meta name="description" content="Togli da un link i parametri che servono solo a tracciarti (utm, fbclid, gclid, si di YouTube e Spotify) e i reindirizzamenti di Google e Facebook. Funziona nel browser, senza inviare il link a nessuno." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/pulisci-link/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pulire un link dai parametri di tracciamento" />
+  <meta property="og:description" content="Togli da un link i parametri che servono solo a tracciarti (utm, fbclid, gclid, si di YouTube e Spotify) e i reindirizzamenti di Google e Facebook. Funziona nel browser, senza inviare il link a nessuno." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/pulisci-link/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/utilita-web/pulisci-link/#app",
+        "name": "Pulire un link",
+        "url": "https://strumentiutili.it/utilita-web/pulisci-link/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Richiede JavaScript. Funziona senza inviare file a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Togli da un link i parametri che servono solo a tracciarti (utm, fbclid, gclid, si di YouTube e Spotify) e i reindirizzamenti di Google e Facebook. Funziona nel browser, senza inviare il link a nessuno.",
+        "featureList": [
+          "Rimozione dei parametri utm e degli identificativi di clic",
+          "Pulizia dei link di YouTube, Spotify, Amazon, TikTok, AliExpress ed eBay",
+          "Estrazione del link vero dai reindirizzamenti di Google, Facebook, Instagram e Outlook",
+          "Più link insieme dentro un messaggio",
+          "Nessuna richiesta di rete"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/pulisci-link/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Che cosa sono utm_source, fbclid e gli altri parametri?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sono pezzi aggiunti in fondo al link per sapere da dove arriva chi lo apre: la campagna pubblicitaria (utm_), il clic su un annuncio di Facebook o Google (fbclid, gclid), chi ha condiviso un video di YouTube o una canzone di Spotify (si). Alla pagina non servono: il link si apre allo stesso modo anche senza."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il link pulito funziona ancora?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Si tolgono solo parametri di tracciamento conosciuti, e alcuni (come si) solo sui siti dove si sa che cosa sono. Quelli che servono alla pagina, come l’identificativo di un video o di un prodotto, restano."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché non c’è più l’accorciatore di link?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un link corto ha bisogno di un server che ricordi dove porta: chi lo apre passa da quel server, che registra la visita. Questo sito non ha server e non manda i tuoi dati a nessuno, per scelta. Pulire un link spesso lo accorcia di metà, senza intermediari."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Si possono espandere i link corti come bit.ly?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: per sapere dove porta un link corto bisogna chiederlo al servizio che l’ha creato, cioè fare una richiesta di rete a un server esterno. Questo strumento non contatta nessuno."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il link viene inviato a un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La pulizia avviene nel browser, sul testo che incolli: non c’è nessuna richiesta di rete, e il testo non viene salvato."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Utilità & Web",
+        "item": "https://strumentiutili.it/utilita-web/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Pulire un link",
+        "item": "https://strumentiutili.it/utilita-web/pulisci-link/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block text-xs text-gray-500">Micro-strumenti gratuiti 100% client-side</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro</a>
+          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
+          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
+          <a href="/utilita-web/" class="text-indigo-600 font-semibold" aria-current="page">🛠️ Utilità</a>
+        </nav>
+
+        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/utilita-web/" class="hover:text-indigo-600 hover:underline">Utilità &amp; Web</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Pulire un link</span></li>
+        </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/pulisci-link/" data-titolo="Pulire un link" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+      </nav>
+  <!-- /su:briciole -->
+
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Pulire un link</h1>
+      <p class="mt-3 text-gray-700 leading-relaxed">
+        Incolla un link, o un messaggio intero con dentro dei link: esce la versione senza i pezzi che servono solo a sapere da dove arrivi e chi te l&rsquo;ha mandato. Il link funziona come prima, &egrave; pi&ugrave; corto e non ti segue.
+      </p>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-strumento">
+        <h2 id="t-strumento" class="text-xl font-bold text-gray-900 mb-1">Incolla il link</h2>
+        <p class="text-sm text-gray-600 mb-4">Va bene anche un messaggio intero: si puliscono tutti i link che contiene.</p>
+
+        <label for="testo-link" class="block text-sm font-semibold text-gray-800">Link o testo</label>
+        <textarea id="testo-link" data-no-save rows="4" spellcheck="false" autocomplete="off" placeholder="https://www.esempio.it/articolo?utm_source=newsletter&amp;fbclid=..." class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-sm font-mono"></textarea>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button type="button" id="incolla-link" hidden class="bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold px-4 py-2 rounded-lg text-sm transition">Incolla dagli appunti</button>
+        </div>
+        <p class="mt-3 text-xs text-emerald-800 flex items-start gap-1.5"><span aria-hidden="true">&#128274;</span><span>Il link non viene inviato a nessuno: la pulizia avviene nel browser, senza nessuna richiesta di rete.</span></p>
+
+        <label for="link-pulito" class="block text-sm font-semibold text-gray-800 mt-5">Link pulito</label>
+        <textarea id="link-pulito" data-no-save rows="4" readonly spellcheck="false" class="mt-1 w-full px-4 py-3 border border-emerald-300 bg-emerald-50/40 rounded-lg text-sm font-mono"></textarea>
+        <div class="mt-3 flex flex-wrap gap-3">
+          <button type="button" id="copia-link" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition">Copia il link pulito</button>
+          <button type="button" id="condividi-link" hidden class="bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold px-5 py-3 rounded-xl transition">Condividi</button>
+        </div>
+        <p id="esito-link" class="mt-2 text-sm text-emerald-700" aria-live="polite"></p>
+        <div id="dettagli-link" class="mt-4" aria-live="polite"></div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-passi">
+        <h2 id="t-passi" class="text-xl font-bold text-gray-900 mb-4">Come si fa</h2>
+        <ol class="space-y-4 text-sm leading-relaxed">
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span>
+            <div><p class="font-semibold text-gray-900">Incolla il link</p><p class="text-gray-700 mt-0.5">O il messaggio che lo contiene, per esempio copiato da WhatsApp o da una email.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span>
+            <div><p class="font-semibold text-gray-900">Controlla che cosa &egrave; stato tolto</p><p class="text-gray-700 mt-0.5">Sotto il risultato trovi ogni parametro rimosso e a che cosa serviva.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
+            <div><p class="font-semibold text-gray-900">Copia o condividi</p><p class="text-gray-700 mt-0.5">Il link pulito si apre esattamente come quello originale.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-faq">
+        <h2 id="t-faq" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che cosa sono utm_source, fbclid e gli altri parametri?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono pezzi aggiunti in fondo al link per sapere da dove arriva chi lo apre: la campagna pubblicitaria (utm_), il clic su un annuncio di Facebook o Google (fbclid, gclid), chi ha condiviso un video di YouTube o una canzone di Spotify (si). Alla pagina non servono: il link si apre allo stesso modo anche senza.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il link pulito funziona ancora?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sì. Si tolgono solo parametri di tracciamento conosciuti, e alcuni (come si) solo sui siti dove si sa che cosa sono. Quelli che servono alla pagina, come l’identificativo di un video o di un prodotto, restano.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perché non c’è più l’accorciatore di link?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Un link corto ha bisogno di un server che ricordi dove porta: chi lo apre passa da quel server, che registra la visita. Questo sito non ha server e non manda i tuoi dati a nessuno, per scelta. Pulire un link spesso lo accorcia di metà, senza intermediari.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si possono espandere i link corti come bit.ly?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: per sapere dove porta un link corto bisogna chiederlo al servizio che l’ha creato, cioè fare una richiesta di rete a un server esterno. Questo strumento non contatta nessuno.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il link viene inviato a un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. La pulizia avviene nel browser, sul testo che incolli: non c’è nessuna richiesta di rete, e il testo non viene salvato.</p>
+          </details>
+      </section>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-bold text-gray-900 mb-3">Strumenti collegati</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="/utilita-web/generatore-qr/" class="hover:text-indigo-600 transition">Generatore di codici QR</a></li>
+          <li><a href="/identita-burocrazia/generatore-password/" class="hover:text-indigo-600 transition">Generatore di password</a></li>
+          <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition">Contaparole</a></li>
+          <li><a href="/pdf/apri-file-p7m/" class="hover:text-indigo-600 transition">Aprire un file P7M</a></li>
+          <li><a href="/utilita-web/" class="hover:text-indigo-600 transition font-semibold">Tutti gli strumenti di utilità &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="6912312067"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+      style="display:block;width:100%;min-width:250px;"
+      data-ad-client="ca-pub-9434300808171957"
+      data-ad-slot="1157333219"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Micro-strumenti gratuiti. I calcoli avvengono nel browser: i tuoi dati non lasciano il dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/pulisci-link.js"></script>
+  <script defer src="/js/pulisci-link-ui.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

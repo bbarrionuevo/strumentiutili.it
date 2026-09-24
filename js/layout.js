@@ -15,38 +15,33 @@
 
   // --------------------------------------------- riapertura del consenso
 
-  // Il GDPR chiede che ritirare il consenso sia facile quanto darlo. La CMP
-  // nativa di AdSense espone googlefc.showRevocationMessage(), ma solo dove la
-  // CMP si carica davvero (nello SEE e nel Regno Unito). Il comando nel piede
-  // parte nascosto e compare solo quando quella funzione esiste: altrove
-  // sarebbe un bottone che non fa niente.
+  // Il GDPR (art. 7.3) chiede che ritirare il consenso sia facile quanto darlo.
+  // Il messaggio lo mostra la CMP di Google configurata in AdSense ("Privacy e
+  // messaggi"), che arriva con adsbygoogle.js. Il comando nel piede parte
+  // nascosto e compare solo quando la CMP e' pronta, cioe' dove il messaggio
+  // viene davvero mostrato: altrove sarebbe un bottone che non fa niente.
+  //
+  // Si usa l'API ufficiale: le funzioni si accodano in googlefc.callbackQueue
+  // e Google le esegue quando la CMP e' caricata, anche se arriva tardi su
+  // una rete lenta (prima si controllava per dieci secondi e poi si
+  // rinunciava). Con un blocco pubblicita' la CMP non arriva e il comando
+  // resta nascosto, come deve.
   function avviaRevocaConsenso() {
     var voce = document.getElementById('riapri-consenso-voce');
     var bottone = document.getElementById('riapri-consenso');
     if (!voce || !bottone) return;
 
-    var tentativi = 0;
-
-    function cmpPronta() {
-      return !!(window.googlefc && typeof window.googlefc.showRevocationMessage === 'function');
-    }
-
-    function mostra() {
-      voce.hidden = false;
-      bottone.addEventListener('click', function () {
-        try { window.googlefc.showRevocationMessage(); } catch (e) { /* niente da fare */ }
-      });
-    }
-
-    // La CMP arriva insieme ad AdSense, quindi dopo il caricamento della
-    // pagina: si controlla per qualche secondo e poi si lascia perdere.
-    function controlla() {
-      if (cmpPronta()) { mostra(); return; }
-      if (++tentativi > 20) return;
-      setTimeout(controlla, 500);
-    }
-
-    controlla();
+    window.googlefc = window.googlefc || {};
+    window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+    window.googlefc.callbackQueue.push({
+      CONSENT_API_READY: function () {
+        if (typeof window.googlefc.showRevocationMessage !== 'function') return;
+        voce.hidden = false;
+        bottone.addEventListener('click', function () {
+          window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+        });
+      }
+    });
   }
 
   // ------------------------------------------------------- menu telefono
@@ -234,12 +229,91 @@
     });
   }
 
+  // -------------------------------------------------------- il tuo spazio
+
+  // Recenti, preferiti e cancellazione (la logica e' in js/spazio.js). Tutto
+  // resta nel browser: e' la memoria che fa ritrovare a chi torna i propri
+  // strumenti, e si cancella dal piede di ogni pagina.
+  function avviaSpazio() {
+    var S = window.Spazio;
+    if (!S) return;
+    var disponibile = (function () {
+      try { localStorage.setItem('su_prova', '1'); localStorage.removeItem('su_prova'); return true; } catch (e) { return false; }
+    })();
+    if (!disponibile) return;
+
+    var stella = document.getElementById('su-fissa');
+    if (stella) {
+      var percorso = stella.getAttribute('data-percorso');
+      var titolo = stella.getAttribute('data-titolo');
+      S.registraVisita(percorso, titolo);
+      var segno = stella.querySelector('[data-stella]');
+      var testo = stella.querySelector('[data-stella-testo]');
+      var aggiornaStella = function () {
+        var fissato = S.eFissato(percorso);
+        stella.setAttribute('aria-pressed', fissato ? 'true' : 'false');
+        if (segno) segno.textContent = fissato ? '★' : '☆';
+        if (testo) testo.textContent = fissato ? 'Tra i preferiti' : 'Salva tra i preferiti';
+        stella.classList.toggle('text-amber-700', fissato);
+        stella.classList.toggle('border-amber-300', fissato);
+        stella.classList.toggle('bg-amber-50', fissato);
+      };
+      stella.addEventListener('click', function () { S.alterna(percorso, titolo); aggiornaStella(); });
+      aggiornaStella();
+      stella.hidden = false;
+    }
+
+    var voce = document.getElementById('su-cancella-voce');
+    var cancella = document.getElementById('su-cancella-dati');
+    if (voce && cancella) {
+      voce.hidden = false;
+      cancella.addEventListener('click', function () {
+        if (!window.confirm('Cancellare da questo dispositivo i valori inseriti negli strumenti, i preferiti e gli strumenti recenti?')) return;
+        var quanti = S.cancellaTutto();
+        // I file condivisi verso l'app installata aspettano qui (vedi sw.js).
+        try { if (window.indexedDB) window.indexedDB.deleteDatabase('strumentiutili'); } catch (e) { /* niente */ }
+        cancella.textContent = quanti ? 'Dati cancellati da questo dispositivo' : 'Non c’era niente da cancellare';
+        cancella.disabled = true;
+      });
+    }
+
+    disegnaPerTe(S);
+  }
+
+  // La riga "Per te" della home: preferiti, poi recenti. Costruita con
+  // textContent, mai con innerHTML: i titoli vengono dall'archivio del browser.
+  function disegnaPerTe(S) {
+    var sezione = document.getElementById('per-te');
+    var elenco = document.getElementById('per-te-elenco');
+    if (!sezione || !elenco) return;
+    var voci = S.perTe(6);
+    if (!voci.length) return;
+    elenco.textContent = '';
+    voci.forEach(function (v) {
+      var a = document.createElement('a');
+      a.href = v.percorso;
+      a.className = 'flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:border-indigo-300 hover:shadow-md transition';
+      var icona = document.createElement('span');
+      icona.setAttribute('aria-hidden', 'true');
+      icona.className = v.fissato ? 'text-amber-500 text-lg' : 'text-gray-400 text-lg';
+      icona.textContent = v.fissato ? '★' : '↺';
+      var nome = document.createElement('span');
+      nome.className = 'font-semibold text-gray-900 text-sm';
+      nome.textContent = v.titolo;
+      a.appendChild(icona);
+      a.appendChild(nome);
+      elenco.appendChild(a);
+    });
+    sezione.hidden = false;
+  }
+
   // ---------------------------------------------------------------- avvio
 
   function avvia() {
     avviaMenu();
     avviaRicerca();
     avviaRevocaConsenso();
+    avviaSpazio();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', avvia);

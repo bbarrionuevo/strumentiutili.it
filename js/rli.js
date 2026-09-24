@@ -360,8 +360,8 @@
         const pdfDoc = await PDFLib.PDFDocument.create();
         pdfDoc.registerFontkit(window.fontkit);
         
-        const urlFontRegular = 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf';
-        const urlFontBold = 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf';
+        const urlFontRegular = '/vendor/roboto@0.2.7/Roboto-Regular.ttf';
+        const urlFontBold = '/vendor/roboto@0.2.7/Roboto-Medium.ttf';
 
         const [fontBytesReg, fontBytesBold] = await Promise.all([
           fetch(urlFontRegular).then(res => res.arrayBuffer()),
