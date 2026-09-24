@@ -276,6 +276,12 @@ function piede(bloccoPubblicitario) {
     '              <button type="button" id="riapri-consenso"',
     '                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>',
     '            </li>',
+    // I valori dei calcolatori, i preferiti e i recenti restano nel browser:
+    // chi li ha generati deve poterli togliere con un clic (js/spazio.js).
+    '            <li hidden id="su-cancella-voce">',
+    '              <button type="button" id="su-cancella-dati"',
+    '                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>',
+    '            </li>',
     '          </ul>',
     '        </nav>',
     '',
@@ -310,13 +316,23 @@ function briciole(ctx) {
     return '        <li>' + dentro + '</li>' + sep;
   }).join('\n');
 
+  // Sulle pagine degli strumenti, accanto al percorso, la stella per fissarli
+  // in "Il tuo spazio". Parte nascosta: la mostra js/layout.js solo se il
+  // browser permette di salvare, altrimenti sarebbe un bottone che non fa nulla.
+  const stella = ctx.tipo === 'strumento'
+    ? '        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="' + esc(ctx.url) + '" data-titolo="' + esc(testoSemplice(ctx.titolo)) + '"' +
+      ' class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition">' +
+      '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>'
+    : null;
+
   return [
-    '      <nav aria-label="Percorso" class="mb-4">',
+    '      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">',
     '        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">',
     voci,
     '        </ol>',
+    stella,
     '      </nav>'
-  ].join('\n');
+  ].filter((r) => r !== null).join('\n');
 }
 
 function jsonLdBriciole(ctx) {

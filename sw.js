@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v44';
+const CACHE_NAME = 'strumentiutili-v45';
 
 const APP_SHELL = [
   '/',
@@ -107,6 +107,7 @@ const APP_SHELL = [
   '/avviso-legale.html',
 
   // Script condivisi e utilità
+  '/js/spazio.js',
   '/js/layout.js',
   '/js/data-loader.js',
   '/js/esenzione-bollo.js',

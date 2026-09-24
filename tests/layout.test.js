@@ -544,6 +544,26 @@ test('ogni pagina con riquadri pubblicitari chiede davvero gli annunci', () => {
   assert.deepStrictEqual(senza, []);
 });
 
+test('Il tuo spazio: stella sugli strumenti, cancellazione ovunque, spazio.js prima di layout.js', () => {
+  const problemi = [];
+  for (const p of PAGINE) {
+    const stella = p.html.match(/<button type="button" id="su-fissa"[^>]*data-percorso="([^"]*)" data-titolo="([^"]*)"/);
+    if (p.ctx.tipo === 'strumento') {
+      if (!stella) problemi.push(p.rel + ' -> manca la stella');
+      else {
+        if (stella[1] !== p.ctx.url) problemi.push(p.rel + ' -> la stella punta a ' + stella[1]);
+        if (!stella[2]) problemi.push(p.rel + ' -> stella senza titolo');
+      }
+    } else if (stella) problemi.push(p.rel + ' -> stella su una pagina che non e uno strumento');
+
+    if (!p.html.includes('id="su-cancella-dati"')) problemi.push(p.rel + ' -> manca "Cancella i dati salvati"');
+    const spazio = p.html.indexOf('src="/js/spazio.js"');
+    const layout = p.html.indexOf('src="/js/layout.js"');
+    if (spazio === -1 || spazio > layout) problemi.push(p.rel + ' -> spazio.js assente o dopo layout.js');
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
 test('il foglio di stile nasconde annunci e comandi in stampa', () => {
   // Meta' degli strumenti produce documenti da stampare: F24, disdette,
   // autocertificazioni. Sul foglio non devono finire i riquadri pubblicitari.

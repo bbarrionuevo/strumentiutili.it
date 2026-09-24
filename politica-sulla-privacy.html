@@ -115,7 +115,7 @@
 
   <main id="contenuto" class="max-w-4xl mx-auto px-4 py-12 block min-h-screen">
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -135,6 +135,15 @@
         <ul class="list-disc pl-5 mt-2 space-y-2">
           <li><strong>Nessun file viene caricato su server esterni.</strong></li>
           <li><strong>Non conserviamo, non analizziamo e non abbiamo accesso</strong> ai contenuti elaborati (es. registrazioni audio per la trascrizione IA).</li>
+          <li><strong>Le librerie che fanno il lavoro sono servite dal sito stesso</strong> (pdf.js, pdf-lib e le altre): aprendo uno strumento non contatti CDN di terzi. Fanno eccezione, per ora, i motori di intelligenza artificiale locale e di riconoscimento del testo, che si scaricano da CDN al primo utilizzo: viaggia il programma, non il tuo documento.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Dati salvati nel tuo browser</h3>
+        <p>Per farti ritrovare il lavoro quando torni, alcune informazioni restano <strong>nella memoria del tuo browser (localStorage)</strong>, su questo dispositivo: i valori inseriti nei calcolatori, gli strumenti fissati tra i preferiti e quelli usati di recente. Non vengono mai inviate a noi né a terzi.</p>
+        <ul class="list-disc pl-5 mt-2 space-y-2">
+          <li>I campi sensibili (IBAN, codice fiscale, password, PIN, carte) <strong>non vengono salvati</strong>.</li>
+          <li>I documenti che carichi (PDF, foto, audio, file .p7m) <strong>non vengono salvati</strong>: restano in memoria finché la pagina è aperta.</li>
+          <li>Puoi cancellare tutto con «Cancella i dati salvati su questo dispositivo», nel piè di ogni pagina, oppure i soli valori di una pagina con il comando «Cancella» che compare in cima quando ci sono.</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mt-8 mb-3">2. Reti Pubblicitarie e Google AdSense</h2>
@@ -203,6 +212,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -257,6 +270,7 @@
       if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start, { once: true }); } else { start(); }
     })();
   </script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>

@@ -201,6 +201,15 @@ function applicaScriptLayout(html) {
   return html.slice(0, i) + riga + html.slice(i);
 }
 
+// js/spazio.js (recenti, preferiti, cancellazione) serve a js/layout.js:
+// deve esserci ovunque, e prima.
+function applicaScriptSpazio(html) {
+  if (html.includes('src="/js/spazio.js"')) return html;
+  const m = html.match(/[ \t]*<script[^>]*src="\/js\/layout\.js"[^>]*><\/script>/);
+  if (!m) return html;
+  return html.slice(0, m.index) + '  <script defer src="/js/spazio.js"></script>\n' + html.slice(m.index);
+}
+
 // js/main.js e' stato assorbito da js/layout.js.
 function rimuoviMainJs(html) {
   return html.replace(/[ \t]*<script[^>]*src="\/js\/main\.js"[^>]*><\/script>\n?/g, '');
@@ -219,6 +228,7 @@ function trasforma(html, ctx) {
   fuori = applicaJsonLd(fuori, ctx);
   fuori = rimuoviMainJs(fuori);
   fuori = applicaScriptLayout(fuori);
+  fuori = applicaScriptSpazio(fuori);
   return fuori;
 }
 

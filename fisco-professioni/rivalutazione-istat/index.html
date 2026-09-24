@@ -349,7 +349,7 @@
       </div>
 
       <!-- su:briciole -->
-      <nav aria-label="Percorso" class="mb-4">
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
         <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
         <li aria-hidden="true" class="text-gray-300">/</li>
@@ -357,6 +357,7 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Rivalutazione ISTAT FOI e Interessi Legali</span></li>
         </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/fisco-professioni/rivalutazione-istat/" data-titolo="Rivalutazione ISTAT FOI e Interessi Legali" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
 
@@ -825,6 +826,10 @@
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
             </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
           </ul>
         </nav>
 
@@ -902,6 +907,7 @@ window.SuGuidaLive = window.SuGuidaLive || {};
   </script>
   <script defer src="/js/guida-campi.js"></script>
   <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
   <script defer src="/js/layout.js"></script>
 </body>
 </html>
