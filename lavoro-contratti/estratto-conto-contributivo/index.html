@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leggi il tuo estratto conto contributivo INPS — StrumentiUtili.it</title>
+  <meta name="description" content="Carica l'estratto conto contributivo INPS e scopri quante settimane hai, dove ci sono buchi e quanto manca alla pensione. Il file resta nel tuo browser: non viene inviato a nessun server." />
+  <link rel="canonical" href="https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Scopri i buchi nella tua pensione" />
+  <meta property="og:description" content="Carica l'estratto conto INPS e vedi quante settimane hai davvero, dove mancano contributi e quanto ti separa dalla pensione. Il file non lascia il tuo browser." />
+  <meta property="og:url" content="https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/#app",
+        "name": "Analisi dell'estratto conto contributivo INPS",
+        "url": "https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "description": "Conta le settimane contributive, individua i periodi scoperti e calcola quanto manca ai requisiti di pensione partendo dall'estratto conto INPS. L'elaborazione avviene interamente nel browser.",
+        "browserRequirements": "Richiede JavaScript. Il file caricato non lascia il dispositivo.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "publisher": { "@type": "Organization", "name": "StrumentiUtili.it", "url": "https://strumentiutili.it/" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Dove scarico l'estratto conto contributivo INPS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si accede a MyINPS con SPID, CIE o CNS, si apre il Fascicolo previdenziale del cittadino e poi la voce Estratto conto contributivo. Il pulsante XML sta in fondo alla pagina del servizio, sotto l'elenco dei periodi. Questo strumento legge entrambi i formati: con l'XML il riconoscimento dei periodi è più affidabile, perché i dati sono già strutturati; il PDF va sempre ricontrollato nella tabella di verifica."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quante settimane servono per la pensione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un anno di contributi corrisponde a 52 settimane. La pensione di vecchiaia richiede 20 anni di contributi, cioè 1.040 settimane, oltre all'età anagrafica prevista. La pensione anticipata prescinde dall'età ma richiede molti più contributi: attualmente 42 anni e 10 mesi per gli uomini e 41 anni e 10 mesi per le donne."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho lavorato in due gestioni nello stesso anno: le settimane si sommano?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Ai fini del diritto a pensione un anno solare vale al massimo 52 settimane, anche se in quell'anno si è versato contemporaneamente in più gestioni. Sommare i periodi senza questo limite porta a sopravvalutare la propria anzianità contributiva."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho trovato un buco nell'estratto conto: cosa faccio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un periodo scoperto non è necessariamente un errore: può corrispondere a disoccupazione, studio, lavoro all'estero o periodi non coperti da contribuzione. Se invece in quel periodo hai lavorato, può trattarsi di un'omissione del datore di lavoro o di una registrazione mancante: in quel caso si presenta all'INPS una richiesta di variazione della posizione assicurativa, allegando buste paga o contratti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati vengono caricati da qualche parte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il file viene letto dal browser con le API standard di lettura file e analizzato in memoria sul tuo dispositivo. Non esiste alcun invio a server: puoi verificarlo aprendo il pannello di rete del browser oppure scollegandoti da internet dopo aver aperto la pagina."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Lavoro & Contratti",
+        "item": "https://strumentiutili.it/lavoro-contratti/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Leggi il tuo estratto conto contributivo",
+        "item": "https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block text-xs text-gray-500">Micro-strumenti gratuiti 100% client-side</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="text-indigo-600 font-semibold" aria-current="page">🤝 Lavoro</a>
+          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
+          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
+          <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+        </nav>
+
+        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 hover:underline">Lavoro &amp; Contratti</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Leggi il tuo estratto conto contributivo</span></li>
+        </ol>
+      </nav>
+  <!-- /su:briciole -->
+
+      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="4436348652"
+             data-full-width-responsive="true"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Leggi il tuo estratto conto contributivo</h1>
+      <p class="mt-3 text-gray-700 leading-relaxed">
+        Quante settimane hai davvero, dove mancano contributi e quanto ti separa dalla pensione.
+        Sono le tre domande per cui di solito si va al patronato.
+      </p>
+
+      <div class="mt-5 border-l-4 border-emerald-500 bg-emerald-50 p-4 rounded-r-lg" role="note">
+        <p class="text-sm text-emerald-900 leading-relaxed">
+          <strong>Il file non lascia il tuo dispositivo.</strong> Viene letto e analizzato dal browser, in memoria.
+          Non c'è nessun invio a server: con un file XML puoi staccare la connessione dopo aver aperto questa
+          pagina e vedrai che funziona lo stesso. Per i PDF serve una libreria di lettura (pdf.js) che viene
+          scaricata da CDN al primo utilizzo: viaggia la libreria, non il tuo estratto conto.
+        </p>
+      </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-carica">
+        <h2 id="t-carica" class="text-xl font-bold text-gray-900 mb-1">1. Carica l'estratto conto</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Vanno bene sia l'<strong>XML</strong> sia il <strong>PDF</strong>: li scarichi da MyINPS &rarr;
+          Fascicolo previdenziale &rarr; Estratto conto contributivo. Il pulsante <strong>XML</strong> sta in fondo
+          alla pagina, sotto l'elenco dei periodi, e conviene cercarlo: nell'XML i periodi sono già strutturati,
+          mentre dal PDF vanno ricostruiti riga per riga. Con il PDF il passo 2 di verifica non è una formalità.
+        </p>
+
+        <label for="file-xml" class="block cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-indigo-400 hover:bg-indigo-50/40 transition">
+          <span class="block text-sm font-semibold text-gray-800">Scegli il file XML o PDF</span>
+          <span class="block text-xs text-gray-500 mt-1">oppure trascinalo qui</span>
+          <input id="file-xml" type="file" accept=".xml,.pdf,text/xml,application/xml,application/pdf" class="sr-only" />
+        </label>
+        <p id="esito-file" class="mt-3 text-sm" aria-live="polite"></p>
+
+        <details class="mt-5">
+          <summary class="text-sm font-semibold text-indigo-600 cursor-pointer">Non hai il file? Inserisci i periodi a mano</summary>
+          <div class="mt-3">
+            <p class="text-xs text-gray-600 mb-3">
+              Una riga per periodo, nel formato <code class="bg-gray-100 px-1 rounded">dal;al;settimane;gestione</code>.
+              Le settimane e la gestione si possono omettere.
+            </p>
+            <label for="manuale" class="sr-only">Periodi contributivi</label>
+            <textarea id="manuale" rows="5" spellcheck="false"
+                      placeholder="2005-01-01;2009-12-31;260;Lavoratori dipendenti&#10;2012-01-01;2020-12-31;469;Lavoratori dipendenti"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2 font-mono text-xs focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+            <button type="button" id="usa-manuale"
+                    class="mt-2 border border-gray-300 font-medium px-4 py-2 rounded-lg text-sm transition hover:bg-gray-50">
+              Analizza questi periodi
+            </button>
+          </div>
+        </details>
+      </section>
+
+      <section id="sezione-verifica" hidden class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-verifica">
+        <h2 id="t-verifica" class="text-xl font-bold text-gray-900 mb-1">2. Verifica quello che è stato letto</h2>
+        <p class="text-sm text-gray-600 mb-4">
+          Controlla che i periodi corrispondano al tuo estratto prima di fidarti dei numeri.
+          Né il tracciato dell'XML né l'impaginazione del PDF dell'INPS sono documentati pubblicamente,
+          e cambiano da un'edizione all'altra: questo passaggio serve proprio a questo.
+        </p>
+        <div id="anteprima" class="overflow-x-auto"></div>
+
+        <div id="avvertenze-inps" hidden class="mt-5 border-l-4 border-gray-300 bg-gray-50 p-4 rounded-r-lg">
+          <p class="text-xs font-semibold text-gray-700 uppercase tracking-wide">Avvertenze dell'INPS</p>
+          <div id="avvertenze-testo" class="text-xs text-gray-700 mt-2 space-y-2"></div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-gray-100">
+          <label for="sesso" class="block text-sm font-semibold text-gray-800">Per il requisito della pensione anticipata</label>
+          <p class="text-xs text-gray-600 mt-1 mb-2">
+            Agli uomini servono 42 anni e 10 mesi di contributi, alle donne 41 e 10: senza questo dato
+            il confronto sarebbe sbagliato per met&agrave; delle persone. Se il file lo contiene, viene impostato da s&eacute;.
+          </p>
+          <select id="sesso" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+            <option value="M">Uomo</option>
+            <option value="F">Donna</option>
+          </select>
+          <span id="sesso-dal-file" hidden class="ml-2 text-xs text-emerald-700">letto dal file</span>
+        </div>
+      </section>
+
+      <section class="mt-6">
+        <h2 class="sr-only">Risultato dell'analisi</h2>
+        <div id="risultato" aria-live="polite"></div>
+      </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Come si legge un estratto conto</h2>
+        <dl class="space-y-4 text-sm leading-relaxed">
+          <div>
+            <dt class="font-semibold text-gray-900">52 settimane fanno un anno</dt>
+            <dd class="text-gray-700 mt-1">
+              L'anzianità contributiva si misura in settimane. La pensione di vecchiaia ne richiede
+              <strong>1.040</strong>, cioè vent'anni, oltre all'età anagrafica.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Due gestioni nello stesso anno non raddoppiano nulla</dt>
+            <dd class="text-gray-700 mt-1">
+              Ai fini del diritto a pensione un anno solare vale al massimo 52 settimane, anche se hai versato
+              in più gestioni contemporaneamente. Qui il limite viene applicato, e le settimane in eccesso
+              vengono mostrate a parte.
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Un buco non è per forza un errore</dt>
+            <dd class="text-gray-700 mt-1">
+              Può essere disoccupazione, studio o lavoro all'estero. Ma se in quel periodo hai lavorato, può
+              trattarsi di un'omissione del datore di lavoro: in quel caso si presenta all'INPS una
+              <strong>richiesta di variazione della posizione assicurativa</strong>, allegando buste paga o
+              contratti. Più passa il tempo, più è difficile recuperare la documentazione.
+            </dd>
+          </div>
+        </dl>
+        <p class="mt-5 text-sm text-gray-600 border-t border-gray-100 pt-4">
+          Per stimare l'importo dell'assegno, e non solo l'anzianità, usa il
+          <a href="/cittadino-tasse/simulatore-pensione/" class="text-indigo-600 font-semibold hover:underline">simulatore di pensione</a>.
+        </p>
+      </section>
+
+      <p class="mt-6 text-xs text-gray-500 leading-relaxed">
+        Questa è una lettura automatica di un documento e una stima dell'anzianità contributiva: non ha valore
+        certificativo. Per una posizione con valore legale serve l'estratto conto certificativo (ECOCERT)
+        rilasciato dall'INPS. Verifica sempre i periodi con il documento originale e, in caso di dubbi, con un
+        patronato o un consulente del lavoro.
+      </p>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-bold text-gray-900 mb-3">Strumenti collegati</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="/cittadino-tasse/simulatore-pensione/" class="hover:text-indigo-600 transition">Simulatore di pensione</a></li>
+          <li><a href="/lavoro-contratti/analizzatore-busta-paga/" class="hover:text-indigo-600 transition">Analizzatore busta paga</a></li>
+          <li><a href="/lavoro-contratti/calcolo-tfr/" class="hover:text-indigo-600 transition">Calcolo TFR</a></li>
+          <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition font-semibold">Tutti gli strumenti per il lavoro &rarr;</a></li>
+        </ul>
+      </div>
+
+      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="6912312067"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+      style="display:block;width:100%;min-width:250px;"
+      data-ad-client="ca-pub-9434300808171957"
+      data-ad-slot="1157333219"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Micro-strumenti gratuiti. I calcoli avvengono nel browser: i tuoi dati non lasciano il dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/data-loader.js"></script>
+  <script defer src="/js/estratto-contributivo.js"></script>
+  <script defer src="/js/estratto-import.js"></script>
+  <script defer src="/js/estratto-ui.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v37';
+const CACHE_NAME = 'strumentiutili-v39';
 
 const APP_SHELL = [
   '/',
@@ -12,6 +12,7 @@ const APP_SHELL = [
   '/fisco-professioni/modelli-partita-iva/',
   '/fisco-professioni/calcolo-rata-mutuo/',
   '/fisco-professioni/rivalutazione-istat/',
+  '/fisco-professioni/concordato-preventivo-biennale/',
   '/fisco-professioni/partita-iva/',
   '/fisco-professioni/parcella-avvocato/',
   '/fisco-professioni/contributo-unificato/',
@@ -48,6 +49,7 @@ const APP_SHELL = [
   '/lavoro-contratti/',
   '/lavoro-contratti/lettera-dimissioni-preavviso/',
   '/lavoro-contratti/calcolo-naspi/',
+  '/lavoro-contratti/estratto-conto-contributivo/',
   '/lavoro-contratti/stipendio-netto/',
   '/lavoro-contratti/calcolo-tfr/',
   '/lavoro-contratti/ricevuta-prestazione-occasionale/',
@@ -122,6 +124,11 @@ const APP_SHELL = [
   '/js/naspi.js',
   '/js/successioni.js',
   '/js/irpef.js',
+  '/js/concordato.js',
+  '/js/estratto-contributivo.js',
+  '/js/estratto-import.js',
+  '/js/estratto-ui.js',
+  '/js/concordato-ui.js',
   '/js/stipendio-netto.js',
   '/js/partita-iva.js',
   '/js/parcella-avvocato.js',

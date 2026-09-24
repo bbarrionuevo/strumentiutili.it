@@ -246,7 +246,11 @@
       return new Promise((risolvi, rifiuta) => {
         const script = document.createElement('script');
         script.src = PDF_LIB_URL;
+        // Senza integrity una compromissione del CDN entrerebbe in una pagina
+        // dove l'utente ha scritto nome, indirizzo e codice cliente.
+        script.integrity = 'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI';
         script.crossOrigin = 'anonymous';
+        script.referrerPolicy = 'no-referrer';
         script.onload = () => window.PDFLib ? risolvi(window.PDFLib) : rifiuta(new Error('Libreria PDF non disponibile.'));
         script.onerror = () => rifiuta(new Error('Impossibile scaricare il generatore di PDF: controlla la connessione.'));
         document.head.appendChild(script);

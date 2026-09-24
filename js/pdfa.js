@@ -316,6 +316,9 @@
       return new Promise((ok, ko) => {
         const s = document.createElement('script');
         s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js';
+        s.integrity = 'sha384-uLiAv4VcjM5H2Jsqzl8EajEaxPugj1CIzQaCjQ8c5//vC+elhxO5pZfXGxoLQi1W';
+        s.crossOrigin = 'anonymous';
+        s.referrerPolicy = 'no-referrer';
         s.onload = () => {
           window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
           ok(window.pdfjsLib);

@@ -5,6 +5,9 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
+const path = require('node:path');
+
+const RADICE = path.resolve(__dirname, '..');
 
 const L = require('../scripts/build-layout.js');
 const A = require('../scripts/applica-layout.js');
@@ -304,6 +307,81 @@ test('gli script di terzi in HTML hanno controllo di integrita', () => {
     }
   }
   assert.deepStrictEqual(problemi, []);
+});
+
+test('gli script di terzi iniettati da js/ hanno versione e integrita', () => {
+  // I controlli qui sopra leggono l HTML, quindi non vedono le librerie caricate
+  // a richiesta con document.createElement('script'). E proprio la strada in cui
+  // un hash sbagliato non si nota: lo script viene bloccato in silenzio e resta
+  // solo un messaggio di errore generico. Qui si controlla staticamente che ogni
+  // URL di CDN dentro js/ abbia una versione fissata e un integrity accanto.
+  const SENZA = ['pagead2.googlesyndication.com', 'consent.cookiebot.com',
+                 'fundingchoicesmessages.google.com', 'docs.opencv.org', 'esm.run'];
+  const CDN = new RegExp("https://(?:cdnjs[.]cloudflare[.]com|unpkg[.]com|cdn[.]jsdelivr[.]net)/[^'\"`]+", 'g');
+  const problemi = [];
+
+  for (const nome of fs.readdirSync(path.join(RADICE, 'js'))) {
+    if (!nome.endsWith('.js')) continue;
+    const testo = fs.readFileSync(path.join(RADICE, 'js', nome), 'utf8');
+    // Solo i file che creano davvero un tag script: il resto sono worker,
+    // che usano importScripts e non possono avere SRI.
+    if (testo.indexOf("createElement('script')") === -1) continue;
+
+    for (const m of testo.match(CDN) || []) {
+      if (SENZA.some((x) => m.includes(x))) continue;
+      if (!/\/\d+\.\d+|@\d/.test(m)) problemi.push(nome + ' -> senza versione: ' + m);
+      // Il worker di pdf.js non passa da un tag script: SRI non si applica.
+      if (/worker/i.test(m)) continue;
+      if (testo.indexOf('integrity') === -1) problemi.push(nome + ' -> senza integrity: ' + m);
+      else if (testo.indexOf('crossOrigin') === -1) problemi.push(nome + ' -> senza crossOrigin: ' + m);
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('gli hash iniettati da js/ coincidono con quelli usati nelle pagine', () => {
+  // Il controllo qui sopra verifica che un integrity ci sia, non che sia giusto:
+  // un hash scritto a mano lo supererebbe, e uno sbagliato non si nota perche il
+  // browser blocca lo script in silenzio. Qui ogni coppia URL -> hash dichiarata
+  // in js/ viene confrontata con quella che le pagine usano per la stessa URL.
+  const dallePagine = new Map();
+  for (const p of PAGINE) {
+    const re = new RegExp('src="(https://[^"]+)"[^>]*integrity="(sha384-[^"]+)"', 'g');
+    for (const m of p.html.matchAll(re)) dallePagine.set(m[1], m[2]);
+  }
+
+  // [^] al posto di una classe di spazi: il pattern resta senza caratteri di
+  // escape e sopravvive a qualsiasi passaggio di editing.
+  const INIETTATO = new RegExp("src = '(https://[^']+)';[^]{0,400}?integrity = '(sha384-[^']+)'", 'g');
+  const problemi = [];
+  let confronti = 0;
+
+  for (const nome of fs.readdirSync(path.join(RADICE, 'js'))) {
+    if (!nome.endsWith('.js')) continue;
+    const testo = fs.readFileSync(path.join(RADICE, 'js', nome), 'utf8');
+    for (const m of testo.matchAll(INIETTATO)) {
+      const atteso = dallePagine.get(m[1]);
+      if (!atteso) continue;                 // libreria caricata solo da qui
+      confronti++;
+      if (atteso !== m[2]) problemi.push(nome + ' -> ' + m[1]);
+    }
+  }
+
+  assert.ok(confronti > 0, 'nessun confronto eseguito: il test non sta verificando niente');
+  assert.deepStrictEqual(problemi, []);
+});
+
+test('la pagina dell estratto conto ha il selettore del sesso', () => {
+  // Il requisito della pensione anticipata e diverso per uomini e donne:
+  // 42 anni e 10 mesi contro 41 e 10. Il codice legge questo controllo e, se
+  // sparisce, ricade su 'M' senza dirlo — sbagliando per meta delle persone.
+  const pagina = PAGINE.find((p) => p.rel.indexOf('estratto-conto-contributivo') !== -1);
+  assert.ok(pagina, 'pagina non trovata');
+  assert.ok(pagina.html.indexOf('id="sesso"') !== -1,
+    'manca il selettore #sesso: l anticipata verrebbe calcolata sempre da uomo');
+
+  const ui = fs.readFileSync(path.join(RADICE, 'js', 'estratto-ui.js'), 'utf8');
+  assert.ok(ui.indexOf("sesso: 'M'") === -1, 'il sesso e di nuovo cablato in estratto-ui.js');
 });
 
 test('OpenCV non si scarica al caricamento della pagina', () => {

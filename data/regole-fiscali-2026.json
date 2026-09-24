@@ -1995,5 +1995,39 @@
       "Il superbollo, che continua ad applicarsi",
       "Le annualita diverse dal 2027"
     ]
+  },
+  "concordato_preventivo": {
+    "_nota": "Concordato Preventivo Biennale per i soggetti ISA, biennio 2026-2027. Le aliquote dell imposta sostitutiva dipendono dal punteggio ISA del periodo precedente.",
+    "biennio": [2026, 2027],
+    "scadenza_adesione": "2026-10-31",
+    "imposta_sostitutiva": {
+      "facoltativa": true,
+      "base": "Parte di reddito concordato che eccede quello dichiarato nel periodo precedente",
+      "scaglioni_isa": [
+        { "isa_da": 8, "isa_a": 10, "aliquota": 0.10 },
+        { "isa_da": 6, "isa_a": 7.99, "aliquota": 0.12 },
+        { "isa_da": 0, "isa_a": 5.99, "aliquota": 0.15 }
+      ],
+      "tetto_agevolato": 85000,
+      "aliquota_oltre_tetto": 0.43,
+      "nota_tetto": "Oltre 85.000 euro di eccedenza si applica l aliquota dell ultimo scaglione IRPEF."
+    },
+    "contributi": {
+      "inps": {
+        "base": "concordato",
+        "opzione_reddito_effettivo": true,
+        "nota": "La base e il reddito concordato; il contribuente puo scegliere quello effettivo se superiore."
+      },
+      "casse_private": {
+        "base": "effettivo",
+        "nota": "Per le casse dei professionisti (Forense, INARCASSA, ENPAM e simili) il concordato non vale: i contributi restano sul reddito reale."
+      }
+    },
+    "non_modellato": [
+      "Acconti e loro rideterminazione",
+      "Componenti straordinarie che rettificano il reddito di riferimento",
+      "Cause di esclusione e di cessazione del concordato",
+      "Regole specifiche di societa e associazioni"
+    ]
   }
 }
