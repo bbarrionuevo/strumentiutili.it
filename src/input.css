@@ -6,6 +6,8 @@
 /* Le classi che esistono solo nell'HTML scritto da questi script. */
 @source "../js/calendario-vista.js";
 @source "../js/sudoku-ui.js";
+@source "../js/accordatore-ui.js";
+@source "../js/metronomo-ui.js";
 
 /* Stili aggiuntivi personali */
 body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
@@ -225,6 +227,18 @@ details:not([open]) > *:not(summary) { display: none !important; }
 }
 .sdk-note span { display: flex; align-items: center; justify-content: center; }
 .sdk-griglia[data-finito] .sdk-cella { background: #ecfdf5; color: #065f46; }
+
+/* --- Metronomo: le luci dei battiti --------------------------------------- */
+.met-battito {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: #e5e7eb;
+  transition: background-color .06s, transform .06s;
+}
+.met-battito[data-accento] { width: 1.6rem; height: 1.6rem; }
+.met-battito[data-acceso] { background: #4f46e5; transform: scale(1.15); }
+.met-battito[data-accento][data-acceso] { background: #dc2626; }
 
 /* --- Stampa ---------------------------------------------------------------
    Meta' degli strumenti produce documenti fatti per essere stampati: F24,
