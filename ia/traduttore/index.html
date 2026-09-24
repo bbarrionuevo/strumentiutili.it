@@ -135,13 +135,13 @@
   <link rel="stylesheet" href="/css/styles.css">
 
   <!-- Librerías de Extracción y Generación PDF/Word -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="https://unpkg.com/mammoth@1.12.3/mammoth.browser.min.js" integrity="sha384-xqNXvcKbEqifokHcBnB0H32p+OQchhD/T/xJGWCMAW5fC0c0MBf9atO3weoPCT84" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/docx@7.6.0/build/index.js" integrity="sha384-fafTWJRreuqYLVD/BKuXDGs95wRHk7x4xvfhDdH6Fv95H2U9eP8eQ9HV6b8Ioza/" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="/vendor/pdfjs@3.11.174/pdf.min.js"></script>
+  <script defer src="/vendor/mammoth@1.12.3/mammoth.browser.min.js"></script>
+  <script defer src="/vendor/docx@7.6.0/docx.js"></script>
+  <script defer src="/vendor/pdf-lib@1.17.1/pdf-lib.min.js"></script>
   <script>
     if (window.pdfjsLib) {
-      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs@3.11.174/pdf.worker.min.js';
     }
   </script>
 

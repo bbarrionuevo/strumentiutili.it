@@ -66,19 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return cleaned;
   }
 
+  // La busta .p7m si apre con js/p7m-lettura.js, lo stesso lettore di
+  // "Aprire un file P7M": niente worker e niente librerie da CDN. Se la busta
+  // non si legge, resta il recupero dell'XML direttamente dai byte.
   async function extractXmlFromP7m(buffer) {
     const fallbackBuffer = buffer.slice(0);
     try {
-      const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
-      const worker = new Worker('/js/workers/p7m-worker.js', { type: 'module' });
-      const service = Comlink.wrap(worker);
-
-      const xml = await service.extractXml(Comlink.transfer(buffer, [buffer]));
-      worker.terminate();
+      const letto = window.P7mLettura.leggi(new Uint8Array(buffer), 'fattura.xml.p7m');
+      const xml = new TextDecoder('utf-8').decode(letto.contenuto);
       if (xml) return xml;
       return extractXmlFromBinary(fallbackBuffer);
     } catch (error) {
-      console.warn('[Fattura] Errore Worker, eseguo fallback binario:', error);
+      console.warn('[Fattura] Busta .p7m non leggibile, provo il recupero dai byte:', error);
       return extractXmlFromBinary(fallbackBuffer);
     }
   }

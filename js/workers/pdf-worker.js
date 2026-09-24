@@ -1,20 +1,18 @@
 // js/workers/pdf-worker.js — Procesamiento intensivo de PDFs en segundo plano
 importScripts(
-  'https://cdn.jsdelivr.net/npm/comlink@4.3.1/dist/umd/comlink.min.js',
-  'https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js',
-  'https://cdn.jsdelivr.net/npm/mammoth@1.4.21/mammoth.browser.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'
+  '/vendor/comlink@4.4.2/comlink.js',
+  '/vendor/pdf-lib@1.17.1/pdf-lib.min.js',
+  '/vendor/mammoth@1.12.3/mammoth.browser.min.js',
+  '/vendor/pdfjs@3.11.174/pdf.min.js'
 );
 
-// Inicializar el worker interno de PDF.js
-// Un worker non può crearne uno da un URL di un altro dominio: pdf.js ripiegherebbe sul «fake worker»,
-// che richiede il DOM e qui fallisce con «document is not defined». Si crea quindi il worker interno
-// da un blob locale che importa lo script della CDN.
-const SORGENTE_PDF_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+// Il worker interno di pdf.js. Quando pdf.js arrivava da un CDN serviva un
+// ponte da un blob locale, perche' un worker non puo' crearne un altro da un
+// dominio diverso; ora e' servito da vendor/, sullo stesso dominio.
+const SORGENTE_PDF_WORKER = '/vendor/pdfjs@3.11.174/pdf.worker.min.js';
 pdfjsLib.GlobalWorkerOptions.workerSrc = SORGENTE_PDF_WORKER;
 try {
-  const ponte = URL.createObjectURL(new Blob([`importScripts('${SORGENTE_PDF_WORKER}');`], { type: 'text/javascript' }));
-  pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(ponte);
+  pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(SORGENTE_PDF_WORKER);
 } catch (e) {
   console.warn('[pdf-worker] worker interno di pdf.js non disponibile:', e);
 }

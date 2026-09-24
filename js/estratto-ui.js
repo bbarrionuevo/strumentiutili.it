@@ -271,13 +271,10 @@
 
     promessaPdfJs = new Promise(function (risolvi) {
       var s = document.createElement('script');
-      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-      s.integrity = 'sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e';
-      s.crossOrigin = 'anonymous';
-      s.referrerPolicy = 'no-referrer';
+      s.src = '/vendor/pdfjs@3.11.174/pdf.min.js';
       s.onload = function () {
         if (typeof pdfjsLib !== 'undefined') {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+          pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs@3.11.174/pdf.worker.min.js';
           risolvi(pdfjsLib);
         } else risolvi(null);
       };

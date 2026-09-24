@@ -58,6 +58,11 @@ jobs:
       - name: Verifica che il sitemap sia rigenerato
         run: node scripts/genera-sitemap.js --check
 
+      # vendor/ e versionato: deve essere la copia esatta dei pacchetti fissati
+      # in package-lock.json, non un file modificato a mano.
+      - name: Verifica che vendor/ combaci con node_modules
+        run: node scripts/copia-vendor.js --check
+
       - name: Compila Tailwind
         run: npm run build:css
 

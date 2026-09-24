@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function getWhisperWorker() {
     if (whisperWorker) return whisperWorker;
-    const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
+    const Comlink = await import('/vendor/comlink@4.4.2/comlink.mjs');
     const worker = new Worker('/js/workers/whisper-worker.js', { type: 'module' });
     const service = Comlink.wrap(worker);
 

@@ -339,11 +339,12 @@ test('gli script di terzi iniettati da js/ hanno versione e integrita', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
-test('gli hash iniettati da js/ coincidono con quelli usati nelle pagine', () => {
-  // Il controllo qui sopra verifica che un integrity ci sia, non che sia giusto:
-  // un hash scritto a mano lo supererebbe, e uno sbagliato non si nota perche il
-  // browser blocca lo script in silenzio. Qui ogni coppia URL -> hash dichiarata
-  // in js/ viene confrontata con quella che le pagine usano per la stessa URL.
+test('le librerie iniettate da js/ esistono, e se esterne hanno lo stesso hash delle pagine', () => {
+  // Una libreria caricata a richiesta con document.createElement('script') non
+  // si vede leggendo l HTML: se il percorso e sbagliato, o l hash di un CDN non
+  // combacia, il browser la blocca in silenzio. Le librerie servite da vendor/
+  // devono esistere su disco; quelle ancora esterne devono dichiarare lo stesso
+  // integrity che usano le pagine per la stessa URL.
   const dallePagine = new Map();
   for (const p of PAGINE) {
     const re = new RegExp('src="(https://[^"]+)"[^>]*integrity="(sha384-[^"]+)"', 'g');
@@ -352,22 +353,27 @@ test('gli hash iniettati da js/ coincidono con quelli usati nelle pagine', () =>
 
   // [^] al posto di una classe di spazi: il pattern resta senza caratteri di
   // escape e sopravvive a qualsiasi passaggio di editing.
-  const INIETTATO = new RegExp("src = '(https://[^']+)';[^]{0,400}?integrity = '(sha384-[^']+)'", 'g');
+  const ESTERNO = new RegExp("src = '(https://[^']+)';[^]{0,400}?integrity = '(sha384-[^']+)'", 'g');
+  const LOCALE = new RegExp("(?:src|workerSrc) = '(/vendor/[^']+)'", 'g');
   const problemi = [];
-  let confronti = 0;
+  let controlli = 0;
 
   for (const nome of fs.readdirSync(path.join(RADICE, 'js'))) {
     if (!nome.endsWith('.js')) continue;
     const testo = fs.readFileSync(path.join(RADICE, 'js', nome), 'utf8');
-    for (const m of testo.matchAll(INIETTATO)) {
+    for (const m of testo.matchAll(LOCALE)) {
+      controlli++;
+      if (!fs.existsSync(path.join(RADICE, m[1]))) problemi.push(nome + ' -> manca ' + m[1]);
+    }
+    for (const m of testo.matchAll(ESTERNO)) {
       const atteso = dallePagine.get(m[1]);
       if (!atteso) continue;                 // libreria caricata solo da qui
-      confronti++;
+      controlli++;
       if (atteso !== m[2]) problemi.push(nome + ' -> ' + m[1]);
     }
   }
 
-  assert.ok(confronti > 0, 'nessun confronto eseguito: il test non sta verificando niente');
+  assert.ok(controlli > 0, 'nessun controllo eseguito: il test non sta verificando niente');
   assert.deepStrictEqual(problemi, []);
 });
 

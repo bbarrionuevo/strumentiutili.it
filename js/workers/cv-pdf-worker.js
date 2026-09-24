@@ -7,7 +7,7 @@
 
 var erroreMotore = null;
 try {
-  importScripts('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  importScripts('/vendor/jspdf@2.5.1/jspdf.umd.min.js');
 } catch (e) {
   erroreMotore = 'Impossibile caricare il motore PDF. Verifica la connessione e riprova.';
 }

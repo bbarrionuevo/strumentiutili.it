@@ -9,7 +9,7 @@
   }
 
   async function initScanner() {
-    const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
+    const Comlink = await import('/vendor/comlink@4.4.2/comlink.mjs');
     // El worker carica OpenCV (9,5 MB) appena viene creato. Si crea solo
     // quando serve davvero, cioe' al primo documento: chi apre la pagina e
     // se ne va non scarica niente.

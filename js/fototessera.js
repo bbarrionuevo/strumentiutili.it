@@ -18,7 +18,7 @@
   });
 
   async function initFototesseraApp() {
-    const Comlink = await import('https://unpkg.com/comlink@4.4.2/dist/esm/comlink.mjs');
+    const Comlink = await import('/vendor/comlink@4.4.2/comlink.mjs');
     const worker = new Worker('/js/workers/face-worker.js');
     const faceWorker = Comlink.wrap(worker);
 

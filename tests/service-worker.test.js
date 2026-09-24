@@ -94,6 +94,6 @@ test('il precache resta sotto i 10 MB', () => {
 });
 
 test('gli statici usano la cache prima della rete', () => {
-  assert.match(SORGENTE, /const STATICI = \/\^\\\/\(js\|css\|assets\|data\)\\\/\//,
+  assert.match(SORGENTE, /const STATICI = \/\^\\\/\(js\|css\|assets\|data\|vendor\)\\\/\//,
     'espressione regolare degli statici assente o malformata');
 });

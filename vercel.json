@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "headers": [
+    { "source": "/vendor/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+  ],
   "trailingSlash": true,
   "redirects": [
     { "source": "/lavoro/partita-iva/", "destination": "/fisco-professioni/partita-iva/", "permanent": true },

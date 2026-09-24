@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v42';
+const CACHE_NAME = 'strumentiutili-v43';
 
 const APP_SHELL = [
   '/',
@@ -182,7 +182,6 @@ const APP_SHELL = [
 
   // Web Workers
   '/js/workers/translation-worker.js',
-  '/js/workers/p7m-worker.js',
   '/js/workers/pdf-worker.js',
   '/js/workers/face-worker.js',
   '/js/workers/cv-pdf-worker.js',
@@ -297,7 +296,7 @@ self.addEventListener('activate', (event) => {
 // Statici (js, css, dati, immagini): prima la cache, aggiornandola in secondo
 // piano. Prima era rete-per-tutto, quindi i 14 MB precaricati non
 // acceleravano niente e servivano solo offline.
-const STATICI = /^\/(js|css|assets|data)\//;
+const STATICI = /^\/(js|css|assets|data|vendor)\//;
 
 function aggiornaInSecondoPiano(request) {
   return fetch(request).then((risposta) => {

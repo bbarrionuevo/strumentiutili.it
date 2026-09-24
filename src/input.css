@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @source "../**/*.html";
+/* Le librerie di terzi in vendor/ non contengono classi del sito: senza
+   questa esclusione Tailwind ne ricava utility inesistenti (.table, .ring...). */
+@source not "../vendor";
 
 /* Stili aggiuntivi personali */
 body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
