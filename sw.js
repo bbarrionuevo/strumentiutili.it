@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v49';
+const CACHE_NAME = 'strumentiutili-v50';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -105,6 +105,7 @@ const APP_SHELL = [
   '/utilita-web/convertitore-immagini/',
   '/utilita-web/contaparole/',
   '/utilita-web/pulisci-link/',
+  '/utilita-web/calendario-da-stampare/',
   '/utilita-web/media-universitaria/',
   '/utilita-web/calcolo-bmr/',
   '/utilita-web/budget-planner/',
@@ -145,6 +146,9 @@ const APP_SHELL = [
   '/js/multa-lettura.js',
   '/js/ocr-testo.js',
   '/js/calendario-ics.js',
+  '/js/calendario-vista.js',
+  '/js/calendario-pdf.js',
+  '/js/calendario-stampa.js',
   '/js/multa-ui.js',
   '/js/estratto-import.js',
   '/js/estratto-ui.js',
@@ -181,6 +185,7 @@ const APP_SHELL = [
   '/js/convertitore-immagini.js',
   '/js/autocertificazione.js',
   '/js/percentuali.js',
+  '/js/festivita.js',
   '/js/giorni-lavorativi.js',
   '/js/media-universitaria.js',
   '/js/calcolo-bmr.js',

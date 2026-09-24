@@ -32,22 +32,56 @@ test('il santo patrono si aggiunge, e una data impossibile no', () => {
   assert.strictEqual(F.eFestivo('2027-12-07', { md: '12-07', nome: 'Sant’Ambrogio' }), true);
 });
 
-test('ponti 2027: tre festivita di mercoledi, nessuna Pasqua in elenco', () => {
+test('ponti 2027: tre feste di mercoledi, e Capodanno si lega all Epifania', () => {
   const p = F.ponti(2027);
   assert.ok(!p.some((x) => x.festa.nome === 'Pasqua'));
-  assert.deepStrictEqual(p.filter((x) => x.tipo === 'meta-settimana').map((x) => x.festa.data), ['2027-01-06', '2027-06-02', '2027-12-08']);
   const epifania = p.find((x) => x.festa.data === '2027-01-06');
-  assert.deepStrictEqual([epifania.giorniLiberi, epifania.ferie, epifania.ponte], [5, 2, ['2027-01-04', '2027-01-05']]);
+  // venerdi 1 (Capodanno) - mercoledi 6 (Epifania): 6 giorni con lunedi e martedi di ferie
+  assert.deepStrictEqual([epifania.tipo, epifania.giorniLiberi, epifania.ferie, epifania.ponte, epifania.dal, epifania.al],
+    ['ponte-lungo', 6, 2, ['2027-01-04', '2027-01-05'], '2027-01-01', '2027-01-06']);
+  const capodanno = p.find((x) => x.festa.data === '2027-01-01');
+  assert.strictEqual(capodanno.senzaFerie, 3, 'da solo e un weekend lungo');
+  const repubblica = p.find((x) => x.festa.data === '2027-06-02');
+  assert.deepStrictEqual([repubblica.tipo, repubblica.giorniLiberi, repubblica.ponte], ['ponte-lungo', 5, ['2027-05-31', '2027-06-01']]);
+  assert.deepStrictEqual(repubblica.altro, { ponte: ['2027-06-03', '2027-06-04'], dal: '2027-06-02', al: '2027-06-06' });
   assert.strictEqual(p.find((x) => x.festa.data === '2027-10-04').tipo, 'weekend-lungo');
   assert.strictEqual(p.find((x) => x.festa.data === '2027-12-25').tipo, 'nel-weekend');
+  assert.strictEqual(p.find((x) => x.festa.data === '2027-12-26').tipo, 'nel-weekend');
 });
 
 test('ponti 2026: martedi e giovedi, e Santo Stefano attaccato a Natale non si conta due volte', () => {
   const p = F.ponti(2026);
   const repubblica = p.find((x) => x.festa.data === '2026-06-02');
-  assert.deepStrictEqual([repubblica.tipo, repubblica.ponte], ['ponte', ['2026-06-01']]);
+  assert.deepStrictEqual([repubblica.tipo, repubblica.ponte, repubblica.dal, repubblica.al], ['ponte', ['2026-06-01'], '2026-05-30', '2026-06-02']);
   assert.deepStrictEqual(p.find((x) => x.festa.data === '2026-01-01').ponte, ['2026-01-02']);
   assert.ok(!p.some((x) => x.festa.data === '2026-12-26'), 'Santo Stefano (sabato) segue Natale (venerdi)');
+});
+
+test('ponti: feste attaccate fra loro (Natale e Santo Stefano, Sant Ambrogio e Immacolata)', () => {
+  // 2025: Natale giovedi, Santo Stefano venerdi -> 4 giorni senza ferie, nessun ponte da pagare
+  const n2025 = F.ponti(2025).find((x) => x.festa.data === '2025-12-25');
+  assert.deepStrictEqual([n2025.tipo, n2025.giorniLiberi, n2025.ferie, n2025.al], ['weekend-lungo', 4, 0, '2025-12-28']);
+  // 2029: Natale martedi -> il 24 di ferie e si sta a casa da sabato 22 a mercoledi 26
+  const n2029 = F.ponti(2029).find((x) => x.festa.data === '2029-12-25');
+  assert.deepStrictEqual([n2029.tipo, n2029.giorniLiberi, n2029.ponte, n2029.dal, n2029.al], ['ponte', 5, ['2029-12-24'], '2029-12-22', '2029-12-26']);
+  // Milano 2027: Sant'Ambrogio martedi 7, Immacolata mercoledi 8 -> una voce sola
+  const milano = F.ponti(2027, { md: '12-07', nome: 'Sant’Ambrogio' }).filter((x) => x.festa.data.startsWith('2027-12-0'));
+  assert.strictEqual(milano.length, 1);
+  assert.deepStrictEqual([milano[0].tipo, milano[0].giorniLiberi, milano[0].ponte], ['ponte', 5, ['2027-12-06']]);
+});
+
+test('ponti: regole generali su vent anni', () => {
+  for (let anno = 2026; anno <= 2045; anno++) {
+    for (const p of F.ponti(anno)) {
+      const gs = F.giornoSettimana(p.festa.data);
+      if (gs >= 5) { assert.strictEqual(p.tipo, 'nel-weekend'); continue; }
+      assert.ok(p.dal <= p.festa.data && p.festa.data <= p.al, anno + ' ' + p.festa.nome);
+      assert.strictEqual(p.ponte.length, p.ferie);
+      for (const d of p.ponte) assert.ok(F.giornoSettimana(d) < 5 && !F.eFestivo(d), 'ferie in un giorno lavorativo');
+      if (gs === 0 || gs === 4) assert.ok(p.senzaFerie >= 3, 'lunedi o venerdi: weekend lungo');
+      assert.notStrictEqual(p.tipo, 'festa', anno + ' ' + p.festa.nome + ': ogni festa feriale ha almeno un ponte o un weekend lungo');
+    }
+  }
 });
 
 test('settimane ISO 8601 ai bordi dell anno', () => {
@@ -118,4 +152,32 @@ test('giorni lavorativi: opzioni, patrono e intervalli rovesciati', () => {
   const anno = F.contaGiorni('2027-01-01', '2027-12-31');
   assert.strictEqual(anno.totali, 365);
   assert.strictEqual(anno.weekend, 104);
+});
+
+test('ricorrenze: carnevale, ora legale e festa della mamma per il 2026 e il 2027', () => {
+  const trova = (anno, inizio) => F.ricorrenze(anno).find((r) => r.nome.startsWith(inizio)).data;
+  assert.strictEqual(trova(2026, 'Martedì grasso'), '2026-02-17');
+  assert.strictEqual(trova(2026, 'Ora legale'), '2026-03-29');
+  assert.strictEqual(trova(2026, 'Ora solare'), '2026-10-25');
+  assert.strictEqual(trova(2026, 'Festa della mamma'), '2026-05-10');
+  assert.strictEqual(trova(2027, 'Giovedì grasso'), '2027-02-04');
+  assert.strictEqual(trova(2027, 'Martedì grasso'), '2027-02-09');
+  assert.strictEqual(trova(2027, 'Mercoledì delle Ceneri'), '2027-02-10');
+  assert.strictEqual(trova(2027, 'Ora legale'), '2027-03-28');
+  assert.strictEqual(trova(2027, 'Ora solare'), '2027-10-31');
+  assert.strictEqual(trova(2027, 'Festa della mamma'), '2027-05-09');
+  assert.strictEqual(trova(2027, 'Corpus Domini'), '2027-05-30');
+  for (let anno = 2026; anno <= 2040; anno++) {
+    const r = F.ricorrenze(anno);
+    assert.deepStrictEqual(r.map((x) => x.data), r.map((x) => x.data).slice().sort(), 'in ordine ' + anno);
+    for (const x of r) {
+      assert.ok(F.valida(x.data) && x.data.startsWith(anno + '-'), x.nome + ' ' + anno);
+      if (/^(Ora |Festa della mamma|Domenica|Ascensione|Pentecoste|Corpus)/.test(x.nome)) {
+        assert.strictEqual(F.giornoSettimana(x.data), 6, x.nome + ' di domenica nel ' + anno);
+      }
+    }
+    // l'ora legale cade nell'ultima settimana di marzo, la solare nell'ultima di ottobre
+    assert.ok(r.find((x) => x.nome.startsWith('Ora legale')).data >= anno + '-03-25');
+    assert.ok(r.find((x) => x.nome.startsWith('Ora solare')).data >= anno + '-10-25');
+  }
 });

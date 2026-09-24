@@ -148,28 +148,112 @@
     return !!mappaFestivita(d.getUTCFullYear(), patrono)[iso];
   }
 
-  // Come cade ogni festivita' rispetto al fine settimana, cioe' quanti giorni
-  // liberi di fila regala e con quanti giorni di ferie:
-  //   lunedi' o venerdi'  -> weekend lungo, 3 giorni, 0 ferie
-  //   martedi' o giovedi' -> ponte, 4 giorni con 1 giorno di ferie
-  //   mercoledi'          -> 5 giorni con 2 giorni di ferie
-  //   sabato o domenica   -> nel fine settimana: nessun giorno in piu'
-  // Pasqua e' sempre di domenica e non si elenca. Una festa attaccata a
-  // un'altra (Natale e Santo Stefano) si conta una volta sola, dalla prima.
+  // Come cade ogni festivita' rispetto al fine settimana: quanti giorni liberi
+  // di fila regala e con quanti giorni di ferie. Si cercano le finestre di
+  // giorni che iniziano e finiscono con un giorno libero (sabato, domenica o
+  // festa) e contengono la festa, con al massimo due giorni lavorativi dentro:
+  //   nel-weekend    la festa cade di sabato o domenica, nessun giorno in piu'
+  //   weekend-lungo  almeno 3 giorni liberi senza ferie (lunedi', venerdi',
+  //                  o Natale di giovedi' con Santo Stefano di venerdi')
+  //   ponte          1 giorno di ferie unisce la festa a un altro giorno libero
+  //   ponte-lungo    ne servono 2 (la festa di mercoledi')
+  // Pasqua e' sempre di domenica e non si elenca. Feste attaccate in giorni
+  // feriali (Sant'Ambrogio e Immacolata a Milano) si contano una volta sola,
+  // dalla prima.
   function ponti(anno, patrono) {
-    var fest = festivita(anno, patrono).filter(function (f) { return f.nome !== 'Pasqua'; });
-    var festivi = {};
-    festivita(anno, patrono).forEach(function (f) { festivi[f.data] = true; });
-    return fest.filter(function (f) {
-      return !festivi[aggiungi(f.data, -1)] || giornoSettimana(aggiungi(f.data, -1)) >= 5;
+    var mappa = mappaFestivita(anno, patrono);
+    var libero = function (d) { return giornoSettimana(d) >= 5 || !!mappa[d]; };
+
+    // La finestra piu' lunga che contiene la festa, con bordi liberi e al
+    // massimo k giorni lavorativi; a parita', tutte quelle lunghe uguali.
+    function finestre(festa, k) {
+      var migliori = [], lunghezza = 0;
+      for (var a = -9; a <= 0; a++) {
+        var inizio = aggiungi(festa, a);
+        if (!libero(inizio)) continue;
+        for (var b = 0; b <= 9; b++) {
+          var fine = aggiungi(festa, b);
+          if (!libero(fine)) continue;
+          var lavoro = [];
+          for (var d = inizio; d <= fine; d = aggiungi(d, 1)) if (!libero(d)) lavoro.push(d);
+          if (lavoro.length > k) continue;
+          var n = a * -1 + b + 1;
+          if (n > lunghezza) { lunghezza = n; migliori = []; }
+          if (n === lunghezza) migliori.push({ ferie: lavoro, dal: inizio, al: fine });
+        }
+      }
+      return { giorni: lunghezza, opzioni: migliori };
+    }
+
+    return festivita(anno, patrono).filter(function (f) {
+      if (f.nome === 'Pasqua') return false;
+      var prima = aggiungi(f.data, -1);
+      return !(mappa[prima] && giornoSettimana(prima) < 5);
     }).map(function (f) {
-      var gs = giornoSettimana(f.data);
-      if (gs >= 5) return { festa: f, tipo: 'nel-weekend', giorniLiberi: 0, ferie: 0, ponte: [] };
-      if (gs === 0 || gs === 4) return { festa: f, tipo: 'weekend-lungo', giorniLiberi: 3, ferie: 0, ponte: [] };
-      if (gs === 1) return { festa: f, tipo: 'ponte', giorniLiberi: 4, ferie: 1, ponte: [aggiungi(f.data, -1)] };
-      if (gs === 3) return { festa: f, tipo: 'ponte', giorniLiberi: 4, ferie: 1, ponte: [aggiungi(f.data, 1)] };
-      return { festa: f, tipo: 'meta-settimana', giorniLiberi: 5, ferie: 2, ponte: [aggiungi(f.data, -2), aggiungi(f.data, -1)] };
+      var voce = { festa: f, tipo: 'nel-weekend', giorniLiberi: 0, ferie: 0, ponte: [], dal: null, al: null, altro: null, senzaFerie: 0 };
+      if (giornoSettimana(f.data) >= 5) return voce;
+      var zero = finestre(f.data, 0), uno = finestre(f.data, 1), due = finestre(f.data, 2);
+      voce.senzaFerie = zero.giorni;
+      var scelta = null;
+      if (uno.giorni >= zero.giorni + 2) { voce.tipo = 'ponte'; scelta = uno; }
+      else if (due.giorni >= zero.giorni + 3) { voce.tipo = 'ponte-lungo'; scelta = due; }
+      if (scelta) {
+        // Tra le finestre lunghe uguali, quelle con meno giorni di ferie; se
+        // sono due (prima o dopo la festa), si tiene anche la seconda.
+        var minimo = Math.min.apply(null, scelta.opzioni.map(function (x) { return x.ferie.length; }));
+        var opzioni = scelta.opzioni.filter(function (x) { return x.ferie.length === minimo; });
+        voce.giorniLiberi = scelta.giorni;
+        voce.ferie = minimo;
+        voce.ponte = opzioni[0].ferie;
+        voce.dal = opzioni[0].dal;
+        voce.al = opzioni[0].al;
+        voce.altro = opzioni[1] ? { ponte: opzioni[1].ferie, dal: opzioni[1].dal, al: opzioni[1].al } : null;
+        return voce;
+      }
+      voce.tipo = zero.giorni >= 3 ? 'weekend-lungo' : 'festa';
+      voce.giorniLiberi = zero.giorni;
+      voce.dal = zero.opzioni[0].dal;
+      voce.al = zero.opzioni[0].al;
+      return voce;
     });
+  }
+
+  // --------------------------------------------------------------- ricorrenze
+
+  function nSimaDomenica(anno, mese, n) {
+    var primo = data(anno, mese, 1);
+    return aggiungi(primo, (6 - giornoSettimana(primo)) + 7 * (n - 1));
+  }
+
+  /**
+   * Le date che la gente cerca ma che non sono festivi: carnevale, ora legale,
+   * festa della mamma... Tutte calcolate, niente da aggiornare. Ascensione e
+   * Corpus Domini in Italia si celebrano la domenica (dal 1977). "breve" e'
+   * il nome per le caselle strette del calendario stampato.
+   */
+  function ricorrenze(anno) {
+    var p = pasqua(anno);
+    var cambioOra = function (mese) {
+      var fine = data(anno, mese, giorniNelMese(anno, mese));
+      return aggiungi(fine, -((giornoSettimana(fine) + 1) % 7));
+    };
+    return [
+      { data: data(anno, 2, 14), nome: 'San Valentino' },
+      { data: aggiungi(p, -52), nome: 'Giovedì grasso' },
+      { data: aggiungi(p, -47), nome: 'Martedì grasso (Carnevale)', breve: 'Martedì grasso' },
+      { data: aggiungi(p, -46), nome: 'Mercoledì delle Ceneri', breve: 'Le Ceneri' },
+      { data: data(anno, 3, 8), nome: 'Festa della donna' },
+      { data: data(anno, 3, 19), nome: 'Festa del papà (San Giuseppe)', breve: 'Festa del papà' },
+      { data: aggiungi(p, -7), nome: 'Domenica delle Palme' },
+      { data: cambioOra(3), nome: 'Ora legale: lancette avanti di un’ora', breve: 'Inizio ora legale' },
+      { data: nSimaDomenica(anno, 5, 2), nome: 'Festa della mamma' },
+      { data: aggiungi(p, 42), nome: 'Ascensione' },
+      { data: aggiungi(p, 49), nome: 'Pentecoste' },
+      { data: aggiungi(p, 63), nome: 'Corpus Domini' },
+      { data: data(anno, 10, 2), nome: 'Festa dei nonni' },
+      { data: cambioOra(10), nome: 'Ora solare: lancette indietro di un’ora', breve: 'Fine ora legale' },
+      { data: data(anno, 11, 2), nome: 'Commemorazione dei defunti', breve: 'Commem. dei defunti' }
+    ].sort(function (a, b) { return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; });
   }
 
   // ------------------------------------------------------- giorni lavorativi
@@ -293,7 +377,7 @@
     valida: valida, aggiungi: aggiungi, giornoSettimana: giornoSettimana, giorniNelMese: giorniNelMese,
     data: data, oggi: oggi, settimanaIso: settimanaIso, grigliaMese: grigliaMese, NOMI_MESI: NOMI_MESI,
     pasqua: pasqua, festivita: festivita, mappaFestivita: mappaFestivita, eFestivo: eFestivo, ponti: ponti,
-    contaGiorni: contaGiorni,
+    ricorrenze: ricorrenze, contaGiorni: contaGiorni,
     fasiLunari: fasiLunari, jdeFase: jdeFase, dataRoma: dataRoma
   };
 });
