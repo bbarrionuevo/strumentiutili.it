@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v41';
+const CACHE_NAME = 'strumentiutili-v42';
 
 const APP_SHELL = [
   '/',
@@ -76,6 +76,7 @@ const APP_SHELL = [
   '/pdf/comprimi-pdf/',
   '/pdf/jpg-in-pdf/',
   '/pdf/word-in-pdf/',
+  '/pdf/apri-file-p7m/',
   '/pdf/firma/',
   '/pdf/anonimizza/',
   '/pdf/convertitore-pdfa/',
@@ -159,6 +160,8 @@ const APP_SHELL = [
   '/js/pdfa.js',
   '/js/scanner.js',
   '/js/pdf-tools.js',
+  '/js/p7m-lettura.js',
+  '/js/p7m-ui.js',
   '/js/traduttore.js',
   '/js/riassunto.js',
   '/js/ocr.js',
