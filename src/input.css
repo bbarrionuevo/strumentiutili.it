@@ -3,6 +3,9 @@
 /* Le librerie di terzi in vendor/ non contengono classi del sito: senza
    questa esclusione Tailwind ne ricava utility inesistenti (.table, .ring...). */
 @source not "../vendor";
+/* Le classi che esistono solo nell'HTML scritto da questi script. */
+@source "../js/calendario-vista.js";
+@source "../js/sudoku-ui.js";
 
 /* Stili aggiuntivi personali */
 body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
@@ -161,6 +164,67 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
 /* Il contenuto di un <details> chiuso resta nascosto anche quando un figlio
    ha una classe di visualizzazione propria (flex, grid). */
 details:not([open]) > *:not(summary) { display: none !important; }
+
+/* --- Sudoku del giorno ----------------------------------------------------
+   La griglia la disegna js/sudoku-ui.js: 81 pulsanti in una griglia CSS. Le
+   linee spesse dei riquadri vengono da nth-child, cosi' il markup resta
+   piatto e i pulsanti si scorrono con le frecce nell'ordine giusto. */
+.sdk-griglia {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  border: 2px solid #1f2937;
+  border-radius: .5rem;
+  overflow: hidden;
+  background: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.sdk-cella {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  border-right: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+  background: #fff;
+  color: #4338ca;
+  font-size: clamp(1.05rem, 5.4vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.sdk-cella:nth-child(9n) { border-right: 0; }
+.sdk-cella:nth-child(9n+3),
+.sdk-cella:nth-child(9n+6) { border-right: 2px solid #1f2937; }
+.sdk-cella:nth-child(n+19):nth-child(-n+27),
+.sdk-cella:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid #1f2937; }
+.sdk-cella:nth-child(n+73) { border-bottom: 0; }
+.sdk-cella[data-dato] { color: #111827; font-weight: 700; }
+.sdk-cella[data-zona] { background: #eef2ff; }
+.sdk-cella[data-uguale] { background: #c7d2fe; }
+.sdk-cella[aria-current="true"] { background: #a5b4fc; }
+.sdk-cella[data-conflitto] { color: #b91c1c; background: #fee2e2; }
+.sdk-cella[data-sbagliato] { color: #b91c1c; text-decoration: underline wavy #dc2626; }
+.sdk-cella:focus-visible { outline: 3px solid #4f46e5; outline-offset: -3px; z-index: 1; }
+.sdk-note {
+  position: absolute;
+  inset: 1px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #6b7280;
+  font-size: clamp(.5rem, 2.3vw, .72rem);
+  font-weight: 500;
+}
+.sdk-note span { display: flex; align-items: center; justify-content: center; }
+.sdk-griglia[data-finito] .sdk-cella { background: #ecfdf5; color: #065f46; }
 
 /* --- Stampa ---------------------------------------------------------------
    Meta' degli strumenti produce documenti fatti per essere stampati: F24,
