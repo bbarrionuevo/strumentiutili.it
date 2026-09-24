@@ -335,11 +335,69 @@
         ' (' + a.prescrizione.anni + ' anni, ' + esc(a.prescrizione.riferimento) + ').</p>'
       : '';
 
+    var eventi = eventiCalendario(a);
+
     risultato.innerHTML =
       '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' + schede + '</div>' +
+      bloccoCalendario(eventi) +
       bloccoSconto(a.riduzione30, trovaTermine(a, 'sconto30')) + assunzioni + bloccoNotifica(a.notifica) +
       daChiarire + avvisi + inerzia + prescrizione;
+
+    var bottoneIcs = document.getElementById('multa-ics');
+    if (bottoneIcs) {
+      bottoneIcs.addEventListener('click', function () {
+        window.CalendarioIcs.scarica('scadenze-multa.ics', window.CalendarioIcs.crea(eventi, { nome: 'Scadenze della multa' }));
+      });
+    }
     risultato.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ----------------------------------------------------------- calendario
+
+  // Le scadenze ancora aperte diventano eventi di calendario. E' anche il modo
+  // di tornare qui: nella descrizione c'e' il link allo strumento. Il file si
+  // crea nel browser (js/calendario-ics.js) e non contiene dati del verbale:
+  // solo date, articoli e il link.
+  var URL_STRUMENTO = 'https://strumentiutili.it/cittadino-tasse/lettore-multa-codice-strada/';
+  var TITOLI = {
+    sconto30: 'Multa: ultimo giorno per pagare con lo sconto del 30%',
+    pagamento: 'Multa: ultimo giorno per pagare in misura ridotta'
+  };
+
+  function eventiCalendario(a) {
+    var alternativi = 'Pagare vuol dire rinunciare al ricorso (art. 203 CdS): scegli prima quale strada prendere.';
+    return (a.termini || []).filter(function (t) {
+      if (!t.scadenza || t.stato === 'scaduto') return false;
+      // Lo sconto che sicuramente non spetta non va in calendario.
+      return !(t.id === 'sconto30' && a.riduzione30 && a.riduzione30.applicabile === false);
+    }).map(function (t) {
+      return {
+        id: 'multa-' + t.id,
+        data: t.scadenza,
+        titolo: TITOLI[t.id] || ('Multa: ultimo giorno per il ' + t.etichetta.charAt(0).toLowerCase() + t.etichetta.slice(1)),
+        descrizione: t.etichetta + ' (' + t.riferimento + ').' +
+          (t.id === 'sconto30' ? ' Lo sconto non riguarda le spese di notifica, che si pagano per intero.' : '') +
+          (t.nota ? ' ' + t.nota : '') + '\n' + alternativi,
+        url: URL_STRUMENTO,
+        promemoria: t.id === 'sconto30' ? ['giornoStesso'] : ['settimanaPrima', 'giornoPrima']
+      };
+    });
+  }
+
+  function bloccoCalendario(eventi) {
+    if (!eventi.length || !window.CalendarioIcs) return '';
+    var google = eventi.map(function (e) {
+      return '<li><a class="text-indigo-700 hover:underline" target="_blank" rel="noopener" href="' +
+        esc(window.CalendarioIcs.linkGoogle(e)) + '">' + esc(e.titolo.replace(/^Multa: /, '')) + ' \u2014 ' + dataIt(e.data) + '</a></li>';
+    }).join('');
+    return '<div class="mt-6 rounded-xl border border-indigo-200 bg-indigo-50 p-5">' +
+      '<h3 class="font-bold text-indigo-900 mb-1">Non perdere le scadenze</h3>' +
+      '<p class="text-sm text-indigo-900">Aggiungile al calendario del telefono: ti arriva un promemoria prima di ognuna. ' +
+      'Il file si crea nel browser e contiene solo le date, non i dati del verbale.</p>' +
+      '<button type="button" id="multa-ics" class="mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition">' +
+      'Aggiungi ' + (eventi.length === 1 ? 'la scadenza' : 'le ' + eventi.length + ' scadenze') + ' al calendario</button>' +
+      '<details class="mt-3"><summary class="text-sm text-indigo-800 cursor-pointer">Usi Google Calendar sul telefono? Aggiungile una alla volta</summary>' +
+      '<ul class="mt-2 space-y-1 text-sm">' + google + '</ul></details></div>';
   }
 
   // ------------------------------------------------------------- calcolo
