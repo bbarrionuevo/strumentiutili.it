@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v43';
+const CACHE_NAME = 'strumentiutili-v44';
 
 const APP_SHELL = [
   '/',
@@ -96,7 +96,7 @@ const APP_SHELL = [
   '/utilita-web/generatore-qr/',
   '/utilita-web/convertitore-immagini/',
   '/utilita-web/contaparole/',
-  '/utilita-web/accorciatore-url/',
+  '/utilita-web/pulisci-link/',
   '/utilita-web/media-universitaria/',
   '/utilita-web/calcolo-bmr/',
   '/utilita-web/budget-planner/',
@@ -175,7 +175,8 @@ const APP_SHELL = [
   '/js/trascrizione.js',
   '/js/password.js',
   '/js/fototessera.js',
-  '/js/shortener.js',
+  '/js/pulisci-link.js',
+  '/js/pulisci-link-ui.js',
   '/js/simulatore-pensione.js',
   '/js/generatore-cv-ats.js',
   '/js/budget-planner.js',
