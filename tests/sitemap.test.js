@@ -14,10 +14,25 @@ const XML = fs.readFileSync(path.join(L.RADICE, 'sitemap.xml'), 'utf8');
 const voci = [...XML.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<priority>([^<]+)<\/priority>\s*<\/url>/g)]
   .map((m) => ({ loc: m[1], lastmod: m[2], priority: m[3] }));
 
-test('il sitemap versionato e quello che il generatore produce', () => {
-  const atteso = S.genera().split('\r\n').join('\n');
-  assert.strictEqual(XML.split('\r\n').join('\n'), atteso,
+test('il sitemap versionato elenca quello che il generatore produce', () => {
+  // Il confronto ignora i valori dei lastmod. Non e una scorciatoia: quella
+  // data viene dall ultimo commit che ha toccato il file, e finche il commit
+  // non esiste vale il mtime. Chi modifica una pagina un giorno e la committa
+  // il giorno dopo vedrebbe fallire questo test senza avere sbagliato niente.
+  // URL, ordine e priority restano confrontati alla lettera.
+  assert.strictEqual(S.senzaDate(XML), S.senzaDate(S.genera()),
     'sitemap.xml non rigenerato. Esegui: node scripts/genera-sitemap.js');
+});
+
+test('ogni lastmod e una data vera e non sta nel futuro', () => {
+  // E la parte di lastmod che ha senso imporre: che ci sia e che sia una data.
+  const domani = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+  const sbagliate = voci
+    .filter((v) => !/^\d{4}-\d{2}-\d{2}$/.test(v.lastmod) ||
+                   Number.isNaN(Date.parse(v.lastmod)) ||
+                   v.lastmod > domani)
+    .map((v) => v.loc + ' -> ' + v.lastmod);
+  assert.deepStrictEqual(sbagliate, []);
 });
 
 test('ogni voce ha loc, lastmod e priority', () => {

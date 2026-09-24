@@ -384,6 +384,93 @@ test('la pagina dell estratto conto ha il selettore del sesso', () => {
   assert.ok(ui.indexOf("sesso: 'M'") === -1, 'il sesso e di nuovo cablato in estratto-ui.js');
 });
 
+// Le pagine raggiungibili solo dal sitemap non esistono, per chi naviga e in
+// buona parte anche per Google. Queste due prove tengono il conto separato:
+// le pagine normali devono essere tutte collegate, e per le varianti pSEO il
+// buco resta dichiarato invece di essere dimenticato.
+function linkEntranti() {
+  const varianti = new Set((JSON.parse(
+    fs.readFileSync(path.join(RADICE, 'data', 'strumenti.json'), 'utf8')).strumenti || [])
+    .filter((s) => s.variante).map((s) => s.percorso));
+
+  const normali = [], pseo = [];
+  for (const p of PAGINE) {
+    const url = p.ctx.url;
+    if (url === '/') continue;
+    const quanti = PAGINE.filter((q) => q.rel !== p.rel && q.html.indexOf('href="' + url + '"') !== -1).length;
+    if (quanti === 0) (varianti.has(url) ? pseo : normali).push(url);
+  }
+  return { normali: normali, pseo: pseo };
+}
+
+test('nessuna pagina normale e raggiungibile solo dal sitemap', () => {
+  assert.deepStrictEqual(linkEntranti().normali, [],
+    'queste pagine non sono collegate da nessun altra: aggiungile alla landing della categoria');
+});
+
+test('le varianti pSEO sono collegate da qualche parte',
+  { todo: 'le pagine per Regione e per professione restano orfane' }, () => {
+    assert.deepStrictEqual(linkEntranti().pseo, []);
+  });
+
+test('la pagina delle multe non perde i controlli che frenano lo sconto', () => {
+  // Lo sconto del 30% non spetta se c e sospensione della patente o confisca.
+  // Il motore lo sa, ma senza questi due controlli riceverebbe sempre "non so"
+  // e non calcolerebbe mai niente; peggio, se qualcuno li sostituisse con un
+  // valore fisso tornerebbe a mostrare un importo ridotto a chi non ne ha
+  // diritto — che e un pagamento incompleto, quindi una multa che resta aperta.
+  const pagina = PAGINE.find((p) => p.rel.indexOf('lettore-multa-codice-strada') !== -1);
+  assert.ok(pagina, 'pagina non trovata');
+  for (const id of ['sospensione-patente', 'confisca-veicolo', 'data-violazione', 'data-notifica']) {
+    assert.ok(pagina.html.indexOf('id="' + id + '"') !== -1, 'manca il controllo #' + id);
+  }
+});
+
+test('la pagina delle multe avverte che pagare chiude il ricorso', () => {
+  // E l errore irreversibile che questo strumento puo indurre: mostrare
+  // "paga entro 5 giorni" accanto a "ricorso entro 30" senza dire che sono
+  // alternativi. L avviso sta nell HTML, non solo nel risultato calcolato,
+  // cosi lo legge anche chi non arriva in fondo.
+  const pagina = PAGINE.find((p) => p.rel.indexOf('lettore-multa-codice-strada') !== -1);
+  assert.match(pagina.html, /rinunciare al ricorso/i);
+  assert.match(pagina.html, /art\.\s*203/);
+});
+
+test('un modulo che dipende da un altro lo trova gia caricato nella pagina', () => {
+  // I moduli UMD dichiarano le loro dipendenze con require('./altro.js'): in
+  // Node funziona da solo, nel browser no — li' serve che il tag <script> della
+  // dipendenza venga PRIMA. Questa e una rottura che i test in Node non possono
+  // vedere, perche' loro il require ce l'hanno: passerebbero tutti mentre la
+  // pagina lancia "js/pdf-righe.js non caricato" al primo file aperto.
+  const dipendenze = new Map();
+  const RE_DIP = new RegExp("require\\('\\./([A-Za-z0-9_-]+\\.js)'\\)", 'g');
+
+  for (const nome of fs.readdirSync(path.join(RADICE, 'js'))) {
+    if (!nome.endsWith('.js')) continue;
+    const testo = fs.readFileSync(path.join(RADICE, 'js', nome), 'utf8');
+    const suoi = [...testo.matchAll(RE_DIP)].map((m) => m[1]);
+    if (suoi.length) dipendenze.set(nome, [...new Set(suoi)]);
+  }
+  assert.ok(dipendenze.size > 0, 'nessuna dipendenza trovata: il test non sta verificando niente');
+
+  const problemi = [];
+  for (const p of PAGINE) {
+    const caricati = [...p.html.matchAll(new RegExp('src="/js/([A-Za-z0-9_-]+\\.js)"', 'g'))]
+      .map((m) => m[1]);
+
+    for (const [modulo, suoi] of dipendenze) {
+      const posto = caricati.indexOf(modulo);
+      if (posto === -1) continue;                    // la pagina non usa questo modulo
+      for (const dip of suoi) {
+        const dove = caricati.indexOf(dip);
+        if (dove === -1) problemi.push(p.rel + ': ' + modulo + ' richiede ' + dip + ', che non e caricato');
+        else if (dove > posto) problemi.push(p.rel + ': ' + dip + ' e caricato dopo ' + modulo);
+      }
+    }
+  }
+  assert.deepStrictEqual(problemi, []);
+});
+
 test('OpenCV non si scarica al caricamento della pagina', () => {
   // Sono 9,5 MB. Li carica il worker con importScripts quando si scansiona
   // davvero, non prima.

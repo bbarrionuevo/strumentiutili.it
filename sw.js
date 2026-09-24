@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v39';
+const CACHE_NAME = 'strumentiutili-v40';
 
 const APP_SHELL = [
   '/',
@@ -30,6 +30,7 @@ const APP_SHELL = [
   '/cittadino-tasse/accredito-rimborsi/',
   '/cittadino-tasse/imposte-acquisto-casa/',
   '/cittadino-tasse/calcolo-bollo-auto/',
+  '/cittadino-tasse/lettore-multa-codice-strada/',
   '/cittadino-tasse/esenzione-bollo-auto-2027/',
   '/cittadino-tasse/passaggio-di-proprieta/',
   '/cittadino-tasse/aliquote-irpef/',
@@ -126,6 +127,11 @@ const APP_SHELL = [
   '/js/irpef.js',
   '/js/concordato.js',
   '/js/estratto-contributivo.js',
+  '/js/pdf-righe.js',
+  '/js/multa-termini.js',
+  '/js/multa-lettura.js',
+  '/js/ocr-testo.js',
+  '/js/multa-ui.js',
   '/js/estratto-import.js',
   '/js/estratto-ui.js',
   '/js/concordato-ui.js',

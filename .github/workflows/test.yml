@@ -7,8 +7,22 @@ on:
 
 jobs:
   calcoli:
-    name: Motori di calcolo e layout
+    name: Motori di calcolo e layout (${{ matrix.tz }})
     runs-on: ubuntu-latest
+
+    # Le date sono la fonte di errore piu silenziosa di tutto il progetto:
+    # new Date('2005-01-01') e UTC, quindi a ovest di Greenwich diventa il 2004
+    # e i conteggi slittano di un giorno. Un bug del genere e gia successo, in
+    # js/estratto-contributivo.js. Girando solo su ubuntu, che e UTC, la CI non
+    # lo avrebbe mai visto: qui si eseguono gli stessi test a est e a ovest.
+    strategy:
+      fail-fast: false
+      matrix:
+        tz: ['UTC', 'America/Los_Angeles', 'Pacific/Kiritimati']
+
+    env:
+      TZ: ${{ matrix.tz }}
+
     steps:
       - uses: actions/checkout@v4
 

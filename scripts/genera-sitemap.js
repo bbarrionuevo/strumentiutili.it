@@ -99,29 +99,48 @@ function genera() {
     '</urlset>\n';
 }
 
+// Il confronto del --check ignora i VALORI dei lastmod, e il motivo non e'
+// pigrizia. Il lastmod viene dalla data dell'ultimo commit che ha toccato il
+// file, e quella data non esiste finche' il commit non e' fatto: mentre si
+// lavora vale il mtime. Chi modifica una pagina un giorno e la committa il
+// giorno dopo si trova la CI rossa per una differenza che non dipende da niente
+// che abbia scritto, e che sparisce rigenerando e ricommittando — cioe' un
+// controllo che punisce il calendario invece del codice.
+//
+// Resta verificato tutto il resto, che e' quello che conta: quali URL ci sono,
+// in che ordine e con che priority. Che ogni voce abbia un lastmod, e che sia
+// una data vera, lo controlla tests/sitemap.test.js.
+function senzaDate(xml) {
+  return String(xml).split('\r\n').join('\n')
+    .replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod/>');
+}
+
 function esegui(opzioni) {
   const soloVerifica = !!(opzioni && opzioni.soloVerifica);
   const destinazione = path.join(RADICE, 'sitemap.xml');
   const nuovo = genera();
   const attuale = fs.existsSync(destinazione) ? fs.readFileSync(destinazione, 'utf8') : '';
-  const uguale = nuovo.split('\r\n').join('\n') === attuale.split('\r\n').join('\n');
+  const identico = nuovo.split('\r\n').join('\n') === attuale.split('\r\n').join('\n');
+  const equivalente = senzaDate(nuovo) === senzaDate(attuale);
   const quante = (nuovo.match(/<loc>/g) || []).length;
 
   if (soloVerifica) {
-    if (uguale) console.log('sitemap.xml aggiornato (' + quante + ' URL).');
+    if (equivalente) console.log('sitemap.xml aggiornato (' + quante + ' URL).');
     else {
       console.error('sitemap.xml non rigenerato. Esegui: node scripts/genera-sitemap.js');
       process.exitCode = 1;
     }
-    return { quante, uguale };
+    return { quante, uguale: equivalente, identico };
   }
 
-  if (!uguale) fs.writeFileSync(destinazione, nuovo);
-  console.log('sitemap.xml: ' + quante + ' URL' + (uguale ? ' (nessuna modifica)' : ' scritte') + '.');
-  return { quante, uguale };
+  // Scrivendo invece si aggiorna anche solo per le date: il file versionato
+  // deve restare accurato.
+  if (!identico) fs.writeFileSync(destinazione, nuovo);
+  console.log('sitemap.xml: ' + quante + ' URL' + (identico ? ' (nessuna modifica)' : ' scritte') + '.');
+  return { quante, uguale: identico, identico };
 }
 
-module.exports = { genera, esegui, priorita };
+module.exports = { genera, esegui, priorita, senzaDate };
 
 if (require.main === module) {
   esegui({ soloVerifica: process.argv.includes('--check') });

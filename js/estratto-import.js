@@ -21,13 +21,24 @@
 // Chi usa questo modulo deve mostrare all'utente quello che e' stato estratto
 // PRIMA di analizzarlo: e' l'unico modo onesto di lavorare con un tracciato di
 // cui non si ha la specifica.
+//
+// La lettura delle righe di un PDF e la validazione delle date stanno in
+// js/pdf-righe.js: non sono cose dell'estratto conto, servono a qualsiasi
+// documento della PA, e duplicarle vorrebbe dire correggerle in un posto solo.
 (function (root, factory) {
   'use strict';
-  var api = factory();
+  var api = factory(typeof require === 'function' ? require('./pdf-righe.js') : null);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.EstrattoImport = api;
-})(typeof self !== 'undefined' ? self : globalThis, function () {
+})(typeof self !== 'undefined' ? self : globalThis, function (righeNode) {
   'use strict';
+
+  function P() {
+    if (righeNode) return righeNode;
+    var g = (typeof window !== 'undefined' && window) || (typeof self !== 'undefined' && self);
+    if (g && g.PdfRighe) return g.PdfRighe;
+    throw new Error('[EstrattoImport] js/pdf-righe.js non caricato.');
+  }
 
   // Nomi plausibili, in minuscolo e senza separatori.
   var INIZIO = ['datainizio', 'datadal', 'dal', 'inizio', 'periododal', 'datainiziope', 'decorrenza'];
@@ -56,42 +67,10 @@
     return String(nome || '').replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/[_-]+/g, ' ').trim();
   }
 
-  // Una data con la forma giusta non e' per forza una data: 31/02 e 16/13 la
-  // hanno. Senza questo controllo new Date le farebbe slittare al mese dopo, in
-  // silenzio, e l'anzianita' risulterebbe sbagliata di poco — il tipo di errore
-  // che non si nota mai.
-  function esiste(anno, mese, giorno) {
-    if (mese < 1 || mese > 12 || giorno < 1 || giorno > 31) return false;
-    var d = new Date(anno, mese - 1, giorno);
-    return d.getFullYear() === anno && d.getMonth() === mese - 1 && d.getDate() === giorno;
-  }
-
-  function iso(anno, mese, giorno) {
-    var a = Number(anno), m = Number(mese);
-    if (!Number.isFinite(a) || !Number.isFinite(m) || m < 1 || m > 12) return null;
-    var testa = String(a) + '-' + String(m).padStart(2, '0');
-    if (giorno === undefined || giorno === null || giorno === '') return testa;
-    var g = Number(giorno);
-    if (!esiste(a, m, g)) return null;
-    return testa + '-' + String(g).padStart(2, '0');
-  }
-
-  // Una data puo' arrivare come 2020-01-31, 31/01/2020, 31-01-2020 o 2020-03.
-  function normalizzaData(testo) {
-    var t = String(testo || '').trim();
-    if (!t) return null;
-
-    var m = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
-    if (m) return iso(m[1], m[2], m[3]);
-
-    var ita = t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
-    if (ita) return iso(ita[3], ita[2], ita[1]);
-
-    var annoMese = t.match(/^(\d{4})[\/\-.](\d{1,2})$/);
-    if (annoMese) return iso(annoMese[1], annoMese[2]);
-
-    return null;
-  }
+  // Validazione e normalizzazione delle date stanno in js/pdf-righe.js: qui
+  // restano solo i nomi, cosi' i punti di chiamata non cambiano.
+  function iso(anno, mese, giorno) { return P().iso(anno, mese, giorno); }
+  function normalizzaData(testo) { return P().normalizzaData(testo); }
 
   // Ricompone una data scritta come tre elementi figli.
   function dataDaFigli(nodo) {
@@ -295,16 +274,12 @@
   // riga di periodo — due date sulla stessa riga, e se c'e' un numero di
   // settimane. Tutto il resto del foglio viene ignorato.
 
-  var RE_DATA = /\b(\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{4}|\d{4}-\d{2}-\d{2})\b/g;
-
   // Una riga di testo -> un periodo, se ne ha la forma.
   function rigaAPeriodo(riga) {
     var testo = String(riga || '').replace(/\s+/g, ' ').trim();
     if (!testo) return null;
 
-    RE_DATA.lastIndex = 0;
-    var date = [], m;
-    while ((m = RE_DATA.exec(testo)) !== null) date.push(m[1]);
+    var date = P().dateInTesto(testo);
     if (date.length < 2) return null;
 
     var dal = normalizzaData(date[0]);
@@ -369,49 +344,11 @@
     return fuori;
   }
 
-  // Raggruppa i frammenti di testo di pdf.js in righe, usando la coordinata
-  // verticale: il PDF non ha il concetto di riga, solo pezzi con una posizione.
-  function righeDaContenuto(items, tolleranza) {
-    var soglia = tolleranza || 2;
-    var gruppi = [];
-    (items || []).forEach(function (it) {
-      var y = it.transform ? it.transform[5] : 0;
-      var x = it.transform ? it.transform[4] : 0;
-      var g = null;
-      for (var i = 0; i < gruppi.length; i++) {
-        if (Math.abs(gruppi[i].y - y) <= soglia) { g = gruppi[i]; break; }
-      }
-      if (!g) { g = { y: y, pezzi: [] }; gruppi.push(g); }
-      g.pezzi.push({ x: x, testo: it.str || '' });
-    });
-
-    gruppi.sort(function (a, b) { return b.y - a.y; });          // dall'alto in basso
-    return gruppi.map(function (g) {
-      g.pezzi.sort(function (a, b) { return a.x - b.x; });        // da sinistra a destra
-      return g.pezzi.map(function (p) { return p.testo; }).join(' ').replace(/\s+/g, ' ').trim();
-    }).filter(Boolean);
-  }
-
-  // L'estratto conto dell'INPS e' stampato su una pagina RUOTATA di 90 gradi
-  // (page.rotate === 90). Nelle coordinate grezze le celle di una riga
-  // condividono la x, non la y: raggruppando per y si ottengono le COLONNE, e da
-  // un PDF perfettamente valido non si riconosceva nessun periodo.
-  //
-  // La matrice della vista e' quella che tiene conto della rotazione, quindi le
-  // coordinate ci passano attraverso. La y viene invertita perche' nello spazio
-  // della vista cresce verso il basso, mentre righeDaContenuto ordina dall'alto
-  // come nello spazio del PDF.
-  function itemsInVista(pagina, items, lib) {
-    var vp = null;
-    try { vp = pagina.getViewport({ scale: 1 }); } catch (e) { vp = null; }
-    if (!vp || !vp.transform || !lib.Util || !lib.Util.transform) return items || [];
-
-    return (items || []).map(function (it) {
-      if (!it.transform) return it;
-      var m = lib.Util.transform(vp.transform, it.transform);
-      return { str: it.str, transform: [m[0], m[1], m[2], m[3], m[4], -m[5]] };
-    });
-  }
+  // La ricostruzione delle righe e il raddrizzamento delle pagine ruotate stanno
+  // in js/pdf-righe.js. Qui restano i nomi: l'estratto conto dell'INPS ha
+  // page.rotate === 90, ed e' li' che quella correzione e' stata scoperta.
+  function righeDaContenuto(items, tolleranza) { return P().righeDaContenuto(items, tolleranza); }
+  function itemsInVista(pagina, items, lib) { return P().itemsInVista(pagina, items, lib); }
 
   // `dati`: ArrayBuffer del PDF. `pdfjs`: la libreria gia' caricata in pagina.
   function leggiPdf(dati, pdfjs) {
