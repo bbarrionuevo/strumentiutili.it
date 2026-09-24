@@ -529,6 +529,22 @@ test('l informativa dichiara le memorie tecniche del browser', () => {
   }
 });
 
+test('statistiche di Vercel: una volta in ogni pagina, dichiarate e fuori dal service worker', () => {
+  // Uno script doppio conterebbe ogni visita due volte; uno mancante lascia
+  // la pagina fuori dalle statistiche.
+  const problemi = [];
+  for (const p of PAGINE) {
+    const n = p.html.split('src="' + L.STATISTICHE + '"').length - 1;
+    if (n !== 1) problemi.push(p.rel + ' -> ' + n);
+  }
+  assert.deepStrictEqual(problemi, []);
+  const privacy = fs.readFileSync(path.join(RADICE, 'politica-sulla-privacy.html'), 'utf8');
+  assert.ok(privacy.includes('Vercel Web Analytics') && privacy.includes('senza cookie'), 'l informativa non le dichiara');
+  // Servite dalla cache, misurerebbero visite che non ci sono state.
+  const sw = fs.readFileSync(path.join(RADICE, 'sw.js'), 'utf8');
+  assert.ok(sw.includes("url.pathname.startsWith('/_vercel/')) return;"), 'sw.js intercetta /_vercel/');
+});
+
 test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata', () => {
   // Senza il modificatore .su-ad--* il riquadro non riserva spazio e la pagina
   // salta quando arriva l'annuncio; senza etichetta l'annuncio non si

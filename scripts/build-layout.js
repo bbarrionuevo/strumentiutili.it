@@ -140,9 +140,18 @@ function contestoPagina(rel, html) {
 
 // ---------------------------------------------------------- teste della pagina
 
+// Statistiche di visita: Vercel Web Analytics, dallo stesso dominio del sito
+// (/_vercel/insights/), senza cookie ne' identificativi. Conta pagine viste,
+// provenienza, paese e tipo di dispositivo in forma aggregata. Si accende dal
+// pannello di Vercel (Analytics > Enable): finche' e' spento lo script risponde
+// 404 e non misura nulla. Senza la coda window.va in linea: serve solo agli
+// eventi personalizzati, che il piano gratuito non ha.
+const STATISTICHE = '/_vercel/insights/script.js';
+
 function teste() {
   return ORIGINI_CRITICHE
     .map((o) => '  <link rel="preconnect" href="' + o + '" crossorigin>')
+    .concat('  <script defer src="' + STATISTICHE + '"></script>')
     .join('\n');
 }
 
@@ -353,7 +362,7 @@ function jsonLdBriciole(ctx) {
 }
 
 module.exports = {
-  RADICE, SITO, CATEGORIE, LEGALI, M, APICE, ORIGINI_CRITICHE,
+  RADICE, SITO, CATEGORIE, LEGALI, M, APICE, ORIGINI_CRITICHE, STATISTICHE,
   pagineAttive, urlPagina, contestoPagina, catenaBriciole,
   teste, saltaAlContenuto, intestazione, piede, briciole, jsonLdBriciole,
   esc, testoSemplice
