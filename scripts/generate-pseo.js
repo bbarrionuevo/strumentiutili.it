@@ -128,6 +128,7 @@ function generateTarget(target) {
       html = replaceH1Content(html, target.h1Replacer(item), warnings);
       html = replaceMetaDescriptions(html, target.metaDescriptionReplacer(item), warnings);
       html = target.prefill ? target.prefill(html, item, warnings) : html;
+      html = addNoindex(html, warnings);
 
       // Generated directories are siblings of their templates and the three
       // templates use root-absolute asset paths. Preserve those paths exactly.
@@ -151,6 +152,20 @@ function generateTarget(target) {
   }
 
   return summary;
+}
+
+// Le varianti sono la stessa pagina con un'altra etichetta: indicizzate
+// sarebbero contenuto duplicato, il motivo tipico per cui AdSense rifiuta un
+// sito. Restano raggiungibili (e trovabili dalla ricerca interna), ma fuori
+// dall'indice di Google e dal sitemap finche' non hanno un contenuto proprio.
+function addNoindex(html, warnings) {
+  if (/<meta\b[^>]*\bname=(['"])robots\1/i.test(html)) return html;
+  const viewport = /(<meta\b[^>]*\bname=(['"])viewport\2[^>]*>\n)/i;
+  if (!viewport.test(html)) {
+    warnings.push('viewport meta not found: noindex not added');
+    return html;
+  }
+  return html.replace(viewport, '$1  <meta name="robots" content="noindex, follow" />\n');
 }
 
 function resolveProjectPath(relativePath) {

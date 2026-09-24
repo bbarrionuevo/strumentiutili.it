@@ -53,8 +53,13 @@
       window.setTimeout(() => { pickerGuard = false; }, 400);
     }
 
-    drop.addEventListener('click', openPicker);
-    if (browse) browse.addEventListener('click', openPicker);
+    // Una <label> collegata all'input apre gia' il selettore da sola: aggiungere
+    // input.click() sarebbe proprio la doppia invocazione descritta sopra. In
+    // quel caso si lascia fare al browser, che in piu' rende la zona
+    // raggiungibile da tastiera attraverso l'input.
+    const labelNativa = drop.tagName === 'LABEL' && (drop.control === input || drop.contains(input));
+    if (!labelNativa) drop.addEventListener('click', openPicker);
+    if (browse && !(labelNativa && drop.contains(browse))) browse.addEventListener('click', openPicker);
 
     function updateFilenameLabel() {
       if (!filenameEl) return;

@@ -1,0 +1,13 @@
+# .vercelignore — file del repository che non fanno parte del sito.
+#
+# Senza questo file finivano online anche i test, i risultati delle prove e le
+# pagine di collaudo (ia/*/test.html, che caricano Tailwind dal CDN di
+# sviluppo). Non si escludono scripts/ e src/: servono a `npm run build`.
+
+tests/
+**/__pycache__/
+/*.py
+/playwright_results.json
+/math_test_results.json
+/pages_test.spec.js
+ia/*/test.html

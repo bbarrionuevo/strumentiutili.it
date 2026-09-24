@@ -408,10 +408,15 @@ test('nessuna pagina normale e raggiungibile solo dal sitemap', () => {
     'queste pagine non sono collegate da nessun altra: aggiungile alla landing della categoria');
 });
 
-test('le varianti pSEO sono collegate da qualche parte',
-  { todo: 'le pagine per Regione e per professione restano orfane' }, () => {
-    assert.deepStrictEqual(linkEntranti().pseo, []);
+test('le varianti pSEO orfane sono almeno fuori dall indice', () => {
+  // Non le collega nessuna pagina: per Google esisterebbero solo come
+  // duplicati dell'originale. Finche' restano orfane devono avere il noindex.
+  const orfaneIndicizzabili = linkEntranti().pseo.filter((url) => {
+    const pagina = PAGINE.find((p) => p.ctx.url === url);
+    return !/<meta\b[^>]*name="robots"[^>]*noindex/i.test(pagina.html);
   });
+  assert.deepStrictEqual(orfaneIndicizzabili, []);
+});
 
 test('la pagina delle multe non perde i controlli che frenano lo sconto', () => {
   // Lo sconto del 30% non spetta se c e sospensione della patente o confisca.
@@ -515,6 +520,22 @@ test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata',
     }
   }
   assert.deepStrictEqual(problemi, []);
+});
+
+test('ogni pagina con riquadri pubblicitari chiede davvero gli annunci', () => {
+  // Un <ins class="adsbygoogle"> senza adsbygoogle.push({}) resta vuoto per
+  // sempre, e da fuori non si vede: e' successo a quattro pagine nuove, che non
+  // avevano la copia in linea del gestore. La richiesta sta in pubblicita.js.
+  const js = fs.readFileSync(path.join(RADICE, 'js', 'pubblicita.js'), 'utf8');
+  assert.match(js, /\(window\.adsbygoogle = window\.adsbygoogle \|\| \[\]\)\.push\(\{\}\)/,
+    'pubblicita.js non chiede piu gli annunci');
+
+  const senza = PAGINE
+    .filter((p) => p.html.includes('class="adsbygoogle"'))
+    .filter((p) => !p.html.includes('src="/js/pubblicita.js"') &&
+                   !p.html.includes('adsbygoogle = window.adsbygoogle'))
+    .map((p) => p.rel);
+  assert.deepStrictEqual(senza, []);
 });
 
 test('il foglio di stile nasconde annunci e comandi in stampa', () => {

@@ -1,7 +1,7 @@
 // js/pdf-tools.js — Herramientas PDF (Web Workers + Comlink)
 
 if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
-  try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js'; } catch (e) { }
+  try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } catch (e) { }
 }
 
 (async ()=>{

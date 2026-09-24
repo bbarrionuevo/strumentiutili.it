@@ -122,9 +122,11 @@
 
 # \*Suite documentale per la manipolazione binaria locale e l'ottemperanza al PCT (Processo Civile Telematico).\*
 
-# \- \*\*Unisci e Dividi PDF\*\* — `/pdf/unisci-dividi/`
+# \- \*\*Unire PDF\*\* — `/pdf/unisci-pdf/` · \*\*Dividere un PDF\*\* — `/pdf/dividi-pdf/`
 
-# \- \*\*Comprimi e Converti PDF\*\* — `/pdf/comprimi-converti/`
+# \- \*\*Comprimere un PDF\*\* — `/pdf/comprimi-pdf/` · \*\*Da JPG a PDF\*\* — `/pdf/jpg-in-pdf/` · \*\*Da Word a PDF\*\* — `/pdf/word-in-pdf/`
+
+# \- \*\*Aprire un file P7M (estrazione del documento e firme)\*\* — `/pdf/apri-file-p7m/`
 
 # \- \*\*Firma PDF Locale\*\* — `/pdf/firma/`
 
