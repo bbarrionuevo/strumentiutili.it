@@ -404,7 +404,13 @@ function linkEntranti() {
     const url = p.ctx.url;
     if (url === '/') continue;
     const quanti = PAGINE.filter((q) => q.rel !== p.rel && q.html.indexOf('href="' + url + '"') !== -1).length;
-    if (quanti === 0) (varianti.has(url) ? pseo : normali).push(url);
+    if (quanti > 0) continue;
+    if (varianti.has(url)) { pseo.push(url); continue; }
+    // Una pagina noindex che non sia una variante (come /condividi/, dove si
+    // arriva dal menu Condividi del telefono) non e' fatta per essere trovata
+    // navigando: non conta come orfana.
+    if (/<meta name="robots" content="noindex/.test(p.html)) continue;
+    normali.push(url);
   }
   return { normali: normali, pseo: pseo };
 }

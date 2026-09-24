@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "StrumentiUtili.it",
   "short_name": "StrumentiUtili",
   "description": "Micro-strumenti gratuiti 100% client-side per fiscalità, PDF, IA locale e produttività: nessun dato lascia il tuo dispositivo.",
@@ -21,5 +22,66 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Comprimere un PDF",
+      "short_name": "Comprimi PDF",
+      "url": "/pdf/comprimi-pdf/",
+      "icons": [{ "src": "/assets/icon.png", "sizes": "512x512", "type": "image/png" }]
+    },
+    {
+      "name": "Unire PDF",
+      "short_name": "Unisci PDF",
+      "url": "/pdf/unisci-pdf/",
+      "icons": [{ "src": "/assets/icon.png", "sizes": "512x512", "type": "image/png" }]
+    },
+    {
+      "name": "Aprire un file P7M",
+      "short_name": "Apri P7M",
+      "url": "/pdf/apri-file-p7m/",
+      "icons": [{ "src": "/assets/icon.png", "sizes": "512x512", "type": "image/png" }]
+    },
+    {
+      "name": "Pulire un link",
+      "short_name": "Pulisci link",
+      "url": "/utilita-web/pulisci-link/",
+      "icons": [{ "src": "/assets/icon.png", "sizes": "512x512", "type": "image/png" }]
+    }
+  ],
+  "share_target": {
+    "action": "/condividi/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "titolo",
+      "text": "testo",
+      "url": "link",
+      "files": [
+        {
+          "name": "file",
+          "accept": [
+            "application/pdf", ".pdf",
+            "image/*",
+            "audio/*", ".opus", ".ogg", ".m4a", ".mp3",
+            "video/mp4",
+            "application/pkcs7-mime", ".p7m",
+            "application/xml", "text/xml", ".xml",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document", ".docx"
+          ]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/pdf/apri-file-p7m/",
+      "accept": { "application/pkcs7-mime": [".p7m"] }
+    },
+    {
+      "action": "/condividi/",
+      "accept": { "application/pdf": [".pdf"] }
+    }
+  ],
+  "launch_handler": { "client_mode": "navigate-existing" }
 }

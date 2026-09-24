@@ -767,6 +767,12 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     });
   }
 
+  // I gestori qui sopra esistono solo dopo il caricamento asincrono di
+  // Comlink: chi deve consegnare file allo strumento (js/condivisi.js) aspetta
+  // questo segnale.
+  window.SuStrumentoPronto = true;
+  document.dispatchEvent(new Event('su:pronto'));
+
 })();
 
 // UI Initialization Dropzone

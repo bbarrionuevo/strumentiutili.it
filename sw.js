@@ -1,5 +1,12 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v45';
+const CACHE_NAME = 'strumentiutili-v46';
+
+// I file condivisi verso l'app installata (share_target nel manifest) arrivano
+// qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
+// pagina /condividi/. Nessun server li riceve.
+if (typeof importScripts === 'function') {
+  try { importScripts('/js/condivisi.js'); } catch (e) { /* senza, la condivisione porta alla pagina vuota */ }
+}
 
 const APP_SHELL = [
   '/',
@@ -77,6 +84,7 @@ const APP_SHELL = [
   '/pdf/jpg-in-pdf/',
   '/pdf/word-in-pdf/',
   '/pdf/apri-file-p7m/',
+  '/condividi/',
   '/pdf/firma/',
   '/pdf/anonimizza/',
   '/pdf/convertitore-pdfa/',
@@ -163,6 +171,8 @@ const APP_SHELL = [
   '/js/pdf-tools.js',
   '/js/p7m-lettura.js',
   '/js/p7m-ui.js',
+  '/js/condivisi.js',
+  '/js/condivisi-ui.js',
   '/js/traduttore.js',
   '/js/riassunto.js',
   '/js/ocr.js',
@@ -310,9 +320,30 @@ function aggiornaInSecondoPiano(request) {
   });
 }
 
+async function riceviCondivisione(request) {
+  try {
+    const dati = await request.formData();
+    const C = self.Condivisi;
+    const file = dati.getAll('file').filter((f) => f && typeof f !== 'string' && f.size);
+    if (file.length && C) {
+      await C.salva(C.stessoGenere(file));
+      return Response.redirect('/condividi/', 303);
+    }
+    // Solo testo o un link (per esempio da Chrome o WhatsApp): si pulisce.
+    const testo = ['titolo', 'testo', 'link'].map((k) => dati.get(k)).filter(Boolean).join(' ').trim();
+    if (testo) return Response.redirect('/utilita-web/pulisci-link/?text=' + encodeURIComponent(testo), 303);
+  } catch (e) { /* si ripiega sulla pagina di scelta */ }
+  return Response.redirect('/condividi/', 303);
+}
+
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
+
+  if (request.method === 'POST' && url.origin === self.location.origin && url.pathname === '/condividi/') {
+    event.respondWith(riceviCondivisione(request));
+    return;
+  }
 
   if (request.method !== 'GET') return;
   if (url.origin !== self.location.origin) return;
