@@ -373,11 +373,47 @@
     return fuori.sort(function (a, b) { return a.utc < b.utc ? -1 : 1; });
   }
 
+  // ------------------------------------------------------------ luna di oggi
+
+  var SINODICO = 29.530588861;
+  var NOMI_ASPETTO = ['Luna nuova', 'Luna crescente', 'Primo quarto', 'Gibbosa crescente',
+    'Luna piena', 'Gibbosa calante', 'Ultimo quarto', 'Luna calante'];
+
+  function istanteFase(k, t) {
+    return daGiulianoAUtc(jdeFase(k + t / 4, t) - DELTA_T_GIORNI).getTime();
+  }
+
+  /**
+   * Com'e' la Luna in un istante (ms UTC). L'angolo di fase si interpola fra
+   * i quattro istanti principali calcolati con Meeus (0, 90, 180, 270 gradi):
+   * esatto nelle fasi principali, regolare in mezzo. La parte illuminata e'
+   * (1 - cos angolo) / 2.
+   */
+  function faseLunare(istante) {
+    var jd = istante / MS_GIORNO + 2440587.5;
+    var k = Math.floor((jd - 2451550.09766) / SINODICO);
+    while (istanteFase(k, 0) > istante) k--;
+    while (istanteFase(k + 1, 0) <= istante) k++;
+    var tappe = [istanteFase(k, 0), istanteFase(k, 1), istanteFase(k, 2), istanteFase(k, 3), istanteFase(k + 1, 0)];
+    var i = 0;
+    while (i < 3 && tappe[i + 1] <= istante) i++;
+    var angolo = 90 * (i + (istante - tappe[i]) / (tappe[i + 1] - tappe[i]));
+    return {
+      eta: (istante - tappe[0]) / MS_GIORNO,
+      angolo: angolo,
+      illuminata: (1 - Math.cos(angolo * RAD)) / 2,
+      nome: NOMI_ASPETTO[Math.floor(((angolo + 22.5) % 360) / 45)],
+      crescente: angolo < 180,
+      prossimaPiena: tappe[2] > istante ? tappe[2] : istanteFase(k + 1, 2),
+      prossimaNuova: tappe[4]
+    };
+  }
+
   return {
     valida: valida, aggiungi: aggiungi, giornoSettimana: giornoSettimana, giorniNelMese: giorniNelMese,
     data: data, oggi: oggi, settimanaIso: settimanaIso, grigliaMese: grigliaMese, NOMI_MESI: NOMI_MESI,
     pasqua: pasqua, festivita: festivita, mappaFestivita: mappaFestivita, eFestivo: eFestivo, ponti: ponti,
     ricorrenze: ricorrenze, contaGiorni: contaGiorni,
-    fasiLunari: fasiLunari, jdeFase: jdeFase, dataRoma: dataRoma
+    fasiLunari: fasiLunari, faseLunare: faseLunare, jdeFase: jdeFase, dataRoma: dataRoma
   };
 });

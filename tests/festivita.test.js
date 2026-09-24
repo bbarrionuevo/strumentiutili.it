@@ -181,3 +181,31 @@ test('ricorrenze: carnevale, ora legale e festa della mamma per il 2026 e il 202
     assert.ok(r.find((x) => x.nome.startsWith('Ora solare')).data >= anno + '-10-25');
   }
 });
+
+test('la luna di un istante: piena, nuova, quarti e in mezzo', () => {
+  // Le lune piene del 2026 gia' verificate (ora UTC)
+  for (const iso of ['2026-01-03T10:02:00Z', '2026-05-31T08:45:00Z', '2026-12-24T01:28:00Z']) {
+    const l = F.faseLunare(Date.parse(iso));
+    assert.ok(l.illuminata > 0.999, iso + ' ' + l.illuminata);
+    assert.strictEqual(l.nome, 'Luna piena');
+    assert.ok(l.eta > 13.5 && l.eta < 16, 'eta ' + l.eta);
+  }
+  // Una luna nuova calcolata dal motore: illuminata zero, eta zero
+  const nuova = Date.parse(F.fasiLunari(2027).find((x) => x.fase === 'nuova').utc);
+  const n = F.faseLunare(nuova + 1000);
+  assert.ok(n.illuminata < 0.0001 && n.eta < 0.001 && n.nome === 'Luna nuova');
+  // A meta' fra luna nuova e primo quarto: 45 gradi, 14,6% illuminata, crescente
+  const primo = Date.parse(F.fasiLunari(2027).find((x) => x.fase === 'primo-quarto').utc);
+  const meta = F.faseLunare((nuova + primo) / 2);
+  assert.ok(Math.abs(meta.angolo - 45) < 1e-6 && Math.abs(meta.illuminata - 0.1464) < 0.001 && meta.crescente);
+  assert.ok(['Luna crescente', 'Primo quarto'].includes(meta.nome));
+  assert.strictEqual(F.faseLunare(primo + 3600000).nome, 'Primo quarto');
+  // Ogni 6 ore per due mesi: l'angolo cresce sempre (tranne quando riparte da 0)
+  let prima = F.faseLunare(Date.parse('2026-09-01T00:00:00Z'));
+  for (let t = Date.parse('2026-09-01T06:00:00Z'); t < Date.parse('2026-11-01T00:00:00Z'); t += 6 * 3600000) {
+    const ora = F.faseLunare(t);
+    assert.ok(ora.angolo > prima.angolo || (prima.angolo > 350 && ora.angolo < 10), new Date(t).toISOString());
+    assert.ok(ora.prossimaNuova > t && ora.prossimaPiena > t);
+    prima = ora;
+  }
+});
