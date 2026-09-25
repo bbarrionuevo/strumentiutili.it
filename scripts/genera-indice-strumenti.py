@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Genera data/strumenti.json, l'indice usato dalla ricerca della home.
 
-Nei menu compaiono gli strumenti originali. Le pagine costruite per il
-posizionamento sui motori di ricerca (il bollo auto regione per regione, la
-partita IVA professione per professione, le dimissioni per contratto collettivo)
-sono varianti dello stesso strumento: non vanno nei menu, ma devono restare
-raggiungibili da chi le cerca. Finiscono quindi nell'indice con il campo
-"variante" valorizzato, cosi la ricerca le trova e il menu resta pulito.
+Nei menu compaiono gli strumenti. Chi cerca "bollo lombardia" o "dimissioni
+metalmeccanici" deve pero' trovare lo strumento con la voce gia' scelta: per
+ogni Regione, professione e contratto collettivo dei dati fiscali si aggiunge
+una voce con il campo "variante", che porta allo strumento con il parametro
+(?regione=lombardia, letto da js/parametri-url.js). Un tempo erano pagine
+copiate una per una: ora sono redirect 301 in vercel.json.
 
 Uso:  python scripts/genera-indice-strumenti.py
 """
@@ -30,11 +30,13 @@ CATEGORIE = {
     "utilita-web": "Utilita e Web",
 }
 
-# Famiglie di pagine generate: prefisso della cartella -> strumento originale
+REGOLE = ROOT / "data" / "regole-fiscali-2026.json"
+
+# (categoria, strumento, elenco nei dati fiscali, genere, parametro dell'indirizzo)
 VARIANTI = [
-    ("cittadino-tasse", "calcolo-bollo-auto-", "/cittadino-tasse/calcolo-bollo-auto/", "regione"),
-    ("fisco-professioni", "partita-iva-", "/fisco-professioni/partita-iva/", "professione"),
-    ("lavoro-contratti", "lettera-dimissioni-", "/lavoro-contratti/lettera-dimissioni-preavviso/", "settore"),
+    ("cittadino-tasse", "/cittadino-tasse/calcolo-bollo-auto/", ("bollo_auto_2026", "regioniSEO"), "regione", "regione"),
+    ("fisco-professioni", "/fisco-professioni/partita-iva/", ("partitaIvaForfettario", "profesioniSEO"), "professione", None),
+    ("lavoro-contratti", "/lavoro-contratti/lettera-dimissioni-preavviso/", ("ccnl_dimissioni", "ccnlSEO"), "settore", "ccnl"),
 ]
 
 
@@ -52,16 +54,23 @@ def titolo(testo: str) -> str:
     return re.split(r"\s+[—-]\s+StrumentiUtili", grezzo)[0].strip()
 
 
-def variante_di(categoria: str, cartella: str):
-    for cat, prefisso, originale, genere in VARIANTI:
-        # l'originale puo' condividere il prefisso delle sue varianti
-        # (lettera-dimissioni-preavviso): non e' una variante di se stesso
-        if f"/{categoria}/{cartella}/" == originale:
-            continue
-        if cat == categoria and cartella.startswith(prefisso) and cartella != prefisso.rstrip("-"):
-            etichetta = cartella[len(prefisso):].replace("_", " ").replace("-", " ").strip()
-            return {"originale": originale, "genere": genere, "etichetta": etichetta}
-    return None
+def voci_varianti(originali: dict) -> list:
+    regole = json.loads(REGOLE.read_text(encoding="utf-8"))
+    fuori = []
+    for categoria, originale, (sezione, elenco), genere, parametro in VARIANTI:
+        base = originali[originale]
+        for voce in regole[sezione][elenco]:
+            valore = voce.get("codice") or voce["slug"]
+            percorso = f"{originale}?{parametro}={valore}" if parametro else originale
+            fuori.append({
+                "percorso": percorso,
+                "categoria": categoria,
+                "nomeCategoria": CATEGORIE[categoria],
+                "titolo": f"{base['titolo']}: {voce['nome']}",
+                "descrizione": base["descrizione"],
+                "variante": {"originale": originale, "genere": genere, "etichetta": voce["nome"]},
+            })
+    return fuori
 
 
 def main() -> int:
@@ -82,10 +91,9 @@ def main() -> int:
                 "titolo": titolo(testo) or sub.name.replace("-", " ").title(),
                 "descrizione": meta(testo, "description"),
             }
-            v = variante_di(categoria, relativo)
-            if v:
-                voce["variante"] = v
             voci.append(voce)
+
+    voci += voci_varianti({v["percorso"]: v for v in voci})
 
     voci.sort(key=lambda v: (v["categoria"], "variante" in v, v["titolo"].lower()))
 

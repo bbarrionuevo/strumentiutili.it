@@ -30,6 +30,8 @@
       if (!jsonData) throw new Error('Regole fiscali non disponibili.');
       dataMatrix = jsonData.ccnl_dimissioni;
       
+      // il contratto scelto dall'indirizzo (?ccnl=, js/parametri-url.js) sopravvive alla ricostruzione del menu
+      const dallIndirizzo = inputCcnl.getAttribute('data-da-url') === '1' ? inputCcnl.value : null;
       inputCcnl.innerHTML = "";
       for (const [key, value] of Object.entries(dataMatrix)) {
         // ccnlSEO is pSEO metadata, not a selectable CCNL rule set.
@@ -39,6 +41,7 @@
         option.textContent = value.label;
         inputCcnl.appendChild(option);
       }
+      if (dallIndirizzo && dataMatrix[dallIndirizzo]) inputCcnl.value = dallIndirizzo;
       
       loadState();
       calculatePreavviso();
@@ -97,7 +100,8 @@
       if (!window.AppStorage || !dataMatrix) return;
       const state = window.AppStorage.load('hr_dimissioni_state', null);
       if (state) {
-        if (state.ccnl && dataMatrix[state.ccnl]) inputCcnl.value = state.ccnl;
+        // il contratto scelto dall'indirizzo (?ccnl=, js/parametri-url.js) vince su quello ricordato
+        if (state.ccnl && dataMatrix[state.ccnl] && inputCcnl.getAttribute('data-da-url') !== '1') inputCcnl.value = state.ccnl;
         updateLivelli();
         if (state.livello) inputLivello.value = state.livello;
         if (state.anzianita) inputAnzianita.value = state.anzianita;

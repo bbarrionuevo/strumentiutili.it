@@ -21,7 +21,8 @@ const PAGINE = L.pagineAttive().map((p) => ({
 PAGINE.forEach((p) => { p.ctx = L.contestoPagina(p.rel, p.html); });
 
 test('ci sono pagine da controllare', () => {
-  assert.ok(PAGINE.length >= 120, 'trovate solo ' + PAGINE.length + ' pagine attive');
+  // 42 copie per Regione, professione e contratto sono diventate redirect (vercel.json)
+  assert.ok(PAGINE.length >= 95, 'trovate solo ' + PAGINE.length + ' pagine attive');
 });
 
 test('il layout e stabile: rieseguire lo script non cambia nulla', () => {
@@ -391,43 +392,25 @@ test('la pagina dell estratto conto ha il selettore del sesso', () => {
 });
 
 // Le pagine raggiungibili solo dal sitemap non esistono, per chi naviga e in
-// buona parte anche per Google. Queste due prove tengono il conto separato:
-// le pagine normali devono essere tutte collegate, e per le varianti pSEO il
-// buco resta dichiarato invece di essere dimenticato.
-function linkEntranti() {
-  const varianti = new Set((JSON.parse(
-    fs.readFileSync(path.join(RADICE, 'data', 'strumenti.json'), 'utf8')).strumenti || [])
-    .filter((s) => s.variante).map((s) => s.percorso));
-
-  const normali = [], pseo = [];
+// buona parte anche per Google: devono essere tutte collegate da un'altra.
+function paginaOrfane() {
+  const fuori = [];
   for (const p of PAGINE) {
     const url = p.ctx.url;
     if (url === '/') continue;
     const quanti = PAGINE.filter((q) => q.rel !== p.rel && q.html.indexOf('href="' + url + '"') !== -1).length;
     if (quanti > 0) continue;
-    if (varianti.has(url)) { pseo.push(url); continue; }
-    // Una pagina noindex che non sia una variante (come /condividi/, dove si
-    // arriva dal menu Condividi del telefono) non e' fatta per essere trovata
-    // navigando: non conta come orfana.
+    // Una pagina noindex (come /condividi/, dove si arriva dal menu Condividi
+    // del telefono) non e' fatta per essere trovata navigando.
     if (/<meta name="robots" content="noindex/.test(p.html)) continue;
-    normali.push(url);
+    fuori.push(url);
   }
-  return { normali: normali, pseo: pseo };
+  return fuori;
 }
 
 test('nessuna pagina normale e raggiungibile solo dal sitemap', () => {
-  assert.deepStrictEqual(linkEntranti().normali, [],
+  assert.deepStrictEqual(paginaOrfane(), [],
     'queste pagine non sono collegate da nessun altra: aggiungile alla landing della categoria');
-});
-
-test('le varianti pSEO orfane sono almeno fuori dall indice', () => {
-  // Non le collega nessuna pagina: per Google esisterebbero solo come
-  // duplicati dell'originale. Finche' restano orfane devono avere il noindex.
-  const orfaneIndicizzabili = linkEntranti().pseo.filter((url) => {
-    const pagina = PAGINE.find((p) => p.ctx.url === url);
-    return !/<meta\b[^>]*name="robots"[^>]*noindex/i.test(pagina.html);
-  });
-  assert.deepStrictEqual(orfaneIndicizzabili, []);
 });
 
 test('la pagina delle multe non perde i controlli che frenano lo sconto', () => {
