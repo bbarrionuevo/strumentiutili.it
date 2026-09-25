@@ -355,6 +355,7 @@
         link.click();
         link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
+        if (window.Prossimo) window.Prossimo.offri([new File([blob], link.download, { type: 'application/pdf' })], { dopo: btnGeneratePdf });
 
       } catch (err) {
         console.error('PDF Generation Error:', err);

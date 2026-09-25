@@ -62,10 +62,13 @@
       ['/pdf/dividi-pdf/', 'Dividere', 'Estrarre solo le pagine che servono'],
       ['/pdf/firma/', 'Firmare', 'Aggiungere la firma disegnata o una foto della firma'],
       ['/pdf/anonimizza/', 'Oscurare dati', 'Coprire in modo definitivo nomi, IBAN, indirizzi'],
+      ['/identita-burocrazia/proteggi-documento/', 'Proteggere un documento', 'Filigrana \u00abcopia per\u2026\u00bb su tutte le pagine'],
       ['/pdf/convertitore-pdfa/', 'Convertire in PDF/A', 'Il formato richiesto da PA e tribunali'],
       ['/ia/ocr-immagini/', 'Estrarre il testo', 'Riconoscere il testo di una scansione']
     ],
     foto: [
+      ['/identita-burocrazia/proteggi-documento/', 'Proteggere un documento', 'Filigrana e parti coperte prima di inviare la copia'],
+      ['/utilita-web/rimuovi-dati-foto/', 'Togliere posizione e dati', 'Senza perdere qualit\u00e0, prima di inviare la foto'],
       ['/pdf/jpg-in-pdf/', 'Creare un PDF', 'Una foto per pagina, in un unico file'],
       ['/utilita-web/convertitore-immagini/', 'Convertire o ridurre', 'Cambiare formato e peso delle immagini'],
       ['/ia/ocr-immagini/', 'Estrarre il testo', 'Riconoscere il testo nella foto']

@@ -338,6 +338,7 @@
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
         stato.textContent = 'PDF scaricato: controlla il documento e firmalo.';
+        if (window.Prossimo) window.Prossimo.offri([new File([blob], link.download, { type: 'application/pdf' })], { dopo: stato });
       } catch (err) {
         stato.textContent = '';
         errore.textContent = window.StrumentiErrors

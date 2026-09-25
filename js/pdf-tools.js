@@ -45,13 +45,15 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     return out;
   }
 
-  function downloadBlob(buffer, filename, type = 'application/pdf') {
+  // "dove": il messaggio dello strumento; sotto compare "E adesso?" (js/prossimo.js).
+  function downloadBlob(buffer, filename, type = 'application/pdf', dove = null) {
     const blob = new Blob([buffer], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = filename; 
     document.body.appendChild(a); a.click(); a.remove();
     // revoca differita: una revoca immediata può interrompere il download in alcuni browser
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+    if (dove && window.Prossimo) window.Prossimo.offri([new File([blob], filename, { type })], { dopo: dove });
   }
 
   // ==========================================
@@ -85,7 +87,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         }
         
         const resultBuffer = await pdfWorker.splitPdf(Comlink.transfer(arr, [arr]), pages);
-        downloadBlob(resultBuffer, 'documento_diviso.pdf');
+        downloadBlob(resultBuffer, file.name.replace(/\.pdf$/i, '') + '-pagine.pdf', 'application/pdf', msg);
         msg.textContent = 'PDF creato e scaricato.';
       } catch (e) {
         msg.textContent = window.StrumentiErrors ? window.StrumentiErrors.friendlyErrorMessage(e) : 'Errore nel Worker.';
@@ -211,7 +213,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
           organizerPages.map(p => ({ sourceId: p.sourceId, pageIndex: p.pageIndex }))
         );
 
-        downloadBlob(resultBuffer, 'documento_unito.pdf');
+        downloadBlob(resultBuffer, 'documento_unito.pdf', 'application/pdf', organizeMsg);
         organizeMsg && (organizeMsg.textContent = 'PDF scaricato con successo!');
       } catch (err) {
         console.error(err);
@@ -243,7 +245,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
           transferables.push(arr);
         }
         const resultBuffer = await pdfWorker.imagesToPdf(Comlink.transfer(payload, transferables));
-        downloadBlob(resultBuffer, 'images.pdf');
+        downloadBlob(resultBuffer, input.files.length === 1 ? input.files[0].name.replace(/\.[^.]+$/, '') + '.pdf' : 'foto.pdf', 'application/pdf', msg);
         msg.textContent = 'PDF creato e scaricato.';
       } catch (e) {
         console.error(e);
@@ -304,7 +306,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         if (dopo >= prima) {
           msg.textContent = `Il PDF ricompresso (${kb(dopo)}) non è più leggero dell'originale (${kb(prima)}): il file è già ottimizzato, usa l'originale.`;
         } else {
-          downloadBlob(resultBuffer, 'compressed.pdf');
+          downloadBlob(resultBuffer, input.files[0].name.replace(/\.pdf$/i, '') + '-compresso.pdf', 'application/pdf', msg);
           msg.textContent = `PDF compresso e scaricato: da ${kb(prima)} a ${kb(dopo)} (-${Math.round((1 - dopo / prima) * 100)}%).`;
         }
       } catch (e){
@@ -330,7 +332,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         msg.textContent = 'Elaborazione DOCX nel Worker...';
         const arr = await input.files[0].arrayBuffer();
         const resultBuffer = await pdfWorker.docxToPdf(Comlink.transfer(arr, [arr]));
-        downloadBlob(resultBuffer, input.files[0].name.replace(/\.docx$/i, '.pdf'));
+        downloadBlob(resultBuffer, input.files[0].name.replace(/\.docx$/i, '.pdf'), 'application/pdf', msg);
         msg.textContent = 'Conversione completata.';
       } catch (e){
         console.error(e);
@@ -457,7 +459,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
           vpPunti.height
         );
 
-        downloadBlob(resultBuffer, f.name.replace(/\.pdf$/i,'') + '-redacted.pdf');
+        downloadBlob(resultBuffer, f.name.replace(/\.pdf$/i,'') + '-oscurato.pdf', 'application/pdf', redactMsg);
         redactMsg.textContent = 'Redazione completata.';
       } catch (err) {
         console.error(err);
@@ -753,7 +755,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
           config
         );
 
-        downloadBlob(resultBuffer, file.name.replace(/\.pdf$/i, '') + '-firmato.pdf');
+        downloadBlob(resultBuffer, file.name.replace(/\.pdf$/i, '') + '-firmato.pdf', 'application/pdf', msg);
         avviso('Firma applicata: controlla il file scaricato.', false);
       } catch (e) {
         console.error("Errore Worker Firma:", e);

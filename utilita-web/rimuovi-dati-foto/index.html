@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Togliere posizione e dati EXIF dalle foto, senza perdere qualità — StrumentiUtili.it</title>
+  <meta name="description" content="Guarda cosa rivela una foto (posizione GPS, telefono, data, numero di serie) e toglilo prima di inviarla o pubblicarla. JPG e PNG, qualità identica, tutto nel browser: la foto non viene caricata." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/rimuovi-dati-foto/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Togliere la posizione e i dati EXIF dalle foto, nel browser" />
+  <meta property="og:description" content="Guarda cosa rivela una foto (posizione GPS, telefono, data, numero di serie) e toglilo prima di inviarla o pubblicarla. JPG e PNG, qualità identica, tutto nel browser: la foto non viene caricata." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/rimuovi-dati-foto/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/utilita-web/rimuovi-dati-foto/#app",
+        "name": "Togliere i dati nascosti dalle foto",
+        "url": "https://strumentiutili.it/utilita-web/rimuovi-dati-foto/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Richiede JavaScript. Funziona senza inviare dati a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Guarda cosa rivela una foto (posizione GPS, telefono, data, numero di serie) e toglilo prima di inviarla o pubblicarla. JPG e PNG, qualità identica, tutto nel browser: la foto non viene caricata.",
+        "featureList": [
+          "Mostra posizione GPS, data, modello del telefono, numero di serie e autore",
+          "Toglie EXIF, XMP, IPTC, commenti e miniatura",
+          "Nessuna ricompressione: pixel identici",
+          "Conserva profilo colore e, se vuoi, il verso della foto",
+          "JPG e PNG, più foto insieme",
+          "Nessun caricamento su server"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/rimuovi-dati-foto/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Cosa sono i dati EXIF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Informazioni che la fotocamera o il telefono scrivono dentro il file: data e ora, modello, impostazioni dello scatto e spesso le coordinate GPS. Non si vedono guardando la foto, ma chiunque riceva il file le può leggere con un programma qualsiasi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La foto perde qualità?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. I dati si tolgono tagliando dal file i blocchi che li contengono, senza ricomprimere l’immagine: i pixel restano identici e il file diventa solo un po’ più leggero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La foto viene caricata su un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Le foto vengono lette e pulite dal browser, sul tuo dispositivo, e non vengono salvate. Solo se tocchi «vedi sulla mappa» le coordinate si aprono su OpenStreetMap."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "WhatsApp non toglie già la posizione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quando mandi una foto normale, WhatsApp la comprime e di solito toglie i dati. Se la mandi come documento, per non perdere qualità, arriva il file originale con tutti i dati. Pulirla prima è il modo più sicuro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché dopo averla pulita la foto è girata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il telefono salva molte foto di lato e annota nei dati da che parte vanno girate. Lascia la spunta su «Tieni il verso della foto»: resta solo quell’informazione, che non dice niente di te."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funziona con le foto HEIC dell’iPhone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Qui si puliscono JPG e PNG senza toccare i pixel. Le HEIC si trasformano in JPG con Converti immagini, e il file nuovo non contiene dati. Spesso l’iPhone le converte già in JPG quando le scegli dal browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso pulire più foto insieme?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì: scegline quante vuoi, premi «Togli i dati» e poi condividile o scaricale tutte insieme. Il nome dei file resta lo stesso."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Utilità & Web",
+        "item": "https://strumentiutili.it/utilita-web/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Togliere i dati nascosti dalle foto",
+        "item": "https://strumentiutili.it/utilita-web/rimuovi-dati-foto/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block text-xs text-gray-500">Micro-strumenti gratuiti 100% client-side</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro</a>
+          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
+          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
+          <a href="/utilita-web/" class="text-indigo-600 font-semibold" aria-current="page">🛠️ Utilità</a>
+        </nav>
+
+        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/utilita-web/" class="hover:text-indigo-600 hover:underline">Utilità &amp; Web</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Togliere i dati nascosti dalle foto</span></li>
+        </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/rimuovi-dati-foto/" data-titolo="Togliere i dati nascosti dalle foto" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+      </nav>
+  <!-- /su:briciole -->
+
+
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Togliere i dati nascosti dalle foto</h1>
+      <p class="mt-3 text-gray-700 leading-relaxed">
+        Le foto del telefono portano con s&eacute; <strong>dove</strong> le hai scattate, <strong>quando</strong> e <strong>con che cosa</strong>. Non si vede guardandole, ma chi riceve il file lo pu&ograve; leggere: la foto dell&rsquo;armadio venduto su Vinted o della bici su Subito pu&ograve; dire l&rsquo;indirizzo di casa. Qui vedi cosa c&rsquo;&egrave; e lo togli, senza toccare l&rsquo;immagine.
+      </p>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6 mt-6" aria-labelledby="t-strumento">
+        <h2 id="t-strumento" class="text-xl font-bold text-gray-900 mb-1">Scegli le foto</h2>
+        <p class="text-sm text-gray-600 mb-4">JPG o PNG, anche pi&ugrave; di una alla volta.</p>
+        <label for="exf-file" id="exf-zona" class="block cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-7 text-center hover:border-indigo-400 hover:bg-indigo-50/40 transition">
+          <input id="exf-file" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" multiple data-condivisi class="sr-only" />
+          <span class="block text-sm font-semibold text-gray-800">Scegli le foto</span>
+          <span class="block text-xs text-gray-500 mt-1">oppure trascinale qui</span>
+        </label>
+        <p class="mt-3 text-xs text-emerald-800 flex items-start gap-1.5"><span aria-hidden="true">&#128274;</span><span>Le foto restano sul tuo dispositivo: vengono lette dal browser e non vengono caricate su nessun server.</span></p>
+
+        <ul id="exf-elenco" class="mt-5 space-y-3" aria-label="Foto scelte"></ul>
+
+        <div id="exf-azioni" hidden class="mt-5 pt-4 border-t border-gray-100 space-y-3">
+          <label class="flex items-start gap-2 text-sm text-gray-800 cursor-pointer">
+            <input id="exf-orientamento" type="checkbox" checked class="mt-0.5 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500" />
+            <span>Tieni il verso della foto <span class="text-gray-500">(consigliato: non &egrave; un dato personale e la foto non si gira)</span></span>
+          </label>
+          <div class="flex flex-wrap gap-3">
+            <button type="button" id="exf-pulisci" class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-sm transition">Togli i dati</button>
+            <button type="button" id="exf-condividi" hidden class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-sm transition">Condividi</button>
+            <button type="button" id="exf-scarica" hidden class="flex-1 sm:flex-none bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-sm transition">Scarica</button>
+          </div>
+        </div>
+        <p id="exf-riepilogo" class="mt-3 text-sm font-medium text-gray-800" aria-live="polite"></p>
+        <noscript><p class="mt-3 text-sm text-red-700">Per leggere e pulire le foto serve JavaScript.</p></noscript>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-passi">
+        <h2 id="t-passi" class="text-xl font-bold text-gray-900 mb-4">Come si fa</h2>
+        <ol class="space-y-4 text-sm leading-relaxed">
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span>
+            <div><p class="font-semibold text-gray-900">Scegli le foto</p><p class="text-gray-700 mt-0.5">Una o pi&ugrave;, JPG o PNG. Per ognuna vedi subito cosa rivela: il luogo (anche sulla mappa), la data, il telefono.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span>
+            <div><p class="font-semibold text-gray-900">Togli i dati</p><p class="text-gray-700 mt-0.5">Spariscono posizione, data, modello, numero di serie, autore, commenti e miniatura. I pixel non si toccano: la qualit&agrave; resta identica.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
+            <div><p class="font-semibold text-gray-900">Invia o salva</p><p class="text-gray-700 mt-0.5">Con &laquo;Condividi&raquo; la mandi direttamente su WhatsApp, Vinted, Subito o per email; dal computer premi &laquo;Scarica&raquo;.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-dentro">
+        <h2 id="t-dentro" class="text-xl font-bold text-gray-900 mb-3">Cosa c&rsquo;&egrave; dentro una foto</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Quando scatti, il telefono scrive nel file una scheda di informazioni chiamata <strong>EXIF</strong>. Le pi&ugrave; delicate:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Posizione GPS</strong>: le coordinate del punto in cui eri, precise a pochi metri. Se la foto &egrave; fatta in casa, &egrave; il tuo indirizzo.</li>
+            <li><strong>Data e ora</strong> dello scatto, al secondo.</li>
+            <li><strong>Modello del telefono</strong> e a volte il <strong>numero di serie</strong> della fotocamera, che collega fra loro foto pubblicate con nomi diversi.</li>
+            <li><strong>Autore</strong>: alcuni telefoni e programmi scrivono il nome del proprietario.</li>
+            <li><strong>Miniatura</strong>: una copia piccola della foto. Alcuni programmi non la aggiornano quando ritagli: dentro la foto ritagliata resta quella intera.</li>
+          </ul>
+          <p>Si aggiungono spesso blocchi <strong>XMP</strong> (la storia delle modifiche fatte con i programmi di fotoritocco) e <strong>IPTC</strong> (didascalie, parole chiave, copyright).</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-quando">
+        <h2 id="t-quando" class="text-xl font-bold text-gray-900 mb-3">Quando i dati arrivano a chi riceve la foto</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Dipende da come la mandi. Le app di chat e i social di solito tolgono questi dati quando comprimono la foto. Ma se la mandi <strong>come documento o file</strong> (per non perdere qualit&agrave;), per <strong>email</strong>, con un link a <strong>Google Drive, Dropbox o iCloud</strong>, o la pubblichi su un sito o un forum, arriva il file originale con tutto quello che contiene.</p>
+          <p>Le regole delle singole app cambiano nel tempo e non sempre sono scritte da qualche parte. Togliere i dati prima di inviare &egrave; il modo pi&ugrave; semplice per non dipendere da loro.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-qualita">
+        <h2 id="t-qualita" class="text-xl font-bold text-gray-900 mb-3">Perch&eacute; la qualit&agrave; non cambia</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Molti programmi &laquo;tolgono i dati&raquo; ricreando la foto: la aprono, la ricomprimono e la salvano di nuovo, e ogni volta si perde un po&rsquo; di dettaglio. Qui invece il file viene tagliato: si eliminano solo i blocchi che contengono i dati, mentre l&rsquo;immagine compressa resta la stessa, byte per byte.</p>
+          <p>Restano due cose che non dicono niente di te: il <strong>profilo colore</strong>, senza il quale i colori di alcune foto cambierebbero, e, se lasci la spunta, il <strong>verso</strong> della foto. Il telefono spesso salva le foto di lato e annota da che parte vanno girate: senza quell&rsquo;informazione alcuni programmi le mostrerebbero coricate.</p>
+          <p>Le foto <strong>HEIC</strong> dell&rsquo;iPhone e le <strong>WebP</strong> non si possono tagliare cos&igrave;: con <a href="/utilita-web/convertitore-immagini/" class="text-indigo-700 underline">Converti immagini</a> diventano JPG nuovi, senza dati.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-telefono">
+        <h2 id="t-telefono" class="text-xl font-bold text-gray-900 mb-3">Non salvare la posizione, dal telefono</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p><strong>iPhone</strong>: Impostazioni &rsaquo; Privacy e sicurezza &rsaquo; Localizzazione &rsaquo; Fotocamera &rsaquo; Mai. Per una foto sola, quando la condividi tocca &laquo;Opzioni&raquo; in alto e spegni &laquo;Posizione&raquo;.</p>
+          <p><strong>Android</strong>: apri l&rsquo;app Fotocamera, poi le impostazioni, e spegni &laquo;Tag posizione&raquo; o &laquo;Salva posizione&raquo; (il nome cambia a seconda del modello).</p>
+          <p>Cos&igrave; le foto nuove nascono senza coordinate. Quelle gi&agrave; scattate le conservano: per quelle serve pulirle.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-faq">
+        <h2 id="t-faq" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa sono i dati EXIF?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Informazioni che la fotocamera o il telefono scrivono dentro il file: data e ora, modello, impostazioni dello scatto e spesso le coordinate GPS. Non si vedono guardando la foto, ma chiunque riceva il file le può leggere con un programma qualsiasi.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La foto perde qualità?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. I dati si tolgono tagliando dal file i blocchi che li contengono, senza ricomprimere l’immagine: i pixel restano identici e il file diventa solo un po’ più leggero.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La foto viene caricata su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Le foto vengono lette e pulite dal browser, sul tuo dispositivo, e non vengono salvate. Solo se tocchi «vedi sulla mappa» le coordinate si aprono su OpenStreetMap.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">WhatsApp non toglie già la posizione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Quando mandi una foto normale, WhatsApp la comprime e di solito toglie i dati. Se la mandi come documento, per non perdere qualità, arriva il file originale con tutti i dati. Pulirla prima è il modo più sicuro.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perché dopo averla pulita la foto è girata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il telefono salva molte foto di lato e annota nei dati da che parte vanno girate. Lascia la spunta su «Tieni il verso della foto»: resta solo quell’informazione, che non dice niente di te.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona con le foto HEIC dell’iPhone?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Qui si puliscono JPG e PNG senza toccare i pixel. Le HEIC si trasformano in JPG con Converti immagini, e il file nuovo non contiene dati. Spesso l’iPhone le converte già in JPG quando le scegli dal browser.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso pulire più foto insieme?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sì: scegline quante vuoi, premi «Togli i dati» e poi condividile o scaricale tutte insieme. Il nome dei file resta lo stesso.</p>
+          </details>
+      </section>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-bold text-gray-900 mb-3">Strumenti collegati</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition">Converti immagini</a></li>
+          <li><a href="/identita-burocrazia/proteggi-documento/" class="hover:text-indigo-600 transition">Proteggere un documento</a></li>
+          <li><a href="/utilita-web/pulisci-link/" class="hover:text-indigo-600 transition">Pulire un link</a></li>
+          <li><a href="/pdf/jpg-in-pdf/" class="hover:text-indigo-600 transition">Foto in PDF</a></li>
+          <li><a href="/utilita-web/" class="hover:text-indigo-600 transition font-semibold">Tutti gli strumenti Utilit&agrave; &amp; Web &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="6912312067"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+      style="display:block;width:100%;min-width:250px;"
+      data-ad-client="ca-pub-9434300808171957"
+      data-ad-slot="1157333219"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Micro-strumenti gratuiti. I calcoli avvengono nel browser: i tuoi dati non lasciano il dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/exif.js"></script>
+  <script defer src="/js/exif-ui.js"></script>
+  <script defer src="/js/prossimo.js"></script>
+  <script defer src="/js/condivisi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

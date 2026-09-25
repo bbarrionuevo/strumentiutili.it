@@ -319,9 +319,11 @@
         const pdfBlob = new Blob([pdfBuffer], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdfBlob);
 
-        const a = document.createElement('a'); a.href = url; a.download = `Documento_Scansionato_${Date.now()}.pdf`;
+        const nome = `Documento_Scansionato_${Date.now()}.pdf`;
+        const a = document.createElement('a'); a.href = url; a.download = nome;
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1500);
+        if (window.Prossimo) window.Prossimo.offri([new File([pdfBlob], nome, { type: 'application/pdf' })], { dopo: btnGeneratePdf });
       } catch (err) {
         alert('Errore nella generazione del PDF.');
       } finally {
