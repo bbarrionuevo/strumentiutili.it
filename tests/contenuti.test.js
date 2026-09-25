@@ -15,10 +15,6 @@ const PAGINE = C.pagineIndicizzabili();
 // Pagine con il vecchio trattato ancora da riscrivere in italiano semplice.
 // La lista puo' solo accorciarsi: quando una pagina e' riscritta, va tolta.
 const DA_RISCRIVERE = new Set([
-  'cittadino-tasse/analizzatore-bolletta/index.html',
-  'cittadino-tasse/modello-rli/index.html',
-  'cittadino-tasse/passaggio-di-proprieta/index.html',
-  'cittadino-tasse/simulatore-pensione/index.html',
   'fisco-professioni/calcolo-iva/index.html',
   'fisco-professioni/calcolo-rata-mutuo/index.html',
   'fisco-professioni/contributo-unificato/index.html',

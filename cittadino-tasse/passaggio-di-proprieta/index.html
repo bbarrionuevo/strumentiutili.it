@@ -13,7 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calcolo Costo Passaggio di Proprietà Auto e Moto (IPT) — StrumentiUtili.it</title>
-  <meta name="description" content="Calcola online i costi per il passaggio di proprietà auto e moto. Simula l'IPT provinciale esatta, bolli PRA e Motorizzazione in tempo reale e offline." />
+  <meta name="description" content="Calcola il costo del passaggio di proprietà di auto e moto usate: IPT della tua provincia, costi fissi PRA e Motorizzazione, veicoli con più di 30 anni." />
   <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/passaggio-di-proprieta/" />
   <meta property="og:locale" content="it_IT" />
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png" />
@@ -142,26 +142,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Chi paga il passaggio di proprietà, chi compra o chi vende?",
+            "name": "Chi paga il passaggio di proprietà?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La legge non ripartisce la spesa: la richiesta di trascrizione spetta all'acquirente e per consuetudine è lui a pagare IPT e costi fissi. Le parti possono accordarsi diversamente, ad esempio includendo il costo nel prezzo, ma verso gli uffici risponde chi presenta la pratica."
+              "text": "La legge non lo dice: la pratica spetta a chi compra e di solito è lui a pagare IPT e costi fissi. Le parti possono accordarsi diversamente, per esempio includendo il costo nel prezzo."
             }
           },
           {
             "@type": "Question",
-            "name": "Dopo il passaggio di proprietà bisogna pagare di nuovo il bollo auto?",
+            "name": "Dopo il passaggio devo pagare di nuovo il bollo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, se il periodo è già coperto: il bollo è legato al veicolo e il pagamento fatto dal venditore resta valido fino alla scadenza. Dal periodo successivo paga il nuovo proprietario. Il venditore non ha diritto a rimborsi per i mesi residui."
+              "text": "No, se il periodo è già pagato: il bollo segue il veicolo e resta valido fino alla scadenza. Dal periodo successivo paga il nuovo proprietario. Il venditore non ha diritto a rimborsi."
             }
           },
           {
             "@type": "Question",
-            "name": "Si può fare il passaggio di proprietà senza agenzia?",
+            "name": "Si può fare senza agenzia?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Le parti possono presentarsi a uno Sportello telematico dell'automobilista presso il PRA o la Motorizzazione con il documento del veicolo e i documenti di identità, oppure autenticare prima la firma del venditore in Comune. Si pagano solo i costi fissi e l'IPT calcolati dal simulatore."
+              "text": "Sì: basta andare a uno sportello STA del PRA o della Motorizzazione con il documento del veicolo e i documenti d’identità. Si pagano solo costi fissi e IPT."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quale provincia conta per l’IPT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quella di residenza di chi compra, o della sede legale se compra una società. Non contano la provincia del venditore né quella di immatricolazione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché per la moto pago solo i costi fissi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per il passaggio di proprietà delle moto l’IPT non è dovuta. Fanno eccezione quelle con più di 30 anni, che pagano 25,82 €."
             }
           }
         ]
@@ -260,7 +276,7 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Calcolo Costo Passaggio di Proprietà</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Simula i costi vivi per l'acquisto di un'auto o moto usata. L'algoritmo calcola l'Imposta Provinciale di Trascrizione (IPT) esatta per la tua provincia, integrando emolumenti PRA e bolli virtuali.
+          Quanto costa il passaggio di proprietà di un'auto o di una moto usata: imposta provinciale di trascrizione (IPT) della tua provincia, più emolumenti del PRA, bolli e diritti della Motorizzazione.
         </p>
       </section>
 
@@ -275,11 +291,11 @@
               </div>
               <select data-guida="guida-pdp-veicolo" aria-describedby="guida-pdp-veicolo" id="calc-veicolo" name="calc-veicolo" class="w-full border border-gray-300 px-4 py-2.5 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
                 <option value="auto">Automobile</option>
-                <option value="moto">Motociclo (Esente IPT)</option>
+                <option value="moto">Motociclo</option>
               </select>
               <div id="guida-pdp-veicolo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Automobile:</strong> autovetture, autocarri leggeri e camper immatricolati come autoveicoli: l'IPT dipende dalla potenza.</p>
-                <p><strong class="text-indigo-900">Motociclo:</strong> per le moto il simulatore applica solo un importo IPT forfettario ridotto, senza calcolo sui kW. Poiché le tariffe dei motoveicoli possono variare con la provincia, prima del pagamento conviene verificare l'importo con il servizio di calcolo dell'ACI o allo sportello.</p>
+                <p><strong class="text-indigo-900">Motociclo:</strong> per il passaggio di proprietà di una moto l'IPT non si paga, qualunque sia la potenza: restano solo i costi fissi. Fanno eccezione le moto con più di 30 anni (vedi la casella qui sotto).</p>
               </div>
             </div>
             
@@ -335,6 +351,18 @@
               <div id="guida-pdp-provincia" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Quale indicare:</strong> la provincia di residenza di chi compra, o della sede legale se l'acquirente è una società: l'IPT spetta a quella provincia, non a quella del venditore o dell'immatricolazione.</p>
                 <p><strong class="text-indigo-900">Maggiorazioni:</strong> ogni provincia può aumentare la tariffa base fino al 30%, e la maggior parte applica il massimo. Se la tua non compare fra quelle con maggiorazione dedicata, il simulatore usa il +30%.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-indigo-50 transition">
+                <input data-guida="guida-pdp-storico" aria-describedby="guida-pdp-storico" type="checkbox" id="calc-storico" name="calc-storico" class="rounded text-indigo-600 focus:ring-indigo-500 h-5 w-5">
+                <span class="text-sm text-gray-800 font-bold">Veicolo con più di 30 anni</span>
+              </label>
+              <button type="button" data-guida-toggle="guida-pdp-storico" aria-expanded="false" aria-controls="guida-pdp-storico" aria-label="Guida al campo Veicolo con più di 30 anni" class="inline-flex items-center justify-center px-2 py-0.5 rounded-full gap-1 bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ Quando vale?</button>
+              <div id="guida-pdp-storico" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Importo fisso:</strong> per i veicoli costruiti da più di 30 anni e non usati per lavoro l'IPT è fissa: 51,65 € per le auto e 25,82 € per le moto, senza maggiorazione della provincia e senza calcolo sui kW.</p>
+                <p><strong class="text-indigo-900">Va chiesta:</strong> l'agevolazione non è automatica, si indica nella domanda presentata al PRA.</p>
               </div>
             </div>
 
@@ -439,155 +467,75 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Costi, Sanzioni e Imposta Provinciale di Trascrizione (IPT)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il perfezionamento della compravendita di un veicolo usato non si esaurisce con l'accordo tra le parti, ma richiede la trascrizione del trasferimento di proprietà presso i registri pubblici nazionali. L'architettura burocratica italiana ha recentemente unificato i supporti cartacei (Certificato di Proprietà e Libretto di Circolazione) nel nuovo Documento Unico di Circolazione (DUC), introdotto dal D.Lgs. 98/2017. L'impalcatura dei costi è tuttavia rimasta frammentata tra tributi statali insopprimibili e imposte a competenza territoriale provinciale. Il presente compendio analizza matematicamente i costi fissi, le variabili dell'IPT e il regime sanzionatorio annesso alla trascrizione tardiva.
-        </p>
-        
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>1.</span> Costi Fissi Amministrativi: Emolumenti PRA e Diritti di Motorizzazione</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>A prescindere dalla cilindrata o dalla potenza del veicolo, lo Stato italiano richiede una serie di versamenti fissi finalizzati alla copertura delle spese di istruttoria e di archiviazione informatica della pratica. L'aggiornamento del Documento Unico (DUC) si scompone in quattro voci principali di spesa, regolate dal D.P.R. 358/2000:</p>
-            <ul class="list-disc pl-5 space-y-2 mb-4">
-              <li><strong>Emolumenti ACI (PRA):</strong> Fissati in misura invariabile a 27,00 € per l'iscrizione nel Pubblico Registro Automobilistico.</li>
-              <li><strong>Imposta di Bollo PRA:</strong> Assoggettata a 32,00 € per l'utilizzo dell'istanza telematica o del Modello NP3C digitale. Qualora si utilizzi il vecchio formato cartaceo non telematico (evento sempre più raro), tale imposta lievita a 48,00 €.</li>
-              <li><strong>Diritti di Motorizzazione Civile (DTT):</strong> Quota di competenza del Dipartimento Trasporti Terrestri pari a 10,20 €.</li>
-              <li><strong>Imposta di Bollo per rilascio DUC:</strong> Pari a 16,00 €, necessari per l'emissione del nuovo tagliando o del Documento Unico aggiornato.</li>
-            </ul>
-            <p>La somma di queste componenti amministrative obbligatorie determina un costo fisso di base, ineliminabile per qualsiasi tipologia di compravendita, pari a 85,20 €.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Quanto costa il passaggio di propriet&agrave; di un&rsquo;auto o di una moto</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il costo si divide in due parti: i costi fissi, uguali per tutti, e l&rsquo;imposta provinciale di trascrizione (IPT), che per le auto dipende dalla potenza e dalla provincia di chi compra. Se ti affidi a un&rsquo;agenzia si aggiunge il suo compenso.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scegli auto o moto.</li>
+            <li>Per le auto scrivi i kW: li trovi nel campo P.2 del libretto. Se hai solo i cavalli, dividili per 1,36.</li>
+            <li>Scegli la provincia di residenza di chi compra.</li>
+            <li>Spunta le caselle per un veicolo con pi&ugrave; di 30 anni o se passi da un&rsquo;agenzia.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le voci del costo</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Costi fissi, 85,20 &euro;:</strong> emolumenti ACI per il PRA, imposte di bollo e diritti della Motorizzazione.</li>
+            <li><strong>IPT per le auto fino a 53 kW:</strong> 150,81 &euro;.</li>
+            <li><strong>IPT per le auto oltre 53 kW:</strong> 3,5119 &euro; per ogni kW, su tutta la potenza e non solo sulla parte sopra la soglia.</li>
+            <li><strong>Maggiorazione provinciale:</strong> ogni provincia pu&ograve; aumentare l&rsquo;IPT fino al 30% e quasi tutte applicano il massimo. Trento, Bolzano e Aosta non la applicano.</li>
+            <li><strong>Moto:</strong> per il passaggio di propriet&agrave; l&rsquo;IPT non si paga.</li>
+            <li><strong>Veicoli con pi&ugrave; di 30 anni</strong> non usati per lavoro: IPT fissa di 51,65 &euro; per le auto e 25,82 &euro; per le moto, senza maggiorazione. Va chiesta nella domanda al PRA.</li>
+          </ul>
+          <p>L&rsquo;IPT si paga arrotondata all&rsquo;euro. Chi ha diritto alle agevolazioni auto per le persone con disabilit&agrave; pu&ograve; essere esente dall&rsquo;IPT: le condizioni vanno verificate allo sportello.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi con maggiorazione del 30%</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Veicolo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">IPT</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Totale senza agenzia</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Utilitaria da 51 kW</td><td class="px-3 py-2 align-top">150,81 &times; 1,30 = 196 &euro;</td><td class="px-3 py-2 align-top">281,20 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Auto da 54 kW</td><td class="px-3 py-2 align-top">54 &times; 3,5119 &times; 1,30 = 247 &euro;</td><td class="px-3 py-2 align-top">332,20 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Station wagon da 110 kW</td><td class="px-3 py-2 align-top">110 &times; 3,5119 &times; 1,30 = 502 &euro;</td><td class="px-3 py-2 align-top">587,20 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Moto di qualsiasi potenza</td><td class="px-3 py-2 align-top">0 &euro;</td><td class="px-3 py-2 align-top">85,20 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>2.</span> L'Imposta Provinciale di Trascrizione (IPT) e il Moltiplicatore Regionale</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La componente economica più gravosa del passaggio di proprietà è l'IPT, la cui architettura impositiva è delineata dal Decreto Legislativo n. 446/1997. Si tratta di un'imposta variabile, calcolata non in base al valore commerciale dell'autovettura, bensì in funzione della sua potenza netta, espressa in Kilowatt (kW) al rigo P.2 della carta di circolazione.</p>
-            <p>Il Ministero dell'Economia e delle Finanze ha stabilito uno spartiacque tecnico fissato a 53 kW. Per tutte le automobili la cui potenza rientra in questo limite (sostanzialmente le city car di piccola cilindrata), la tariffa statale è forfettaria e ammonta a 150,81 €. Per i veicoli che superano tale soglia, l'imposta diventa direttamente proporzionale alla potenza, applicando una quota fissa di 3,5119 € per ogni singolo Kilowatt posseduto dal veicolo.</p>
-            <p>Il fattore dirimente è però rappresentato dalla <strong>discrezionalità delle Province (ex D.M. 435/1998)</strong>. La norma consente a ciascuna amministrazione provinciale di deliberare una maggiorazione percentuale sulla tariffa base ministeriale, fino a un tetto massimo del +30%. A causa di storici deficit di bilancio locale, la quasi totalità delle 107 province italiane ha adottato l'aliquota massima (+30%), elevando di fatto il costo per kW a 4,5655 € e l'importo base per le auto piccole a 196,05 €. Costituiscono rara eccezione le Province Autonome di Trento, Bolzano e Aosta (maggiorazione 0%), e una manciata di altre province come Arezzo, Vicenza e Ferrara (che si attestano al +20%).</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>3.</span> Deroghe, Esenzioni Totali e Veicoli Storici (Legge 104)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>L'ordinamento giuridico italiano contempla specifici esoneri e abbattimenti tariffari per tutelare particolari categorie sociali o per la preservazione del patrimonio motoristico nazionale:</p>
-            <ul class="list-disc pl-5 space-y-2 mb-4">
-              <li><strong>Motocicli:</strong> I mezzi a due ruote godono di un'esenzione totale e storica dal pagamento dell'IPT. Di conseguenza, il passaggio di proprietà di una moto comporta unicamente l'esborso dei costi fissi amministrativi (circa 85,20 €), prescindendo dalla cilindrata o dai Kilowatt.</li>
-              <li><strong>Veicoli Storici:</strong> Le autovetture e i motoveicoli che hanno compiuto il trentesimo anno di età (dalla data di costruzione o immatricolazione) e sono in possesso del Certificato di Rilevanza Storica (ASI/FMI), beneficiano di una IPT ridotta in misura fissa (generalmente fissata a 51,65 € per le auto e 25,82 € per le moto storiche), annullando il calcolo basato sui Kilowatt.</li>
-              <li><strong>Esenzioni Legge 104/1992:</strong> I soggetti portatori di handicap grave (art. 3, comma 3, Legge 104) o i familiari che li hanno fiscalmente a carico sono totalmente esentati dal pagamento dell'IPT. L'esenzione si applica a veicoli con cilindrata fino a 2000 cc (benzina) o 2800 cc (diesel). Permangono tuttavia i costi fissi amministrativi.</li>
-              <li><strong>Minivolture per Concessionari:</strong> La cessione del veicolo da un privato a un rivenditore autorizzato di auto usate (la cosiddetta "Legge Dini") prevede l'abbattimento totale dell'IPT e il pagamento dei soli emolumenti base.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>4.</span> Sportello Telematico (STA) vs "Fai da Te": Dinamiche di Costo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La transazione può essere finalizzata materialmente in due modalità. La prima consiste nell'approccio autonomo ("Fai da Te"): l'acquirente e il venditore si recano personalmente presso gli uffici periferici dell'ACI (PRA) o della Motorizzazione Civile. In questo scenario, le parti sostengono esattamente e unicamente gli importi generati da questo calcolatore, abbattendo ogni costo accessorio.</p>
-            <p>La seconda via, statisticamente predominante per convenienza logistica, prevede l'intermediazione di un'Agenzia di Pratiche Auto o di una delegazione ACI, abilitate come Sportello Telematico dell'Automobilista (STA) ex D.P.R. 358/2000. Queste strutture operano in regime di libero mercato e applicano un onorario per il servizio di autentica della firma (spesso in presenza di un delegato ex art. 7 L. 248/2006) e per la gestione telematica della pratica. Il costo di intermediazione in Italia oscilla in media tra gli 80 € e i 150 €, a seconda della zona geografica e della complessità della documentazione. Il nostro simulatore offre un toggle dedicato per stimare forfettariamente questo costo accessorio.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Regime Sanzionatorio, Ritiro Libretto e Termini di Legge</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Qual è la tempistica legale per completare il passaggio di proprietà?</h4>
-              <p>L'Articolo 94 del Codice della Strada fissa un termine perentorio di <strong>60 giorni</strong> dalla data in cui le parti hanno formalmente apposto e autenticato le proprie firme sull'atto di vendita. Entro questa ristretta finestra temporale, l'acquirente ha il dovere di notificare il trasferimento al PRA e richiedere l'aggiornamento della carta di circolazione, al fine di tutelare il principio della certezza giuridica dei traffici commerciali e delle relative responsabilità civili.</p>
-            </div>
-
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Cosa rischia chi circola senza aver trascritto il passaggio di proprietà?</h4>
-              <p>La circolazione su suolo pubblico con un veicolo la cui proprietà non è stata regolarmente trascritta nei registri del PRA costituisce un illecito grave. Le forze dell'ordine, qualora intercettino il veicolo durante un controllo stradale dopo lo scadere dei 60 giorni, sono tenute ad applicare una sanzione amministrativa pecuniaria che varia da <strong>727,00 € a 3.629,00 €</strong>. Inoltre, viene applicata la sanzione accessoria del <strong>ritiro immediato della carta di circolazione</strong>, rendendo il veicolo intrasferibile e inutilizzabile fino all'avvenuta regolarizzazione della pratica presso la Motorizzazione.</p>
-            </div>
-
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Cosa accade se si supera il termine dei 60 giorni ma non si viene fermati su strada?</h4>
-              <p>Anche se il veicolo rimane fermo in un garage privato e non viene intercettato da alcuna pattuglia, il ritardo nella registrazione fa scattare inesorabilmente le sanzioni di natura puramente fiscale. L'omissione tardiva configura un mancato versamento dell'Imposta Provinciale di Trascrizione (IPT). In questo caso entra in gioco l'istituto del <strong>Ravvedimento Operoso</strong> (ex D.Lgs. 472/1997 e aggiornato con il D.Lgs. 87/2024). L'acquirente dovrà pagare non solo l'IPT base e le imposte fisse, ma dovrà assoggettare l'IPT non versata a una sanzione percentuale (pari al 25% dell'imposta, ridotta al 12,5% per i ritardi entro 90 giorni e ulteriormente ridotta con il ravvedimento, per le violazioni commesse dal 1° settembre 2024), maggiorata degli interessi moratori calcolati al tasso legale annuo maturati giorno per giorno.</p>
-            </div>
-          </div>
-        </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti riguardano automobili acquistate da privati e sono stati riprodotti nel simulatore della pagina. I costi fissi di 85,20 € comprendono emolumenti PRA, bolli e diritti della Motorizzazione.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: utilitaria da 51 kW in una provincia con maggiorazione del 30%</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>IPT: tariffa fissa 150,81 € × 1,30 = 196,05 €, arrotondati a 196 €</li>
-            <li>Costi fissi: 85,20 €</li>
-            <li>Totale fai da te: 281,20 €</li>
-            </ul>
-            <p>Per un'auto usata da 3.000 € il passaggio vale quasi il 10% del prezzo: conviene considerarlo nella trattativa.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: station wagon da 110 kW a Milano, tramite agenzia</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>IPT base: 110 × 3,5119 = 386,31 €</li>
-            <li>Con maggiorazione del 30%: 502,20 €, arrotondati a 502 €</li>
-            <li>Costi fissi: 85,20 €; agenzia stimata: 100,00 €</li>
-            <li>Totale: 687,20 € (587,20 € senza agenzia)</li>
-            </ul>
-            <p>La potenza pesa più della provincia: la stessa auto in una provincia con maggiorazione del 20% pagherebbe 464 € di IPT, 38 € in meno.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: 53 kW o 54 kW, il salto della soglia</h3>
-            <p>Due versioni dello stesso modello differiscono di un solo kW. Con la maggiorazione del 30%:</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>53 kW: 150,81 × 1,30 = 196 €, totale 281,20 €</li>
-            <li>54 kW: 54 × 3,5119 × 1,30 = 246,54 €, arrotondati a 247 €, totale 332,20 €</li>
-            </ul>
-            <p>Un kW in più costa 51 € al passaggio di proprietà, perché oltre la soglia la tariffa si applica a tutti i kW. Controllare il campo P.2 del libretto prima di confrontare due annunci evita sorprese.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Chi paga il passaggio di proprietà, chi compra o chi vende?</h3>
-            <p>La legge non ripartisce la spesa: la richiesta di trascrizione spetta all'acquirente e per consuetudine è lui a pagare IPT e costi fissi. Le parti possono accordarsi diversamente, ad esempio includendo il costo nel prezzo, ma verso gli uffici risponde chi presenta la pratica.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Dopo il passaggio di proprietà bisogna pagare di nuovo il bollo auto?</h3>
-            <p>No, se il periodo è già coperto: il bollo è legato al veicolo e il pagamento fatto dal venditore resta valido fino alla scadenza. Dal periodo successivo paga il nuovo proprietario. Il venditore non ha diritto a rimborsi per i mesi residui.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Si può fare il passaggio di proprietà senza agenzia?</h3>
-            <p>Sì. Le parti possono presentarsi a uno Sportello telematico dell'automobilista presso il PRA o la Motorizzazione con il documento del veicolo e i documenti di identità, oppure autenticare prima la firma del venditore in Comune. Si pagano solo i costi fissi e l'IPT calcolati dal simulatore.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore dei costi di passaggio di proprietà funziona <strong>interamente lato client, in architettura zero-backend</strong>. La potenza del veicolo, la provincia di residenza, la tipologia del mezzo e ogni altro parametro che inserisci sono elaborati dal motore JavaScript del browser sul tuo dispositivo, senza alcuna trasmissione verso l'esterno.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Non raccogliamo targhe, numeri di telaio, dati anagrafici dell'acquirente o del venditore, e non disponiamo di alcuna infrastruttura in grado di riceverli. Questa impostazione assicura la piena conformità al Regolamento UE 2016/679 (GDPR): i dati identificativi di un veicolo, se incrociati con la residenza del proprietario, costituiscono un dato personale a tutti gli effetti, e il modo più solido di proteggerli è non acquisirli. Lo strumento attua così i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dei dati dell'articolo 5.</p>
+          <p>Fra 53 e 54 kW ci sono 51 &euro; di differenza: sopra la soglia la tariffa vale per tutti i kW. Se confronti due annunci, guarda il campo P.2 del libretto.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Da solo o con l&rsquo;agenzia</h3>
+          <p>Venditore e acquirente possono andare insieme a uno Sportello telematico dell&rsquo;automobilista (STA) presso il PRA o la Motorizzazione, oppure autenticare prima la firma del venditore in Comune: si pagano solo costi fissi e IPT. Un&rsquo;agenzia di pratiche auto fa tutto per te, con un compenso che varia da zona a zona; lo strumento lo stima in 100 &euro;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Tempi e sanzioni</h3>
+          <p>La richiesta di trascrizione va fatta entro 60 giorni dall&rsquo;autentica della firma (art. 94 del Codice della strada). Chi circola dopo la scadenza senza aver aggiornato il documento rischia una sanzione amministrativa e il ritiro della carta di circolazione. Anche se l&rsquo;auto resta ferma, il ritardo nel pagare l&rsquo;IPT comporta sanzioni e interessi, riducibili con il ravvedimento operoso.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi paga il passaggio di propriet&agrave;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La legge non lo dice: la pratica spetta a chi compra e di solito &egrave; lui a pagare IPT e costi fissi. Le parti possono accordarsi diversamente, per esempio includendo il costo nel prezzo.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dopo il passaggio devo pagare di nuovo il bollo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se il periodo &egrave; gi&agrave; pagato: il bollo segue il veicolo e resta valido fino alla scadenza. Dal periodo successivo paga il nuovo proprietario. Il venditore non ha diritto a rimborsi.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si pu&ograve; fare senza agenzia?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: basta andare a uno sportello STA del PRA o della Motorizzazione con il documento del veicolo e i documenti d&rsquo;identit&agrave;. Si pagano solo costi fissi e IPT.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quale provincia conta per l&rsquo;IPT?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Quella di residenza di chi compra, o della sede legale se compra una societ&agrave;. Non contano la provincia del venditore n&eacute; quella di immatricolazione.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; per la moto pago solo i costi fissi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per il passaggio di propriet&agrave; delle moto l&rsquo;IPT non &egrave; dovuta. Fanno eccezione quelle con pi&ugrave; di 30 anni, che pagano 25,82 &euro;.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 15 dicembre 1997, n. 446, art. 56: imposta provinciale di trascrizione e maggiorazioni.</li>
+          <li>D.M. 27 novembre 1998, n. 435: tariffe IPT.</li>
+          <li>Legge 21 novembre 2000, n. 342, art. 63: veicoli con pi&ugrave; di 30 anni.</li>
+          <li>Codice della strada, art. 94: termine di 60 giorni.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Gli importi sono una stima: il totale esatto te lo conferma lo sportello o l&rsquo;agenzia prima del pagamento.</p>
+      </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>

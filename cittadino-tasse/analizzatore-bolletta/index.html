@@ -22,7 +22,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Analizzatore Bolletta Luce 3.0 (OCR) — StrumentiUtili.it</title>
-  <meta name="description" content="Carica la tua bolletta elettrica in PDF. L'intelligenza artificiale estrae i costi in locale e ti avvisa se la tua tariffa sul mercato libero è troppo cara (PUN vs Spread)." />
+  <meta name="description" content="Carica la bolletta della luce e scopri se prezzo dell'energia e quota fissa sono in linea con il PUN. La bolletta resta sul tuo dispositivo." />
   <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/analizzatore-bolletta/" />
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
@@ -116,50 +116,58 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Perché la bolletta aumenta anche se il mio consumo resta identico?",
+            "name": "Perché la bolletta aumenta se consumo come prima?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nella maggior parte dei casi la causa non è il consumo ma una variazione delle condizioni economiche dopo la scadenza del periodo promozionale, oppure l'indicizzazione automatica al PUN in un contratto a prezzo variabile. Confrontando lo spread di due bollette successive si isola immediatamente la responsabilità: se il prezzo unitario è salito mentre il PUN è rimasto stabile, l'aumento è una scelta commerciale del venditore."
+              "text": "Di solito è finita la promozione e si applicano le condizioni standard, oppure il prezzo è legato al PUN e il PUN è salito. Confronta il prezzo per kWh di due bollette: se sale mentre il PUN è stabile, è aumentato il ricarico del venditore."
             }
           },
           {
             "@type": "Question",
-            "name": "Conviene di più un contratto a prezzo fisso o a prezzo variabile?",
+            "name": "Meglio prezzo fisso o variabile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il prezzo fisso acquista una copertura contro il rialzo e si paga con uno spread strutturalmente più alto, quindi conviene in fasi di forte volatilità o a chi abbia bisogno di certezza di spesa. Il prezzo variabile indicizzato al PUN costa mediamente meno nel lungo periodo ma espone alle oscillazioni del mercato all'ingrosso. La variabile decisiva non è il tipo di indicizzazione ma l'ampiezza dello spread applicato."
+              "text": "Il fisso ti protegge dai rialzi ma di solito ha un ricarico più alto. Il variabile legato al PUN costa in media meno ma segue il mercato. In entrambi i casi la cosa da confrontare è il ricarico sopra il PUN e la quota fissa."
             }
           },
           {
             "@type": "Question",
-            "name": "La quota fissa è davvero ineliminabile?",
+            "name": "Ho un’offerta variabile e lo strumento la giudica cara: perché?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Una parte della quota fissa corrisponde a costi regolati di commercializzazione, ma la componente aggiunta dal venditore è puramente commerciale e varia da zero a oltre duecento euro l'anno. Esistono offerte prive di quota fissa sulla materia energia: su utenze a basso consumo sono quasi sempre le più convenienti, perché il costo fisso incide in modo inversamente proporzionale ai kilowattora prelevati."
+              "text": "Lo strumento confronta il prezzo con un PUN medio fisso. In un mese di rincari anche un’offerta con ricarico basso può superare la soglia. Per le offerte variabili guarda lo spread scritto nelle condizioni del contratto."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa significa che una bolletta è stimata e non effettiva?",
+            "name": "Cosa vuol dire bolletta stimata?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Quando il distributore non acquisisce la lettura del contatore, il venditore fattura sulla base di un consumo presunto ricavato dallo storico. Alla lettura successiva scatta il conguaglio, che può risultare rilevante. Comunicare l'autolettura nei giorni indicati in fattura evita l'accumulo di partite differite e rende la spesa aderente al consumo reale."
+              "text": "Il distributore non ha letto il contatore e il venditore ha stimato i consumi. Alla lettura successiva arriva il conguaglio. Comunicare l’autolettura nei giorni indicati in bolletta evita sorprese."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso contestare un conguaglio molto elevato?",
+            "name": "Posso contestare un conguaglio alto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Il primo passo è il reclamo scritto al venditore, che deve rispondere entro i termini fissati dall'ARERA. Se il conguaglio riguarda consumi anteriori a due anni opera la prescrizione breve. In caso di risposta insoddisfacente si può attivare la procedura di conciliazione presso il Servizio Conciliazione dell'ARERA, gratuita e obbligatoria prima di un'eventuale azione giudiziaria."
+              "text": "Sì: prima con un reclamo scritto al venditore. Se la risposta non ti convince puoi rivolgerti gratis al Servizio Conciliazione di ARERA, passaggio obbligatorio prima di andare dal giudice."
             }
           },
           {
             "@type": "Question",
-            "name": "L'analizzatore sostituisce un comparatore ufficiale?",
+            "name": "Sostituisce un comparatore di offerte?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, e ha una funzione diversa. Un comparatore elenca offerte disponibili sul mercato; questo strumento diagnostica la bolletta che stai già pagando, isolando lo spread e la quota fissa per dirti se l'attuale contratto sia allineato ai valori di mercato. Per la ricerca di nuove offerte il riferimento istituzionale resta il Portale Offerte gestito dall'Acquirente Unico."
+              "text": "No. Lo strumento controlla l’offerta che stai già pagando. Per cercarne una nuova il sito pubblico di riferimento è il Portale Offerte di ARERA."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La bolletta viene inviata da qualche parte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Lettura e calcoli avvengono nel browser, sul tuo dispositivo. La bolletta non viene caricata su nessun server."
             }
           }
         ]
@@ -283,13 +291,13 @@
       
       <div class="mb-8 border-b border-gray-200 pb-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
-          <span>✨ Intelligenza Artificiale Locale</span>
+          <span>🔒 Lettura sul tuo dispositivo</span>
         </div>
         <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
           Analizzatore Bolletta Luce (Mercato Libero)
         </h1>
         <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Trascina il PDF o la foto della tua bolletta elettrica. L'algoritmo estrarrà i dati sensibili per dirti se il tuo gestore applica rincari abusivi rispetto all'indice PUN, lavorando unicamente all'interno del tuo computer (nessun invio in cloud).
+          Trascina il PDF o la foto della tua bolletta della luce: leggiamo il prezzo dell'energia e la quota fissa e ti diciamo se sono in linea con il mercato all'ingrosso (PUN). La bolletta viene letta sul tuo dispositivo e non viene inviata a nessuno.
         </p>
       </div>
 
@@ -437,214 +445,99 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Analisi della Bolletta 3.0, Algoritmi di Rilevamento Tariffario e Tutela della Privacy</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il Mercato Libero dell'energia in Italia è contrassegnato da un'elevata asimmetria informativa. Le compagnie energetiche diluiscono i reali margini di profitto all'interno di documenti densi di acronimi e voci regolamentate. Il processo di lettura ed estrazione di questi dati, storicamente ostico per il consumatore, trova oggi una soluzione tecnologica mediante l'impiego di motori OCR (Optical Character Recognition) e algoritmi di parsing sintattico eseguiti nativamente nel browser. L'adozione di un'architettura <strong>Zero-Backend</strong> assume qui un'importanza capitale: la fattura elettrica contiene dati ultra-sensibili, dalle coordinate POD ai consuntivi di prelievo, il cui caricamento su server cloud espone l'utente a gravi rischi di profilazione. Di seguito si esaminano le direttive strutturali dell'ARERA, i parametri operativi del PUN e la meccanica diagnostica applicata dal nostro software.
-        </p>
-
-        <!-- Accordion 1 -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚡</span> Delibera ARERA 315/2024/R/com e la struttura della "Bolletta 3.0"</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Dal 1° luglio 2025, l'Autorità di Regolazione per Energia Reti e Ambiente (ARERA) ha imposto un formato standardizzato e unificato, denominato "Bolletta 3.0", obbligatorio per tutti gli operatori del mercato libero. Questa standardizzazione fornisce al nostro parser OCR una griglia semantica prevedibile. Il documento si divide strutturalmente in due macro-sezioni primarie.
-            </p>
-            <p>
-              La prima pagina (Frontespizio Unificato) riporta i metadati contrattuali: il codice identificativo del punto di fornitura (POD), la potenza impegnata (es. 3 kW per un contatore domestico) e la sintesi degli oneri. La vera essenza del calcolo risiede nella seconda pagina, nominata <strong>"Scontrino dell'Energia"</strong>. Questa sezione isola in maniera granulare la logica algoritmica applicata dal fornitore, permettendo al software di discriminare tra i costi fissi commerciali e l'applicazione moltiplicativa della tariffa volumetrica sui kilowattora (kWh) prelevati.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come leggere la bolletta della luce e capire se paghi troppo</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>In bolletta solo una parte della spesa dipende dal contratto che hai scelto: il prezzo dell&rsquo;energia e la quota fissa del venditore. Trasporto, oneri di sistema e imposte sono uguali per tutti i fornitori. Lo strumento guarda proprio le due voci che puoi cambiare, cambiando offerta.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica il PDF della bolletta o una foto nitida. Nelle bollette nel nuovo formato ARERA i prezzi sono nello &laquo;Scontrino dell&rsquo;energia&raquo;, di solito a pagina 2.</li>
+            <li>Lo strumento cerca il prezzo dell&rsquo;energia in &euro;/kWh e la quota fissa mensile.</li>
+            <li>Controlla i valori letti: se uno &egrave; sbagliato cliccaci sopra e correggilo, il giudizio si aggiorna subito.</li>
+          </ol>
+          <p>I PDF con testo si leggono in un attimo; le foto e le scansioni passano dal riconoscimento del testo, che pu&ograve; richiedere qualche decina di secondi.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le quattro voci della spesa</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Materia energia:</strong> prezzo per kWh e quota fissa. &Egrave; l&rsquo;unica parte che cambia da un&rsquo;offerta all&rsquo;altra.</li>
+            <li><strong>Trasporto e gestione del contatore:</strong> tariffa decisa da ARERA, uguale per tutti.</li>
+            <li><strong>Oneri di sistema:</strong> anche questi fissati da ARERA.</li>
+            <li><strong>Imposte:</strong> accise e IVA, al 10% per le case e al 22% per gli altri usi. L&rsquo;IVA si calcola anche sulle altre voci, quindi un prezzo alto costa ancora di pi&ugrave; di quanto sembra.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come giudica lo strumento</h3>
+          <p>Il riferimento &egrave; il PUN, il prezzo medio all&rsquo;ingrosso dell&rsquo;energia in borsa, che lo strumento stima in 0,125 &euro;/kWh per il 2026. Il margine del venditore &egrave; la differenza fra il tuo prezzo e il PUN (lo &laquo;spread&raquo;).</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Prezzo fino a 0,165 &euro;/kWh (PUN + 0,04): in linea con il mercato.</li>
+            <li>Prezzo pi&ugrave; alto: il ricarico del venditore &egrave; alto e conviene guardare altre offerte.</li>
+            <li>Quota fissa oltre 120 &euro; l&rsquo;anno (10 &euro; al mese): costo fisso elevato. &Egrave; una soglia prudenziale scelta da noi, non un limite di legge.</li>
+            <li>Offerte a fasce: se la F1 costa pi&ugrave; del 10% rispetto alla F3, ti suggeriamo di spostare lavatrice e lavastoviglie la sera e nel fine settimana.</li>
+          </ul>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Il PUN cambia ogni giorno. Il valore usato &egrave; una media di riferimento: serve a capire l&rsquo;ordine di grandezza del ricarico, non a rifare il prezzo di un singolo mese.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempio: famiglia con 2.700 kWh l&rsquo;anno</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900"></th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Offerta A</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Offerta B</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Prezzo energia</td><td class="px-3 py-2 align-top">0,155 &euro;/kWh</td><td class="px-3 py-2 align-top">0,205 &euro;/kWh</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Spesa per l&rsquo;energia</td><td class="px-3 py-2 align-top">418,50 &euro;</td><td class="px-3 py-2 align-top">553,50 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Quota fissa annua</td><td class="px-3 py-2 align-top">72,00 &euro;</td><td class="px-3 py-2 align-top">180,00 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Totale della parte che puoi cambiare</td><td class="px-3 py-2 align-top">490,50 &euro;</td><td class="px-3 py-2 align-top">733,50 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>L&rsquo;offerta B costa 243 &euro; in pi&ugrave; l&rsquo;anno, IVA esclusa, per la stessa energia: trasporto, oneri e imposte sono identici. Quasi met&agrave; della differenza sta nella quota fissa, che spesso &egrave; scritta in euro al mese e sembra piccola.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le fasce orarie</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>F1:</strong> dal luned&igrave; al venerd&igrave;, dalle 8 alle 19.</li>
+            <li><strong>F2:</strong> dal luned&igrave; al venerd&igrave; dalle 7 alle 8 e dalle 19 alle 23; il sabato dalle 7 alle 23.</li>
+            <li><strong>F3:</strong> tutte le notti dalle 23 alle 7, la domenica e i festivi.</li>
+          </ul>
+          <p>Una famiglia consuma di solito pi&ugrave; di met&agrave; dell&rsquo;energia in F2 e F3. Spostare i consumi fa risparmiare qualche euro; scegliere un&rsquo;offerta con un ricarico pi&ugrave; basso di solito conta molto di pi&ugrave;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I tuoi diritti</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il venditore deve avvisarti per iscritto almeno tre mesi prima di cambiare le condizioni economiche; puoi recedere senza penali.</li>
+            <li>Puoi cambiare fornitore quando vuoi, gratis e senza interruzioni della fornitura.</li>
+            <li>I consumi di pi&ugrave; di due anni prima non si possono pi&ugrave; fatturare con un conguaglio, salvo tua responsabilit&agrave;.</li>
+            <li>Il bonus sociale per chi ha un ISEE basso arriva in automatico dopo la DSU, senza domanda.</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la bolletta aumenta se consumo come prima?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Di solito &egrave; finita la promozione e si applicano le condizioni standard, oppure il prezzo &egrave; legato al PUN e il PUN &egrave; salito. Confronta il prezzo per kWh di due bollette: se sale mentre il PUN &egrave; stabile, &egrave; aumentato il ricarico del venditore.</p>
         </details>
-
-        <!-- Accordion 2 -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> KPI Critici: Quota Consumi, Quota Fissa e Fasce Orarie</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Il motore diagnostico non si affida empiricamente alla divisione dell'importo finale della bolletta per i kWh consumati, poiché tale approccio risulterebbe pesantemente distorto dall'incidenza sproporzionata dei costi fissi nei mesi a basso consumo. Al contrario, il parser isola matematicamente tre vettori specifici:
-            </p>
-            <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-2">
-              <li><strong>Quota Consumi (Materia Energia):</strong> L'algoritmo estrae la scomposizione della "Vendita energia" (prezzo stabilito commercialmente dal fornitore), separandola nettamente dalle voci "Rete e oneri", che costituiscono pedaggi di sistema e di trasporto invariabili imposti da ARERA.</li>
-              <li><strong>Quota Fissa (Commercializzazione):</strong> Identifica il ricarico fisso mensile (es. euro/mese) imposto dal venditore indipendentemente dai volumi prelevati.</li>
-              <li><strong>Gestione Multioraria (F1, F2, F3):</strong> Ove applicabile, lo strumento cattura il costo disaggregato. La logica di calcolo verifica la sperequazione tariffaria tra la fascia di punta F1 (giorni feriali, ore diurne) e la fascia di vuoto F3 (notti e festivi). Se la tariffa F1 costa oltre il 10% in più della F3 (costo F1 > costo F3 × 1,10), l'algoritmo segnala la convenienza di spostare i cicli degli elettrodomestici energivori alle sere, ai fine settimana e ai festivi.</li>
-            </ul>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Meglio prezzo fisso o variabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il fisso ti protegge dai rialzi ma di solito ha un ricarico pi&ugrave; alto. Il variabile legato al PUN costa in media meno ma segue il mercato. In entrambi i casi la cosa da confrontare &egrave; il ricarico sopra il PUN e la quota fissa.</p>
         </details>
-
-        <!-- Accordion 3 -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📈</span> L'Indice PUN, lo Spread e la Diagnosi di Tariffe Abusive</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Il parametro cardinale per determinare l'equità di un contratto nel mercato libero è il <strong>PUN (Prezzo Unico Nazionale)</strong>, il quale riflette il costo all'ingrosso della Borsa Elettrica Italiana. L'analisi statistica per le misurazioni di mercato fissa ordinariamente un PUN medio di stima a <strong>0,125 €/kWh</strong>. 
-            </p>
-            <p>
-              L'algoritmo JavaScript implementa una funzione di valutazione (<code>runEvaluationLogic</code>) che estrae il prezzo unitario della materia prima dalla bolletta e lo confronta con il PUN. Il sistema tollera uno <em>Spread Massimo Fisiologico</em> di 0,04 €/kWh (il ricarico legittimo del fornitore). Qualora il costo ecceda tale somma (es. prezzo > 0,165 €/kWh), viene lanciato un "CRITICAL Alert", notificando al consumatore l'applicazione di sovrapprezzi abusivi. 
-            </p>
-            <p>
-              Congiuntamente, il programma annualizza i costi fissi estratti (prezzo mensile x 12). La soglia limite di equità commerciale per i costi di commercializzazione al dettaglio (Quota Fissa) è fissata dallo strumento come soglia prudenziale di riferimento, e non da una norma, a <strong>120,00 € annui</strong>. Oltrepassare tale parametro innesca un "WARNING", svelando all'utente esborsi esorbitanti legati puramente al mantenimento contrattuale.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho un&rsquo;offerta variabile e lo strumento la giudica cara: perch&eacute;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Lo strumento confronta il prezzo con un PUN medio fisso. In un mese di rincari anche un&rsquo;offerta con ricarico basso pu&ograve; superare la soglia. Per le offerte variabili guarda lo spread scritto nelle condizioni del contratto.</p>
         </details>
-
-        <!-- Accordion 4 -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design: L'Infrastruttura Zero-Backend e il GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              L'invio di una fattura elettrica integrale verso servizi di analisi cloud di terze parti rappresenta una grave rottura della riservatezza informatica. Il documento ingloba le coordinate residenziali dell'utente, i dati fiscali, e talvolta le metriche di occupazione dell'immobile (estrapolabili dall'assorbimento elettrico orario). L'Articolo 25 del Regolamento Europeo 2016/679 (GDPR) prescrive severi obblighi in ordine alla Privacy by Design.
-            </p>
-            <p>
-              Al fine di eludere il conferimento di dati sensibili a Data Processor esterni, l'applicativo eroga la totalità della computazione ottica e logica nella memoria locale del terminale. L'instanziazione dei <em>Web Workers</em> permette la deserializzazione dei documenti PDF (tramite librerie come pdf.js) o la classificazione dei pixel fotografici, garantendo un isolamento ermetico (Zero-Upload). La bolletta non abbandona mai il dispositivo: conclusa l'operazione diagnostica, la frammentazione della RAM mediante il Garbage Collector annienta definitivamente ogni traccia dei calcoli vettoriali.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa vuol dire bolletta stimata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il distributore non ha letto il contatore e il venditore ha stimato i consumi. Alla lettura successiva arriva il conguaglio. Comunicare l&rsquo;autolettura nei giorni indicati in bolletta evita sorprese.</p>
         </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Una bolletta elettrica non è un numero unico ma la somma di quattro famiglie di voci con logiche di formazione del tutto diverse. L'analizzatore le scompone e le ricalcola separatamente, perché è solo isolando la componente negoziabile che si può stabilire se un'offerta sia conveniente o predatoria.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Le quattro componenti della spesa</h3>
-            <ol class="list-decimal pl-5 space-y-2">
-              <li><strong>Spesa per la materia energia.</strong> È l'unica voce realmente contrattabile sul mercato libero. Si compone di un corrispettivo variabile a kWh e, quasi sempre, di una quota fissa annua indipendente dal consumo.</li>
-              <li><strong>Spesa per il trasporto e la gestione del contatore.</strong> Tariffa regolata e identica per tutti i fornitori a parità di zona e potenza impegnata. Nessuna offerta commerciale può modificarla.</li>
-              <li><strong>Oneri di sistema.</strong> Componenti parafiscali destinate a finalità generali, anch'esse regolate e non negoziabili.</li>
-              <li><strong>Imposte.</strong> Accise erariali sul consumo e IVA, quest'ultima applicata sull'intero imponibile comprensivo delle accise.</li>
-            </ol>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il nucleo del confronto: spread sul PUN</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Spesa materia energia = (Consumo_kWh x Prezzo_unitario) + Quota_fissa_annua</li>
-              <li>Spread applicato = Prezzo_unitario_offerta - PUN_medio</li>
-              <li>PUN medio di riferimento 2026 = 0,125 EUR/kWh</li>
-              <li>Soglia di spread fisiologico   = 0,040 EUR/kWh</li>
-              <li>Sovracosto annuo = max(0 ; Spread - 0,040) x Consumo_kWh</li>
-              <li>Quota fissa considerata anomala oltre 120,00 EUR/anno</li>
-            </ul>
-            <p>Il PUN, Prezzo Unico Nazionale, è il valore all'ingrosso dell'energia determinato in borsa. Nessun venditore può acquistare sotto quel prezzo, quindi il margine lordo del fornitore coincide con lo <strong>spread</strong> che applica sopra il PUN. Uno spread compreso entro quattro centesimi al kilowattora remunera in modo equo l'attività di vendita, la gestione del rischio e i costi di dispacciamento. Oltre quella soglia si entra nel territorio dell'offerta non competitiva.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio applicato: utenza domestica da 2.700 kWh annui</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Offerta A</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Offerta B</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Differenza</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Prezzo unitario</td><td class="px-3 py-2 border-t border-gray-200">0,155 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">0,205 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">+0,050</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spread sul PUN</td><td class="px-3 py-2 border-t border-gray-200">0,030 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">0,080 EUR/kWh</td><td class="px-3 py-2 border-t border-gray-200">+0,050</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spesa energia variabile</td><td class="px-3 py-2 border-t border-gray-200">418,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">553,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">+135,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota fissa annua</td><td class="px-3 py-2 border-t border-gray-200">72,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">180,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">+108,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale componente negoziabile</td><td class="px-3 py-2 border-t border-gray-200">490,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">733,50 EUR</td><td class="px-3 py-2 border-t border-gray-200">+243,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Giudizio dell'analizzatore</td><td class="px-3 py-2 border-t border-gray-200">Spread nella norma</td><td class="px-3 py-2 border-t border-gray-200">Spread doppio e quota fissa oltre soglia</td><td class="px-3 py-2 border-t border-gray-200">—</td></tr></tbody></table></div>
-            <p>L'offerta B costa 243 euro in più all'anno a parità di energia consumata e a parità di servizio erogato, perché trasporto, oneri e imposte sono identici. Il dato controintuitivo è che il sovrapprezzo si nasconde per metà nella quota fissa, voce che molti contratti presentano in euro al mese e che il consumatore tende a sottovalutare: dieci euro mensili valgono 120 euro l'anno, un quarto dell'intera bolletta di un'utenza frugale.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Perché il consumo orario conta</h3>
-            <p>Nelle offerte multiorarie il consumo si distribuisce su tre fasce. La fascia F1 copre i giorni feriali dalle 8 alle 19, la F2 le prime ore del mattino, la sera feriale e il sabato diurno, la F3 le notti, le domeniche e i festivi. Un profilo domestico tipico concentra fra il 55% e il 65% dei prelievi in F2 e F3. Un'offerta che pubblicizza un prezzo aggressivo sulla sola F1 risulta quindi svantaggiosa per la maggioranza delle famiglie, mentre premia le utenze con attività diurna continuativa.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">L'effetto moltiplicativo delle imposte</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Imponibile = Materia energia + Trasporto + Oneri + Accise</li>
-              <li>IVA = Imponibile x aliquota</li>
-              <li>Aliquota 10% sulle forniture per uso domestico</li>
-              <li>Aliquota 22% sulle forniture per usi diversi da quello domestico</li>
-            </ul>
-            <p>Poiché l'IVA si applica a valle, ogni euro di spread eccessivo genera dieci centesimi aggiuntivi di imposta per l'utenza domestica e ventidue per quella non domestica. Il danno reale di un contratto sfavorevole è quindi sistematicamente superiore alla differenza nominale di prezzo unitario.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso contestare un conguaglio alto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: prima con un reclamo scritto al venditore. Se la risposta non ti convince puoi rivolgerti gratis al Servizio Conciliazione di ARERA, passaggio obbligatorio prima di andare dal giudice.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Delibera ARERA 501/2014/R/com</strong> — introduce la cosiddetta Bolletta 2.0 e impone lo schema sintetico con le macrovoci di spesa obbligatorie per tutti i venditori.</li>
-              <li><strong>Delibera AEEG 181/06</strong> — definisce le fasce orarie F1, F2 e F3 e i criteri di attribuzione dei prelievi nei contratti multiorari.</li>
-<li><strong>Delibera ARERA 315/2024/R/com</strong> — rivede la Bolletta 2.0 con il frontespizio unificato e lo Scontrino dell'Energia, la sezione che riporta il prezzo unitario della materia energia e la quota fissa.</li>
-              <li><strong>D.Lgs. 6 settembre 2005 n. 206 (Codice del Consumo)</strong> — disciplina le pratiche commerciali scorrette, gli obblighi informativi precontrattuali e il diritto di ripensamento entro quattordici giorni.</li>
-              <li><strong>Legge 4 agosto 2017 n. 124</strong> — legge annuale per il mercato e la concorrenza, che ha definito il percorso di superamento dei regimi di maggior tutela.</li>
-              <li><strong>D.Lgs. 8 novembre 2021 n. 210</strong> — recepisce la direttiva europea sul mercato interno dell'energia elettrica e rafforza le tutele del cliente finale.</li>
-              <li><strong>D.P.R. 26 ottobre 1972 n. 633</strong> — disciplina IVA applicabile alle forniture di energia, con le aliquote differenziate per uso domestico e non domestico.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Diritti del consumatore da conoscere</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Preavviso sulle variazioni unilaterali</strong>: ogni modifica delle condizioni economiche va comunicata per iscritto con almeno tre mesi di anticipo, e il cliente può recedere senza penali.</li>
-              <li><strong>Recesso sempre libero</strong>: nel mercato libero il cliente domestico può cambiare fornitore in qualsiasi momento senza costi né penali, con la sola gestione del preavviso tecnico.</li>
-              <li><strong>Prescrizione biennale</strong>: i conguagli riferiti a consumi risalenti a oltre due anni non sono più esigibili, salvo responsabilità accertata del cliente.</li>
-              <li><strong>Bonus sociale automatico</strong>: per i nuclei con ISEE sotto la soglia prevista lo sconto viene riconosciuto d'ufficio sulla base della DSU, senza necessità di presentare domanda.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> il valore del PUN varia quotidianamente in funzione della domanda, del prezzo del gas e della produzione rinnovabile. Il parametro impiegato dall'analizzatore è una media di riferimento aggiornata al 2026 e serve a stabilire un ordine di grandezza dello spread, non a replicare il prezzo orario di borsa. Per una contestazione formale al fornitore o uno Sportello per il consumatore è opportuno allegare le bollette originali.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Sostituisce un comparatore di offerte?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Lo strumento controlla l&rsquo;offerta che stai gi&agrave; pagando. Per cercarne una nuova il sito pubblico di riferimento &egrave; il Portale Offerte di ARERA.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati verificati caricando nello strumento bollette PDF con i valori indicati. Il consumo di riferimento è di 2.700 kWh l'anno, tipico di una famiglia di tre persone con contatore da 3 kW. Gli importi sono al netto dell'IVA, salvo dove indicato.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: promozione scaduta su un contratto a prezzo fisso</h3>
-            <p>Dopo i primi dodici mesi il fornitore applica le condizioni standard. La nuova bolletta riporta 0,185 €/kWh per la materia energia e una quota fissa di 12,00 €/mese. L'analizzatore legge entrambi i valori e segnala due anomalie: lo spread di 0,060 €/kWh supera la soglia e i costi fissi arrivano a 144,00 € l'anno.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Eccedenza di spread: (0,185 − 0,165) × 2.700 kWh = 54,00 €</li>
-            <li>Quota fissa oltre la soglia: 144,00 − 120,00 = 24,00 €</li>
-            <li>Sovracosto minimo: 78,00 €, cioè 85,80 € con IVA al 10%</li>
-            </ul>
-            <p>Il confronto con l'offerta del caso 2 è ancora più netto: (0,185 − 0,143) × 2.700 = 113,40 € di energia e 61,20 € di quota fissa, 174,60 € l'anno prima delle imposte. Il cambio di fornitore è gratuito e non interrompe la fornitura.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: offerta variabile indicizzata al PUN</h3>
-            <p>Il contratto prevede PUN più 0,018 €/kWh. Nel mese fatturato il prezzo risulta 0,143 €/kWh, con quota fissa di 6,90 €/mese, pari a 82,80 € l'anno. Entrambi i controlli sono positivi e il verdetto è favorevole.</p>
-            <p>Il limite da conoscere: lo strumento confronta il prezzo con un PUN medio fisso di 0,125 €/kWh. Se in un mese di rincari il PUN salisse a 0,150, la stessa offerta costerebbe 0,168 €/kWh e verrebbe segnalata come cara, anche se lo spread contrattuale resta 0,018. Per le offerte variabili il dato decisivo è lo spread scritto nelle condizioni economiche, non il prezzo di un singolo mese.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: offerta multioraria e correzione manuale</h3>
-            <p>La bolletta riporta F1 a 0,160 €/kWh, F2 a 0,148 e F3 a 0,135, con quota fissa di 9,50 €/mese, cioè 114,00 € l'anno. L'analizzatore legge il primo prezzo, quello della F1, lo giudica in linea e avverte che la F1 costa il 19% in più della F3.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Ripartizione dei consumi: F1 40%, F2 25%, F3 35%</li>
-            <li>Prezzo medio = 0,40 × 0,160 + 0,25 × 0,148 + 0,35 × 0,135 = 0,148 €/kWh</li>
-            <li>Spostare 300 kWh da F1 a F3: 300 × 0,025 = 7,50 € l'anno</li>
-            </ul>
-            <p>Scrivendo 0,148 nel riquadro del prezzo, la diagnosi usa il costo medio reale invece del solo prezzo di punta. Il calcolo mostra anche che spostare i consumi fra le fasce fa risparmiare pochi euro, mentre scegliere un'offerta con spread più basso incide molto di più.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La bolletta viene inviata da qualche parte?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Lettura e calcoli avvengono nel browser, sul tuo dispositivo. La bolletta non viene caricata su nessun server.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché la bolletta aumenta anche se il mio consumo resta identico?</h3>
-              <p>Nella maggior parte dei casi la causa non è il consumo ma una variazione delle condizioni economiche dopo la scadenza del periodo promozionale, oppure l'indicizzazione automatica al PUN in un contratto a prezzo variabile. Confrontando lo spread di due bollette successive si isola immediatamente la responsabilità: se il prezzo unitario è salito mentre il PUN è rimasto stabile, l'aumento è una scelta commerciale del venditore.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene di più un contratto a prezzo fisso o a prezzo variabile?</h3>
-              <p>Il prezzo fisso acquista una copertura contro il rialzo e si paga con uno spread strutturalmente più alto, quindi conviene in fasi di forte volatilità o a chi abbia bisogno di certezza di spesa. Il prezzo variabile indicizzato al PUN costa mediamente meno nel lungo periodo ma espone alle oscillazioni del mercato all'ingrosso. La variabile decisiva non è il tipo di indicizzazione ma l'ampiezza dello spread applicato.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">La quota fissa è davvero ineliminabile?</h3>
-              <p>No. Una parte della quota fissa corrisponde a costi regolati di commercializzazione, ma la componente aggiunta dal venditore è puramente commerciale e varia da zero a oltre duecento euro l'anno. Esistono offerte prive di quota fissa sulla materia energia: su utenze a basso consumo sono quasi sempre le più convenienti, perché il costo fisso incide in modo inversamente proporzionale ai kilowattora prelevati.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa significa che una bolletta è stimata e non effettiva?</h3>
-              <p>Quando il distributore non acquisisce la lettura del contatore, il venditore fattura sulla base di un consumo presunto ricavato dallo storico. Alla lettura successiva scatta il conguaglio, che può risultare rilevante. Comunicare l'autolettura nei giorni indicati in fattura evita l'accumulo di partite differite e rende la spesa aderente al consumo reale.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso contestare un conguaglio molto elevato?</h3>
-              <p>Sì. Il primo passo è il reclamo scritto al venditore, che deve rispondere entro i termini fissati dall'ARERA. Se il conguaglio riguarda consumi anteriori a due anni opera la prescrizione breve. In caso di risposta insoddisfacente si può attivare la procedura di conciliazione presso il Servizio Conciliazione dell'ARERA, gratuita e obbligatoria prima di un'eventuale azione giudiziaria.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">L'analizzatore sostituisce un comparatore ufficiale?</h3>
-              <p>No, e ha una funzione diversa. Un comparatore elenca offerte disponibili sul mercato; questo strumento diagnostica la bolletta che stai già pagando, isolando lo spread e la quota fissa per dirti se l'attuale contratto sia allineato ai valori di mercato. Per la ricerca di nuove offerte il riferimento istituzionale resta il Portale Offerte gestito dall'Acquirente Unico.</p>
-            </div>
-          </div>
-        </details>
-
-        </section>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Delibera ARERA 315/2024/R/com: nuovo formato della bolletta e Scontrino dell&rsquo;energia.</li>
+          <li>Delibera AEEG 181/06: fasce orarie F1, F2 e F3.</li>
+          <li>Legge 27 dicembre 2017, n. 205: prescrizione di due anni per le bollette di luce e gas.</li>
+          <li>D.P.R. 26 ottobre 1972, n. 633: IVA al 10% per le forniture domestiche.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Le soglie usate sono una guida per capire se vale la pena cercare un&rsquo;offerta migliore, non un giudizio legale sul contratto.</p>
+      </section>
 
       <!-- Ad Mobile Bottom -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

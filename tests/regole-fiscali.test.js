@@ -173,3 +173,12 @@ test('tutte le pagine del bollo mostrano l origine della tariffa', () => {
   });
   assert.deepStrictEqual(senza, [], 'pagine che calcolano senza dire quale tariffa applicano');
 });
+
+test('passaggio di proprieta: moto senza IPT, veicoli con piu di 30 anni a importo fisso', () => {
+  const ipt = regole.passaggio_proprieta_2026.ipt_parametri_base;
+  assert.strictEqual(ipt.ipt_moto, 0, 'per le moto l IPT del passaggio non e dovuta');
+  assert.ok(ipt.ipt_storici_auto > ipt.ipt_storici_moto && ipt.ipt_storici_moto > 0);
+  const pagina = fs.readFileSync(path.join(RADICE, 'cittadino-tasse', 'passaggio-di-proprieta', 'index.html'), 'utf8');
+  assert.match(pagina, /id="calc-storico"/, 'manca la casella per i veicoli con piu di 30 anni');
+  assert.doesNotMatch(pagina, /Esente IPT/);
+});
