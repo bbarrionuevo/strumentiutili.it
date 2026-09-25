@@ -45,6 +45,9 @@ const LIBRERIE = [
   { pacchetto: 'sql.js', nome: 'sqljs', file: { 'dist/sql-wasm.js': 'sql-wasm.js', 'dist/sql-wasm.wasm': 'sql-wasm.wasm' }, licenza: 'LICENSE' },
   { pacchetto: 'fflate', nome: 'fflate', file: { 'umd/index.js': 'fflate.umd.js' }, licenza: 'LICENSE' },
   { pacchetto: 'fzstd', nome: 'fzstd', file: { 'umd/index.js': 'fzstd.umd.js' }, licenza: 'LICENSE' },
+  // OpenCV.js per lo scanner (circa 10 MB, WebAssembly incluso nel file):
+  // prima arrivava da docs.opencv.org, che riceveva l'IP di chi scansionava.
+  { pacchetto: '@techstark/opencv-js', nome: 'opencv', file: { 'dist/opencv.js': 'opencv.js' }, licenza: 'LICENSE' },
   // I caratteri Roboto per il modello RLI: nel pacchetto npm di pdfmake
   // esistono solo dentro vfs_fonts.js, in base64. La licenza di pdfmake (MIT)
   // non e' quella dei caratteri, che e' la Apache 2.0 di Google.
