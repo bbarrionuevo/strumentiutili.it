@@ -256,6 +256,7 @@
         const filename = `autocertificazione${cognome ? '-' + cognome : ''}.pdf`;
         triggerDownload(bytes, filename);
         showMessage('PDF generato e scaricato correttamente. Ricorda di stampare, firmare e allegare un documento d\'identità se richiesto.', false);
+        if (window.Prossimo && msgEl) window.Prossimo.offri([new File([bytes], filename, { type: 'application/pdf' })], { dopo: msgEl });
       } catch (err) {
         console.error('Autocertificazione PDF error:', err);
         // Il font standard del PDF copre solo l'alfabeto latino occidentale (es. non «ș», «ł», «ğ»)

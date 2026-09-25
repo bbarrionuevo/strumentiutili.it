@@ -94,6 +94,10 @@
     el('exf-riepilogo').textContent = !pulibili.length ? '' : fatte
       ? (pulibili.length === 1 ? 'La foto è pulita.' : 'Le ' + pulibili.length + ' foto sono pulite.')
       : conPosizione ? conPosizione + (conPosizione === 1 ? ' foto rivela' : ' foto rivelano') + ' dove sono state scattate.' : '';
+    if (window.Prossimo) {
+      if (fatte) window.Prossimo.offri(filePuliti(), { dopo: el('exf-riepilogo') });
+      else window.Prossimo.togli();
+    }
   }
 
   function aggiungi(files) {

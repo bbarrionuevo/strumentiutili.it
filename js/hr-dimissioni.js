@@ -385,7 +385,12 @@
             inputCf.classList.add("border-gray-300", "focus:ring-indigo-500");
         }
 
-        alert("Documento scaricato con successo.\n\nPer tutelare la tua Privacy, tutti i dati personali inseriti sono stati distrutti dalla memoria del browser.");
+        const esito = document.getElementById("esito-dimissioni");
+        if (esito) {
+          esito.textContent = "✓ Lettera scaricata. I dati inseriti sono stati cancellati da questo browser.";
+          esito.className = "text-sm font-semibold text-emerald-400 text-center leading-snug mt-3";
+        }
+        if (window.Prossimo) window.Prossimo.offri([new File([blob], link.download, { type: 'application/pdf' })], { dopo: esito || btnGenerate });
 
       } catch (err) {
         console.error("Errore PDF:", err);

@@ -363,6 +363,7 @@
     crea().then(function (files) {
       scarica(files);
       messaggio('Fatto: ' + files.map(function (f) { return f.name; }).join(', ') + '. Controlla la copia prima di inviarla.');
+      if (window.Prossimo) window.Prossimo.offri(files, { dopo: el('fil-esito') });
     }).catch(function (e) { if (e.message !== 'vuoto') messaggio('Qualcosa non ha funzionato. Riprova; se sei senza connessione, la prima volta serve scaricare il programma che crea il PDF.', true); });
   });
 

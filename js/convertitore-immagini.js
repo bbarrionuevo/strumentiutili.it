@@ -43,6 +43,7 @@
     const q = Number((qualityEl && qualityEl.value) || 80);
     if (results) results.innerHTML = '';
     setStatus('Conversione in corso...');
+    const convertiti = [];
     for (const f of Array.from(input.files)){
       try{
         const before = f.size;
@@ -55,6 +56,7 @@
         const info = document.createElement('div');
         info.innerHTML = `<div class="font-semibold">${f.name}</div><div class="text-sm">Prima: ${(before/1024).toFixed(1)} KB — Dopo: ${(after/1024).toFixed(1)} KB (${pct >= 0 ? pct + '% risparmio' : 'file più pesante del ' + (-pct) + '%'})</div>`;
         const dl = document.createElement('a'); dl.href = url; dl.className='ml-auto btn btn-primary'; dl.download = (f.name.replace(/\.[^.]+$/, '') + '.' + (target.split('/')[1] || 'out')) ; dl.textContent='Scarica';
+        convertiti.push(new File([blob], dl.download, { type: target }));
         // revoke object URL shortly after initiating download to free memory
         dl.addEventListener('click', ()=>{ setTimeout(()=>{ try{ URL.revokeObjectURL(url); }catch(e){} }, 1000); });
         card.appendChild(img); card.appendChild(info); card.appendChild(dl);
@@ -73,5 +75,6 @@
       }
     }
     setStatus('Conversione completata.');
+    if (window.Prossimo && results) window.Prossimo.offri(convertiti, { dopo: results });
   });
 })();
