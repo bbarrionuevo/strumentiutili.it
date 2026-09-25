@@ -15,6 +15,9 @@
 //   3. Le scadenze sono eventi "di un giorno intero" (VALUE=DATE): non hanno
 //      fuso orario, quindi non slittano di un giorno per chi apre il file
 //      all'estero o con l'ora legale.
+//   4. Gli eventi con un orario (i turni di lavoro) sono scritti nell'ora di
+//      Roma (TZID=Europe/Rome) e il file porta la definizione del fuso, con
+//      il passaggio all'ora legale: le 22:00 restano le 22:00 anche a marzo.
 //
 // Funziona nel browser (window.CalendarioIcs) e in Node.
 (function (root, factory) {
@@ -76,12 +79,49 @@
     return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   }
 
-  // Promemoria rispetto all'inizio dell'evento, cioe' la mezzanotte del giorno:
-  // "-PT15H" e' il giorno prima alle 9, "PT9H" il giorno stesso alle 9.
-  var PROMEMORIA = { giornoPrima: '-PT15H', giornoStesso: 'PT9H', settimanaPrima: '-P6DT15H' };
+  // Promemoria rispetto all'inizio dell'evento. Per gli eventi di un giorno
+  // intero l'inizio e' la mezzanotte: "-PT15H" e' il giorno prima alle 9,
+  // "PT9H" il giorno stesso alle 9, "-P29DT15H" trenta giorni prima alle 9.
+  // "oraPrima" e' pensato per gli eventi con orario, come i turni.
+  var PROMEMORIA = {
+    giornoPrima: '-PT15H', giornoStesso: 'PT9H', settimanaPrima: '-P6DT15H', mesePrima: '-P29DT15H', oraPrima: '-PT1H'
+  };
+
+  var ORA = /^([01]\d|2[0-3]):([0-5]\d)$/;
+
+  function oraCompatta(hhmm) {
+    var m = ORA.exec(String(hhmm || ''));
+    if (!m) throw new Error('Ora non valida per il calendario: ' + hhmm);
+    return m[1] + m[2] + '00';
+  }
+
+  // Il fuso di Roma con le regole europee dell'ora legale (dall'ultima
+  // domenica di marzo all'ultima di ottobre).
+  var FUSO_ROMA = [
+    'BEGIN:VTIMEZONE',
+    'TZID:Europe/Rome',
+    'BEGIN:DAYLIGHT',
+    'TZOFFSETFROM:+0100',
+    'TZOFFSETTO:+0200',
+    'TZNAME:CEST',
+    'DTSTART:19700329T020000',
+    'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+    'END:DAYLIGHT',
+    'BEGIN:STANDARD',
+    'TZOFFSETFROM:+0200',
+    'TZOFFSETTO:+0100',
+    'TZNAME:CET',
+    'DTSTART:19701025T030000',
+    'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+    'END:STANDARD',
+    'END:VTIMEZONE'
+  ];
 
   /**
-   * @param {Array} eventi  [{ id, data: 'AAAA-MM-GG', titolo, descrizione?, url?, promemoria?: ['giornoPrima', ...] }]
+   * @param {Array} eventi  [{ id, data: 'AAAA-MM-GG', titolo, descrizione?, url?, promemoria?: ['giornoPrima', ...],
+   *                         inizio?: 'HH:MM', fine?: 'HH:MM', occupato?: boolean }]
+   *                         Con inizio e fine l'evento ha un orario; se fine non e' dopo inizio
+   *                         (22:00-06:00) finisce il giorno dopo.
    * @param {Object} [opzioni]  { ora: Date (per DTSTAMP), nome: nome del calendario }
    * @returns {string} il contenuto del file .ics
    */
@@ -96,6 +136,8 @@
       'METHOD:PUBLISH'
     ];
     if (o.nome) righe.push('X-WR-CALNAME:' + testo(o.nome));
+    var conOrario = (eventi || []).some(function (e) { return e.inizio; });
+    if (conOrario) righe.push.apply(righe, FUSO_ROMA);
 
     (eventi || []).forEach(function (e) {
       var inizio = dataCompatta(e.data);
@@ -103,12 +145,19 @@
       righe.push('BEGIN:VEVENT');
       righe.push('UID:' + testo(String(e.id || 'evento') + '-' + inizio + '@strumentiutili.it'));
       righe.push('DTSTAMP:' + stamp);
-      righe.push('DTSTART;VALUE=DATE:' + inizio);
-      righe.push('DTEND;VALUE=DATE:' + dataCompatta(giornoDopo(e.data)));
+      if (e.inizio) {
+        var da = oraCompatta(e.inizio), a = oraCompatta(e.fine);
+        var giornoFine = a <= da ? dataCompatta(giornoDopo(e.data)) : inizio;
+        righe.push('DTSTART;TZID=Europe/Rome:' + inizio + 'T' + da);
+        righe.push('DTEND;TZID=Europe/Rome:' + giornoFine + 'T' + a);
+      } else {
+        righe.push('DTSTART;VALUE=DATE:' + inizio);
+        righe.push('DTEND;VALUE=DATE:' + dataCompatta(giornoDopo(e.data)));
+      }
       righe.push('SUMMARY:' + testo(e.titolo));
       if (descrizione) righe.push('DESCRIPTION:' + testo(descrizione));
       if (e.url) righe.push('URL:' + e.url);
-      righe.push('TRANSP:TRANSPARENT');
+      righe.push(e.occupato ? 'TRANSP:OPAQUE' : 'TRANSP:TRANSPARENT');
       (e.promemoria || []).forEach(function (quando) {
         var trigger = PROMEMORIA[quando];
         if (!trigger) return;
