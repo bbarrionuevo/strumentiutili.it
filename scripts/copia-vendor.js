@@ -39,6 +39,12 @@ const LIBRERIE = [
   { pacchetto: 'chart.js', nome: 'chartjs', file: { 'dist/chart.umd.js': 'chart.umd.js' }, licenza: 'LICENSE.md' },
   { pacchetto: 'docx', nome: 'docx', file: { 'build/index.js': 'docx.js' }, licenza: 'LICENSE' },
   { pacchetto: 'qrcodejs', nome: 'qrcodejs', file: { 'qrcode.min.js': 'qrcode.min.js' }, licenza: 'LICENSE' },
+  // Flashcard: il calendario dei ripassi (FSRS) e, solo per i mazzi di Anki,
+  // lo zip, il database SQLite e la compressione zstd.
+  { pacchetto: 'ts-fsrs', nome: 'ts-fsrs', file: { 'dist/index.umd.js': 'ts-fsrs.umd.js' }, licenza: 'LICENSE' },
+  { pacchetto: 'sql.js', nome: 'sqljs', file: { 'dist/sql-wasm.js': 'sql-wasm.js', 'dist/sql-wasm.wasm': 'sql-wasm.wasm' }, licenza: 'LICENSE' },
+  { pacchetto: 'fflate', nome: 'fflate', file: { 'umd/index.js': 'fflate.umd.js' }, licenza: 'LICENSE' },
+  { pacchetto: 'fzstd', nome: 'fzstd', file: { 'umd/index.js': 'fzstd.umd.js' }, licenza: 'LICENSE' },
   // I caratteri Roboto per il modello RLI: nel pacchetto npm di pdfmake
   // esistono solo dentro vfs_fonts.js, in base64. La licenza di pdfmake (MIT)
   // non e' quella dei caratteri, che e' la Apache 2.0 di Google.

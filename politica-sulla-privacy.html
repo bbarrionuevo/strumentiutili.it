@@ -148,7 +148,7 @@
         </ul>
 
         <h3 class="text-lg font-bold text-gray-900 mt-6 mb-2">Dati salvati nel tuo browser</h3>
-        <p>Per farti ritrovare il lavoro quando torni, alcune informazioni restano <strong>nella memoria del tuo browser (localStorage)</strong>, su questo dispositivo: i valori inseriti nei calcolatori, le partite del sudoku e della parola del giorno, lo schema del calendario turni con ferie e cambi segnati, le voci dello scadenziario, le impostazioni di strumenti come metronomo e accordatore, gli strumenti fissati tra i preferiti e quelli usati di recente. Non vengono mai inviate a noi né a terzi.</p>
+        <p>Per farti ritrovare il lavoro quando torni, alcune informazioni restano <strong>nella memoria del tuo browser (localStorage)</strong>, su questo dispositivo: i valori inseriti nei calcolatori, le partite del sudoku e della parola del giorno, i mazzi di flashcard con i ripassi fatti, lo schema del calendario turni con ferie e cambi segnati, le voci dello scadenziario, le impostazioni di strumenti come metronomo e accordatore, gli strumenti fissati tra i preferiti e quelli usati di recente. Non vengono mai inviate a noi né a terzi.</p>
         <ul class="list-disc pl-5 mt-2 space-y-2">
           <li>I campi sensibili (IBAN, codice fiscale, password, PIN, carte) <strong>non vengono salvati</strong>.</li>
           <li>I documenti che carichi (PDF, foto, audio, file .p7m) <strong>non vengono salvati</strong>: restano in memoria finché la pagina è aperta.</li>
@@ -176,6 +176,7 @@
       <ul class="list-disc pl-5 mt-2 space-y-1">
         <li><code>localStorage</code>, chiavi che iniziano con <code>su_</code>: valori inseriti nei calcolatori, strumenti preferiti e usati di recente. Restano finché non li cancelli.</li>
         <li><code>IndexedDB</code> «strumentiutili»: i file che condividi verso l&rsquo;app installata, in attesa che tu scelga lo strumento, e il file appena creato quando scegli un passo in &laquo;E adesso?&raquo; (per esempio firmare il PDF appena compresso). Restano sul tuo dispositivo e si cancellano da soli entro un&rsquo;ora.</li>
+        <li><code>IndexedDB</code> «strumentiutili-flashcard»: i mazzi di flashcard che crei o importi e il calendario dei ripassi. Restano sul tuo dispositivo finché non li elimini.</li>
         <li>Cache del <em>service worker</em>: copie delle pagine e delle librerie del sito, per farlo funzionare anche senza connessione. Non contiene dati personali.</li>
       </ul>
       Puoi cancellare le prime due con «Cancella i dati salvati su questo dispositivo», in fondo a ogni pagina, o dalle impostazioni del browser.</li>

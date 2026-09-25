@@ -268,10 +268,13 @@
     if (voce && cancella) {
       voce.hidden = false;
       cancella.addEventListener('click', function () {
-        if (!window.confirm('Cancellare da questo dispositivo i valori inseriti negli strumenti, i preferiti e gli strumenti recenti?')) return;
+        if (!window.confirm('Cancellare da questo dispositivo i valori inseriti negli strumenti, le partite, le flashcard, i preferiti e gli strumenti recenti?')) return;
         var quanti = S.cancellaTutto();
-        // I file condivisi verso l'app installata aspettano qui (vedi sw.js).
-        try { if (window.indexedDB) window.indexedDB.deleteDatabase('strumentiutili'); } catch (e) { /* niente */ }
+        // I file condivisi verso l'app installata aspettano qui (vedi sw.js);
+        // mazzi e carte delle flashcard stanno nel loro database.
+        ['strumentiutili', 'strumentiutili-flashcard'].forEach(function (nome) {
+          try { if (window.indexedDB) window.indexedDB.deleteDatabase(nome); } catch (e) { /* niente */ }
+        });
         cancella.textContent = quanti ? 'Dati cancellati da questo dispositivo' : 'Non c’era niente da cancellare';
         cancella.disabled = true;
       });
