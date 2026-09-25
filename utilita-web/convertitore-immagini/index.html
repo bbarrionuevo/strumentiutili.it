@@ -135,34 +135,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "La conversione riduce la risoluzione dell'immagine?",
+            "name": "La conversione riduce la risoluzione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Larghezza e altezza in pixel restano identiche; cambia solo la codifica. Per ridurre ulteriormente il peso bisogna ridimensionare l'immagine con un altro strumento."
+              "text": "No: larghezza e altezza restano uguali, cambia solo la codifica."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il PNG convertito pesa più del JPEG originale?",
+            "name": "Perché il PNG pesa più del JPEG originale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il PNG è senza perdita e conserva ogni pixel: per le fotografie produce file anche 5-10 volte più pesanti. Il convertitore lo segnala indicando che il file è più pesante dell'originale."
+              "text": "Il PNG non perde informazioni: per le fotografie produce file anche 5–10 volte più pesanti."
             }
           },
           {
             "@type": "Question",
-            "name": "Le immagini caricate vengono inviate a un server?",
+            "name": "Le immagini vengono inviate a un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Decodifica e conversione avvengono nel browser tramite l'elemento canvas; i file restano sul dispositivo."
+              "text": "No: vengono lette e convertite nel browser."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso convertire foto HEIC dell'iPhone?",
+            "name": "Posso convertire le foto HEIC dell’iPhone?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo con Safari, che sa aprire il formato HEIC. Su Chrome o Firefox conviene impostare l'iPhone perché salvi le foto in formato «Più compatibile», cioè JPEG."
+              "text": "Solo con Safari, che sa aprire il formato HEIC. Con Chrome o Firefox imposta l’iPhone su «Più compatibile», così salva le foto in JPEG."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché la trasparenza è diventata bianca?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il JPEG non supporta la trasparenza: il convertitore riempie di bianco invece di lasciare lo sfondo nero. Per mantenerla scegli PNG o WebP."
             }
           }
         ]
@@ -394,190 +402,62 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Architettura di Trasformazione delle Immagini Client-Side, Algoritmi di Compressione e Garanzie GDPR</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La conversione, ricodifica e compressione digitale dei file grafici costituiscono operazioni ad altissima intensità computazionale, tradizionalmente delegate a server remoti e microservizi cloud commerciale. L'evoluzione dello stack web moderno ha tuttavia sbloccato capacità di elaborazione ad elevate prestazioni direttamente all'interno della sandbox isolata del browser dell'utente. Il presente trattato analizza l'architettura Zero-Backend per l'elaborazione dei raster, la rispondenza ai vincoli del Regolamento Generale sulla Protezione dei Dati (GDPR), la formulazione algebrica degli algoritmi di compressione d'immagine (JPEG, PNG, WebP, AVIF), la gestione della memoria volatile e le casuistiche d'uso professionali in ambito sanitario, legale e d'impresa.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design, Sanitizzazione EXIF e Deroga ex Art. 28 GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'elaborazione di asset grafici in ambito professionale comporta frequenti rischi di compromissione della riservatezza dei dati personali e dei dati appartenenti a categorie particolari ex Articolo 9 del GDPR (quali referti clinici radiografici, perizie medico-legali o documentazione identitaria scansionata). L'errore operativo primario legabile all'utilizzo di convertitori di immagini cloud tradizionali risiede nell'esfiltrazione incontrollata del payload vettoriale e dei relativi metadati occulti. I file immagine sorgente (specie se generati da dispositivi fotocamere mobili o scanner ad alta risoluzione) inglobano nei propri dizionari intestazioni EXIF (Exchangeable Image File Format) e XMP (Extensible Metadata Platform), contenenti coordinate geografiche GPS esatte, marca e numero di serie dell'hardware, timestamp temporali e miniature nascoste del documento originale non ritagliato.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Inviare un asset grafico non igienizzato a un server esterno gestito da terzi innesca un trattamento di dati remoti che impone la mappatura nei Registri delle Attività di Trattamento (Articolo 30 GDPR), l'esecuzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Articolo 35 GDPR) e la stipula obbligatoria di un Data Processing Agreement (DPA) ex Articolo 28 GDPR con il provider del servizio. 
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura Zero-Backend (Serverless Client-Side) del presente applicativo incarna matematicamente il principio della Data Protection by Design e by Default sancito dall'Articolo 25 del GDPR. Rifiutando qualsiasi comunicazione verso API o server di terze parti (Zero-Upload), la versione sorgente e la versione convertita dell'immagine risiedono atomicamente ed esclusivamente all'interno della memoria RAM allocata al processo del browser dell'utente. Il processo di re-rasterizzazione eseguito via Canvas decostruisce il flusso di pixel eliminando d'ufficio tutti i metadati EXIF/XMP estranei, garantendo una vera e propria igienizzazione strutturale del binario. Senza alcuna trasmissione di dati verso il fornitore del software web, la qualifica di "Responsabile del Trattamento" (Data Processor) in capo allo sviluppatore viene totalmente sterilizzata, esonerando l'utente aziendale da qualsiasi incombenza di auditing o violazione per trasferimento transfrontaliero extra-UE.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Convertire immagini fra JPG, PNG, WebP e AVIF</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il convertitore trasforma le immagini nel formato che ti serve e toglie i metadati EXIF (posizione GPS, modello del telefono, data). Tutto avviene nel browser: le foto non vengono caricate da nessuna parte.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Trascina una o pi&ugrave; immagini.</li>
+            <li>Scegli il formato di destinazione e la qualit&agrave; (80% &egrave; un buon compromesso per le foto).</li>
+            <li>Scarica i file convertiti. Il convertitore ti avvisa se un file diventa pi&ugrave; pesante dell&rsquo;originale.</li>
+          </ol>
+          <p>Le dimensioni in pixel non cambiano: per file molto pi&ugrave; leggeri serve anche ridimensionare.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Quale formato scegliere</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Formato</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Trasparenza</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Quando usarlo</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">JPEG</td><td class="px-3 py-2 align-top">No (diventa bianco)</td><td class="px-3 py-2 align-top">Foto per documenti, email e portali che accettano solo JPG</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">PNG</td><td class="px-3 py-2 align-top">S&igrave;</td><td class="px-3 py-2 align-top">Loghi, schermate, grafica con testo; per le foto pesa molto</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">WebP</td><td class="px-3 py-2 align-top">S&igrave;</td><td class="px-3 py-2 align-top">Siti web: di solito 25&ndash;35% pi&ugrave; leggero del JPEG a parit&agrave; di qualit&agrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">AVIF</td><td class="px-3 py-2 align-top">S&igrave;</td><td class="px-3 py-2 align-top">Il pi&ugrave; leggero, ma non tutti i browser sanno crearlo</td></tr>
+              </tbody>
+            </table>
           </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Logo con sfondo trasparente per un documento Word.</strong> In JPEG le parti trasparenti diventano bianche: va bene su una pagina bianca. Per una slide colorata o un sito scuro scegli PNG o WebP, altrimenti compare un riquadro bianco.</p>
+          <p><strong>Venti foto dello smartphone per un annuncio immobiliare.</strong> In WebP all&rsquo;80% pesano molto meno e perdono le coordinate GPS, che rivelerebbero la posizione esatta della casa. Se il portale accetta solo JPG, scegli JPEG all&rsquo;80%: anche cos&igrave; i metadati spariscono.</p>
+          <p><strong>AVIF su un browser che non lo supporta.</strong> Il convertitore mostra un errore invece di creare un PNG con estensione .avif.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Da sapere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Le foto grandi occupano molta memoria durante la conversione (circa 48 MB per una foto da 12 megapixel): sul telefono converti poche foto alla volta.</li>
+            <li>I colori vengono convertiti nello spazio sRGB, lo standard del web: le foto in Adobe RGB o Display P3 possono cambiare leggermente.</li>
+            <li>Togliere i metadati non basta ad anonimizzare: nomi o dati scritti nell&rsquo;immagine restano visibili e vanno coperti o ritagliati.</li>
+            <li>Per togliere solo posizione e dati EXIF da una foto senza ricodificarla usa <a href="/utilita-web/rimuovi-dati-foto/" class="text-indigo-700 underline">Rimuovi dati dalla foto</a>.</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La conversione riduce la risoluzione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: larghezza e altezza restano uguali, cambia solo la codifica.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica Computazionale e Formule: HTML5 Canvas, Rasterizzazione e Modelli di Compressione</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La conversione di un'immagine nel browser si basa sul caricamento del file in un elemento `Image` tramite un indirizzo temporaneo creato con `URL.createObjectURL` e sul disegno dei pixel in un contesto grafico bidimensionale `CanvasRenderingContext2D`. Il motore di rendering (sfruttando le API WebGL o l'accelerazione GPU nativa) decodifica la matrice dei colori nei canali primari RGBA per poi ri-serializzare il binario attraverso la funzione `HTMLCanvasElement.toBlob()`.
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Caratteristiche dei Formati di Destinazione</h3>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-              <li><strong>JPEG (Joint Photographic Experts Group):</strong> Algoritmo con perdita (lossy) basato sulla Trasformata Discreta del Coseno (DCT) e la quantizzazione della luminanza e crominanza. Scarta le frequenze spaziali ad alta variazione non percepibili dall'occhio umano. Non supporta il canale alfa (trasparenza).</li>
-              <li><strong>PNG (Portable Network Graphics):</strong> Formato senza perdita (lossless) basato sull'algoritmo DEFLATE (combinazione di LZ77 e codifica di Huffman) preceduto da filtraggio predittivo (Sub, Up, Average, Paeth). Mantiene la totale trasparenza alfa a 8 o 16 bit per canale.</li>
-              <li><strong>WebP:</strong> Formato di nuova generazione sviluppato da Google basato sul codec video VP8. Utilizza la predizione spaziale intra-frame per stimare i blocchi di pixel adiacenti e applica la quantizzazione aritmetica. Offre compressione sia lossy che lossless con supporto al canale alfa, riducendo il peso del file del 25-34% rispetto al JPEG a pari qualità visiva secondo lo studio di compressione pubblicato da Google.</li>
-              <li><strong>AVIF (AV1 Image File Format):</strong> Standard basato sulla codifica intra-frame del codec video AV1 sviluppato dall'Alliance for Open Media (AOMedia). Sfrutta lo spazio colore YUV con campionamento cromatico avanzato (4:2:0 o 4:4:4) e supporto per profondità di colore a 10 e 12 bit (HDR). Garantisce le più elevate prestazioni di compressione della categoria, riducendo l'impronta fino al 50% rispetto al JPEG. La codifica AVIF dal canvas non è però disponibile in tutti i browser: in quel caso il convertitore mostra un errore invece di creare un file con estensione sbagliata.</li>
-            </ul>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Formule per la Valutazione della Compressione e della Fedeltà Visiva</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'efficienza di conversione viene valutata calcolando il Rapporto di Compressione ($CR$):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$CR = \frac{\text{Dimensione}_{\text{Origine}}}{\text{Dimensione}_{\text{Compressa}}}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per valutare quantitativamente la degradazione del segnale grafico nelle conversioni con perdita (lossy), gli ingegneri del software calcolano l'Errore Quadratico Medio ($MSE$) e il Rapporto Segnale/Rumore di Picco ($PSNR$):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$MSE = \frac{1}{m \cdot n} \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} [I(i,j) - K(i,j)]^2$$
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$PSNR = 10 \cdot \log_{10} \left( \frac{MAX_I^2}{MSE} \right)$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Dove $m$ e $n$ rappresentano la risoluzione in pixel dell'immagine (larghezza e altezza), $I(i,j)$ descrive il valore cromatico del pixel sorgente, $K(i,j)$ rappresenta il valore del pixel ricodificato, e $MAX_I$ definisce la massima intensità possibile del canale di colore (es. 255 per immagini a 8 bit). Un valore $PSNR$ elevato (superiore a 35-40 dB) indica un'altissima fedeltà visiva della conversione rispetto all'originale.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il PNG pesa pi&ugrave; del JPEG originale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il PNG non perde informazioni: per le fotografie produce file anche 5&ndash;10 volte pi&ugrave; pesanti.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Migrazione Asset E-Commerce e Sanificazione Sanitaria</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: Ottimizzazione e Abbattimento LCP per Piattaforma E-Commerce.</strong><br />
-              Un team di sviluppatori gestisce un catalogo di prodotti con oltre 1.000 fotografie ad alta risoluzione in formato PNG trasparente e JPEG non compresso, per un peso complessivo della libreria media pari a circa 3,2 GB. L'elevata dimensione dei file compromette drasticamente la metrica Core Web Vitals Largest Contentful Paint (LCP), portando i tempi di caricamento delle pagine prodotto su dispositivi mobili oltre i 4.2 secondi.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Sfruttando l'applicativo client-side, gli sviluppatori eseguono la conversione massiva del catalogo impostando il formato di destinazione WebP e un fattore di qualità dell'80%. 
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
-              <li>Dimensione media immagine JPEG originaria: 3.2 MB</li>
-              <li>Dimensione media immagine WebP convertita: 480 KB</li>
-              <li>Rapporto di Compressione ($CR$): $3200 / 480 = 6.66$ (Abbattimento del peso del 85%)</li>
-              <li>Rapporto $PSNR$: 38.4 dB (Totale assenza di artefatti visibili all'occhio umano)</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il peso totale dell'archivio media scende da circa 3,2 GB a circa 480 MB. Con immagini più leggere l'LCP delle pagine prodotto può avvicinarsi alla soglia di 2,5 secondi indicata come buona da Google, ma il risultato reale dipende anche dalle dimensioni in pixel, dal server e dalla cache.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: Igienizzazione e Anonimizzazione di Immagini Diagnostiche Ospedaliere.</strong><br />
-              Un centro di ricerca medica deve condividere una serie di ecografie e scansioni dermatologiche con un'università partner per l'addestramento di modelli di intelligenza artificiale. I file sorgente in formato PNG contengono nei metadati XMP il nome completo del paziente, il Codice Fiscale, il modello del macchinario e le coordinate GPS della struttura sanitaria. Il caricamento di tali file su portali di conversione gratuiti terzi costituirebbe una comunicazione di dati relativi alla salute a terzi priva di base giuridica, vietata dall'Art. 9 GDPR.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'operatore sanitario carica la cartella nell'interfaccia locale del browser ed effettua la conversione in JPEG a qualità 90%. Il motore Canvas ricodifica unicamente la matrice bidimensionale dei pixel e genera un nuovo binario totalmente privo di qualsiasi metadato EXIF o XMP originale, senza trasferire i file all'esterno. La conversione non basta però ad anonimizzare: nome del paziente, data e struttura sono spesso impressi nei pixel dell'ecografia stessa e restano visibili, quindi vanno coperti o ritagliati prima della condivisione.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le immagini vengono inviate a un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: vengono lette e convertite nel browser.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti descrivono scelte frequenti e il comportamento del convertitore, verificato caricando immagini reali nella pagina.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: logo con sfondo trasparente da inserire in un documento Word</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Origine: PNG 400 × 300 pixel con sfondo trasparente</li>
-            <li>Destinazione JPEG: le aree trasparenti diventano bianche</li>
-            <li>Destinazione WebP o PNG: la trasparenza resta</li>
-            </ul>
-            <p>Per un documento con sfondo bianco il JPEG va bene. Per una slide colorata o un sito con sfondo scuro serve PNG o WebP, altrimenti attorno al logo compare un riquadro bianco.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: foto dello smartphone da allegare a un annuncio immobiliare</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>20 foto JPEG da 12 megapixel (4000 × 3000)</li>
-            <li>Memoria per foto durante la conversione: 4000 × 3000 × 4 byte = 48 MB</li>
-            <li>Destinazione: WebP qualità 80%</li>
-            </ul>
-            <p>La conversione elimina anche le coordinate GPS salvate dal telefono, che in un annuncio rivelerebbero la posizione esatta dell'immobile. Se il portale accetta solo JPG, scegli JPEG all'80%: il risultato perde comunque i metadati. Le dimensioni in pixel restano invariate: per pesi molto ridotti serve anche ridimensionare.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: conversione in AVIF su un browser che non la supporta</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Formato scelto: AVIF</li>
-            <li>Risposta del browser: file PNG al posto dell'AVIF</li>
-            <li>Esito: messaggio «Questo browser non supporta la creazione di file AVIF»</li>
-            </ul>
-            <p>Senza questo controllo si otterrebbe un PNG con estensione .avif, che alcuni programmi rifiutano. La guida del campo indica in anticipo se il browser in uso può creare il formato scelto.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso convertire le foto HEIC dell&rsquo;iPhone?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Solo con Safari, che sa aprire il formato HEIC. Con Chrome o Firefox imposta l&rsquo;iPhone su &laquo;Pi&ugrave; compatibile&raquo;, cos&igrave; salva le foto in JPEG.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e Analisi delle Criticità Tecniche (Memory Leaks e Anomalie Alfa)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'Anomalia del Sfondo Nero nella Conversione da PNG/WebP a JPEG:<br />
-              L'errore tecnico più frequente riscontrato dagli utenti in fase di conversione consiste nell'ottenere un'immagine con lo sfondo completamente nero quando si trasforma un file con trasparenza (PNG o WebP) in formato JPEG. Poiché le specifiche dello standard JPEG non prevedono la gestione del canale alfa (trasparenza), i pixel con opacità pari a zero vengono interpretati dal motore di rendering grafico come privi di segnale cromatico, trasformandoli in nero. Il convertitore gestisce la problematica riempiendo la tela Canvas di bianco (`#FFFFFF`) prima di eseguire `drawImage()` quando il formato di destinazione è JPEG: le aree trasparenti diventano bianche.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Esaurimento dell'Heap e Blocco della Scheda (Memory Leaks su Mobile):<br />
-              Caricare contemporaneamente decine di immagini ad altissima risoluzione (es. foto da 48 Megapixel provenienti da reflex o smartphone moderni) può rapidamente saturare la memoria RAM e l'heap allocato al motore V8 del browser. Un'immagine uncompressed da 8000x6000 pixel occupa oltre 192 MB di memoria non compressa in RAM per singolo buffer d'immagine ($8000 \times 6000 \times 4\ \text{bytes}$). Il caricamento simultaneo di molteplici file in un unico `ArrayBuffer` causa il crash istantaneo della tab browser per evento *Out of Memory (OOM)*. Per evitare questi colli di bottiglia, il convertitore elabora i file uno alla volta, in sequenza, e revoca gli indirizzi temporanei con `URL.revokeObjectURL()` appena non servono più. Su smartphone conviene comunque convertire poche foto per volta.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Alterazione dello Spazio Colore e Profilo ICC:<br />
-              Durante la ricodifica via Canvas, l'immagine può subire lievi scostamenti cromatici qualora il file sorgente utilizzi spazi colore estesi (come Adobe RGB o Display P3) non calibrati. Il motore di rendering del browser normalizza d'ufficio la matrice convertendo il segnale nello spazio colore standard sRGB. Questo garantisce la massima compatibilità di visualizzazione su tutti i monitor e schermi mobili del mondo, eliminando incongruenze di resa nei portali web.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la trasparenza &egrave; diventata bianca?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il JPEG non supporta la trasparenza: il convertitore riempie di bianco invece di lasciare lo sfondo nero. Per mantenerla scegli PNG o WebP.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La conversione riduce la risoluzione dell'immagine?</h3>
-            <p>No. Larghezza e altezza in pixel restano identiche; cambia solo la codifica. Per ridurre ulteriormente il peso bisogna ridimensionare l'immagine con un altro strumento.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il PNG convertito pesa più del JPEG originale?</h3>
-            <p>Il PNG è senza perdita e conserva ogni pixel: per le fotografie produce file anche 5-10 volte più pesanti. Il convertitore lo segnala indicando che il file è più pesante dell'originale.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Le immagini caricate vengono inviate a un server?</h3>
-            <p>No. Decodifica e conversione avvengono nel browser tramite l'elemento canvas; i file restano sul dispositivo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso convertire foto HEIC dell'iPhone?</h3>
-            <p>Solo con Safari, che sa aprire il formato HEIC. Su Chrome o Firefox conviene impostare l'iPhone perché salvi le foto in formato «Più compatibile», cioè JPEG.</p>
-            </div>
-          </div>
-        </details>
-
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

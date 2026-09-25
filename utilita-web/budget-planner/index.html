@@ -134,34 +134,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "La regola 50/30/20 funziona anche con redditi bassi?",
+            "name": "La regola funziona anche con redditi bassi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Con redditi bassi le necessità superano spesso il 50% per il solo costo della casa. In questi casi conviene usare la regola come direzione: mantenere un accantonamento anche piccolo e ridurre prima i desideri, poi le voci fisse più pesanti."
+              "text": "Spesso la sola casa supera il 50%. Usala come direzione: tieni un accantonamento anche piccolo, riduci prima i desideri e poi le spese fisse più pesanti."
             }
           },
           {
             "@type": "Question",
-            "name": "Le rate di un prestito vanno fra le necessità o fra i risparmi?",
+            "name": "Le rate di un prestito sono necessità o risparmi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nel planner le rate di prestiti personali e carte revolving rientrano nel 20% dei risparmi e debiti, perché rimborsare un debito libera reddito futuro come un risparmio. La rata del mutuo sulla casa resta invece fra le necessità."
+              "text": "Nel planner prestiti personali e carte revolving vanno nel 20%, perché rimborsarli libera reddito futuro. La rata del mutuo resta fra le necessità."
             }
           },
           {
             "@type": "Question",
-            "name": "Dove inserisco le spese per i figli?",
+            "name": "Dove metto le spese per i figli?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Mensa, libri e visite mediche fra le necessità, nella spesa alimentare o in farmacia e salute; sport e attività ricreative fra i desideri, nel campo sport e benessere. Le spese annuali vanno divise per 12."
+              "text": "Mensa, libri e visite fra le necessità; sport e attività ricreative fra i desideri. Le spese annuali divise per 12."
             }
           },
           {
             "@type": "Question",
-            "name": "I dati inseriti restano salvati?",
+            "name": "I dati restano salvati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, ma solo su questo dispositivo, nel localStorage del browser. Non vengono inviati a server e il pulsante «Azzera» li cancella. Su un computer condiviso conviene azzerare al termine."
+              "text": "Sì, solo su questo dispositivo, per ritrovarli la volta dopo. Non vengono inviati a nessun server; «Azzera» li cancella."
             }
           }
         ]
@@ -280,7 +280,7 @@
 
       <div class="mb-8 border-b border-gray-200 pb-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-3 border border-emerald-100">
-          <span>🔒 Privacy Assoluta (Zero-Upload)</span>
+          <span>🔒 I dati restano sul tuo dispositivo</span>
         </div>
         <h1 class="text-3xl font-extrabold text-gray-900 flex items-center gap-2 tracking-tight">
           Budget Planner Intelligente 50/30/20
@@ -572,134 +572,67 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Guida al Metodo 50/30/20: Pianificazione del Bilancio Familiare in Italia</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Un bilancio familiare non si governa con l'intuito: servono pochi rapporti numerici, facili da ricordare e da verificare ogni mese. La regola 50/30/20 trasforma l'elenco disordinato delle uscite in tre indicatori immediati, permettendo di capire in pochi secondi se il reddito netto sta finanziando il presente a scapito del futuro.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📐</span> Origine e logica della regola 50/30/20</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il metodo è stato reso popolare da Elizabeth Warren e Amelia Warren Tyagi nel libro <em>All Your Worth</em> (2005). Il principio è una partizione rigida del <strong>reddito netto</strong> mensile in tre macro-vettori:</p>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>50% Necessità:</strong> gli impegni inderogabili per vivere e rispettare obblighi legali e contrattuali (casa, utenze, alimentazione, trasporti essenziali).</li>
-              <li><strong>30% Desideri:</strong> stile di vita, svago e consumi volontari.</li>
-              <li><strong>20% Risparmi e debiti:</strong> fondo di emergenza, investimenti, previdenza integrativa e rimborso anticipato dei debiti che generano interessi.</li>
-            </ul>
-            <p>Il planner calcola ogni rapporto con la formula <strong>Ratio = (Somma spese della categoria ÷ Reddito netto) × 100</strong>, sommando ricorsivamente tutte le voci della struttura di spesa.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Il bilancio familiare con la regola 50/30/20</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La regola 50/30/20 divide lo stipendio netto in tre parti: il 50% per le necessit&agrave;, il 30% per i desideri e il 20% per risparmi e debiti. Il planner somma le tue spese, calcola le tre percentuali e ti dice dove intervenire.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scrivi il reddito netto mensile della famiglia.</li>
+            <li>Compila le spese: casa, utenze, spesa, trasporti, svago, risparmi, rate.</li>
+            <li>Le spese annuali (RC auto, bollo, TARI, vacanze, regali) dividile per 12.</li>
+            <li>Guarda il semaforo: verde se rispetti l&rsquo;obiettivo, giallo se lo superi di poco (fino a 10 punti), rosso oltre.</li>
+          </ol>
+          <p>Con &laquo;Carica esempio&raquo; vedi una famiglia gi&agrave; compilata; con &laquo;Azzera&raquo; cancelli tutto.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Dove mettere le spese</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Categoria</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Mutuo o affitto della casa, condominio, IMU, TARI</td><td class="px-3 py-2 align-top">Necessit&agrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Luce, gas, acqua, telefono e internet</td><td class="px-3 py-2 align-top">Necessit&agrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Spesa alimentare, farmacia, visite mediche</td><td class="px-3 py-2 align-top">Necessit&agrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">RC auto, bollo, carburante, abbonamento bus</td><td class="px-3 py-2 align-top">Necessit&agrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Palestra, ristoranti, vacanze, regali</td><td class="px-3 py-2 align-top">Desideri</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Fondo di emergenza, piano di accumulo, fondo pensione</td><td class="px-3 py-2 align-top">Risparmi e debiti</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Rate di prestiti personali e carte revolving</td><td class="px-3 py-2 align-top">Risparmi e debiti</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>La domanda da farsi: cosa succede se elimino questa spesa domani? Se ci sono conseguenze legali o pratiche &egrave; una necessit&agrave;; se cambia solo lo stile di vita &egrave; un desiderio; se riduce un debito o crea una riserva va nel 20%.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Quando le necessit&agrave; superano il 50%</h3>
+          <p>Il planner confronta le voci con valori di riferimento prudenti sul reddito netto (casa 30%, utenze 6%, alimentazione 15%, mobilit&agrave; 10%) e suggerisce dove agire:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Casa:</strong> rinegoziare il tasso o spostare il mutuo in un&rsquo;altra banca con la surroga, senza costi.</li>
+            <li><strong>Utenze:</strong> controllare il prezzo dell&rsquo;energia con l&rsquo;<a href="/cittadino-tasse/analizzatore-bolletta/" class="text-indigo-700 underline">analizzatore della bolletta</a> e confrontare le offerte sul Portale Offerte di ARERA.</li>
+            <li><strong>Debiti:</strong> rimborsare per prime le carte revolving, fra i prestiti pi&ugrave; cari, e costruire un fondo di emergenza di 3&ndash;6 mesi di spese essenziali.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Famiglia con 3.200 &euro; netti e mutuo da 950 &euro;.</strong> Necessit&agrave; 64,9% (rosso), desideri 19,8% (verde), risparmi 15,3% (giallo). Il problema &egrave; la casa (35,8%): una surroga che abbassi la rata di 180 &euro; la porta al 30,2% e libera i soldi per arrivare al 20,9% di risparmi.</p>
+          <p><strong>Coppia con 4.000 &euro; netti.</strong> Necessit&agrave; 47%, desideri 22,5%, risparmi 25%: tutto verde, ma 220 &euro; al mese restano senza destinazione. Assegnarli al fondo di emergenza evita che si perdano in spese non tracciate.</p>
+          <p><strong>Spese annuali.</strong> RC auto 660 &euro;, bollo 264 &euro;, TARI 300 &euro;, vacanze 1.500 &euro; e regali 600 &euro; fanno 277 &euro; al mese. Messi da parte ogni mese, la tredicesima resta libera per i risparmi.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La regola funziona anche con redditi bassi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Spesso la sola casa supera il 50%. Usala come direzione: tieni un accantonamento anche piccolo, riduci prima i desideri e poi le spese fisse pi&ugrave; pesanti.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🗂️</span> Come classificare le spese tipiche di una famiglia italiana</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Alcune voci italiane creano dubbi di classificazione. Il mutuo o l'affitto dell'abitazione principale, le spese condominiali, <strong>IMU e TARI</strong>, le bollette di luce, gas e acqua, l'assicurazione <strong>RC Auto</strong> e il <strong>bollo</strong> sono necessità: non puoi eliminarle senza conseguenze legali o pratiche.</p>
-            <p>I costi annuali vanno convertiti in quota mensile dividendoli per 12, altrimenti il mese in cui scadono sembra un disastro e gli altri undici appaiono falsamente positivi. I rimborsi di <strong>prestiti personali e carte revolving</strong> rientrano invece nel 20%: ridurli libera reddito futuro esattamente come un risparmio.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le rate di un prestito sono necessit&agrave; o risparmi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nel planner prestiti personali e carte revolving vanno nel 20%, perch&eacute; rimborsarli libera reddito futuro. La rata del mutuo resta fra le necessit&agrave;.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🚦</span> Il semaforo e gli interventi consigliati</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Ogni categoria riceve uno stato: <strong>verde</strong> se rispetta l'obiettivo, <strong>giallo</strong> se lo sfora di poco (fino a 10 punti), <strong>rosso</strong> oltre. Quando le necessità superano il 50%, l'algoritmo confronta le singole voci con valori di riferimento prudenziali sul reddito netto — abitazione 30%, utenze 6%, alimentazione 15%, mobilità 10% — e suggerisce interventi mirati:</p>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Abitazione:</strong> rinegoziazione del tasso con la propria banca o <strong>surroga del mutuo</strong> verso un altro istituto, senza costi per il mutuatario (L. 40/2007).</li>
-              <li><strong>Utenze:</strong> verifica del prezzo della materia energia rispetto al PUN e confronto delle offerte sul Portale Offerte ARERA.</li>
-              <li><strong>Risparmi:</strong> priorità al rimborso delle carte revolving, tra le forme di credito più costose, e alla costruzione di un fondo di emergenza pari a 3-6 mesi di spese essenziali.</li>
-            </ul>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove metto le spese per i figli?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Mensa, libri e visite fra le necessit&agrave;; sport e attivit&agrave; ricreative fra i desideri. Le spese annuali divise per 12.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design: i tuoi conti restano tuoi</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Reddito, rate del mutuo e debiti descrivono con precisione la situazione economica di una famiglia: informazioni personali tutelate dal <strong>Regolamento UE 2016/679 (GDPR)</strong> e appetibili per profilazione commerciale. Molte app di budgeting richiedono la registrazione o il collegamento del conto corrente.</p>
-            <p>Questo planner è <strong>Zero-Backend</strong>: calcoli, diagnostica e grafico vengono eseguiti interamente nel browser. Gli importi sono memorizzati solo nel <code>localStorage</code> del tuo dispositivo per ritrovarli alla visita successiva, e il pulsante "Azzera" li elimina in un clic.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I dati restano salvati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, solo su questo dispositivo, per ritrovarli la volta dopo. Non vengono inviati a nessun server; &laquo;Azzera&raquo; li cancella.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono calcolati con il motore della pagina. Il primo corrisponde al pulsante «Carica esempio».</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: famiglia con 3.200 € netti e mutuo da 950 €</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Necessità: 2.075,90 € = 64,9% (rosso)</li>
-            <li>Desideri: 635,00 € = 19,8% (verde)</li>
-            <li>Risparmi e debiti: 490,00 € = 15,3% (giallo)</li>
-            <li>Voci fuori riferimento: abitazione 35,8% (rif. 30%), utenze 6,7% (rif. 6%)</li>
-            </ul>
-            <p>Il problema non sono i desideri, già sotto il 30%, ma il peso della casa. Ridurre la rata di 180 € con una surroga porterebbe l'abitazione al 30,2% e libererebbe la cifra necessaria per portare i risparmi al 20,9%.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: lavoratrice single in affitto con 1.650 € netti e una carta revolving</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Affitto 650 €, TARI 15 €, utenze 105 €, spesa e farmacia 270 €, abbonamento bus 35 €</li>
-            <li>Necessità: 1.075,00 € = 65,2%; desideri: 238,00 € = 14,4%</li>
-            <li>Fondo di emergenza 100 € + rata revolving 80 € = 10,9%</li>
-            <li>Reddito non allocato: 157,00 € al mese</li>
-            </ul>
-            <p>Con un affitto al 40,3% del reddito le necessità restano alte anche con pochi desideri. Il planner indica come primo intervento la carta revolving: destinando i 157 € non allocati al suo rimborso anticipato la quota risparmi e debiti sale al 20,4%, senza tagliare altre spese.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: coppia con 4.000 € netti che rispetta la regola</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Necessità: 1.880,00 € = 47,0%</li>
-            <li>Desideri: 900,00 € = 22,5%</li>
-            <li>Fondo di emergenza 300 €, PAC 500 €, fondo pensione 200 € = 25,0%</li>
-            <li>Reddito non allocato: 220,00 € al mese</li>
-            </ul>
-            <p>Tutti i semafori sono verdi, ma 220 € al mese senza destinazione tendono a disperdersi in spese non tracciate. Assegnarli al fondo di emergenza accorcia i tempi per arrivare a tre mesi di necessità, pari a 5.640 €.</p>
-
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Caso 4: spese annuali distribuite sui dodici mesi</h3>
-              <p>Una famiglia paga ogni anno RC Auto per 660 €, bollo per 264 €, TARI per 300 €, 1.500 € di vacanze e 600 € di regali: 3.324 € in totale. Inseriti nel mese in cui scadono, fanno sembrare in deficit luglio e dicembre e in attivo gli altri mesi. Divisi per 12 diventano 277 € al mese: 102 € fra le necessità (RC Auto 55 €, bollo 22 €, TARI 25 €) e 175 € fra i desideri. Accantonando ogni mese questa cifra su un conto separato, la tredicesima resta libera per il fondo di emergenza invece di coprire scadenze prevedibili.</p>
-            </div>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Dove inserire le voci che creano più dubbi</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Categoria</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Campo del planner</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Rata del mutuo sulla prima casa</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Mutuo o affitto</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Rata dell'auto acquistata a rate</td><td class="px-3 py-2 border-t border-gray-200">Risparmi e debiti</td><td class="px-3 py-2 border-t border-gray-200">Prestito personale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Canone RAI in bolletta</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Energia elettrica, sommato alla bolletta</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Abbonamento telefonico dello smartphone</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Internet e fibra ottica</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Palestra</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Sport e benessere</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Visite mediche private e ticket</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Farmacia e salute</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Vacanze estive</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Beni voluttuari, in quota mensile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Versamenti volontari al TFR in un fondo pensione</td><td class="px-3 py-2 border-t border-gray-200">Risparmi e debiti</td><td class="px-3 py-2 border-t border-gray-200">Fondo pensione integrativo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Parcheggio e pedaggi per andare al lavoro</td><td class="px-3 py-2 border-t border-gray-200">Necessità</td><td class="px-3 py-2 border-t border-gray-200">Carburante</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Regali e ricorrenze</td><td class="px-3 py-2 border-t border-gray-200">Desideri</td><td class="px-3 py-2 border-t border-gray-200">Beni voluttuari, in quota mensile</td></tr></tbody></table></div>
-            <p>La regola pratica è chiedersi cosa succederebbe eliminando la spesa domani: se ci sono conseguenze legali o pratiche immediate è una necessità, se cambia solo lo stile di vita è un desiderio, se riduce un debito o costruisce una riserva appartiene al 20%.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La regola 50/30/20 funziona anche con redditi bassi?</h3>
-            <p>Con redditi bassi le necessità superano spesso il 50% per il solo costo della casa. In questi casi conviene usare la regola come direzione: mantenere un accantonamento anche piccolo e ridurre prima i desideri, poi le voci fisse più pesanti.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Le rate di un prestito vanno fra le necessità o fra i risparmi?</h3>
-            <p>Nel planner le rate di prestiti personali e carte revolving rientrano nel 20% dei risparmi e debiti, perché rimborsare un debito libera reddito futuro come un risparmio. La rata del mutuo sulla casa resta invece fra le necessità.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Dove inserisco le spese per i figli?</h3>
-            <p>Mensa, libri e visite mediche fra le necessità, nella spesa alimentare o in farmacia e salute; sport e attività ricreative fra i desideri, nel campo sport e benessere. Le spese annuali vanno divise per 12.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">I dati inseriti restano salvati?</h3>
-            <p>Sì, ma solo su questo dispositivo, nel localStorage del browser. Non vengono inviati a server e il pulsante «Azzera» li cancella. Su un computer condiviso conviene azzerare al termine.</p>
-            </div>
-          </div>
-        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>E. Warren, A. Warren Tyagi, <em>All Your Worth</em> (2005): origine della regola 50/30/20.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile Bottom -->

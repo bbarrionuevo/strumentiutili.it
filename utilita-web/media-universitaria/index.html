@@ -114,10 +114,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "La media si calcola sugli esami o anche sulle idoneità?",
+            "name": "Le idoneità entrano nella media?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo sugli esami con voto in trentesimi. Le idoneità danno CFU per la laurea ma non entrano né nel numeratore né nel denominatore della media ponderata."
+              "text": "No: danno CFU per la laurea ma non entrano né al numeratore né al denominatore della media ponderata."
             }
           },
           {
@@ -125,7 +125,15 @@
             "name": "Come si passa dalla media al voto di laurea?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La media ponderata si moltiplica per 11 e si divide per 3: con 27 di media la base è 99. La commissione aggiunge poi i punti per la tesi e gli eventuali bonus previsti dal regolamento."
+              "text": "Media ponderata × 11 ÷ 3. La commissione aggiunge poi i punti per la tesi (spesso fino a 7–11) ed eventuali bonus del regolamento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto vale la lode?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dipende dall’ateneo: molti la contano 30, altri 31, 32 o 33. Controlla il regolamento del tuo corso."
             }
           },
           {
@@ -133,15 +141,15 @@
             "name": "Posso autocertificare la media calcolata qui?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, ma deve coincidere con quella ufficiale dell'ateneo: verifica valore della lode ed esami esclusi. Una media sbagliata in un'autocertificazione è una dichiarazione non veritiera, anche se l'errore è involontario il beneficio decade."
+              "text": "Sì, se coincide con quella ufficiale dell’ateneo. Una media sbagliata fa perdere il beneficio anche se l’errore è involontario."
             }
           },
           {
             "@type": "Question",
-            "name": "Dove vengono salvati gli esami inseriti?",
+            "name": "Dove vengono salvati gli esami?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo nel browser di questo dispositivo. Aprendo la pagina su un altro telefono o computer il libretto è vuoto; su un computer condiviso conviene svuotarlo al termine."
+              "text": "Solo nel browser di questo dispositivo. Su un computer condiviso svuota il libretto alla fine."
             }
           }
         ]
@@ -469,189 +477,71 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Architettura del Libretto Universitario, Calcolo Ponderale e Autocertificazione (D.P.R. 445/2000)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La gestione del libretto accademico, il calcolo della media ponderata e la proiezione centodecimale del Voto di Laurea trascendono il mero monitoraggio della carriera studentesca, assumendo un valore giuridico e amministrativo vitale nell'interfacciamento con la Pubblica Amministrazione (es. calcoli ISEE, borse di studio Diritto allo Studio Universitario) e nel rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR).
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: D.M. 270/2004, Zero-Backend e D.P.R. 445/2000</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'impalcatura didattica delle università italiane, uniformata ai dettami dello Spazio Europeo dell'Istruzione Superiore (Processo di Bologna), è stata storicamente codificata dal D.M. 509/1999 e successivamente cristallizzata dal Decreto Ministeriale 22 ottobre 2004, n. 270. Tale architettura introduce la metrica del Credito Formativo Universitario (CFU), equivalente allo standard ECTS (European Credit Transfer and Accumulation System). Il sistema normativo fissa il volume di apprendimento convenzionale a 25 ore per singolo CFU, imponendo che la valutazione del profitto avvenga obbligatoriamente su una scala in trentesimi, con sufficienza legale incardinata a 18/30. La prova finale, al contrario, rispetta il vetusto ma inalterato Regio Decreto 4 giugno 1938, n. 1269, perpetuando il computo massimo su base 110.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La gestione digitale di siffatti dati (voti, esami, medie) afferisce direttamente alla sfera della privacy dello studente. L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Sfruttando la memoria locale del browser (Web Storage API), la nostra architettura Zero-Backend definisce un ecosistema in cui l'intero ciclo di vita del dato avviene esclusivamente all'interno della sandbox del browser dell'utente. Da un punto di vista normativo, questo approccio rivoluziona radicalmente la gestione della conformità al Regolamento Generale sulla Protezione dei Dati (GDPR). L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure tecniche e organizzative a tutela della privacy siano integrate direttamente nell'architettura del sistema fin dalla fase di progettazione concettuale. L'infrastruttura client-side incarna questo principio in modo matematico: applicando le impostazioni più restrittive in maniera predefinita e impedendo fisicamente l'esfiltrazione dei dati (Zero-Upload), il rischio di data breach in transito o a riposo su infrastrutture esterne viene completamente azzerato.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Parallelamente, il calcolo algoritmico della media è sovente impiegato per la successiva stipula di Dichiarazioni Sostitutive. Il corpus legislativo su cui si incardina l'intero impianto della de-burocratizzazione italiana e della semplificazione del procedimento amministrativo è rappresentato dal Testo Unico in materia di Documentazione Amministrativa (D.P.R. 28 dicembre 2000, n. 445). Gli articoli dominanti, l'Art. 46 (Dichiarazioni sostitutive di certificazione) e l'Art. 47 (Dichiarazioni sostitutive dell'atto di notorietà), traslano l'onere probatorio dalle segreterie al cittadino. Lo studente è autorizzato ad auto-attestare lo status del proprio libretto universitario e la media conseguita, avvalendosi di applicativi di calcolo rigorosi per non incorrere in vizi di forma.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Media ponderata e voto di laurea: come si calcolano</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>All&rsquo;universit&agrave; la media che conta &egrave; quella <em>ponderata</em>: ogni voto pesa quanto i crediti (CFU) dell&rsquo;esame. Il calcolatore la ricava dal tuo libretto e la converte nella base di partenza del voto di laurea in centodecimi.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Aggiungi gli esami con voto e CFU.</li>
+            <li>Scegli quanto vale la lode nel tuo ateneo (30, 31 o 33): lo dice il regolamento del corso.</li>
+            <li>Leggi media ponderata, media aritmetica e base di laurea.</li>
+          </ol>
+          <p>Le idoneit&agrave; senza voto (per esempio l&rsquo;inglese &laquo;approvato&raquo;) non entrano nella media: non aggiungerle, o la abbasserebbero.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le formule</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Media ponderata</strong> = somma di (voto &times; CFU) &divide; somma dei CFU.</li>
+            <li><strong>Base di laurea</strong> = media ponderata &times; 11 &divide; 3 (cio&egrave; &times; 110 &divide; 30). Con 27 di media la base &egrave; 99.</li>
+          </ul>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Esame</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Voto</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">CFU</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Voto &times; CFU</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Analisi matematica</td><td class="px-3 py-2 align-top">24</td><td class="px-3 py-2 align-top">12</td><td class="px-3 py-2 align-top">288</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Diritto privato</td><td class="px-3 py-2 align-top">28</td><td class="px-3 py-2 align-top">9</td><td class="px-3 py-2 align-top">252</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Economia aziendale</td><td class="px-3 py-2 align-top">30</td><td class="px-3 py-2 align-top">9</td><td class="px-3 py-2 align-top">270</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Statistica</td><td class="px-3 py-2 align-top">22</td><td class="px-3 py-2 align-top">6</td><td class="px-3 py-2 align-top">132</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Lingua inglese</td><td class="px-3 py-2 align-top">27</td><td class="px-3 py-2 align-top">6</td><td class="px-3 py-2 align-top">162</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Informatica</td><td class="px-3 py-2 align-top">30</td><td class="px-3 py-2 align-top">3</td><td class="px-3 py-2 align-top">90</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Totale</td><td class="px-3 py-2 align-top"></td><td class="px-3 py-2 align-top">45</td><td class="px-3 py-2 align-top">1.194</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Media ponderata 1.194 &divide; 45 = 26,53; base di laurea 97,29. La media aritmetica sarebbe 26,83: pi&ugrave; alta, perch&eacute; il 24 pesa 12 CFU e il 30 di Informatica solo 3. Se la lode di Informatica vale 33, la media ponderata sale solo a 26,73.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Dove conviene impegnarsi</h3>
+          <p>Un voto alto in un esame con molti crediti sposta la media pi&ugrave; di tre voti alti in esami piccoli. Aumento della media = (nuovo voto &minus; media attuale) &times; CFU dell&rsquo;esame &divide; CFU totali: con media 26,53, un 30 in un esame da 12 CFU vale +0,73; lo stesso 30 in uno da 3 CFU solo +0,22.</p>
+          <p><strong>Rifiutare un 24 in un esame da 12 CFU?</strong> Con 33 CFU e media 27,55, accettarlo porta a 26,60; riprovando e prendendo 28 si arriva a 27,67: oltre un punto di media e circa 4 punti sulla base di laurea. Conviene solo se il nuovo appello non ritarda la laurea.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Bandi e autocertificazioni</h3>
+          <p>Per un bando che chiede media 25/30 conta la media ponderata. Con 21 (12 CFU), 24 (9) e 30 (6) la media ponderata &egrave; 24,00, anche se quella aritmetica sarebbe 25,00: dichiarare 25 in un&rsquo;<a href="/identita-burocrazia/autocertificazione/" class="text-indigo-700 underline">autocertificazione</a> sarebbe una dichiarazione falsa, con la perdita del beneficio. Verifica sempre il valore della lode e gli esami esclusi nel regolamento del tuo ateneo.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le idoneit&agrave; entrano nella media?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: danno CFU per la laurea ma non entrano n&eacute; al numeratore n&eacute; al denominatore della media ponderata.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Varianza Ponderale e Traslazione Base 110</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'elaborazione matriciale del rendimento studentesco rifugge dalla basilare Media Aritmetica per ancorarsi indissolubilmente alla Media Ponderata, una funzione in cui ogni esito è moltiplicato per il proprio peso specifico (il CFU). L'equazione algoritmica fondamentale che sorregge l'applicativo è definita come segue:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              Media_{Ponderata} = [ Σ_{i=1}^{n} (Voto_i × CFU_i) ] / [ Σ_{i=1}^{n} CFU_i ]
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per effettuare la traslazione di dominio matematico e proiettare la media (nativa su base 30) verso il punteggio di partenza della seduta di laurea (nativa su base 110), si applica il coefficiente di conversione universale <strong>11/3</strong> (che deriva dalla semplificazione della proporzione <em>Media : 30 = X : 110</em>).
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              Voto_{Base\_Laurea} = Media_{Ponderata} × \frac{11}{3}
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Un aspetto nevralgico della formulazione riguarda le "Idoneità" e i tirocini formativi. Tali attività erogano regolarmente CFU ma sono strutturalmente sprovviste di una valutazione numerica in trentesimi (espresse unicamente con giudizi quali Approvato/Idoneo). Algoritmicamente, i software di gestione carriera (come Esse3) escludono categoricamente i crediti derivanti da idoneità dal denominatore <em>Σ CFU_i</em> della media ponderata, evitando il fatale depotenziamento matematico dell'indicatore.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si passa dalla media al voto di laurea?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Media ponderata &times; 11 &divide; 3. La commissione aggiunge poi i punti per la tesi (spesso fino a 7&ndash;11) ed eventuali bonus del regolamento.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📈</span> Casuistica Reale: Requisiti di Merito e Variazioni Ponderali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Si ipotizzi la profilazione accademica di uno studente in ingegneria che partecipa a un bando di ateneo per un premio di merito o una collaborazione studentesca che richiede una media ponderata di almeno 25/30. Le borse regionali per il diritto allo studio usano invece di norma requisiti di merito basati sui CFU conseguiti, oltre alle soglie ISEE. Lo studente possiede il seguente libretto:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
-              <li>Analisi Matematica I: Voto 21, CFU 12</li>
-              <li>Fisica Generale: Voto 24, CFU 9</li>
-              <li>Informatica: Voto 30 e Lode (Pesato a 30 dal regolamento d'ateneo), CFU 6</li>
-              <li>Inglese B2: Idoneità, CFU 3</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Procedendo con l'algoritmo di conversione, lo step iniziale esclude brutalmente l'Idoneità di Inglese (3 CFU) dal divisore. Il montante dei CFU assoggettabili diviene pertanto 27 (12+9+6). Si computano i prodotti parziali: (21 × 12 = 252), (24 × 9 = 216), (30 × 6 = 180). Il numeratore totale si attesta a 648. La divisione 648 / 27 genera una media ponderata di <strong>24.00 esatto</strong>. Qualora lo studente avesse inavvertitamente calcolato la media aritmetica (21+24+30)/3 = 25.00, avrebbe dichiarato di possedere un requisito che non ha: una dichiarazione non veritiera nell'autocertificazione, punita dall'art. 483 del codice penale, con decadenza dal beneficio. Il Voto di Laurea di partenza generato da questa media sarà 24.00 × 11/3 = <strong>88/110</strong>.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto vale la lode?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dipende dall&rsquo;ateneo: molti la contano 30, altri 31, 32 o 33. Controlla il regolamento del tuo corso.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono calcolati inserendo gli esami nel libretto della pagina.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: l'effetto della lode a 33 sulla media</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Esami: Analisi 24 (12 CFU), Diritto privato 28 (9), Economia aziendale 30 (9), Statistica 22 (6), Inglese 27 (6), Informatica 30 e lode (3)</li>
-            <li>Lode a 30: media ponderata 26,53, base di laurea 97,29</li>
-            <li>Lode a 33: media ponderata 26,73, base di laurea 98,02</li>
-            <li>Media aritmetica con lode a 33: 27,33</li>
-            </ul>
-            <p>La lode vale 3 punti in più ma pesa solo per 3 CFU su 45: la media ponderata sale di 0,20. Nella media aritmetica, che non usa i crediti, la stessa lode sposta il risultato di 0,50 punti, ed è uno dei motivi per cui non va usata per i requisiti dei bandi.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: requisito di media 25/30 per un premio di merito</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Esami: 21 (12 CFU), 24 (9 CFU), 30 (6 CFU); idoneità di inglese esclusa</li>
-            <li>Media ponderata: 24,00, CFU in media: 27</li>
-            <li>Media aritmetica: 25,00</li>
-            <li>Base di laurea: 88,00</li>
-            </ul>
-            <p>Il requisito di 25/30 riferito alla media ponderata non è raggiunto, anche se la media aritmetica lo farebbe sembrare soddisfatto. Un 27 nel prossimo esame da 9 CFU porterebbe la media ponderata a 24,75: servirebbe un 30 per arrivare a 25,50.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: scegliere se rifiutare un 24 in un esame da 12 CFU</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Libretto di partenza senza l'esame: 33 CFU con media 27,55</li>
-            <li>Accettando 24 su 12 CFU: media 26,60</li>
-            <li>Riprovando e ottenendo 28: media 27,67</li>
-            </ul>
-            <p>La differenza fra le due scelte vale oltre un punto di media e circa 4 punti sulla base di laurea in centodecimi. Conviene rifiutare solo se il prossimo appello non ritarda la laurea: un anno fuori corso può far perdere punti bonus previsti dal regolamento.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso autocertificare la media calcolata qui?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se coincide con quella ufficiale dell&rsquo;ateneo. Una media sbagliata fa perdere il beneficio anche se l&rsquo;errore &egrave; involontario.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ ed Errori: Anomalie di Ponderazione e Decadenza ex Art. 75</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Il Paradosso della "Decertificazione":</strong> Dalla Legge di Stabilità 2012, tutte le pubbliche amministrazioni (Università, Comuni, INPS) hanno il divieto assoluto e imperativo di richiedere o accettare certificati cartacei tra loro, demandando tutto all'autocertificazione. Un funzionario pubblico che respinga una corretta Dichiarazione Sostitutiva (D.S.C.) redatta dallo studente esigendo il certificato storico originale della Segreteria, compie una violazione dei doveri d'ufficio e si espone a procedimento disciplinare, dovendo l'Ateneo esperire i controlli d'ufficio.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Decadenza ed Estensioni Punitive:</strong> Sul piano della deterrenza penale, l'equilibrio del sistema di autocertificazione è garantito dalla clausola deterrenziale incastonata negli Articoli 71, 75 e 76 del D.P.R. 445/2000. Il cittadino che compili attestazioni mendaci (es. arrotondando illecitamente al rialzo la propria media o inserendo CFU di esami non verbalizzati) subisce, in combinato disposto, l'obliterazione dei benefici ricevuti e l'esposizione al procedimento penale (Art. 76, richiamo all'Art. 483 c.p.). In passato, la decadenza incideva solo sul beneficio specifico (es. revoca di una singola borsa di studio). Oggi, i controlli operano un irradiamento punitivo trasversale: dopo le modifiche del D.L. 76/2020 all'art. 75, la dichiarazione non veritiera comporta, oltre alla decadenza e alla restituzione dei benefici, il divieto di accesso a contributi, finanziamenti e agevolazioni per due anni dall'adozione dell'atto di decadenza.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Fallacie Software e Trattamento Lodi:</strong> Nel calcolo algoritmico, un errore fatale (Floating Point Precision Error) insorge nei codici JavaScript non ottimizzati. I computer processano i decimali in virgola mobile standard IEEE 754, innescando approssimazioni del tipo (0.1 + 0.2 = 0.30000000000000004). Con voti e CFU interi la somma dei prodotti è sempre esatta; l'unica approssimazione è nella divisione finale, che il calcolatore arrotonda a due decimali in visualizzazione. Un ulteriore criticità di calibrazione riguarda l'inserimento del "30 e Lode". Molti Regolamenti Didattici d'Ateneo (RDA) ponderano la Lode come 31, 32 o 33 (tipico delle facoltà mediche), mentre altri atenei la sterilizzano matematicamente a 30, limitandosi ad assegnare un extra-point forfettario alla seduta finale. Impostare la lode a 31 in un ateneo che la conta come 30 aumenta il numeratore della media: il valore ottenuto non corrisponde a quello ufficiale e non va riportato in un'autocertificazione.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove vengono salvati gli esami?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Solo nel browser di questo dispositivo. Su un computer condiviso svuota il libretto alla fine.</p>
         </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📌</span> Esempio completo e strategie per il voto di laurea</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La media ponderata pesa ogni voto per i crediti formativi dell'esame. Un esame da 12 CFU incide sulla media quattro volte più di un esame da 3 CFU. Per questo la stessa serie di voti può produrre medie molto diverse.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio di calcolo su sei esami</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Esame</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Voto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">CFU</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Voto x CFU</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Analisi matematica</td><td class="px-3 py-2 border-t border-gray-200">24</td><td class="px-3 py-2 border-t border-gray-200">12</td><td class="px-3 py-2 border-t border-gray-200">288</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Diritto privato</td><td class="px-3 py-2 border-t border-gray-200">28</td><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">252</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Economia aziendale</td><td class="px-3 py-2 border-t border-gray-200">30</td><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">270</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Statistica</td><td class="px-3 py-2 border-t border-gray-200">22</td><td class="px-3 py-2 border-t border-gray-200">6</td><td class="px-3 py-2 border-t border-gray-200">132</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Lingua inglese</td><td class="px-3 py-2 border-t border-gray-200">27</td><td class="px-3 py-2 border-t border-gray-200">6</td><td class="px-3 py-2 border-t border-gray-200">162</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Informatica</td><td class="px-3 py-2 border-t border-gray-200">30</td><td class="px-3 py-2 border-t border-gray-200">3</td><td class="px-3 py-2 border-t border-gray-200">90</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">45</td><td class="px-3 py-2 border-t border-gray-200">1.194</td></tr></tbody></table></div>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Media ponderata = Somma(Voto x CFU) / Somma(CFU) = 1.194 / 45 = 26,53</li>
-              <li>Media aritmetica = (24 + 28 + 30 + 22 + 27 + 30) / 6 = 26,83</li>
-              <li>Base di partenza in 110 = 26,5333 x 110 / 30 = 97,29</li>
-            </ul>
-            <p>In questo caso la media ponderata è più bassa di quella aritmetica, perché il voto più basso fra quelli pesanti, il 24, riguarda l'esame con più crediti. Il 30 in Informatica pesa poco perché vale solo 3 CFU.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Dove intervenire per alzare la media</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Aumento della media = (Nuovo voto - Media attuale) x CFU esame / CFU totali</li>
-              <li>Esame da 12 CFU con 30, media attuale 26,53, 57 CFU totali  =&gt;  +0,73 punti</li>
-              <li>Esame da 3 CFU con 30, stessa situazione, 48 CFU totali      =&gt;  +0,22 punti</li>
-            </ul>
-            <p>Un ottimo voto in un esame con molti crediti sposta la media più di tre ottimi voti in esami piccoli. Chi pianifica gli ultimi esami dovrebbe quindi dedicare più tempo a quelli con più CFU. Rifiutare un voto basso in un esame pesante può convenire, ma solo se l'appello successivo è compatibile con i tempi della laurea.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il trattamento della lode e i punti aggiuntivi</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Lode</strong>: molti atenei la contano come 30 nella media, altri le attribuiscono un valore superiore, ad esempio 31, 32 o 33. Il regolamento del corso di studio è l'unica fonte valida.</li>
-              <li><strong>Punti per la tesi</strong>: la commissione assegna un punteggio aggiuntivo che varia per ateneo e tipo di tesi, spesso fino a un massimo di 7 - 11 punti.</li>
-              <li><strong>Bonus di carriera</strong>: alcuni corsi aggiungono punti per laurea in corso, esperienze Erasmus o numero di lodi.</li>
-              <li><strong>Esami esclusi</strong>: le idoneità senza voto e alcune attività a scelta non entrano nella media ponderata ma contano nei CFU complessivi.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le regole di calcolo della base di laurea cambiano da un ateneo all'altro e talvolta da un corso all'altro. Il risultato della simulazione è una stima. Il voto ufficiale è quello determinato dalla commissione secondo il regolamento didattico del tuo corso di studio.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La media si calcola sugli esami o anche sulle idoneità?</h3>
-            <p>Solo sugli esami con voto in trentesimi. Le idoneità danno CFU per la laurea ma non entrano né nel numeratore né nel denominatore della media ponderata.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Come si passa dalla media al voto di laurea?</h3>
-            <p>La media ponderata si moltiplica per 11 e si divide per 3: con 27 di media la base è 99. La commissione aggiunge poi i punti per la tesi e gli eventuali bonus previsti dal regolamento.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso autocertificare la media calcolata qui?</h3>
-            <p>Sì, ma deve coincidere con quella ufficiale dell'ateneo: verifica valore della lode ed esami esclusi. Una media sbagliata in un'autocertificazione è una dichiarazione non veritiera, anche se l'errore è involontario il beneficio decade.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Dove vengono salvati gli esami inseriti?</h3>
-            <p>Solo nel browser di questo dispositivo. Aprendo la pagina su un altro telefono o computer il libretto è vuoto; su un computer condiviso conviene svuotarlo al termine.</p>
-            </div>
-          </div>
-        </details>
-
-        </section>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.M. 22 ottobre 2004, n. 270: crediti formativi e ordinamenti didattici.</li>
+          <li>D.P.R. 28 dicembre 2000, n. 445, artt. 46, 75 e 76: autocertificazioni e dichiarazioni non veritiere.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Le regole per la base di laurea cambiano fra atenei e corsi: il voto ufficiale lo stabilisce la commissione.</p>
+      </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>

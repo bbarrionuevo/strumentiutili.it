@@ -142,34 +142,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "I codici QR generati scadono?",
+            "name": "I codici QR scadono?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Sono codici statici che contengono direttamente il link o il testo, senza passare da un server di reindirizzamento. Smettono di funzionare solo se la pagina a cui puntano non esiste più."
+              "text": "No: sono statici. Smettono di funzionare solo se la pagina a cui puntano non esiste più."
             }
           },
           {
             "@type": "Question",
-            "name": "Meglio scaricare PNG o SVG?",
+            "name": "Meglio PNG o SVG?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "PNG per l'uso a schermo, email e social; SVG per stampa, tipografia e cartelli, perché è vettoriale e resta nitido a qualsiasi dimensione. Entrambi includono il margine bianco richiesto dallo standard."
+              "text": "PNG per schermo, email e social; SVG per stampa e cartelli. Entrambi includono il margine bianco."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso cambiare il link dopo aver stampato il codice?",
+            "name": "Posso cambiare il link dopo la stampa?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No: il link è scritto nel codice stesso. Se prevedi di cambiare destinazione, codifica un indirizzo del tuo sito che potrai reindirizzare in seguito."
+              "text": "No, è scritto nel codice. Codifica un indirizzo del tuo sito se prevedi di cambiare destinazione."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il telefono non riconosce il mio QR colorato?",
+            "name": "Perché il telefono non legge il mio QR colorato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Probabilmente il contrasto è insufficiente o i colori sono invertiti. Usa moduli scuri su sfondo chiaro: la guida del campo Colori calcola il rapporto di contrasto."
+              "text": "Di solito il contrasto è basso o i colori sono invertiti. Usa moduli scuri su sfondo chiaro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il contenuto viene inviato a un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: il codice viene creato nel browser."
             }
           }
         ]
@@ -431,222 +439,55 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Standard ISO/IEC 18004:2024, Ridondanza Reed-Solomon e Inviolabilità Crittografica Client-Side</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La generazione programmatica di vettori d'informazione bidimensionali a matrice — comunemente noti come codici QR (Quick Response) — rappresenta una disciplina nevralgica nell'ingegneria del software moderno, nell'intermediazione d'accesso e nella sicurezza delle comunicazioni di rete. La creazione di credenziali per reti Wi-Fi aziendali, schede di contatto vCard, token di autenticazione a due fattori (2FA) o URI crittografati richiede l'applicazione di principi architetturali rigorosi mirati a eliminare ogni possibile intercettazione o dispersione di log su server intermediari. Il seguente trattato disamina l'inquadramento normativo europeo in materia di sicurezza del trattamento (GDPR), la formalizzazione algebrica della matrice bidimensionale definita dallo standard ISO/IEC 18004:2024, le funzioni di entropia crittografica locale, le casuistiche operative in contesti mission-critical e l'analisi dei possibili fallimenti di scansione ottica.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Sicurezza ex Art. 32 GDPR, Sterilizzazione del Data Processor e Tracciamento SaaS</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per il principio fondamentale di sicurezza del trattamento sancito dall'Articolo 32 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679), il Titolare del Trattamento è tenuto a mettere in atto misure tecniche e organizzative adeguate per garantire un livello di sicurezza commisurato al rischio. La generazione di artefatti grafici che incorporano informazioni riservate (quali stringhe di testo secretate, credenziali d'accesso Wi-Fi WPA2/WPA3, URI di referti sanitari o dati anagrafici) tramite generatori commerciali tradizionali erogati in modalità Cloud SaaS costituisce una grave vulnerabilità sistemica.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La quasi totalità dei servizi QR online gratuiti implementa la pratica dei cosiddetti "QR Code Dinamici". In questo modello, il codice impresso non contiene direttamente l'informazione finale dell'utente, bensì un URI intermediario appartenente al server dell'azienda fornitrice. Quando il codice viene inquadrato, la scansione viene instradata verso i server SaaS remoti, che registrano l'indirizzo IP del dispositivo, la posizione geografica, il timestamp e l'user-agent del browser, per poi eseguire un reindirizzamento HTTP 302 verso la destinazione reale. Oltre al tracciamento non autorizzato degli utenti (in palese violazione del consenso GDPR), tali codici cessano imprevistamente di funzionare non appena il provider modifica le proprie politiche commerciali o disattiva i server, rendendo inutilizzabili i materiali stampati.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'infrastruttura Zero-Backend (Serverless Client-Side) del presente applicativo azzera integralmente questo vettore d'attacco. In perfetta aderenza al principio di Data Protection by Design e by Default (Articolo 25 GDPR), la generazione dei moduli algebrici avviene interamente all'interno del Document Object Model (DOM) e della memoria RAM locale del browser tramite l'algoritmo compilato in JavaScript. Rifiutando qualsiasi comunicazione verso il server (Zero-Upload), i codici generati sono estrettamente Statici: l'informazione è scolpita in modo definitivo all'interno della matrice geometrica. Senza alcun canale di comunicazione attivo verso l'esterno, il gestore del sito non assume mai la qualifica di Responsabile del Trattamento (Data Processor ex Articolo 28 GDPR), sollevando l'utente aziendale dagli oneri di stipula dei Data Processing Agreements (DPA), dalla redazione di DPIA ex Art. 35 e dal rischio di sanzioni amministrative pecuniarie previste dall'Articolo 83 del GDPR (fino a 20 milioni di euro o fino al 4% del fatturato globale annuo).
-            </p>
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Creare un codice QR che funziona e non scade</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il generatore crea codici QR <em>statici</em>: il link o il testo &egrave; scritto direttamente nel codice, senza passare da un server. Non scadono, non tracciano chi li inquadra e funzionano finch&eacute; esiste la pagina a cui puntano. Il codice viene creato nel browser.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scegli il tipo: testo o link, Wi-Fi o contatto della rubrica (vCard).</li>
+            <li>Compila il contenuto e, se vuoi, i colori (moduli scuri su sfondo chiaro).</li>
+            <li>Scarica PNG per schermo, email e social, o SVG per la stampa: resta nitido a qualsiasi dimensione.</li>
+            <li>Prima di stampare molte copie, provalo con un paio di telefoni.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Statico o dinamico</h3>
+          <p>Molti siti gratuiti creano QR &laquo;dinamici&raquo;: il codice contiene un indirizzo del loro server, che registra ogni scansione e poi rimanda al tuo link. Se il servizio chiude o diventa a pagamento, i materiali stampati smettono di funzionare. Con un QR statico questo non succede. Se pensi di dover cambiare destinazione dopo la stampa, codifica un indirizzo del tuo sito che potrai reindirizzare.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Dimensioni e leggibilit&agrave;</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il generatore usa sempre la correzione d&rsquo;errore pi&ugrave; alta (livello H): il codice resta leggibile anche se circa il 30% &egrave; rovinato, purch&eacute; i tre quadrati agli angoli siano integri. Un piccolo logo al centro (fino al 15&ndash;20% della superficie) di solito non crea problemi.</li>
+            <li>Pi&ugrave; testo metti, pi&ugrave; il codice diventa fitto. Il massimo &egrave; 1.273 byte (le lettere accentate valgono 2 byte); per testi lunghi pubblica una pagina e codifica il link.</li>
+            <li>I file scaricati includono il margine bianco di 4 moduli richiesto dallo standard.</li>
+            <li>Usa moduli scuri su sfondo chiaro, con buon contrasto: i colori invertiti non vengono letti da tutti i telefoni.</li>
+          </ul>
+          <p><strong>Esempio:</strong> il link https://www.comune.milano.it/servizi (36 byte) produce un codice di 37 &times; 37 moduli, 45 con il margine. Stampato a 3 cm, ogni modulo misura circa 0,67 mm: sufficiente per un volantino letto a 25&ndash;30 cm.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Wi-Fi per gli ospiti</h3>
+          <p>Scrivi nome della rete, protezione e password separati da una barra verticale (per esempio <code>CasaRossi|WPA|password</code>): il generatore aggiunge da solo la barra rovesciata davanti a &laquo;;&raquo; e &laquo;:&raquo;, che altrimenti spezzerebbero nome o password. Per una rete aperta scrivi <code>Ospiti|nopass|</code>. Per creare una password robusta e facile da dettare usa il <a href="/identita-burocrazia/generatore-password/" class="text-indigo-700 underline">generatore di password</a>.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I codici QR scadono?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: sono statici. Smettono di funzionare solo se la pagina a cui puntano non esiste pi&ugrave;.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Standard ISO/IEC 18004:2024, Polinomi di Reed-Solomon e Capacità</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La strutturazione e la sintassi geometrica dei codici QR sono normate a livello globale dallo standard ISO/IEC 18004:2024 (*Information technology - Automatic identification and data capture techniques - QR Code bar code symbology specification*). Il simbolo QR si presenta come una griglia quadrata composta da moduli neri e bianchi, incastonati tra tre schemi fondamentali di rilevamento angolare (*finder patterns*), moduli di allineamento e bande di temporizzazione (*timing patterns*).
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. Correzione degli Errori tramite Polinomi di Reed-Solomon</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il cuore matematico della tolleranza ai danni fisici della stampa si fonda sull'algebra astratta applicata ai Campi di Galois $GF(2^8)$. L'elaboratore client-side frammenta la stringa di input in blocchi di parole in codice (*codewords* da 8 bit ciascuno) e genera polinomi di parità $E(x)$ dividendo il polinomio dei dati $D(x)$ per un polinomio generatore $G(x)$ definibile come:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$G(x) = \prod_{i=0}^{t-1} (x - \alpha^i)$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Dove $\alpha$ rappresenta l'elemento primitivo del campo finito $GF(2^8)$ e $t$ identifica il numero di *codewords* di correzione d'errore da iniettare nella matrice. Lo standard ISO/IEC 18004 stabilisce quattro distinti livelli di ridondanza selezionabili:
-            </p>
-
-            <!-- Tabella Error Correction Levels -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-4 mb-4">
-              <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                  <tr class="bg-gray-100 text-gray-800">
-                    <th class="py-2.5 px-3 border-b font-bold">Livello Error Correction</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Recupero Dati Danneggiati (Approx.)</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Trade-off della Capacità Modulare</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Scenario Operativo Ideale</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                  <tr>
-                    <td class="py-2 px-3 font-bold">L (Low - Basso)</td>
-                    <td class="py-2 px-3">~7% dei Codewords</td>
-                    <td class="py-2 px-3">Massima capacità dati; matrice fisicamente più snella e compattata.</td>
-                    <td class="py-2 px-3">Display digitali puliti, ambienti indoor protetti, payload testuali massicci.</td>
-                  </tr>
-                  <tr class="bg-gray-50/50">
-                    <td class="py-2 px-3 font-bold">M (Medium - Medio)</td>
-                    <td class="py-2 px-3">~15% dei Codewords</td>
-                    <td class="py-2 px-3">Capacità bilanciata; costituisce l'impostazione standard di default.</td>
-                    <td class="py-2 px-3">Stampa su brochure, URL commerciali, packaging pulito e biglietti da visita.</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-3 font-bold">Q (Quartile)</td>
-                    <td class="py-2 px-3">~25% dei Codewords</td>
-                    <td class="py-2 px-3">Capacità ridotta; produce una griglia QR chiaramente più densa.</td>
-                    <td class="py-2 px-3">Ambienti logistici esterni, stampa di loghi aziendali centrali di piccole dimensioni.</td>
-                  </tr>
-                  <tr class="bg-indigo-50/50">
-                    <td class="py-2 px-3 font-bold text-indigo-900">H (High - Alto)</td>
-                    <td class="py-2 px-3 text-indigo-900 font-semibold">~30% dei Codewords</td>
-                    <td class="py-2 px-3 text-indigo-900">Capacità utile minima per preservare la ridondanza strutturale massima.</td>
-                    <td class="py-2 px-3 text-indigo-900 font-medium">Cantieri in ambienti ostili, etichette soggette ad usura chimica, braccialetti ospedalieri.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Versione della Simbologia e Dimensione della Griglia</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              A seconda della quantità di dati da codificare e del livello di correzione errore prescelto, la libreria incrementa la "Versione" del simbolo QR, espandendo le dimensioni della griglia quadratica da un minimo di 21x21 moduli (Versione 1) fino a un massimo di 177x177 moduli (Versione 40). La dimensione modulare si calcola algebricamente tramite la formula:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$\text{Moduli per Lato} = 17 + (4 \times \text{Versione})$$
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Livello di correzione, capacità e zona di rispetto in questo generatore</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La codifica di un codice QR è deterministica: lo stesso contenuto produce sempre la stessa matrice e non richiede numeri casuali. Questo generatore usa sempre il livello di correzione H, che tollera il danneggiamento di circa il 30% delle parole in codice ma riduce la capacità: al massimo 1.273 byte nella Versione 40. Le lettere accentate valgono 2 byte e la libreria aggiunge 3 byte di intestazione UTF-8 quando il testo ne contiene.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Lo standard richiede attorno al simbolo una zona di rispetto chiara larga 4 moduli. L'anteprima della libreria non la include, quindi i file PNG e SVG scaricati la aggiungono automaticamente con il colore di sfondo scelto. L'SVG è vettoriale, con un quadrato per ogni modulo scuro, e si può ingrandire per la stampa senza perdita di nitidezza.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Meglio PNG o SVG?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">PNG per schermo, email e social; SVG per stampa e cartelli. Entrambi includono il margine bianco.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Applicazioni in Triage Sanitario, IT Management Ospedaliero e Logistica VIP</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: Triage d'Urgenza Sanitaria e Braccialetti Paziente ad Alta Resistenza.</strong><br />
-              Il personale medico impegnato nei reparti di chirurgia d'urgenza e pronto soccorso deve stampare braccialetti identificativi per pazienti politraumatizzati in ingresso. Al braccialetto viene allegato un codice QR denso contenente l'URI crittografato che punta direttamente alla storia clinica delle reazioni allergiche e del gruppo sanguigno registrata nei server Intranet.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              A causa della prassi sanitaria di utilizzare forti solventi disinfettanti, gel igienizzanti alcolici e del contatto con fluidi corporei, la stampa dell'etichetta è esposta a grave degrado chimico e sfregamento nel giro di poche ore. Il generatore applica sempre il Livello di Correzione H (30%). L'algoritmo di Reed-Solomon calcola i complessi blocchi di parità ed espande la matrice. Tale accorgimento assicura che il sensore ottico del tablet di reparto decodifichi senza incertezze le indicazioni terapeutiche anche se circa il 30% delle parole in codice risulta danneggiato, purché restino leggibili i tre quadrati di rilevamento agli angoli.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: IT Management Ospedaliero e Setup di Workstation in Zona DMZ.</strong><br />
-              Un amministratore di sistemi (IT Manager) in una grande corporazione ospedaliera deve generare sequenzialmente centinaia di credenziali d'accesso sicure ad alta entropia (24 caratteri alfanumerici e speciali) per il setup automatizzato di nuove postazioni infermieristiche e server clinici.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Se utilizzasse un generatore commerciale ospitato su cloud di terzi, i sistemi di firewalling e i proxy di rete registrerebbero interamente il traffico testuale o le connessioni decifrate. Generando le chiavi con il <a href="/identita-burocrazia/generatore-password/" class="text-indigo-600 underline">generatore di password</a> del portale, che usa `crypto.getRandomValues()`, e convertendole in QR statici direttamente nel browser locale del suo computer di gestione, l'amministratore garantisce per policy la segretezza assoluta delle password mission-critical all'interno della *Demilitarized Zone* (DMZ) dell'infrastruttura ospedaliera.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso cambiare il link dopo la stampa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, &egrave; scritto nel codice. Codifica un indirizzo del tuo sito se prevedi di cambiare destinazione.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati generati nella pagina e decodificati con un lettore QR per verificarne il contenuto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: Wi-Fi per gli ospiti di un B&amp;B con password che contiene «;» e «:»</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Contenuto inserito: Casa;Rossi|WPA|pw:1;2|x</li>
-            <li>Testo nel codice: WIFI:T:WPA;S:Casa\;Rossi;P:pw\:1\;2|x;;</li>
-            <li>Nome della rete letto dal telefono: Casa;Rossi; password: pw:1;2|x</li>
-            </ul>
-            <p>Senza la barra rovesciata davanti a «;» e «:» il telefono interromperebbe il nome della rete a «Casa» e la connessione fallirebbe. Per una rete ospiti aperta basta scrivere Ospiti|nopass|.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: link ai servizi del Comune su un volantino</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Contenuto: https://www.comune.milano.it/servizi, 36 byte</li>
-            <li>Con livello H: Versione 5, griglia di 37 × 37 moduli</li>
-            <li>Con la zona di rispetto: 45 moduli di lato</li>
-            <li>Stampa a 3 cm: circa 0,67 mm per modulo</li>
-            </ul>
-            <p>Per un volantino letto a mano, a 25-30 cm, 3 cm di lato sono sufficienti. Aggiungendo parametri di tracciamento al link la versione sale e i moduli si rimpiccioliscono: conviene verificare la leggibilità con un telefono prima di stampare molte copie.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: testo troppo lungo per un codice QR</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Contenuto: 1.400 caratteri senza accenti = 1.400 byte</li>
-            <li>Capacità massima con livello H: 1.273 byte</li>
-            <li>Esito: messaggio «Contenuto troppo lungo»</li>
-            </ul>
-            <p>Anche con meno di 1.273 byte un codice di Versione 40 ha 177 moduli per lato ed è difficile da leggere stampato. Pubblicare il testo in una pagina web e codificarne il link produce un codice molto più semplice.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il telefono non legge il mio QR colorato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Di solito il contrasto &egrave; basso o i colori sono invertiti. Usa moduli scuri su sfondo chiaro.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e Analisi delle Criticità Tecniche: Contrasto Cromatico, Sovrasaturazione Dati e Loghi Uncalibrated</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Il Fallimento da Inversione di Contrasto Cromatico:</strong><br />
-              L'errore operativo più comune commesso dall'utenza non tecnica risiede nella scelta inadeguata delle palette di colore per il QR code. I sensori ottici delle fotocamere degli smartphone identificano i pattern di sincronizzazione (*finder patterns*) e i moduli basandosi sulla differenza di riflettanza della luce tra i punti scuri e lo sfondo chiaro. Generare un codice QR con sfondo scuro (es. nero `#000000`) e moduli chiari (es. bianco `#FFFFFF`) inverte la matrice: molti lettori d'impronta vecchi o scanner industriali falliscono la decodifica in quanto ricercano tassativamente la combinazione "moduli scuri su sfondo chiaro". Si raccomanda di mantenere sempre una differenza di contrasto pari ad almeno 4.5:1 (conforme alle linee guida di accessibilità WCAG 2.1).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Sovrasaturazione del Payload e Griglia Ingestibile (Versione 40 Collapse):</strong><br />
-              Tentare di codificare un testo molto lungo all'interno di un singolo codice QR statico costringe l'algoritmo ad elevare la simbologia fino alla Versione 40 (177x177 moduli), che con il livello H usato da questo generatore contiene al massimo 1.273 byte: oltre quella soglia il generatore mostra un messaggio di errore. La matrice risultante comprenderà oltre 31.000 micro-punti stampati. Se questo QR viene stampato su un supporto di piccole dimensioni (es. un biglietto da visita da 3x3 cm), la risoluzione di stampa fisica e l'inclinazione dell'ottica dello smartphone renderanno i singoli moduli troppo piccoli per essere distinti dai pixel del sensore, causando l'impossibilità di lettura. Per payload testuali complessi, è indispensabile sintetizzare il contenuto o utilizzare URI brevi.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Danneggiamento da Inserimento Logo Centrale Uncalibrated:</strong><br />
-              Molti designer applicano un logo grafico personalizzato al centro della matrice del codice QR sovrapponendolo brutalmente al disegno. Poiché l'immagine del logo copre e distrugge fisicamente i moduli sottostanti, se la matrice originaria era stata generata con un livello di Error Correction basso (Livello L al 7%), la perdita di dati causata dal logo supererà la capacità di recupero dell'algoritmo di Reed-Solomon, rendendo il QR del tutto illeggibile. Questo generatore usa già il Livello H (30%): un logo centrale che copra non più del 15-20% della superficie resta di norma leggibile, ma va sempre provato con più smartphone prima della stampa.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il contenuto viene inviato a un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il codice viene creato nel browser.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">I codici QR generati scadono?</h3>
-            <p>No. Sono codici statici che contengono direttamente il link o il testo, senza passare da un server di reindirizzamento. Smettono di funzionare solo se la pagina a cui puntano non esiste più.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Meglio scaricare PNG o SVG?</h3>
-            <p>PNG per l'uso a schermo, email e social; SVG per stampa, tipografia e cartelli, perché è vettoriale e resta nitido a qualsiasi dimensione. Entrambi includono il margine bianco richiesto dallo standard.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso cambiare il link dopo aver stampato il codice?</h3>
-            <p>No: il link è scritto nel codice stesso. Se prevedi di cambiare destinazione, codifica un indirizzo del tuo sito che potrai reindirizzare in seguito.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il telefono non riconosce il mio QR colorato?</h3>
-            <p>Probabilmente il contrasto è insufficiente o i colori sono invertiti. Usa moduli scuri su sfondo chiaro: la guida del campo Colori calcola il rapporto di contrasto.</p>
-            </div>
-          </div>
-        </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>ISO/IEC 18004:2024: specifiche del codice QR.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

@@ -135,18 +135,18 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il contaparole conta le emoji correttamente?",
+            "name": "Le emoji sono contate correttamente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ogni emoji comune vale 2 caratteri, perché il conteggio usa le unità UTF-16 come molti moduli online. Emoji composte, come bandiere o famiglie, possono valere 4 o più caratteri."
+              "text": "Valgono 2 caratteri ciascuna, come in molti moduli online; quelle composte anche 4 o più."
             }
           },
           {
             "@type": "Question",
-            "name": "Nei limiti degli atti giudiziari gli spazi si contano?",
+            "name": "Nei limiti degli atti giudiziari si contano gli spazi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Sia il D.M. 110/2023 per il processo civile sia il decreto del Presidente del Consiglio di Stato n. 167/2016 per quello amministrativo escludono gli spazi: usa il valore «Caratteri (senza spazi)»."
+              "text": "No: sia nel processo civile (D.M. 110/2023) sia in quello amministrativo si contano i caratteri senza spazi."
             }
           },
           {
@@ -154,15 +154,15 @@
             "name": "Perché Word mi dà un numero di parole diverso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Word e altri programmi trattano diversamente trattini, apostrofi, numeri con punti e simboli isolati. Le differenze sono di solito inferiori all'1%; per un limite rigido fa fede il sistema che riceve il testo."
+              "text": "Trattini, apostrofi, numeri con punti e simboli isolati vengono trattati in modo diverso. Di solito la differenza è sotto l’1%."
             }
           },
           {
             "@type": "Question",
-            "name": "Il testo che incollo viene salvato?",
+            "name": "Il testo viene salvato o inviato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il conteggio avviene nel browser e il testo non viene inviato a server. Il pulsante «Pulisci Testo» svuota l'editor."
+              "text": "No: il conteggio avviene nel browser e il testo non viene salvato."
             }
           }
         ]
@@ -376,218 +376,62 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">Trattato Tecnico-Normativo: Analisi Strutturale del Testo, Privacy by Design e Metriche di Lettura</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La misurazione analitica delle componenti testuali (parole, caratteri netti e lordi, unità di paragrafo e stima dei tempi di decodifica psicolinguistica) rappresenta un'operazione fondamentale in ambito legale, editoriale e di ottimizzazione per i motori di ricerca. L'utilizzo di strumenti di elaborazione del testo solleva complesse problematiche legate alla riservatezza delle informazioni industriali e dei dati personali contenuti nei bozzetti. Il presente trattato analizza il quadro regolatorio in materia di riservatezza, le formule algebriche di parsing alfanumerico, gli scenari d'uso in ambito giudiziario ed editoriale, e la gestione dei possibili errori software.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Inquadramento Normativo: Privacy by Design, GDPR e Vincoli negli Atti Processuali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'elaborazione di testi contenenti dati riservati, bozze di brevetto, memorie processuali, cartelle cliniche o dati finanziari societari deve sottostare al ferreo rispetto del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). L'utilizzo di correttori grammaticali o contaparole ospitati su infrastrutture cloud tradizionali comporta il trasferimento del payload testuale verso server remoti di terze parti. Questo flusso di dati innesca l'obbligo di mappare il trattamento nei Registri ex Art. 30 GDPR e impone la stipula di complessi Data Processing Agreements (DPA) ex Art. 28 GDPR con il provider del servizio, il quale assume la qualifica di Responsabile del Trattamento (Data Processor).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il presente applicativo risolve la criticità adottando l'architettura <strong>Zero-Backend (Serverless Client-Side)</strong>. L'intero ciclo di parsing della stringa avviene esclusivamente all'interno della sandbox del browser dell'utente. In ossequio al principio della <strong>Data Protection by Design e by Default</strong> sancito dall'Articolo 25 del GDPR, il software impedisce fisicamente qualsiasi esfiltrazione di dati (Zero-Upload). Il testo inserito nell'editor risiede unicamente nella memoria RAM volatile del dispositivo e viene distrutto dal Garbage Collector del motore JavaScript alla chiusura o al ricaricamento della scheda. Ciò azzera il rischio di data breach e neutralizza i gravami burocratici di auditing per gli studi legali e le strutture sanitarie.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Sul piano procedurale giudiziario, la quantificazione dei caratteri è divenuta un requisito bloccante rigoroso. Nel contesto del Processo Civile Telematico (PCT) e del Processo Amministrativo Telematico (PAT) — i limiti dimensionali sono fissati dal D.M. 7 agosto 2023 n. 110 per il processo civile e dal decreto del Presidente del Consiglio di Stato 22 dicembre 2016 n. 167 per quello amministrativo, e sono calcolati in numero massimo di caratteri senza contare gli spazi. Nel processo amministrativo il limite è di 70.000 caratteri per il rito ordinario, abbreviato e appalti e di 30.000 per i riti speciali come accesso e silenzio. Se l'atto li supera senza autorizzazione, il giudice non è tenuto a esaminare le questioni trattate nelle parti eccedenti (art. 13-ter delle norme di attuazione del c.p.a.).
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Contare parole e caratteri: cosa conta davvero per ogni limite</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il contaparole mostra mentre scrivi parole, caratteri con e senza spazi, paragrafi e tempo di lettura. Il testo resta nel browser e non viene salvato: &laquo;Pulisci Testo&raquo; svuota l&rsquo;editor.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come conta</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Parole:</strong> tutto ci&ograve; che &egrave; separato da spazi, a capo o tabulazioni (anche lo spazio unificatore copiato dai PDF).</li>
+            <li><strong>Caratteri con spazi:</strong> la lunghezza completa del testo.</li>
+            <li><strong>Caratteri senza spazi:</strong> senza spazi, tabulazioni e a capo.</li>
+            <li><strong>Paragrafi:</strong> i blocchi separati da a capo, ignorando le righe vuote.</li>
+            <li><strong>Tempo di lettura:</strong> parole diviso 200, almeno 1 minuto.</li>
+          </ul>
+          <p>Come molti moduli online, il contaparole conta le emoji come 2 caratteri; quelle composte (bandiere, famiglie) anche di pi&ugrave;. Per questo due strumenti possono dare numeri leggermente diversi: per un limite rigido fa fede il sistema che riceve il testo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Limiti utili</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Dove</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Limite indicativo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cosa contare</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Titolo di una pagina web</td><td class="px-3 py-2 align-top">50&ndash;60 caratteri</td><td class="px-3 py-2 align-top">con spazi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Meta description</td><td class="px-3 py-2 align-top">140&ndash;160 caratteri</td><td class="px-3 py-2 align-top">con spazi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">SMS</td><td class="px-3 py-2 align-top">160 caratteri; 70 con emoji o caratteri speciali</td><td class="px-3 py-2 align-top">con spazi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Post su X</td><td class="px-3 py-2 align-top">280 caratteri</td><td class="px-3 py-2 align-top">con spazi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Atti del processo civile e amministrativo</td><td class="px-3 py-2 align-top">fissati da decreto, in caratteri</td><td class="px-3 py-2 align-top">senza spazi</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>I motori di ricerca tagliano titoli e descrizioni in base alla larghezza a video, non ai caratteri: metti all&rsquo;inizio le parole importanti.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Un invito via SMS con due emoji</strong> di 135 caratteri passa alla codifica Unicode, con 67 caratteri per parte: diventa 3 SMS. Togliendo le emoji il testo sta in un solo SMS da 160 caratteri (anche le lettere come &laquo;&igrave;&raquo; sono ammesse).</p>
+          <p><strong>Ricorso al TAR contro il silenzio dell&rsquo;amministrazione.</strong> Il limite del rito &egrave; di 30.000 caratteri senza spazi, esclusi intestazione e indicazioni formali. Incolla solo la parte che conta: se il contaparole segna 30.300, bisogna tagliare circa 50 parole.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Tempo di lettura e di discorso</h3>
+          <p>Si leggono in silenzio circa 200&ndash;250 parole al minuto e se ne pronunciano 130&ndash;150. Un testo di 1.500 parole richiede circa 6&ndash;7 minuti di lettura e 10&ndash;11 minuti per un discorso. Testi tecnici o contratti si leggono molto pi&ugrave; lentamente.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le emoji sono contate correttamente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Valgono 2 caratteri ciascuna, come in molti moduli online; quelle composte anche 4 o pi&ugrave;.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Tokenizzazione RegEx e Stima del Tempo di Lettura (WPM)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La misurazione delle componenti della stringa testuale non si affida a banali contatori lineari, ma implementa procedure di parsing basate su espressioni regolari (RegEx) native per la gestione della codifica alfanumerica Unicode.
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Formulazione dei Caratteri Lordi e Netti</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              Il totale dei caratteri lordi corrisponde alla lunghezza fisica della sequenza UTF-16 gestita dal DOM (`String.prototype.length`). La determinazione dei caratteri netti scomputa l'insieme dei caratteri di spaziatura (whitespace: spazi standard, spazi unificati `\u00A0`, tabulazioni `\t`, ritorni di carrello `\r` e avanzamenti di riga `\n`):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$\text{Caratteri}_{\text{Netti}} = \text{Caratteri}_{\text{Lordi}} - \sum \text{Whitespace}$$
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mb-2">2. Tokenizzazione e Conteggio delle Parole</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per evitare che doppi spazi, tabulazioni o a capo multipli alterino il conteggio, la stringa sottoposta a trimming iniziale viene frammentata applicando l'espressione regolare `/ \s+ /`. L'insieme dei token generati viene filtrato rimuovendo gli elementi vuoti:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$\text{Parole} = | \{ t \in \text{Split}(S, \text{\textbackslash s}+) : t \neq \emptyset \} |$$
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mb-2">3. Determinazione dei Paragrafi</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'isolamento delle strutture di paragrafo avviene analizzando i salti di linea continui espresso dal pattern `/ \n+ /`. Il sistema scarta le righe composte unicamente da spazi bianchi per evitare sovrastime della struttura editoriale.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mb-2">4. Algoritmo di Stima del Tempo di Lettura (Reading Time WPM)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La modellizzazione della velocità di lettura si basa sul parametro psicolinguistico WPM (Words Per Minute). Studi clinici sull'oculomozione e la decodifica cognitiva in soggetti adulti sani fissano la cadenza media di lettura silenziosa a <strong>200 parole al minuto</strong>. L'algoritmo applica la funzione di arrotondamento e Ceiling per restituire l'estensione temporale minima espressa in minuti interi:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$\text{Tempo}_{\text{Lettura}} = \max\left(1, \text{Round}\left(\frac{\text{Totale Parole}}{200}\right)\right)$$
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Nei limiti degli atti giudiziari si contano gli spazi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: sia nel processo civile (D.M. 110/2023) sia in quello amministrativo si contano i caratteri senza spazi.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Validazione Atti Processuali e SEO Copywriting</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: Deposito di un Ricorso al TAR (Processo Amministrativo Telematico).</strong><br />
-              Un avvocato deve redigere un ricorso contro il silenzio dell'amministrazione, rito speciale per cui il decreto del Presidente del Consiglio di Stato fissa il limite di 30.000 caratteri senza contare gli spazi; intestazioni e altre indicazioni formali dell'atto restano escluse dal conteggio. Il legale incolla la bozza nell'editor client-side. Il sistema restituisce i seguenti dati in tempo reale:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4 font-medium">
-              <li>Parole: 4.820</li>
-              <li>Caratteri (con spazi): 34.150</li>
-              <li>Caratteri (senza spazi): 29.480</li>
-              <li>Paragrafi: 42</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'analisi dimostra che, sebbene il volume lordo con spazi (34.150) sembri oltrepassare la soglia, la metrica legale netta (29.480) risulta pienamente conforme ai 30.000 caratteri prescritti. Il legale evita così che una parte delle argomentazioni resti fuori dall'esame del giudice.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: Ottimizzazione Editorial Content &amp; UX (SEO Copywriting).</strong><br />
-              Un redattore SEO sta strutturando una guida YMYL per un portale finanziario. La Content Brief impone un articolo di almeno 1.200 parole, articolato in almeno 8 paragrafi, con un tempo di lettura stimato inferiore ai 7 minuti per non penalizzare il bounce rate su dispositivi mobili. Incollando il testo prodotto, il pannello riporta: 1.250 parole, 8.100 caratteri senza spazi, 10 paragrafi e 6 minuti di tempo di lettura. Il redattore conferma istantaneamente l'allineamento con i KPI editoriali prima della pubblicazione.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; Word mi d&agrave; un numero di parole diverso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Trattini, apostrofi, numeri con punti e simboli isolati vengono trattati in modo diverso. Di solito la differenza &egrave; sotto l&rsquo;1%.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti riportano i conteggi restituiti dal contaparole su testi reali o sui valori indicati.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: meta description di una pagina web</h3>
-            <p class="font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">Calcola online parole, caratteri con e senza spazi, paragrafi e tempo di lettura. Gratis, senza registrazione: il testo resta sul tuo dispositivo.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Parole: 22</li>
-            <li>Caratteri con spazi: 146</li>
-            <li>Caratteri senza spazi: 125</li>
-            </ul>
-            <p>Per le meta description conta il valore con gli spazi: 146 caratteri rientrano nella fascia indicativa di 140-160. Il troncamento nei risultati di ricerca dipende però dalla larghezza in pixel, quindi il testo importante va messo all'inizio.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: SMS di invito con due emoji</h3>
-            <p class="font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">Ciao Marta! 🎉 Sabato festa a sorpresa per Luca alle 20 da Pino. Porta il regalo, ci pensa Giulia alla torta 🎂 Conferma entro giovedì!</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Parole: 25, di cui 2 emoji</li>
-            <li>Caratteri con spazi: 135 (le due emoji valgono 2 caratteri ciascuna)</li>
-            <li>Senza emoji: 129 caratteri e 23 parole</li>
-            </ul>
-            <p>Con le emoji l'SMS passa alla codifica Unicode, con un limite di 70 caratteri per messaggio e 67 per ciascuna parte di un messaggio lungo: 135 caratteri diventano 3 SMS. Togliendo le due emoji il testo usa l'alfabeto standard, in cui anche «ì» è ammesso, e sta in un solo SMS da 160 caratteri.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: ricorso al TAR contro il silenzio dell'amministrazione</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Bozza completa: 31.400 caratteri senza spazi</li>
-            <li>Intestazione, epigrafe e indicazioni formali escluse dal limite: 1.100</li>
-            <li>Caratteri che contano: 30.300, limite del rito speciale: 30.000</li>
-            <li>Eccedenza: 300 caratteri, circa 50 parole</li>
-            </ul>
-            <p>Per misurare solo la parte soggetta al limite conviene incollare nel contaparole il testo senza intestazione e indicazioni formali. Con un'eccedenza di 300 caratteri è più semplice asciugare un motivo che chiedere l'autorizzazione al superamento, riservata alle questioni particolarmente complesse.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il testo viene salvato o inviato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il conteggio avviene nel browser e il testo non viene salvato.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Criticità Tecniche ed Errori di Parsing (UTF-16 e Boundary Collapse)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Il Paradosso delle Coppie Surrogate Unicode (UTF-16):</strong> Nei motori JavaScript convenzionali, la proprietà `String.prototype.length` calcola le unità di codice UTF-16 e non i caratteri visivi effettivi (grapheme clusters). L'inserimento di emoji, simboli matematici complessi o caratteri speciali (es. 𝌆 o 🎭) occupa 2 unità di codice (coppia surrogata). Un testo siffatto potrebbe indicare 100 caratteri algebrici a fronte di soli 98 caratteri visibili. Anche questo strumento conta i caratteri con <code>String.prototype.length</code>, come molte piattaforme e moduli online: ogni emoji comune vale quindi 2 caratteri, mentre nel conteggio delle parole un'emoji separata da spazi vale una parola.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Mancata Gestione degli Spazi Infrangibili (`&nbsp;` o `\u00A0`):</strong> Quando un testo viene copiato da formati PDF, impaginati InDesign o edizioni web rich-text, gli spazi vuoti contengono spesso lo spazio non-breaking (`\u00A0`). I contaparole di scarsa qualità non riconoscono questo carattere come separatore, unendo erroneamente due parole adiacenti in un unico token (es. "diritto&nbsp;civile" conteggiato come 1 parola anziché 2). Nelle espressioni regolari di JavaScript la classe `\s` comprende già lo spazio infrangibile e gli altri spazi Unicode, quindi il contaparole li tratta come separatori.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Rischi Legali da Fuga Dati tramite Strumenti Cloud:</strong> L'utilizzo di estensioni o contaparole online di dubbia provenienza che trasmettono il testo a server remoti espone gli studi professionali al rischio di violazione del segreto d'ufficio e dell'Art. 83 del GDPR, che punisce l'esfiltrazione incontrollata di dati riservati con sanzioni pecuniarie fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. L'infrastruttura 100% client-side di StrumentiUtili.it elimina totalmente questa responsabilità a carico dell'utente.
-            </p>
-          </div>
-        </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📌</span> Limiti di lunghezza nei contesti reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il conteggio di parole e caratteri serve soprattutto a rispettare un limite. I limiti cambiano a seconda del contesto e non sempre si misurano nella stessa unità: alcuni contano i caratteri con gli spazi, altri senza, altri ancora la larghezza in pixel.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Riferimenti pratici per il web</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Elemento</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Lunghezza indicativa</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Cosa succede se la superi</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Tag title di una pagina</td><td class="px-3 py-2 border-t border-gray-200">50 - 60 caratteri</td><td class="px-3 py-2 border-t border-gray-200">Il titolo viene troncato nei risultati di ricerca</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Meta description</td><td class="px-3 py-2 border-t border-gray-200">140 - 160 caratteri</td><td class="px-3 py-2 border-t border-gray-200">Il testo viene tagliato o sostituito dal motore di ricerca</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">SMS standard</td><td class="px-3 py-2 border-t border-gray-200">160 caratteri</td><td class="px-3 py-2 border-t border-gray-200">Il messaggio viene diviso in più parti e costa di più</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">SMS con emoji o caratteri speciali</td><td class="px-3 py-2 border-t border-gray-200">70 caratteri</td><td class="px-3 py-2 border-t border-gray-200">La codifica cambia e lo spazio disponibile si riduce</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Post su X</td><td class="px-3 py-2 border-t border-gray-200">280 caratteri</td><td class="px-3 py-2 border-t border-gray-200">La pubblicazione viene bloccata</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Articolo informativo per la SEO</td><td class="px-3 py-2 border-t border-gray-200">Da 800 a oltre 2.000 parole</td><td class="px-3 py-2 border-t border-gray-200">Nessun limite, conta la completezza</td></tr></tbody></table></div>
-            <p>I limiti dei motori di ricerca non sono fissati in caratteri ma nella larghezza disponibile a video. Una lettera larga come la «m» occupa molto più spazio di una «i». I valori in tabella sono quindi medie operative e non soglie esatte.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Perché un'emoji può valere due caratteri</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Molte piattaforme contano le unità di codice UTF-16, non i simboli visibili</li>
-              <li>Lettera latina: 1 unità</li>
-              <li>Emoji comune: 2 unità (coppia surrogata)</li>
-              <li>Emoji composta, come una famiglia o una bandiera: fino a 7 o più unità</li>
-            </ul>
-            <p>È la ragione per cui due strumenti diversi possono restituire conteggi diversi sullo stesso testo. Quando un limite è rigido, come in un modulo online o in un SMS, conviene controllarlo nel sistema di destinazione.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Tempo di lettura e di esposizione</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Tempo di lettura silenziosa = Parole / 200 - 250 parole al minuto</li>
-              <li>Tempo di esposizione orale = Parole / 130 - 150 parole al minuto</li>
-              <li>Esempio: 1.500 parole  =&gt;  circa 6 - 7 minuti di lettura, 10 - 11 minuti di discorso</li>
-            </ul>
-            <p>La velocità reale dipende dalla complessità del testo. Un contratto o un testo tecnico si legge molto più lentamente di un articolo divulgativo. Per un intervento pubblico conviene usare il valore più basso e prevedere pause.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Atti giudiziari e documenti con limiti formali</h3>
-            <p>Negli atti del processo civile telematico la lunghezza è regolata da criteri di redazione fissati con decreto ministeriale, che stabiliscono limiti espressi in caratteri e casi di deroga. Anche bandi, domande di finanziamento e concorsi indicano spesso un numero massimo di caratteri, a volte con spazi e a volte senza. Prima del deposito o dell'invio va verificato quale unità di misura è richiesta e se titoli, note e intestazioni rientrano nel conteggio.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il contaparole conta le emoji correttamente?</h3>
-            <p>Ogni emoji comune vale 2 caratteri, perché il conteggio usa le unità UTF-16 come molti moduli online. Emoji composte, come bandiere o famiglie, possono valere 4 o più caratteri.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Nei limiti degli atti giudiziari gli spazi si contano?</h3>
-            <p>No. Sia il D.M. 110/2023 per il processo civile sia il decreto del Presidente del Consiglio di Stato n. 167/2016 per quello amministrativo escludono gli spazi: usa il valore «Caratteri (senza spazi)».</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché Word mi dà un numero di parole diverso?</h3>
-            <p>Word e altri programmi trattano diversamente trattini, apostrofi, numeri con punti e simboli isolati. Le differenze sono di solito inferiori all'1%; per un limite rigido fa fede il sistema che riceve il testo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il testo che incollo viene salvato?</h3>
-            <p>No. Il conteggio avviene nel browser e il testo non viene inviato a server. Il pulsante «Pulisci Testo» svuota l'editor.</p>
-            </div>
-          </div>
-        </details>
-
-        </section>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.M. 7 agosto 2023, n. 110: criteri di redazione e limiti degli atti del processo civile.</li>
+          <li>Decreto del Presidente del Consiglio di Stato 22 dicembre 2016, n. 167: dimensioni degli atti del processo amministrativo.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

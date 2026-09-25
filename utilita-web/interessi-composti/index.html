@@ -143,58 +143,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Qual è la differenza fra tasso nominale ed effettivo?",
+            "name": "Che differenza c’è fra tasso nominale ed effettivo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il tasso nominale è quello annuo diviso per il numero di capitalizzazioni; il tasso effettivo è il rendimento reale di un anno dopo la composizione. Un 6% nominale con capitalizzazione mensile corrisponde al 6,17% effettivo."
+              "text": "Il nominale è il tasso annuo dichiarato; l’effettivo tiene conto delle capitalizzazioni nell’anno. Un 6% nominale con capitalizzazione mensile corrisponde al 6,17% effettivo."
             }
           },
           {
             "@type": "Question",
-            "name": "Il calcolatore considera le tasse sulle plusvalenze?",
+            "name": "Il calcolatore considera le tasse?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, i risultati sono lordi. Per una stima netta applica il 26% agli interessi per azioni, ETF e conti deposito, il 12,5% per i titoli di Stato, oppure inserisci un tasso già ridotto di tasse e costi."
+              "text": "No, i risultati sono lordi. Applica il 26% (o il 12,5% per i titoli di Stato) alla parte di interessi, oppure inserisci un rendimento già ridotto di tasse e costi."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché un PAC reale rende diversamente dalla simulazione?",
+            "name": "Perché un PAC reale rende diversamente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "I mercati non crescono a tasso costante. Con rendimenti variabili il risultato dipende anche dall'ordine degli anni positivi e negativi, e i costi annui del prodotto riducono il tasso che si compone."
+              "text": "I mercati non crescono in modo costante: conta anche l’ordine degli anni buoni e cattivi. E i costi del prodotto riducono il rendimento."
             }
           },
           {
             "@type": "Question",
-            "name": "Quanto pesano i costi di un fondo sul lungo periodo?",
+            "name": "Quanto pesano i costi di un fondo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Molto: su 10.000 € investiti per 20 anni al 6%, un costo annuo dell'1% riduce il montante lordo da 32.071 € a 26.533 €, circa 5.500 € in meno."
+              "text": "Molto: su 10.000 € per 20 anni al 6%, un costo dell’1% l’anno porta il montante lordo da 32.071 € a 26.533 €."
             }
           },
           {
             "@type": "Question",
-            "name": "Quali sono i rischi legali legati all'anatocismo nei contratti finanziari?",
+            "name": "E l’inflazione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La capitalizzazione illegittima degli interessi nei rapporti di conto corrente o nei finanziamenti viola l'articolo 1283 del Codice Civile e la Delibera CICR del 2000. Nei contenziosi giudiziali, la presenza di clausole di capitalizzazione non conformi all'art. 120 TUB e alle delibere CICR applicabili al periodo comporta la nullità parziale della clausola degli interessi. I periti del tribunale provvedono alla ricalcolazione dell'intero piano contabile a capitale semplice, costringendo la banca alla restituzione degli interessi indebitamente addebitati."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "In che modo l'inflazione incide sul rendimento reale della capitalizzazione composta?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il simulatore fornisce il rendimento nominale lordo. Per valutare il potere d'acquisto effettivo del capitale futuro occorre convertire il rendimento nominale $r$ in rendimento reale $r_{\\text{reale}}$ applicando l'Equazione di Fisher: $(1 + r_{\\text{reale}}) = \\frac{1 + r_{\\text{nominale}}}{1 + i_{\\text{inflazione}}}$. Se il capitale cresce a un tasso nominale del 5% in presenza di un'inflazione del 3%, il tasso reale netto di crescita si attesta a circa l'1,94% annuo."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché le operazioni di calcolo vengono elaborate al 100% in locale nel browser?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "In ossequio al principio diData Protection by Design e by Defaultsancito dall'Articolo 25 del GDPR (Reg. UE 2016/679), il motore di calcolo opera interamente all'interno della sandbox JavaScript del terminale dell'utente (Zero-Backend). Nessun dato relativo a risparmi, patrimonio investito o pianificazione finanziaria viene trasmesso via rete verso server di terze parti, azzerando i rischi di tracciamento o data breach."
+              "text": "Riduce il potere d’acquisto: rendimento reale = (1 + rendimento) ÷ (1 + inflazione) − 1. Al 5% con inflazione al 3% il reale è circa l’1,94%."
             }
           }
         ]
@@ -446,279 +430,78 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Trattato Tecnico sulla Capitalizzazione Composta, PAC e Tassazione Finanziaria</h2>
-        <p class="text-gray-700 leading-relaxed text-sm mb-6">
-          La pianificazione finanziaria di medio e lungo termine si fonda sul modello algebrico della <strong>capitalizzazione composta</strong> (o interesse composto), spesso descritto, con una frase attribuita ad Albert Einstein ma priva di fonti verificate, come una delle forze più potenti della finanza personale. A differenza del regime a capitalizzazione semplice, in cui gli interessi maturati vengono liquidati ed estromessi dal capitale generatore, la capitalizzazione composta prevede che i rendimenti fruttati al termine di ciascun periodo discreto vengano riassorbiti e reinvestiti all'interno del capitale di partenza, espandendo esponenzialmente la base imponibile per i calcoli dei cicli successivi. Questo simulatore elabora le proiezioni patrimoniali e l'accumulo finanziario in totale isolamento locale (100% Client-Side), garantendo il rispetto rigoroso del Regolamento Generale sulla Protezione dei Dati (GDPR - Reg. UE 2016/679).
-        </p>
-
-        <!-- ACCORDEON 1: Inquadramento Normativo e Tassazione -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo, Anatocismo e Fiscalità Italiana</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">La Disciplina dell'Anatocismo Bancario (Art. 1283 Codice Civile e TUB)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nel diritto civile italiano, la produzione di interessi su altri interessi già maturati prende il nome di <strong>anatocismo</strong>. L'articolo 1283 del Codice Civile pone un divieto generale all'anatocismo, ammettendolo unicamente dal giorno della domanda giudiziale o per effetto di convenzione posteriore alla loro scadenza, e sempre che si tratti di interessi dovuti per almeno sei mesi. In ambito bancario e creditizio, la materia è regolata dall'articolo 120 del Testo Unico Bancario (TUB - D.Lgs. 385/1993). La delibera CICR del 22 febbraio 2000 aveva ammesso la capitalizzazione degli interessi con pari periodicità per interessi attivi e passivi; dopo la riforma dell'art. 120 TUB (L. 49/2016) e la delibera CICR n. 343 del 3 agosto 2016, gli interessi debitori maturati nei conti correnti e nei fidi non producono ulteriori interessi, salvo quelli di mora, e sono conteggiati annualmente con esigibilità dal 1° marzo dell'anno successivo.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Convenzioni di Conteggio del Tempo (ISDA Day Count Conventions)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nei contratti finanziari, nei mutui ipotecari e nei mercati monetari interbancari gestiti dall'ISDA (International Swaps and Derivatives Association), la frazione temporale d'interesse $t$ non è astratta ma viene determinata secondo convenzioni di calcolo rigorose:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Actual/360 (Act/360):</strong> Calcola i giorni solari effettivi al numeratore e assume un anno commerciale di 360 giorni al denominatore. Questa convenzione, diffusissima nel Corporate Banking a breve termine, comprime il divisore ed estrae un extra-profitto algoritmico a favore del creditore.</li>
-                <li><strong>Actual/365 (Act/365):</strong> Utilizza i giorni solari effettivi su un anno civile di 365 giorni (366 nei bisestili), garantendo la corrispondenza perfetta con il tasso annuo nominale (TAN).</li>
-                <li><strong>30/360 (Anno Commerciale):</strong> Considera convenzionalmente ogni mese composto da 30 giorni e l'anno da 360 giorni, tipicamente impiegata nei piani di ammortamento a rata costante alla francese.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Tassazione delle Plusvalenze e Imposta di Bollo (TUIR e D.L. 66/2014)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'incremento di valore generato dalla capitalizzazione composta rappresenta una plusvalenza finanziaria (capital gain) soggetta a tassazione sostitutiva alla fonte all'atto del disinvestimento (D.Lgs. 461/1997 e D.P.R. 917/1986 - TUIR):
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Aliquota Ordinaria (26%):</strong> Si applica sui rendimenti derivanti da azioni, quote di societarie, ETF azionari/obbligazionari corporate, conti deposito e certificati di deposito. Le plusvalenze sulle criptoattività, tassate al 26% fino al 2025, dal 2026 scontano il 33%.</li>
-                <li><strong>Aliquota Agevolata (12,50%):</strong> Riservata in via esclusiva ai rendimenti prodotti da Titoli di Stato italiani (BOT, BTP, CCT, CTZ), buoni fruttiferi postali e titoli emessi da Paesi sovrani inclusi nella <em>White List</em>.</li>
-              </ul>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Sull'intero patrimonio investito grava inoltre l'<strong>Imposta di Bollo sui Dossier Titoli</strong> (Art. 13 della Tariffa allegata al D.P.R. 642/1972), la quale preleva annualmente lo <strong>0,20% (2 per mille)</strong> sul controvalore complessivo del portafoglio valorizzato al 31 dicembre di ogni anno solare.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Interesse composto e piano di accumulo: quanto cresce il capitale</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Con l&rsquo;interesse composto gli interessi di ogni periodo si sommano al capitale e producono a loro volta interessi. Il simulatore calcola quanto diventa un capitale iniziale, con o senza versamenti periodici (piano di accumulo, PAC). I risultati sono lordi: tasse, costi e inflazione vanno considerati a parte.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scrivi il capitale iniziale e l&rsquo;eventuale versamento periodico.</li>
+            <li>Scegli la frequenza (mensile, annuale&hellip;), il rendimento annuo atteso e la durata.</li>
+            <li>Leggi il montante finale, quanto hai versato e quanto &egrave; interesse.</li>
+          </ol>
+          <p>La formula: montante = capitale &times; (1 + r/n)<sup>n&middot;t</sup> + versamento &times; [(1 + r/n)<sup>n&middot;t</sup> &minus; 1] &divide; (r/n), con versamenti a fine periodo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>PAC da 100 &euro; al mese per 30 anni al 6%.</strong> Versati 36.000 &euro;, montante lordo 100.451,50 &euro;, di cui 64.451,50 &euro; di interessi. Gran parte della crescita arriva negli ultimi anni: fermarsi a met&agrave; strada ne lascia una piccola parte. Con il 26% di tasse sulla plusvalenza restano circa 83.694 &euro;, prima di costi e bollo.</p>
+          <p><strong>Gli stessi 1.200 &euro; l&rsquo;anno versati una volta sola.</strong> Montante 94.869,82 &euro;, 5.581,68 &euro; in meno: con la frequenza mensile il 6% nominale diventa il 6,17% effettivo e i soldi entrano prima.</p>
+          <p><strong>20.000 &euro; su un conto deposito a 5 anni al 3,5%.</strong> Con interessi reinvestiti: 23.753,73 &euro;. Molti conti deposito per&ograve; pagano gli interessi senza reinvestirli: in quel caso sono 3.500 &euro; lordi.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Dal lordo al netto reale</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">10.000 &euro; per 20 anni al 6%</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Rendimento annuo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Montante</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Lordo</td><td class="px-3 py-2 align-top">6,00%</td><td class="px-3 py-2 align-top">32.071 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Dopo le tasse al 26%</td><td class="px-3 py-2 align-top">4,44%</td><td class="px-3 py-2 align-top">23.842 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Dopo tasse e costi dell&rsquo;1% annuo</td><td class="px-3 py-2 align-top">3,44%</td><td class="px-3 py-2 align-top">19.668 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Dopo tasse, costi e inflazione al 2%</td><td class="px-3 py-2 align-top">1,41%</td><td class="px-3 py-2 align-top">13.236 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <!-- ACCORDEON 2: Meccanica e Formule Matematiche -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Algebrica e Formule della Capitalizzazione Composta</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">A) Formula del Montante a Capitalizzazione Composta Discreta</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Dato un capitale iniziale unico $P$, un tasso di interesse annuo nominale $r$, una frequenza di capitalizzazione $n$ volte all'anno e una durata espressa in anni $t$, il montante futuro $M$ si calcola come:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$M = P \cdot \left(1 + \frac{r}{n}\right)^{n \cdot t}$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">B) Formula del Piano di Accumulo (PAC) con Versamenti Periodici Costanti</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Qualora oltre al capitale iniziale vengano effettuati versamenti periodici posticipati costanti $PMT$ a ogni intervallo di capitalizzazione, il valore futuro accumulato dai soli versamenti $FV_{PAC}$ segue la formula della rendita finanziaria:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$FV_{PAC} = PMT \cdot \left[ \frac{\left(1 + \frac{r}{n}\right)^{n \cdot t} - 1}{\frac{r}{n}} \right]$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">C) Formula Unificata del Montante Finale Lordo ($FV_{tot}$)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Integrazione algebrica totale applicata dall'algoritmo del simulatore per calcolare la crescita combinata di deposito iniziale e accumulo periodico:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$FV_{tot} = P \cdot \left(1 + \frac{r}{n}\right)^{n \cdot t} + PMT \cdot \left[ \frac{\left(1 + \frac{r}{n}\right)^{n \cdot t} - 1}{\frac{r}{n}} \right]$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">D) La Regola del 72 (Approssimazione Logaritmica del Raddoppio)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                In finanza, il tempo esatto $t$ per raddoppiare un capitale con interesse composto si ricava uguagliando il montante a $2P$: $2P = P(1+r)^t \implies t = \frac{\ln(2)}{\ln(1+r)}$. Attraverso lo sviluppo in serie di Taylor per piccoli tassi d'interesse, il tempo si approssima con la celebre <strong>Regola del 72</strong>:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$t_{\text{raddoppio}} \approx \frac{72}{r_{\text{percentuale}}}$$
-              </div>
-            </div>
+          <p>La tabella &egrave; semplificata (tasse pagate ogni anno); nei fondi ed ETF ad accumulazione le tasse si pagano alla vendita e il risultato &egrave; un po&rsquo; migliore. Il punto chiave &egrave; il peso dei costi: un 1% l&rsquo;anno su vent&rsquo;anni toglie oltre 4.100 &euro; in questo esempio.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Strumento</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Tassazione dei rendimenti</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Azioni, obbligazioni societarie, fondi, ETF, conti deposito</td><td class="px-3 py-2 align-top">26%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Titoli di Stato italiani e dei Paesi della white list</td><td class="px-3 py-2 align-top">12,5%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Criptoattivit&agrave; (dal 2026)</td><td class="px-3 py-2 align-top">33%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Fondi pensione</td><td class="px-3 py-2 align-top">fra 12,5% e 20%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Imposta di bollo su dossier titoli e conti deposito</td><td class="px-3 py-2 align-top">0,20% l&rsquo;anno</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <!-- ACCORDEON 3: Casuistica Reale Completa -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Esempi Pratici e Soluzioni Matematiche Svolte</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 1: Impatto del Divisore Bancario Act/360 vs Act/365 su Scoperto Societario</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un'impresa ricorre a un anticipo di cassa in bullet di <strong>1.000.000,00 €</strong> per 90 giorni effettivi al tasso nominale del 4,50% annuo:
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>1. Calcolo con Convenzione Actual/360 (Bancario):</strong><br>
-                $\text{Interesse} = 1.000.000 \times 0,045 \times (90 / 360) = \mathbf{11.250,00\ \text{€}}$</p>
-                <p><strong>2. Calcolo con Convenzione Actual/365 (Civile):</strong><br>
-                $\text{Interesse} = 1.000.000 \times 0,045 \times (90 / 365) = \mathbf{11.095,89\ \text{€}}$</p>
-                <p class="text-rose-700 font-semibold">Differenziale Oneri Occulti: La convenzione Act/360 estrae un extra-costo algoritmico di 154,11 € a sfavore dell'azienda sul singolo trimestre!</p>
-              </div>
-            </div>
-
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 2: Piano di Accumulo (PAC) su ETF Azionario a 15 Anni con Tassazione</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un privato avvia un PAC investimento con un capitale iniziale $P = 5.000,00\ \text{€}$, versamenti mensili $PMT = 200,00\ \text{€}$ ($n = 12$), tasso annuo lordo stimato $r = 6,00\%$ per una durata $t = 15\ \text{anni}$ ($N = 180\ \text{mesi}$):
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>Dati:</strong> $i_{\text{mensile}} = 0,06 / 12 = 0,005$; Fattore di crescita $(1,005)^{180} = 2,45409384$.</p>
-                <p><strong>1. Montante da Capitale Iniziale:</strong> $5.000 \times 2,45409384 = \mathbf{12.270,47\ \text{€}}$</p>
-                <p><strong>2. Montante da Versamenti Mensili (PAC):</strong> $200 \times \left[\frac{2,45409384 - 1}{0,005}\right] = 200 \times 290,818768 = \mathbf{58.163,75\ \text{€}}$</p>
-                <p><strong>3. Capitale Finale Lordo Accumulato ($FV_{tot}$):</strong> $12.270,47 + 58.163,75 = \mathbf{70.434,22\ \text{€}}$</p>
-                <p><strong>4. Totale Capitale Effettivamente Versato:</strong> $5.000 + (200 \times 180) = \mathbf{41.000,00\ \text{€}}$</p>
-                <p><strong>5. Plusvalenza Lorda Maturata:</strong> $70.434,22 - 41.000,00 = \mathbf{29.434,22\ \text{€}}$</p>
-                <p><strong>6. Imposta sulle Plusvalenze (Aliquota 26% ETF Azionario):</strong> $29.434,22 \times 0,26 = \mathbf{7.652,90\ \text{€}}$</p>
-                <p class="text-emerald-700 font-bold">Capitale Finale Netto Stimato (al netto del Capital Gain) = 62.781,32 €. Il calcolatore, che non arrotonda i passaggi intermedi, mostra 70.434,21 € di montante lordo.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Anatocismo e Rischi di Mercato</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti sono calcolati con il motore della pagina, che applica la capitalizzazione composta con versamenti a fine periodo e restituisce valori lordi.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: PAC da 100 € al mese per 30 anni</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Capitale iniziale 0 €, versamento 100 € mensile, 6% annuo</li>
-                <li>Versato: 36.000,00 €</li>
-                <li>Montante lordo: 100.451,50 €</li>
-                <li>Interessi: 64.451,50 €</li>
-                </ul>
-                <p>Gli interessi valgono quasi il doppio dei versamenti, ma la maggior parte matura negli ultimi anni: interrompere il piano dopo 15 anni lascerebbe una frazione molto minore della crescita. Con la tassazione al 26% sulla plusvalenza alla vendita il netto sarebbe di circa 83.694 €, prima di costi e imposta di bollo.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: stessi 1.200 € all'anno versati una volta sola</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Versamento 1.200 € annuale, 6%, 30 anni</li>
-                <li>Versato: 36.000,00 €</li>
-                <li>Montante lordo: 94.869,82 €</li>
-                </ul>
-                <p>La differenza di 5.581,68 € rispetto al Caso 1 non dipende da un rendimento diverso: con la frequenza mensile il 6% nominale diventa il 6,17% effettivo e i versamenti entrano prima nel calcolo. Per confrontare prodotti reali conviene usare il rendimento effettivo annuo e la frequenza annuale.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: 20.000 € su un conto deposito vincolato a 5 anni al 3,5%</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Capitale 20.000 €, nessun versamento, frequenza annuale</li>
-                <li>Montante lordo: 23.753,73 €</li>
-                <li>Interessi lordi: 3.753,73 €</li>
-                </ul>
-                <p>Molti conti deposito pagano gli interessi ogni anno senza reinvestirli: in quel caso la crescita è semplice e gli interessi lordi sono 3.500 €. Sugli interessi si applica la ritenuta del 26% e sul conto l'imposta di bollo dello 0,20% annuo.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quali sono i rischi legali legati all'anatocismo nei contratti finanziari?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                La capitalizzazione illegittima degli interessi nei rapporti di conto corrente o nei finanziamenti viola l'articolo 1283 del Codice Civile e la Delibera CICR del 2000. Nei contenziosi giudiziali, la presenza di clausole di capitalizzazione non conformi all'art. 120 TUB e alle delibere CICR applicabili al periodo comporta la nullità parziale della clausola degli interessi. I periti del tribunale provvedono alla ricalcolazione dell'intero piano contabile a capitale semplice, costringendo la banca alla restituzione degli interessi indebitamente addebitati.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>In che modo l'inflazione incide sul rendimento reale della capitalizzazione composta?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il simulatore fornisce il rendimento nominale lordo. Per valutare il potere d'acquisto effettivo del capitale futuro occorre convertire il rendimento nominale $r$ in rendimento reale $r_{\text{reale}}$ applicando l'Equazione di Fisher: $(1 + r_{\text{reale}}) = \frac{1 + r_{\text{nominale}}}{1 + i_{\text{inflazione}}}$. Se il capitale cresce a un tasso nominale del 5% in presenza di un'inflazione del 3%, il tasso reale netto di crescita si attesta a circa l'1,94% annuo.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché le operazioni di calcolo vengono elaborate al 100% in locale nel browser?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                In ossequio al principio di <em>Data Protection by Design e by Default</em> sancito dall'Articolo 25 del GDPR (Reg. UE 2016/679), il motore di calcolo opera interamente all'interno della sandbox JavaScript del terminale dell'utente (Zero-Backend). Nessun dato relativo a risparmi, patrimonio investito o pianificazione finanziaria viene trasmesso via rete verso server di terze parti, azzerando i rischi di tracciamento o data breach.
-              </p>
-            </details>
-
-          </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">La regola del 72</h3>
+          <p>Per sapere in quanti anni raddoppia un capitale, dividi 72 per il rendimento annuo: al 6% circa 12 anni, al 3,44% circa 21, all&rsquo;1,41% circa 51. Funziona bene per rendimenti fra il 2% e il 10%.</p>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Una simulazione non &egrave; una previsione: i mercati non crescono a tasso costante e hanno anni negativi. Per scelte di investimento rivolgiti a un consulente abilitato.</p>
         </div>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📌</span> Dal rendimento lordo al rendimento reale netto</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il rendimento mostrato da una simulazione di interesse composto è lordo. Quello che conta per il risparmiatore è ciò che resta dopo tasse, costi e inflazione. Ognuno di questi tre fattori riduce il tasso che si compone anno dopo anno, e l'effetto cresce con la durata.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Le formule di aggiustamento</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Rendimento netto di tasse = Rendimento lordo x (1 - Aliquota fiscale)</li>
-              <li>Rendimento netto di costi = Rendimento netto di tasse - Costi annui percentuali</li>
-              <li>Rendimento reale = (1 + Rendimento netto) / (1 + Inflazione) - 1</li>
-              <li>Montante finale = Capitale x (1 + Rendimento reale)^Anni</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Aliquote fiscali sui redditi finanziari in Italia</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Strumento</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Aliquota sui proventi</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Azioni, obbligazioni societarie, fondi, ETF</td><td class="px-3 py-2 border-t border-gray-200">26%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Titoli di Stato italiani e di Paesi white list</td><td class="px-3 py-2 border-t border-gray-200">12,5%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Conti deposito e conti correnti</td><td class="px-3 py-2 border-t border-gray-200">26%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Rendimenti dei fondi pensione</td><td class="px-3 py-2 border-t border-gray-200">Tra 12,5% e 20%, secondo la composizione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta di bollo sul dossier titoli</td><td class="px-3 py-2 border-t border-gray-200">0,20% annuo del valore</td></tr></tbody></table></div>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio: 10.000 euro per 20 anni al 6% lordo</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Scenario</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Tasso annuo effettivo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Montante dopo 20 anni</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Lordo, senza costi né tasse</td><td class="px-3 py-2 border-t border-gray-200">6,00%</td><td class="px-3 py-2 border-t border-gray-200">32.071 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Dopo tassazione al 26%</td><td class="px-3 py-2 border-t border-gray-200">4,44%</td><td class="px-3 py-2 border-t border-gray-200">23.842 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Dopo tasse e costi dell'1% annuo</td><td class="px-3 py-2 border-t border-gray-200">3,44%</td><td class="px-3 py-2 border-t border-gray-200">19.668 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Dopo tasse, costi e inflazione al 2%</td><td class="px-3 py-2 border-t border-gray-200">1,41%</td><td class="px-3 py-2 border-t border-gray-200">13.236 EUR</td></tr></tbody></table></div>
-            <p>La tabella applica le aliquote in modo semplificato, come se tasse e costi venissero pagati ogni anno. Nei fondi e negli ETF ad accumulazione la tassazione avviene di norma solo alla vendita, quindi il capitale composto lordo resta investito più a lungo e il risultato finale è un po' migliore. L'imposta di bollo, invece, viene applicata ogni anno.</p>
-            <p>Il dato più importante è il peso dei costi. Un punto percentuale di costi annui sembra poco, ma su vent'anni riduce il montante netto di oltre 4.100 euro rispetto allo scenario senza costi. Nel lungo periodo, la differenza di costo fra due prodotti simili è spesso più rilevante della differenza di rendimento atteso.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">La regola del 72</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Anni per raddoppiare il capitale = circa 72 / Tasso percentuale annuo</li>
-              <li>Al 6% lordo:        72 / 6    = circa 12 anni</li>
-              <li>Al 3,44% netto:     72 / 3,44 = circa 21 anni</li>
-              <li>All'1,41% reale:    72 / 1,41 = circa 51 anni</li>
-            </ul>
-            <p>La regola è un'approssimazione, abbastanza precisa per tassi fra il 2% e il 10%. Mostra in modo immediato perché tasse, costi e inflazione vanno sempre considerati: lo stesso investimento raddoppia in dodici anni sulla carta e in mezzo secolo in termini di potere d'acquisto.</p>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> la simulazione non rappresenta una previsione. I rendimenti reali dei mercati non sono costanti e comprendono anni negativi, che riducono il capitale su cui si compone la crescita. Per scelte di investimento è opportuno rivolgersi a un consulente finanziario abilitato.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra tasso nominale ed effettivo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il nominale &egrave; il tasso annuo dichiarato; l&rsquo;effettivo tiene conto delle capitalizzazioni nell&rsquo;anno. Un 6% nominale con capitalizzazione mensile corrisponde al 6,17% effettivo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra tasso nominale ed effettivo?</h3>
-            <p>Il tasso nominale è quello annuo diviso per il numero di capitalizzazioni; il tasso effettivo è il rendimento reale di un anno dopo la composizione. Un 6% nominale con capitalizzazione mensile corrisponde al 6,17% effettivo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il calcolatore considera le tasse sulle plusvalenze?</h3>
-            <p>No, i risultati sono lordi. Per una stima netta applica il 26% agli interessi per azioni, ETF e conti deposito, il 12,5% per i titoli di Stato, oppure inserisci un tasso già ridotto di tasse e costi.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché un PAC reale rende diversamente dalla simulazione?</h3>
-            <p>I mercati non crescono a tasso costante. Con rendimenti variabili il risultato dipende anche dall'ordine degli anni positivi e negativi, e i costi annui del prodotto riducono il tasso che si compone.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Quanto pesano i costi di un fondo sul lungo periodo?</h3>
-            <p>Molto: su 10.000 € investiti per 20 anni al 6%, un costo annuo dell'1% riduce il montante lordo da 32.071 € a 26.533 €, circa 5.500 € in meno.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il calcolatore considera le tasse?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, i risultati sono lordi. Applica il 26% (o il 12,5% per i titoli di Stato) alla parte di interessi, oppure inserisci un rendimento gi&agrave; ridotto di tasse e costi.</p>
         </details>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; un PAC reale rende diversamente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">I mercati non crescono in modo costante: conta anche l&rsquo;ordine degli anni buoni e cattivi. E i costi del prodotto riducono il rendimento.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto pesano i costi di un fondo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Molto: su 10.000 &euro; per 20 anni al 6%, un costo dell&rsquo;1% l&rsquo;anno porta il montante lordo da 32.071 &euro; a 26.533 &euro;.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">E l&rsquo;inflazione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Riduce il potere d&rsquo;acquisto: rendimento reale = (1 + rendimento) &divide; (1 + inflazione) &minus; 1. Al 5% con inflazione al 3% il reale &egrave; circa l&rsquo;1,94%.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 21 novembre 1997, n. 461 e D.L. 24 aprile 2014, n. 66: tassazione dei redditi finanziari.</li>
+          <li>Legge 30 dicembre 2024, n. 207: aliquota del 33% sulle criptoattivit&agrave; dal 2026.</li>
+          <li>D.P.R. 26 ottobre 1972, n. 642, tariffa art. 13: imposta di bollo sulle comunicazioni finanziarie.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

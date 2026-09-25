@@ -123,42 +123,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Perché in JavaScript e nel web i calcoli con i decimali generano imprecisioni come 0.1 + 0.2 = 0.30000000000000004?",
+            "name": "Perché non c’è il pulsante «Calcola»?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il fenomeno dipende dalla rappresentazione dei numeri in virgola mobile secondo lo standard internazionaleIEEE 754 double-precisionadottato nativamente da tutti i motori JavaScript (V8, SpiderMonkey, JavaScriptCore). I numeri decimali in base 10 (come 0,1 o 0,2) non possiedono una rappresentazione binaria finita esatta, trasformandosi in frazioni periodiche binarie. Nell'eseguire le somme di virgole mobili, si generano impercettibili anomalie di troncamento. Il calcolatore limita l'effetto arrotondando i risultati a due decimali contoFixed(2)prima di mostrarli, così un valore come 62,93000000000001 viene visualizzato come 62.93. Il separatore decimale mostrato è il punto."
+              "text": "Il risultato si aggiorna a ogni cifra che scrivi."
             }
           },
           {
             "@type": "Question",
-            "name": "Qual è il trabocchetto matematico dello \"Sconto IVA del 22%\" nei saldi commerciali?",
+            "name": "Perché i decimali hanno il punto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'errore nasce dalla confusione tra base imponibile e prezzo lordo. L'IVA al 22% calcolata su un imponibile di 100 € genera un lordo di 122 €. Togliere l'IVA da 122 € significa dividere per 1,22, ottenendo esattamente 100 € (un taglio reale di 22 € su 122 €, che rappresenta il 18,03%). Se un negoziante applica invece uno sconto diretto del 22% sul lordo di 122 €, il prezzo scende a 95,16 €, concedendo un ribasso maggiore di quello pubblicizzato."
+              "text": "I risultati sono mostrati con il punto come separatore decimale e arrotondati a due cifre."
             }
           },
           {
             "@type": "Question",
-            "name": "Come vengono gestiti gli arrotondamenti centesimali nelle fatture elettroniche XML?",
+            "name": "Uno sconto «pari all’IVA» è uno sconto del 22%?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nel Sistema di Interscambio (SdI), sommare l'IVA arrotondata su ogni singola riga di una fattura con molti articoli produce frequentemente un \"Rounding Error\" di alcuni centesimi rispetto al calcolo dell'IVA eseguito sul totale della base imponibile di riepilogo. Il Sistema di Interscambio verifica che nel riepilogo l'imposta corrisponda all'imponibile moltiplicato per l'aliquota, con una tolleranza di un centesimo (errore 00421), e che l'imponibile coincida con la somma delle righe, con una tolleranza di un euro (errore 00422). Per evitare lo scarto l'IVA va quindi calcolata sul totale imponibile di ciascuna aliquota, non sommando l'IVA già arrotondata riga per riga."
+              "text": "No: togliere l’IVA da un prezzo che la comprende è uno sconto del 18,03%. Da 122 € si arriva a 100 €, mentre il 22% di sconto porterebbe a 95,16 €."
             }
           },
           {
             "@type": "Question",
-            "name": "Come influisce l'architettura 100% Client-Side (Zero-Backend) sulla privacy dei calcoli?",
+            "name": "I numeri che scrivo vengono inviati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In ossequio all'Articolo 25 del GDPR (Privacy by Design), il nostro strumento esegue ogni algoritmo di calcolo reattivo direttamente nella sandbox JavaScript del browser dell'utente (Zero-Backend). I numeri di fatturato, i margini di profitto o i dati stipendio immessi non vengono mai trasmessi via rete HTTP ad alcun server remoto, sterilizzando ogni rischio di intercettazione o violazione dei dati contabili riservati."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché non c'è un pulsante \"Calcola\" nel modulo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il modulo sfrutta un'architettura ad eventi reattivi in ascolto sulle caselle di testo (eventiinput). Ogni cifra o operatore modificato attiva istantaneamente l'esecuzione della funzione matematica, fornendo il risultato dinamico in millisecondi senza attendere il ricaricamento della pagina o l'invio di moduli."
+              "text": "No: i calcoli si fanno nel browser."
             }
           }
         ]
@@ -472,297 +464,57 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Matematico, Giuridico e Finanziario sul Calcolo Percentuale</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il calcolo percentuale costituisce la pietra angolare della matematica applicata all'economia, al diritto tributario, alla finanza d'impresa e al commercio al dettaglio. Sebbene sul piano aritmetico la percentuale esprima una semplice frazione con denominatore fisso pari a 100, la sua applicazione pratica sottende complesse implicazioni normative (dalla determinazione della base imponibile IVA alla trasparenza dei tassi bancari TAN e TAEG). Questa suite professionale esegue le operazioni in tempo reale attraverso algoritmi 100% Client-Side, conformi all'Articolo 25 del GDPR (Privacy by Design), garantendo che nessun dato contabile o aziendale abbandoni mai la memoria locale del tuo dispositivo.
-        </p>
-
-        <!-- ACCORDEON 1: Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo e Risvolti Legale-Finanziari</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Lo Scorporo IVA e l'Articolo 22 del D.P.R. 633/1972</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nel commercio al dettaglio e nelle prestazioni di servizi rese a consumatori finali (B2C), l'articolo 22 del D.P.R. 26 ottobre 1972, n. 633 esonera dall'obbligo di fattura se non richiesta dal cliente e i corrispettivi incassati sono comprensivi di IVA, come i prezzi esposti al pubblico secondo il Codice del Consumo. Al momento della registrazione contabile nel Libro Giornale e della liquidazione periodica nei Modelli F24, l'esercente deve obbligatoriamente isolare l'imponibile puro dall'imposta mediante la procedura algebrica denominata <strong>Scorporo IVA</strong>.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                È una violazione contabile diffusa detrarre la percentuale dell'aliquota (es. il 22%) dal totale incassato anziché applicare l'equazione di proporzionalità diretta. Tale errore sottostima gravemente l'imponibile reale, alterando il bilancio d'esercizio e con il rischio di rettifiche in sede di controllo e delle sanzioni per dichiarazione infedele.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Trasparenza Bancaria e Convenzioni Temporali (TUB e Tassi di Interesse)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nel settore del credito e dell'intermediazione finanziaria (Testo Unico Bancario - D.Lgs. 385/1993), il calcolo percentuale del saggio di interesse impone il rigoroso rispetto delle convenzioni sul conteggio dei giorni (Day Count Conventions):
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Actual/360 (Act/360):</strong> Impiega i giorni solari effettivi al numeratore e un anno convenzionale finanziario di 360 giorni al denominatore. Riducendo il divisore, questa prassi aumenta il rendimento percentuale annuo a favore degli istituti di credito nei fidi aziendali a breve termine.</li>
-                <li><strong>Actual/365 (Act/365):</strong> Ristabilisce la parità perfetta dividendo i giorni effettivi per l'anno civile di 365 giorni, garantendo la corrispondenza esatta con il Tasso Nominale Annuo (TAN).</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Codice del Consumo e il "Falso Sconto IVA" (AGCM e Antitrust)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'Autorità Garante della Concorrenza e del Mercato (AGCM) può valutare come "pratica commerciale scorretta" le campagne promozionali che pubblicizzano uno "sconto pari all'IVA" senza chiarire l'entità reale del ribasso. Dal punto di vista strettamente matematico, togliere l'IVA da un prezzo lordo equivale a dividere per 1,22, il che corrisponde a una riduzione reale del valore lordo pari soltanto al <strong>18,03%</strong> e non al 22,00%. Promettere un abbattimento del 22% sul cartellino e applicare invece la formula del divisore 1,22 costituisce una pratica ingannevole ai danni del consumatore finale.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">GDPR (Reg. UE 2016/679) e Architettura Zero-Backend Client-Side</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Sotto il profilo della conformità normativa europea sulla protezione dei dati sensibili, l'esecuzione di calcoli contabili, margini di profitto o proiezioni di fatturato all'interno di un'applicazione web pone criticità in merito all'Articolo 28 del GDPR. L'impiego di piattaforme SaaS cloud tradizionali trasforma il fornitore del software in un Data Processor (Responsabile del Trattamento), costringendo il professionista a firmare complessi Data Processing Agreements (DPA) e condurre analisi di impatto DPIA.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'architettura Zero-Backend adottata da questo strumento risponde in modo matematico al principio di Data Protection by Design e by Default (Articolo 25 GDPR). Poiché il codice sorgente JavaScript viene eseguito interamente nella sandbox isolata del browser web del client, i dati immessi non attraversano la rete e non vengono mai salvati su server terzi. Di conseguenza, decade la qualifica stessa di Data Processor in capo al gestore del sito, esonerando l'utente da qualsiasi responsabilità di auditing o esfiltrazione dei dati aziendali.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Calcolare percentuali, sconti e variazioni senza errori</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La pagina ha quattro calcolatori che si aggiornano mentre scrivi: la percentuale di un numero, lo sconto o il ricarico, quanto pesa una parte sul totale e la variazione fra due valori.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le formule</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Calcolo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Formula</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Esempio</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Percentuale di un numero</td><td class="px-3 py-2 align-top">valore &times; % &divide; 100</td><td class="px-3 py-2 align-top">il 22% di 1.250 = 275</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Sconto</td><td class="px-3 py-2 align-top">prezzo &times; (1 &minus; % &divide; 100)</td><td class="px-3 py-2 align-top">89,90 &minus; 30% = 62,93</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Ricarico</td><td class="px-3 py-2 align-top">prezzo &times; (1 + % &divide; 100)</td><td class="px-3 py-2 align-top">1.250 + 22% = 1.525</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Incidenza</td><td class="px-3 py-2 align-top">parte &divide; totale &times; 100</td><td class="px-3 py-2 align-top">750 su 2.100 = 35,71%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Variazione</td><td class="px-3 py-2 align-top">(nuovo &minus; vecchio) &divide; vecchio &times; 100</td><td class="px-3 py-2 align-top">da 84 a 112,50 = +33,93%</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <!-- ACCORDEON 2: Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Algebrica e Formalizzazione Matematica delle Formule</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">A) Calcolo Diretto della Percentuale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Estrae la porzione assoluta $P$ corrispondente alla quota percentuale $r$ applicata al valore totale $V$:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$P = \frac{V \times r}{100}$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">B) Formula dello Sconto e del Ricarico (Markup vs Margine)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Dato un valore iniziale $V_{orig}$ e una percentuale di variazione $r$, il prezzo finale scontato $V_{scontato}$ o ricaricato $V_{lordo}$ si calcola come:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$V_{scontato} = V_{orig} \times \left(1 - \frac{r}{100}\right) \quad \text{oppure} \quad V_{ricaricato} = V_{orig} \times \left(1 + \frac{r}{100}\right)$$
-              </div>
-              <p class="text-xs text-gray-600 leading-relaxed mb-2">
-                <strong>Differenza Tra Margine e Markup:</strong> In economia d'impresa, il <em>Markup Percentuale</em> misura l'incremento applicato sul costo di acquisto: $\text{Markup \%} = \left(\frac{\text{Prezzo} - \text{Costo}}{\text{Costo}}\right) \times 100$. Il <em>Margine di Profitto</em> misura invece l'incidenza del guadagno sul prezzo di vendita finale: $\text{Margine \%} = \left(\frac{\text{Prezzo} - \text{Costo}}{\text{Prezzo}}\right) \times 100$.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">C) Incidenza Percentuale Relativa</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Determina quale quota percentuale $r$ rappresenta un sotto-insieme parziale $P$ rispetto all'insieme aggregato totale $Z$:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$r = \left(\frac{P}{Z}\right) \times 100$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">D) Variazione Percentuale Relativa (Delta %)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Calcola l'incremento o il decremento percentuale $\Delta \%$ nel passaggio da un valore storico $V_{iniziale}$ a un nuovo valore $V_{finale}$:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$\Delta \% = \left(\frac{V_{finale} - V_{iniziale}}{V_{iniziale}}\right) \times 100$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">E) Equazione Rigorosa di Scorporo IVA (Art. 22 DPR 633/72)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Lo scorporo poggia sulla proporzione aritmetica universale:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$(100 + r) : 100 = \text{Prezzo Lordo} : \text{Base Imponibile}$$
-                $$\text{Base Imponibile} = \frac{\text{Prezzo Lordo}}{1 + \left(\frac{r}{100}\right)} \quad \implies \quad \text{IVA} = \text{Prezzo Lordo} - \text{Base Imponibile}$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">F) Convenzioni di Calcolo Interessi Bancari (Act/360 vs Act/365)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                In ambito finanziario, la quota d'interesse maturata $I$ su un capitale $C$ per $g$ giorni al tasso $i$ segue due formule distinte:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$I_{\text{Act/360}} = C \times i \times \left(\frac{g}{360}\right) \quad \text{vs} \quad I_{\text{Act/365}} = C \times i \times \left(\frac{g}{365}\right)$$
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 3: Casuistica Reale Svolta -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Esempi Pratici e Soluzioni Matematiche Svolte</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 1: Scorporo IVA 22% su Corrispettivo Lordo B2C vs Errore del Falso Sconto</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un commerciante incassa un corrispettivo lordo esposto in vetrina pari a <strong>6.100,00 €</strong> (comprensivo di IVA ordinaria al 22%). Deve separare l'imponibile contabile per la registrazione del fatturato attivo:
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>1. Calcolo Corretto dello Scorporo (Divisore 1,22):</strong><br>
-                $\text{Base Imponibile} = 6.100,00 / 1,22 = \mathbf{5.000,00\ \text{€}}$<br>
-                $\text{IVA a Debito Erario} = 6.100,00 - 5.000,00 = \mathbf{1.100,00\ \text{€}}$</p>
-                <p class="text-rose-700"><strong>2. Dimostrazione dell'Errore (Detrazione Diretta del 22% dal Lordo):</strong><br>
-                $6.100,00 - 22\% = 6.100,00 - 1.342,00 = 4.758,00\ \text{€}$.<br>
-                <em>Risultato:</em> Sotto-stima la base imponibile di 242,00 € e altera i bilanci aziendali, esponendo a rettifiche per dichiarazione infedele con la sanzione del 70% della maggiore imposta prevista dopo il D.Lgs. 87/2024.</p>
-              </div>
-            </div>
-
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 2: Differenziale tra Margine di Profitto e Markup Aziendale</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un'azienda acquista un prodotto industriale a un costo d'acquisto di <strong>150,00 €</strong> e stabilisce un prezzo di vendita finale pari a <strong>250,00 €</strong>:
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>Profitto Lordo Assoluto:</strong> $250,00 - 150,00 = 100,00\ \text{€}$</p>
-                <p><strong>Calcolo del Markup % (Calcolato sul Costo d'Acquisto):</strong><br>
-                $\text{Markup \%} = (100,00 / 150,00) \times 100 = \mathbf{66,67\%}$</p>
-                <p><strong>Calcolo del Margine di Profitto % (Calcolato sul Prezzo di Vendita):</strong><br>
-                $\text{Margine \%} = (100,00 / 250,00) \times 100 = \mathbf{40,00\%}$</p>
-                <p class="text-indigo-700"><strong>Integrazione Concettuale:</strong> Un ricarico (markup) del 66,67% sul costo produce un margine di reddito reale del 40,00% sui ricavi finali.</p>
-              </div>
-            </div>
-
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 3: Impatto del Divisore Bancario Act/360 su Finanziamento Corporate</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un'impresa ricorre a un affidamento bancario di <strong>2.500.000,00 €</strong> per una durata di 180 giorni al tasso nominale annuo (TAN) del 5,50%:
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>1. Calcolo con Convenzione Actual/360 (Matrice Bancaria):</strong><br>
-                $\text{Interesse} = 2.500.000,00 \times 0,055 \times (180 / 360) = \mathbf{68.750,00\ \text{€}}$</p>
-                <p><strong>2. Calcolo con Convenzione Actual/365 (Matrice Civile Solare):</strong><br>
-                $\text{Interesse} = 2.500.000,00 \times 0,055 \times (180 / 365) = \mathbf{67.808,22\ \text{€}}$</p>
-
-                <p class="text-indigo-700 font-bold">
-                  Differenziale Oneri Occulti = 941,78 € maturati a favore dell'istituto di credito per effetto della compressione del divisore temporale a 360 giorni!
-                </p>
-              </div>
-            </div>
-
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Caso 4: Variazione Percentuale Composta in Cascata (Gli Sconti Successivi)</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un capo di abbigliamento dal costo iniziale di <strong>200,00 €</strong> viene sottoposto a uno sconto del 20% e, successivamente, a un ulteriore ribasso promozionale del 10% sul prezzo già scontato:
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>Primo Ribasso (-20%):</strong> $200,00 \times (1 - 0,20) = 160,00\ \text{€}$</p>
-                <p><strong>Secondo Ribasso (-10% sul prezzo intermedio):</strong> $160,00 \times (1 - 0,10) = \mathbf{144,00\ \text{€}}$</p>
-                <p><strong>Sconto Percentuale Complessivo Effettivo:</strong><br>
-                $\Delta \% = [(144,00 - 200,00) / 200,00] \times 100 = \mathbf{-28,00\%}$</p>
-                <p class="text-rose-700 font-semibold">Nota Operativa: Uno sconto del 20% + 10% in cascata equivale a un ribasso reale del 28,00% e NON al 30,00%!</p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Errori di IEEE 754 Floating-Point e Sanzioni Fiscali</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti sono calcolati con i quattro strumenti della pagina, che mostrano i decimali con il punto.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: preventivo di un idraulico da 1.250 € più IVA</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Calcolo diretto: il 22% di 1250 = 275</li>
-                <li>Sconto / Ricarico: 1250 + 22% = 1525</li>
-                </ul>
-                <p>Se il lavoro riguarda la manutenzione di un'abitazione può applicarsi l'IVA agevolata al 10%: il totale scende a 1.375 €, 150 € in meno. Conviene chiedere che l'aliquota sia indicata nel preventivo.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: scarpe da 89,90 € scontate del 30%</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Sconto / Ricarico: 89.90 − 30% = 62.93, differenza −26.97</li>
-                <li>Per tornare al prezzo pieno serve un aumento del 42,86%</li>
-                </ul>
-                <p>Il Codice del Consumo chiede che negli annunci di riduzione di prezzo sia indicato come prezzo precedente il più basso applicato nei 30 giorni prima dello sconto: se nelle settimane precedenti le scarpe costavano 79,90 €, lo sconto reale è del 21,24%.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: quanto pesa un affitto di 750 € su uno stipendio di 2.100 €</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Incidenza: 750 rispetto a 2100 = 35.71%</li>
-                </ul>
-                <p>Molte banche e agenzie considerano sostenibile una spesa per la casa fino a circa un terzo del reddito netto: con 2.100 € il riferimento è intorno a 700 €.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: bolletta del gas passata da 84 € a 112,50 €</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Variazione percentuale: da 84 a 112.50 = +33.93%</li>
-                <li>Per tornare a 84 € serve un calo del 25,33%</li>
-                </ul>
-                <p>Aumenti e cali non sono simmetrici: dopo un rincaro del 33,93%, un ribasso della stessa percentuale porterebbe la bolletta a 74,33 €, sotto il valore iniziale.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché in JavaScript e nel web i calcoli con i decimali generano imprecisioni come 0.1 + 0.2 = 0.30000000000000004?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il fenomeno dipende dalla rappresentazione dei numeri in virgola mobile secondo lo standard internazionale <strong>IEEE 754 double-precision</strong> adottato nativamente da tutti i motori JavaScript (V8, SpiderMonkey, JavaScriptCore). I numeri decimali in base 10 (come 0,1 o 0,2) non possiedono una rappresentazione binaria finita esatta, trasformandosi in frazioni periodiche binarie. Nell'eseguire le somme di virgole mobili, si generano impercettibili anomalie di troncamento. Il calcolatore limita l'effetto arrotondando i risultati a due decimali con <code>toFixed(2)</code> prima di mostrarli, così un valore come 62,93000000000001 viene visualizzato come 62.93. Il separatore decimale mostrato è il punto.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Qual è il trabocchetto matematico dello "Sconto IVA del 22%" nei saldi commerciali?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'errore nasce dalla confusione tra base imponibile e prezzo lordo. L'IVA al 22% calcolata su un imponibile di 100 € genera un lordo di 122 €. Togliere l'IVA da 122 € significa dividere per 1,22, ottenendo esattamente 100 € (un taglio reale di 22 € su 122 €, che rappresenta il 18,03%). Se un negoziante applica invece uno sconto diretto del 22% sul lordo di 122 €, il prezzo scende a 95,16 €, concedendo un ribasso maggiore di quello pubblicizzato.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Come vengono gestiti gli arrotondamenti centesimali nelle fatture elettroniche XML?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Nel Sistema di Interscambio (SdI), sommare l'IVA arrotondata su ogni singola riga di una fattura con molti articoli produce frequentemente un "Rounding Error" di alcuni centesimi rispetto al calcolo dell'IVA eseguito sul totale della base imponibile di riepilogo. Il Sistema di Interscambio verifica che nel riepilogo l'imposta corrisponda all'imponibile moltiplicato per l'aliquota, con una tolleranza di un centesimo (errore 00421), e che l'imponibile coincida con la somma delle righe, con una tolleranza di un euro (errore 00422). Per evitare lo scarto l'IVA va quindi calcolata sul totale imponibile di ciascuna aliquota, non sommando l'IVA già arrotondata riga per riga.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Come influisce l'architettura 100% Client-Side (Zero-Backend) sulla privacy dei calcoli?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                In ossequio all'Articolo 25 del GDPR (Privacy by Design), il nostro strumento esegue ogni algoritmo di calcolo reattivo direttamente nella sandbox JavaScript del browser dell'utente (Zero-Backend). I numeri di fatturato, i margini di profitto o i dati stipendio immessi non vengono mai trasmessi via rete HTTP ad alcun server remoto, sterilizzando ogni rischio di intercettazione o violazione dei dati contabili riservati.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché non c'è un pulsante "Calcola" nel modulo?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il modulo sfrutta un'architettura ad eventi reattivi in ascolto sulle caselle di testo (eventi <code>input</code>). Ogni cifra o operatore modificato attiva istantaneamente l'esecuzione della funzione matematica, fornendo il risultato dinamico in millisecondi senza attendere il ricaricamento della pagina o l'invio di moduli.
-              </p>
-            </details>
-
-          </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Tre trappole comuni</h3>
+          <p><strong>Aumenti e cali non sono simmetrici.</strong> Una bolletta passata da 84 a 112,50 &euro; &egrave; salita del 33,93%, ma per tornare a 84 &euro; deve scendere solo del 25,33%. Allo stesso modo, dopo uno sconto del 30% serve un aumento del 42,86% per tornare al prezzo pieno.</p>
+          <p><strong>Gli sconti in cascata non si sommano.</strong> 20% e poi 10% su 200 &euro; danno 144 &euro;: uno sconto complessivo del 28%, non del 30%.</p>
+          <p><strong>Togliere l&rsquo;IVA non &egrave; togliere il 22%.</strong> Da 6.100 &euro; IVA inclusa l&rsquo;imponibile &egrave; 6.100 &divide; 1,22 = 5.000 &euro;; sottraendo il 22% si otterrebbero 4.758 &euro;, 242 &euro; in meno. Per questi conti usa il <a href="/fisco-professioni/calcolo-iva/" class="text-indigo-700 underline">calcolo IVA</a>.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Margine e ricarico</h3>
+          <p>Un prodotto comprato a 150 &euro; e venduto a 250 &euro; guadagna 100 &euro;: &egrave; un ricarico del 66,67% sul costo, ma un margine del 40% sul prezzo di vendita. Chiarisci sempre di quale dei due si parla.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi dalla vita di tutti i giorni</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Preventivo dell&rsquo;idraulico, 1.250 &euro; pi&ugrave; IVA.</strong> Con il 22% sono 1.525 &euro;; se il lavoro &egrave; manutenzione di un&rsquo;abitazione pu&ograve; valere il 10%, e il totale scende a 1.375 &euro;.</li>
+            <li><strong>Scarpe da 89,90 &euro; scontate del 30%.</strong> Il negozio deve indicare come prezzo precedente il pi&ugrave; basso dei 30 giorni prima: se era 79,90 &euro;, lo sconto reale &egrave; del 21,24%.</li>
+            <li><strong>Affitto di 750 &euro; su 2.100 &euro; di stipendio.</strong> Pesa il 35,71%; molti considerano sostenibile fino a circa un terzo del reddito netto.</li>
+          </ul>
         </div>
-
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; non c&rsquo;&egrave; il pulsante &laquo;Calcola&raquo;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il risultato si aggiorna a ogni cifra che scrivi.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; i decimali hanno il punto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">I risultati sono mostrati con il punto come separatore decimale e arrotondati a due cifre.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Uno sconto &laquo;pari all&rsquo;IVA&raquo; &egrave; uno sconto del 22%?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: togliere l&rsquo;IVA da un prezzo che la comprende &egrave; uno sconto del 18,03%. Da 122 &euro; si arriva a 100 &euro;, mentre il 22% di sconto porterebbe a 95,16 &euro;.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I numeri che scrivo vengono inviati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: i calcoli si fanno nel browser.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 6 settembre 2005, n. 206 (Codice del consumo), art. 17-bis: indicazione del prezzo precedente negli sconti.</li>
+        </ul>
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
