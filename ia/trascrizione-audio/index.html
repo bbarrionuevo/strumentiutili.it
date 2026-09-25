@@ -142,66 +142,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Quali formati audio sono supportati?",
+            "name": "Quali formati sono supportati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sono supportati i formati che il browser sa decodificare in modo nativo, tra cui MP3, WAV, M4A, OGG e WEBM, oltre alla traccia audio di molti file video. Il file viene convertito localmente in un segnale mono a 16 kHz prima della trascrizione. Se un formato non viene riconosciuto, conviene convertirlo in MP3 o WAV con un programma installato sul computer."
+              "text": "Quelli che il browser sa decodificare: MP3, WAV, M4A, OGG, WEBM e la traccia audio di molti video. Se un file non si apre, convertilo in MP3 o WAV."
             }
           },
           {
             "@type": "Question",
-            "name": "La qualità della registrazione incide sul risultato?",
+            "name": "Distingue chi sta parlando?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In modo determinante. Rumore di fondo, riverbero, voci sovrapposte e microfoni lontani aumentano gli errori. I risultati migliori si ottengono con un microfono vicino a chi parla, in un ambiente silenzioso e con un solo interlocutore alla volta. Aumentare il volume di un file registrato male non recupera l'informazione persa."
+              "text": "No: trascrive il parlato con i tempi, ma non attribuisce le frasi alle persone. Puoi annotarlo a mano partendo dal file SRT."
             }
           },
           {
             "@type": "Question",
-            "name": "Lo strumento distingue chi sta parlando?",
+            "name": "Posso tradurre l’audio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Whisper produce la trascrizione del parlato con i riferimenti temporali, ma non attribuisce le frasi ai singoli interlocutori. La separazione dei parlanti richiede un modello aggiuntivo. Per interviste e riunioni conviene annotare a mano gli interventi partendo dai tempi del file SRT."
+              "text": "Trascrivi nella lingua originale e poi usa il traduttore, anche lui eseguito nel browser."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso tradurre l'audio in un'altra lingua?",
+            "name": "Cos’è il file SRT?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il modello Whisper supporta nativamente la traduzione verso l'inglese a partire da molte lingue. Per ottenere un testo in una lingua diversa dall'inglese conviene prima trascrivere nella lingua originale e poi usare il traduttore del portale, anch'esso eseguito interamente nel browser."
+              "text": "Un file di sottotitoli in cui ogni frase ha un tempo di inizio e di fine. Funziona con i lettori video e serve anche a ritrovare un punto preciso della registrazione."
             }
           },
           {
             "@type": "Question",
-            "name": "Cos'è il file SRT e a cosa serve?",
+            "name": "Perché a volte ripete la stessa frase?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "È un formato di sottotitoli testuale in cui ogni frase è associata a un tempo di inizio e di fine. È compatibile con i principali lettori video e con le piattaforme di pubblicazione. È utile anche fuori dal video, perché permette di ritrovare rapidamente nella registrazione il punto esatto in cui è stata detta una frase."
+              "text": "Succede nei silenzi lunghi o con rumore costante. Tagliare le pause riduce il problema; le ripetizioni vanno tolte in revisione."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché la trascrizione a volte ripete la stessa frase?",
+            "name": "L’audio viene caricato online?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "È un comportamento noto dei modelli autoregressivi nelle parti di silenzio prolungato o di rumore costante, in cui il decoder tende a riprodurre l'ultima frase generata. Tagliare i lunghi silenzi prima della trascrizione riduce molto il fenomeno. Le ripetizioni vanno comunque eliminate in fase di revisione."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quanto tempo impiega l'IA a trascrivere un file?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il calcolo avviene sul tuo dispositivo, quindi i tempi dipendono dal processore. In una prova su un computer desktop, 9 secondi di parlato hanno richiesto 31 secondi al primo avvio (compreso il caricamento del modello) e 14 secondi con il modello già in memoria: circa una volta e mezza la durata dell'audio. Un'intervista di mezz'ora richiede quindi tempi nell'ordine dei tre quarti d'ora. Tieni la finestra del browser in primo piano: in secondo piano il sistema rallenta il processo."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché il browser ha bisogno di scaricare dei dati la prima volta?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il browser scarica i pesi del modello Whisper small quantizzato: circa 250 MB in tutto. Lo scaricamento avviene una sola volta, perché i file restano nella cache del browser, e le sessioni successive partono senza connessione. Con una connessione dati a consumo conviene fare il primo avvio sotto rete Wi-Fi; svuotando i dati del sito, il modello va riscaricato."
+              "text": "No: viene decodificato e trascritto nel browser. Dalla rete arriva solo il modello, la prima volta."
             }
           }
         ]
@@ -469,212 +453,70 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">La Sicurezza della Trascrizione AI in Ambienti Sensibili</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il giornalismo investigativo, la ricerca accademica e la refertazione medica generano enormi quantità di registrazioni vocali (interviste, memo, deposizioni). Inviare questi file a servizi di trascrizione in cloud significa comunicare a un fornitore esterno il contenuto di interviste, riunioni o visite: un passaggio che richiede una base giuridica, l'informativa agli interessati e un contratto con il fornitore, e che in ambito professionale può confliggere con il segreto d'ufficio. Questo strumento esegue il modello Whisper nel browser: la registrazione non viene trasmessa. In cambio, la prima trascrizione richiede lo scaricamento del modello, circa 250 megabyte, e i tempi di elaborazione dipendono dal processore del dispositivo.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📖</span> Architettura Whisper, WebAssembly e Quantizzazione INT8</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Compilazione WebAssembly del Modello Neurale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'inclusione di utilità professionali complesse è strategica per la manipolazione di documenti sensibili. Per elaborare file audio nativamente nel tuo browser senza arrestare l'interfaccia utente (UI), lo strumento scarica il modello Whisper small nella versione ONNX quantizzata (Xenova/whisper-small: circa 92 MB per l'encoder e 157 MB per il decoder) e lo esegue in un Web Worker con Transformers.js e ONNX Runtime Web. Il calcolo avviene sul processore, che trasforma lo spettrogramma dell'audio in testo, un token per volta.
-              </p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Compressione Logica: Quantizzazione e Performance</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'ostacolo ingegneristico più grave per il deployment di modelli linguistici all'interno del browser web è rappresentato dai limiti fisici di allocazione RAM/VRAM imposti dal sistema operativo (Out of Memory - OOM). Il modello usato è quantizzato a 8 bit: i pesi della rete, originariamente in virgola mobile a 32 bit, sono convertiti in interi, riducendo il file a circa un quarto. Restano comunque 250 MB da scaricare e da tenere in memoria: su smartphone datati la trascrizione può non avviarsi, e conviene usare un computer.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Trascrivere un audio in testo o sottotitoli sul tuo computer</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Lo strumento trascrive registrazioni e video con il modello Whisper, eseguito nel browser. L&rsquo;audio non viene inviato a nessun servizio. La prima volta il browser scarica il modello, circa 250 MB, che poi resta in memoria.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica un file audio o video (MP3, WAV, M4A, OGG, WEBM, MP4 e altri formati che il browser sa aprire).</li>
+            <li>Avvia la trascrizione e lascia la scheda in primo piano.</li>
+            <li>Scarica il testo in TXT o i sottotitoli in SRT, con i tempi di ogni frase.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Quanto tempo serve</h3>
+          <p>Il calcolo avviene sul processore, quindi i tempi dipendono dal dispositivo. In una prova su computer desktop, 9 secondi di parlato hanno richiesto 31 secondi al primo avvio (con lo scaricamento del modello) e 14 secondi la volta dopo.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Dispositivo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Tempo rispetto alla durata dell&rsquo;audio</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Computer desktop recente</td><td class="px-3 py-2 align-top">da 0,5 a 1 volta</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Portatile di fascia media</td><td class="px-3 py-2 align-top">da 1 a 2 volte</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Dispositivo datato o in risparmio energetico</td><td class="px-3 py-2 align-top">oltre 2 volte</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Decodifica Formati Audio (Web Audio API) ed Esportazione SRT</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il motore di decodifica si basa sulla <strong>Web Audio API</strong> nativa di HTML5. È in grado di ingerire, analizzare e uniformare la frequenza di campionamento (resampling a 16.000 Hz) in tempo reale. Questo processo permette di supportare formati multimediali estesi quali <strong>MP3, WAV, M4A, FLAC, OGG, AAC e persino formati video come MP4</strong>, estraendone la traccia acustica direttamente in memoria.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Al termine dell'elaborazione di inferenza, l'algoritmo non restituisce un mero blocco di testo, ma genera array temporizzati. Il risultato può quindi essere esportato come testo semplice (TXT) oppure come sottotitoli temporizzati (SRT), con marcatori nella forma 00:01:23,400 --> 00:01:25,900, pronti per i programmi di montaggio video. I tempi provengono dai segmenti restituiti dal modello: sono adatti a seguire il parlato, ma su parlato sovrapposto o musica di sottofondo possono risultare imprecisi e vanno ritoccati nel programma di montaggio.
-            </p>
-          </div>
-        </details>
-
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Domande Frequenti (FAQ) e Limiti Operativi</h3>
-          <div class="space-y-3">
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quanto tempo impiega l'IA a trascrivere un file?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il calcolo avviene sul tuo dispositivo, quindi i tempi dipendono dal processore. In una prova su un computer desktop, 9 secondi di parlato hanno richiesto 31 secondi al primo avvio (compreso il caricamento del modello) e 14 secondi con il modello già in memoria: circa una volta e mezza la durata dell'audio. Un'intervista di mezz'ora richiede quindi tempi nell'ordine dei tre quarti d'ora. Tieni la finestra del browser in primo piano: in secondo piano il sistema rallenta il processo.
-              </p>
-            </details>
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché il browser ha bisogno di scaricare dei dati la prima volta?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il browser scarica i pesi del modello Whisper small quantizzato: circa 250 MB in tutto. Lo scaricamento avviene una sola volta, perché i file restano nella cache del browser, e le sessioni successive partono senza connessione. Con una connessione dati a consumo conviene fare il primo avvio sotto rete Wi-Fi; svuotando i dati del sito, il modello va riscaricato.
-              </p>
-            </details>
-          </div>
+          <p>Per registrazioni lunghe tieni il computer collegato alla corrente e chiudi le altre schede. Su smartphone datati la trascrizione pu&ograve; non partire.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Per un risultato migliore</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Microfono vicino a chi parla, ambiente silenzioso, una voce alla volta.</li>
+            <li>Taglia i lunghi silenzi: nelle pause il modello a volte ripete l&rsquo;ultima frase.</li>
+            <li>Controlla nomi, numeri e importi: il modello scrive i numeri in cifre (&laquo;forty eight thousand euros&raquo; diventa &laquo;&euro;48,000&raquo;) e pu&ograve; sbagliarli.</li>
+            <li>I sottotitoli SRT seguono le frasi riconosciute: per un video da pubblicare ritoccali in un programma di montaggio.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Registrare e trascrivere: le regole</h3>
+          <p>Registrare una conversazione a cui partecipi &egrave; di regola lecito anche senza il consenso degli altri, ma diffonderne il contenuto &egrave; un&rsquo;altra cosa e richiede una base legale. Nelle interviste &egrave; buona prassi avvisare che si registra, togliere dalle trascrizioni i dati non necessari e cancellare l&rsquo;audio quando non serve pi&ugrave;. La trascrizione automatica non &egrave; un verbale e non ha valore certificativo.</p>
         </div>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Prima di diventare testo, la voce registrata attraversa una catena di trasformazioni numeriche. Il modello Whisper non ascolta un file audio ma osserva un'immagine del suono, uno spettrogramma, e la traduce in una sequenza di token testuali.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Fase uno: normalizzazione del segnale</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Qualsiasi formato (MP3, WAV, M4A, OGG) viene decodificato dal browser</li>
-              <li>Frequenza di campionamento finale = 16.000 campioni al secondo, canale mono</li>
-              <li>Un minuto di audio = 60 x 16.000 = 960.000 campioni</li>
-              <li>Occupazione in memoria a 32 bit = 960.000 x 4 byte = circa 3,7 MB al minuto</li>
-            </ul>
-            <p>Il ricampionamento a 16 kHz è sufficiente per la voce umana, la cui informazione utile si concentra sotto gli 8 kHz secondo il teorema del campionamento di Nyquist-Shannon. Ridurre la frequenza rispetto ai 44,1 kHz di un file musicale riduce la memoria richiesta di quasi tre volte senza perdita di intelligibilità.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Fase due: lo spettrogramma log-Mel</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Finestra di analisi = 25 ms (400 campioni)</li>
-              <li>Passo fra finestre = 10 ms (160 campioni)</li>
-              <li>Canali di frequenza sulla scala Mel = 80</li>
-              <li>30 secondi di audio = 3.000 fotogrammi x 80 canali</li>
-            </ul>
-            <p>La scala Mel distribuisce le frequenze secondo la percezione dell'orecchio umano, più fine sulle basse frequenze e più grossolana sulle alte. Il logaritmo delle energie comprime la dinamica, così che un sussurro e una voce forte producano rappresentazioni confrontabili.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Fase tre: segmentazione in finestre da 30 secondi</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Lunghezza di ogni segmento = 30 secondi</li>
-              <li>Sovrapposizione fra segmenti consecutivi = 5 secondi</li>
-              <li>Numero di segmenti per un file di durata D = circa D / 25 secondi</li>
-              <li>Esempio: 10 minuti = 600 s  =&gt;  circa 24 segmenti</li>
-            </ul>
-            <p>Whisper è stato addestrato su finestre di esattamente trenta secondi, quindi le registrazioni più lunghe vanno spezzate. La sovrapposizione di cinque secondi evita che una parola tagliata al confine fra due segmenti venga persa o duplicata: il testo delle zone sovrapposte viene riconciliato confrontando i token e i relativi riferimenti temporali.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Fase quattro: decodifica autoregressiva</h3>
-            <p>L'encoder trasforma lo spettrogramma in una rappresentazione astratta, poi il decoder genera il testo un token alla volta, usando a ogni passo tutti i token già prodotti. Il modello Whisper small conta circa 244 milioni di parametri. In precisione a 32 bit occuperebbe quasi un gigabyte, mentre la quantizzazione a 8 bit ne riduce l'ingombro a circa un quarto, rendendo l'esecuzione praticabile nel browser.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Tempi di elaborazione attesi</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Dispositivo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Rapporto indicativo tempo di elaborazione / durata audio</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Desktop recente con CPU a 8 o più core</td><td class="px-3 py-2 border-t border-gray-200">Circa 0,5x - 1x</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Portatile di fascia media</td><td class="px-3 py-2 border-t border-gray-200">Circa 1x - 2x</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Dispositivo datato o in risparmio energetico</td><td class="px-3 py-2 border-t border-gray-200">Oltre 2x</td></tr></tbody></table></div>
-            <p>I valori sono indicativi e dipendono dal numero di core, dalla memoria disponibile e dal surriscaldamento del processore nelle elaborazioni prolungate. Per registrazioni molto lunghe conviene tenere il dispositivo collegato all'alimentazione e chiudere le altre schede.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quali formati sono supportati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Quelli che il browser sa decodificare: MP3, WAV, M4A, OGG, WEBM e la traccia audio di molti video. Se un file non si apre, convertilo in MP3 o WAV.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Regolamento UE 2016/679 (GDPR), articolo 4</strong> — la voce è un dato personale, perché consente di identificare direttamente o indirettamente la persona che parla.</li>
-              <li><strong>Regolamento UE 2016/679, articolo 9</strong> — le registrazioni possono contenere categorie particolari di dati, come informazioni sulla salute, sulle opinioni politiche o sulle convinzioni religiose.</li>
-              <li><strong>Regolamento UE 2024/1689 (AI Act)</strong> — disciplina i sistemi di intelligenza artificiale e vieta o limita alcuni usi del riconoscimento delle emozioni e della categorizzazione biometrica.</li>
-              <li><strong>Codice penale, articolo 617-septies</strong> — punisce la diffusione di riprese o registrazioni fraudolente di conversazioni con finalità di recare danno alla reputazione.</li>
-              <li><strong>Legge 3 febbraio 1963 n. 69, articolo 2</strong> — tutela il segreto professionale del giornalista sulle fonti fiduciarie.</li>
-              <li><strong>Codice di deontologia medica</strong> — impone la riservatezza sulle informazioni del paziente, comprese quelle contenute nelle dettature di referti.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Registrare una conversazione è lecito?</h3>
-            <p>La giurisprudenza italiana considera lecita la registrazione di una conversazione da parte di chi vi partecipa, anche senza il consenso degli altri interlocutori, e ne ammette l'uso a fini difensivi. Resta invece illecita l'intercettazione di conversazioni fra terze persone a cui non si partecipa. La diffusione del contenuto è un atto distinto dalla registrazione e richiede una base giuridica autonoma, soprattutto quando il contenuto riguarda dati personali di altri.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Buone pratiche per interviste e ricerca</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Informativa preventiva</strong>: nelle interviste di ricerca e giornalistiche è buona prassi informare l'intervistato della registrazione e della successiva trascrizione.</li>
-              <li><strong>Pseudonimizzazione</strong>: nelle trascrizioni destinate a pubblicazione o condivisione vanno rimossi o sostituiti nomi e dettagli identificativi non necessari.</li>
-              <li><strong>Conservazione limitata</strong>: il file audio originale va conservato solo per il tempo necessario e poi eliminato, in coerenza con il principio di limitazione della conservazione.</li>
-              <li><strong>Revisione umana</strong>: una trascrizione automatica può contenere errori su nomi propri, numeri e termini tecnici, che vanno controllati prima dell'uso.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> la trascrizione automatica non è un verbale e non ha valore certificativo. Per usi processuali o amministrativi la trascrizione va verificata sulla registrazione originale e, quando la legge lo richiede, redatta o asseverata da un soggetto abilitato.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Distingue chi sta parlando?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: trascrive il parlato con i tempi, ma non attribuisce le frasi alle persone. Puoi annotarlo a mano partendo dal file SRT.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti con lo strumento su una registrazione di prova di 9 secondi, generata con la sintesi vocale del sistema operativo.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: trascrizione di un annuncio parlato</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Audio: «The meeting of the condominium assembly is scheduled for Monday at six in the afternoon...»</li>
-            <li>Testo restituito: «The meeting of the Condominium Assembly is scheduled for Monday at 6 in the afternoon.»</li>
-            <li>«forty eight thousand euros» trascritto come «€48,000»</li>
-            </ul>
-            <p>Il testo è corretto, ma il modello normalizza i numeri detti a voce in cifre e simboli. È un dettaglio importante quando si trascrivono importi o date: vanno sempre verificati sull'audio.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: tempi di elaborazione</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Primo avvio (con scaricamento del modello): 31 secondi</li>
-            <li>Seconda trascrizione dello stesso file, modello già in memoria: 14 secondi</li>
-            <li>Rapporto fra tempo di calcolo e durata dell'audio: circa 1,5</li>
-            </ul>
-            <p>Il modello Whisper small quantizzato pesa circa 250 MB (92 MB l'encoder, 157 MB il decoder) e resta nella cache del browser. Su un portatile meno potente o su smartphone i tempi si allungano sensibilmente.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: sottotitoli SRT</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>1 — 00:00:00,000 --&gt; 00:00:05,440 — prima frase</li>
-            <li>2 — 00:00:05,440 --&gt; 00:00:09,000 — seconda frase</li>
-            </ul>
-            <p>I sottotitoli seguono i segmenti individuati dal modello, uno per frase. Per un video pubblicato conviene rivederli in un programma di montaggio: le durate vanno adattate alla velocità di lettura e le righe troppo lunghe spezzate.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso tradurre l&rsquo;audio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Trascrivi nella lingua originale e poi usa il <a href="/ia/traduttore/" class="text-indigo-700 underline">traduttore</a>, anche lui eseguito nel browser.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Quali formati audio sono supportati?</h3>
-              <p>Sono supportati i formati che il browser sa decodificare in modo nativo, tra cui MP3, WAV, M4A, OGG e WEBM, oltre alla traccia audio di molti file video. Il file viene convertito localmente in un segnale mono a 16 kHz prima della trascrizione. Se un formato non viene riconosciuto, conviene convertirlo in MP3 o WAV con un programma installato sul computer.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">La qualità della registrazione incide sul risultato?</h3>
-              <p>In modo determinante. Rumore di fondo, riverbero, voci sovrapposte e microfoni lontani aumentano gli errori. I risultati migliori si ottengono con un microfono vicino a chi parla, in un ambiente silenzioso e con un solo interlocutore alla volta. Aumentare il volume di un file registrato male non recupera l'informazione persa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Lo strumento distingue chi sta parlando?</h3>
-              <p>No. Whisper produce la trascrizione del parlato con i riferimenti temporali, ma non attribuisce le frasi ai singoli interlocutori. La separazione dei parlanti richiede un modello aggiuntivo. Per interviste e riunioni conviene annotare a mano gli interventi partendo dai tempi del file SRT.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso tradurre l'audio in un'altra lingua?</h3>
-              <p>Il modello Whisper supporta nativamente la traduzione verso l'inglese a partire da molte lingue. Per ottenere un testo in una lingua diversa dall'inglese conviene prima trascrivere nella lingua originale e poi usare il traduttore del portale, anch'esso eseguito interamente nel browser.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cos'è il file SRT e a cosa serve?</h3>
-              <p>È un formato di sottotitoli testuale in cui ogni frase è associata a un tempo di inizio e di fine. È compatibile con i principali lettori video e con le piattaforme di pubblicazione. È utile anche fuori dal video, perché permette di ritrovare rapidamente nella registrazione il punto esatto in cui è stata detta una frase.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché la trascrizione a volte ripete la stessa frase?</h3>
-              <p>È un comportamento noto dei modelli autoregressivi nelle parti di silenzio prolungato o di rumore costante, in cui il decoder tende a riprodurre l'ultima frase generata. Tagliare i lunghi silenzi prima della trascrizione riduce molto il fenomeno. Le ripetizioni vanno comunque eliminate in fase di revisione.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cos&rsquo;&egrave; il file SRT?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Un file di sottotitoli in cui ogni frase ha un tempo di inizio e di fine. Funziona con i lettori video e serve anche a ritrovare un punto preciso della registrazione.</p>
         </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il trascrittore è un'applicazione <strong>100% client-side, a infrastruttura zero-backend</strong>. Il file audio viene decodificato, ricampionato e trascritto interamente dal browser sul tuo dispositivo, all'interno di un Web Worker isolato. L'unico traffico di rete è il download iniziale del modello Whisper da un archivio pubblico: un flusso in entrata che non contiene nulla di tuo. Le registrazioni, le voci e il testo trascritto, con i nomi, i codici fiscali, gli IBAN o i dati sanitari eventualmente pronunciati, non vengono mai caricati su server.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">La voce è un dato personale e le registrazioni contengono spesso dati di terzi e categorie particolari di dati. Evitare ogni trasmissione è quindi il modo più solido per rispettare il Regolamento UE 2016/679 (GDPR). Non c'è un fornitore esterno che tratti l'audio, non avvengono trasferimenti verso Paesi terzi e nessuna registrazione può essere riutilizzata per addestrare modelli. L'architettura attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5.</p>
-        </div>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; a volte ripete la stessa frase?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Succede nei silenzi lunghi o con rumore costante. Tagliare le pause riduce il problema; le ripetizioni vanno tolte in revisione.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;audio viene caricato online?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: viene decodificato e trascritto nel browser. Dalla rete arriva solo il modello, la prima volta.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 2016/679 (GDPR), artt. 4 e 9: la voce come dato personale e i dati particolari.</li>
+          <li>Modello Whisper di OpenAI, versione small quantizzata per Transformers.js.</li>
+        </ul>
+      </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>

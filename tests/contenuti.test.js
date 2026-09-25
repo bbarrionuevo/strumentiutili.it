@@ -15,11 +15,6 @@ const PAGINE = C.pagineIndicizzabili();
 // Pagine con il vecchio trattato ancora da riscrivere in italiano semplice.
 // La lista puo' solo accorciarsi: quando una pagina e' riscritta, va tolta.
 const DA_RISCRIVERE = new Set([
-  'ia/assistente-documenti/index.html',
-  'ia/ocr-immagini/index.html',
-  'ia/riassunto-testo/index.html',
-  'ia/traduttore/index.html',
-  'ia/trascrizione-audio/index.html',
   'identita-burocrazia/autocertificazione/index.html',
   'identita-burocrazia/calcolo-quote-ereditarie/index.html',
   'identita-burocrazia/codice-fiscale/index.html',

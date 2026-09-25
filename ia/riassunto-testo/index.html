@@ -149,10 +149,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il riassunto è generato da un'intelligenza artificiale?",
+            "name": "Il riassunto è fatto da un’intelligenza artificiale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. È un riassunto estrattivo: le frasi più rappresentative vengono selezionate con un metodo statistico basato sulla frequenza delle parole. Nessun testo viene riscritto o inventato."
+              "text": "No: è un metodo statistico che sceglie le frasi in base alla frequenza delle parole. Niente viene riscritto o inventato."
             }
           },
           {
@@ -160,7 +160,7 @@
             "name": "Il testo viene inviato a qualche servizio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il riassunto viene calcolato interamente nel browser. Solo per le immagini viene scaricato il motore OCR, che non riceve comunque i tuoi file."
+              "text": "No, il calcolo avviene nel browser. Solo per le immagini viene scaricato il motore OCR, che non riceve comunque i tuoi file."
             }
           },
           {
@@ -168,7 +168,7 @@
             "name": "Perché a volte il riassunto sembra sconnesso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Perché le frasi provengono da punti diversi del documento: possono restare riferimenti a soggetti o importi citati in frasi escluse. Conviene rileggerlo e integrarlo con l'originale."
+              "text": "Perché le frasi arrivano da punti diversi del testo. Rileggilo e integralo con l’originale."
             }
           },
           {
@@ -176,39 +176,23 @@
             "name": "Posso riassumere un documento riservato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì: il contenuto non lascia il dispositivo. Valuta comunque dove salvi il riassunto e chi ha accesso al computer."
+              "text": "Sì, il contenuto non lascia il dispositivo. Fai solo attenzione a dove salvi il risultato."
             }
           },
           {
             "@type": "Question",
-            "name": "Funziona anche su un PDF scansionato?",
+            "name": "Funziona su un PDF scansionato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, ma prima deve essere riconosciuto il testo con l'OCR: è la fase più lenta e la qualità del riassunto dipende da quella del riconoscimento."
+              "text": "Sì, dopo il riconoscimento del testo con l’OCR, che è la fase più lenta."
             }
           },
           {
             "@type": "Question",
-            "name": "Quanta memoria richiede il riassunto di un documento lungo?",
+            "name": "Serve un computer potente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il riassunto in sé non usa modelli di intelligenza artificiale e non occupa memoria significativa: anche un testo di centinaia di migliaia di caratteri viene elaborato in una frazione di secondo. Il consumo di memoria riguarda le altre fasi: il riconoscimento OCR delle immagini, che carica il motore Tesseract e la pagina rasterizzata, e l'estrazione del testo dai PDF molto grandi. Su smartphone conviene quindi riassumere il testo già estratto, invece di caricare decine di immagini in una sola volta."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché il dispositivo si scalda durante il riconoscimento delle immagini?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'elaborazione prolungata satura il processore e, sui dispositivi mobili, ne fa ridurre la frequenza per motivi termici: l'apparecchio si scalda, la batteria si consuma e l'interfaccia diventa meno reattiva. In questo strumento il fenomeno riguarda solo il riconoscimento OCR di molte immagini, l'unica fase pesante; il calcolo del riassunto è immediato. Conviene perciò elaborare le immagini poche per volta."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Lo strumento usa la scheda grafica per accelerare l'elaborazione?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "WebGL e WebGPU sono le interfacce che permettono di eseguire calcoli sulla scheda grafica, e fanno la differenza per i modelli neurali di grandi dimensioni. Questo strumento non le utilizza: il riassunto è un calcolo statistico leggero che gira sul processore in pochi millisecondi, mentre il riconoscimento OCR usa WebAssembly. La velocità dipende quindi dal processore, non dalla scheda video."
+              "text": "No: il riassunto richiede una frazione di secondo anche su testi molto lunghi. Solo l’OCR di molte immagini può scaldare il telefono: meglio farne poche alla volta."
             }
           }
         ]
@@ -471,195 +455,53 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Tecnico-Giuridico sull'Intelligenza Artificiale Locale, Elaborazione NLP e Conformità Normativa (Zero-Backend)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Questo strumento produce un riassunto estrattivo: individua le frasi più rappresentative del testo con un metodo statistico basato sulla frequenza delle parole e le ricompone nell'ordine originale. Non usa modelli linguistici generativi e non riscrive nulla, quindi non può inventare contenuti; in compenso il risultato è un insieme di frasi del documento, non un testo nuovo. Tutto avviene nel browser: il testo non viene trasmesso. Per le immagini interviene anche il riconoscimento ottico dei caratteri (OCR) con Tesseract, il cui motore viene scaricato al primo utilizzo.
-        </p>
-
-        <!-- ACCORDEON 1: Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento normativo: sicurezza del trattamento (GDPR) e servizi di riassunto in cloud</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Privacy by Design (Art. 25 GDPR) ed Esfiltrazione dei Dati</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Dal punto di vista normativo, l'impiego di modelli linguistici di grandi dimensioni (LLM) commerciali ospitati in cloud pone minacce insormontabili in termini di riservatezza e conformità legale. Quando si processano dati sensibili, i Termini di Servizio (ToS) di molti provider cloud garantiscono al fornitore il diritto unilaterale di immagazzinare i prompt testuali, i documenti e i flussi informativi dell'utente per il riaddestramento continuo dei propri modelli algoritmici. Questo meccanismo viola frontalmente il principio di limitazione della finalità prescritto dal GDPR. L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure a tutela della privacy siano architettate direttamente nel codice fin dalla fase di progettazione. Eseguendo l'elaborazione nel browser il testo non viene trasmesso ad alcun fornitore, e viene quindi meno il rischio che venga conservato o riutilizzato per addestrare modelli. Restano da curare le misure di sicurezza sul dispositivo e la conservazione dei file.
-              </p>
-            </div>
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Articolo 28 (Data Processing) e il Rischio Schrems II</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'utilizzo di un Cloud LLM per riassumere documenti sensibili trasforma istantaneamente l'azienda fornitrice del software in un <em>Data Processor</em> (Responsabile del Trattamento ex Articolo 28 GDPR). Questo innesca per il professionista (Titolare del Trattamento) l'obbligo inderogabile di stipulare rigorosi Data Processing Agreements (DPA), condurre estenuanti audit di sicurezza e autorizzare i sub-responsabili. Inoltre, in ambito europeo, i trasferimenti di dati extra-UE verso server operanti negli Stati Uniti costituiscono un terreno giuridicamente incerto a causa delle ripercussioni giurisprudenziali della nota sentenza "Schrems II". Con l'esecuzione locale il sito fornisce il programma ma non tratta il testo: per questa operazione non c'è un responsabile del trattamento da nominare né un trasferimento verso paesi terzi da giustificare. Gli altri adempimenti del titolare restano invariati.
-              </p>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 2: Meccanica Computazionale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Come funziona il riassunto: selezione delle frasi e punteggio delle parole</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">Un riassunto estrattivo, non generativo</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Questo strumento non usa un modello linguistico: non riscrive il testo con parole proprie, ma seleziona le frasi già presenti nel documento e le ricompone nell'ordine originale. È la differenza fra riassunto <em>estrattivo</em> e riassunto <em>astrattivo</em>: il primo non può inventare informazioni sbagliate, il secondo produce testi più scorrevoli ma può affermare cose che il documento non dice. Per un testo giuridico o sanitario la scelta estrattiva è più prudente: ogni frase del riassunto è verificabile nell'originale.
-              </p>
-
-              <h3 class="text-base font-bold text-gray-900 mb-2">Come vengono scelte le frasi</h3>
-              <ul class="list-disc pl-6 space-y-1 my-2 text-sm text-gray-700">
-                <li>il testo viene diviso in frasi, tenendo conto delle abbreviazioni italiane più comuni (<code>art.</code>, <code>n.</code>, <code>D.Lgs.</code>, <code>Dott.</code>): senza questa accortezza «l'art. 50 disciplina...» verrebbe spezzato a metà;</li>
-                <li>si contano le occorrenze delle parole, escludendo quelle molto frequenti e prive di contenuto (articoli, preposizioni, verbi ausiliari);</li>
-                <li>ogni frase riceve un punteggio pari alla somma delle frequenze delle sue parole, diviso per la radice quadrata del numero di parole: senza questa normalizzazione verrebbero scelte sempre le frasi più lunghe;</li>
-                <li>le prime frasi del testo ricevono un premio, perché di norma contengono l'oggetto del documento, e lo stesso vale per le frasi che contengono espressioni come «in conclusione» o «pertanto»;</li>
-                <li>vengono conservate le frasi con il punteggio più alto — il 15%, il 30% o il 50% del totale secondo la lunghezza scelta — e rimesse nell'ordine in cui compaiono nel documento.</li>
-              </ul>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il metodo è deterministico: lo stesso testo produce sempre lo stesso riassunto, e l'elaborazione è immediata anche su smartphone, perché non c'è alcun modello da scaricare. Il limite è che la coerenza fra le frasi selezionate non è garantita: possono restare riferimenti a un soggetto citato in una frase esclusa.
-              </p>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 3: Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📈</span> 3. Casuistica Reale: Processi Professionali in Settori M&A e Clinici</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Scenario 1: Due Diligence Documentale nel Settore Finanziario (M&A)</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un team operativo interbancario è incaricato di elaborare un'analisi di rischio critico (Due Diligence) in una delicata manovra di fusione e acquisizione aziendale (Mergers and Acquisitions - M&A). Il materiale documentale consiste in migliaia di contratti legali esteri scannerizzati ad altissima risoluzione.
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>Esecuzione:</strong> i professionisti caricano i file PDF: il testo viene estratto con pdf.js e, se il PDF è una scansione senza testo, riconosciuto con l'OCR Tesseract. Il riassunto estrattivo mette in evidenza le frasi più rappresentative, utili per orientarsi rapidamente in un documento lungo; le clausole rilevanti vanno poi lette nell'originale, perché la selezione automatica può escludere proprio l'eccezione o la deroga che conta.<br>
-                <span class="text-emerald-700 font-bold">Vantaggio:</span> La valutazione del capitale viene condotta tutelando ermeticamente il segreto industriale dell'accordo; si evitano gravissimi reati finanziari quali l'insider trading, frequentemente innescati da data leak provocati da processi su server esposti a vulnerabilità.</p>
-              </div>
-            </div>
-
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Scenario 2: Sintesi Narrativa di Registri Sanitari in Psichiatria</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Un primario di psichiatria affronta il compito di stilare referti narrativi sintetici estrapolati dalla stesura fluviale prodotta durante le sessioni di analisi cliniche (o trascritta originariamente via modello locale Whisper quantizzato).
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>Esecuzione:</strong> il testo viene elaborato sul computer dell'ambulatorio, senza uscire dalla rete interna. Il riassunto riporta le frasi più ricorrenti del registro clinico, ma non interpreta né classifica i sintomi: è un aiuto alla lettura, non un supporto alla decisione clinica, e non sostituisce la valutazione del professionista.<br>
-                <span class="text-emerald-700 font-bold">Vantaggio:</span> L'operato garantisce il severo rispetto della compliance (GDPR Articolo 9, relativo ai dati sanitari); la struttura psichiatrica neutralizza in modo incontrovertibile lo spettro che le ammissioni intime dei pazienti vengano fagocitate, analizzate o profilate da algoritmi di deep learning gestiti dalle multinazionali Big Tech del cloud storage per futuri addestramenti commerciali.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 4: FAQ ed Errore Operativi -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ tecniche: memoria, prestazioni e limiti del metodo</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti sono stati riprodotti con lo strumento su un testo di prova di otto frasi relativo al codice dei contratti pubblici, confrontando le frasi selezionate con l'originale.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: la stessa pagina con le tre lunghezze</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Breve: 1 frase su 8 (la frase di apertura, che indica l'oggetto della riforma)</li>
-                <li>Media: 2 frasi (apertura e conclusione)</li>
-                <li>Lunga: 4 frasi (apertura, art. 50, principio del risultato, conclusione)</li>
-                </ul>
-                <p>Con la lunghezza «breve» resta l'informazione essenziale; con «lunga» si ottiene l'ossatura del documento. Le frasi mantengono l'ordine originale, quindi il testo si legge come una versione ridotta, non come un elenco disordinato.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: le abbreviazioni dei testi giuridici</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Frase originale: «L'art. 50 disciplina le procedure negoziate sotto soglia...»</li>
-                <li>Prima della revisione: nel riassunto compariva «50 disciplina le procedure negoziate sotto soglia...»</li>
-                <li>Ora: la frase compare per intero, compreso il riferimento all'articolo</li>
-                </ul>
-                <p>Il punto di «art.» veniva scambiato per una fine di frase, e lo stesso accadeva con «D.Lgs.», «n.» e «Dott.». Ora il testo viene diviso solo quando il punto è seguito da uno spazio e da una maiuscola, e la parola precedente non è una delle abbreviazioni più comuni.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: esportazione in PDF con punti elenco</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Riassunto in formato «punti elenco», esportato in PDF</li>
-                <li>Nel PDF: intestazione, data di generazione e frasi precedute dal segno •</li>
-                <li>Lettere accentate conservate; le eventuali emoji vengono rimosse</li>
-                </ul>
-                <p>In precedenza il segno di elenco e le lettere fuori dall'alfabeto latino occidentale sparivano dal PDF insieme al resto dei caratteri non rappresentabili. Ora vengono mantenuti o ricondotti alla lettera base.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quanta memoria richiede il riassunto di un documento lungo?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il riassunto in sé non usa modelli di intelligenza artificiale e non occupa memoria significativa: anche un testo di centinaia di migliaia di caratteri viene elaborato in una frazione di secondo. Il consumo di memoria riguarda le altre fasi: il riconoscimento OCR delle immagini, che carica il motore Tesseract e la pagina rasterizzata, e l'estrazione del testo dai PDF molto grandi. Su smartphone conviene quindi riassumere il testo già estratto, invece di caricare decine di immagini in una sola volta.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché il dispositivo si scalda durante il riconoscimento delle immagini?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'elaborazione prolungata satura il processore e, sui dispositivi mobili, ne fa ridurre la frequenza per motivi termici: l'apparecchio si scalda, la batteria si consuma e l'interfaccia diventa meno reattiva. In questo strumento il fenomeno riguarda solo il riconoscimento OCR di molte immagini, l'unica fase pesante; il calcolo del riassunto è immediato. Conviene perciò elaborare le immagini poche per volta.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Lo strumento usa la scheda grafica per accelerare l'elaborazione?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                WebGL e WebGPU sono le interfacce che permettono di eseguire calcoli sulla scheda grafica, e fanno la differenza per i modelli neurali di grandi dimensioni. Questo strumento non le utilizza: il riassunto è un calcolo statistico leggero che gira sul processore in pochi millisecondi, mentre il riconoscimento OCR usa WebAssembly. La velocità dipende quindi dal processore, non dalla scheda video.
-              </p>
-            </details>
-
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Il riassunto è generato da un'intelligenza artificiale?</h3>
-                <p>No. È un riassunto estrattivo: le frasi più rappresentative vengono selezionate con un metodo statistico basato sulla frequenza delle parole. Nessun testo viene riscritto o inventato.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Il testo viene inviato a qualche servizio?</h3>
-                <p>No. Il riassunto viene calcolato interamente nel browser. Solo per le immagini viene scaricato il motore OCR, che non riceve comunque i tuoi file.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Perché a volte il riassunto sembra sconnesso?</h3>
-                <p>Perché le frasi provengono da punti diversi del documento: possono restare riferimenti a soggetti o importi citati in frasi escluse. Conviene rileggerlo e integrarlo con l'originale.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Posso riassumere un documento riservato?</h3>
-                <p>Sì: il contenuto non lascia il dispositivo. Valuta comunque dove salvi il riassunto e chi ha accesso al computer.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Funziona anche su un PDF scansionato?</h3>
-                <p>Sì, ma prima deve essere riconosciuto il testo con l'OCR: è la fase più lenta e la qualità del riassunto dipende da quella del riconoscimento.</p>
-                </div>
-              </div>
-            </details>
-
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Riassumere un testo scegliendo le frasi pi&ugrave; importanti</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Lo strumento fa un riassunto <em>estrattivo</em>: sceglie le frasi pi&ugrave; rappresentative del testo e le rimette nell&rsquo;ordine originale. Non riscrive nulla e non usa modelli generativi, quindi non pu&ograve; inventare informazioni: ogni frase del riassunto si ritrova nel documento. Funziona subito, anche su smartphone, e il testo resta sul tuo dispositivo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Incolla il testo o carica un file (TXT, PDF, DOCX o un&rsquo;immagine).</li>
+            <li>Scegli la lunghezza: breve (circa il 15% delle frasi), media (30%) o lunga (50%).</li>
+            <li>Scegli se vuoi un paragrafo o un elenco puntato e copia o esporta il risultato.</li>
+          </ol>
+          <p>Per le immagini e i PDF scansionati il testo viene prima riconosciuto con l&rsquo;OCR: &egrave; la parte pi&ugrave; lenta, e la qualit&agrave; del riassunto dipende da quella del riconoscimento.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come vengono scelte le frasi</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il testo viene diviso in frasi, senza spezzarle sulle abbreviazioni come &laquo;art.&raquo;, &laquo;n.&raquo;, &laquo;D.Lgs.&raquo; o &laquo;Dott.&raquo;.</li>
+            <li>Si contano le parole che ricorrono di pi&ugrave;, escluse quelle vuote come articoli e preposizioni.</li>
+            <li>Ogni frase riceve un punteggio in base alle parole importanti che contiene, corretto per non premiare solo le frasi lunghe.</li>
+            <li>Le prime frasi e quelle con &laquo;in conclusione&raquo; o &laquo;pertanto&raquo; ricevono un piccolo premio, perch&eacute; di solito dicono l&rsquo;essenziale.</li>
+          </ul>
+          <p>Il metodo d&agrave; sempre lo stesso risultato per lo stesso testo. Il limite &egrave; che le frasi scelte possono citare qualcosa spiegato in una frase esclusa: rileggi il riassunto accanto all&rsquo;originale.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempio</h3>
+          <p>Su un testo di otto frasi sul codice dei contratti pubblici: la versione breve tiene 1 frase (quella che dice l&rsquo;oggetto della riforma), la media 2 (apertura e conclusione), la lunga 4 (apertura, art. 50, principio del risultato e conclusione).</p>
         </div>
-
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il riassunto &egrave; fatto da un&rsquo;intelligenza artificiale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: &egrave; un metodo statistico che sceglie le frasi in base alla frequenza delle parole. Niente viene riscritto o inventato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il testo viene inviato a qualche servizio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, il calcolo avviene nel browser. Solo per le immagini viene scaricato il motore OCR, che non riceve comunque i tuoi file.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; a volte il riassunto sembra sconnesso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; le frasi arrivano da punti diversi del testo. Rileggilo e integralo con l&rsquo;originale.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso riassumere un documento riservato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, il contenuto non lascia il dispositivo. Fai solo attenzione a dove salvi il risultato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona su un PDF scansionato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, dopo il riconoscimento del testo con l&rsquo;OCR, che &egrave; la fase pi&ugrave; lenta.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Serve un computer potente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il riassunto richiede una frazione di secondo anche su testi molto lunghi. Solo l&rsquo;OCR di molte immagini pu&ograve; scaldare il telefono: meglio farne poche alla volta.</p>
+        </details>
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

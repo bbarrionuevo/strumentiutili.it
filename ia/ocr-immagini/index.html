@@ -157,23 +157,23 @@
             "name": "Vengono lette tutte le pagine di un PDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì: ogni pagina viene convertita a 300 DPI e riconosciuta, e il testo è separato da un'intestazione «--- Pagina n ---»."
+              "text": "Sì: ogni pagina viene convertita a 300 DPI e riconosciuta, con un’intestazione «--- Pagina n ---»."
             }
           },
           {
             "@type": "Question",
-            "name": "I documenti vengono caricati su qualche server?",
+            "name": "I documenti vengono caricati su un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Restano nel browser; dalla rete arrivano soltanto il motore OCR e i modelli linguistici, scaricati al primo utilizzo."
+              "text": "No. Dalla rete arrivano solo il motore e i modelli della lingua, al primo uso."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il primo riconoscimento è più lento?",
+            "name": "Perché la prima volta è più lento?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La prima volta il browser scarica il motore WebAssembly e il modello della lingua scelta, alcuni megabyte; poi restano nella cache."
+              "text": "Il browser scarica il motore e il modello della lingua; poi li conserva."
             }
           },
           {
@@ -181,7 +181,7 @@
             "name": "Il testo estratto ha valore legale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No di per sé: il valore probatorio riguarda la copia per immagine del documento, non il testo derivato dall'OCR, che può contenere errori di riconoscimento."
+              "text": "No: il valore di prova ce l’ha la copia per immagine del documento (la scansione), non il testo ricavato con l’OCR, che può contenere errori."
             }
           },
           {
@@ -189,39 +189,15 @@
             "name": "Riconosce la scrittura a mano?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo uno stampatello molto regolare, e con molti errori. Per il corsivo servono sistemi di riconoscimento diversi, non disponibili in questo strumento."
+              "text": "Solo uno stampatello molto regolare, e con errori. Il corsivo no."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché le scansioni a 150 DPI causano l'esplosione degli errori di segmentazione nell'OCR?",
+            "name": "Un PDF di cento pagine si può fare?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A 150 DPI la matrice dei pixel che compone un carattere con corpo di 8 punti conta appena 8-10 pixel in altezza. La sfocatura e l'aliasing della fotocamera fondono i contorni adiacenti, inducendo la rete neurale a commettere errori sistematici di segmentazione: la sequenza di lettere \"r\" e \"n\" vicine viene scambiata per una \"m\", la combinazione \"c\" e \"l\" viene letta come \"d\", e i punti della punteggiatura svaniscono durante la binarizzazione. L'acquisizione a 300 o 600 DPI è la conditio sine qua non per un'accuratezza > 95%."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Qual è la differenza tra OCR (Optical Character Recognition) e HTR (Handwritten Text Recognition)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'OCR tradizionale è ottimizzato per caratteri a stampa con geometrie e font rigidi (Arial, Times, Courier). La scrittura a mano libera (calligrafia) presenta una variabilità morfologica e un tratto continuo che richiede modelli di HTR (Handwritten Text Recognition) specificamente riaddestrati su grafie fluide. Tesseract può leggere uno stampatello molto regolare, ma non è progettato per il corsivo: su un modulo compilato a mano il risultato è in genere inutilizzabile e va trascritto manualmente."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Come viene gestito l'esaurimento della memoria (Out of Memory) per PDF di centinaia di pagine?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il browser riserva alla singola scheda una quantità limitata di memoria. Le pagine di un PDF vengono quindi convertite e riconosciute una alla volta, liberando il canvas di ogni pagina prima di passare alla successiva; il motore OCR viene creato una sola volta per l'intero documento, così i modelli non vengono riscaricati a ogni pagina. Restano comunque tempi lunghi: il riconoscimento richiede qualche secondo per pagina, e per fascicoli di decine di pagine conviene dividerli prima con lo strumento Unisci e Dividi."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "La copia informatica estratta via OCR ha la stessa valenza probatoria dell'originale analogico?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Occorre distinguere. L'articolo 22 del CAD riguarda le copie per immagine su supporto informatico, cioè la scansione fedele del documento cartaceo: se la conformità all'originale non è espressamente disconosciuta, la copia ha la stessa efficacia probatoria dell'originale, e per gli atti pubblici serve l'attestazione di un pubblico ufficiale. Il testo estratto con l'OCR non è una copia per immagine: è un file di testo derivato, che può contenere errori di riconoscimento e non riproduce l'aspetto del documento. Per gli usi con valore probatorio va conservata la scansione; il testo OCR serve a cercare, copiare e rielaborare il contenuto."
+              "text": "Sì, le pagine vengono lette una alla volta, ma servono alcuni secondi per pagina. Per fascicoli lunghi conviene dividerli prima con Unisci e dividi PDF."
             }
           }
         ]
@@ -454,251 +430,72 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mt-4">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Compendio Tecnico-Giuridico sull'Estrazione Ottica dei Caratteri (OCR) e Dematerializzazione Documentale</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il processo di digitalizzazione e dematerializzazione dei documenti analogici nell'ordinamento italiano è disciplinato dalle <strong>Linee Guida AgID (Agenzia per l'Italia Digitale)</strong> sulla formazione, gestione e conservazione dei documenti informatici e dall'articolo 22 del <strong>Codice dell'Amministrazione Digitale (CAD - D.Lgs. 82/2005)</strong>. L'estrazione ottica dei caratteri (OCR - Optical Character Recognition) rappresenta l'anello congiungente tra il documento rasterizzato a pixel e la sua rappresentazione vettoriale testuale indicizzabile in formato UTF-8. Questo strumento usa Tesseract 5 compilato in WebAssembly (tesseract.js): segmentazione e riconoscimento neurale LSTM avvengono nel browser. Il motore e il modello della lingua scelta vengono scaricati da una CDN al primo utilizzo, mentre i documenti restano sul dispositivo e non vengono trasmessi (GDPR, art. 25). Il primo avvio richiede quindi una connessione e qualche secondo di attesa.
-        </p>
-
-        <!-- ACCORDEON 1: Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo: Valore Legale CAD (Art. 22), DPR 445/2000 e GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Efficacia Probatoria delle Copie Informatiche ex Art. 22 CAD</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'articolo 22, comma 2, del D.Lgs. 82/2005 (CAD) stabilisce che le copie informatiche di documenti analogici hanno la stessa efficacia probatoria degli originali da cui sono tratte se la loro conformità non è espressamente disconosciuta dalla controparte o se la conformità all'originale è attestata da un pubblico ufficiale a ciò autorizzato con firma digitale qualificata o sigillo elettronico. L'estrazione OCR integrata nel documento genera la componente strutturata indispensabile per la ricerca testuale e l'archiviazione sostitutiva a norma ISO 19005 (PDF/A).
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Privacy by Design (Art. 25 GDPR) e Trasferimenti Extra-UE</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Utilizzare motori OCR commerciali basati su API Cloud esterne (con server situati in giurisdizioni extra-UE) espone il professionista (avvocato, medico, commercialista) a severe sanzioni amministrative pecuniarie per violazione degli Articoli 28 e 44 del GDPR. La trasmissione di documenti contenenti categorie particolari di dati personali (Art. 9 GDPR) verso API di terzi richiede la stipula di complessi Data Processing Agreements (DPA) e l'esecuzione preventiva di una Valutazione d'Impatto (DPIA ex Art. 35).
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'architettura Zero-Backend di questo strumento elimina alla radice ogni trasferimento di rete. I moduli WebAssembly di Tesseract.js e i pesi delle reti neurali vengono scaricati nella cache locale del browser (Service Worker); la trasformazione dei pixel in testo avviene esclusivamente nella RAM volatile del dispositivo dell'utente, realizzando l'isolamento ermetico dei dati sensibili.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Estrarre il testo da foto, scansioni e PDF (OCR)</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il riconoscimento ottico dei caratteri (OCR) trasforma una foto o una scansione in testo che puoi copiare, cercare e modificare. Lo strumento usa Tesseract nel browser: i documenti restano sul tuo dispositivo. Al primo uso il browser scarica il motore e il modello della lingua scelta, qualche megabyte, che poi restano in memoria.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica un&rsquo;immagine (JPG, PNG) o un PDF: vengono lette tutte le pagine, separate da &laquo;--- Pagina n ---&raquo;.</li>
+            <li>Scegli la lingua del documento; se ce ne sono pi&ugrave;, selezionale tutte.</li>
+            <li>Avvia il riconoscimento, correggi il testo nel riquadro e copialo o esportalo in TXT, DOCX o PDF.</li>
+          </ol>
+          <p>Per conservare ogni carattere esattamente com&rsquo;&egrave; usa TXT o DOCX: nel PDF le lettere fuori dall&rsquo;alfabeto latino occidentale vengono semplificate (per esempio &laquo;&#321;ukasz&raquo; diventa &laquo;Lukasz&raquo;).</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come ottenere un buon risultato</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Aspetto</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Consiglio</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Risoluzione</td><td class="px-3 py-2 align-top">300 DPI per il testo normale, 400 per caratteri piccoli</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Colore</td><td class="px-3 py-2 align-top">Scala di grigi: il colore non aiuta</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Inclinazione</td><td class="px-3 py-2 align-top">Entro 1&ndash;2 gradi; per le foto storte usa prima lo <a href="/pdf/scanner-documenti/" class="text-indigo-700 underline">scanner documenti</a></td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Luce</td><td class="px-3 py-2 align-top">Uniforme, senza ombre n&eacute; riflessi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Formato</td><td class="px-3 py-2 align-top">PNG o TIFF; il JPEG molto compresso sporca i contorni</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <!-- ACCORDEON 2: Meccanica e Formule dell'OCR -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Computazionale: Geometria DPI, Binarizzazione Otsu e LSTM</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">A) Risoluzione Spaziale e Geometria dei Pixel (DPI)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                La risoluzione ottica della scansione determina la densità dei campioni per pollice lineare. Per un riconoscimento accurato dei caratteri tipografici con corpo standard (8-12pt), le Linee Guida AgID prescrivono una risoluzione minima di <strong>300 DPI</strong>. La relazione tra dimensione metrica e pixel dell'immagine raster è definita dall'equazione:
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                Dimensioni in Pixel = (Dimensione in Millimetri / 25,4) × DPI
-              </div>
-              <p class="text-xs text-gray-600 leading-relaxed mb-3">
-                Scansionare al di sotto dei 300 DPI provoca l'innesco di fenomeni di aliasing e la distruzione della Point Spread Function (PSF) dei tratti sottili dei caratteri (es. la differenza tra la lettera 'e' e la 'c').
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">B) Binarizzazione Adattiva di Otsu (Sogliatura del Contrasto)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Prima di inviare i pixel alla rete neurale, l'immagine in scala di grigi deve essere convertita in una matrice binaria mono-bit (0 = testo nero, 1 = sfondo bianco). L'<strong>Algoritmo di Otsu</strong> calcola la soglia ottimale che minimizza la varianza tra i due histogrammi di foreground e background.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">C) Raddrizzamento Geometrico (Deskewing tramite Trasformata di Hough)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Quando il foglio è stato acquisito storto, le righe di testo risultano inclinate rispetto agli assi dell'immagine. Tesseract stima l'inclinazione delle righe durante l'analisi del layout e la compensa entro pochi gradi; oltre, la segmentazione peggiora sensibilmente. Per foto molto storte conviene raddrizzare prima l'immagine con lo Scanner Documenti, che corregge anche la prospettiva.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-base font-bold text-gray-900 mb-2">D) Riconoscimento Neurale LSTM (Long Short-Term Memory)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-2">
-                Tesseract.js impiega un motore di Deep Learning basato su reti neurali ricorrenti LSTM. La rete non riconosce le singole lettere in isolamento, ma analizza le sequenze orizzontali di pixel all'interno della riga, valutando il contesto linguistico del dizionario integrato (es. <code>ita.traineddata</code>). Ogni parola estratta viene corredata da un punteggio di confidenza percentuale.
-              </p>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 3: Casuistica Reale Svolta -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Trascrizione e Digitalizzazione di un Atto Giudiziario Distorto</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Come lavora lo strumento, passo per passo</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Dal momento in cui premi «Avvia riconoscimento», il file passa attraverso tre fasi:
-              </p>
-              
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
-                <p><strong>Fase 1: rasterizzazione delle pagine.</strong><br>
-                Se carichi un PDF, <code>pdf.js</code> disegna ogni pagina su un canvas a 300 punti per pollice (scala 4,17 rispetto ai 72 punti del formato), con un limite di 4.000 pixel per lato. Vengono elaborate tutte le pagine, non solo la prima.</p>
-
-                <p><strong>Fase 2: pre-elaborazione interna di Tesseract.</strong><br>
-                Tesseract converte l'immagine in scala di grigi, la binarizza con una sogliatura di tipo Otsu e individua righe e parole stimandone l'inclinazione. Questo strumento non applica correzioni proprie prima del riconoscimento: se la foto è storta o poco contrastata conviene passarla prima dallo Scanner Documenti, che raddrizza la prospettiva.</p>
-
-                <p><strong>Fase 3: riconoscimento con rete neurale LSTM.</strong><br>
-                Il modello linguistico scelto (per esempio <code>ita.traineddata</code>) analizza le righe e restituisce il testo. Timbri, loghi e firme non vengono riconosciuti come testo e possono produrre caratteri casuali, da eliminare a mano nel riquadro del risultato.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <!-- ACCORDEON 4: FAQ, Limiti V8 e Sanzioni -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, Gestione Memoria Heap V8 e HTR vs OCR</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti sono stati riprodotti con lo strumento; il testo estratto è stato confrontato carattere per carattere con quello reale del documento.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: la stessa pagina a due risoluzioni diverse</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Testo reale: «Codice fiscale: RSSMRA80A01H501U»</li>
-                <li>Immagine a circa 100 DPI: «Codice fiscale: RSSMRAS0A01HSO1U» (3 errori su 133 caratteri)</li>
-                <li>Stessa pagina a 300 DPI: nessun errore</li>
-                </ul>
-                <p>Gli errori si concentrano dove il contesto linguistico non aiuta: 8 letto come S, 5 come S, 0 come O. È il motivo per cui codici fiscali, IBAN e importi vanno sempre riletti, e per cui conviene acquisire a 300 DPI.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: referto in PDF di due pagine</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Pagina 1 riconosciuta: «REFERTO AMBULATORIALE», «Paziente: Mario Rossi», «Codice fiscale: RSSMRA80A01H501U»</li>
-                <li>Pagina 2 riconosciuta: «Pagina 2 - allegato», «Firma del paziente: Mario Rossi»</li>
-                <li>Separatori «--- Pagina 1 ---» e «--- Pagina 2 ---» nel testo estratto</li>
-                </ul>
-                <p>Entrambe le pagine vengono lette: fino alla revisione di questo strumento veniva riconosciuta soltanto la prima, e il resto del documento andava perso senza alcun avviso.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: esportazione con accenti e simboli</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Testo di partenza: «Perché è così: società, €1.250,00 — n° 3. Ševčenko, Łukasz»</li>
-                <li>Nel PDF esportato: «Perché è così: società, €1.250,00 — n° 3. Ševcenko, Lukasz»</li>
-                </ul>
-                <p>Accenti, euro, lineetta e simbolo di numero restano intatti; le lettere fuori dall'alfabeto latino occidentale vengono ricondotte alla lettera base. Per conservare ogni carattere esattamente com'è, esporta in TXT o in DOCX.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché le scansioni a 150 DPI causano l'esplosione degli errori di segmentazione nell'OCR?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                A 150 DPI la matrice dei pixel che compone un carattere con corpo di 8 punti conta appena 8-10 pixel in altezza. La sfocatura e l'aliasing della fotocamera fondono i contorni adiacenti, inducendo la rete neurale a commettere errori sistematici di segmentazione: la sequenza di lettere "r" e "n" vicine viene scambiata per una "m", la combinazione "c" e "l" viene letta come "d", e i punti della punteggiatura svaniscono durante la binarizzazione. L'acquisizione a 300 o 600 DPI è la conditio sine qua non per un'accuratezza > 95%.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Qual è la differenza tra OCR (Optical Character Recognition) e HTR (Handwritten Text Recognition)?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'OCR tradizionale è ottimizzato per caratteri a stampa con geometrie e font rigidi (Arial, Times, Courier). La scrittura a mano libera (calligrafia) presenta una variabilità morfologica e un tratto continuo che richiede modelli di HTR (Handwritten Text Recognition) specificamente riaddestrati su grafie fluide. Tesseract può leggere uno stampatello molto regolare, ma non è progettato per il corsivo: su un modulo compilato a mano il risultato è in genere inutilizzabile e va trascritto manualmente.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Come viene gestito l'esaurimento della memoria (Out of Memory) per PDF di centinaia di pagine?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il browser riserva alla singola scheda una quantità limitata di memoria. Le pagine di un PDF vengono quindi convertite e riconosciute una alla volta, liberando il canvas di ogni pagina prima di passare alla successiva; il motore OCR viene creato una sola volta per l'intero documento, così i modelli non vengono riscaricati a ogni pagina. Restano comunque tempi lunghi: il riconoscimento richiede qualche secondo per pagina, e per fascicoli di decine di pagine conviene dividerli prima con lo strumento Unisci e Dividi.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>La copia informatica estratta via OCR ha la stessa valenza probatoria dell'originale analogico?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Occorre distinguere. L'articolo 22 del CAD riguarda le copie per immagine su supporto informatico, cioè la scansione fedele del documento cartaceo: se la conformità all'originale non è espressamente disconosciuta, la copia ha la stessa efficacia probatoria dell'originale, e per gli atti pubblici serve l'attestazione di un pubblico ufficiale. Il testo estratto con l'OCR non è una copia per immagine: è un file di testo derivato, che può contenere errori di riconoscimento e non riproduce l'aspetto del documento. Per gli usi con valore probatorio va conservata la scansione; il testo OCR serve a cercare, copiare e rielaborare il contenuto.
-              </p>
-            </details>
-
-          </div>
+          <p>A 300 DPI una lettera in corpo 10 &egrave; alta circa 42 pixel; a 150 DPI solo 21, e il motore comincia a confondere &laquo;rn&raquo; con &laquo;m&raquo; o &laquo;0&raquo; con &laquo;O&raquo;.</p>
+          <p><strong>Esempio.</strong> La riga &laquo;Codice fiscale: RSSMRA80A01H501U&raquo; letta da un&rsquo;immagine a circa 100 DPI diventa &laquo;RSSMRAS0A01HSO1U&raquo; (8 letto come S, 5 come S, 0 come O); a 300 DPI nessun errore.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Documenti difficili</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Scrittura a mano:</strong> solo uno stampatello molto regolare; il corsivo va trascritto a mano.</li>
+            <li><strong>Tabelle e moduli:</strong> il testo esce in ordine di lettura ma le colonne possono perdere l&rsquo;allineamento.</li>
+            <li><strong>Timbri e firme:</strong> producono caratteri casuali, da cancellare.</li>
+            <li><strong>Fotocopie di fotocopie:</strong> se puoi, acquisisci l&rsquo;originale.</li>
+          </ul>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Rileggi sempre importi, date, codici fiscali e IBAN: basta un carattere sbagliato per rendere inutilizzabile il dato.</p>
         </div>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📌</span> Guida pratica: come ottenere un riconoscimento accurato</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La qualità del testo estratto dipende molto più dall'immagine di partenza che dal motore di riconoscimento. Pochi accorgimenti in fase di acquisizione riducono gli errori in modo più efficace di qualsiasi correzione successiva.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Parametri di acquisizione consigliati</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore consigliato</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Effetto se ignorato</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Risoluzione di scansione</td><td class="px-3 py-2 border-t border-gray-200">300 DPI per testo normale, 400 DPI per caratteri piccoli</td><td class="px-3 py-2 border-t border-gray-200">Lettere fuse o spezzate, cifre confuse</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Modalità colore</td><td class="px-3 py-2 border-t border-gray-200">Scala di grigi</td><td class="px-3 py-2 border-t border-gray-200">Il colore aggiunge dati senza migliorare il riconoscimento</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Inclinazione della pagina</td><td class="px-3 py-2 border-t border-gray-200">Entro 1 - 2 gradi</td><td class="px-3 py-2 border-t border-gray-200">Righe segmentate male, parole su righe sbagliate</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Illuminazione della foto</td><td class="px-3 py-2 border-t border-gray-200">Uniforme, senza ombre né riflessi</td><td class="px-3 py-2 border-t border-gray-200">Zone di testo perse durante la binarizzazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Formato del file</td><td class="px-3 py-2 border-t border-gray-200">PNG o TIFF senza perdita</td><td class="px-3 py-2 border-t border-gray-200">Artefatti di compressione JPEG attorno ai caratteri</td></tr></tbody></table></div>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Perché i 300 DPI sono la soglia di riferimento</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Altezza in pixel di un carattere = Corpo in punti / 72 x DPI</li>
-              <li>Corpo 10 pt a 150 DPI = 10 / 72 x 150 = circa 21 pixel</li>
-              <li>Corpo 10 pt a 300 DPI = 10 / 72 x 300 = circa 42 pixel</li>
-              <li>Il motore LSTM lavora in modo ottimale con altezze di riga di circa 30 - 40 pixel</li>
-            </ul>
-            <p>Sotto la soglia, i dettagli che distinguono caratteri simili come «rn» e «m», «l» e «1», «O» e «0» si riducono a pochi pixel e il modello deve indovinare. Salire molto oltre i 400 DPI non migliora il risultato e aumenta memoria e tempi di elaborazione.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Documenti che richiedono attenzione particolare</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Testo manoscritto</strong>: il motore è addestrato su caratteri a stampa. La scrittura a mano produce risultati poco affidabili e richiede una trascrizione manuale.</li>
-              <li><strong>Tabelle e moduli</strong>: il riconoscimento restituisce il testo in ordine di lettura, ma può perdere l'allineamento delle colonne. I dati numerici vanno controllati riga per riga.</li>
-              <li><strong>Timbri e firme sovrapposti</strong>: coprono parzialmente il testo e generano caratteri spuri. Conviene escluderli ritagliando l'immagine quando possibile.</li>
-              <li><strong>Documenti in più lingue</strong>: selezionare tutte le lingue presenti migliora il riconoscimento di accenti e caratteri speciali.</li>
-              <li><strong>Fotocopie di fotocopie</strong>: ogni passaggio degrada i contorni. Se possibile va acquisito l'originale.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il controllo dopo l'estrazione</h3>
-            <p>Nessun sistema di riconoscimento ottico garantisce un'accuratezza assoluta. Per documenti con valore giuridico o economico il testo estratto va confrontato con l'originale, con particolare attenzione a importi, date, codici fiscali, IBAN e numeri di protocollo. Un singolo carattere errato in un codice identificativo può rendere inutilizzabile l'intero dato, e il controllo formale del codice non basta a rilevare ogni errore.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Vengono lette tutte le pagine di un PDF?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: ogni pagina viene convertita a 300 DPI e riconosciuta, con un&rsquo;intestazione &laquo;--- Pagina n ---&raquo;.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Vengono lette tutte le pagine di un PDF?</h3>
-            <p>Sì: ogni pagina viene convertita a 300 DPI e riconosciuta, e il testo è separato da un'intestazione «--- Pagina n ---».</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">I documenti vengono caricati su qualche server?</h3>
-            <p>No. Restano nel browser; dalla rete arrivano soltanto il motore OCR e i modelli linguistici, scaricati al primo utilizzo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il primo riconoscimento è più lento?</h3>
-            <p>La prima volta il browser scarica il motore WebAssembly e il modello della lingua scelta, alcuni megabyte; poi restano nella cache.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il testo estratto ha valore legale?</h3>
-            <p>No di per sé: il valore probatorio riguarda la copia per immagine del documento, non il testo derivato dall'OCR, che può contenere errori di riconoscimento.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Riconosce la scrittura a mano?</h3>
-            <p>Solo uno stampatello molto regolare, e con molti errori. Per il corsivo servono sistemi di riconoscimento diversi, non disponibili in questo strumento.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I documenti vengono caricati su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Dalla rete arrivano solo il motore e i modelli della lingua, al primo uso.</p>
         </details>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la prima volta &egrave; pi&ugrave; lento?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il browser scarica il motore e il modello della lingua; poi li conserva.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il testo estratto ha valore legale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il valore di prova ce l&rsquo;ha la copia per immagine del documento (la scansione), non il testo ricavato con l&rsquo;OCR, che pu&ograve; contenere errori.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Riconosce la scrittura a mano?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Solo uno stampatello molto regolare, e con errori. Il corsivo no.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Un PDF di cento pagine si pu&ograve; fare?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, le pagine vengono lette una alla volta, ma servono alcuni secondi per pagina. Per fascicoli lunghi conviene dividerli prima con <a href="/pdf/unisci-pdf/" class="text-indigo-700 underline">Unisci e dividi PDF</a>.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 7 marzo 2005, n. 82 (Codice dell&rsquo;amministrazione digitale), art. 22: copie informatiche di documenti analogici.</li>
+          <li>Linee guida AgID sulla formazione, gestione e conservazione dei documenti informatici.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
