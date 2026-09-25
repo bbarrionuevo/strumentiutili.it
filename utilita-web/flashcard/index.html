@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcard per concorsi e studio: ripasso e quiz, anche da Anki — StrumentiUtili.it</title>
+  <meta name="description" content="Crea mazzi di flashcard, importa le domande da Excel (CSV) o da Anki e ripassa al momento giusto con l’algoritmo FSRS. Quiz a risposta multipla per allenarti ai concorsi. Gratis, senza registrazione: le carte restano sul tuo dispositivo." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/flashcard/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Flashcard per concorsi e studio: ripasso intelligente e quiz" />
+  <meta property="og:description" content="Crea mazzi di flashcard, importa le domande da Excel (CSV) o da Anki e ripassa al momento giusto con l’algoritmo FSRS. Quiz a risposta multipla per allenarti ai concorsi. Gratis, senza registrazione: le carte restano sul tuo dispositivo." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/flashcard/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/utilita-web/flashcard/#app",
+        "name": "Flashcard per concorsi e studio",
+        "url": "https://strumentiutili.it/utilita-web/flashcard/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Richiede JavaScript. Funziona senza inviare dati a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Crea mazzi di flashcard, importa le domande da Excel (CSV) o da Anki e ripassa al momento giusto con l’algoritmo FSRS. Quiz a risposta multipla per allenarti ai concorsi. Gratis, senza registrazione: le carte restano sul tuo dispositivo.",
+        "featureList": [
+          "Mazzi di flashcard da testo, CSV o file di Anki (.apkg)",
+          "Ripasso distanziato con l’algoritmo FSRS",
+          "Quiz a risposta multipla",
+          "Limite di carte nuove al giorno e serie di giorni di studio",
+          "Copia di sicurezza da ripristinare su un altro dispositivo",
+          "Dati solo sul dispositivo, funziona offline"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/flashcard/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Come importo le domande di un concorso?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Metti le domande in un foglio di calcolo (Excel, LibreOffice o Fogli Google): nella prima colonna la domanda, nella seconda la risposta giusta, dalla terza in poi le risposte sbagliate, se ci sono. Salva il foglio in formato CSV e caricalo qui. In alternativa incolla le righe, con domanda e risposta separate da un punto e virgola."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usare i mazzi di Anki?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì: carica il file .apkg esportato da Anki, anche nel formato delle versioni recenti. Si importano domanda e risposta come testo semplice; le carte con le parti da completare (cloze) diventano una carta per ogni parte nascosta. Immagini e audio non si importano."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come decide quando ripassare una carta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con FSRS, lo stesso algoritmo di ripasso distanziato che usa Anki. Dopo aver visto la risposta scegli quanto è stato facile ricordarla: le carte che sai tornano dopo giorni o mesi, quelle che sbagli dopo pochi minuti. L’obiettivo è ricordarne 9 su 10 quando tornano."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che differenza c’è fra ripasso e quiz?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nel ripasso vedi la domanda, pensi alla risposta e poi la controlli: serve a memorizzare. Il quiz propone quattro risposte, come nelle prove preselettive: serve ad allenarti alla prova. Il quiz non cambia il calendario dei ripassi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quante carte nuove conviene studiare al giorno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All’inizio sono 20 per mazzo; puoi cambiarle in «Altre azioni». Meglio poche ma tutti i giorni: le carte nuove di oggi tornano nei giorni successivi e si sommano ai ripassi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove vengono salvate le mie carte?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nel browser, su questo dispositivo: non vengono inviate a nessun server. Per portarle su un altro telefono o computer scarica la copia di sicurezza e ripristinala sull’altro dispositivo. «Cancella i dati salvati» in fondo alla pagina le elimina tutte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funziona senza connessione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì: dopo la prima visita ripasso e quiz funzionano anche offline. Per importare il primo mazzo di Anki serve la connessione, perché il lettore dei file di Anki (circa 700 KB) si scarica solo quando serve."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Utilità & Web",
+        "item": "https://strumentiutili.it/utilita-web/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Flashcard per concorsi e studio",
+        "item": "https://strumentiutili.it/utilita-web/flashcard/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro</a>
+          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
+          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
+          <a href="/utilita-web/" class="text-indigo-600 font-semibold" aria-current="page">🛠️ Utilità</a>
+        </nav>
+
+        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/utilita-web/" class="hover:text-indigo-600 hover:underline">Utilità &amp; Web</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Flashcard per concorsi e studio</span></li>
+        </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/flashcard/" data-titolo="Flashcard per concorsi e studio" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+      </nav>
+  <!-- /su:briciole -->
+
+
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Flashcard per concorsi e studio</h1>
+      <p class="mt-3 text-gray-700 leading-relaxed">
+        Scrivi o importa domande e risposte, poi ripassale al momento giusto: le carte che sai tornano dopo giorni, quelle che sbagli dopo pochi minuti. C&rsquo;&egrave; anche il quiz a risposta multipla per allenarti alle prove dei concorsi. Funziona con i file di Excel e con i mazzi di Anki.
+      </p>
+
+      <div id="fc-app" class="mt-6 scroll-mt-24">
+        <p id="fc-avviso" hidden class="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">Questo browser non permette di salvare le carte (succede per esempio in navigazione privata): puoi usarle adesso, ma chiudendo la pagina si perdono. Prima di uscire scarica la copia di sicurezza.</p>
+
+        <div id="fc-vista-mazzi">
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6" aria-labelledby="t-mazzi">
+          <h2 id="t-mazzi" class="text-xl font-bold text-gray-900 mb-4">I tuoi mazzi</h2>
+          <dl class="grid grid-cols-3 gap-3 text-center mb-5">
+            <div class="rounded-lg bg-orange-50 p-3"><dt class="text-xs text-orange-800">Giorni di fila</dt><dd class="text-2xl font-bold text-orange-700"><span aria-hidden="true">&#128293;</span> <span id="fc-serie">0</span></dd></div>
+            <div class="rounded-lg bg-emerald-50 p-3"><dt class="text-xs text-emerald-800">Ripassate oggi</dt><dd id="fc-oggi" class="text-2xl font-bold text-emerald-700">0</dd></div>
+            <div class="rounded-lg bg-indigo-50 p-3"><dt class="text-xs text-indigo-800">Carte in tutto</dt><dd id="fc-totale" class="text-2xl font-bold text-indigo-700">0</dd></div>
+          </dl>
+          <div id="fc-vuoto" class="rounded-xl border border-dashed border-gray-300 p-5 text-center">
+            <p class="text-sm text-gray-700">Non hai ancora mazzi. Aggiungi le tue domande qui sotto, oppure prova subito con un mazzo di esempio.</p>
+            <button type="button" id="fc-esempio" class="mt-3 px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Prova con 16 domande sulla Costituzione</button>
+          </div>
+          <ul id="fc-mazzi" class="space-y-3" aria-live="polite"></ul>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6 mt-6" aria-labelledby="t-aggiungi">
+          <h2 id="t-aggiungi" class="text-xl font-bold text-gray-900 mb-4">Aggiungi carte</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="fc-destinazione" class="block text-sm font-semibold text-gray-800 mb-1">Nel mazzo</label>
+              <select id="fc-destinazione" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white"><option value="">Un mazzo nuovo</option></select>
+            </div>
+            <div id="fc-nome-riga">
+              <label for="fc-nome-nuovo" class="block text-sm font-semibold text-gray-800 mb-1">Nome del nuovo mazzo</label>
+              <input id="fc-nome-nuovo" type="text" maxlength="80" autocomplete="off" placeholder="Es. Concorso Comune, diritto amministrativo" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white" />
+            </div>
+          </div>
+
+          <h3 class="font-bold text-gray-900 mt-6 mb-2">Da un file</h3>
+          <label for="fc-file" class="block rounded-xl border-2 border-dashed border-indigo-200 bg-indigo-50 hover:bg-indigo-100 p-5 text-center cursor-pointer transition">
+            <span class="block font-semibold text-indigo-900">Scegli un file CSV, TXT o un mazzo di Anki (.apkg)</span>
+            <span class="block mt-1 text-xs text-indigo-800">Colonne: domanda, risposta giusta, poi eventuali risposte sbagliate</span>
+            <input id="fc-file" type="file" accept=".csv,.tsv,.txt,.apkg,.colpkg,.json,text/csv,text/plain" class="sr-only" />
+          </label>
+
+          <h3 class="font-bold text-gray-900 mt-6 mb-2">Incolla le domande</h3>
+          <label for="fc-testo" class="sr-only">Domande e risposte, una per riga</label>
+          <textarea id="fc-testo" rows="5" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white font-mono" placeholder="Capitale d&rsquo;Italia;Roma&#10;Quanti sono i senatori elettivi?;200;315;400"></textarea>
+          <p class="mt-1 text-xs text-gray-600">Una carta per riga: domanda;risposta giusta;risposte sbagliate (facoltative). Vanno bene anche la tabulazione, copiando da Excel, o la virgola.</p>
+          <button type="button" id="fc-importa-testo" class="mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Aggiungi le carte</button>
+
+          <details class="mt-6 group">
+            <summary class="cursor-pointer font-bold text-gray-900">Scrivi una carta a mano</summary>
+            <div class="mt-3 grid gap-3">
+              <div><label for="fc-domanda" class="block text-sm font-semibold text-gray-800 mb-1">Domanda</label><textarea id="fc-domanda" rows="2" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white"></textarea></div>
+              <div><label for="fc-risposta" class="block text-sm font-semibold text-gray-800 mb-1">Risposta</label><textarea id="fc-risposta" rows="2" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white"></textarea></div>
+              <div><label for="fc-errate" class="block text-sm font-semibold text-gray-800 mb-1">Risposte sbagliate per il quiz <span class="font-normal text-gray-500">(facoltative, una per riga)</span></label><textarea id="fc-errate" rows="3" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white"></textarea></div>
+              <button type="button" id="fc-aggiungi-una" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50 sm:justify-self-start">Aggiungi la carta</button>
+            </div>
+          </details>
+          <p id="fc-esito" class="mt-4 text-sm font-medium" aria-live="polite"></p>
+          <p class="mt-4 text-xs text-emerald-800 flex items-start gap-1.5"><span aria-hidden="true">&#128274;</span><span>I file si leggono nel browser: domande e risposte restano su questo dispositivo e non vengono inviate a nessun server.</span></p>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6 mt-6" aria-labelledby="t-backup">
+          <h2 id="t-backup" class="text-xl font-bold text-gray-900 mb-2">Copia di sicurezza</h2>
+          <p class="text-sm text-gray-700">Scarica tutti i mazzi con i ripassi fatti, per non perderli o per continuare su un altro dispositivo.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button type="button" id="fc-esporta-tutto" class="px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Scarica la copia di sicurezza</button>
+            <label for="fc-ripristina" class="px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition cursor-pointer">Ripristina da una copia<input id="fc-ripristina" type="file" accept=".json,application/json" class="sr-only" /></label>
+          </div>
+          <p id="fc-esito-backup" class="mt-3 text-sm font-medium" aria-live="polite"></p>
+        </section>
+        </div>
+
+        <section id="fc-studio" hidden class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6" aria-labelledby="fc-studio-titolo">
+          <div class="flex items-start justify-between gap-3">
+            <h2 id="fc-studio-titolo" class="text-lg font-bold text-gray-900 break-words">Ripasso</h2>
+            <button type="button" id="fc-studio-esci" class="shrink-0 px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Esci</button>
+          </div>
+          <p class="mt-1 text-sm text-gray-700"><span id="fc-conta-nuove" class="font-semibold text-indigo-700">0</span> nuove &middot; <span id="fc-conta-imparare" class="font-semibold text-amber-700">0</span> da imparare &middot; <span id="fc-conta-ripassare" class="font-semibold text-emerald-700">0</span> da ripassare</p>
+          <div id="fc-carta" class="mt-4">
+            <div class="rounded-xl border-2 border-indigo-100 bg-indigo-50 p-5 min-h-[8rem]">
+              <p class="text-xs uppercase tracking-wide font-semibold text-indigo-700">Domanda</p>
+              <p id="fc-fronte" class="mt-2 text-lg sm:text-xl text-gray-900 whitespace-pre-line break-words" aria-live="polite"></p>
+            </div>
+            <div id="fc-retro-box" hidden class="mt-3 rounded-xl border-2 border-emerald-100 bg-emerald-50 p-5">
+              <p class="text-xs uppercase tracking-wide font-semibold text-emerald-800">Risposta</p>
+              <p id="fc-retro" class="mt-2 text-lg sm:text-xl text-gray-900 whitespace-pre-line break-words" aria-live="polite"></p>
+            </div>
+            <button type="button" id="fc-mostra" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Mostra la risposta</button>
+            <div id="fc-voti" hidden class="mt-4">
+              <p class="text-sm text-gray-700 mb-2">Quanto &egrave; stato facile ricordarla? Sotto: fra quanto torna la carta.</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button type="button" id="fc-voto-1" class="rounded-xl border-2 px-2 py-2.5 font-bold transition border-red-200 bg-red-50 hover:bg-red-100 text-red-900"><span class="block">Di nuovo</span><span id="fc-tempo-1" class="block text-xs font-medium opacity-80">&nbsp;</span></button>
+            <button type="button" id="fc-voto-2" class="rounded-xl border-2 px-2 py-2.5 font-bold transition border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-900"><span class="block">Difficile</span><span id="fc-tempo-2" class="block text-xs font-medium opacity-80">&nbsp;</span></button>
+            <button type="button" id="fc-voto-3" class="rounded-xl border-2 px-2 py-2.5 font-bold transition border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-900"><span class="block">Bene</span><span id="fc-tempo-3" class="block text-xs font-medium opacity-80">&nbsp;</span></button>
+            <button type="button" id="fc-voto-4" class="rounded-xl border-2 px-2 py-2.5 font-bold transition border-sky-200 bg-sky-50 hover:bg-sky-100 text-sky-900"><span class="block">Facile</span><span id="fc-tempo-4" class="block text-xs font-medium opacity-80">&nbsp;</span></button>
+              </div>
+              <p class="mt-3 text-xs text-gray-600">Dalla tastiera: spazio per girare la carta, 1, 2, 3 o 4 per rispondere.</p>
+            </div>
+          </div>
+          <div id="fc-fine" hidden class="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
+            <p class="text-xl font-bold text-emerald-900">Per ora hai finito!</p>
+            <p id="fc-fine-testo" class="text-sm text-emerald-900 mt-1"></p>
+            <button type="button" id="fc-fine-torna" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Torna ai mazzi</button>
+          </div>
+        </section>
+
+        <section id="fc-quiz" hidden class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sm:p-6" aria-labelledby="fc-quiz-titolo">
+          <div class="flex items-start justify-between gap-3">
+            <h2 id="fc-quiz-titolo" class="text-lg font-bold text-gray-900 break-words">Quiz</h2>
+            <button type="button" id="fc-quiz-esci" class="shrink-0 px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Esci</button>
+          </div>
+          <div id="fc-quiz-inizio" class="mt-4">
+            <p class="text-sm text-gray-700">Quattro risposte per ogni domanda, una sola giusta. Le risposte sbagliate sono quelle scritte nelle carte o, se mancano, le risposte di altre carte dello stesso mazzo. Il quiz non cambia i ripassi.</p>
+            <div class="mt-4 flex flex-wrap items-end gap-3">
+              <div>
+                <label for="fc-quiz-quante" class="block text-sm font-semibold text-gray-800 mb-1">Domande</label>
+                <select id="fc-quiz-quante" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 bg-white"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option><option value="50">50</option><option value="tutte">Tutte</option></select>
+              </div>
+              <button type="button" id="fc-quiz-via" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Inizia il quiz</button>
+            </div>
+            <p id="fc-quiz-avviso" class="mt-3 text-sm font-medium" aria-live="polite"></p>
+          </div>
+          <div id="fc-quiz-gioco" hidden class="mt-4">
+            <div class="flex justify-between text-sm text-gray-700"><span id="fc-quiz-progresso"></span><span id="fc-quiz-punti" class="font-semibold text-emerald-700"></span></div>
+            <p id="fc-quiz-domanda" class="mt-3 text-lg sm:text-xl font-semibold text-gray-900 whitespace-pre-line break-words"></p>
+            <ol id="fc-quiz-opzioni" class="mt-4 space-y-2"></ol>
+            <p id="fc-quiz-esito" class="mt-4 text-sm font-semibold" aria-live="polite"></p>
+            <button type="button" id="fc-quiz-avanti" hidden class="mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Avanti</button>
+            <p class="mt-3 text-xs text-gray-600">Dalla tastiera: A, B, C, D (o 1, 2, 3, 4) per rispondere, Invio per andare avanti.</p>
+          </div>
+          <div id="fc-quiz-fine" hidden class="mt-4">
+            <p id="fc-quiz-risultato" tabindex="-1" class="text-2xl font-bold text-gray-900 focus:outline-none"></p>
+            <h3 id="fc-quiz-errori-titolo" class="font-bold text-gray-900 mt-5 mb-2">Da ripassare</h3>
+            <ul id="fc-quiz-errori" class="space-y-2 text-sm"></ul>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <button type="button" id="fc-quiz-ripeti" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition disabled:opacity-50">Rifai solo gli errori</button>
+              <button type="button" id="fc-quiz-nuovo" class="px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Nuovo quiz</button>
+              <button type="button" id="fc-quiz-esci-2" class="px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 font-semibold text-gray-800 text-sm transition">Torna ai mazzi</button>
+            </div>
+          </div>
+        </section>
+        <noscript><p class="mt-3 text-sm text-red-700">Per le flashcard serve JavaScript. I consigli qui sotto si leggono anche senza.</p></noscript>
+      </div>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come studiare per un concorso con le flashcard</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Per le prove preselettive di molti concorsi pubblici si studiano centinaia di domande a risposta multipla, e alcuni bandi pubblicano in anticipo la banca dati dei quesiti. Rileggere le domande non basta: si ricorda molto di pi&ugrave; provando a rispondere prima di guardare la soluzione e ripassando ogni carta poco prima di dimenticarla. &Egrave; quello che fanno le flashcard con il ripasso distanziato.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Preparare il file delle domande</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Apri un foglio di calcolo: Excel, LibreOffice Calc o Fogli Google.</li>
+            <li>Nella colonna A scrivi la domanda, nella B la risposta giusta, dalla C in poi le risposte sbagliate (servono per il quiz, ma non sono obbligatorie).</li>
+            <li>Salva in formato CSV (in Excel: <em>File &rsaquo; Salva con nome &rsaquo; CSV UTF-8</em>) e caricalo qui sopra. Se preferisci, copia le celle e incollale nel riquadro &laquo;Incolla le domande&raquo;.</li>
+          </ol>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">A &middot; Domanda</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">B &middot; Giusta</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">C, D, E &middot; Sbagliate</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2">Quanto dura il mandato del Presidente della Repubblica?</td><td class="px-3 py-2">7 anni</td><td class="px-3 py-2">5 anni; 6 anni; 9 anni</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2">Da quanti giudici &egrave; composta la Corte costituzionale?</td><td class="px-3 py-2">15</td><td class="px-3 py-2">9; 12; 21</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come funziona il ripasso</h3>
+          <p>Premi &laquo;Studia&raquo;, leggi la domanda e prova a rispondere a mente. Poi gira la carta e scegli con sincerit&agrave;:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Di nuovo</strong>: non la ricordavi. Torna fra un minuto.</li>
+            <li><strong>Difficile</strong>: l&rsquo;hai ricordata con fatica.</li>
+            <li><strong>Bene</strong>: l&rsquo;hai ricordata. &Egrave; la risposta pi&ugrave; comune.</li>
+            <li><strong>Facile</strong>: la sapevi senza pensarci.</li>
+          </ul>
+          <p>Sotto ogni pulsante c&rsquo;&egrave; fra quanto torner&agrave; la carta. Il calendario lo calcola FSRS, l&rsquo;algoritmo di ripasso distanziato usato anche da Anki: tiene conto di quante volte hai visto la carta, di quanto ti &egrave; stata difficile e di quanto tempo &egrave; passato, per fartela rivedere quando stai per dimenticarla.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Un metodo che funziona</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Studia ogni giorno, anche solo dieci minuti: i ripassi saltati si accumulano.</li>
+            <li>Tieni basso il numero di carte nuove (20 al giorno vanno bene) e aumentalo solo se i ripassi restano pochi.</li>
+            <li>Una volta a settimana fai un quiz lungo, per abituarti alla prova, e rileggi le domande sbagliate.</li>
+            <li>Dividi le materie in mazzi diversi: diritto amministrativo, costituzionale, logica, informatica.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Da Anki e su pi&ugrave; dispositivi</h3>
+          <p>Se usi gi&agrave; Anki, esporta il mazzo come file .apkg e caricalo qui: si importano le domande e le risposte, senza immagini e audio, e i ripassi ripartono da capo. Per passare le carte dal computer al telefono usa la copia di sicurezza: si scarica un file .json, da ripristinare sull&rsquo;altro dispositivo.</p>
+          <p class="text-xs text-gray-600">Il calendario dei ripassi usa <a href="https://github.com/open-spaced-repetition/ts-fsrs" target="_blank" rel="noopener" class="text-indigo-700 underline">ts-fsrs</a>; i file di Anki si leggono con <a href="https://github.com/sql-js/sql.js" target="_blank" rel="noopener" class="text-indigo-700 underline">sql.js</a>, <a href="https://github.com/101arrowz/fflate" target="_blank" rel="noopener" class="text-indigo-700 underline">fflate</a> e <a href="https://github.com/101arrowz/fzstd" target="_blank" rel="noopener" class="text-indigo-700 underline">fzstd</a>, tutti con licenza MIT e serviti da questo sito. Anki &egrave; un programma di Ankitects: questo strumento non &egrave; collegato ad Anki.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come importo le domande di un concorso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Metti le domande in un foglio di calcolo (Excel, LibreOffice o Fogli Google): nella prima colonna la domanda, nella seconda la risposta giusta, dalla terza in poi le risposte sbagliate, se ci sono. Salva il foglio in formato CSV e caricalo qui. In alternativa incolla le righe, con domanda e risposta separate da un punto e virgola.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usare i mazzi di Anki?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: carica il file .apkg esportato da Anki, anche nel formato delle versioni recenti. Si importano domanda e risposta come testo semplice; le carte con le parti da completare (cloze) diventano una carta per ogni parte nascosta. Immagini e audio non si importano.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come decide quando ripassare una carta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con FSRS, lo stesso algoritmo di ripasso distanziato che usa Anki. Dopo aver visto la risposta scegli quanto &egrave; stato facile ricordarla: le carte che sai tornano dopo giorni o mesi, quelle che sbagli dopo pochi minuti. L&rsquo;obiettivo &egrave; ricordarne 9 su 10 quando tornano.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra ripasso e quiz?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nel ripasso vedi la domanda, pensi alla risposta e poi la controlli: serve a memorizzare. Il quiz propone quattro risposte, come nelle prove preselettive: serve ad allenarti alla prova. Il quiz non cambia il calendario dei ripassi.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quante carte nuove conviene studiare al giorno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">All&rsquo;inizio sono 20 per mazzo; puoi cambiarle in &laquo;Altre azioni&raquo;. Meglio poche ma tutti i giorni: le carte nuove di oggi tornano nei giorni successivi e si sommano ai ripassi.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove vengono salvate le mie carte?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nel browser, su questo dispositivo: non vengono inviate a nessun server. Per portarle su un altro telefono o computer scarica la copia di sicurezza e ripristinala sull&rsquo;altro dispositivo. &laquo;Cancella i dati salvati&raquo; in fondo alla pagina le elimina tutte.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona senza connessione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: dopo la prima visita ripasso e quiz funzionano anche offline. Per importare il primo mazzo di Anki serve la connessione, perch&eacute; il lettore dei file di Anki (circa 700 KB) si scarica solo quando serve.</p>
+          </details>
+      </section>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-bold text-gray-900 mb-3">Strumenti collegati</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="/utilita-web/media-universitaria/" class="hover:text-indigo-600 transition">Media universitaria</a></li>
+          <li><a href="/utilita-web/contaparole/" class="hover:text-indigo-600 transition">Contaparole</a></li>
+          <li><a href="/utilita-web/parola-del-giorno/" class="hover:text-indigo-600 transition">Parola del giorno</a></li>
+          <li><a href="/utilita-web/" class="hover:text-indigo-600 transition font-semibold">Tutti gli strumenti Utilit&agrave; &amp; Web &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="6912312067"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+      style="display:block;width:100%;min-width:250px;"
+      data-ad-client="ca-pub-9434300808171957"
+      data-ad-slot="1157333219"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/giornaliero.js"></script>
+  <script defer src="/js/flashcard.js"></script>
+  <script defer src="/js/flashcard-ui.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>
