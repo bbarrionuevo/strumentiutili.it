@@ -68,6 +68,7 @@
     ],
     foto: [
       ['/identita-burocrazia/proteggi-documento/', 'Proteggere un documento', 'Filigrana e parti coperte prima di inviare la copia'],
+      ['/utilita-web/rimuovi-dati-foto/', 'Togliere posizione e dati', 'Senza perdere qualit\u00e0, prima di inviare la foto'],
       ['/pdf/jpg-in-pdf/', 'Creare un PDF', 'Una foto per pagina, in un unico file'],
       ['/utilita-web/convertitore-immagini/', 'Convertire o ridurre', 'Cambiare formato e peso delle immagini'],
       ['/ia/ocr-immagini/', 'Estrarre il testo', 'Riconoscere il testo nella foto']
