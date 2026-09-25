@@ -14,6 +14,7 @@
 @source "../js/exif-ui.js";
 @source "../js/turni-ui.js";
 @source "../js/scadenze-ui.js";
+@source "../js/parola-ui.js";
 @source "../js/prossimo.js";
 @source "../js/hr-dimissioni.js";
 
@@ -247,6 +248,78 @@ details:not([open]) > *:not(summary) { display: none !important; }
 .met-battito[data-accento] { width: 1.6rem; height: 1.6rem; }
 .met-battito[data-acceso] { background: #4f46e5; transform: scale(1.15); }
 .met-battito[data-accento][data-acceso] { background: #dc2626; }
+
+/* --- Parola del giorno: caselle e tastiera ---------------------------------
+   Verde = lettera al posto giusto, giallo = c'e' ma altrove, grigio = non c'e'.
+   Con "Colori per daltonici" verde e giallo diventano arancione e azzurro.
+   I colori hanno sempre il testo abbastanza contrastato. */
+.pa-app {
+  --pa-giusta: #15803d;  --pa-giusta-testo: #fff;
+  --pa-presente: #fbbf24; --pa-presente-testo: #1f2937;
+  --pa-assente: #6b7280; --pa-assente-testo: #fff;
+}
+.pa-app[data-daltonico] {
+  --pa-giusta: #f97316;  --pa-giusta-testo: #111827;
+  --pa-presente: #60a5fa; --pa-presente-testo: #111827;
+}
+.pa-griglia {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: .35rem;
+  width: min(100%, 18rem);
+  margin: 0 auto;
+}
+.pa-riga { display: grid; grid-template-columns: repeat(5, 1fr); gap: .35rem; }
+.pa-casella {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d1d5db;
+  border-radius: .35rem;
+  background: #fff;
+  color: #111827;
+  font-size: clamp(1.4rem, 8vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  user-select: none;
+  transition: background-color .25s, border-color .25s, color .25s, transform .12s;
+}
+.pa-casella[data-lettera] { border-color: #6b7280; }
+.pa-casella[data-lettera]:not([data-esito]) { transform: scale(1.04); }
+.pa-casella[data-esito] { border-color: transparent; }
+.pa-riga[data-fatta] .pa-casella:nth-child(2) { transition-delay: .08s; }
+.pa-riga[data-fatta] .pa-casella:nth-child(3) { transition-delay: .16s; }
+.pa-riga[data-fatta] .pa-casella:nth-child(4) { transition-delay: .24s; }
+.pa-riga[data-fatta] .pa-casella:nth-child(5) { transition-delay: .32s; }
+.pa-casella[data-esito="giusta"], .pa-tasto[data-esito="giusta"] { background: var(--pa-giusta); color: var(--pa-giusta-testo); }
+.pa-casella[data-esito="presente"], .pa-tasto[data-esito="presente"] { background: var(--pa-presente); color: var(--pa-presente-testo); }
+.pa-casella[data-esito="assente"], .pa-tasto[data-esito="assente"] { background: var(--pa-assente); color: var(--pa-assente-testo); }
+.pa-esempio { max-width: 13rem; }
+.pa-esempio .pa-casella { font-size: 1.25rem; }
+.pa-riga[data-scuoti] { animation: pa-scuoti .4s; }
+@keyframes pa-scuoti {
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.pa-tastiera { display: grid; gap: .4rem; max-width: 32rem; margin: 1rem auto 0; }
+.pa-fila { display: flex; gap: .3rem; justify-content: center; }
+.pa-tasto {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 3.25rem;
+  border-radius: .4rem;
+  background: #e5e7eb;
+  color: #111827;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: background-color .2s;
+}
+.pa-tasto:hover { filter: brightness(.95); }
+.pa-tasto:focus-visible { outline: 3px solid #4f46e5; outline-offset: 1px; }
+.pa-tasto[data-largo] { flex-grow: 1.6; font-size: .8rem; }
+.pa-fila-mezza { padding: 0 5%; }
 
 /* --- Stampa ---------------------------------------------------------------
    Meta' degli strumenti produce documenti fatti per essere stampati: F24,
