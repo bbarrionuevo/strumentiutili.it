@@ -1,0 +1,45 @@
+name: Leggi fonti ufficiali
+
+# Alcuni siti ufficiali (ACI, Regioni, Agenzia delle Entrate) non sono
+# raggiungibili dagli ambienti in cui si sviluppa il sito. Questo workflow
+# scarica i documenti indicati e ne stampa il testo nel registro del job,
+# cosi' le cifre (tariffe, aliquote, soglie) si verificano sul documento
+# originale prima di aggiornare i file in data/. Non scrive niente nel
+# repository.
+on:
+  workflow_dispatch:
+    inputs:
+      indirizzi:
+        description: 'Indirizzi https dei documenti, separati da spazi'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  leggi:
+    name: Scarica e stampa il testo
+    runs-on: ubuntu-latest
+    env:
+      INDIRIZZI: ${{ inputs.indirizzi }}
+    steps:
+      - name: Installa pdftotext
+        run: sudo apt-get install -y -qq poppler-utils > /dev/null
+
+      - name: Testo dei documenti
+        run: |
+          set -f
+          for u in $INDIRIZZI; do
+            case "$u" in https://*) ;; *) echo "Salto $u (solo https)"; continue ;; esac
+            echo "=== INIZIO $u"
+            if ! curl -sSL --max-time 90 -A "Mozilla/5.0 (StrumentiUtili.it verifica fonti)" -o documento "$u"; then
+              echo "ERRORE: download non riuscito"; echo "=== FINE $u"; continue
+            fi
+            if head -c 5 documento | grep -q '%PDF'; then
+              pdftotext -layout documento - | head -c 400000
+            else
+              sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/ /g' documento | tr -s ' \t' | grep -v '^\s*$' | head -c 200000
+            fi
+            echo
+            echo "=== FINE $u"
+          done

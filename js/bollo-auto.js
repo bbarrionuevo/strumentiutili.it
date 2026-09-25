@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     calculateBollo();
   } catch (err) {
     console.error("Errore nel caricamento delle regole fiscali:", err);
+    // Senza tariffe non c'e' niente da calcolare: lo si dice, invece di
+    // lasciare gli importi a zero come se fossero un risultato.
+    const box = document.getElementById("res-origine");
+    if (box) {
+      box.className = "mt-3 text-[11px] leading-snug text-amber-300";
+      box.textContent = "Non sono riuscito a caricare le tariffe. Controlla la connessione e ricarica la pagina.";
+    }
   }
 
   function calculateBollo() {
@@ -41,10 +48,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Se la Regione non ha tariffe proprie caricate si ricade su quelle
       // nazionali. Prima succedeva in silenzio: la pagina prometteva un calcolo
       // regionale e mostrava un numero nazionale. Adesso il ripiego si dichiara.
-      const propria = regoleBollo.regioni[regione];
+      // "nazionale" non e' una Regione: e' la tariffa di riferimento, usata
+      // finche' non se ne sceglie una.
+      const propria = regione && regione !== "nazionale" ? regoleBollo.regioni[regione] : null;
       const regioneData = propria || regoleBollo.regioni["nazionale"];
       const conTariffaPropria = (regoleBollo.regioni_con_tariffa_propria || []).indexOf(regione) !== -1;
-      mostraOrigine(propria ? "regionale" : (conTariffaPropria ? "nazionale_provvisoria" : "nazionale"));
+      mostraOrigine(!regione ? "da_scegliere" : propria ? "regionale" : (conTariffaPropria ? "nazionale_provvisoria" : "nazionale"));
     const tariffe = regioneData.classi_euro[euroClass];
 
     if (tariffe && kw > 0) {
@@ -88,7 +97,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!box) return;
       if (origine === "regionale") {
         box.className = "mt-3 text-[11px] leading-snug text-gray-300";
-        box.textContent = "Importo calcolato con le tariffe deliberate da questa Regione.";
+        box.textContent = "Importo calcolato con le tariffe deliberate da questa Regione (o Provincia autonoma).";
+        return;
+      }
+      if (origine === "da_scegliere") {
+        box.className = "mt-3 text-[11px] leading-snug text-amber-300";
+        box.textContent = "Scegli la Regione di residenza: l’importo qui sopra usa la tariffa nazionale di riferimento, che alcune Regioni aumentano.";
         return;
       }
       if (origine === "nazionale") {

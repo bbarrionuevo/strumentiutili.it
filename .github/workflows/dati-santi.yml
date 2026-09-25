@@ -1,0 +1,58 @@
+name: Dati dei santi (Wikidata)
+
+# Wikidata non e' raggiungibile da tutti gli ambienti in cui si sviluppa il
+# sito. Qui la interroga il runner di GitHub, che ha la rete: scripts/genera-santi.js
+# scrive data/santi.json e la pagina del santo del giorno, poi il risultato
+# viene salvato come commit sul ramo scelto e passa dalla solita revisione
+# (pull request, test, anteprima) prima di arrivare online.
+on:
+  workflow_dispatch:
+    inputs:
+      ramo:
+        description: 'Ramo di lavoro su cui salvare i dati (non main)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  santi:
+    name: Scarica santi e onomastici
+    runs-on: ubuntu-latest
+    env:
+      RAMO: ${{ inputs.ramo }}
+    steps:
+      - name: Controlla il ramo
+        run: |
+          case "$RAMO" in
+            main|'') echo "Usa un ramo di lavoro: i dati devono passare da una pull request." ; exit 1 ;;
+          esac
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ramo }}
+          # il lastmod del sitemap viene da git log
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - name: Scarica santi e beati da Wikidata
+        run: node scripts/genera-santi.js
+
+      - name: Rigenera layout, sitemap, CSS e indice degli strumenti
+        run: |
+          npm run build
+          python3 scripts/genera-indice-strumenti.py
+
+      - name: Salva sul ramo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/santi.json utilita-web/santo-del-giorno data/strumenti.json sitemap.xml css/styles.css
+          if git diff --cached --quiet; then echo "Niente di nuovo da salvare."; exit 0; fi
+          git commit -m "Dati dei santi da Wikidata"
+          git push origin "HEAD:refs/heads/$RAMO"
