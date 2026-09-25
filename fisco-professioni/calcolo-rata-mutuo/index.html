@@ -143,50 +143,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Perché all'inizio del mutuo pago quasi solo interessi?",
+            "name": "Perché all’inizio pago quasi solo interessi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Perché nell'ammortamento alla francese la rata è costante ma la sua composizione varia. La quota interessi si calcola sul debito residuo, che all'inizio coincide quasi con l'intero capitale, mentre la quota capitale è ciò che resta della rata dopo aver pagato gli interessi. Con il progressivo abbattimento del debito residuo la quota interessi si riduce e quella capitale cresce, secondo una progressione geometrica."
+              "text": "Perché gli interessi si calcolano sul debito residuo, che all’inizio è quasi tutto il capitale. Man mano che il debito scende, la parte di interessi cala e quella di capitale cresce."
             }
           },
           {
             "@type": "Question",
-            "name": "Conviene di più un tasso fisso o un tasso variabile?",
+            "name": "Che differenza c’è fra TAN e TAEG?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il tasso fisso incorpora il costo della copertura contro il rialzo e parte quindi da un livello più alto, garantendo però una rata immutabile per tutta la durata. Il variabile costa mediamente meno ma espone a oscillazioni che su durate lunghe possono modificare sensibilmente la rata. La scelta dipende dalla capacità di assorbire un aumento imprevisto e dall'orizzonte temporale: su durate brevi il variabile è meno rischioso, su durate trentennali l'incertezza cumulata è considerevole."
+              "text": "Il TAN è il tasso sugli interessi e serve per la rata. Il TAEG aggiunge le spese obbligatorie ed è il numero giusto per confrontare due offerte."
             }
           },
           {
             "@type": "Question",
-            "name": "Qual è la differenza fra TAN e TAEG?",
+            "name": "Tasso fisso o variabile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il TAN è il tasso annuo nominale applicato al capitale e serve a costruire il piano di ammortamento. Il TAEG è l'indicatore di costo complessivo: incorpora interessi, istruttoria, perizia, incasso rata, imposta sostitutiva e polizze obbligatorie, esprimendo il costo reale su base annua. Due offerte con identico TAN possono presentare TAEG molto diversi, ed è il secondo a determinare quale convenga."
+              "text": "Il fisso parte più alto ma la rata non cambia mai. Il variabile in media costa meno ma può salire. Conta quanto potresti sopportare un aumento della rata e la durata del mutuo."
             }
           },
           {
             "@type": "Question",
-            "name": "Quanto posso chiedere in rapporto al mio reddito?",
+            "name": "Quanto posso chiedere rispetto al reddito?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La prassi bancaria fissa la sostenibilità della rata attorno a un terzo del reddito netto mensile del nucleo familiare, considerando anche eventuali altri finanziamenti in corso. A questo si aggiunge il rapporto fra importo finanziato e valore dell'immobile, che raramente supera l'ottanta per cento salvo garanzie integrative o accesso a fondi pubblici di garanzia per specifiche categorie."
+              "text": "Di solito le banche vogliono una rata non oltre un terzo del reddito netto mensile della famiglia, e un mutuo non oltre l’80% del valore della casa."
             }
           },
           {
             "@type": "Question",
-            "name": "Estinguere in anticipo conviene sempre?",
+            "name": "Conviene estinguere in anticipo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Conviene tanto più quanto prima si interviene, perché il risparmio corrisponde agli interessi non ancora maturati sul debito residuo abbattuto. Negli ultimi anni di piano la quota interessi è ormai marginale e il beneficio si assottiglia. Va inoltre confrontato il rendimento alternativo della liquidità impiegata: se supera il tasso del mutuo, l'estinzione non è la scelta finanziariamente ottimale."
+              "text": "Tanto più quanto prima lo fai, perché risparmi gli interessi futuri sul capitale restituito. Negli ultimi anni il vantaggio è piccolo."
             }
           },
           {
             "@type": "Question",
-            "name": "La polizza assicurativa proposta dalla banca è obbligatoria?",
+            "name": "I dati della simulazione vengono inviati a banche o intermediari?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo la copertura contro incendio e scoppio dell'immobile è obbligatoria per legge. Le polizze vita, infortuni o perdita dell'impiego sono facoltative e non possono essere imposte come condizione per l'erogazione. Il cliente ha inoltre il diritto di reperire autonomamente sul mercato la polizza incendio, senza che ciò comporti peggioramenti delle condizioni economiche del finanziamento."
+              "text": "No. Il calcolo si fa nel browser e non raccogliamo contatti."
             }
           }
         ]
@@ -453,162 +453,87 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Trattato Finanziario: Ammortamento Francese, Oneri Accessori e Calcolo del TAEG</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">L'accesso al credito ipotecario rappresenta, per il cittadino e per l'investitore, una delle esposizioni finanziarie più complesse e durature. L'ordinamento bancario italiano predilige quasi in via esclusiva il sistema di ammortamento alla francese, caratterizzato da rate costanti che nascondono, tuttavia, una composizione interna fortemente asimmetrica. Il presente approfondimento sviscera l'architettura matematica del piano di rimborso, i limiti operativi fissati dalla Banca d'Italia e il framework fiscale previsto dal D.P.R. 601/1973 per la concessione di finanziamenti a medio e lungo termine.</p>
-        
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>1.</span> La Meccanica Matematica dell'Ammortamento alla Francese</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il sistema bancario italiano adotta universalmente il piano di ammortamento a "rata costante posticipata", comunemente noto come ammortamento alla francese. La peculiarità di questo modello, contrapposto all'ammortamento all'italiana (a quote capitali costanti), risiede nella progressiva scomposizione interna della rata. Pur mantenendo un esborso finanziario mensile invariato (in costanza di un Tasso Annuo Nominale o TAN fisso), la componente destinata all'effettivo abbattimento del debito originario (Quota Capitale) cresce geometricamente nel tempo. Parallelamente, la componente di remunerazione del rischio per l'istituto di credito (Quota Interessi) decresce simmetricamente, essendo calcolata mese per mese unicamente sul debito residuo.</p>
-            <p>Dal punto di vista dell'analisi matematica, la determinazione della rata fissa ($R$) si appoggia all'equazione fondamentale delle rendite certe posticipate. L'algoritmo sviluppato nel nostro applicativo esegue la seguente funzione: $R = C \cdot \frac{i \cdot (1 + i)^n}{(1 + i)^n - 1}$. In questa formula, $C$ rappresenta il capitale erogato al netto degli abbuoni, $n$ indica il montante delle mensilità totali (ad esempio, 240 mesi per un mutuo ventennale) e $i$ costituisce il tasso di interesse periodale, derivato dalla semplice conversione lineare del TAN annuo diviso per dodici mensilità ($i = TAN / 12$).</p>
-            <p>Tale meccanismo genera una criticità intrinseca: qualora il mutuatario decida di procedere a un'estinzione anticipata (parziale o totale) o a una surroga del mutuo durante il primo terzo della vita del finanziamento, si accorgerà di aver rimborsato alla banca quasi esclusivamente la quota interessi, mantenendo un debito residuo in linea capitale ancora molto prossimo alla somma inizialmente richiesta.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Rata del mutuo, interessi e TAEG: come leggerli</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il simulatore calcola la rata di un mutuo a rata costante (ammortamento &laquo;alla francese&raquo;, quello usato quasi sempre dalle banche), il totale degli interessi e il TAEG, cio&egrave; il costo complessivo con le spese accessorie.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scrivi il capitale da chiedere, la durata in anni (da 5 a 40) e il TAN offerto dalla banca.</li>
+            <li>Scegli se &egrave; per la prima casa o per altro: cambia l&rsquo;imposta sostitutiva.</li>
+            <li>Leggi rata, interessi totali, spese e TAEG, e il piano di ammortamento anno per anno.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si calcola la rata</h3>
+          <p>Rata = C &times; i &times; (1 + i)<sup>n</sup> &divide; ((1 + i)<sup>n</sup> &minus; 1), dove C &egrave; il capitale, i il TAN diviso 12 e n il numero di rate. La rata resta uguale, ma all&rsquo;inizio &egrave; fatta soprattutto di interessi, perch&eacute; si calcolano sul debito ancora da restituire.</p>
+          <p><strong>Esempio:</strong> 150.000 &euro; a 25 anni al 3,20%. Rata 727,02 &euro;. Nella prima rata 400 &euro; sono interessi (150.000 &times; 3,20% &divide; 12) e solo 327,02 &euro; capitale.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">150.000 &euro; al 3,20%</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Rata</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Interessi totali</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">20 anni</td><td class="px-3 py-2 align-top">846,99 &euro;</td><td class="px-3 py-2 align-top">53.278,62 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">25 anni</td><td class="px-3 py-2 align-top">727,02 &euro;</td><td class="px-3 py-2 align-top">68.105,54 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">30 anni</td><td class="px-3 py-2 align-top">648,70 &euro;</td><td class="px-3 py-2 align-top">83.532,11 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>2.</span> Il Framework Fiscale: L'Imposta Sostitutiva (D.P.R. 601/1973)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Oltre al costo nudo degli interessi passivi, l'erogazione di un mutuo ipotecario in Italia sconta in fase di stipula l'applicazione dell'Imposta Sostitutiva sui finanziamenti a medio-lungo termine. Questa tassa, disciplinata storicamente dall'Articolo 18 del D.P.R. 601/1973, funge da assorbente rispetto alle ordinarie imposte di registro, bollo, ipotecarie e catastali che graverebbero altrimenti sull'iscrizione della garanzia reale.</p>
-            <p>Il legislatore fiscale ha introdotto una netta dicotomia tariffaria legata alla finalità urbanistica e abitativa dell'immobile dedotto in garanzia. Se il finanziamento è finalizzato in via esclusiva all'acquisto, alla costruzione o alla ristrutturazione radicale della <strong>Prima Casa</strong> (ovvero l'abitazione principale e non di lusso del nucleo familiare), la normativa impone un'aliquota agevolata pari allo <strong>0,25%</strong> del capitale effettivamente erogato.</p>
-            <p>In aperto contrasto, qualora il mutuo sia acceso per l'acquisto di <strong>Seconde Case</strong>, immobili ad uso turistico, locali commerciali o, più in generale, in caso di mutui di liquidità (dove il capitale viene richiesto per scopi estranei al perimetro immobiliare agevolato), il prelievo fiscale si inasprisce severamente. In questi scenari, l'aliquota diventa otto volte più alta, assestandosi al <strong>2,00%</strong> dell'erogato. A livello operativo, tale imposta viene trattenuta in origine alla fonte: la banca erogherà materialmente nelle mani del notaio o del venditore una cifra già decurtata di questa gabella erariale.</p>
+          <p>Passare da 20 a 30 anni abbassa la rata di quasi 200 &euro; ma costa oltre 30.000 &euro; di interessi in pi&ugrave;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le spese che entrano nel TAEG</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Valore usato dal simulatore</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Imposta sostitutiva prima casa</td><td class="px-3 py-2 align-top">0,25% del capitale</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Imposta sostitutiva altri casi</td><td class="px-3 py-2 align-top">2% del capitale</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Istruttoria</td><td class="px-3 py-2 align-top">0,80%, minimo 500 &euro; e massimo 2.000 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Perizia</td><td class="px-3 py-2 align-top">320 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Incasso rata</td><td class="px-3 py-2 align-top">2,50 &euro; al mese</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Polizza incendio e scoppio</td><td class="px-3 py-2 align-top">0,035% l&rsquo;anno</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>3.</span> Spese di Istruttoria e Oneri Periziali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La filiera di accensione di un mutuo fondiario comporta oneri accessori fissi che incidono pesantemente sul costo reale dell'operazione. Il primo scoglio è rappresentato dalle Spese di Istruttoria bancaria. Queste coprono i costi amministrativi sostenuti dall'istituto per l'analisi del merito creditizio, la valutazione della documentazione reddituale e l'interrogazione delle centrali rischi (CRIF). Nella prassi bancaria del 2026, l'istruttoria viene calcolata come una percentuale del capitale richiesto, oscillante tipicamente tra lo 0,60% e l'1,20%, prevedendo comunque dei "floor" (soglie minime, circa 500,00 €) e dei "cap" (soglie massime, raramente superiori ai 2.000,00 €).</p>
-            <p>Il secondo onere indissolubilmente legato alla concessione è la Perizia Tecnica Giurata. Poiché l'erogazione è garantita dal valore intrinseco dell'immobile (rispettando il limite del Loan-to-Value, o LTV, fissato di norma all'80%), la banca incarica un perito indipendente per accertare la regolarità urbanistico-catastale e il valore di mercato del cespite. Il costo periziale si attesta su una tariffa media nazionale di circa 320,00 €. È essenziale notare che questi oneri (istruttoria e perizia) vengono anch'essi trattenuti in fase di erogazione, riducendo ulteriormente il netto erogato al mutuatario.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>4.</span> La Rivoluzione del TAEG / ISC (Metodo Newton-Raphson)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il Tasso Annuo Nominale (TAN) rappresenta esclusivamente il costo del denaro prestato, ma si rivela uno strumento decettivo se utilizzato come unico metro di paragone tra diverse offerte bancarie. Il vero termometro del costo del mutuo è il Tasso Annuo Effettivo Globale (TAEG), introdotto originariamente con la dicitura Indicatore Sintetico di Costo (ISC). In ottemperanza alla Direttiva Europea 2014/17/UE e alle Disposizioni di Trasparenza della Banca d'Italia, il TAEG impone l'inclusione matematica di tutti gli oneri accessori obbligatori: imposta sostitutiva, istruttoria, perizia, costi fissi di incasso rata (mediamente 2,50 € al mese) e la polizza assicurativa antincendio obbligatoria.</p>
-            <p>La complessità algoritmica del TAEG deriva dall'impossibilità di ricavare il tasso mediante una formula algebrica chiusa e lineare. La sua estrazione richiede la risoluzione dell'equazione del Valore Attuale Netto (VAN) posto uguale a zero. Il nostro applicativo web elabora questa sfida computazionale avvalendosi del metodo di iterazione numerica di <strong>Newton-Raphson</strong>.</p>
-            <p>In termini informatici, il motore JavaScript istanzia un ciclo di approssimazioni successive che calcola le derivate parziali dei flussi di cassa in entrata (il capitale netto ricevuto, decurtato di spese iniziali e imposte) controbilanciandoli con i flussi in uscita (le rate gravate dalle spese di incasso e assicurazione mensile). L'algoritmo itera fino a convergere a una tolleranza di approssimazione inferiore a $10^{-7}$, restituendo all'utente un TAEG esatto e pienamente allineato agli standard di rendicontazione previsti dalla normativa europea.</p>
-          </div>
-        </details>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.Lgs. 1 settembre 1993 n. 385 (Testo Unico Bancario)</strong> — disciplina generale del credito, trasparenza delle condizioni contrattuali e obblighi informativi verso il cliente.</li>
-              <li><strong>D.P.R. 29 settembre 1973 n. 601, articoli 15 e seguenti</strong> — istituisce l'imposta sostitutiva sui finanziamenti a medio e lungo termine, in luogo di registro, bollo, ipotecarie e catastali.</li>
-              <li><strong>D.Lgs. 21 aprile 2016 n. 72</strong> — recepisce la direttiva europea sul credito immobiliare ai consumatori e introduce il Prospetto Informativo Europeo Standardizzato.</li>
-              <li><strong>Legge 2 aprile 2007 n. 40 (Legge Bersani)</strong> — sancisce il diritto alla portabilità del mutuo senza costi a carico del cliente e vieta le penali di estinzione anticipata sui mutui prima casa.</li>
-              <li><strong>Legge 7 marzo 1996 n. 108</strong> — disciplina antiusura e determinazione trimestrale dei tassi soglia da parte del Ministero dell'Economia.</li>
-              <li><strong>Delibera CICR e Istruzioni di Vigilanza della Banca d'Italia</strong> — regolano il calcolo dell'Indicatore Sintetico di Costo e le modalità di pubblicizzazione delle condizioni.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Gli oneri accessori applicati dal motore</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Parametro 2026</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Natura</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Imposta sostitutiva, prima casa</td><td class="px-3 py-2 border-t border-gray-200">0,25% del capitale</td><td class="px-3 py-2 border-t border-gray-200">Tributo, trattenuto all'erogazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta sostitutiva, altri immobili</td><td class="px-3 py-2 border-t border-gray-200">2,00% del capitale</td><td class="px-3 py-2 border-t border-gray-200">Tributo, trattenuto all'erogazione</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Spese di istruttoria</td><td class="px-3 py-2 border-t border-gray-200">0,80%, minimo 500 e massimo 2.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">Costo bancario una tantum</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Perizia tecnica sull'immobile</td><td class="px-3 py-2 border-t border-gray-200">320,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Costo una tantum, spesso non negoziabile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Incasso rata</td><td class="px-3 py-2 border-t border-gray-200">2,50 EUR al mese</td><td class="px-3 py-2 border-t border-gray-200">Costo ricorrente per l'intera durata</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Polizza incendio e scoppio</td><td class="px-3 py-2 border-t border-gray-200">0,035% annuo</td><td class="px-3 py-2 border-t border-gray-200">Copertura obbligatoria per legge</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Durata ammessa</td><td class="px-3 py-2 border-t border-gray-200">da 5 a 40 anni</td><td class="px-3 py-2 border-t border-gray-200">Vincolo di prodotto</td></tr></tbody></table></div>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il peso reale degli oneri accessori</h3>
-            <p>Su un finanziamento prima casa di 150.000 euro a venticinque anni, gli oneri accessori si compongono di 375 euro di imposta sostitutiva, 1.200 euro di istruttoria, 320 euro di perizia, 750 euro di commissioni di incasso distribuite sulle trecento rate e circa 1.312 euro di premi assicurativi, per un totale prossimo a <strong>3.957 euro</strong>. Se lo stesso immobile non godesse dell'agevolazione prima casa, la sola imposta sostitutiva salirebbe da 375 a 3.000 euro, portando il totale oltre i 6.500 euro.</p>
-            <p>È esattamente questo insieme di voci a determinare la divaricazione fra TAN e TAEG. Il primo remunera il solo capitale; il secondo, noto anche come Indicatore Sintetico di Costo, incorpora tutti gli oneri obbligatori e rappresenta l'unico parametro su cui un confronto fra offerte abbia significato economico.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Tutele contrattuali da conoscere</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Estinzione anticipata</strong>: sui mutui stipulati da persone fisiche per l'acquisto o la ristrutturazione della prima casa non è dovuta alcuna penale, né totale né parziale.</li>
-              <li><strong>Surroga</strong>: il trasferimento del mutuo presso un altro istituto avviene senza costi, senza nuovo atto notarile di compravendita e conservando l'ipoteca originaria.</li>
-              <li><strong>Sospensione delle rate</strong>: il Fondo di solidarietà per i mutui prima casa consente, in presenza di determinati eventi, la sospensione dei pagamenti per un periodo massimo predeterminato.</li>
-              <li><strong>Rinegoziazione</strong>: è sempre possibile chiedere alla banca la modifica delle condizioni, operazione che non richiede atto pubblico e ha costi trascurabili.</li>
-              <li><strong>Tasso soglia antiusura</strong>: un TEG superiore alla soglia trimestrale rende non dovuti gli interessi, con conseguenze radicali sul piano civilistico.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> il piano di ammortamento prodotto è una simulazione costruita su parametri standard di mercato. Il TAEG effettivo dipende dalle condizioni concrete offerte dall'istituto, dalla presenza di polizze facoltative e dalla periodicità degli oneri. Il documento di riferimento vincolante resta il Prospetto Informativo Europeo Standardizzato che la banca è obbligata a consegnare prima della stipula.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono calcolati con il simulatore della pagina, che applica ammortamento alla francese e costi accessori standard (istruttoria 0,80% fra 500 e 2.000 €, perizia 320 €, incasso rata 2,50 €, polizza incendio 0,035% annuo).</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: 150.000 € per la prima casa al 3,20%, tre durate a confronto</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>20 anni: rata 846,99 €, interessi 53.278,62 €</li>
-            <li>25 anni: rata 727,02 €, interessi 68.105,54 €</li>
-            <li>30 anni: rata 648,70 €, interessi 83.532,11 €</li>
-            </ul>
-            <p>Passare da 20 a 30 anni abbassa la rata di 198,29 € al mese ma costa 30.253,49 € di interessi in più. Una soluzione intermedia è scegliere una durata lunga per avere margine e fare estinzioni parziali quando possibile: sui mutui prima casa non ci sono penali.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: 90.000 € al 3,60% per 20 anni, prima o seconda casa</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Rata identica: 526,60 €</li>
-            <li>Prima casa: imposta 225 €, TAEG 3,94%, esborso totale 127.649,08 €</li>
-            <li>Seconda casa: imposta 1.800 €, TAEG 4,15%, esborso totale 129.224,08 €</li>
-            </ul>
-            <p>La rata non cambia perché l'imposta sostitutiva viene trattenuta all'erogazione: si riceve meno denaro. Per questo, con la stessa rata, il TAEG della seconda casa è più alto di 0,21 punti.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: com'è fatta la prima rata</h3>
-            <p>Sul mutuo da 150.000 € a 25 anni al 3,20%, la prima delle 300 rate da 727,02 € si divide così:</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Interessi: 150.000 × 3,20% / 12 = 400,00 €</li>
-            <li>Capitale restituito: 727,02 − 400,00 = 327,02 €</li>
-            </ul>
-            <p>Più della metà della prima rata sono interessi. Un'estinzione parziale di 10.000 € nei primi anni riduce il debito su cui si calcolano tutti gli interessi futuri, ed è quindi molto più efficace della stessa somma versata negli ultimi anni del piano.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché all'inizio del mutuo pago quasi solo interessi?</h3>
-              <p>Perché nell'ammortamento alla francese la rata è costante ma la sua composizione varia. La quota interessi si calcola sul debito residuo, che all'inizio coincide quasi con l'intero capitale, mentre la quota capitale è ciò che resta della rata dopo aver pagato gli interessi. Con il progressivo abbattimento del debito residuo la quota interessi si riduce e quella capitale cresce, secondo una progressione geometrica.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Conviene di più un tasso fisso o un tasso variabile?</h3>
-              <p>Il tasso fisso incorpora il costo della copertura contro il rialzo e parte quindi da un livello più alto, garantendo però una rata immutabile per tutta la durata. Il variabile costa mediamente meno ma espone a oscillazioni che su durate lunghe possono modificare sensibilmente la rata. La scelta dipende dalla capacità di assorbire un aumento imprevisto e dall'orizzonte temporale: su durate brevi il variabile è meno rischioso, su durate trentennali l'incertezza cumulata è considerevole.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra TAN e TAEG?</h3>
-              <p>Il TAN è il tasso annuo nominale applicato al capitale e serve a costruire il piano di ammortamento. Il TAEG è l'indicatore di costo complessivo: incorpora interessi, istruttoria, perizia, incasso rata, imposta sostitutiva e polizze obbligatorie, esprimendo il costo reale su base annua. Due offerte con identico TAN possono presentare TAEG molto diversi, ed è il secondo a determinare quale convenga.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Quanto posso chiedere in rapporto al mio reddito?</h3>
-              <p>La prassi bancaria fissa la sostenibilità della rata attorno a un terzo del reddito netto mensile del nucleo familiare, considerando anche eventuali altri finanziamenti in corso. A questo si aggiunge il rapporto fra importo finanziato e valore dell'immobile, che raramente supera l'ottanta per cento salvo garanzie integrative o accesso a fondi pubblici di garanzia per specifiche categorie.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Estinguere in anticipo conviene sempre?</h3>
-              <p>Conviene tanto più quanto prima si interviene, perché il risparmio corrisponde agli interessi non ancora maturati sul debito residuo abbattuto. Negli ultimi anni di piano la quota interessi è ormai marginale e il beneficio si assottiglia. Va inoltre confrontato il rendimento alternativo della liquidità impiegata: se supera il tasso del mutuo, l'estinzione non è la scelta finanziariamente ottimale.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">La polizza assicurativa proposta dalla banca è obbligatoria?</h3>
-              <p>Solo la copertura contro incendio e scoppio dell'immobile è obbligatoria per legge. Le polizze vita, infortuni o perdita dell'impiego sono facoltative e non possono essere imposte come condizione per l'erogazione. Il cliente ha inoltre il diritto di reperire autonomamente sul mercato la polizza incendio, senza che ciò comporti peggioramenti delle condizioni economiche del finanziamento.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il simulatore di mutuo è uno strumento <strong>100% client-side, senza alcun backend</strong>. Il capitale richiesto, la durata, il tasso, il reddito e ogni altro parametro che inserisci restano nella memoria del browser sul tuo dispositivo. Non effettuiamo alcuna trasmissione, non generiamo lead, non cediamo dati a istituti di credito o intermediari e non registriamo le simulazioni eseguite.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">È una differenza sostanziale rispetto ai comparatori commerciali, che tipicamente raccolgono i dati della simulazione per rivenderli come contatti qualificati. Reddito, capacità di indebitamento e progetto di acquisto immobiliare costituiscono un profilo economico di grande valore di mercato e di pari sensibilità per l'interessato. Non raccogliendolo, lo strumento rispetta il Regolamento UE 2016/679 (GDPR) e ne attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, oltre alla minimizzazione dei dati dell'articolo 5, paragrafo 1, lettera c.</p>
+          <p>Imposta, istruttoria e perizia vengono trattenute all&rsquo;erogazione: ricevi meno soldi ma la rata &egrave; la stessa. Per questo, a parit&agrave; di TAN, il TAEG di un mutuo per la seconda casa &egrave; pi&ugrave; alto. Le spese reali cambiano da banca a banca: il riferimento vincolante &egrave; il prospetto europeo standardizzato (PIES) che la banca deve darti prima della firma.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Diritti da conoscere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Per i mutui della prima casa di persone fisiche non ci sono penali di estinzione anticipata, totale o parziale.</li>
+            <li>Con la surroga puoi portare il mutuo in un&rsquo;altra banca senza costi.</li>
+            <li>Solo la polizza incendio e scoppio &egrave; obbligatoria; vita e perdita del lavoro sono facoltative.</li>
+            <li>Con il Fondo di solidariet&agrave; per la prima casa si pu&ograve; chiedere la sospensione delle rate in alcuni casi (per esempio perdita del lavoro).</li>
+          </ul>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; all&rsquo;inizio pago quasi solo interessi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; gli interessi si calcolano sul debito residuo, che all&rsquo;inizio &egrave; quasi tutto il capitale. Man mano che il debito scende, la parte di interessi cala e quella di capitale cresce.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra TAN e TAEG?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il TAN &egrave; il tasso sugli interessi e serve per la rata. Il TAEG aggiunge le spese obbligatorie ed &egrave; il numero giusto per confrontare due offerte.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Tasso fisso o variabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il fisso parte pi&ugrave; alto ma la rata non cambia mai. Il variabile in media costa meno ma pu&ograve; salire. Conta quanto potresti sopportare un aumento della rata e la durata del mutuo.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto posso chiedere rispetto al reddito?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Di solito le banche vogliono una rata non oltre un terzo del reddito netto mensile della famiglia, e un mutuo non oltre l&rsquo;80% del valore della casa.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Conviene estinguere in anticipo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Tanto pi&ugrave; quanto prima lo fai, perch&eacute; risparmi gli interessi futuri sul capitale restituito. Negli ultimi anni il vantaggio &egrave; piccolo.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I dati della simulazione vengono inviati a banche o intermediari?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il calcolo si fa nel browser e non raccogliamo contatti.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 29 settembre 1973, n. 601, artt. 15 e seguenti: imposta sostitutiva sui finanziamenti.</li>
+          <li>D.Lgs. 1&deg; settembre 1993, n. 385 (Testo unico bancario).</li>
+          <li>D.Lgs. 21 aprile 2016, n. 72: credito immobiliare ai consumatori e PIES.</li>
+          <li>D.L. 31 gennaio 2007, n. 7 (convertito dalla Legge n. 40 del 2007): portabilit&agrave; ed estinzione senza penali.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Il piano &egrave; una simulazione con spese standard: il TAEG effettivo dipende dall&rsquo;offerta della tua banca.</p>
+      </section>
 
       <!-- Ad Mobile Bottom -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">

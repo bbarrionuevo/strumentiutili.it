@@ -234,82 +234,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "La copia PDF di una fattura elettronica ha valore legale?",
+            "name": "La copia PDF ha valore legale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. L'originale giuridicamente rilevante è e resta il file XML trasmesso e accettato dal Sistema di Interscambio. Il PDF ottenuto dalla conversione è una copia di cortesia, utile per la lettura, l'archiviazione interna o l'invio al cliente, ma priva di autonomo valore probatorio. In caso di verifica fiscale l'amministrazione richiede il file originale conservato a norma."
+              "text": "No: è una copia di cortesia. L’originale è il file XML accettato dal Sistema di Interscambio, ed è quello che va conservato."
             }
           },
           {
             "@type": "Question",
-            "name": "Per quanto tempo devo conservare le fatture elettroniche?",
+            "name": "Per quanto tempo devo conservare le fatture?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dieci anni, termine che decorre dalla data dell'ultima registrazione. La conservazione deve avvenire con modalità conformi alle regole tecniche, che richiedono l'integrità del documento, la sua leggibilità nel tempo e la presenza di riferimenti temporali opponibili. Il semplice salvataggio dei file su un disco o su un servizio cloud generico non soddisfa l'obbligo."
+              "text": "Dieci anni, con un servizio di conservazione a norma. Il servizio dell’Agenzia delle Entrate è gratuito ma va attivato con un’adesione."
             }
           },
           {
             "@type": "Question",
-            "name": "Che differenza c'è fra fattura immediata e differita?",
+            "name": "Perché non riesco ad aprire un .p7m con il lettore PDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La fattura immediata documenta una singola operazione e va emessa entro dodici giorni dalla sua effettuazione. La differita riepiloga più operazioni effettuate nello stesso mese verso lo stesso cliente e va emessa entro il giorno quindici del mese successivo, purché le cessioni siano accompagnate da documento di trasporto o da altro documento idoneo a identificarle."
+              "text": "Perché non è un PDF: è una busta firmata che contiene il file XML. Serve un programma che la apra, come questo visualizzatore. Rinominare l’estensione non funziona."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa significa che una fattura è stata consegnata in area riservata?",
+            "name": "Cosa vuol dire «consegnata in area riservata»?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Significa che il Sistema di Interscambio non è riuscito a recapitare il file al canale del destinatario, tipicamente per codice destinatario errato o casella PEC satura, e lo ha messo a disposizione nell'area riservata del cessionario. La fattura è comunque validamente emessa, ma l'emittente ha l'onere di comunicare al cliente che il documento è disponibile in quella sede."
+              "text": "Il Sistema di Interscambio non è riuscito a recapitarla (codice destinatario sbagliato o PEC piena) e l’ha messa nell’area riservata del cliente. La fattura è comunque emessa; il fornitore deve avvisare il cliente."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso rifiutare una fattura elettronica che ritengo errata?",
+            "name": "Posso rifiutare una fattura sbagliata?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nei rapporti fra privati non esiste una procedura di rifiuto: il documento consegnato entra nel sistema e l'eventuale rettifica passa necessariamente per una nota di credito emessa dal fornitore. La facoltà di rifiuto formale è prevista soltanto per le pubbliche amministrazioni, entro termini definiti e per le sole cause tassativamente elencate dalla normativa."
+              "text": "Fra privati no: si chiede al fornitore una nota di credito. Il rifiuto formale esiste solo per le pubbliche amministrazioni."
             }
           },
           {
             "@type": "Question",
-            "name": "Un file .p7m può essere aperto con un normale lettore PDF?",
+            "name": "Che differenza c’è fra fattura immediata e differita?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. L'estensione .p7m indica una busta crittografica CAdES che incapsula il documento originale insieme alla firma digitale e al certificato del firmatario. Occorre un software in grado di verificare la firma ed estrarre il contenuto. Rinominare l'estensione non produce alcun effetto utile e corrompe il riferimento alla struttura del file."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché non riesco ad aprire un file .p7m con un normale lettore PDF o editor di testo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Poiché il formato CAdES (.p7m) agisce strutturalmente come un contenitore crittografico opaco. Il documento fattura originario (XML) è irrevocabilmente blindato insieme ai certificati della firma digitale in una struttura PKCS#7. Il suo contenuto non può essere estrapolato senza l'impiego di applicativi specializzati che attuino un'operazione di \"unwrapping\" algoritmico del livello di sicurezza crittografico."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "I dati delle fatture caricate nel tool vengono conservati nei server o analizzati?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Tassativamente no. Rispettando il mandato legale della Privacy by Design sancito dal GDPR, questo visualizzatore decostruisce l'involucro P7M ed estrae i metadati del formato XML (FatturaPA) sfruttando meramente l'allocazione della RAM locale all'interno della sandbox del tuo browser web (Zero-Backend). L'assenza di upload azzera ogni rischio di data breach in transito o a riposo."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "È ammesso esportare o stampare una fattura P7M/XML convertita in formato PDF?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'esportazione visiva in formato PDF tramite il visualizzatore è pienamente autorizzata per esigenze gestionali, di consultazione interna o archiviazione ordinata in faldoni. È tuttavia indispensabile comprendere che sotto il profilo prettamente civilistico e probatorio, l'unica entità dotata di valenza giuridica fiscale primaria è il documento XML o P7M intonso, che deve essere meticolosamente preservato attraverso le procedure di conservazione elettronica sostitutiva a norma di legge."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Sussiste una discrepanza legale tra una fattura firmata in .xml (XAdES) e una in .p7m (CAdES)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Assolutamente nessuna. La prassi governativa e le prescrizioni del Sistema di Interscambio parificano sotto il profilo normativo l'adozione del protocollo XAdES (incorporato nell'estensione .xml) all'adozione del protocollo CAdES (incorporato nell'estensione .p7m). Entrambe le procedure conferiscono l'identica e inoppugnabile validità legale richiesta dall'ordinamento, attestando con certezza la qualifica del mittente e l'intoccabilità del contenuto fatturato."
+              "text": "L’immediata si emette entro 12 giorni dall’operazione. La differita riunisce le operazioni del mese con lo stesso cliente, documentate da DDT, e si emette entro il 15 del mese dopo."
             }
           }
         ]
@@ -512,198 +480,75 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa, Privacy e Analisi Tecnica: Fattura Elettronica XML e P7M</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il sistema di interscambio (SdI) dell'Agenzia delle Entrate italiana si fonda sull'utilizzo obbligatorio di file strutturati in formato XML (FatturaPA). L'elaborazione e la visualizzazione di tali documenti elettronici impone rigorosi presidi in materia di riservatezza, data la sensibilità dei dati anagrafici, fiscali e commerciali in essi contenuti. Sfruttando un'infrastruttura di tipo Zero-Backend (Client-Side), questo strumento annulla totalmente l'invio dei file XML o .p7m verso server esterni, allineandosi pienamente ai precetti sanciti dall'Articolo 25 del Regolamento Generale sulla Protezione dei Dati (GDPR) in materia di Data Protection by Design.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> L'Architettura P7M, Crittografia e Sicurezza Zero-Upload</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">La Firma Elettronica e il Formato P7M (CAdES)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Secondo le rigide disposizioni del Codice dell'Amministrazione Digitale (CAD), la fattura elettronica richiede sovente l'apposizione di una firma elettronica avanzata o qualificata per certificarne l'autenticità del mittente, l'integrità del contenuto e assicurarne il non ripudio dinanzi alla giurisprudenza. La generazione di un file con estensione <strong>.p7m</strong> rappresenta l'output tangibile dell'implementazione del protocollo crittografico CAdES (CMS Advanced Electronic Signatures).
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                A livello infrastrutturale, l'apposizione della firma comporta l'esecuzione di una funzione matematica di hashing asimmetrico (frequentemente lo standard SHA-256) che calcola l'impronta univoca del file XML primario. Questa impronta viene poi crittografata tramite la chiave privata del firmatario e inserita, congiuntamente al certificato X.509 pubblico, all'interno di un elaborato involucro crittografico denominato struttura PKCS#7. Di conseguenza, il file XML nativo viene letteralmente "incapsulato" e blindato in una busta crittografica opaca, rendendolo del tutto illeggibile ai convenzionali programmi di visualizzazione testuale o ai lettori PDF.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Decodifica Locale e Conformità al GDPR (Art. 28)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Per esporre in chiaro i dati della fattura (il processo noto come "unwrapping"), è tassativo ricorrere a software capaci di interfacciarsi con l'involucro PKCS#7. Affidare tale decodifica a convertitori web ospitati in cloud innesca criticità legali formidabili. Trasmettendo un file P7M a un server di terze parti per la conversione, l'erogatore del servizio assume la qualifica di Data Processor (Responsabile del Trattamento) ex Articolo 28 del GDPR. Tale qualifica impone la stipulazione di stringenti accordi di elaborazione dei dati (DPA) tra il professionista e il provider, pena pesanti sanzioni pecuniarie per trasferimento illecito di dati personali o sensibili.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Adottando l'architettura Zero-Backend e sfruttando la potenza nativa del motore JavaScript (e della Web Crypto API) del browser, l'estrazione e il rendering visivo del documento XML avvengono in totale isolamento locale (Zero-Upload). Nessun dato fiscale o anagrafico varca la soglia della rete, esonerando il professionista dall'imposizione di verifiche di conformità verso l'esterno e annullando alla radice le vulnerabilità legate alle esfiltrazioni crittografiche sui server esterni.
-              </p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Formato XML (FatturaPA) e XAdES</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Quale alternativa procedurale all'ingombrante formato CAdES (.p7m), le fatture elettroniche dirette al Sistema di Interscambio (SdI) possono mantenere l'estensione <strong>.xml</strong> pur risultando digitalmente firmate. Questo avviene mediante l'impiego del protocollo XAdES (XML Advanced Electronic Signatures), che nidifica le chiavi di firma direttamente all'interno della struttura ad albero XML nativa. Tale metodologia previene l'incapsulamento opaco tipico del CAdES, permettendo la parziale leggibilità del file anche con editor basici, pur garantendone l'assoluta validità legale in Europa secondo il regolamento eIDAS.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come aprire e leggere una fattura elettronica XML o P7M</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La fattura elettronica &egrave; un file XML pensato per i programmi, non per le persone. Se &egrave; firmata digitalmente arriva come .xml.p7m, una &laquo;busta&raquo; che contiene il file e la firma. Il visualizzatore apre entrambi i formati e mostra la fattura come un documento normale, da leggere, stampare o salvare in PDF.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scarica la fattura dal portale Fatture e Corrispettivi dell&rsquo;Agenzia delle Entrate, dalla PEC o dal tuo gestionale.</li>
+            <li>Trascina il file .xml o .p7m nel riquadro.</li>
+            <li>Controlla i dati e usa &laquo;Stampa / Salva in PDF&raquo; se ti serve una copia da archiviare o inoltrare.</li>
+          </ol>
+          <p>Il file viene letto nel browser, sul tuo dispositivo: non viene caricato su nessun server.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa controllare in una fattura</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Fornitore e cliente:</strong> partita IVA o codice fiscale corretti.</li>
+            <li><strong>Riepilogo IVA:</strong> un blocco per ogni aliquota. Se in fattura ci sono beni al 22% e al 4%, devono comparire entrambi.</li>
+            <li><strong>Natura:</strong> le righe senza IVA hanno un codice che spiega perch&eacute; (per esempio N2.2 per i forfettari).</li>
+            <li><strong>Ritenuta e bollo:</strong> se presenti, con importo e causale.</li>
+            <li><strong>Pagamento:</strong> IBAN, scadenza ed eventuali rate.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Forfettario.</strong> Prestazione di 1.200 &euro; con natura N2.2 e bollo virtuale da 2 &euro;: il totale &egrave; 1.202 &euro; se il bollo viene addebitato al cliente. Non c&rsquo;&egrave; ritenuta d&rsquo;acconto.</p>
+          <p><strong>Due aliquote.</strong> Corso da 500 &euro; al 22% (IVA 110 &euro;) e manuale da 40 &euro; al 4% (IVA 1,60 &euro;): totale 651,60 &euro;. Un&rsquo;unica aliquota per tutte le righe sarebbe un errore da correggere con nota di credito.</p>
+          <p><strong>Fattura a un privato.</strong> Al posto della partita IVA c&rsquo;&egrave; il codice fiscale e il codice destinatario &egrave; 0000000. Il privato trova l&rsquo;originale nella sua area riservata dell&rsquo;Agenzia.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">XML, P7M e copia PDF</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">File</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cos&rsquo;&egrave;</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">.xml</td><td class="px-3 py-2 align-top">La fattura, senza firma o con la firma dentro il file (XAdES)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">.xml.p7m</td><td class="px-3 py-2 align-top">La fattura chiusa in una busta con la firma digitale (CAdES)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">PDF</td><td class="px-3 py-2 align-top">Una copia di cortesia, comoda da leggere ma senza valore legale</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <!-- PREGUNTAS FRECUENTES -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Risoluzione degli Errori e FAQ Professionali</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché non riesco ad aprire un file .p7m con un normale lettore PDF o editor di testo?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Poiché il formato CAdES (.p7m) agisce strutturalmente come un contenitore crittografico opaco. Il documento fattura originario (XML) è irrevocabilmente blindato insieme ai certificati della firma digitale in una struttura PKCS#7. Il suo contenuto non può essere estrapolato senza l'impiego di applicativi specializzati che attuino un'operazione di "unwrapping" algoritmico del livello di sicurezza crittografico.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>I dati delle fatture caricate nel tool vengono conservati nei server o analizzati?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Tassativamente no. Rispettando il mandato legale della Privacy by Design sancito dal GDPR, questo visualizzatore decostruisce l'involucro P7M ed estrae i metadati del formato XML (FatturaPA) sfruttando meramente l'allocazione della RAM locale all'interno della sandbox del tuo browser web (Zero-Backend). L'assenza di upload azzera ogni rischio di data breach in transito o a riposo.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>È ammesso esportare o stampare una fattura P7M/XML convertita in formato PDF?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'esportazione visiva in formato PDF tramite il visualizzatore è pienamente autorizzata per esigenze gestionali, di consultazione interna o archiviazione ordinata in faldoni. È tuttavia indispensabile comprendere che sotto il profilo prettamente civilistico e probatorio, l'unica entità dotata di valenza giuridica fiscale primaria è il documento XML o P7M intonso, che deve essere meticolosamente preservato attraverso le procedure di conservazione elettronica sostitutiva a norma di legge.
-              </p>
-            </details>
-
-             <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Sussiste una discrepanza legale tra una fattura firmata in .xml (XAdES) e una in .p7m (CAdES)?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Assolutamente nessuna. La prassi governativa e le prescrizioni del Sistema di Interscambio parificano sotto il profilo normativo l'adozione del protocollo XAdES (incorporato nell'estensione .xml) all'adozione del protocollo CAdES (incorporato nell'estensione .p7m). Entrambe le procedure conferiscono l'identica e inoppugnabile validità legale richiesta dall'ordinamento, attestando con certezza la qualifica del mittente e l'intoccabilità del contenuto fatturato.
-              </p>
-            </details>
-
-          </div>
+          <p>Fra privati la firma digitale non &egrave; obbligatoria; lo &egrave; per le fatture alla pubblica amministrazione. Le due firme hanno lo stesso valore. L&rsquo;originale da conservare &egrave; sempre il file XML o P7M, per dieci anni e con un servizio di conservazione a norma, come quello gratuito dell&rsquo;Agenzia delle Entrate: salvarlo su un disco non basta.</p>
         </div>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.Lgs. 5 agosto 2015 n. 127</strong> — istituisce l'obbligo generalizzato di fatturazione elettronica fra soggetti privati tramite il Sistema di Interscambio.</li>
-              <li><strong>D.P.R. 26 ottobre 1972 n. 633, articoli 21 e 21-bis</strong> — definiscono il contenuto obbligatorio della fattura, i termini di emissione e le semplificazioni per gli importi ridotti.</li>
-              <li><strong>D.Lgs. 7 marzo 2005 n. 82 (Codice dell'Amministrazione Digitale)</strong> — disciplina il documento informatico, le firme elettroniche e il loro valore probatorio.</li>
-              <li><strong>Regolamento UE 910/2014 (eIDAS)</strong> — quadro europeo su identificazione elettronica e servizi fiduciari, base giuridica del valore legale della firma digitale qualificata.</li>
-              <li><strong>D.M. 17 giugno 2014</strong> — regole per l'assolvimento dell'imposta di bollo sui documenti informatici e per la conservazione digitale a norma.</li>
-              <li><strong>Provvedimento del Direttore dell'Agenzia delle Entrate del 30 aprile 2018</strong> — specifiche tecniche del tracciato e regole di validazione del Sistema di Interscambio.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Formati e loro valore giuridico</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Estensione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Contenuto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Firma</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">.xml</td><td class="px-3 py-2 border-t border-gray-200">Fattura in formato FatturaPA non firmata</td><td class="px-3 py-2 border-t border-gray-200">Nessuna</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">.xml.p7m</td><td class="px-3 py-2 border-t border-gray-200">Fattura incapsulata in busta crittografica CAdES</td><td class="px-3 py-2 border-t border-gray-200">Firma digitale qualificata</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">.xml con XAdES</td><td class="px-3 py-2 border-t border-gray-200">Firma incorporata nella struttura XML</td><td class="px-3 py-2 border-t border-gray-200">Firma digitale qualificata</td></tr></tbody></table></div>
-            <p>Nei rapporti fra privati la firma digitale non è obbligatoria, poiché l'autenticità è garantita dal canale accreditato e dalla tracciatura operata dal Sistema di Interscambio. Resta invece richiesta nei rapporti con la pubblica amministrazione e in tutti i casi in cui l'emittente intenda attribuire al documento un valore probatorio rafforzato. Sul piano giuridico la busta CAdES e la firma XAdES producono i medesimi effetti: cambia soltanto la tecnica di apposizione.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Termini, conservazione e sanzioni</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Emissione</strong>: dodici giorni dall'effettuazione dell'operazione per la fattura immediata, giorno quindici del mese successivo per la differita.</li>
-              <li><strong>Conservazione a norma</strong>: dieci anni, con riferimenti temporali opponibili a terzi e garanzia di integrità, leggibilità e reperibilità.</li>
-              <li><strong>Imposta di bollo</strong>: 2,00 euro sulle fatture fuori campo IVA di importo superiore a 77,47 euro, con versamento trimestrale secondo il prospetto precompilato dall'Agenzia.</li>
-              <li><strong>Omessa fatturazione</strong>: sanzione proporzionale all'imposta non documentata, con misura ridotta quando la violazione non incida sulla liquidazione del tributo.</li>
-              <li><strong>Tardiva emissione</strong>: sanzione in misura fissa per ciascun documento quando non vi sia effetto sulla determinazione dell'imposta dovuta.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> la lettura e la conversione di un file XML o P7M non equivalgono in alcun modo alla conservazione sostitutiva a norma di legge. La stampa o l'esportazione in PDF genera una copia di cortesia, priva del valore giuridico dell'originale informatico. Per l'assolvimento dell'obbligo decennale occorre aderire a un servizio di conservazione accreditato, incluso quello gratuito reso disponibile dall'Agenzia delle Entrate.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La copia PDF ha valore legale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: &egrave; una copia di cortesia. L&rsquo;originale &egrave; il file XML accettato dal Sistema di Interscambio, ed &egrave; quello che va conservato.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti caricando nel visualizzatore file FatturaPA con i dati indicati.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: parcella di una grafica in regime forfettario</h3>
-            <p>Il file contiene una prestazione da 1.200,00 € senza IVA e il bollo virtuale da 2 € addebitato al cliente.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riepilogo IVA: aliquota 0% con natura N2.2, imponibile 1.200,00 €</li>
-            <li>Totale documento: 1.202,00 €</li>
-            <li>Scadenza del bonifico: 10 ottobre 2026</li>
-            </ul>
-            <p>La natura N2.2 indica un'operazione non soggetta a IVA per i contribuenti forfettari. Il cliente con Partita IVA non deve applicare la ritenuta d'acconto: il forfettario ne è esonerato.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: corso di formazione con materiale didattico a due aliquote</h3>
-            <p>Una società fattura a un privato un corso da 500 € al 22% e un manuale cartaceo da 40 € al 4%, pagabili in due rate.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riepilogo 22%: imponibile 500,00 €, imposta 110,00 €</li>
-            <li>Riepilogo 4%: imponibile 40,00 €, imposta 1,60 €</li>
-            <li>Totale documento: 651,60 €, in due rate da 325,80 €</li>
-            </ul>
-            <p>Il castelletto IVA separa le aliquote: è il primo punto da verificare quando una fattura contiene beni e servizi diversi. Una sola aliquota su tutte le righe sarebbe un errore da correggere con nota di credito.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: fattura a un privato con codice destinatario 0000000</h3>
-            <p>Nel caso 2 il cliente è una persona fisica senza Partita IVA: il fornitore indica il suo codice fiscale e il codice destinatario generico 0000000. Il visualizzatore mostra il codice fiscale del cliente al posto della Partita IVA.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Cliente: Marco Bianchi, CF BNCMRC80A01H501U</li>
-            <li>Recapito: area riservata del cliente sul sito dell'Agenzia delle Entrate</li>
-            <li>Obbligo del fornitore: consegnare anche una copia analogica o PDF</li>
-            </ul>
-            <p>Il privato trova l'originale XML nella propria area riservata «Fatture e Corrispettivi» ed è proprio quel file che può aprire con questo visualizzatore.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Per quanto tempo devo conservare le fatture?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dieci anni, con un servizio di conservazione a norma. Il servizio dell&rsquo;Agenzia delle Entrate &egrave; gratuito ma va attivato con un&rsquo;adesione.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">La copia PDF di una fattura elettronica ha valore legale?</h3>
-              <p>No. L'originale giuridicamente rilevante è e resta il file XML trasmesso e accettato dal Sistema di Interscambio. Il PDF ottenuto dalla conversione è una copia di cortesia, utile per la lettura, l'archiviazione interna o l'invio al cliente, ma priva di autonomo valore probatorio. In caso di verifica fiscale l'amministrazione richiede il file originale conservato a norma.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Per quanto tempo devo conservare le fatture elettroniche?</h3>
-              <p>Dieci anni, termine che decorre dalla data dell'ultima registrazione. La conservazione deve avvenire con modalità conformi alle regole tecniche, che richiedono l'integrità del documento, la sua leggibilità nel tempo e la presenza di riferimenti temporali opponibili. Il semplice salvataggio dei file su un disco o su un servizio cloud generico non soddisfa l'obbligo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Che differenza c'è fra fattura immediata e differita?</h3>
-              <p>La fattura immediata documenta una singola operazione e va emessa entro dodici giorni dalla sua effettuazione. La differita riepiloga più operazioni effettuate nello stesso mese verso lo stesso cliente e va emessa entro il giorno quindici del mese successivo, purché le cessioni siano accompagnate da documento di trasporto o da altro documento idoneo a identificarle.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa significa che una fattura è stata consegnata in area riservata?</h3>
-              <p>Significa che il Sistema di Interscambio non è riuscito a recapitare il file al canale del destinatario, tipicamente per codice destinatario errato o casella PEC satura, e lo ha messo a disposizione nell'area riservata del cessionario. La fattura è comunque validamente emessa, ma l'emittente ha l'onere di comunicare al cliente che il documento è disponibile in quella sede.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso rifiutare una fattura elettronica che ritengo errata?</h3>
-              <p>Nei rapporti fra privati non esiste una procedura di rifiuto: il documento consegnato entra nel sistema e l'eventuale rettifica passa necessariamente per una nota di credito emessa dal fornitore. La facoltà di rifiuto formale è prevista soltanto per le pubbliche amministrazioni, entro termini definiti e per le sole cause tassativamente elencate dalla normativa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Un file .p7m può essere aperto con un normale lettore PDF?</h3>
-              <p>No. L'estensione .p7m indica una busta crittografica CAdES che incapsula il documento originale insieme alla firma digitale e al certificato del firmatario. Occorre un software in grado di verificare la firma ed estrarre il contenuto. Rinominare l'estensione non produce alcun effetto utile e corrompe il riferimento alla struttura del file.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; non riesco ad aprire un .p7m con il lettore PDF?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; non &egrave; un PDF: &egrave; una busta firmata che contiene il file XML. Serve un programma che la apra, come questo visualizzatore. Rinominare l&rsquo;estensione non funziona.</p>
         </details>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa vuol dire &laquo;consegnata in area riservata&raquo;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il Sistema di Interscambio non &egrave; riuscito a recapitarla (codice destinatario sbagliato o PEC piena) e l&rsquo;ha messa nell&rsquo;area riservata del cliente. La fattura &egrave; comunque emessa; il fornitore deve avvisare il cliente.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso rifiutare una fattura sbagliata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Fra privati no: si chiede al fornitore una nota di credito. Il rifiuto formale esiste solo per le pubbliche amministrazioni.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra fattura immediata e differita?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">L&rsquo;immediata si emette entro 12 giorni dall&rsquo;operazione. La differita riunisce le operazioni del mese con lo stesso cliente, documentate da DDT, e si emette entro il 15 del mese dopo.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 5 agosto 2015, n. 127: fatturazione elettronica fra privati.</li>
+          <li>D.P.R. 26 ottobre 1972, n. 633, artt. 21 e 21-bis: contenuto e termini della fattura.</li>
+          <li>D.Lgs. 7 marzo 2005, n. 82 (Codice dell&rsquo;amministrazione digitale) e Regolamento UE 910/2014 (eIDAS): firme elettroniche.</li>
+          <li>Provvedimento dell&rsquo;Agenzia delle Entrate del 30 aprile 2018: regole tecniche della fattura elettronica.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

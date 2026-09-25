@@ -116,26 +116,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Chi è tenuto a versare il contributo unificato?",
+            "name": "Chi deve pagare il contributo unificato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'obbligo grava sulla parte che deposita per prima l'atto introduttivo del giudizio, quindi l'attore, il ricorrente o la parte che propone l'impugnazione. Il convenuto che si limiti a costituirsi non deve alcun contributo, salvo che proponga domanda riconvenzionale autonoma di valore superiore, nel qual caso diventa a sua volta debitore per la propria domanda."
+              "text": "La parte che deposita per prima l’atto che inizia il giudizio o l’impugnazione. Il convenuto paga solo se propone una domanda riconvenzionale di valore superiore."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa accade se verso un importo inferiore a quello dovuto?",
+            "name": "Cosa succede se verso meno del dovuto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'ufficio notifica un invito al pagamento della differenza. Il mancato adempimento comporta l'iscrizione a ruolo dell'importo con l'aggiunta di sanzioni e interessi. Il versamento insufficiente non determina però l'improcedibilità della domanda: il giudizio prosegue e la regolarizzazione avviene sul piano amministrativo."
+              "text": "La cancelleria invia un invito a pagare la differenza; se non paghi, l’importo viene iscritto a ruolo con sanzioni e interessi. La causa però va avanti."
             }
           },
           {
             "@type": "Question",
-            "name": "Il contributo unificato viene restituito se vinco la causa?",
+            "name": "Se vinco la causa mi viene restituito?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non viene restituito dall'erario, ma rientra fra le spese di lite ripetibili. Il giudice che condanna la controparte alla rifusione delle spese include nel provvedimento anche il contributo unificato e l'anticipazione forfettaria effettivamente versati, che la parte soccombente dovrà rimborsare."
+              "text": "Non dallo Stato, ma il giudice di solito lo mette fra le spese che la parte che perde deve rimborsarti."
             }
           },
           {
@@ -143,23 +143,23 @@
             "name": "Perché il decreto ingiuntivo costa la metà?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Perché il procedimento monitorio è una fase sommaria, senza contraddittorio preventivo e con istruttoria documentale. Il legislatore ne ha incentivato l'uso dimezzando il contributo. Se il debitore propone opposizione si apre un giudizio ordinario a cognizione piena, per il quale la parte opponente versa un nuovo contributo secondo il moltiplicatore del primo grado."
+              "text": "È un procedimento rapido e basato sui documenti, che la legge vuole incentivare. Se il debitore si oppone si apre una causa ordinaria, e chi si oppone paga il suo contributo."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si determina il valore per una causa con più domande?",
+            "name": "Come si calcola il valore se faccio più domande?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le domande proposte nello stesso atto contro la stessa parte si sommano ai fini della determinazione del valore. Il cumulo può far scattare uno scaglione superiore, con un effetto economico rilevante. Le domande di valore indeterminabile cumulate a domande determinate seguono criteri specifici che è opportuno verificare con il difensore."
+              "text": "Le domande contro la stessa parte nello stesso atto si sommano, e la somma può far salire lo scaglione."
             }
           },
           {
             "@type": "Question",
-            "name": "L'esenzione nel processo del lavoro è automatica?",
+            "name": "L’esenzione nelle cause di lavoro è automatica?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Occorre che il reddito imponibile della parte non superi la soglia di legge e che tale condizione sia attestata da apposita dichiarazione sostitutiva di certificazione, da depositare unitamente all'atto introduttivo. In assenza della dichiarazione il contributo è dovuto nella misura ordinaria, anche quando il requisito reddituale sussista in concreto."
+              "text": "No: serve un reddito sotto la soglia di legge e una dichiarazione sostitutiva allegata all’atto. Senza, il contributo si paga per intero."
             }
           }
         ]
@@ -449,182 +449,93 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Calcolo Algoritmico del Contributo Unificato, D.P.R. 115/2002 e Architettura Zero-Backend</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il "Contributo Unificato di Iscrizione a Ruolo" (CU) costituisce l'obbligazione tributaria cardine per l'accesso alla giurisdizione civile, amministrativa e tributaria nella Repubblica Italiana. Introdotto per sostituire la complessa frammentazione delle imposte di bollo e dei diritti di cancelleria, la sua determinazione non è arbitraria bensì vincolata a un rigoroso sistema a scaglioni parametrato al valore economico della controversia processuale. Sviluppare un calcolatore per professionisti impone un rispetto matematico delle tassonomie definite dal Testo Unico sulle Spese di Giustizia (D.P.R. 115/2002) e dalle circolari esplicative del Ministero della Giustizia.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📈</span> Meccanica a Scaglioni e Moltiplicatori Processuali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Il modello matematico del Contributo Unificato opera identificando preliminarmente il <em>valore base</em> associato al giudizio ordinario di primo grado. Se la causa ha un valore fino a 1.100,00 €, la tassa base corrisponde a 43,00 €. Da 1.100,01 a 5.200,00 € la quota sale a 98,00 €, e procede a scaglioni crescenti fino ad attestarsi a 1.686,00 € per liti che eccedono i 520.000,00 €.
-            </p>
-            <p>
-              Tale base economica (indicata come $B(V)$) è soggetta a un fattore moltiplicativo scalare $M$ che varia in funzione del grado d'impugnazione o del rito:
-            </p>
-            <p class="font-mono text-xs bg-gray-50 p-3 rounded border border-gray-200 overflow-x-auto text-center">$$CU = B(V) \times M$$</p>
-            <p>
-              Per i procedimenti dinanzi alla Corte d'Appello, il legislatore ha previsto una penalizzazione economica imponendo un moltiplicatore di <strong>1.5</strong> (+50%). L'approdo alla Suprema Corte di Cassazione infligge un moltiplicatore pari a <strong>2.0</strong> (raddoppio del contributo base). Specularmente, per alleggerire la pressione sui procedimenti sommari e favorire il recupero crediti, le iscrizioni relative ai procedimenti monitori (Decreti Ingiuntivi) beneficiano di un moltiplicatore abbattuto a <strong>0.5</strong> (riduzione del 50%).
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Quanto costa iscrivere una causa: il contributo unificato</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il contributo unificato &egrave; la tassa che si paga per iniziare una causa civile. Non &egrave; una percentuale: dipende dallo scaglione di valore della causa e poi viene moltiplicato in base al tipo di procedimento. Si aggiunge l&rsquo;anticipazione forfettaria di 27 &euro; per le notifiche.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scrivi il valore della causa, oppure spunta &laquo;valore indeterminabile&raquo;.</li>
+            <li>Scegli il tipo di giudizio: primo grado, appello, Cassazione o decreto ingiuntivo.</li>
+            <li>Lascia spuntata l&rsquo;anticipazione forfettaria se va pagata anche nel tuo caso.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Gli scaglioni per il primo grado</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Valore della causa</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Contributo</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Fino a 1.100 &euro;</td><td class="px-3 py-2 align-top">43 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Da 1.100,01 a 5.200 &euro;</td><td class="px-3 py-2 align-top">98 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Da 5.200,01 a 26.000 &euro;</td><td class="px-3 py-2 align-top">237 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Da 26.000,01 a 52.000 &euro;</td><td class="px-3 py-2 align-top">518 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Da 52.000,01 a 260.000 &euro;</td><td class="px-3 py-2 align-top">759 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Da 260.000,01 a 520.000 &euro;</td><td class="px-3 py-2 align-top">1.214 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Oltre 520.000 &euro;</td><td class="px-3 py-2 align-top">1.686 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Valore indeterminabile</td><td class="px-3 py-2 align-top">518 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Casi di Bordo: Valore Indeterminabile e Anticipazione (Art. 30)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Nei procedimenti in cui l'oggetto non possieda una quantificazione pecuniaria immediata (es. azioni di accertamento, provvedimenti d'urgenza cautelari atipici ex art. 700 c.p.c.), subentra l'istituto del <strong>Valore Indeterminabile</strong>. In questi frangenti, il testo unico assegna il procedimento all'importo previsto per lo scaglione compreso tra 26.000,01 e 52.000,00 €, con una tassa base di 518,00 €.
-            </p>
-            <p>
-              In base all'articolo 30 del medesimo D.P.R. 115/2002, il deposito dell'atto introduttivo necessita inoltre del saldo di una <strong>Anticipazione Forfettaria</strong> per coprire le spese di notifica e segreteria di cancelleria. Tale importo, pari a 27,00 €, è costante. Il nostro motore disabilita tale ricarico solo per via eccezionale: nei contenziosi di materia giuslavoristica o agraria e per le conciliazioni che non oltrepassino la quota dei 1.033,00 €, la legge prevede l'esenzione totale dell'Anticipazione Forfettaria.
-            </p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Appello:</strong> +50%.</li>
+            <li><strong>Cassazione:</strong> il doppio.</li>
+            <li><strong>Decreto ingiuntivo:</strong> la met&agrave;.</li>
+            <li>L&rsquo;anticipazione di 27 &euro; resta uguale in ogni grado.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Causa da 30.000 &euro;</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Contributo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Con i 27 &euro;</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Decreto ingiuntivo</td><td class="px-3 py-2 align-top">259 &euro;</td><td class="px-3 py-2 align-top">286 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Primo grado</td><td class="px-3 py-2 align-top">518 &euro;</td><td class="px-3 py-2 align-top">545 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Appello</td><td class="px-3 py-2 align-top">777 &euro;</td><td class="px-3 py-2 align-top">804 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Cassazione</td><td class="px-3 py-2 align-top">1.036 &euro;</td><td class="px-3 py-2 align-top">1.063 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p><strong>Fattura non pagata da 3.800 &euro;.</strong> Con il decreto ingiuntivo: 49 &euro; + 27 &euro; = 76 &euro;. Con una causa ordinaria: 98 &euro; + 27 &euro; = 125 &euro;.</p>
+          <p><strong>L&rsquo;effetto soglia.</strong> Una domanda da 26.000 &euro; paga 237 &euro;, una da 26.001 &euro; ne paga 518. Se il credito &egrave; appena sopra una soglia, pu&ograve; valere la pena valutare con l&rsquo;avvocato se rinunciare a voci minori.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Da sapere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Paga chi deposita per primo l&rsquo;atto: chi fa causa o chi impugna. Chi si difende non paga, salvo che faccia una domanda propria (riconvenzionale) di valore maggiore.</li>
+            <li>Se l&rsquo;impugnazione viene respinta del tutto o dichiarata inammissibile, chi l&rsquo;ha proposta deve pagare un altro contributo di pari importo.</li>
+            <li>Con il patrocinio a spese dello Stato il contributo non si anticipa.</li>
+            <li>Alcune cause sono esenti o ridotte (per esempio in materia di lavoro per chi ha un reddito basso, con dichiarazione allegata, e molte cause di famiglia).</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi deve pagare il contributo unificato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La parte che deposita per prima l&rsquo;atto che inizia il giudizio o l&rsquo;impugnazione. Il convenuto paga solo se propone una domanda riconvenzionale di valore superiore.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Compliance GDPR e Sicurezza Client-Side (Art. 25 e 28)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Inserire il valore di una lite o informazioni attinenti a un contenzioso in corso su portali non conformi espone gli studi legali a gravi contestazioni legate alla confidenzialità. Aderendo ai più alti crismi della <strong>Data Protection by Design e by Default (Articolo 25 GDPR)</strong>, il simulatore del Contributo Unificato di StrumentiUtili opera in modo rigorosamente <em>Zero-Backend</em>.
-            </p>
-            <p>
-              Le tabelle di riferimento e gli scaglioni sono caricati nella RAM volatile tramite un JSON statico di configurazione al momento del rendering della pagina. Qualsiasi digitazione, ricalcolo o parametrizzazione da parte dell'utente avviene localmente, senza che i dati della lite transitino o siano immagazzinati in server di terze parti (Zero-Upload). Questo impedisce intrinsecamente che la piattaforma web assuma l'onere legale di Data Processor, svincolando gli avvocati dalla firma obbligatoria di un DPA (Data Processing Agreement) ex Articolo 28 del GDPR e preservando lo studio da sanzioni per data breach accidentali in cloud.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa succede se verso meno del dovuto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La cancelleria invia un invito a pagare la differenza; se non paghi, l&rsquo;importo viene iscritto a ruolo con sanzioni e interessi. La causa per&ograve; va avanti.</p>
         </details>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il contributo unificato di iscrizione a ruolo non è proporzionale al valore della causa ma procede per <strong>scaglioni a importo fisso</strong>: ogni fascia di valore corrisponde a una tassa predeterminata, che viene poi moltiplicata per un coefficiente dipendente dal grado e dal tipo di procedimento.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Struttura a scaglioni</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Valore della causa</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Importo base</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Fino a 1.100 EUR</td><td class="px-3 py-2 border-t border-gray-200">43,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Da 1.100,01 a 5.200 EUR</td><td class="px-3 py-2 border-t border-gray-200">98,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Da 5.200,01 a 26.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">237,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Da 26.000,01 a 52.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">518,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Da 52.000,01 a 260.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">759,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Da 260.000,01 a 520.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.214,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Oltre 520.000 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.686,00 EUR</td></tr></tbody></table></div>
-            <p>La natura a gradini produce un effetto soglia rilevante: una domanda di 26.000 euro sconta 237 euro di contributo, mentre una da 26.001 euro ne sconta 518, con un raddoppio del costo a fronte di un euro di differenza. Nella determinazione del valore della causa, che segue i criteri del codice di procedura civile, la quantificazione della domanda ha quindi anche un impatto economico immediato e spesso trascurato.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Moltiplicatori per grado e rito</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Contributo dovuto = Importo di scaglione x Moltiplicatore</li>
-              <li>Primo grado          =&gt;  x 1,0</li>
-              <li>Appello              =&gt;  x 1,5</li>
-              <li>Cassazione           =&gt;  x 2,0</li>
-              <li>Decreto ingiuntivo   =&gt;  x 0,5</li>
-              <li>Esborso complessivo  = Contributo + 27,00 EUR di anticipazione forfettaria</li>
-            </ul>
-            <p>L'<strong>anticipazione forfettaria di 27,00 euro</strong> sostituisce, nei procedimenti civili, il rimborso delle spese di notifica a carico dell'erario ed è dovuta indipendentemente dal valore della causa e dal numero di notifiche effettivamente eseguite. Non si moltiplica per il coefficiente di grado: resta fissa in ogni stato del procedimento.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio comparato: controversia dal valore di 30.000 euro</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Procedimento</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Calcolo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Contributo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Totale con anticipazione</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Decreto ingiuntivo</td><td class="px-3 py-2 border-t border-gray-200">518 x 0,5</td><td class="px-3 py-2 border-t border-gray-200">259,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">286,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Primo grado ordinario</td><td class="px-3 py-2 border-t border-gray-200">518 x 1,0</td><td class="px-3 py-2 border-t border-gray-200">518,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">545,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Appello</td><td class="px-3 py-2 border-t border-gray-200">518 x 1,5</td><td class="px-3 py-2 border-t border-gray-200">777,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">804,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Cassazione</td><td class="px-3 py-2 border-t border-gray-200">518 x 2,0</td><td class="px-3 py-2 border-t border-gray-200">1.036,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">1.063,00 EUR</td></tr></tbody></table></div>
-            <p>Il percorso integrale della stessa controversia attraverso i tre gradi di giudizio comporta quindi 2.331 euro di contributi unificati, 2.412 euro includendo le anticipazioni forfettarie, senza considerare compensi professionali, spese di notifica ulteriori e consulenze tecniche. La forte differenza fra il monitorio e l'ordinario spiega la convenienza processuale del decreto ingiuntivo quando il credito sia fondato su prova scritta.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Le cause di valore indeterminabile</h3>
-            <p>Quando l'oggetto della domanda non è suscettibile di valutazione economica, come in molte azioni di accertamento o in materia di status, il valore si considera indeterminabile. Il motore applica in questi casi il parametro base di <strong>518,00 euro</strong> per i procedimenti dinanzi al tribunale ordinario, coerente con la collocazione di tali cause nello scaglione intermedio previsto dalla disciplina del testo unico sulle spese di giustizia.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se vinco la causa mi viene restituito?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Non dallo Stato, ma il giudice di solito lo mette fra le spese che la parte che perde deve rimborsarti.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.P.R. 30 maggio 2002 n. 115 (Testo Unico Spese di Giustizia)</strong> — disciplina organica del contributo unificato, degli scaglioni, delle esenzioni e delle sanzioni per omesso o insufficiente versamento.</li>
-              <li><strong>D.P.R. 115/2002, articolo 13</strong> — fissa gli importi per scaglione e i moltiplicatori applicabili ai diversi gradi e riti.</li>
-              <li><strong>D.P.R. 115/2002, articolo 30</strong> — istituisce l'anticipazione forfettaria di 27,00 euro dovuta dalla parte che deposita l'atto introduttivo.</li>
-              <li><strong>D.P.R. 115/2002, articoli 74 e seguenti</strong> — regola il patrocinio a spese dello Stato e i limiti di reddito per l'ammissione.</li>
-              <li><strong>D.L. 6 luglio 2011 n. 98, articolo 37</strong> — introduce la maggiorazione del contributo in caso di omessa indicazione del codice fiscale o dell'indirizzo di posta elettronica certificata.</li>
-              <li><strong>Codice di procedura civile, articoli 10 e seguenti</strong> — criteri di determinazione del valore della causa, presupposto dell'individuazione dello scaglione.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Maggiorazioni ed esenzioni</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Maggiorazione della metà</strong>: si applica quando l'atto introduttivo ometta l'indicazione del codice fiscale della parte o dell'indirizzo PEC del difensore.</li>
-              <li><strong>Raddoppio in impugnazione</strong>: se l'impugnazione è dichiarata inammissibile, improcedibile o integralmente respinta, la parte impugnante è tenuta a un ulteriore importo pari a quello già versato.</li>
-              <li><strong>Patrocinio a spese dello Stato</strong>: l'ammissione comporta la prenotazione a debito del contributo, che non viene anticipato dalla parte ammessa.</li>
-              <li><strong>Processo del lavoro e previdenziale</strong>: esenzione per la parte il cui reddito imponibile non superi la soglia stabilita dalla legge, con dichiarazione sostitutiva da allegare.</li>
-              <li><strong>Materia di famiglia e minori</strong>: esenzione per i procedimenti relativi allo stato e alla capacità delle persone e per numerosi procedimenti in materia minorile.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> gli importi e i moltiplicatori possono essere aggiornati da interventi normativi e da decreti ministeriali. Il valore della causa va determinato secondo i criteri processuali, che non sempre coincidono con la somma indicata nelle conclusioni. La quantificazione prodotta dal motore ha carattere di stima e va confermata dal difensore incaricato prima del deposito telematico.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il decreto ingiuntivo costa la met&agrave;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; un procedimento rapido e basato sui documenti, che la legge vuole incentivare. Se il debitore si oppone si apre una causa ordinaria, e chi si oppone paga il suo contributo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti nel calcolatore della pagina, con anticipazione forfettaria di 27 € inclusa.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: fattura non pagata da 3.800 € recuperata con decreto ingiuntivo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Scaglione 1.100,01 − 5.200 €: 98,00 €</li>
-            <li>Decreto ingiuntivo, metà: 49,00 €</li>
-            <li>Totale con anticipazione: 76,00 €</li>
-            </ul>
-            <p>Se il debitore non si oppone, il costo di accesso alla giustizia resta questo. Una causa ordinaria per lo stesso credito costerebbe 125 €: 98 € di contributo più 27 €.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: 26.000 € o 26.001 €, l'effetto soglia</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Domanda da 26.000 €: 237 € + 27 € = 264,00 €</li>
-            <li>Domanda da 26.001 €: 518 € + 27 € = 545,00 €</li>
-            </ul>
-            <p>Un euro in più di domanda costa 281 € di contributo. Quando il credito è di poco superiore a una soglia, il difensore può valutare se rinunciare a voci marginali, come interessi di modesto importo, per restare nello scaglione inferiore.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: azione di accertamento di una servitù di passaggio, in primo grado e in appello</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Valore indeterminabile, primo grado: 518 € + 27 € = 545,00 €</li>
-            <li>Appello: 518 × 1,5 = 777 € + 27 € = 804,00 €</li>
-            <li>Se l'appello viene respinto integralmente: ulteriori 777 € a carico dell'appellante</li>
-            </ul>
-            <p>Il rischio del raddoppio in caso di rigetto va messo in conto prima di impugnare una sentenza con scarse probabilità di riforma.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si calcola il valore se faccio pi&ugrave; domande?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le domande contro la stessa parte nello stesso atto si sommano, e la somma pu&ograve; far salire lo scaglione.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Chi è tenuto a versare il contributo unificato?</h3>
-              <p>L'obbligo grava sulla parte che deposita per prima l'atto introduttivo del giudizio, quindi l'attore, il ricorrente o la parte che propone l'impugnazione. Il convenuto che si limiti a costituirsi non deve alcun contributo, salvo che proponga domanda riconvenzionale autonoma di valore superiore, nel qual caso diventa a sua volta debitore per la propria domanda.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa accade se verso un importo inferiore a quello dovuto?</h3>
-              <p>L'ufficio notifica un invito al pagamento della differenza. Il mancato adempimento comporta l'iscrizione a ruolo dell'importo con l'aggiunta di sanzioni e interessi. Il versamento insufficiente non determina però l'improcedibilità della domanda: il giudizio prosegue e la regolarizzazione avviene sul piano amministrativo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il contributo unificato viene restituito se vinco la causa?</h3>
-              <p>Non viene restituito dall'erario, ma rientra fra le spese di lite ripetibili. Il giudice che condanna la controparte alla rifusione delle spese include nel provvedimento anche il contributo unificato e l'anticipazione forfettaria effettivamente versati, che la parte soccombente dovrà rimborsare.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché il decreto ingiuntivo costa la metà?</h3>
-              <p>Perché il procedimento monitorio è una fase sommaria, senza contraddittorio preventivo e con istruttoria documentale. Il legislatore ne ha incentivato l'uso dimezzando il contributo. Se il debitore propone opposizione si apre un giudizio ordinario a cognizione piena, per il quale la parte opponente versa un nuovo contributo secondo il moltiplicatore del primo grado.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Come si determina il valore per una causa con più domande?</h3>
-              <p>Le domande proposte nello stesso atto contro la stessa parte si sommano ai fini della determinazione del valore. Il cumulo può far scattare uno scaglione superiore, con un effetto economico rilevante. Le domande di valore indeterminabile cumulate a domande determinate seguono criteri specifici che è opportuno verificare con il difensore.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">L'esenzione nel processo del lavoro è automatica?</h3>
-              <p>No. Occorre che il reddito imponibile della parte non superi la soglia di legge e che tale condizione sia attestata da apposita dichiarazione sostitutiva di certificazione, da depositare unitamente all'atto introduttivo. In assenza della dichiarazione il contributo è dovuto nella misura ordinaria, anche quando il requisito reddituale sussista in concreto.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;esenzione nelle cause di lavoro &egrave; automatica?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: serve un reddito sotto la soglia di legge e una dichiarazione sostitutiva allegata all&rsquo;atto. Senza, il contributo si paga per intero.</p>
         </details>
-
-        </section>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 30 maggio 2002, n. 115 (Testo unico spese di giustizia), art. 13: importi e maggiorazioni.</li>
+          <li>D.P.R. 115/2002, art. 30: anticipazione forfettaria di 27 &euro;.</li>
+          <li>Codice di procedura civile, artt. 10 e seguenti: valore della causa.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Il calcolo &egrave; una stima: prima del deposito l&rsquo;importo va confermato dal difensore.</p>
+      </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>

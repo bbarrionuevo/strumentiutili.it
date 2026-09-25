@@ -139,50 +139,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Perché la ritenuta d'acconto non si calcola sul contributo Cassa Forense?",
+            "name": "Perché la ritenuta non si calcola sulla Cassa forense?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Perché il contributo integrativo del 4% non ha natura di compenso ma di contribuzione previdenziale, che il professionista riscuote per conto della Cassa e a essa riversa. Non costituendo reddito professionale, resta fuori dalla base imponibile della ritenuta. Il 15% di spese generali segue invece la sorte del compenso ed è pienamente assoggettato a ritenuta."
+              "text": "Perché il 4% è un contributo previdenziale che l’avvocato versa alla Cassa, non un compenso. Le spese generali del 15%, invece, fanno parte del compenso e subiscono la ritenuta."
             }
           },
           {
             "@type": "Question",
-            "name": "Le spese generali del 15% sono obbligatorie o facoltative?",
+            "name": "Le spese generali del 15% sono obbligatorie?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sono un rimborso forfetario riconosciuto dai parametri ministeriali e si applicano di regola nella liquidazione giudiziale dei compensi. Nei rapporti contrattuali con il cliente costituiscono una voce standard della prassi professionale, ma possono essere oggetto di diversa pattuizione scritta. Se applicate, vanno esposte distintamente in fattura e non incorporate nel compenso."
+              "text": "Sono previste dai parametri ministeriali e il giudice le riconosce; con il cliente si possono concordare diversamente. Se ci sono, vanno scritte a parte in fattura."
             }
           },
           {
             "@type": "Question",
-            "name": "Qual è la differenza fra spese generali e spese documentate?",
+            "name": "Che differenza c’è fra spese generali e spese anticipate?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le spese generali sono un forfait del 15% sul compenso, soggetto a IVA, a contributo Cassa e a ritenuta. Le spese documentate anticipate in nome e per conto del cliente, come contributo unificato, marche da bollo e diritti di copia, sono escluse dalla base imponibile IVA e vanno esposte separatamente: non generano né contributo Cassa né ritenuta."
+              "text": "Le spese generali sono un forfait del 15% con Cassa, IVA e ritenuta. Le spese anticipate per conto del cliente (contributo unificato, marche) si rimborsano a parte senza nessuna di queste voci."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si comporta il calcolo se il cliente è un ente pubblico?",
+            "name": "Il bollo da 2 € del forfettario lo paga il cliente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'ente pubblico è sostituto d'imposta e opera quindi la ritenuta del 20%. Dal 14 luglio 2018 lo split payment non si applica ai compensi dei professionisti assoggettati a ritenuta: l'ente corrisponde anche l'IVA all'avvocato e trattiene soltanto la ritenuta, come un qualsiasi cliente sostituto d'imposta."
+              "text": "Verso lo Stato lo deve l’avvocato, ma può addebitarlo al cliente scrivendolo in fattura. In quel caso non entra nella base di IVA e Cassa."
             }
           },
           {
             "@type": "Question",
-            "name": "L'imposta di bollo sulle fatture in regime forfettario è a carico del cliente?",
+            "name": "Si può concordare un compenso in percentuale sul valore della causa?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il soggetto obbligato verso l'erario è chi emette il documento, ma l'importo di 2,00 euro può essere legittimamente addebitato al cliente purché sia indicato in modo espresso e distinto in fattura. Se riaddebitato, l'importo non concorre alla base imponibile e non è soggetto a IVA né a contributo Cassa."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Posso pattuire un compenso a percentuale sul valore della causa?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La pattuizione del compenso in forma percentuale sul valore dei beni oggetto della controversia è ammessa, mentre resta vietato il patto di quota lite inteso come accordo che attribuisce all'avvocato una quota del bene litigioso in luogo del compenso. La distinzione è sottile e va valutata caso per caso alla luce della disciplina deontologica vigente."
+              "text": "Sì, è ammesso. È vietato invece il patto con cui l’avvocato riceve una parte del bene conteso al posto del compenso."
             }
           }
         ]
@@ -477,162 +469,80 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Calcolo della Parcella Legale, Equazioni di Scorporo e Privacy by Design</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La fatturazione dei servizi legali (parcella) impone una cascata impositiva strutturata. Ogni voce computata diventa la base imponibile per il livello successivo. Il rimborso forfettario delle Spese Generali (15%) si addiziona all'Onorario per formare la base della Cassa Forense (CPA al 4%). A sua volta, l'imponibile unito al CPA genera la base per l'applicazione dell'IVA (22%). L'infrastruttura <strong>Zero-Backend</strong> di StrumentiUtili garantisce che i dati finanziari immessi nel calcolatore non varchino mai il perimetro della RAM locale dell'utente, in perfetta conformità con l'Articolo 25 del GDPR.
-        </p>
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Formule di Scorporo (Da Netto a Lordo)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Lo scorporo matematico consente di risalire all'Onorario base partendo da un Totale Netto concordato. Se l'avvocato opera in regime ordinario e il cliente è un Sostituto d'Imposta (Azienda o P.IVA), l'equazione di bilancio è la seguente:</p>
-            <p class="font-mono text-xs bg-gray-50 p-3 rounded border border-gray-200 overflow-x-auto text-center">$$Totale Netto - Anticipazioni = Imponibile + CPA + IVA - Ritenuta$$</p>
-            <p>Sostituendo i tassi percentuali, si ottiene il coefficiente di divisione fisso <strong>1.0688</strong>. Qualora il cliente sia un Privato (esente da Ritenuta d'Acconto del 20%), il coefficiente divisore muta in <strong>1.2688</strong>.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si calcola la parcella di un avvocato</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Nella parcella di un avvocato ogni voce si calcola sulla precedente: al compenso si aggiungono le spese generali, poi il contributo per la Cassa forense, poi l&rsquo;IVA; la ritenuta d&rsquo;acconto invece si toglie. Il calcolatore fa il conto in avanti (dal compenso al totale) o all&rsquo;indietro (dalla cifra concordata al compenso).</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scegli il calcolo diretto (parti dal compenso) o lo scorporo (parti dal netto concordato).</li>
+            <li>Scrivi l&rsquo;importo e le eventuali spese anticipate per il cliente, come il contributo unificato.</li>
+            <li>Indica il regime fiscale dell&rsquo;avvocato e il tipo di cliente: privato o azienda / professionista (sostituto d&rsquo;imposta).</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le voci, in ordine</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li><strong>Compenso</strong> pattuito o calcolato con i parametri ministeriali.</li>
+            <li><strong>Spese generali, 15%</strong> del compenso.</li>
+            <li><strong>Cassa forense, 4%</strong> di compenso + spese generali.</li>
+            <li><strong>IVA, 22%</strong> di compenso + spese generali + Cassa.</li>
+            <li><strong>Ritenuta d&rsquo;acconto, 20%</strong> di compenso + spese generali, solo se il cliente &egrave; un sostituto d&rsquo;imposta.</li>
+            <li><strong>Spese anticipate</strong> (contributo unificato, marche, diritti): si aggiungono a parte, senza Cassa, IVA n&eacute; ritenuta.</li>
+          </ol>
+          <p>In formula, con I = compenso + 15%: totale fattura = I &times; 1,2688; netto pagato da un sostituto d&rsquo;imposta = I &times; 1,0688. Per lo scorporo si divide per questi numeri.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900"></th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Privato</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Azienda</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Compenso</td><td class="px-3 py-2 align-top">1.000,00 &euro;</td><td class="px-3 py-2 align-top">1.000,00 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Spese generali 15%</td><td class="px-3 py-2 align-top">150,00 &euro;</td><td class="px-3 py-2 align-top">150,00 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Cassa 4%</td><td class="px-3 py-2 align-top">46,00 &euro;</td><td class="px-3 py-2 align-top">46,00 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">IVA 22%</td><td class="px-3 py-2 align-top">263,12 &euro;</td><td class="px-3 py-2 align-top">263,12 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Totale fattura</td><td class="px-3 py-2 align-top">1.459,12 &euro;</td><td class="px-3 py-2 align-top">1.459,12 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Ritenuta 20%</td><td class="px-3 py-2 align-top">&mdash;</td><td class="px-3 py-2 align-top">&minus; 230,00 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Pagato all&rsquo;avvocato</td><td class="px-3 py-2 align-top">1.459,12 &euro;</td><td class="px-3 py-2 align-top">1.229,12 &euro;</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p><strong>Scorporo: 2.000 &euro; concordati con un privato.</strong> I = 2.000 &divide; 1,2688 = 1.576,29 &euro;, cio&egrave; 1.370,69 &euro; di compenso e 205,60 &euro; di spese generali; Cassa 63,05 &euro;, IVA 360,65 &euro;.</p>
+          <p><strong>Avvocata in regime forfettario, compenso 600 &euro;.</strong> 600 + 90 di spese generali + 27,60 di Cassa + 2 &euro; di bollo = 719,60 &euro;, senza IVA n&eacute; ritenuta, anche se il cliente &egrave; un&rsquo;azienda.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Da sapere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>L&rsquo;avvocato deve dare al cliente per iscritto un preventivo che distingua compenso, spese e oneri.</li>
+            <li>I parametri ministeriali servono al giudice e quando manca un accordo: il compenso resta libero, nel rispetto dell&rsquo;equo compenso per banche, assicurazioni, grandi imprese e pubbliche amministrazioni.</li>
+            <li>Gli enti pubblici trattengono la ritenuta ma pagano l&rsquo;IVA all&rsquo;avvocato: per i compensi soggetti a ritenuta non si applica lo split payment.</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la ritenuta non si calcola sulla Cassa forense?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; il 4% &egrave; un contributo previdenziale che l&rsquo;avvocato versa alla Cassa, non un compenso. Le spese generali del 15%, invece, fanno parte del compenso e subiscono la ritenuta.</p>
         </details>
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Regime Forfettario e Marca da Bollo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Se il professionista aderisce al Regime Forfettario, il sistema azzera automaticamente il calcolo dell'IVA e della Ritenuta d'Acconto. In base al D.P.R. 642/1972, qualora l'importo dell'Onorario sommato alle Spese Generali superi la soglia legale di <strong>77,47 €</strong>, il motore applica dinamicamente una Marca da Bollo obbligatoria di <strong>2,00 €</strong> addebitata in fattura.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le spese generali del 15% sono obbligatorie?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono previste dai parametri ministeriali e il giudice le riconosce; con il cliente si possono concordare diversamente. Se ci sono, vanno scritte a parte in fattura.</p>
         </details>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La parcella forense si costruisce per stratificazione: ogni voce si calcola su una base che incorpora già le voci precedenti, e l'ordine delle operazioni non è invertibile. Sbagliare la sequenza produce scostamenti di decine di euro anche su importi modesti.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">La catena di composizione dal basso verso l'alto</h3>
-            <ol class="list-decimal pl-5 space-y-2">
-              <li><strong>Compenso professionale.</strong> È il corrispettivo dell'attività, determinato secondo i parametri ministeriali per fase e per scaglione di valore, oppure liberamente pattuito.</li>
-              <li><strong>Spese generali, 15%.</strong> Rimborso forfetario dei costi di studio, calcolato sul solo compenso. Concorre a formare l'imponibile a ogni effetto, compresa la ritenuta.</li>
-              <li><strong>Contributo integrativo Cassa Forense, 4%.</strong> Si applica alla somma di compenso e spese generali. È un contributo previdenziale che l'avvocato riversa alla Cassa ma che ripete sul cliente.</li>
-              <li><strong>IVA ordinaria, 22%.</strong> Base imponibile costituita da compenso, spese generali e contributo integrativo. Il 4% di Cassa è quindi assoggettato a IVA.</li>
-              <li><strong>Ritenuta d'acconto, 20%.</strong> Si sottrae dal totale ma si calcola sulla sola somma di compenso e spese generali, mai sul contributo Cassa né sull'IVA.</li>
-            </ol>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Formalizzazione e coefficienti di scorporo</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Imponibile = Compenso x 1,15                  (compenso + spese generali 15%)</li>
-              <li>Cassa      = Imponibile x 0,04</li>
-              <li>Base IVA   = Imponibile x 1,04</li>
-              <li>IVA        = Imponibile x 1,04 x 0,22</li>
-              <li>Totale fattura  = Imponibile x 1,04 x 1,22 = Imponibile x 1,2688</li>
-              <li>Ritenuta   = Imponibile x 0,20</li>
-              <li>Netto a pagare (cliente sostituto d'imposta) = Imponibile x 1,0688</li>
-            </ul>
-            <p>I due coefficienti <strong>1,2688</strong> e <strong>1,0688</strong> sono il cuore dello strumento e derivano per moltiplicazione diretta dalle aliquote: 1,04 × 1,22 produce il primo, da cui si sottrae 0,20 di ritenuta per ottenere il secondo. Consentono l'operazione inversa, il cosiddetto <em>scorporo</em>: partendo dalla cifra concordata con il cliente si risale all'imponibile da esporre in fattura.</p>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Scorporo da cliente privato        =&gt;  Imponibile = Importo pattuito / 1,2688</li>
-              <li>Scorporo da cliente sostituto      =&gt;  Imponibile = Importo pattuito / 1,0688</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio di scorporo: 2.000 euro pattuiti con un cliente privato</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Calcolo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Importo</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Imponibile (compenso + 15%)</td><td class="px-3 py-2 border-t border-gray-200">2.000,00 / 1,2688</td><td class="px-3 py-2 border-t border-gray-200">1.576,29 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">di cui compenso</td><td class="px-3 py-2 border-t border-gray-200">1.576,29 / 1,15</td><td class="px-3 py-2 border-t border-gray-200">1.370,69 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">di cui spese generali 15%</td><td class="px-3 py-2 border-t border-gray-200">1.370,69 x 0,15</td><td class="px-3 py-2 border-t border-gray-200">205,60 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Contributo Cassa Forense 4%</td><td class="px-3 py-2 border-t border-gray-200">1.576,29 x 0,04</td><td class="px-3 py-2 border-t border-gray-200">63,05 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Base imponibile IVA</td><td class="px-3 py-2 border-t border-gray-200">1.576,29 + 63,05</td><td class="px-3 py-2 border-t border-gray-200">1.639,34 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">IVA 22%</td><td class="px-3 py-2 border-t border-gray-200">1.639,34 x 0,22</td><td class="px-3 py-2 border-t border-gray-200">360,65 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale fattura</td><td class="px-3 py-2 border-t border-gray-200">1.639,34 + 360,65</td><td class="px-3 py-2 border-t border-gray-200">1.999,99 EUR (differenza di arrotondamento di 1 centesimo)</td></tr></tbody></table></div>
-            <p>Se lo stesso cliente fosse un'impresa o un altro professionista, quindi sostituto d'imposta, la fattura resterebbe identica ma verrebbe applicata la ritenuta d'acconto di 315,26 euro (1.576,29 × 20%), con un bonifico effettivo di 1.684,74 euro. Per incassare comunque 2.000 euro occorrerebbe partire da un imponibile di 1.871,26 euro (2.000 / 1,0688), il che dimostra perché il coefficiente corretto vada scelto in funzione della natura del cliente prima ancora di formulare il preventivo.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il preventivo obbligatorio</h3>
-            <p>L'avvocato è tenuto a comunicare al cliente, in forma scritta e già al momento del conferimento dell'incarico, la prevedibile misura del costo della prestazione, distinguendo fra oneri, spese e compenso professionale. Lo strumento produce proprio questa scomposizione, che è anche la struttura richiesta dalla fattura elettronica: l'importo unico e indistinto non soddisfa l'obbligo informativo.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra spese generali e spese anticipate?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le spese generali sono un forfait del 15% con Cassa, IVA e ritenuta. Le spese anticipate per conto del cliente (contributo unificato, marche) si rimborsano a parte senza nessuna di queste voci.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.M. 10 marzo 2014 n. 55</strong> — regolamento sui parametri per la liquidazione dei compensi della professione forense, con le tabelle per materia, fase e scaglione di valore.</li>
-              <li><strong>Legge 31 dicembre 2012 n. 247</strong> — nuova disciplina dell'ordinamento della professione forense, che fissa gli obblighi informativi verso il cliente e la disciplina del patto sul compenso.</li>
-              <li><strong>D.L. 24 gennaio 2012 n. 1</strong> — abolisce le tariffe professionali obbligatorie, sostituite dai parametri di riferimento applicabili in assenza di accordo.</li>
-              <li><strong>Legge 20 settembre 1980 n. 576, articolo 11</strong> — istituisce il contributo integrativo del 4% dovuto alla Cassa Forense e ripetibile sul cliente.</li>
-              <li><strong>D.P.R. 26 ottobre 1972 n. 633 e D.P.R. 600/1973, articolo 25</strong> — disciplinano rispettivamente l'IVA sulle prestazioni professionali e la ritenuta d'acconto operata dal sostituto d'imposta.</li>
-              <li><strong>Legge 21 aprile 2023 n. 49</strong> — disciplina l'equo compenso delle prestazioni professionali rese a banche, assicurazioni, grandi imprese e pubbliche amministrazioni.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Specificità del regime forfettario</h3>
-            <p>L'avvocato in regime forfettario non addebita l'IVA e non subisce la ritenuta d'acconto. La fattura espone compenso, spese generali e contributo Cassa Forense al 4%, con l'indicazione della natura IVA di non assoggettamento. Resta dovuta l'<strong>imposta di bollo da 2,00 euro</strong> per le fatture di importo superiore a 77,47 euro, che il professionista può ripetere sul cliente indicandola espressamente in fattura.</p>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Voce</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Regime ordinario</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Regime forfettario</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Spese generali 15%</td><td class="px-3 py-2 border-t border-gray-200">Sì</td><td class="px-3 py-2 border-t border-gray-200">Sì</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Contributo Cassa 4%</td><td class="px-3 py-2 border-t border-gray-200">Sì</td><td class="px-3 py-2 border-t border-gray-200">Sì</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">IVA 22%</td><td class="px-3 py-2 border-t border-gray-200">Sì</td><td class="px-3 py-2 border-t border-gray-200">No, operazione non soggetta</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Ritenuta d'acconto 20%</td><td class="px-3 py-2 border-t border-gray-200">Sì, se cliente sostituto</td><td class="px-3 py-2 border-t border-gray-200">No, mai applicabile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Imposta di bollo 2,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">No</td><td class="px-3 py-2 border-t border-gray-200">Sì, oltre 77,47 EUR</td></tr></tbody></table></div>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> i parametri ministeriali costituiscono un riferimento per la liquidazione giudiziale e per i casi di mancato accordo, non un tariffario vincolante. Il compenso resta oggetto di libera pattuizione scritta fra avvocato e cliente, nel rispetto della disciplina sull'equo compenso. Lo strumento calcola la composizione fiscale della parcella e non esprime alcuna valutazione sulla congruità del compenso pattuito.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il bollo da 2 &euro; del forfettario lo paga il cliente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Verso lo Stato lo deve l&rsquo;avvocato, ma pu&ograve; addebitarlo al cliente scrivendolo in fattura. In quel caso non entra nella base di IVA e Cassa.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti nel calcolatore della pagina.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: consulenza stragiudiziale da 1.000 € per un privato</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Compenso 1.000,00 € + spese generali 150,00 € = 1.150,00 €</li>
-            <li>Cassa Forense 4%: 46,00 €; base IVA: 1.196,00 €</li>
-            <li>IVA 22%: 263,12 €</li>
-            <li>Totale fattura e importo pagato: 1.459,12 €</li>
-            </ul>
-            <p>Il privato non opera ritenuta. Se lo stesso parere fosse chiesto da una società, il bonifico sarebbe di 1.229,12 € e la società verserebbe 230 € di ritenuta all'Erario.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: recupero crediti per un'azienda con 3.000 € netti concordati</h3>
-            <p>L'avvocato si accorda con un'impresa per ricevere 3.000 € in tutto, di cui 98 € di contributo unificato già anticipato.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Da scorporare: 3.000 − 98 = 2.902,00 €; imponibile: 2.902 / 1,0688 = 2.715,20 €</li>
-            <li>Compenso 2.361,04 € + spese generali 354,16 €</li>
-            <li>Cassa 108,61 €; IVA 621,24 €; spese anticipate 98,00 €</li>
-            <li>Totale fattura 3.543,05 €; ritenuta 543,04 €; bonifico 3.000,01 €</li>
-            </ul>
-            <p>Il centesimo in più deriva dagli arrotondamenti delle singole voci. Il contributo unificato resta fuori da IVA e ritenuta, quindi va sempre separato dall'importo da scorporare.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: giovane avvocata in regime forfettario, compenso 600 €</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Compenso 600,00 € + spese generali 90,00 € = 690,00 €</li>
-            <li>Cassa Forense 4%: 27,60 €</li>
-            <li>Bollo: 2,00 €; totale fattura: 719,60 €</li>
-            </ul>
-            <p>Nessuna IVA e nessuna ritenuta, anche se il cliente è un'azienda. Con la stessa cifra in regime ordinario il cliente privato pagherebbe 875,47 €: per i clienti privati il forfettario è anche più competitivo.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si pu&ograve; concordare un compenso in percentuale sul valore della causa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, &egrave; ammesso. &Egrave; vietato invece il patto con cui l&rsquo;avvocato riceve una parte del bene conteso al posto del compenso.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché la ritenuta d'acconto non si calcola sul contributo Cassa Forense?</h3>
-              <p>Perché il contributo integrativo del 4% non ha natura di compenso ma di contribuzione previdenziale, che il professionista riscuote per conto della Cassa e a essa riversa. Non costituendo reddito professionale, resta fuori dalla base imponibile della ritenuta. Il 15% di spese generali segue invece la sorte del compenso ed è pienamente assoggettato a ritenuta.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Le spese generali del 15% sono obbligatorie o facoltative?</h3>
-              <p>Sono un rimborso forfetario riconosciuto dai parametri ministeriali e si applicano di regola nella liquidazione giudiziale dei compensi. Nei rapporti contrattuali con il cliente costituiscono una voce standard della prassi professionale, ma possono essere oggetto di diversa pattuizione scritta. Se applicate, vanno esposte distintamente in fattura e non incorporate nel compenso.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra spese generali e spese documentate?</h3>
-              <p>Le spese generali sono un forfait del 15% sul compenso, soggetto a IVA, a contributo Cassa e a ritenuta. Le spese documentate anticipate in nome e per conto del cliente, come contributo unificato, marche da bollo e diritti di copia, sono escluse dalla base imponibile IVA e vanno esposte separatamente: non generano né contributo Cassa né ritenuta.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Come si comporta il calcolo se il cliente è un ente pubblico?</h3>
-              <p>L'ente pubblico è sostituto d'imposta e opera quindi la ritenuta del 20%. Dal 14 luglio 2018 lo split payment non si applica ai compensi dei professionisti assoggettati a ritenuta: l'ente corrisponde anche l'IVA all'avvocato e trattiene soltanto la ritenuta, come un qualsiasi cliente sostituto d'imposta.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">L'imposta di bollo sulle fatture in regime forfettario è a carico del cliente?</h3>
-              <p>Il soggetto obbligato verso l'erario è chi emette il documento, ma l'importo di 2,00 euro può essere legittimamente addebitato al cliente purché sia indicato in modo espresso e distinto in fattura. Se riaddebitato, l'importo non concorre alla base imponibile e non è soggetto a IVA né a contributo Cassa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso pattuire un compenso a percentuale sul valore della causa?</h3>
-              <p>La pattuizione del compenso in forma percentuale sul valore dei beni oggetto della controversia è ammessa, mentre resta vietato il patto di quota lite inteso come accordo che attribuisce all'avvocato una quota del bene litigioso in luogo del compenso. La distinzione è sottile e va valutata caso per caso alla luce della disciplina deontologica vigente.</p>
-            </div>
-          </div>
-        </details>
-
-        </section>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.M. 10 marzo 2014, n. 55: parametri per i compensi degli avvocati.</li>
+          <li>Legge 31 dicembre 2012, n. 247: ordinamento della professione forense.</li>
+          <li>Legge 20 settembre 1980, n. 576, art. 11: contributo integrativo del 4%.</li>
+          <li>D.P.R. 29 settembre 1973, n. 600, art. 25: ritenuta d&rsquo;acconto.</li>
+          <li>Legge 21 aprile 2023, n. 49: equo compenso.</li>
+        </ul>
+      </section>
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>

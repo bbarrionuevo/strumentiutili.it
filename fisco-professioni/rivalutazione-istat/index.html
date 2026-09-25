@@ -141,50 +141,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Posso sommare liberamente rivalutazione e interessi legali?",
+            "name": "L’aggiornamento ISTAT è automatico?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non nel modo intuitivo. Per i debiti di valore le Sezioni Unite hanno chiarito che gli interessi non vanno calcolati sulla somma già integralmente rivalutata, perché ciò produrrebbe una duplicazione del risarcimento, ma sul capitale via via rivalutato anno per anno. Per i debiti di valuta la rivalutazione non spetta automaticamente e va provata come maggior danno rispetto agli interessi legali."
+              "text": "No: deve essere previsto nel contratto e va chiesto dal proprietario. Vale per il futuro, non per i mesi già pagati."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa accade se l'indice ISTAT diminuisce?",
+            "name": "Perché spesso si applica il 75%?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In periodo di deflazione il coefficiente scende sotto l'unità e produrrebbe matematicamente una riduzione del credito. La giurisprudenza prevalente esclude però che l'aggiornamento possa tradursi in una decurtazione del canone di locazione o del credito, riconoscendo alla clausola una funzione di sola salvaguardia del potere d'acquisto. Il risultato pratico è un blocco al valore precedente anziché una variazione negativa."
+              "text": "Per i negozi e gli uffici è il massimo previsto dalla legge; per le case a canone libero il contratto può prevedere anche il 100%."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché nei contratti di locazione si applica spesso il 75% dell'indice?",
+            "name": "Con la cedolare secca posso chiedere l’aumento ISTAT?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Perché molti contratti prevedono convenzionalmente un aggiornamento in misura ridotta rispetto alla variazione piena, soluzione che riflette un equilibrio negoziale consolidato nella prassi. La misura applicabile va verificata nella clausola contrattuale: in assenza di previsione espressa l'aggiornamento non è automatico e va richiesto dal locatore."
+              "text": "No: scegliendo la cedolare secca il proprietario rinuncia a ogni aggiornamento del canone per tutta la durata dell’opzione."
             }
           },
           {
             "@type": "Question",
-            "name": "L'aggiornamento ISTAT è dovuto anche in regime di cedolare secca?",
+            "name": "Se l’indice scende il canone si riduce?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. L'opzione per la cedolare secca comporta la rinuncia del locatore, per l'intera durata dell'opzione, alla facoltà di chiedere l'aggiornamento del canone a qualsiasi titolo, compreso quello legato alla variazione degli indici ISTAT. La rinuncia va comunicata per iscritto al conduttore ed è condizione di efficacia dell'opzione stessa."
+              "text": "Di regola no: l’aggiornamento serve a proteggere dal calo del valore del denaro, non ad abbassare il canone."
             }
           },
           {
             "@type": "Question",
-            "name": "Da quale data decorre la rivalutazione di un credito risarcitorio?",
+            "name": "Posso sommare rivalutazione e interessi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dalla data dell'evento dannoso, non da quella della domanda giudiziale né da quella della sentenza. Il debito di valore si rivaluta per l'intero periodo intercorso fino alla liquidazione, momento in cui si trasforma in debito di valuta e da lì in avanti produce soltanto interessi legali sulla somma liquidata."
+              "text": "Non semplicemente. Nei risarcimenti gli interessi si calcolano sulla somma rivalutata anno per anno, non su quella già rivalutata per intero. Per i debiti di una somma fissa la rivalutazione non è automatica."
             }
           },
           {
             "@type": "Question",
-            "name": "Gli interessi si calcolano su 365 o su 366 giorni?",
+            "name": "Gli interessi si contano su 365 o 366 giorni?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sull'effettiva durata dell'anno di competenza. Il motore applica 366 giorni agli anni bisestili, come il 2024, e 365 agli altri. Su importi elevati e periodi lunghi la differenza non è trascurabile e costituisce uno dei motivi ricorrenti di contestazione dei conteggi prodotti in sede stragiudiziale."
+              "text": "Sulla durata vera dell’anno: 366 negli anni bisestili come il 2024, 365 negli altri."
             }
           }
         ]
@@ -496,195 +496,70 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Dossier Giuridico: Aggiornamento ISTAT FOI e Maturazione degli Interessi Legali (Artt. 1283 e 1284 c.c.)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">Il calcolo della svalutazione monetaria e la liquidazione degli interessi civili su debiti pecuniari costituiscono procedimenti algebrico-giuridici di primaria importanza per avvocati, amministratori di condominio e consulenti finanziari. Il framework normativo italiano vincola severamente l'aggiornamento dei canoni di locazione (Legge 392/1978) e sanziona il ritardo nell'adempimento delle obbligazioni pecuniarie applicando i saggi d'interesse dettati annualmente dal Ministero dell'Economia e delle Finanze. Il presente trattato sviscera l'architettura matematica utilizzata dai nostri algoritmi, delineando le formule "pro rata temporis" per i calcoli frazionati, la gestione dei leap years (anni bisestili) e la disciplina stringente del divieto di anatocismo.</p>
-        
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>1.</span> Costrutto Matematico della Rivalutazione ISTAT (Indice FOI)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La svalutazione del potere d'acquisto della moneta viene misurata dall'Istituto Nazionale di Statistica (ISTAT) tramite l'Indice Nazionale dei Prezzi al Consumo per le Famiglie di Operai e Impiegati (FOI, al netto dei tabacchi). Questo indicatore costituisce la base legale per la correzione inflattiva di assegni di mantenimento, pensioni e contratti di locazione commerciale e abitativa.</p>
-            <p>Dal punto di vista algebrico, il calcolo della variazione percentuale ($\Delta\%_{\text{FOI}}$) tra due periodi di riferimento ($m_1, a_1$ per il mese base e $m_2, a_2$ per il mese finale) è espresso dalla seguente relazione differenziale:</p>
-            <div class="overflow-x-auto my-4 text-center">
-              $$\Delta\%_{\text{FOI}} = \left[\frac{\text{Indice FOI}_{m_2,a_2} - \text{Indice FOI}_{m_1,a_1}}{\text{Indice FOI}_{m_1,a_1}}\right] \cdot 100$$
-            </div>
-            <p>La normativa vincola strettamente la percentuale di adeguamento contrattuale ($\beta$) applicabile. Per le locazioni a uso diverso dall'abitativo, come negozi, uffici e laboratori, l'art. 32 della L. 392/1978 limita l'aggiornamento annuale al <strong>75%</strong> della variazione accertata dall'ISTAT ($\beta = 0,75$). Per le locazioni abitative a canone libero 4+4 la misura è rimessa al contratto, che può prevedere anche la variazione integrale al <strong>100%</strong> ($\beta = 1,00$); nei contratti a canone concordato gli accordi territoriali fissano di norma il 75%. L'aggiornamento spetta solo se previsto dal contratto. L'equazione di rivalutazione finale diventa pertanto: $\text{Canone Aggiornato} = \text{Canone Base} \cdot \left[1 + \left(\frac{\Delta\%_{\text{FOI}} \cdot \beta}{100}\right)\right]$.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Aggiornamento ISTAT del canone e interessi legali</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La pagina fa due calcoli: l&rsquo;aggiornamento di un canone con l&rsquo;indice ISTAT dei prezzi (FOI senza tabacchi) e gli interessi legali su una somma pagata in ritardo, anno per anno con il tasso giusto.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Aggiornare il canone</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scrivi il canone attuale.</li>
+            <li>Scegli il mese e l&rsquo;anno di partenza e quelli di arrivo (di solito lo stesso mese, a un anno di distanza).</li>
+            <li>Scegli la percentuale prevista dal contratto: 100% o 75% della variazione.</li>
+          </ol>
+          <p>Nuovo canone = canone &times; (1 + variazione ISTAT &times; percentuale). L&rsquo;aumento spetta solo se il contratto lo prevede e se il proprietario lo chiede; per i negozi e gli uffici la legge lo limita al 75%. Con la cedolare secca non spetta.</p>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Da gennaio 2026 l&rsquo;ISTAT pubblica gli indici con base 2025 = 100. Per confrontare un mese del 2026 con uno precedente bisogna moltiplicare l&rsquo;indice nuovo per il coefficiente di raccordo 1,214: lo strumento lo fa da solo.</p>
+          <p><strong>Esempio: negozio da 1.500 &euro; al mese.</strong> Agosto 2025 = 121,8; agosto 2026 = 103,7 &times; 1,214 = 125,89. Variazione +3,4%, al 75% +2,55%: nuovo canone 1.538,25 &euro;. Senza raccordo sembrerebbe un calo del 15%.</p>
+          <p>Se l&rsquo;indice scende, il canone non si abbassa: lo strumento lascia la variazione a zero.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Interessi legali</h3>
+          <p>Il tasso legale cambia ogni anno, per decreto del Ministero dell&rsquo;Economia. Lo strumento divide il periodo per anni e usa 366 giorni per gli anni bisestili.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Tasso legale</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">2023</td><td class="px-3 py-2 align-top">5,00%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">2024</td><td class="px-3 py-2 align-top">2,50%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">2025</td><td class="px-3 py-2 align-top">2,00%</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">2026</td><td class="px-3 py-2 align-top">1,60%</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>2.</span> Il Fenomeno della Deflazione: Il Blocco Giurisprudenziale</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Una criticità algoritmica di rilevante impatto sorge durante i cicli economici caratterizzati da tassi di inflazione negativi (deflazione). In queste fasi contingenti, l'indice FOI del mese di calcolo risulta inferiore all'indice del mese base, generando matematicamente una variazione percentuale negativa ($\Delta\%_{\text{FOI}} < 0$).</p>
-            <p>Qualora il calcolo fosse condotto in maniera acritica, la formula produrrebbe una diminuzione nominale del canone di locazione. Tuttavia, secondo l'interpretazione prevalente, in assenza di una specifica clausola contrattuale in deroga, l'adeguamento ISTAT tutela il potere d'acquisto del locatore ma non può tradursi in una decurtazione del canone originariamente pattuito in caso di recessione economica.</p>
-            <p>Il nostro software integra pertanto un costrutto di blocco condizionale normativo (floor at zero): la variazione viene neutralizzata se negativa ($\Delta\%_{\text{FOI}} < 0 \implies \Delta\%_{\text{FOI}} = 0$), garantendo l'invarianza del canone di locazione nell'annualità di deflazione, per poi riprendere regolarmente il conteggio incrementale nei periodi successivi.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>3.</span> Tassi di Interesse Legale (2026) e Calcolo Pro Rata Temporis</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La ritardata esecuzione di un'obbligazione pecuniaria obbliga il debitore a corrispondere al creditore gli interessi moratori civili, calcolati in base al saggio di interesse legale fissato dall'Articolo 1284 del Codice Civile. Tale tasso è soggetto a revisione annuale da parte del Ministero dell'Economia e delle Finanze (MEF) con apposito Decreto Ministeriale.</p>
-            <p>A partire dal 1° gennaio 2026, il tasso d'interesse legale civile è fissato all'<strong>1,60% su base annua</strong>. Questo valore costituisce una flessione rispetto alle annualità pregresse (il tasso era del 2,00% nel 2025, del 2,50% nel 2024 e del 5,00% nel 2023). Poiché un debito può protrarsi attraverso molteplici annualità solari, il calcolo della quota interessi non può basarsi esclusivamente sul tasso odierno, ma deve frammentare l'orizzonte temporale in corrispondenza dei tassi vigenti in ogni singola epoca.</p>
-            <p>L'algoritmo sviluppato esegue un calcolo per giorni solari (pro rata temporis) applicando la formula della capitalizzazione semplice:</p>
-            <div class="overflow-x-auto my-4 text-center">
-              $$\text{Interessi Totali} = \sum_{j=1}^{m} \left[ \frac{C_j \cdot r_j \cdot gg_j}{N_j \cdot 100} \right]$$
-            </div>
-            <p>La frazione temporale ($gg_j$) rileva gli esatti giorni di mora accertati all'interno della finestra del tasso specifico ($r_j$). Un elemento di estrema accuratezza peritale riguarda l'implementazione del divisore dei giorni annui ($N_j$). L'algoritmo adegua dinamicamente la base temporale a <strong>366 giorni</strong> se il periodo incrocia un anno bisestile (come avvenuto nel 2024), e a <strong>365 giorni</strong> per gli anni ordinari (come 2025 e 2026). La mancata osservanza di questa deviazione matematica invalida sistematicamente i prospetti contabili depositati in ambito processuale e stragiudiziale.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Anatocismo (Art. 1283 c.c.) e Ambito di Applicazione</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Perché il simulatore non calcola l'interesse composto?</h4>
-              <p>Nel sistema giuridico italiano opera un generale e rigoroso divieto di anatocismo, sancito dall'Articolo 1283 del Codice Civile. Gli interessi scaduti e non pagati non generano a loro volta nuovi interessi (capitalizzazione composta), a meno che non intervenga una domanda giudiziale specifica dal giorno della sua proposizione o che le parti non abbiano stipulato una convenzione esplicita in tal senso, sempre posteriore alla scadenza degli interessi per almeno sei mesi. Il nostro simulatore, aderendo al protocollo legale standard per i recuperi crediti ordinari, calcola esclusivamente la capitalizzazione semplice in ossequio alla norma codicistica vigente.</p>
-            </div>
-
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Quale tasso si applica in caso di transazioni commerciali (B2B)?</h4>
-              <p>Il tasso di interesse legale dell'1,60% (Art. 1284 c.c.) esaminato in questa pagina regola i rapporti obbligatori di natura civile (ad esempio i ritardi nel pagamento di oneri condominiali, transazioni tra privati o debiti tributari se previsti dalla legge). Se il ritardo nel pagamento riguarda transazioni commerciali strette tra imprese (B2B) o tra imprese e pubbliche amministrazioni, la normativa deroga a favore del Decreto Legislativo n. 231/2002. In quel caso, il tasso di mora è determinato a livello europeo (Tasso BCE) con l'aggiunta di una rigida penalizzazione spread di 8 punti percentuali.</p>
-            </div>
-
-          </div>
-        </details>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Codice civile, articolo 1224</strong> — disciplina il danno nelle obbligazioni pecuniarie e il diritto del creditore al maggior danno rispetto agli interessi legali.</li>
-              <li><strong>Codice civile, articolo 1284</strong> — fissa il saggio degli interessi legali, determinato annualmente con decreto del Ministero dell'Economia e delle Finanze.</li>
-              <li><strong>Codice civile, articolo 1283</strong> — vieta l'anatocismo salvo domanda giudiziale o convenzione posteriore alla scadenza e comunque per interessi dovuti da almeno sei mesi.</li>
-              <li><strong>Legge 27 luglio 1978 n. 392, articolo 32</strong> — consente l'aggiornamento annuale del canone delle locazioni a uso diverso dall'abitativo in misura non superiore al 75% della variazione dell'indice ISTAT.</li>
-              <li><strong>Cassazione, Sezioni Unite, sentenza n. 1712 del 1995</strong> — stabilisce che nei debiti di valore gli interessi vanno calcolati sulla somma progressivamente rivalutata e non sul capitale già rivalutato per intero.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Debiti di valore e debiti di valuta</h3>
-            <p>La distinzione governa l'intera materia. Il <strong>debito di valuta</strong> ha per oggetto una somma di denaro determinata fin dall'origine, come il prezzo di una compravendita o il rimborso di un mutuo: segue il principio nominalistico, per cui cento euro dovuti nel 2020 restano cento euro, e la svalutazione si recupera solo provando il maggior danno. Il <strong>debito di valore</strong> ha invece per oggetto la reintegrazione di un valore economico, come il risarcimento del danno: si rivaluta automaticamente fino alla liquidazione, perché la somma è solo la misura monetaria di un bene.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Indici e tassi impiegati dal motore</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Tasso di interesse legale</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Giorni convenzionali</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">2021</td><td class="px-3 py-2 border-t border-gray-200">0,01%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2022</td><td class="px-3 py-2 border-t border-gray-200">1,25%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2023</td><td class="px-3 py-2 border-t border-gray-200">5,00%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2024</td><td class="px-3 py-2 border-t border-gray-200">2,50%</td><td class="px-3 py-2 border-t border-gray-200">366</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2025</td><td class="px-3 py-2 border-t border-gray-200">2,00%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2026</td><td class="px-3 py-2 border-t border-gray-200">1,60%</td><td class="px-3 py-2 border-t border-gray-200">365</td></tr></tbody></table></div>
-            <p>L'oscillazione del saggio legale fra lo 0,01% del 2021 e il 5,00% del 2023 rende indispensabile la segmentazione temporale del calcolo: applicare il tasso vigente all'intero arco di un credito pluriennale produce errori che possono superare il cinquanta per cento dell'importo accessorio. Il motore spezza il periodo in segmenti annuali e applica a ciascuno il saggio di competenza, computando correttamente i 366 giorni degli anni bisestili.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Ambiti applicativi tipici</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Aggiornamento dei canoni di locazione</strong>: nella misura del 100% o del 75% della variazione FOI, secondo il tipo contrattuale e purché l'opzione per la cedolare secca non sia stata esercitata.</li>
-              <li><strong>Crediti di lavoro</strong>: rivalutazione e interessi sulle retribuzioni corrisposte in ritardo, con le peculiarità stabilite per il pubblico impiego.</li>
-              <li><strong>Risarcimento del danno</strong>: rivalutazione automatica del debito di valore dall'evento dannoso alla liquidazione giudiziale.</li>
-              <li><strong>Assegni di mantenimento</strong>: adeguamento periodico secondo gli indici ISTAT, di regola previsto direttamente nel provvedimento del giudice.</li>
-              <li><strong>Appalti e contratti pubblici</strong>: revisione dei prezzi secondo le clausole contrattuali e le disposizioni del codice dei contratti.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> l'indice FOI utilizzato per gli aggiornamenti contrattuali è quello al netto dei tabacchi, pubblicato mensilmente dall'ISTAT in Gazzetta Ufficiale. Gli indici degli ultimi mesi possono essere provvisori e soggetti a revisione. La quantificazione prodotta ha valore orientativo: per una domanda giudiziale o una transazione è opportuno che il conteggio sia validato da un legale o da un consulente tecnico.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono calcolati con il motore della pagina, usando gli indici FOI pubblicati dall'ISTAT e i tassi di interesse legale di ciascun anno.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: negozio da 1.500 € al mese con contratto iniziato il 1° ottobre</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Indici: agosto 2025 = 121,8; agosto 2026 = 103,7 × 1,214 = 125,89</li>
-            <li>Variazione ISTAT: +3,4%</li>
-            <li>Aggiornamento al 75%: +2,55%, pari a 38,25 € al mese</li>
-            <li>Nuovo canone da ottobre 2026: 1.538,25 €</li>
-            </ul>
-            <p>Senza il coefficiente di raccordo il confronto fra 121,8 e 103,7 darebbe un calo del 15% e nessun aumento: è l'errore più frequente nei conteggi fatti a mano nel 2026.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: appartamento a canone libero da 800 € con aggiornamento pieno</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Periodo: luglio 2025 - luglio 2026</li>
-            <li>Variazione ISTAT: +2,8%, applicata al 100%</li>
-            <li>Aumento: 22,40 € al mese, nuovo canone 822,40 €</li>
-            </ul>
-            <p>La clausola al 100% è ammessa nel 4+4 a canone libero. Se il proprietario ha optato per la cedolare secca l'aumento non è dovuto, anche se previsto dal contratto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: ufficio da 700 € con aggiornamento dimenticato nel 2025</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Periodo: gennaio 2024 - gennaio 2026, variazione ISTAT +2,2%</li>
-            <li>Aggiornamento al 75%: +1,65%, pari a 11,55 €</li>
-            <li>Nuovo canone: 711,55 €</li>
-            </ul>
-            <p>Confrontando due anni in una volta il locatore recupera il livello del canone, ma non gli aumenti dei mesi già pagati: la richiesta produce effetti solo per il futuro.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: prestito fra privati da 5.000 € restituito con due anni di ritardo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Dal 15 marzo 2024 al 15 marzo 2026: 730 giorni</li>
-            <li>2024: 292 giorni al 2,5% su 366 = 99,73 €</li>
-            <li>2025: 365 giorni al 2% = 100,00 €</li>
-            <li>2026: 73 giorni all'1,6% = 16,00 €</li>
-            <li>Interessi: 215,73 €; totale dovuto 5.215,73 €</li>
-            </ul>
-            <p>Applicando a tutto il periodo il tasso del 2026 gli interessi sarebbero di 160 €, circa un quarto in meno di quanto dovuto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 5: quote condominiali da 1.200 € pagate con sei mesi di ritardo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Dal 1° giugno al 1° dicembre 2025: 183 giorni al 2%</li>
-            <li>Interessi legali: 12,03 €; totale 1.212,03 €</li>
-            </ul>
-            <p>Su importi e ritardi contenuti gli interessi legali restano modesti: il regolamento di condominio può prevedere interessi più alti, purché entro i limiti dell'usura.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso sommare liberamente rivalutazione e interessi legali?</h3>
-              <p>Non nel modo intuitivo. Per i debiti di valore le Sezioni Unite hanno chiarito che gli interessi non vanno calcolati sulla somma già integralmente rivalutata, perché ciò produrrebbe una duplicazione del risarcimento, ma sul capitale via via rivalutato anno per anno. Per i debiti di valuta la rivalutazione non spetta automaticamente e va provata come maggior danno rispetto agli interessi legali.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa accade se l'indice ISTAT diminuisce?</h3>
-              <p>In periodo di deflazione il coefficiente scende sotto l'unità e produrrebbe matematicamente una riduzione del credito. La giurisprudenza prevalente esclude però che l'aggiornamento possa tradursi in una decurtazione del canone di locazione o del credito, riconoscendo alla clausola una funzione di sola salvaguardia del potere d'acquisto. Il risultato pratico è un blocco al valore precedente anziché una variazione negativa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché nei contratti di locazione si applica spesso il 75% dell'indice?</h3>
-              <p>Perché molti contratti prevedono convenzionalmente un aggiornamento in misura ridotta rispetto alla variazione piena, soluzione che riflette un equilibrio negoziale consolidato nella prassi. La misura applicabile va verificata nella clausola contrattuale: in assenza di previsione espressa l'aggiornamento non è automatico e va richiesto dal locatore.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">L'aggiornamento ISTAT è dovuto anche in regime di cedolare secca?</h3>
-              <p>No. L'opzione per la cedolare secca comporta la rinuncia del locatore, per l'intera durata dell'opzione, alla facoltà di chiedere l'aggiornamento del canone a qualsiasi titolo, compreso quello legato alla variazione degli indici ISTAT. La rinuncia va comunicata per iscritto al conduttore ed è condizione di efficacia dell'opzione stessa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Da quale data decorre la rivalutazione di un credito risarcitorio?</h3>
-              <p>Dalla data dell'evento dannoso, non da quella della domanda giudiziale né da quella della sentenza. Il debito di valore si rivaluta per l'intero periodo intercorso fino alla liquidazione, momento in cui si trasforma in debito di valuta e da lì in avanti produce soltanto interessi legali sulla somma liquidata.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Gli interessi si calcolano su 365 o su 366 giorni?</h3>
-              <p>Sull'effettiva durata dell'anno di competenza. Il motore applica 366 giorni agli anni bisestili, come il 2024, e 365 agli altri. Su importi elevati e periodi lunghi la differenza non è trascurabile e costituisce uno dei motivi ricorrenti di contestazione dei conteggi prodotti in sede stragiudiziale.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore di rivalutazione monetaria e interessi legali funziona <strong>interamente lato client, senza alcun backend</strong>. L'importo del credito, le date di riferimento e la tipologia di rapporto vengono elaborati dal browser sul tuo dispositivo e non lasciano mai la macchina. Non conserviamo alcuna traccia dei conteggi eseguiti né dei valori inseriti.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">I conteggi di rivalutazione riguardano tipicamente crediti di lavoro, risarcimenti del danno e controversie in corso: informazioni che rivelano l'esistenza di un contenzioso e la posizione economica delle parti coinvolte. L'assenza totale di trasmissione garantisce la conformità al Regolamento UE 2016/679 (GDPR) e realizza i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, unitamente alla minimizzazione dei dati dell'articolo 5. Lo strumento è utilizzabile anche in assenza di connessione, una volta caricata la pagina.</p>
+          <p><strong>Prestito fra privati di 5.000 &euro; restituito dal 15 marzo 2024 al 15 marzo 2026.</strong> 2024: 292 giorni al 2,5% = 99,73 &euro;; 2025: 100 &euro;; 2026: 73 giorni all&rsquo;1,6% = 16 &euro;. Totale 215,73 &euro;. Con il solo tasso del 2026 sarebbero 160 &euro;.</p>
+          <p>Gli interessi sono semplici: la legge vieta di calcolare interessi sugli interessi (anatocismo), salvo domanda in giudizio o accordo successivo alla scadenza. Fra imprese si usano invece gli <a href="/fisco-professioni/interessi-moratori/" class="text-indigo-700 underline">interessi di mora commerciali</a>.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;aggiornamento ISTAT &egrave; automatico?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: deve essere previsto nel contratto e va chiesto dal proprietario. Vale per il futuro, non per i mesi gi&agrave; pagati.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; spesso si applica il 75%?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per i negozi e gli uffici &egrave; il massimo previsto dalla legge; per le case a canone libero il contratto pu&ograve; prevedere anche il 100%.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Con la cedolare secca posso chiedere l&rsquo;aumento ISTAT?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: scegliendo la cedolare secca il proprietario rinuncia a ogni aggiornamento del canone per tutta la durata dell&rsquo;opzione.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se l&rsquo;indice scende il canone si riduce?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Di regola no: l&rsquo;aggiornamento serve a proteggere dal calo del valore del denaro, non ad abbassare il canone.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso sommare rivalutazione e interessi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Non semplicemente. Nei risarcimenti gli interessi si calcolano sulla somma rivalutata anno per anno, non su quella gi&agrave; rivalutata per intero. Per i debiti di una somma fissa la rivalutazione non &egrave; automatica.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Gli interessi si contano su 365 o 366 giorni?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sulla durata vera dell&rsquo;anno: 366 negli anni bisestili come il 2024, 365 negli altri.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Codice civile, artt. 1224, 1283 e 1284: danno da ritardo, anatocismo e interessi legali.</li>
+          <li>Legge 27 luglio 1978, n. 392, art. 32: aggiornamento dei canoni non abitativi.</li>
+          <li>Indici FOI senza tabacchi pubblicati dall&rsquo;ISTAT.</li>
+          <li>Decreti annuali del Ministero dell&rsquo;Economia sul tasso di interesse legale.</li>
+        </ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Per una causa o una transazione fai verificare il conteggio da un legale: gli indici pi&ugrave; recenti possono essere provvisori.</p>
+      </section>
 
       <!-- Ad Mobile Bottom -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">

@@ -182,3 +182,13 @@ test('passaggio di proprieta: moto senza IPT, veicoli con piu di 30 anni a impor
   assert.match(pagina, /id="calc-storico"/, 'manca la casella per i veicoli con piu di 30 anni');
   assert.doesNotMatch(pagina, /Esente IPT/);
 });
+
+test('generatore XML: sede vera di cedente e cliente e bollo virtuale dei forfettari', () => {
+  const codice = fs.readFileSync(path.join(RADICE, 'js', 'fatturapa.js'), 'utf8');
+  assert.doesNotMatch(codice, /Indirizzo da configurare/, 'la sede non puo essere un segnaposto');
+  assert.match(codice, /<BolloVirtuale>SI<\/BolloVirtuale>/);
+  const pagina = fs.readFileSync(path.join(RADICE, 'fisco-professioni', 'generatore-xml-fatturapa', 'index.html'), 'utf8');
+  for (const chi of ['emittente', 'cliente'])
+    for (const campo of ['indirizzo', 'cap', 'comune', 'provincia'])
+      assert.match(pagina, new RegExp(`id="${chi}-${campo}"`), `${chi}-${campo}`);
+});

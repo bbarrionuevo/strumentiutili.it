@@ -15,16 +15,6 @@ const PAGINE = C.pagineIndicizzabili();
 // Pagine con il vecchio trattato ancora da riscrivere in italiano semplice.
 // La lista puo' solo accorciarsi: quando una pagina e' riscritta, va tolta.
 const DA_RISCRIVERE = new Set([
-  'fisco-professioni/calcolo-iva/index.html',
-  'fisco-professioni/calcolo-rata-mutuo/index.html',
-  'fisco-professioni/contributo-unificato/index.html',
-  'fisco-professioni/fattura-elettronica/index.html',
-  'fisco-professioni/generatore-xml-fatturapa/index.html',
-  'fisco-professioni/interessi-moratori/index.html',
-  'fisco-professioni/modelli-partita-iva/index.html',
-  'fisco-professioni/parcella-avvocato/index.html',
-  'fisco-professioni/rivalutazione-istat/index.html',
-  'fisco-professioni/usufrutto/index.html',
   'ia/assistente-documenti/index.html',
   'ia/ocr-immagini/index.html',
   'ia/riassunto-testo/index.html',

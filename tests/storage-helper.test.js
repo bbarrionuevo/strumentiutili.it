@@ -46,3 +46,11 @@ test('lettere di dimissioni e modello RLI non salvano il codice fiscale', () => 
     assert.ok(!/\bcf\w*\s*:/i.test(salva), js + ': saveState salva ancora un codice fiscale');
   }
 });
+
+test('generatore XML: il codice fiscale del cliente non si salva e i vecchi valori si cancellano', () => {
+  const pagina = fs.readFileSync(path.join(RADICE, 'fisco-professioni', 'generatore-xml-fatturapa', 'index.html'), 'utf8');
+  assert.match(pagina, /id="cliente-id"[^>]*data-no-save/);
+  const codice = fs.readFileSync(path.join(RADICE, 'js', 'storage-helper.js'), 'utf8');
+  const pulizia = codice.slice(codice.indexOf('Dati sensibili salvati'), codice.indexOf('const tutti'));
+  assert.match(pulizia, /data-no-save/, 'i valori salvati prima di data-no-save restano nel browser');
+});
