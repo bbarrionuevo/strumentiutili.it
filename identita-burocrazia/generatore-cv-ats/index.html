@@ -135,34 +135,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il CV generato supera tutti i sistemi ATS?",
+            "name": "Il CV supera tutti gli ATS?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nessun formato garantisce il passaggio: il punteggio dipende soprattutto dalla corrispondenza fra esperienze, competenze e annuncio. Il generatore elimina gli ostacoli tecnici più comuni, come colonne, tabelle e testo in immagini."
+              "text": "Nessun formato lo garantisce: conta soprattutto quanto esperienze e competenze corrispondono all’annuncio. Il generatore toglie gli ostacoli tecnici più comuni."
             }
           },
           {
             "@type": "Question",
-            "name": "Meglio il PDF o il Word?",
+            "name": "Meglio PDF o Word?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il PDF testuale prodotto qui è letto correttamente dagli ATS più diffusi. Se il portale chiede espressamente un file .doc o .docx, rispetta la richiesta."
+              "text": "Il PDF di testo prodotto qui è letto bene dagli ATS più diffusi. Se il portale chiede un .docx, segui la richiesta."
             }
           },
           {
             "@type": "Question",
-            "name": "Quante pagine deve avere il curriculum?",
+            "name": "Quante pagine?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Una pagina fino a circa 5 anni di esperienza, due per profili senior. Il generatore va a pagina nuova automaticamente quando il contenuto supera il foglio A4."
+              "text": "Una fino a circa cinque anni di esperienza, due per i profili senior. Il generatore va a pagina nuova da solo."
             }
           },
           {
             "@type": "Question",
-            "name": "I dati restano salvati se chiudo la pagina?",
+            "name": "Perché scrivere mese e anno nelle date?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, nel localStorage di questo browser, per ritrovare il CV alla visita successiva. Su un computer condiviso usa «Cancella tutti i dati» al termine."
+              "text": "Con i soli anni («2021 – 2023») l’ATS non sa se l’esperienza è durata pochi mesi o quasi tre anni."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati restano salvati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, solo in questo browser, per ritrovare il CV la volta dopo. Su un computer condiviso usa «Cancella tutti i dati» alla fine. Nulla viene inviato a un server."
             }
           }
         ]
@@ -568,129 +576,60 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Guida Tecnica: Come ATS e Intelligenza Artificiale Leggono il Curriculum Vitae</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La maggior parte delle candidature inviate a medie e grandi aziende non viene letta per prima da un recruiter, ma da un <strong>Applicant Tracking System (ATS)</strong>: un software che estrae il testo dal PDF, lo classifica in campi strutturati (ruoli, date, titoli di studio, competenze) e produce un punteggio di compatibilità con l'annuncio. Un curriculum graficamente curato ma tecnicamente illeggibile può essere scartato prima di arrivare a un essere umano.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🔍</span> Come funziona il parsing di un PDF</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Un parser ATS non "vede" l'impaginazione: legge la sequenza di caratteri memorizzata nel file (il <em>text stream</em>) seguendo le coordinate da sinistra a destra e dall'alto verso il basso. In un layout a due colonne la prima riga della colonna sinistra viene concatenata alla prima riga della colonna destra, producendo frasi prive di senso come "Inglese C1 Software Architect 2023".</p>
-            <p>Per questo il generatore impagina il contenuto in un <strong>flusso monocolonna</strong>, senza tabelle, caselle di testo o elementi canvas. Le competenze sono espresse in parole, non con barre grafiche o stelline che il parser non può interpretare.</p>
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Un curriculum che i software di selezione riescono a leggere</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Nelle aziende medie e grandi il curriculum passa spesso prima da un ATS (Applicant Tracking System): un programma che estrae il testo dal PDF, lo divide in ruoli, date, studi e competenze e lo confronta con l&rsquo;annuncio. Un CV molto grafico pu&ograve; risultare illeggibile e finire scartato. Il generatore crea un PDF semplice, a una colonna, che questi programmi leggono bene.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Compila nome, ruolo, contatti e un breve profilo con le parole chiave del tuo lavoro.</li>
+            <li>Aggiungi esperienze e studi con mese e anno di inizio e fine.</li>
+            <li>Elenca le competenze a parole (non con stelline o barre).</li>
+            <li>Scegli se inserire la foto e scarica il PDF.</li>
+          </ol>
+          <p>Con &laquo;Carica esempio&raquo; vedi un CV gi&agrave; compilato da usare come modello.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa fa il generatore per te</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Una sola colonna:</strong> con due colonne l&rsquo;ATS legge le righe affiancate come una frase sola (&laquo;Inglese C1 Software Architect 2023&raquo;).</li>
+            <li><strong>Titoli standard:</strong> Profilo Professionale, Esperienza Lavorativa, Istruzione, Competenze.</li>
+            <li><strong>Contatti nel testo</strong>, non nell&rsquo;intestazione o in un&rsquo;immagine.</li>
+            <li><strong>Date &laquo;Mese Anno &ndash; Mese Anno&raquo;</strong>, da cui l&rsquo;ATS calcola la durata di ogni esperienza.</li>
+            <li><strong>Carattere standard (Helvetica):</strong> le lettere di altri alfabeti (&laquo;&#536;&raquo;, &laquo;&#321;&raquo;) diventano la lettera base, cos&igrave; il nome resta leggibile e cercabile.</li>
+            <li><strong>Foto facoltativa:</strong> se la inserisci va in formato 35&times;45 sopra il testo, senza spezzare l&rsquo;ordine di lettura.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Magazziniere senza foto.</strong> Profilo &laquo;Magazziniere con 8 anni di esperienza in gestione magazzino, patentino carrelli elevatori e uso di terminali RF&raquo;; competenze: gestione magazzino, SAP EWM, carrello elevatore, inventario. Le stesse parole dell&rsquo;annuncio compaiono nel profilo e nelle competenze.</p>
+          <p><strong>Rientro dopo due anni di assistenza a un familiare.</strong> Aggiungere il corso di contabilit&agrave; e paghe seguito nel frattempo, con mese e anno, riduce il periodo scoperto e aggiunge parole chiave. Il periodo di assistenza si spiega al colloquio, senza date inesatte.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Prima di inviarlo</h3>
+          <p>Apri il PDF, seleziona tutto il testo (Ctrl+A), copialo e incollalo in un editor. Se le righe sono nell&rsquo;ordine giusto e non mancano lettere, un ATS lo legger&agrave; allo stesso modo.</p>
+          <p>In Italia la foto non &egrave; obbligatoria. Molte aziende preferiscono CV senza foto per ridurre i pregiudizi; l&rsquo;AI Act europeo considera ad alto rischio i sistemi di intelligenza artificiale usati per selezionare i candidati.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il CV supera tutti gli ATS?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nessun formato lo garantisce: conta soprattutto quanto esperienze e competenze corrispondono all&rsquo;annuncio. Il generatore toglie gli ostacoli tecnici pi&ugrave; comuni.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🔤</span> Font, legature, intestazioni e date</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il PDF usa <strong>Helvetica</strong>, uno dei 14 font standard del formato PDF, con codifica WinAnsi che copre le lettere accentate dell'Europa occidentale. Le lettere di altri alfabeti latini, come «Ș» o «Ł», vengono convertite nella lettera base («S», «L») per restare leggibili dal parser. Il motore di esportazione scrive ogni carattere singolarmente, quindi non esistono <strong>legature tipografiche</strong>: combinazioni come "fi" o "ffi" restano lettere separate, mentre molti font decorativi le fondono in un unico glifo che i parser meno recenti non decodificano.</p>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Intestazioni esatte:</strong> Profilo Professionale, Esperienza Lavorativa, Istruzione, Competenze.</li>
-              <li><strong>Contatti nel corpo del documento:</strong> header e footer vengono spesso esclusi per non catturare i numeri di pagina.</li>
-              <li><strong>Date nel formato Mese Anno - Mese Anno</strong> (es. "Gennaio 2021 - Marzo 2026"), da cui l'ATS calcola la durata di ogni esperienza.</li>
-            </ul>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Meglio PDF o Word?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il PDF di testo prodotto qui &egrave; letto bene dagli ATS pi&ugrave; diffusi. Se il portale chiede un .docx, segui la richiesta.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Foto nel CV, bias algoritmici e AI Act</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>In Italia la foto non è obbligatoria. Il Regolamento UE 2024/1689 (<strong>AI Act</strong>) classifica come sistemi ad alto rischio le intelligenze artificiali impiegate per selezionare e valutare i candidati, imponendo alle aziende particolare attenzione alla discriminazione. Per questa ragione molte realtà tecnologiche e multinazionali adottano politiche di selezione "blind" e preferiscono curricula senza immagine.</p>
-            <p>Se decidi comunque di inserirla, il generatore la ridimensiona nel formato fototessera 35×45 e la colloca <strong>centrata sopra al testo</strong>, su una fascia dedicata: nessuna riga di testo le scorre accanto, così l'ordine di lettura resta intatto.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quante pagine?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Una fino a circa cinque anni di esperienza, due per i profili senior. Il generatore va a pagina nuova da solo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🛡️</span> Privacy by Design e GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Un curriculum contiene nome, recapiti, città di residenza, percorso professionale e, talvolta, una fotografia: dati personali tutelati dal <strong>Regolamento UE 2016/679 (GDPR)</strong>. Molti "CV builder" online richiedono la registrazione e conservano questi dati sui propri server.</p>
-            <p>Questo strumento è <strong>Zero-Backend</strong>: l'anteprima e il PDF vengono generati da JavaScript all'interno del tuo browser, con la composizione del documento affidata a un Web Worker che non blocca la pagina. I dati sono salvati esclusivamente nel <code>localStorage</code> del tuo dispositivo e puoi eliminarli in ogni momento con "Cancella tutti i dati".</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; scrivere mese e anno nelle date?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con i soli anni (&laquo;2021 &ndash; 2023&raquo;) l&rsquo;ATS non sa se l&rsquo;esperienza &egrave; durata pochi mesi o quasi tre anni.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati compilati nel generatore; i testi riportati sono quelli dell'anteprima, identici a quelli del PDF.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: il CV di esempio per una candidatura da sviluppatrice</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pulsante «Carica esempio»: Giulia Bianchi, Sviluppatrice Backend Senior</li>
-            <li>Periodi generati: «Febbraio 2023 - Presente», «Novembre 2021 - Gennaio 2023»</li>
-            <li>Sezioni: Profilo Professionale, Esperienza Lavorativa, Istruzione, Competenze</li>
-            </ul>
-            <p>Le date in forma «Mese Anno» permettono all'ATS di calcolare la durata di ogni esperienza: in totale circa 4 anni e 11 mesi a settembre 2026. Scrivendo solo gli anni, «2021 - 2023», la durata stimata oscillerebbe fra pochi mesi e tre anni.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: candidato con lettere dell'alfabeto rumeno</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Nome inserito: Ștefan Popescu</li>
-            <li>Nome nel CV: Stefan Popescu</li>
-            </ul>
-            <p>Il font standard del PDF non contiene la «Ș»: il generatore usa la lettera base, così il nome resta leggibile e ricercabile. Senza questa conversione la lettera sparirebbe e l'ATS registrerebbe «tefan».</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: magazziniere che si candida senza foto</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Profilo: «Magazziniere con 8 anni di esperienza in gestione magazzino, patentino carrelli elevatori e uso di terminali RF»</li>
-            <li>Competenze: Gestione magazzino, SAP EWM, Carrello elevatore (patentino), Inventario</li>
-            <li>Foto: disattivata</li>
-            </ul>
-            <p>Le parole «gestione magazzino» e «carrello elevatore» compaiono sia nel profilo sia nelle competenze, come nell'annuncio. Nel settore della logistica la foto non aggiunge punteggio al matching e può esporre a valutazioni non pertinenti.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: rientro al lavoro dopo due anni di assistenza a un familiare</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Ultima esperienza: Impiegata amministrativa, Marzo 2016 - Settembre 2023</li>
-            <li>Voce aggiuntiva: Corso di contabilità e paghe (IFTS), Ottobre 2024 - Giugno 2025</li>
-            <li>Profilo: «Impiegata amministrativa con 7 anni di esperienza in contabilità fornitori e fatturazione elettronica, aggiornata su gestione paghe»</li>
-            </ul>
-            <p>Senza la voce di formazione l'ATS registrerebbe un intervallo di due anni senza attività. Inserita fra le esperienze o nell'istruzione con mese e anno, la formazione riduce il periodo scoperto a un anno e aggiunge le parole chiave «paghe» e «contabilità» richieste da molti annunci amministrativi. Nel colloquio il periodo di assistenza si può spiegare apertamente: non va nascosto con date inesatte.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Cosa estrae l'ATS da ogni sezione</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Sezione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Dato estratto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Errore che lo rende illeggibile</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Nome e titolo</td><td class="px-3 py-2 border-t border-gray-200">Anagrafica del candidato e ruolo attuale</td><td class="px-3 py-2 border-t border-gray-200">Un titolo generico come «Curriculum vitae» al posto del nome</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Contatti</td><td class="px-3 py-2 border-t border-gray-200">Email, telefono e città per la ricerca per zona</td><td class="px-3 py-2 border-t border-gray-200">Contatti inseriti solo in intestazione o in un'immagine</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Profilo Professionale</td><td class="px-3 py-2 border-t border-gray-200">Parole chiave per il confronto con l'annuncio</td><td class="px-3 py-2 border-t border-gray-200">Frasi motivazionali senza competenze o ruoli</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Esperienza Lavorativa</td><td class="px-3 py-2 border-t border-gray-200">Ruolo, azienda, date e durata complessiva</td><td class="px-3 py-2 border-t border-gray-200">Date solo con l'anno o in formati misti come «03/21» e «2022»</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Istruzione</td><td class="px-3 py-2 border-t border-gray-200">Titolo, istituto e anno di conseguimento</td><td class="px-3 py-2 border-t border-gray-200">Voti e tesi al posto del nome del titolo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Competenze</td><td class="px-3 py-2 border-t border-gray-200">Elenco delle competenze usate come filtri</td><td class="px-3 py-2 border-t border-gray-200">Livelli espressi con stelle, barre o percentuali</td></tr></tbody></table></div>
-            <p>Prima di inviare il PDF conviene fare una prova: aprilo, seleziona tutto il testo con Ctrl+A e incollalo in un editor. Se l'ordine delle righe è quello del documento e non mancano lettere, un parser lo leggerà nello stesso modo.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I miei dati restano salvati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, solo in questo browser, per ritrovare il CV la volta dopo. Su un computer condiviso usa &laquo;Cancella tutti i dati&raquo; alla fine. Nulla viene inviato a un server.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il CV generato supera tutti i sistemi ATS?</h3>
-            <p>Nessun formato garantisce il passaggio: il punteggio dipende soprattutto dalla corrispondenza fra esperienze, competenze e annuncio. Il generatore elimina gli ostacoli tecnici più comuni, come colonne, tabelle e testo in immagini.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Meglio il PDF o il Word?</h3>
-            <p>Il PDF testuale prodotto qui è letto correttamente dagli ATS più diffusi. Se il portale chiede espressamente un file .doc o .docx, rispetta la richiesta.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Quante pagine deve avere il curriculum?</h3>
-            <p>Una pagina fino a circa 5 anni di esperienza, due per profili senior. Il generatore va a pagina nuova automaticamente quando il contenuto supera il foglio A4.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">I dati restano salvati se chiudo la pagina?</h3>
-            <p>Sì, nel localStorage di questo browser, per ritrovare il CV alla visita successiva. Su un computer condiviso usa «Cancella tutti i dati» al termine.</p>
-            </div>
-          </div>
-        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 2024/1689 (AI Act), allegato III: sistemi usati per la selezione del personale.</li>
+          <li>Regolamento UE 2016/679 (GDPR).</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile Bottom -->

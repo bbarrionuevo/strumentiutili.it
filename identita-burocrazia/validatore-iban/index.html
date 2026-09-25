@@ -137,10 +137,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il validatore dice a chi è intestato il conto?",
+            "name": "Il validatore mi dice a chi è intestato il conto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Nessuno strumento pubblico può farlo senza accedere ai sistemi della banca. Per verificare il beneficiario, dal 9 ottobre 2025 le banche dell'area euro devono offrire il servizio di verifica del beneficiario sui bonifici, che confronta nome e IBAN prima dell'invio."
+              "text": "No. Per controllare il beneficiario usa la verifica che la tua banca fa prima del bonifico."
             }
           },
           {
@@ -148,15 +148,15 @@
             "name": "Un IBAN valido può essere sbagliato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, se è valido ma appartiene a un altro conto, per esempio un vecchio IBAN dopo una fusione bancaria o un conto chiuso. Il controllo matematico esclude gli errori di battitura, non i dati superati."
+              "text": "Sì: può essere di un altro conto o di un conto chiuso. Il controllo esclude solo gli errori di battitura."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il nome della banca non compare?",
+            "name": "Perché non compare il nome della banca?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L'elenco incluso nella pagina contiene le principali banche italiane. Per gli altri codici ABI l'IBAN resta valido e compare la dicitura «Istituto non presente nella mappa offline»."
+              "text": "L’elenco nella pagina contiene le principali banche italiane. Se il codice ABI non c’è, l’IBAN resta valido e compare «Istituto non presente nella mappa offline»."
             }
           },
           {
@@ -164,39 +164,15 @@
             "name": "Gli IBAN inseriti vengono salvati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il controllo avviene nel browser e il campo non viene memorizzato: chiudendo la pagina il dato scompare."
+              "text": "No: il controllo avviene nel browser e il campo non viene memorizzato."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché i validatori online tradizionali generano falsi negativi/positivi con i numeri grandi?",
+            "name": "Il BIC è sempre necessario?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nei linguaggi di programmazione web, il tipo numerico standard (Numberin JavaScript) rispetta la specifica IEEE 754 in virgola mobile a 64 bit, la quale garantisce precisione intera esatta soltanto fino alla soglia limite diNumber.MAX_SAFE_INTEGER, pari a $2^{53} - 1 = 9.007.199.254.740.991$ (circa 15-16 cifre decimali). Poiché la stringa numerica convertita di un IBAN conta dai 25 ai 34 caratteri, tentarne la conversione diretta in intero causa il troncatamento catastrofico delle ultime cifre. I software obsoleti tentano il calcolo con funzioni float imprecise, corrompendo l'esito dell'operazione di modulo. La nostra suite risolve il problema adottando il tipo primitivoBigInt(o l'algoritmo di frammentazione a blocchi da 9 cifre), garantendo una precisione matematica arbitraria assoluta ed esente da approssimazioni."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "L'Algoritmo MOD 97-10 è in grado di rilevare qualsiasi errore di digitazione?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'algoritmo ISO 7064 possiede una capacità di rilevamento degli errori eccezionale (pari al 99,99%). Intercetta al 100% l'errata digitazione di un singolo carattere, la quasi totalità delle inversioni di due caratteri adiacenti (trasposizioni semplici) e l'errato inserimento di caratteri alfabetici. Sussiste tuttavia una rarissima vulnerabilità teorica denominata \"Transposizione Complessa\": qualora l'operatore inverta contemporaneamente due posizioni distanti di $n$ caratteri il cui scarto numerico risulti essere un saggio esatto multiplo di 97, l'algoritmo genererà un falso positivo, reputando matematicamente valido un codice corrotto."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Che cos'è l'errore di Storno RNI per \"Coordinate Bancarie Errate / Conto Chiuso\"?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "È essenziale comprendere l'ambito d'indagine di un validatore algoritmico: esso certifica unicamente la coerenza sintattica e la regolarità matematica delle cifre di controllo. Un IBAN appartiene a una filiale chiusa per fusione bancaria o a un conto corrente estinto dall'utente supererà eccellentemente il test Modulo 97-10. Tuttavia, una volta inviata la disposizione di pagamento, la Rete Nazionale Interbancaria (RNI) respingerà il bonifico generandone lo storno con addebito delle commissioni per \"Conto Inesistente o Non Più Operativo\"."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quali sono le sanzioni amministrative per chi pratica la Discriminazione IBAN?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "I datori di lavoro, gli enti erogatori di utenze (luce, gas, telefonia) e le aziende che rifiutano l'addebito diretto (SDD) o l'accredito dello stipendio su conti correnti SEPA esteri (es. IBAN tedeschi `DE` o spagnoli `ES`) violano direttamente il Regolamento UE 260/2012. L'Autorità Antitrust (AGCM) e la Banca d'Italia erogano sanzioni pecuniarie amministrative fino a centinaia di migliaia di euro nei confronti degli operatori che non adeguano i propri software alla validazione delle lunghezze internazionali."
+              "text": "Per i bonifici in euro nell’area SEPA basta l’IBAN. Il BIC serve di solito per i bonifici verso Paesi fuori dall’area SEPA."
             }
           }
         ]
@@ -415,240 +391,68 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico, Algoritmi e Guida Normativa alla Validazione IBAN e BIC/SWIFT</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          L'International Bank Account Number (<strong>IBAN</strong>) rappresenta la pietra angolare delle infrastrutture di clearing interbancario nell'Area Unica dei Pagamenti in Euro (SEPA) e nei circuiti finanziari globali, normato dallo standard internazionale <strong>ISO 13616</strong>. La sua validazione formale si basa sull'algoritmo matematico <strong>ISO 7064 Modulo 97-10</strong>, una procedura di verifica algebrica ideata per intercettare gli errori di digitazione, le trasposizioni di cifre e la corruzione dei dati prima dell'istradamento verso la Rete Nazionale Interbancaria (RNI). In combinato con il codice <strong>BIC/SWIFT</strong> (ISO 9362), costituisce la coppia identificativa obbligatoria per il regolamento dei bonifici cross-border e degli addebiti diretti SDD. Il nostro validatore opera secondo l'architettura <strong>100% Client-Side (Zero-Backend)</strong>: la decodifica delle stringhe e la divisione per grandi interi avvengono nella memoria volatile del dispositivo locale, eliminando qualsiasi rischio di esfiltrazione di coordinate bancarie riservate in piena rispondenza all'Articolo 25 del GDPR (Privacy by Design).
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo, Regolamento SEPA 260/2012 e Divieto di Discriminazione IBAN</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Infrastruttura Armonizzata SEPA e il Regolamento UE n. 260/2012</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'adozione dell'IBAN come identificatore unico di conto corrente ha sostituito le vecchie coordinate nazionali isolando i rischi operativi nei flussi transfrontalieri. Il quadro giuridico comunitario è imperniato sul <strong>Regolamento SEPA (UE) n. 260/2012</strong>, che fissa i requisiti tecnici ed economici per i bonifici e gli addebiti diretti in Euro. L'articolo 9 del suddetto Regolamento codifica il principio del <strong>Divieto di Discriminazione dell'IBAN (IBAN Discrimination)</strong>: è severamente vietato a qualsiasi creditore, ditta commerciale o Pubblica Amministrazione rifiutare un addebito diretto (SDD) o un accredito a causa del Paese europeo di radicamento del conto, purché tale Paese appartenga all'area SEPA.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nonostante le severe sanzioni comminate dalle Autorità Nazionali Competenti (in Italia l'Autorità Garante della Concorrenza e del Mercato - AGCM e la Banca d'Italia), molti software legacy o portali aziendali obsoleti rigettano impropriamente input IBAN provenienti dalla Germania (DE, 22 caratteri), dal Belgio (BE, 16 caratteri) o dalla Francia (FR, 27 caratteri) perché rigidi sulla sola lunghezza italiana (27 caratteri). Un validatore professionale moderno deve supportare l'intero spettro delle lunghezze SEPA (da un minimo di 15 caratteri per la Norvegia fino ai 34 caratteri massimi ammessi dalla specifica ISO 13616).
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Anatomia del Codice IBAN Italiano (27 Caratteri)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nell'ordinamento bancario italiano, il Codice Nazionale di Conto è composto da esattamente 27 caratteri alfanumerici, strutturati secondo precise gerarchie della Banca d'Italia e dell'ABI (Associazione Bancaria Italiana):
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Codice Paese (2 lettere):</strong> <code>IT</code> identifica la giurisdizione e la Banca d'Italia come autorità di registro.</li>
-                <li><strong>Cifre di Controllo Internazionali (2 numeri):</strong> Check digit (da 02 a 98) calcolate secondo l'algoritmo Modulo 97-10.</li>
-                <li><strong>CIN Nazionale (1 lettera):</strong> Control Internal Number alfabetico (da A a Z) calcolato sulle coordinate nazionali (ABI + CAB + Conto) tramite l'Algoritmo Modulo 26.</li>
-                <li><strong>Codice ABI (5 numeri):</strong> Identifica l'Istituto di Credito o la Banca (es. 02008 per Unicredit, 03069 per Intesa Sanpaolo).</li>
-                <li><strong>Codice CAB (5 numeri):</strong> Identifica la specifica Filiale, Agenzia o Sportello territoriale.</li>
-                <li><strong>Numero di Conto Corrente (12 caratteri):</strong> L'identificativo alfanumerico interno del cliente, riempito con zeri a sinistra qualora la stringa sia inferiore a 12 cifre.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Lo Standard ISO 9362 (Codice BIC / SWIFT)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il codice **BIC** (Business Identifier Code) o **SWIFT** è disciplinato dallo standard **ISO 9362** ed è composto da 8 o 11 caratteri alfanumerici:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Codice Banca (4 lettere):</strong> Identifica l'istituto finanziario su scala globale.</li>
-                <li><strong>Codice Paese (2 lettere):</strong> Codice ISO 3166-1 alpha-2 del Paese di residenza bancaria (es. IT per Italia).</li>
-                <li><strong>Codice Sede/Città (2 caratteri alfanumerici):</strong> Identifica la regione o la sede operativa primaria.</li>
-                <li><strong>Codice Filiale (3 caratteri opzionali):</strong> Identifica una specifica branca secondaria. Se colmato con <code>XXX</code> o omesso (8 caratteri), punta direttamente alla sede centrale dell'istituto.</li>
-              </ul>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come verificare un IBAN prima di un bonifico</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Un IBAN contiene due cifre di controllo che permettono di scoprire quasi tutti gli errori di battitura. Il validatore fa questo controllo per gli IBAN di tutti i Paesi, mostra banca e filiale per quelli italiani e verifica la forma del codice BIC/SWIFT. L&rsquo;IBAN che scrivi resta nel browser e non viene salvato.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Com&rsquo;&egrave; fatto un IBAN italiano (27 caratteri)</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Parte</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Esempio</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cosa indica</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Paese</td><td class="px-3 py-2 align-top">IT</td><td class="px-3 py-2 align-top">Italia</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Cifre di controllo</td><td class="px-3 py-2 align-top">60</td><td class="px-3 py-2 align-top">Controllo internazionale su tutto l&rsquo;IBAN</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">CIN</td><td class="px-3 py-2 align-top">X</td><td class="px-3 py-2 align-top">Lettera di controllo delle coordinate italiane</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">ABI</td><td class="px-3 py-2 align-top">05428</td><td class="px-3 py-2 align-top">La banca</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">CAB</td><td class="px-3 py-2 align-top">11101</td><td class="px-3 py-2 align-top">La filiale</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Conto</td><td class="px-3 py-2 align-top">000000123456</td><td class="px-3 py-2 align-top">Il conto, 12 caratteri</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica Algoritmica: ISO 7064 Modulo 97-10 e Modulo 26 per il CIN</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Algoritmo Internazionale MOD 97-10 (ISO 7064)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                La verifica di validità di un IBAN internazionale non consiste in una semplice ricerca su database, ma nell'esecuzione di un rigido test matematico differenziale definito dalla norma ISO 7064. La procedura impone tre fasi sequenziali inalterabili:
-              </p>
-              <ol class="list-decimal pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Shift Architetturale:</strong> I primi 4 caratteri della sequenza (Codice Paese a 2 lettere e Check Digit a 2 cifre) vengono rimossi dalla testa dell'IBAN e concatenati in coda alla stringa.</li>
-                <li><strong>Traslazione Numerica Base-36:</strong> Ogni lettera alfabetica presente nella stringa rimanente viene tradotta in un intero a due cifre sostituendo la lettera con la sua posizione ordinale estesa (dove $A=10, B=11, C=12, \dots, Z=35$).</li>
-                <li><strong>Controllo Modulare Polinomiale:</strong> Il colossale numero intero risultante (che per un IBAN italiano ammonta a 30 cifre numeriche) viene diviso aritmeticamente per il numero primo 97. L'IBAN è strutturalmente e matematicamente valido condicio sine qua non il resto dell'operazione sia esattamente pari a 1:</li>
-              </ol>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$\text{Stringa}_{\text{Numerica\ Traslata}} \pmod{97} = 1$$
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">L'Algoritmo Modulo 26 per la Determinazione del CIN Italiano</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Prima ancora del checksum internazionale, l'IBAN italiano integra al 15° carattere il CIN (Control Internal Number), una lettera che valida le sole coordinate nazionali (ABI + CAB + Conto Corrente, per un totale di 22 caratteri). La lettera si calcola scomponente la stringa posizionalmente in caratteri PARI e DISPARI, applicando le tabelle di conversione ministeriale dell'ABI:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li>I caratteri nelle posizioni <strong>Dispari</strong> (1°, 3°, 5°, ...) vengono convertiti in valori numerici secondo una mappa asimmetrica ad alto peso (es. A=1, B=0, C=5, D=7, E=9, 0=1, 1=0, 2=5, 3=7...).</li>
-                <li>I caratteri nelle posizioni <strong>Pari</strong> (2°, 4°, 6°, ...) mantengono una conversione lineare semplice (es. A=0, B=1, C=2, 0=0, 1=1, 2=2...).</li>
-                <li>I valori interi ottenuti vengono sommati, e la somma totale viene divisa per 26: $R = \text{Somma} \pmod{26}$. Il resto $R$ (da 0 a 25) mappa direttamente la lettera CIN dell'alfabeto italiano (0=A, 1=B, 2=C, ..., 25=Z).</li>
-              </ul>
-            </div>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Validazione Analitica e Decomposizione di un IBAN Italiano</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Esempio Reale Svolto Passo-Passo: IT87 H 02008 05000 000001234567</h3>
-              <p class="text-xs text-gray-700 leading-relaxed mb-3">
-                Si applichi l'algoritmo di validazione algebrica al codice IBAN di test di una primaria banca italiana:
-              </p>
-              
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
-                <p><strong>Fase 1: Decomposizione delle Coordinate Nazionali:</strong><br>
-                - Paese: <code>IT</code> | Check Digit: <code>87</code> | CIN: <code>H</code><br>
-                - Codice ABI: <code>02008</code> (Unicredit S.p.A.)<br>
-                - Codice CAB: <code>05000</code> (sportello)<br>
-                - Numero Conto: <code>000001234567</code></p>
-
-                <p><strong>Fase 2: Shift Architetturale (Spostamento dei primi 4 caratteri in coda):</strong><br>
-                Stringa originaria: <code>IT87H0200805000000001234567</code><br>
-                Stringa ruotata: <code>H0200805000000001234567IT87</code></p>
-
-                <p><strong>Fase 3: Traduzione Alfanumerica Base-36:</strong><br>
-                Sostituzione delle lettere: <code>H</code> $\rightarrow$ 17; <code>I</code> $\rightarrow$ 18; <code>T</code> $\rightarrow$ 29.<br>
-                Stringa intera risultante (30 cifre):<br>
-                <code>170200805000000001234567182987</code></p>
-
-                <p><strong>Fase 4: Divisione Modulare per il Numero Primo 97:</strong><br>
-                Trattandosi di un numero gigante che supera il limite di allocazione delle CPU standard (64-bit), la divisione si esegue mediante la struttura <code>BigInt</code> in JavaScript:<br>
-                $170200805000000001234567182987n \pmod{97n} = \mathbf{1}$</p>
-
-                <p class="text-emerald-700 font-bold border-t border-gray-200 pt-2">
-                  Esito del Test: Il resto della divisione ammonta esattamente a 1. L'IBAN è strutturalmente e matematicamente VALIDO. Con le cifre di controllo 60 e il CIN X, usati in una versione precedente di questo esempio, il resto sarebbe 7 e il codice risulterebbe errato.
-                </p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. Criticità Tecniche, Overflow di Memoria, Errore Transposizione e Sanzioni (YMYL)</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti sono stati verificati con il validatore della pagina.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: IBAN per l'accredito dello stipendio con un carattere sbagliato</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>IBAN corretto: IT60 X054 2811 1010 0000 0123 456 → valido, CIN X coerente</li>
-                <li>Ultima cifra digitata 7 invece di 6 → «controllo matematico MOD 97-10 non superato»</li>
-                </ul>
-                <p>Il MOD 97 intercetta sempre un singolo carattere sbagliato: è il controllo da fare prima di comunicare l'IBAN al datore di lavoro, perché un bonifico su coordinate inesistenti torna indietro con giorni di ritardo.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: fornitore di energia che rifiuta un conto svedese</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>IBAN: SE45 5000 0000 0583 9825 7466, 24 caratteri</li>
-                <li>Esito: IBAN valido (Svezia)</li>
-                </ul>
-                <p>La Svezia fa parte dell'area SEPA: un creditore italiano non può rifiutare l'addebito diretto su questo conto. In una versione precedente del validatore la lunghezza svedese era impostata a 28 caratteri e gli IBAN corretti risultavano errati, lo stesso problema che la norma vieta ai software aziendali.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: verifica del BIC per un bonifico verso la Svizzera</h3>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>BIC indicato dal destinatario: UBSWCHZH80A → sintatticamente valido</li>
-                <li>BIC con la O al posto dello zero: UBSWCHZH8OA → valido nella forma, ma diverso</li>
-                </ul>
-                <p>La verifica del BIC controlla solo la struttura: lettere e cifre sono ammesse nella parte della filiale, quindi uno scambio fra O e 0 non viene segnalato. Il BIC va copiato dal documento della banca, non trascritto.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché i validatori online tradizionali generano falsi negativi/positivi con i numeri grandi?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Nei linguaggi di programmazione web, il tipo numerico standard (<code>Number</code> in JavaScript) rispetta la specifica IEEE 754 in virgola mobile a 64 bit, la quale garantisce precisione intera esatta soltanto fino alla soglia limite di <code>Number.MAX_SAFE_INTEGER</code>, pari a $2^{53} - 1 = 9.007.199.254.740.991$ (circa 15-16 cifre decimali). Poiché la stringa numerica convertita di un IBAN conta dai 25 ai 34 caratteri, tentarne la conversione diretta in intero causa il troncatamento catastrofico delle ultime cifre. I software obsoleti tentano il calcolo con funzioni float imprecise, corrompendo l'esito dell'operazione di modulo. La nostra suite risolve il problema adottando il tipo primitivo <strong><code>BigInt</code></strong> (o l'algoritmo di frammentazione a blocchi da 9 cifre), garantendo una precisione matematica arbitraria assoluta ed esente da approssimazioni.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>L'Algoritmo MOD 97-10 è in grado di rilevare qualsiasi errore di digitazione?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'algoritmo ISO 7064 possiede una capacità di rilevamento degli errori eccezionale (pari al 99,99%). Intercetta al 100% l'errata digitazione di un singolo carattere, la quasi totalità delle inversioni di due caratteri adiacenti (trasposizioni semplici) e l'errato inserimento di caratteri alfabetici. Sussiste tuttavia una rarissima vulnerabilità teorica denominata "Transposizione Complessa": qualora l'operatore inverta contemporaneamente due posizioni distanti di $n$ caratteri il cui scarto numerico risulti essere un saggio esatto multiplo di 97, l'algoritmo genererà un falso positivo, reputando matematicamente valido un codice corrotto.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Che cos'è l'errore di Storno RNI per "Coordinate Bancarie Errate / Conto Chiuso"?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                È essenziale comprendere l'ambito d'indagine di un validatore algoritmico: esso certifica unicamente la coerenza sintattica e la regolarità matematica delle cifre di controllo. Un IBAN appartiene a una filiale chiusa per fusione bancaria o a un conto corrente estinto dall'utente supererà eccellentemente il test Modulo 97-10. Tuttavia, una volta inviata la disposizione di pagamento, la Rete Nazionale Interbancaria (RNI) respingerà il bonifico generandone lo storno con addebito delle commissioni per "Conto Inesistente o Non Più Operativo".
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quali sono le sanzioni amministrative per chi pratica la Discriminazione IBAN?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                I datori di lavoro, gli enti erogatori di utenze (luce, gas, telefonia) e le aziende che rifiutano l'addebito diretto (SDD) o l'accredito dello stipendio su conti correnti SEPA esteri (es. IBAN tedeschi `DE` o spagnoli `ES`) violano direttamente il Regolamento UE 260/2012. L'Autorità Antitrust (AGCM) e la Banca d'Italia erogano sanzioni pecuniarie amministrative fino a centinaia di migliaia di euro nei confronti degli operatori che non adeguano i propri software alla validazione delle lunghezze internazionali.
-              </p>
-            </details>
-
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Il validatore dice a chi è intestato il conto?</h3>
-                <p>No. Nessuno strumento pubblico può farlo senza accedere ai sistemi della banca. Per verificare il beneficiario, dal 9 ottobre 2025 le banche dell'area euro devono offrire il servizio di verifica del beneficiario sui bonifici, che confronta nome e IBAN prima dell'invio.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Un IBAN valido può essere sbagliato?</h3>
-                <p>Sì, se è valido ma appartiene a un altro conto, per esempio un vecchio IBAN dopo una fusione bancaria o un conto chiuso. Il controllo matematico esclude gli errori di battitura, non i dati superati.</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Perché il nome della banca non compare?</h3>
-                <p>L'elenco incluso nella pagina contiene le principali banche italiane. Per gli altri codici ABI l'IBAN resta valido e compare la dicitura «Istituto non presente nella mappa offline».</p>
-                </div>
-                <div class="border-l-4 border-indigo-200 pl-4 py-1">
-                <h3 class="font-bold text-gray-900 text-base mb-1">Gli IBAN inseriti vengono salvati?</h3>
-                <p>No. Il controllo avviene nel browser e il campo non viene memorizzato: chiudendo la pagina il dato scompare.</p>
-                </div>
-              </div>
-            </details>
-
-          </div>
+          <p>Negli altri Paesi la lunghezza cambia (Germania 22, Belgio 16, Svezia 24, Francia 27); il validatore le conosce tutte.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come funziona il controllo</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>I primi quattro caratteri (paese e cifre di controllo) si spostano in fondo.</li>
+            <li>Ogni lettera diventa un numero (A = 10, B = 11 &hellip; Z = 35).</li>
+            <li>Il numero ottenuto, di circa 30 cifre, si divide per 97: l&rsquo;IBAN &egrave; valido se il resto &egrave; 1.</li>
+          </ol>
+          <p>Il controllo scopre sempre un singolo carattere sbagliato e quasi tutte le inversioni di due cifre vicine. <strong>Esempio:</strong> IT60 X054 2811 1010 0000 0123 456 &egrave; valido; con un 7 al posto dell&rsquo;ultimo 6 il controllo fallisce.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa il controllo non pu&ograve; dire</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>A chi &egrave; intestato il conto: nessuno strumento pubblico lo sa. Dal 9 ottobre 2025 le banche dell&rsquo;area euro devono per&ograve; confrontare nome del beneficiario e IBAN prima di ogni bonifico (verifica del beneficiario).</li>
+            <li>Se il conto esiste ancora: un IBAN chiuso o cambiato dopo una fusione bancaria supera il controllo, ma il bonifico torna indietro.</li>
+            <li>Se il BIC &egrave; quello giusto: si verifica solo la forma, quindi una O al posto di uno 0 nella parte della filiale non viene segnalata. Copia il BIC dal documento della banca.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">IBAN esteri: non possono rifiutarli</h3>
+          <p>Nell&rsquo;area SEPA un datore di lavoro, un fornitore di luce e gas o un ufficio pubblico non pu&ograve; rifiutare un IBAN perch&eacute; &egrave; di un altro Paese SEPA (Regolamento UE 260/2012, art. 9). Per esempio SE45 5000 0000 0583 9825 7466 &egrave; un IBAN svedese valido di 24 caratteri: va accettato per un addebito diretto.</p>
         </div>
-
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il validatore mi dice a chi &egrave; intestato il conto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Per controllare il beneficiario usa la verifica che la tua banca fa prima del bonifico.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Un IBAN valido pu&ograve; essere sbagliato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: pu&ograve; essere di un altro conto o di un conto chiuso. Il controllo esclude solo gli errori di battitura.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; non compare il nome della banca?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">L&rsquo;elenco nella pagina contiene le principali banche italiane. Se il codice ABI non c&rsquo;&egrave;, l&rsquo;IBAN resta valido e compare &laquo;Istituto non presente nella mappa offline&raquo;.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Gli IBAN inseriti vengono salvati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il controllo avviene nel browser e il campo non viene memorizzato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il BIC &egrave; sempre necessario?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per i bonifici in euro nell&rsquo;area SEPA basta l&rsquo;IBAN. Il BIC serve di solito per i bonifici verso Paesi fuori dall&rsquo;area SEPA.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>ISO 13616 (IBAN) e ISO 7064 (controllo MOD 97-10); ISO 9362 (BIC).</li>
+          <li>Regolamento UE 260/2012 (SEPA), art. 9: divieto di rifiutare IBAN di altri Paesi.</li>
+          <li>Regolamento UE 2024/886 sui bonifici istantanei: verifica del beneficiario dal 9 ottobre 2025.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
