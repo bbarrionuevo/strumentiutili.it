@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inputKw = document.getElementById('calc-kw');
   const inputProvincia = document.getElementById('calc-provincia');
   const inputAgenzia = document.getElementById('calc-agenzia');
-  
+  const inputStorico = document.getElementById('calc-storico');
+
   const outFissi = document.getElementById('res-fissi');
   const outIpt = document.getElementById('res-ipt');
   const outAgenzia = document.getElementById('res-agenzia');
@@ -36,10 +37,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     let costoAgenzia = 0;
 
     // 1. Calcolo IPT
-    if (tipoVeicolo === 'moto') {
-      // Le moto sono esenti da IPT variabile, pagano solo una quota fissa ridotta
-      costoIpt = regole.ipt_parametri_base.ipt_fissa_moto_max;
-    } 
+    const base = regole.ipt_parametri_base;
+    if (inputStorico && inputStorico.checked) {
+      // Oltre 30 anni dalla costruzione e senza uso professionale: importo fisso, senza maggiorazione provinciale
+      costoIpt = Math.round(tipoVeicolo === 'moto' ? base.ipt_storici_moto : base.ipt_storici_auto);
+    }
+    else if (tipoVeicolo === 'moto') {
+      // Per le moto l'IPT sul passaggio di proprieta' non e' dovuta
+      costoIpt = base.ipt_moto;
+    }
     else if (tipoVeicolo === 'auto' && kw > 0) {
       let iptBase = 0;
       
@@ -86,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Event Listeners (Persistenza via storage-helper.js)
-  const inputs = [inputVeicolo, inputKw, inputProvincia, inputAgenzia];
+  const inputs = [inputVeicolo, inputKw, inputProvincia, inputAgenzia, inputStorico];
   inputs.forEach(inp => {
     if(inp) inp.addEventListener('input', calculateCosti);
   });

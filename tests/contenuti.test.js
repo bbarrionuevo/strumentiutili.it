@@ -15,15 +15,6 @@ const PAGINE = C.pagineIndicizzabili();
 // Pagine con il vecchio trattato ancora da riscrivere in italiano semplice.
 // La lista puo' solo accorciarsi: quando una pagina e' riscritta, va tolta.
 const DA_RISCRIVERE = new Set([
-  'cittadino-tasse/aliquote-irpef/index.html',
-  'cittadino-tasse/analizzatore-bolletta/index.html',
-  'cittadino-tasse/assegno-unico/index.html',
-  'cittadino-tasse/imposta-registro-locazioni/index.html',
-  'cittadino-tasse/imposte-acquisto-casa/index.html',
-  'cittadino-tasse/modello-rli/index.html',
-  'cittadino-tasse/passaggio-di-proprieta/index.html',
-  'cittadino-tasse/simulatore-isee/index.html',
-  'cittadino-tasse/simulatore-pensione/index.html',
   'fisco-professioni/calcolo-iva/index.html',
   'fisco-professioni/calcolo-rata-mutuo/index.html',
   'fisco-professioni/contributo-unificato/index.html',
@@ -46,13 +37,6 @@ const DA_RISCRIVERE = new Set([
   'identita-burocrazia/generatore-cv-ats/index.html',
   'identita-burocrazia/generatore-password/index.html',
   'identita-burocrazia/validatore-iban/index.html',
-  'lavoro-contratti/analizzatore-busta-paga/index.html',
-  'lavoro-contratti/calcolo-naspi/index.html',
-  'lavoro-contratti/calcolo-tfr/index.html',
-  'lavoro-contratti/giorni-lavorativi/index.html',
-  'lavoro-contratti/ricevuta-prestazione-occasionale/index.html',
-  'lavoro-contratti/ritenuta-acconto/index.html',
-  'lavoro-contratti/stipendio-netto/index.html',
   'pdf/anonimizza/index.html',
   'pdf/convertitore-pdfa/index.html',
   'pdf/firma/index.html',
@@ -72,6 +56,18 @@ test('niente gergo da trattato nelle pagine gia riscritte', () => {
     .filter((p) => !DA_RISCRIVERE.has(p.percorso))
     .map((p) => [p.percorso, (C.testoVisibile(p.html).match(C.LESSICO) || [])[0]])
     .filter((x) => x[1]);
+  assert.deepStrictEqual(sbagliate, []);
+});
+
+test('titoli e descrizioni senza gergo tecnico', () => {
+  const GERGO = /Zero-Backend|Zero-Upload|Zero-Leak|Client-Side|client-side|E-E-A-T|YMYL|Trattato/;
+  const sbagliate = [];
+  for (const p of C.tutteLePagine()) {
+    for (const m of p.html.matchAll(/<title>([\s\S]*?)<\/title>|<meta (?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)" content="([^"]*)"/g)) {
+      const t = m[1] || m[2];
+      if (GERGO.test(t)) sbagliate.push(p.percorso + ': ' + t.slice(0, 80));
+    }
+  }
   assert.deepStrictEqual(sbagliate, []);
 });
 

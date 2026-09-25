@@ -315,7 +315,7 @@
 
     if (costoMateriaPrima > (PUN_MEDIO_STIMATO_KWH + SPREAD_MAXIMO_FISIOLOGICO)) {
         let delta = (costoMateriaPrima - PUN_MEDIO_STIMATO_KWH).toFixed(3).replace('.', ',');
-        alerts.push({ severity: "CRITICAL", message: `⚠️ <b>Attenzione!</b> Sovrapprezzo di <b>${delta} €/kWh</b> rispetto al mercato all'ingrosso. Ricarico abusivo.` });
+        alerts.push({ severity: "CRITICAL", message: `⚠️ <b>Attenzione!</b> Sovrapprezzo di <b>${delta} €/kWh</b> rispetto al mercato all'ingrosso: il ricarico del venditore è alto.` });
         isBadTariff = true;
     } else {
         alerts.push({ severity: "SUCCESS", message: `✅ Costo dell'energia in linea con il mercato.` });

@@ -32,7 +32,7 @@
   <meta property="og:locale" content="it_IT">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calcolatore Stipendio Netto 2026">
-  <meta name="twitter:description" content="Simulatore stipendio 2026 100% client-side con privacy totale.">
+  <meta name="twitter:description" content="Calcola lo stipendio netto dalla RAL con gli scaglioni IRPEF e il taglio del cuneo fiscale 2026.">
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
 
   <link rel="stylesheet" href="/css/styles.css">
@@ -145,26 +145,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Perché lo stipendio netto di gennaio è più basso degli altri mesi?",
+            "name": "Che differenza c’è tra RAL e netto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Da gennaio il datore di lavoro inizia a trattenere a rate le addizionali regionale e comunale dovute sui redditi dell'anno precedente, insieme all'acconto dell'addizionale comunale. Il calcolatore distribuisce le addizionali in modo uniforme sull'anno, quindi il netto dei primi mesi può risultare inferiore alla stima."
+              "text": "La RAL è il lordo annuo scritto nel contratto. Il netto è quello che arriva sul conto dopo contributi INPS, IRPEF e addizionali: per un impiegato con 35.000 € di RAL è intorno al 74%."
             }
           },
           {
             "@type": "Question",
-            "name": "Il bonus del cuneo fiscale può essere restituito?",
+            "name": "Il bonus del cuneo fiscale si tassa?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Il datore lo riconosce mese per mese stimando il reddito annuo; se a fine anno il reddito complessivo supera i 20.000 euro, o la detrazione ulteriore risulta inferiore a quella applicata, la differenza viene recuperata con il conguaglio di dicembre o nella dichiarazione dei redditi."
+              "text": "No: sotto i 20.000 € di reddito è una somma esente che si aggiunge al netto e spetta anche a chi non paga IRPEF. Sopra i 20.000 € è una detrazione che riduce l’IRPEF."
             }
           },
           {
             "@type": "Question",
-            "name": "Tredicesima e quattordicesima sono tassate di più?",
+            "name": "Perché a dicembre lo stipendio è diverso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non con aliquote diverse. Sulle mensilità aggiuntive non si applicano le detrazioni mensili, perché sono già state distribuite sugli altri mesi, quindi il netto appare più basso rispetto a una busta paga ordinaria. Il conguaglio di fine anno riallinea l'imposta a quella dovuta sull'intero reddito."
+              "text": "Per il conguaglio di fine anno: il datore di lavoro ricalcola le imposte su tutto l’anno e le confronta con quelle trattenute mese per mese."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso verificare la mia busta paga?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, con l’analizzatore della busta paga, che confronta le voci del cedolino con il calcolo teorico."
             }
           }
         ]
@@ -458,238 +466,56 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Modelli di Calcolo Fiscale e Previdenziale per lo Stipendio Netto 2026</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il transito matematico dalla Retribuzione Annua Lorda (RAL) allo stipendio netto in busta paga si configura attraverso una complessa cascata fiscale e previdenziale, radicalmente modificata dalla Manovra 2025-2026 nell'ordinamento italiano. L'elaborazione di tali simulazioni finanziarie necessita di un presidio di sicurezza assoluto per la tutela dei dati reddituali. L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Il nostro simulatore incarna matematicamente il principio della Privacy by Design e by Default (Articolo 25 del GDPR). Qualsiasi parametro reddituale inserito risiede atomicamente e in via esclusiva nell'albero DOM (Document Object Model) locale del dispositivo dell'utente e non transita mai su reti esterne o server di terze parti, azzerando il rischio di data breach e neutralizzando le complessità legali derivanti dall'Articolo 28 del GDPR per i professionisti.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: TUIR e Riforma Legge 207/2024</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'impalcatura fiscale e la stratificazione delle detrazioni per i redditi da lavoro dipendente sono regolate dal Testo Unico delle Imposte sui Redditi (TUIR - D.P.R. 917/1986). La Legge 207/2024 (Legge di Bilancio 2025/2026) ha introdotto correttivi strutturali che alterano l'assetto impositivo storico, imponendo un ricalcolo radicale dei cedolini paga.
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Rimozione dell'Esonero INPS e Rimodulazione Aliquote</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Dal 2025 l'esonero contributivo straordinario (il c.d. "sconto INPS" del 6% o 7%), in vigore fino al 2024, non si applica più: la Legge di Bilancio 2025 lo ha sostituito con un beneficio fiscale, ripristinando la trattenuta INPS a carico del lavoratore dipendente (IVS ordinaria) al valore nominale pieno, che si attesta strutturalmente intorno al 9,19%. Contestualmente, la riforma ha reso strutturale l'alleggerimento dell'IRPEF per il ceto medio, confermando la contrazione da quattro a tre scaglioni reddituali.
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Taglio Lineare degli Oneri (Clausola di Salvaguardia)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              A tutela dell'equilibrio di bilancio statale, la Legge ha introdotto un meccanismo compensativo per i redditi elevati. Per i contribuenti con reddito complessivo eccedente la soglia dei 200.000 euro annui, subentra un taglio lineare delle detrazioni fiscali (comunemente calcolate al 19%, con l'esplicita eccezione delle spese sanitarie) pari a un ammontare forfettario di 440 euro. Tale misura è specificamente finalizzata ad assorbire e sterilizzare il vantaggio fiscale derivante dall'abbassamento dell'aliquota marginale del secondo scaglione al 33%.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: La Cascata Fiscale 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il calcolo procede sequenzialmente determinando l'Imponibile Previdenziale, l'Imponibile Fiscale e, infine, l'imposta netta da prelevare.
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. Imponibile INPS ed IRPEF: Il Contributo di Solidarietà</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'imponibile previdenziale corrisponde in linea di principio alla retribuzione lorda globale. I contributi INPS a carico del dipendente (<strong>9,19%</strong>) sono integralmente deducibili ai fini della determinazione della base imponibile IRPEF. È vitale sottolineare che la trattenuta del 9,19% si applica fino al massimale di <strong>56.224,00 EUR</strong>. Sulla porzione retributiva che eccede tale soglia, scatta un <strong>Aporto Addizionale di Solidarietà dell'1,00%</strong> (portando l'aliquota marginale INPS al 10,19% per l'eccedenza). La formula sottrattiva è rigorosa:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$Base\ IRPEF = RAL - Trattenute\ INPS$$
-            </div>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Applicazione Scaglioni IRPEF 2026</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'imposta lorda viene calcolata applicando progressivamente le nuove aliquote alla <em>Base IRPEF</em>:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-              <li><strong>Scaglione 1:</strong> Fino a 28.000€ l'aliquota marginale è del <strong>23%</strong>.</li>
-              <li><strong>Scaglione 2:</strong> Da 28.001€ a 50.000€ l'aliquota marginale è del <strong>33%</strong> (ribassata dal precedente 35%, generando un delta di risparmio IRPEF puro a favore del contribuente).</li>
-              <li><strong>Scaglione 3:</strong> Oltre i 50.000€ l'aliquota marginale raggiunge il massimale del <strong>43%</strong>.</li>
-            </ul>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Detrazioni Lavoro Dipendente (Art. 13 TUIR)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il legislatore ha provveduto a un innalzamento strutturale della detrazione base per i redditi da lavoro dipendente. Tale franchigia è stata fissata a <strong>1.955 euro</strong> annui per i percettori di redditi fino a 15.000 euro. Questa manovra ha prodotto un effetto trascinamento, parificando di fatto la "No Tax Area" (soglia di esenzione totale da IRPEF) a 8.500 euro. Oltre la soglia dei 15.000 euro, le detrazioni decrescono linearmente mediante un quoziente algebrico. La legge prevede inoltre una clausola di salvaguardia: la detrazione risultante non può essere inferiore a <strong>690,00 EUR</strong> per i contratti a tempo indeterminato. Infine, l'Art. 13 stipula una correzione aggiuntiva di <strong>65,00 EUR</strong> se l'imponibile si colloca tra i 25.000,01 e i 35.000,00 EUR.
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Il Nuovo Cuneo Fiscale 2026 (Meccanismo Ibrido)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              A compensazione esatta dell'abrogazione dello sgravio contributivo INPS, il governo ha ingegnerizzato un meccanismo bifasico di "Bonus Fiscale", operante direttamente in busta paga e del tutto esente da prelievo IRPEF:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-              <li><strong>Redditi fino a 20.000€ (Erogazione Diretta):</strong> Si percepisce una somma aggiuntiva al netto. Pari al 7,1% del reddito per le fasce fino a 8.500€; del 5,3% per la fascia 8.501€ - 15.000€; e del 4,8% per i redditi tra 15.001€ e 20.000€.</li>
-              <li><strong>Redditi tra 20.001€ e 40.000€ (Detrazione Aggiuntiva):</strong> Oltre i 20.000€, il cuneo cessa di essere un trasferimento di cassa diretto e si trasforma in una detrazione d'imposta. Fino alla soglia di 32.000€ spetta un abbattimento forfettario di 1.000€ annui. Per la fascia residuale (da 32.001€ a 40.000€), la detrazione non si interrompe bruscamente, ma decresce linearmente fino ad azzerarsi, obbedendo alla formula di sfumatura:</li>
-            </ul>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$Detrazione\ Residua = 1.000 \times \left( \frac{40.000 - Reddito}{8.000} \right)$$
-            </div>
-          </div>
-        </details>
-
-        <!-- NOUVO BLOCCO: Detrazioni Familiari e Assegno Unico (Art. 12 TUIR) -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👨‍👩‍👧</span> Detrazioni per Carichi di Famiglia e Assegno Unico (Art. 12 TUIR)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Un aspetto fondamentale della busta paga riguarda la gestione dei familiari a carico, pesantemente modificata con l'introduzione dell'Assegno Unico Universale (AUU). Nel 2026, l'architettura delle detrazioni (Art. 12 TUIR) segue regole precise basate sull'età e sul reddito del familiare.
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Figli a Carico: La transizione all'AUU</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              I figli di età inferiore ai 21 anni sono <strong>esclusi</strong> dal calcolo delle detrazioni fiscali in busta paga, poiché la loro copertura è garantita integralmente dall'Assegno Unico erogato direttamente dall'INPS. Tuttavia, per i figli a carico di età compresa <strong>tra i 21 e i 30 anni</strong> (aventi un reddito proprio non superiore a 2.840,51 euro, soglia innalzata a 4.000 euro fino al compimento dei 24 anni), spetta una detrazione teorica di <strong>950,00 euro</strong>. Tale importo è assoggettato a un coefficiente di decrescita ed è calcolato proporzionalmente con la formula 950 × (95.000 − reddito) / 95.000, fino ad azzerarsi a 95.000 euro di reddito; la soglia sale di 15.000 euro per ogni figlio a carico successivo al primo.
-            </p>
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">Coniuge e Altri Familiari</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per il coniuge non legalmente separato (e con reddito rientrante nei limiti di legge), è riconosciuta una detrazione che raggiunge il suo picco di <strong>800,00 euro</strong> per redditi fino a 15.000 euro. La somma si assesta a 690,00 euro per la fascia reddituale successiva fino a 40.000 euro, per poi decrescere linearmente e annullarsi al raggiungimento della quota di 80.000 euro. Per altri ascendenti conviventi a carico, la normativa prevede una detrazione base di 750,00 euro, anch'essa severamente ponderata sulla scala progressiva dei redditi.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Computo Pratico e Profilazione Fiscale</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per cristallizzare la meccanica computazionale, esaminiamo la profilazione di un dipendente impiegato con una RAL di 35.000 euro (13 mensilità).
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-              <li><strong>Fase Previdenziale:</strong> L'onere INPS (9,19%) incide sull'intero ammontare, essendo sotto il massimale di 56.224€. 35.000 € × 0,0919 = 3.216,50 €.</li>
-              <li><strong>Imponibile IRPEF:</strong> 35.000 € - 3.216,50 € = 31.783,50 €.</li>
-              <li><strong>Liquidazione IRPEF Lorda:</strong> I primi 28.000 € scontano il 23% (6.440 €). I restanti 3.783,50 € ricadono nel secondo scaglione al 33% (1.248,55 €). L'IRPEF lorda assomma a 7.688,55 €.</li>
-              <li><strong>Computo del Cuneo Fiscale:</strong> La soglia si confronta con il reddito, cioè con l'imponibile di 31.783,50 €, non con la RAL: essendo sotto i 32.000 euro spetta la detrazione piena di 1.000 euro. Con una RAL di 38.000 euro l'imponibile salirebbe a 34.507,80 € e la formula di sfumatura darebbe 1.000 × ((40.000 - 34.507,80) / 8.000) = 686,52 €.</li>
-              <li><strong>Saldo Impositivo:</strong> All'IRPEF lorda andranno sottratte le detrazioni base ex Art. 13 TUIR (maggiorate dei 65€ previsti per la fascia) e i 1.000,00 € di Cuneo: con la detrazione da lavoro di 1.646,52 € l'IRPEF netta scende a 5.042,04 €. Aggiungendo le addizionali medie di 804,12 €, il netto annuo è di 25.937,34 €, pari a 1.995,18 € per 13 mensilità.</li>
-            </ul>
-          </div>
-        </details>
-
-        <!-- PREGUNTAS FRECUENTES (DESPLEGABLES INDIVIDUALES) -->
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">FAQ e Analisi delle Criticità Procedurali (Sanzioni ed Errori)</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Violazione Contributiva: Il Mantenimento dello Sgravio INPS al 6/7%</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Un errore operativo ricorrente nei dipartimenti HR e nei software paghe legacy consiste nel continuare ad applicare la trattenuta INPS abbassata (sgravio 6/7%) in luogo della misura ordinaria del 9,19%, ignorando completamente che nell'architettura 2026 il cuneo si è trasformato in un "bonus fiscale" di competenza dell'Erario e non più dell'INPS. Questa omissione tecnica sconvolge la quadratura obbligatoria dei flussi Uniemens; l'azienda committente si rende immediatamente passibile di ispezioni e sanzioni amministrative pecuniarie per omissione contributiva da parte dell'Istituto Nazionale della Previdenza Sociale.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Errore nel Coefficiente di Sfumatura della Detrazione Aggiuntiva</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'errata imputazione del nuovo Cuneo Fiscale genera gravi disagi contabili per i dipendenti di fascia medio-alta. Attribuire preliminarmente in busta paga i 1.000 euro forfettari pieni (legittimi solo per la fascia 20.000€ - 32.000€) a un lavoratore con reddito prospettico inquadrato a 38.000 euro, omettendo il coefficiente di decrescita proporzionale, si rivela fatale in sede di chiusura d'esercizio. A dicembre, l'azienda, in qualità di sostituto d'imposta, è vincolata per legge a stornare il differenziale economico non spettante. Ciò comporta l'emissione di un maxi-conguaglio IRPEF a debito che decurta drasticamente lo stipendio natalizio o assorbe per intero la tredicesima mensilità del lavoratore.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Incapienza IRPEF e Trattamento Integrativo (Ex Bonus Renzi)</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'estensione della "No-Tax Area" a 8.500 euro rischia di generare fenomeni di "incapienza" nelle fasce reddituali bassissime, impattando sul Trattamento Integrativo (ex Bonus Renzi). Erogare automaticamente i 1.200 euro annui (100 euro mensili) per redditi under 15.000 euro, ignorando che l'effettiva spettanza è giuridicamente condizionata dal possedere un'imposta lorda matematicamente superiore alla detrazione da lavoro spettante (diminuita di 75 euro), costituisce un vizio formale grave. L'erogazione indebita del trattamento da parte del datore di lavoro, in assenza di reale capienza IRPEF, impone in sede di dichiarazione 730 la restituzione coattiva delle somme percepite tramite prelievo in unica soluzione o trattenute a rate nei cedolini successivi.
-              </p>
-            </details>
-
-             <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Fringe Benefits e Superamento delle Soglie d'Esenzione</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'allocazione dei Fringe Benefits aziendali (beni in natura, rimborso utenze, canoni di affitto o rate di mutuo) è governata da limiti di esenzione fiscale inderogabili e non riproporzionabili: 2.000 euro per i lavoratori con figli fiscalmente a carico, e 1.000 euro per la platea sprovvista di prole. Il superamento di tali sbarramenti normativi, anche per l'esiguo importo di 1 solo euro, fa decadere irrimediabilmente il beneficio sull'intera somma pattuita; il valore totale del fringe benefit transita nel cedolino come retribuzione ordinaria, venendo assoggettato in toto all'imposizione IRPEF progressiva e alla contribuzione INPS, infliggendo una contrazione inaspettata al netto a pagare mensile.
-              </p>
-            </details>
-
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Dalla RAL allo stipendio netto: come si calcola nel 2026</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La RAL (retribuzione annua lorda) &egrave; quello che il datore di lavoro ti paga prima delle trattenute. Per arrivare al netto in busta paga si tolgono i contributi INPS, poi l&rsquo;IRPEF (meno le detrazioni) e le addizionali regionale e comunale. Il calcolatore fa questi passaggi e divide il netto per 13 o 14 mensilit&agrave;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I passaggi</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li><strong>Contributi INPS</strong>: di solito il 9,19% della RAL, a carico tuo. Sopra i 56.224 &euro; di retribuzione si aggiunge un punto in pi&ugrave;.</li>
+            <li><strong>Imponibile IRPEF</strong>: RAL meno contributi.</li>
+            <li><strong>IRPEF lorda</strong>, a scaglioni sull&rsquo;imponibile:</li>
+            <li>('ul', ['fino a 28.000 &euro;: 23%;', 'da 28.000 a 50.000 &euro;: 33%;', 'oltre 50.000 &euro;: 43%.'])</li>
+            <li><strong>Detrazioni</strong>: per lavoro dipendente (1.955 &euro; fino a 15.000 &euro; di reddito, poi decrescenti) ed eventuali familiari a carico. Sotto circa 8.500 &euro; di reddito non si paga IRPEF.</li>
+            <li><strong>Taglio del cuneo fiscale</strong>: fino a 20.000 &euro; di reddito &egrave; una somma in pi&ugrave; in busta paga, non tassata (7,1%, 5,3% o 4,8% del reddito a seconda della fascia); tra 20.000 e 32.000 &euro; &egrave; una detrazione di 1.000 &euro;, che poi cala fino a sparire a 40.000 &euro;.</li>
+            <li><strong>Addizionali</strong> regionale e comunale, che si pagano l&rsquo;anno dopo, a rate.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Commessa part-time con 18.000 &euro; di RAL e 14 mensilit&agrave;.</strong> INPS 1.654,20 &euro;; IRPEF netta 782,72 &euro;; bonus del cuneo 784,60 &euro;; addizionali 413,55 &euro;. Netto annuo 15.934,13 &euro;, cio&egrave; 1.138,15 &euro; al mese.</p>
+          <p><strong>Impiegato con 35.000 &euro; di RAL e 13 mensilit&agrave;.</strong> INPS 3.216,50 &euro;; imponibile 31.783,50 &euro;; IRPEF lorda 7.688,56 &euro;; detrazione per lavoro 1.646,52 &euro; e del cuneo 1.000 &euro;; addizionali 804,12 &euro;. Netto annuo 25.937,34 &euro;, cio&egrave; 1.995,18 &euro; al mese.</p>
+          <p>Gli esempi usano addizionali medie (1,73% regionale e 0,80% comunale) e nessun familiare a carico: con le aliquote del tuo Comune e della tua Regione il netto cambia di qualche decina di euro.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Perch&eacute; il netto reale pu&ograve; essere diverso</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il contratto collettivo pu&ograve; prevedere 13 o 14 mensilit&agrave;: il netto annuo &egrave; lo stesso, quello mensile cambia.</li>
+            <li>Straordinari, premi, buoni pasto e fringe benefit cambiano il lordo del mese.</li>
+            <li>A dicembre (o alla fine del rapporto) arriva il conguaglio: il datore ricalcola l&rsquo;imposta dell&rsquo;anno e recupera o restituisce la differenza.</li>
+            <li>Le detrazioni per i figli fino a 21 anni non ci sono pi&ugrave;: al loro posto c&rsquo;&egrave; l&rsquo;<a href="/cittadino-tasse/assegno-unico/" class="text-indigo-700 underline">assegno unico</a> pagato dall&rsquo;INPS.</li>
+          </ul>
         </div>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono calcolati con il motore della pagina, le addizionali medie predefinite (1,73% regionale e 0,80% comunale) e le detrazioni per lavoro dipendente attive. Non considerano familiari a carico.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: commessa part-time con 18.000 € di RAL e 14 mensilità</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>INPS 9,19%: 1.654,20 €; imponibile: 16.345,80 €</li>
-            <li>IRPEF lorda: 3.759,53 €; detrazione lavoro: 2.976,81 €; IRPEF netta: 782,72 €</li>
-            <li>Bonus cuneo fiscale 4,8%, esente: 784,60 €</li>
-            <li>Addizionali: 413,55 €</li>
-            <li>Netto annuo: 15.934,13 €, pari a 1.138,15 € per 14 mensilità</li>
-            </ul>
-            <p>Il bonus del cuneo vale quasi quanto l'IRPEF netta pagata: sotto i 20.000 € di reddito è un'integrazione in denaro, non una riduzione d'imposta, e spetta anche a chi non paga IRPEF.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: impiegato con 35.000 € di RAL e 13 mensilità</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>INPS: 3.216,50 €; imponibile: 31.783,50 €</li>
-            <li>IRPEF lorda: 7.688,56 €; detrazione lavoro: 1.646,52 €; detrazione cuneo: 1.000,00 €</li>
-            <li>IRPEF netta: 5.042,04 €; addizionali: 804,12 €</li>
-            <li>Netto annuo: 25.937,34 €, pari a 1.995,18 € al mese</li>
-            </ul>
-            <p>Rispetto a una RAL di 24.000 €, che produce 19.708,34 € netti, gli 11.000 € lordi in più diventano 6.229 € netti: il 57% dell'aumento arriva in busta paga.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: quadro con 60.000 € di RAL</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>INPS: 9,19% su 56.224 € più 10,19% sui 3.776 € eccedenti = 5.551,76 €</li>
-            <li>Imponibile: 54.448,24 €, oltre i 50.000 €: nessuna detrazione per lavoro e nessun cuneo</li>
-            <li>IRPEF netta: 15.612,74 €; addizionali: 1.377,54 €</li>
-            <li>Netto annuo: 37.457,96 €, pari a 2.881,38 € al mese</li>
-            </ul>
-            <p>Sopra i 50.000 € di reddito ogni euro lordo in più rende circa 49 centesimi netti, per effetto dell'aliquota IRPEF del 43% sommata a contributi e addizionali.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; tra RAL e netto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La RAL &egrave; il lordo annuo scritto nel contratto. Il netto &egrave; quello che arriva sul conto dopo contributi INPS, IRPEF e addizionali: per un impiegato con 35.000 &euro; di RAL &egrave; intorno al 74%.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché lo stipendio netto di gennaio è più basso degli altri mesi?</h3>
-            <p>Da gennaio il datore di lavoro inizia a trattenere a rate le addizionali regionale e comunale dovute sui redditi dell'anno precedente, insieme all'acconto dell'addizionale comunale. Il calcolatore distribuisce le addizionali in modo uniforme sull'anno, quindi il netto dei primi mesi può risultare inferiore alla stima.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il bonus del cuneo fiscale può essere restituito?</h3>
-            <p>Sì. Il datore lo riconosce mese per mese stimando il reddito annuo; se a fine anno il reddito complessivo supera i 20.000 euro, o la detrazione ulteriore risulta inferiore a quella applicata, la differenza viene recuperata con il conguaglio di dicembre o nella dichiarazione dei redditi.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Tredicesima e quattordicesima sono tassate di più?</h3>
-            <p>Non con aliquote diverse. Sulle mensilità aggiuntive non si applicano le detrazioni mensili, perché sono già state distribuite sugli altri mesi, quindi il netto appare più basso rispetto a una busta paga ordinaria. Il conguaglio di fine anno riallinea l'imposta a quella dovuta sull'intero reddito.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il bonus del cuneo fiscale si tassa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: sotto i 20.000 &euro; di reddito &egrave; una somma esente che si aggiunge al netto e spetta anche a chi non paga IRPEF. Sopra i 20.000 &euro; &egrave; una detrazione che riduce l&rsquo;IRPEF.</p>
         </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore dello stipendio netto è uno strumento <strong>100% client-side, a infrastruttura zero-backend</strong>. La retribuzione lorda annua, il numero di mensilità, le aliquote delle addizionali e l'opzione per le detrazioni vengono elaborati solo dal browser sul tuo dispositivo. Nessun dato retributivo, codice fiscale o IBAN viene caricato su un server. Il browser scarica soltanto la pagina e i parametri fiscali pubblici del 2026.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Lo stipendio è uno dei dati personali più riservati nel rapporto di lavoro e nella vita privata. Non raccogliendolo, lo strumento rispetta il Regolamento UE 2016/679 (GDPR) e attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25, oltre alla minimizzazione dei dati dell'articolo 5. Nessun calcolo viene registrato o reso accessibile a noi o a terzi.</p>
-        </div>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; a dicembre lo stipendio &egrave; diverso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per il conguaglio di fine anno: il datore di lavoro ricalcola le imposte su tutto l&rsquo;anno e le confronta con quelle trattenute mese per mese.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso verificare la mia busta paga?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, con l&rsquo;<a href="/lavoro-contratti/analizzatore-busta-paga/" class="text-indigo-700 underline">analizzatore della busta paga</a>, che confronta le voci del cedolino con il calcolo teorico.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 22 dicembre 1986, n. 917 (TUIR), artt. 11 e 13: scaglioni IRPEF e detrazioni per lavoro dipendente.</li>
+          <li>Legge 30 dicembre 2024, n. 207: misure strutturali di riduzione del cuneo fiscale.</li>
+          <li>Legge di Bilancio 2026: aliquota del secondo scaglione IRPEF al 33%.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

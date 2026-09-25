@@ -142,34 +142,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Come funziona l'ISEE Corrente e quali sono i termini di decadenza?",
+            "name": "Dove si fa l’ISEE?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ai sensi dell'art. 9 del DPCM 159/2013, i cittadini che subiscano una contrazione del reddito del nucleo superiore al 25% o un depauperamento del patrimonio superiore al 20% possono richiedere l'attualizzazione dell'indicatore tramite l'ISEE Corrente. È fondamentale prestare attenzione ai termini di validità: l'ISEE Corrente basato sulla variazione dei redditi ha una validità contratta a soli6 mesidalla data di rilascio (a differenza dell'attestazione ordinaria che scade il 31 dicembre). Lasciar spirare la scadenza semestrale senza reiterare la richiesta provoca la decadenza istantanea dell'agevolazione e la sospensione dell'erogazione di prestazioni come l'Assegno Unico o l'Assegno di Inclusione."
+              "text": "Sul sito dell’INPS con la DSU precompilata (con SPID o CIE) oppure gratis presso un CAF. L’attestazione arriva in pochi giorni."
             }
           },
           {
             "@type": "Question",
-            "name": "Quali errori si commettono frequentemente con i Titoli di Stato nella DSU?",
+            "name": "Quanto dura l’ISEE?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nella DSU precompilata fornita dall'INPS, i sistemi informatici estromettono automaticamente i BTP e i Buoni Postali entro il plafond di 50.000 euro. Tuttavia, gli utenti che optano per la compilazione manuale o autodichiarata tendono spesso a sommare erroneamente tali asset nel saldo attivo complessivo dei rapporti finanziari, gonfiando artificiosamente il patrimonio mobiliare (PM). Questo sovra-dimensionamento innalza l'ISEE di migliaia di euro, causando l'illegittima esclusione del nucleo dalle fasce di sussidio spettanti."
+              "text": "Fino al 31 dicembre dell’anno in cui lo fai. Dal 1° gennaio va rifatto."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si determina il nucleo familiare in caso di coniugi con residenza separata?",
+            "name": "I BTP contano nell’ISEE?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le regole ISEE divergono nettamente dallo stato di famiglia anagrafico comunale. I coniugi non legalmente separati o divorziati, anche se in possesso di residenze anagrafiche disgiunte, fanno parte obbligatoriamente del medesimo nucleo familiare ISEE. Presentare DSU separate per fittizia separazione di fatto allo scopo di abbattere l'indicatore costituisce una dichiarazione mendace resa a pubblico ufficiale (D.P.R. 445/2000). Gli incroci automatizzati dell'INPS con l'Anagrafe Tributaria intercettano il disallineamento, innescando la revoca di tutti i benefici percepiti, l'obbligo di restituzione coattiva delle somme con sanzioni civili e il deferimento all'Autorità Giudiziaria."
+              "text": "Titoli di Stato, buoni e libretti postali sono esclusi fino a 50.000 € per il nucleo; la parte oltre questa cifra conta come gli altri risparmi."
             }
           },
           {
             "@type": "Question",
-            "name": "Quali sono le sanzioni per chi presenta una DSU non veritiera?",
+            "name": "Perché il simulatore dà un valore diverso da quello dell’INPS?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La sottoscrizione di una DSU contenente dati omessi o falsi integra gli estremi del reato di falsità ideologica commessa dal privato in atto pubblico (Art. 483 C.P.). Oltre alle sanzioni penali, l'art. 75 del D.P.R. 445/2000 dispone la decadenza immediata da tutti i benefici conseguiti e il \"blacklisting\" istituzionale dell'utente, configurando un divieto assoluto di accedere a qualsiasi ulteriore agevolazione o contributo pubblico per un periodo di due anni."
+              "text": "Il simulatore semplifica alcune voci (redditi esenti, franchigie particolari, componenti aggiuntive). Usalo per farti un’idea: fa fede l’attestazione INPS."
             }
           }
         ]
@@ -523,273 +523,63 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico, Algoritmi e Guida Normativa all'ISEE 2026</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          L'<strong>Indicatore della Situazione Economica Equivalente (ISEE)</strong> rappresenta l'infrastruttura di valutazione della capacità reddituale e patrimoniale dei nuclei familiari in Italia, disciplinata dal D.P.C.M. 5 dicembre 2013, n. 159. L'impianto regolatorio è stato profondamente innovato dalle disposizioni della Legge di Bilancio 2026 e recepito sul piano operativo dal Messaggio INPS n. 102 del 12 gennaio 2026. Tali aggiornamenti introducono il concetto di "ISEE mirato", una metrica ricalibrata per favorire l'accesso alle prestazioni essenziali di welfare e sostegno (Assegno di Inclusione, Assegno Unico e Universale, Supporto per la Formazione e il Lavoro, Bonus Nido, agevolazioni universitarie). Questo simulatore calcola il valore ISEE in modo 100% Client-Side nel tuo browser, garantendo che nessuna informazione reddituale o finanziaria venga inviata a server esterni.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo e Novità della Legge di Bilancio 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Scomputo dei Titoli di Stato e Prodotti del Risparmio Postale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Una delle innovazioni di maggior impatto nell'ISEE 2026 è il consolidamento operativo dell'esclusione dal calcolo dell'Indicatore della Situazione Patrimoniale (ISP) dei Titoli di Stato italiani (BOT, BTP, CCT, CTZ, BTP Valore) e dei prodotti del risparmio postale garantiti dallo Stato (Buoni Postali Fruttiferi e Libretti di Risparmio). La norma fissa una soglia esente complessiva fino alla capienza limite di <strong>50.000 euro per nucleo familiare</strong>. Tali asset patrimoniali, se contenuti entro questa franchigia, non concorrono ad incrementare il patrimonio mobiliare rilevante.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Inclusione Obbligatoria di Criptovalute e Attività Estere</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Parallelamente alle esenzioni sui Titoli pubblici, il legislatore ha reso stringente e obbligatoria la dichiarazione e l'inclusione nel quadro FC2 delle criptovalute, dei crypto-asset, delle giacenze su conti correnti esteri e delle attività finanziarie detenute fuori dal territorio nazionale, allineando i controlli della DSU alle direttive europee antiriciclaggio e al quadro di monitoraggio fiscale del Modello Redditi (Quadro RW).
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Nuove Franchigie sull'Abitazione Principale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                La regolamentazione 2026 innalza significativamente la protezione della casa di proprietà a uso residenziale. La franchigia da applicare sul valore IMU della prima casa (decurtato del capitale residuo della quota capitale del mutuo al 31/12/2024) viene dedotta per una quota base fissa pari a <strong>91.500 euro</strong>. Tale soglia di salvaguardia viene elevata d'ufficio a <strong>120.000 euro</strong> per i nuclei familiari residenti nei Comuni capoluogo di Città metropolitana, prevedendo un ulteriore scarto di deduzione di <strong>2.500 euro per ogni figlio convivente</strong> successivo al primo.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si calcola l&rsquo;ISEE nel 2026</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>L&rsquo;ISEE misura la situazione economica della famiglia mettendo insieme redditi, risparmi e immobili, e dividendo il risultato per un numero che dipende da quante persone ci sono. Serve per assegno unico, bonus, agevolazioni universitarie, mense e molto altro. Il simulatore ti d&agrave; una stima: l&rsquo;ISEE valido lo rilascia l&rsquo;INPS dopo la dichiarazione sostitutiva unica (DSU).</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">La formula</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li><strong>Redditi</strong>: i redditi dei componenti del nucleo di due anni prima (per l&rsquo;ISEE 2026 quelli del 2024), meno l&rsquo;affitto pagato per la casa, entro un limite.</li>
+            <li><strong>Patrimonio mobiliare</strong>: conti, depositi e investimenti al 31 dicembre 2024 (per i conti, il valore pi&ugrave; alto tra saldo e giacenza media). Titoli di Stato e buoni postali sono esclusi fino a 50.000 &euro;. Si toglie una franchigia di 6.000 &euro;, pi&ugrave; 2.000 per ogni componente oltre il primo.</li>
+            <li><strong>Patrimonio immobiliare</strong>: il valore IMU degli immobili meno il mutuo residuo. Sulla casa di abitazione si toglie una franchigia di 91.500 &euro; (120.000 nelle citt&agrave; metropolitane), pi&ugrave; 2.500 per ogni figlio dopo il primo.</li>
+            <li><strong>ISE</strong> = redditi + 20% dei patrimoni. <strong>ISEE</strong> = ISE diviso la scala di equivalenza.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">La scala di equivalenza</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Componenti del nucleo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Parametro</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1</td><td class="px-3 py-2 align-top">1,00</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">2</td><td class="px-3 py-2 align-top">1,57</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">3</td><td class="px-3 py-2 align-top">2,04</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">4</td><td class="px-3 py-2 align-top">2,46</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">5</td><td class="px-3 py-2 align-top">2,85</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Algoritmo Matematico, Equazioni e Scala di Equivalenza INPS</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Formule per la Determinazione dell'ISE e dell'ISEE</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                La determinazione dell'ISEE Ordinario 2026 richiede il calcolo sequenziale dell'Indicatore della Situazione Economica (ISE), che sintetizza la ricchezza complessiva, normalizzata successivamente attraverso il divisore della Scala di Equivalenza (SE):
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono text-center overflow-x-auto">
-                $$ISE = ISR + [(PM + PI) \times 0,20]$$
-                $$ISEE = \frac{ISE}{SE}$$
-              </div>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-3 mb-4">
-                <li>
-                  <strong>ISR (Indicatore Situazione Reddituale):</strong> Somma dei redditi netti ai fini IRPEF percepiti dai componenti del nucleo nell'anno $t-2$ (esercizio 2024 per le DSU 2026), al netto dei canoni di locazione annui pagati per la casa di abitazione (fino al tetto massimo di legge).
-                </li>
-                <li>
-                  <strong>PM (Patrimonio Mobiliare Rilevante):</strong> Si assume il valore maggiore tra il saldo attivo al 31 dicembre 2024 e la giacenza media annua dei conti correnti, decurtato dei Titoli di Stato esenti (fino a 50.000 €) e della franchigia mobiliare di base (6.000 € per il primo componente, incrementata di 2.000 € per ogni componente successivo fino al cap di 10.000 €).
-                </li>
-                <li>
-                  <strong>PI (Patrimonio Immobiliare Rilevante):</strong> Somma dei valori IMU degli immobili posseduti al 31/12/2024. Per la prima casa si applica lo scomputo del mutuo residuo e della franchigia base (91.500 € o 120.000 € per Città Metropolitane + 2.500 € per ciascun figlio dopo il primo).
-                </li>
-                <li>
-                  <strong>ISP (Indicatore Situazione Patrimoniale):</strong> È la somma del Patrimonio Mobiliare netto e del Patrimonio Immobiliare netto, $ISP = PM_{netto} + PI_{netto}$, e concorre all'ISE per il 20%.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Parametri e Maggiorazioni della Scala di Equivalenza (SE)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il parametro divisore SE normalizza l'ISE in funzione della numerosità e della composizione del nucleo familiare:
-              </p>
-              
-              <!-- TABELLA SCALA EQUIVALENZA -->
-              <div class="overflow-x-auto my-4">
-                <table class="w-full text-xs text-left text-gray-700 border border-gray-200 rounded-lg">
-                  <thead class="bg-gray-100 text-gray-900 font-bold uppercase tracking-wider">
-                    <tr>
-                      <th class="p-3 border-b">Componenti del Nucleo Familiare</th>
-                      <th class="p-3 border-b">Parametro Base (SE)</th>
-                      <th class="p-3 border-b">Maggiorazioni Applicabili 2026</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200 bg-white">
-                    <tr>
-                      <td class="p-3 font-semibold">1 Componente</td>
-                      <td class="p-3">1,00</td>
-                      <td class="p-3">+0,10 per nuclei con due figli a carico</td>
-                    </tr>
-                    <tr>
-                      <td class="p-3 font-semibold">2 Componenti</td>
-                      <td class="p-3">1,57</td>
-                      <td class="p-3">+0,25 per nuclei con tre figli a carico</td>
-                    </tr>
-                    <tr>
-                      <td class="p-3 font-semibold">3 Componenti</td>
-                      <td class="p-3">2,04</td>
-                      <td class="p-3">+0,40 per nuclei con quattro figli a carico</td>
-                    </tr>
-                    <tr>
-                      <td class="p-3 font-semibold">4 Componenti</td>
-                      <td class="p-3">2,46</td>
-                      <td class="p-3">+0,55 per nuclei con cinque o più figli a carico</td>
-                    </tr>
-                    <tr>
-                      <td class="p-3 font-semibold">5 Componenti</td>
-                      <td class="p-3">2,85</td>
-                      <td class="p-3">+0,50 per ciascun componente con disabilità media/grave</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Si applica inoltre la maggiorazione di <strong>+0,20</strong>, elevata a +0,30 in presenza di almeno un figlio sotto i tre anni, per i nuclei con figli minorenni in cui entrambi i genitori (o l'unico genitore presente) abbiano svolto attività di lavoro o d'impresa per almeno sei mesi nell'anno di riferimento dei redditi (2024).
-              </p>
-            </div>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Simulazione Svolta Passo-Passo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Profilazione del Nucleo Tipo (Famiglia di 4 Persone)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Si ipotizzi la simulazione per un nucleo familiare residente in un Comune non capoluogo di città metropolitana, composto da 4 persone (due genitori lavoratori e due figli minori):
-              </p>
-              
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-3">
-                <p><strong>Dati di Input:</strong><br>
-                - Reddito Complessivo Netto 2024 (ISR): <strong>35.000,00 €</strong><br>
-                - Giacenza/Saldo Banche 31/12/2024: 20.000,00 €<br>
-                - Investimento in BTP (Titoli di Stato): 40.000,00 €<br>
-                - Valore IMU Casa di Proprietà: 110.000,00 € (Senza Mutuo)</p>
-
-                <p><strong>1. Calcolo del Patrimonio Mobiliare (PM):</strong><br>
-                I BTP (40.000 €) vengono interamente estromessi poiché inferiori al limite di 50.000 €.<br>
-                PM Lordo = 20.000,00 €.<br>
-                Franchigia Mobiliare (4 componenti) = 10.000,00 €, il massimo previsto dalla franchigia di base.<br>
-                $PM_{netto} = 20.000,00 - 10.000,00 = \mathbf{10.000,00\ \text{€}}$</p>
-
-                <p><strong>2. Calcolo del Patrimonio Immobiliare (PI):</strong><br>
-                Valore Casa = 110.000,00 €.<br>
-                Franchigia 2026 = 91.500,00 € + 2.500,00 € (per il secondo figlio) = 94.000,00 €.<br>
-                Eccedenza = 110.000,00 - 94.000,00 = 16.000,00 €, che concorre per due terzi.<br>
-                $PI_{netto} = 16.000,00 \times \frac{2}{3} = \mathbf{10.666,67\ \text{€}}$</p>
-
-                <p><strong>3. Determinazione dell'ISP e dell'ISE:</strong><br>
-                ISP = PM + PI = 10.000,00 + 10.666,67 = 20.666,67 €.<br>
-                $Quota\ ISP = 20.666,67 \times 0,20 = \mathbf{4.133,33\ \text{€}}$<br>
-                $ISE = ISR + 0,20 \times ISP = 35.000,00 + 4.133,33 = \mathbf{39.133,33\ \text{€}}$</p>
-
-                <p><strong>4. Determinazione della Scala di Equivalenza (SE):</strong><br>
-                Base 4 componenti = 2,46.<br>
-                Maggiorazione secondo figlio = +0,10.<br>
-                Maggiorazione genitori entrambi lavoratori, con figli di più di tre anni = +0,20.<br>
-                $SE = 2,46 + 0,10 + 0,20 = \mathbf{2,76}$</p>
-
-                <p class="text-emerald-700 font-bold border-t border-gray-200 pt-2">
-                  Risultato Finale ISEE Ordinario 2026:<br>
-                  $ISEE = \frac{39.133,33}{2,76} = \mathbf{14.178,74\ \text{€}}$
-                </p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">4. FAQ Tecniche, ISEE Corrente e Sanzioni per Dichiarazione Mendace</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-              <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-                <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-                <p>I casi seguenti riguardano nuclei con al massimo un figlio, per i quali le regole ordinarie e quelle della Legge di Bilancio 2026 coincidono. Sono stati riprodotti nel simulatore della pagina.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: lavoratrice che vive sola in affitto</h3>
-                <p>Reddito 2024 di 18.000 €, affitto di 650 € al mese, 9.000 € sul conto corrente.</p>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>ISR: 18.000 − 7.000 (affitto, entro il limite) = 11.000,00 €</li>
-                <li>Patrimonio mobiliare: 9.000 − 6.000 di franchigia = 3.000,00 €</li>
-                <li>ISE: 11.000 + 3.000 × 20% = 11.600,00 €</li>
-                <li>ISEE con scala 1,00: 11.600,00 €</li>
-                </ul>
-                <p>Degli 800 € di affitto annuo oltre il limite non resta traccia nel calcolo: con un canone più alto l'ISEE non scende ulteriormente.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: coppia di lavoratori con un figlio di 5 anni e mutuo</h3>
-                <p>Redditi complessivi 42.000 €, conti per 25.000 €, casa con valore IMU di 140.000 € e mutuo residuo di 60.000 €.</p>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Scala: 2,04 + 0,20 (genitori lavoratori) = 2,24</li>
-                <li>Patrimonio mobiliare: 25.000 − 10.000 = 15.000,00 €</li>
-                <li>Casa: 140.000 − 60.000 = 80.000 €, sotto la franchigia di 91.500 €: 0,00 €</li>
-                <li>ISE: 42.000 + 15.000 × 20% = 45.000,00 €</li>
-                <li>ISEE: 45.000 / 2,24 = 20.089,29 €</li>
-                </ul>
-                <p>Con questo ISEE la quota base dell'Assegno Unico per il figlio è di circa 190 € al mese. Estinguere anticipatamente il mutuo, invece, avrebbe un effetto sull'ISEE: il valore netto della casa salirebbe a 140.000 € e ne entrerebbero 32.333 € nel patrimonio, alzando l'ISEE di quasi 2.900 €.</p>
-
-                <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: BTP inseriti per errore nel patrimonio mobiliare</h3>
-                <p>Nucleo di 3 persone con un figlio, redditi di 30.000 €, 15.000 € sul conto e 45.000 € in BTP.</p>
-                <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                <li>Corretto, BTP esclusi: patrimonio 15.000 − 10.000 = 5.000 €; ISE 31.000 €; ISEE 15.196,08 €</li>
-                <li>Errato, BTP sommati: patrimonio 60.000 − 10.000 = 50.000 €; ISE 40.000 €; ISEE 19.607,84 €</li>
-                </ul>
-                <p>L'errore alza l'ISEE di oltre 4.400 € e può far perdere l'accesso a prestazioni con soglie come il bonus nido o le tariffe ridotte delle mense scolastiche.</p>
-              </div>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Come funziona l'ISEE Corrente e quali sono i termini di decadenza?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Ai sensi dell'art. 9 del DPCM 159/2013, i cittadini che subiscano una contrazione del reddito del nucleo superiore al 25% o un depauperamento del patrimonio superiore al 20% possono richiedere l'attualizzazione dell'indicatore tramite l'ISEE Corrente. È fondamentale prestare attenzione ai termini di validità: l'ISEE Corrente basato sulla variazione dei redditi ha una validità contratta a soli <strong>6 mesi</strong> dalla data di rilascio (a differenza dell'attestazione ordinaria che scade il 31 dicembre). Lasciar spirare la scadenza semestrale senza reiterare la richiesta provoca la decadenza istantanea dell'agevolazione e la sospensione dell'erogazione di prestazioni come l'Assegno Unico o l'Assegno di Inclusione.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quali errori si commettono frequentemente con i Titoli di Stato nella DSU?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Nella DSU precompilata fornita dall'INPS, i sistemi informatici estromettono automaticamente i BTP e i Buoni Postali entro il plafond di 50.000 euro. Tuttavia, gli utenti che optano per la compilazione manuale o autodichiarata tendono spesso a sommare erroneamente tali asset nel saldo attivo complessivo dei rapporti finanziari, gonfiando artificiosamente il patrimonio mobiliare (PM). Questo sovra-dimensionamento innalza l'ISEE di migliaia di euro, causando l'illegittima esclusione del nucleo dalle fasce di sussidio spettanti.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Come si determina il nucleo familiare in caso di coniugi con residenza separata?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Le regole ISEE divergono nettamente dallo stato di famiglia anagrafico comunale. I coniugi non legalmente separati o divorziati, anche se in possesso di residenze anagrafiche disgiunte, fanno parte obbligatoriamente del medesimo nucleo familiare ISEE. Presentare DSU separate per fittizia separazione di fatto allo scopo di abbattere l'indicatore costituisce una dichiarazione mendace resa a pubblico ufficiale (D.P.R. 445/2000). Gli incroci automatizzati dell'INPS con l'Anagrafe Tributaria intercettano il disallineamento, innescando la revoca di tutti i benefici percepiti, l'obbligo di restituzione coattiva delle somme con sanzioni civili e il deferimento all'Autorità Giudiziaria.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Quali sono le sanzioni per chi presenta una DSU non veritiera?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                La sottoscrizione di una DSU contenente dati omessi o falsi integra gli estremi del reato di falsità ideologica commessa dal privato in atto pubblico (Art. 483 C.P.). Oltre alle sanzioni penali, l'art. 75 del D.P.R. 445/2000 dispone la decadenza immediata da tutti i benefici conseguiti e il "blacklisting" istituzionale dell'utente, configurando un divieto assoluto di accedere a qualsiasi ulteriore agevolazione o contributo pubblico per un periodo di due anni.
-              </p>
-            </details>
-
-          </div>
+          <p>Si aggiungono maggiorazioni per i nuclei con tre o pi&ugrave; figli, per ogni componente con disabilit&agrave; e quando entrambi i genitori lavorano.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa controllare prima della DSU</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Chi fa parte del nucleo: di solito le persone con la stessa residenza; i coniugi fanno parte dello stesso nucleo anche se hanno residenze diverse.</li>
+            <li>Saldi al 31 dicembre e giacenze medie di tutti i conti, anche esteri e in criptovalute.</li>
+            <li>Rendite catastali e mutui residui degli immobili.</li>
+            <li>Se il reddito &egrave; calato molto di recente, puoi chiedere l&rsquo;ISEE corrente, basato sui redditi degli ultimi mesi.</li>
+          </ul>
         </div>
-
-      <!-- su-seo-expansion -->
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il simulatore ISEE è un'applicazione <strong>100% client-side, priva di qualsiasi backend</strong>. La composizione del nucleo familiare, i redditi di ciascun componente, il patrimonio mobiliare e immobiliare, la presenza di componenti con disabilità e ogni altro elemento della DSU vengono elaborati esclusivamente nel tuo browser. Per comodità i valori inseriti restano memorizzati nel dispositivo e si cancellano svuotando i dati del sito.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Si tratta della categoria di dati più delicata fra quelle trattate dagli strumenti di questo portale. I dati relativi alla disabilità appartengono alle categorie particolari tutelate dall'articolo 9 del Regolamento UE 2016/679 (GDPR), mentre reddito e patrimonio del nucleo delineano un profilo socio-economico estremamente dettagliato. Proprio per questo l'architettura esclude alla radice ogni trasmissione: nessun dato viene inviato, memorizzato o profilato, in piena attuazione dei principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e della minimizzazione dell'articolo 5. La simulazione ha valore puramente indicativo e non sostituisce la DSU presentata all'INPS o a un CAF abilitato.</p>
-        </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove si fa l&rsquo;ISEE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sul sito dell&rsquo;INPS con la DSU precompilata (con SPID o CIE) oppure gratis presso un CAF. L&rsquo;attestazione arriva in pochi giorni.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto dura l&rsquo;ISEE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Fino al 31 dicembre dell&rsquo;anno in cui lo fai. Dal 1&deg; gennaio va rifatto.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I BTP contano nell&rsquo;ISEE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Titoli di Stato, buoni e libretti postali sono esclusi fino a 50.000 &euro; per il nucleo; la parte oltre questa cifra conta come gli altri risparmi.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il simulatore d&agrave; un valore diverso da quello dell&rsquo;INPS?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il simulatore semplifica alcune voci (redditi esenti, franchigie particolari, componenti aggiuntive). Usalo per farti un&rsquo;idea: fa fede l&rsquo;attestazione INPS.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.C.M. 5 dicembre 2013, n. 159: regolamento dell&rsquo;ISEE.</li>
+          <li>Leggi di Bilancio 2024-2026: esclusione dei titoli di Stato e nuove franchigie sulla casa di abitazione.</li>
+          <li>INPS: modelli e istruzioni della DSU 2026.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
