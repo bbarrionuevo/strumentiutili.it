@@ -192,3 +192,21 @@ test('generatore XML: sede vera di cedente e cliente e bollo virtuale dei forfet
     for (const campo of ['indirizzo', 'cap', 'comune', 'provincia'])
       assert.match(pagina, new RegExp(`id="${chi}-${campo}"`), `${chi}-${campo}`);
 });
+
+// Il difetto: la tariffa della Provincia di Bolzano era caricata, ma nel menu
+// c'era solo "Trentino-Alto Adige" (valore trentino), quindi non si usava
+// mai. E la voce iniziale aveva valore "nazionale", che il calcolo scambiava
+// per una Regione con tariffa propria.
+test('il menu delle Regioni permette di usare ogni tariffa caricata', () => {
+  const html = fs.readFileSync(path.join(RADICE, 'cittadino-tasse', 'calcolo-bollo-auto', 'index.html'), 'utf8');
+  const menu = html.slice(html.indexOf('id="calc-regione"'), html.indexOf('</select>', html.indexOf('id="calc-regione"')));
+  const valori = [...menu.matchAll(/<option value="([^"]*)"/g)].map((m) => m[1]);
+  assert.strictEqual(valori[0], '', 'la prima voce chiede di scegliere, non e una Regione');
+  assert.ok(!valori.includes('nazionale'));
+  for (const r of Object.keys(regole.bollo_auto_2026.regioni).filter((x) => x !== 'nazionale')) {
+    assert.ok(valori.includes(r), 'manca nel menu: ' + r);
+  }
+  for (const r of regole.bollo_auto_2026.regioni_con_tariffa_propria) assert.ok(valori.includes(r), 'manca nel menu: ' + r);
+  // Trento e Bolzano sono due voci diverse
+  assert.ok(valori.includes('trentino') && valori.includes('bolzano'));
+});
