@@ -79,31 +79,41 @@ test('le date sono nel formato YYYY-MM-DD e non nel futuro', () => {
   assert.deepStrictEqual(strane.map((v) => v.loc + ' ' + v.lastmod), []);
 });
 
-test('le varianti pSEO sono noindex e fuori dal sitemap', () => {
-  // Sono la stessa pagina con un'altra etichetta (Regione, professione, CCNL):
-  // indicizzate sarebbero contenuto duplicato. Restano raggiungibili, ma una
-  // pagina noindex nel sitemap e' un errore per Search Console.
+test('le varianti della ricerca portano allo strumento con la voce gia scelta', () => {
+  // Bollo per Regione, dimissioni per contratto: un tempo pagine copiate e
+  // noindex, ora voci della ricerca che aprono lo strumento con ?regione= o
+  // ?ccnl= (js/parametri-url.js). Il parametro deve essere un'opzione vera.
   const indice = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'strumenti.json'), 'utf8'));
-  const varianti = (indice.strumenti || []).filter((s) => s.variante).map((s) => s.percorso);
+  const varianti = (indice.strumenti || []).filter((s) => s.variante);
   assert.ok(varianti.length > 20, 'attese piu di 20 varianti, trovate ' + varianti.length);
-
-  const senzaNoindex = varianti.filter((v) =>
-    !S.noindex(fs.readFileSync(path.join(L.RADICE, v, 'index.html'), 'utf8')));
-  assert.deepStrictEqual(senzaNoindex, [], 'varianti ancora indicizzabili');
-
   const presenti = new Set(voci.map((v) => v.loc.replace(L.SITO, '')));
-  assert.deepStrictEqual(varianti.filter((v) => presenti.has(v)), [], 'varianti nel sitemap');
+  for (const v of varianti) {
+    const [pagina, query] = v.percorso.split('?');
+    assert.strictEqual(pagina, v.variante.originale, v.percorso);
+    assert.ok(presenti.has(pagina), pagina + ' non e nel sitemap');
+    if (!query) continue;
+    const [nome, valore] = query.split('=');
+    const html = fs.readFileSync(path.join(L.RADICE, pagina, 'index.html'), 'utf8');
+    const menu = new RegExp('<select[^>]*data-parametro="' + nome + '"[\\s\\S]*?</select>').exec(html);
+    assert.ok(menu, pagina + ': manca il menu con data-parametro="' + nome + '"');
+    assert.ok(menu[0].includes('value="' + valore + '"'), v.percorso + ': opzione inesistente');
+  }
 });
 
-test('una variante non e mai l originale da cui nasce', () => {
-  // lettera-dimissioni-preavviso condivide il prefisso delle sue varianti:
-  // e' gia' stata classificata per errore come variante di se stessa, e con
-  // il noindex sarebbe sparita da Google la pagina vera.
-  const indice = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'strumenti.json'), 'utf8'));
-  const sbagliate = (indice.strumenti || [])
-    .filter((s) => s.variante && s.variante.originale === s.percorso)
-    .map((s) => s.percorso);
-  assert.deepStrictEqual(sbagliate, []);
+test('i vecchi indirizzi delle pagine per regione, professione e contratto hanno il loro 301', () => {
+  const vercel = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'vercel.json'), 'utf8'));
+  const redirect = new Map(vercel.redirects.map((r) => [r.source, r.destination]));
+  const regole = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'regole-fiscali-2026.json'), 'utf8'));
+  const attesi = [
+    ...regole.bollo_auto_2026.regioniSEO.map((x) => ['/cittadino-tasse/calcolo-bollo-auto-' + x.slug + '/', '/cittadino-tasse/calcolo-bollo-auto/?regione=' + x.slug]),
+    ...regole.partitaIvaForfettario.profesioniSEO.map((x) => ['/fisco-professioni/partita-iva-' + x.slug + '/', '/fisco-professioni/partita-iva/']),
+    ...regole.ccnl_dimissioni.ccnlSEO.map((x) => ['/lavoro-contratti/lettera-dimissioni-' + x.slug + '/', '/lavoro-contratti/lettera-dimissioni-preavviso/?ccnl=' + (x.codice || x.slug)])
+  ];
+  assert.strictEqual(attesi.length, 42);
+  for (const [da, a] of attesi) {
+    assert.strictEqual(redirect.get(da), a, da);
+    assert.ok(!fs.existsSync(path.join(L.RADICE, da, 'index.html')), da + ' esiste ancora: il redirect non scatterebbe');
+  }
 });
 
 test('il riconoscimento del noindex', () => {

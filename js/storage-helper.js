@@ -145,6 +145,8 @@
       inputs.forEach((input) => {
         const fieldKey = chiaveCampo(input);
         if (savedData[fieldKey] === undefined) return;
+        // la scelta arrivata dall'indirizzo (js/parametri-url.js) vince su quella ricordata
+        if (input.getAttribute('data-da-url') === '1') return;
         if (input.type === 'checkbox') input.checked = Boolean(savedData[fieldKey]);
         else if (input.type === 'radio') input.checked = (input.value === savedData[fieldKey]);
         else input.value = savedData[fieldKey];
