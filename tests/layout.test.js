@@ -293,9 +293,9 @@ test('nessuna libreria di terzi resta senza versione fissata', () => {
 });
 
 test('gli script di terzi in HTML hanno controllo di integrita', () => {
-  // Escluse: AdSense e Cookiebot cambiano per definizione, e docs.opencv.org
-  // non manda intestazioni CORS, quindi SRI la bloccherebbe.
-  const SENZA = ['pagead2.googlesyndication.com', 'consent.cookiebot.com', 'docs.opencv.org', 'cdn.tailwindcss.com'];
+  // Escluse: AdSense e Cookiebot cambiano per definizione. OpenCV ora arriva
+  // da vendor/, quindi non e' piu' un'eccezione.
+  const SENZA = ['pagead2.googlesyndication.com', 'consent.cookiebot.com', 'cdn.tailwindcss.com'];
   const problemi = [];
   for (const p of PAGINE) {
     // [ ] invece di una classe di spazi: cosi il pattern non ha caratteri di
@@ -317,7 +317,7 @@ test('gli script di terzi iniettati da js/ hanno versione e integrita', () => {
   // solo un messaggio di errore generico. Qui si controlla staticamente che ogni
   // URL di CDN dentro js/ abbia una versione fissata e un integrity accanto.
   const SENZA = ['pagead2.googlesyndication.com', 'consent.cookiebot.com',
-                 'fundingchoicesmessages.google.com', 'docs.opencv.org', 'esm.run'];
+                 'fundingchoicesmessages.google.com', 'esm.run'];
   const CDN = new RegExp("https://(?:cdnjs[.]cloudflare[.]com|unpkg[.]com|cdn[.]jsdelivr[.]net)/[^'\"`]+", 'g');
   const problemi = [];
 

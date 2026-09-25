@@ -26,7 +26,7 @@ const SORGENTI = [...file(RADICE)].map((f) => ({ rel: path.relative(RADICE, f), 
 
 // Librerie che devono arrivare da vendor/: se ricompaiono su un CDN, il sito
 // torna a non funzionare offline e a consegnare l'IP degli utenti a terzi.
-const SOLO_VENDOR = /https:\/\/[^'"`\s]*(pdf-lib|pdf\.js\/|pdfjs-dist|fontkit|comlink|mammoth|jspdf|Chart\.js|chart\.js|docx@|qrcodejs|pdfmake)/i;
+const SOLO_VENDOR = /https:\/\/[^'"`\s]*(pdf-lib|pdf\.js\/|pdfjs-dist|fontkit|comlink|mammoth|jspdf|Chart\.js|chart\.js|docx@|qrcodejs|pdfmake|opencv\.js|ts-fsrs@|sql-wasm|fflate@|fzstd@)/i;
 
 // Terze parti ancora ammesse, una per una.
 const AMMESSI = [
@@ -40,7 +40,6 @@ const AMMESSI = [
   'cdn.jsdelivr.net/npm/@vladmandic/face-api',   // fototessera
   'cdn.jsdelivr.net/npm/@mediapipe/tasks-vision',
   'storage.googleapis.com/mediapipe-models/',
-  'docs.opencv.org/4.8.0/opencv.js',             // scanner documenti
   'esm.run/@mlc-ai/web-llm',                     // assistente documenti
 ];
 
@@ -87,7 +86,7 @@ test('ogni cartella di vendor/ corrisponde a una versione fissata in package.jso
   const problemi = [];
   for (const lib of V.LIBRERIE) {
     const versione = dip[lib.pacchetto];
-    if (!versione || !/^\d+\.\d+\.\d+$/.test(versione)) { problemi.push(lib.pacchetto + ': versione non fissata (' + versione + ')'); continue; }
+    if (!versione || !/^\d+\.\d+\.\d+(-[0-9A-Za-z.]+)?$/.test(versione)) { problemi.push(lib.pacchetto + ': versione non fissata (' + versione + ')'); continue; }
     const cartella = lib.nome + '@' + versione;
     if (!cartelle.includes(cartella)) problemi.push('manca vendor/' + cartella);
     else if (!fs.existsSync(path.join(RADICE, 'vendor', cartella, 'LICENSE'))) problemi.push('vendor/' + cartella + ' senza LICENSE');

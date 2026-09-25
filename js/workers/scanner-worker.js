@@ -4,14 +4,12 @@ importScripts('/vendor/pdf-lib@1.17.1/pdf-lib.min.js');
 
 let cvReady = false;
 
-// Configurar callback de inicialización de OpenCV en el Worker
-self.Module = {
-  onRuntimeInitialized() {
-    cvReady = true;
-  }
-};
-
-importScripts('https://docs.opencv.org/4.8.0/opencv.js');
+// OpenCV.js servito dal sito stesso (vendor/, copiato da @techstark/opencv-js).
+// Questa build mette in self.cv il modulo di Emscripten, che e' "thenable":
+// chiama la funzione quando il WebAssembly e' pronto. Non va usato con await,
+// perche' si risolverebbe con se stesso all'infinito.
+importScripts('/vendor/opencv@4.8.0-release.10/opencv.js');
+self.cv.then(function () { cvReady = true; });
 
 const CONFIG = {
   detectionMaxDimension: 1200,
