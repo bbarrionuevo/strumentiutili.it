@@ -581,12 +581,20 @@
 
   /* ---------------------------------------------------------- persistenza */
 
+  // Codice fiscale, IBAN e simili non si salvano: si riscrivono ogni volta.
+  function senzaSensibili(dati) {
+    const sensibile = window.AppStorage.campoSensibile || (() => false);
+    const fuori = {};
+    Object.keys(dati || {}).forEach((k) => { if (!sensibile(k)) fuori[k] = dati[k]; });
+    return fuori;
+  }
+
   function salva() {
     if (!window.AppStorage) return;
     window.AppStorage.save(stato.chiaveStato, {
       modello: stato.modello,
       passo: stato.passo,
-      dati: stato.dati,
+      dati: senzaSensibili(stato.dati),
       attivi: stato.attivi,
       righe: stato.righe
     });
@@ -600,7 +608,12 @@
       stato.modello = salvato.modello;
     }
     if (typeof salvato.passo === 'number') stato.passo = salvato.passo;
-    Object.assign(stato.dati, salvato.dati || {});
+    const dati = senzaSensibili(salvato.dati);
+    Object.assign(stato.dati, dati);
+    // i salvataggi di prima contenevano anche codici fiscali e IBAN: si riscrivono senza
+    if (Object.keys(dati).length !== Object.keys(salvato.dati || {}).length) {
+      window.AppStorage.save(stato.chiaveStato, Object.assign({}, salvato, { dati: dati }));
+    }
     Object.assign(stato.attivi, salvato.attivi || {});
     Object.assign(stato.righe, salvato.righe || {});
   }

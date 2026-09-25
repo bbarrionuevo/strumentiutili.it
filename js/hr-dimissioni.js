@@ -85,7 +85,7 @@
         azienda: document.getElementById("input-azienda").value,
         nome: document.getElementById("input-nome").value,
         cognome: document.getElementById("input-cognome").value,
-        cf: inputCf ? inputCf.value : "",
+        // il codice fiscale non si salva (vedi js/storage-helper.js, campoSensibile)
         ral: inputRal ? inputRal.value : "",
         dataAnticipata: inputDataAnticipata ? inputDataAnticipata.value : "",
         esenzione: checkEsenzione ? checkEsenzione.checked : false
@@ -105,7 +105,8 @@
         if (state.azienda) document.getElementById("input-azienda").value = state.azienda;
         if (state.nome) document.getElementById("input-nome").value = state.nome;
         if (state.cognome) document.getElementById("input-cognome").value = state.cognome;
-        if (state.cf && inputCf) inputCf.value = state.cf;
+        // i salvataggi di prima contenevano anche il codice fiscale: si riscrivono senza
+        if (state.cf) { delete state.cf; window.AppStorage.save('hr_dimissioni_state', state); }
         if (state.ral && inputRal) inputRal.value = state.ral;
         if (state.dataAnticipata && inputDataAnticipata) inputDataAnticipata.value = state.dataAnticipata;
         if (state.esenzione !== undefined && checkEsenzione) checkEsenzione.checked = state.esenzione;

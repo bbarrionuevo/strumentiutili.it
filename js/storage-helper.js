@@ -48,7 +48,15 @@
   // Nomi di campo che contengono dati da non lasciare in un browser che
   // magari e' condiviso: si confronta la parola intera, cosi' "cf" colpisce
   // "f24-cf" ma non "cfu".
-  const SENSIBILE = /(^|[-_])(iban|cf|codice-?fiscale|codicefiscale|password|pwd|pin|cvv|carta|card)([-_]|$)/i;
+  const SENSIBILE = /(^|[-_])(iban|cf|codice[-_]?fiscale|password|pwd|pin|cvv|carta|card)([-_]|$)/i;
+  // I modelli (js/compilatore-moduli.js) chiamano i campi in camelCase e con i
+  // punti ("f24.contribuente.cfCoobbligato", "ibanEstero", "altroCf2"): si
+  // separano le parole prima del confronto.
+  const parole = (chiave) => String(chiave || '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([a-zA-Z])(\d)/g, '$1-$2')
+    .replace(/\./g, '-');
+  const sensibile = (chiave) => SENSIBILE.test(parole(chiave));
   const TIPI_ESCLUSI = ['file', 'password', 'submit', 'button', 'hidden', 'reset', 'image'];
 
   function chiaveCampo(el) { return el.id || el.name || ''; }
@@ -58,10 +66,10 @@
     if (!chiave || TIPI_ESCLUSI.includes(el.type)) return false;
     if (el.hasAttribute && el.hasAttribute('data-no-save')) return false;
     if (el.closest && el.closest('[data-no-save]')) return false;
-    return !SENSIBILE.test(chiave);
+    return !sensibile(chiave);
   }
 
-  AppStorage.campoSensibile = (chiave) => SENSIBILE.test(String(chiave || ''));
+  AppStorage.campoSensibile = sensibile;
 
   // ---------------------------------------------------- avviso in pagina
 
@@ -108,7 +116,7 @@
     // Dati sensibili salvati dalle versioni precedenti: via.
     let ripulito = false;
     Object.keys(savedData).forEach((k) => {
-      if (SENSIBILE.test(k)) { delete savedData[k]; ripulito = true; }
+      if (sensibile(k)) { delete savedData[k]; ripulito = true; }
     });
     if (ripulito) AppStorage.save(storageKey, savedData);
 
