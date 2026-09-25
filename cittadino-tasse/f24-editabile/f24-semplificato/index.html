@@ -253,34 +253,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Cosa si intende per \"Sezione\" nel Modello Semplificato?",
+            "name": "Quando scadono acconto e saldo IMU?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nell'F24 Semplificato, i tributi confluiscono in un'unica griglia. Per indicare l'ente destinatario è obbligatorio inserire la sigla:ERper l'Erario (es. IRPEF),RGper le Regioni, oppureELper gli Enti Locali (come nel caso dell'IMU)."
+              "text": "L’acconto il 16 giugno e il saldo il 16 dicembre. Se la scadenza cade di sabato o in un giorno festivo, slitta al primo giorno lavorativo successivo."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso usare l'F24 Semplificato per saldare obbligazioni INPS o INAIL?",
+            "name": "Dove trovo l’aliquota del mio Comune?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, il Modello F24 Semplificato non ospita campi compatibili con il versamento di contributi INPS, premi INAIL o casse professionali. Qualora ci siano tali pendenze, è perentorio l'uso del Modello F24 Ordinario."
+              "text": "Nella delibera IMU del Comune, pubblicata sul sito del Dipartimento delle Finanze. Il saldo di dicembre si calcola con le aliquote dell’anno, sottraendo l’acconto già versato."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa accade se un immobile viene venduto prima della fine dell'anno?",
+            "name": "Posso pagare i contributi INPS con l’F24 semplificato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il possesso dei mesi si ripartisce fra venditore e acquirente: il mese conta per chi lo ha posseduto per più della metà dei giorni, il giorno del rogito si attribuisce all'acquirente e, in caso di parità, il mese spetta a quest'ultimo. In pratica, se il rogito è stipulato entro il giorno 16 del mese (entro il 15 a febbraio), quel mese è interamente a carico dell'acquirente."
+              "text": "No: contributi INPS e premi INAIL richiedono l’F24 ordinario."
             }
           },
           {
             "@type": "Question",
-            "name": "Sono autorizzato a presentare in posta l'F24 se compenso un credito a Saldo Zero?",
+            "name": "Ho pagato l’IMU in ritardo: come rimedio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Assolutamente no. I modelli unificati che chiudono con Saldo pari a Zero per effetto della compensazione non sono accettati da banche o uffici postali e richiedono la trasmissione online sul canale dell'Agenzia delle Entrate."
+              "text": "Con il ravvedimento operoso: aggiungi a imposta sanzione ridotta e interessi, sommati nella stessa riga con il codice del fabbricato (per esempio 3918), e barri la casella Ravv. Puoi calcolarli con il calcolatore del ravvedimento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho sbagliato codice tributo o anno: devo pagare di nuovo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il pagamento resta valido: si chiede la correzione della delega all’Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarità per il tributo che risulta non pagato."
             }
           }
         ]
@@ -616,176 +624,65 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa al Calcolo IMU 2026 e F24 Semplificato</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il modello <strong>F24 Semplificato</strong> è la variante ridotta del modulo di pagamento ordinario, concepita specificamente per minimizzare l'attrito cognitivo e il consumo cartaceo, limitando la compilazione ai soli tributi erariali, regionali e municipali. Questa interfaccia unica è il mezzo ideale per liquidare imposte locali quali IMU (Imposta Municipale Propria) e TARI.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📖</span> Approfondimento Normativo IMU 2026 e Metodo di Calcolo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">La Metodologia di Calcolo dell'IMU (Rivalutazione Catastale)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'IMU per l'anno 2026 riposa su una sequenza algebrica fissata dal legislatore: il primo passo richiede l'applicazione di una <strong>maggiorazione obbligatoria del 5%</strong> sull'importo della rendita catastale base. Il valore risultante deve essere poi moltiplicato per i seguenti coefficienti stabiliti per legge:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>160:</strong> Per abitazioni comuni (Gruppo A, esclusi A/10) e pertinenze classificate C/2, C/6 e C/7.</li>
-                <li><strong>140:</strong> Per i fabbricati ricadenti nel Gruppo B e nelle categorie C/3, C/4, C/5.</li>
-                <li><strong>80:</strong> Adottato per uffici e studi privati (A/10) e per gli istituti di credito (D/5).</li>
-                <li><strong>65:</strong> Per capannoni ed opifici (Gruppo D, escluso D/5).</li>
-                <li><strong>55:</strong> Per locali e botteghe commerciali (C/1).</li>
-                <li><strong>135:</strong> Per i terreni agricoli, applicato al reddito dominicale rivalutato del 25% anziché del 5%.</li>
-              </ul>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Alla base imponibile così ottenuta si applica infine l'aliquota municipale deliberata dall'ente locale, frazionando l'imposta in due quote: un acconto da saldare entro il 16 giugno e un conguaglio finale entro il 16 dicembre.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Esenzioni sull'Abitazione Principale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il fisco italiano mantiene <strong>l'esenzione totale</strong> dal versamento IMU per l'abitazione principale (prima casa) e le pertinenze correlate, a condizione categorica che l'immobile non rientri nelle classi catastali di lusso (A/1, A/8 o A/9). Nel caso di prima casa di lusso, l'esenzione decade ed è prevista una tassazione agevolata pari allo 0,5% con una detrazione fissa annua di 200 euro.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Regole di Arrotondamento (Sezione Enti Locali)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                A differenza delle pendenze Erariali in cui è d'obbligo inserire importi comprensivi di decimali centesimali, le norme che regolano l'IMU stabiliscono un arrotondamento rigido <strong>all'unità intera di euro</strong>. Il calcolatore applicherà un arrotondamento per difetto per i centesimi fino a 49, e per eccesso dai 50 centesimi in su. La mancata osservanza di tale regola genera incongruenze nell'F24.
-              </p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mt-4">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Esempio Pratico: IMU su Seconda Casa</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Prendiamo in esame una residenza secondaria classificata in categoria A/2. La rendita catastale base è pari a 750,00 €. Il Comune in cui sorge l'immobile ha deliberato l'aliquota massima del 10,6 per mille (1,06%):
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p><strong>1. Rivalutazione Catastale (5%):</strong> 750,00 × 1,05 = 787,50 €</p>
-                <p><strong>2. Applicazione Moltiplicatore (160):</strong> 787,50 × 160 = 126.000,00 € (Base Imponibile)</p>
-                <p><strong>3. Calcolo dell'Imposta Lorda:</strong> 126.000,00 × 0,0106 = 1.335,60 €</p>
-                <p><strong>4. Acconto (Entro 16 Giugno 2026):</strong> 1.335,60 / 2 = 667,80 €</p>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧾</span> Come si compila una riga del Modello F24 Semplificato</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il modello Semplificato ha una sola sezione, «Motivo del pagamento», con dieci righe. Ogni riga descrive un singolo versamento e contiene tutti i dati che nel modello Ordinario sono distribuiti fra sezioni diverse. Capire il ruolo di ciascuna colonna evita gli errori più frequenti, che non bloccano il pagamento ma impediscono all'ente di abbinarlo al tributo giusto.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Le colonne della riga</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Sezione:</strong> ER per i tributi erariali, RG per l'addizionale regionale e l'IRAP, EL per IMU, TARI e altri tributi degli enti locali.</li>
-              <li><strong>Codice tributo:</strong> identifica l'imposta, ad esempio 3918 per l'IMU sugli altri fabbricati o 3944 per la TARI.</li>
-              <li><strong>Codice ente:</strong> per la sezione EL è il codice catastale del Comune di quattro caratteri; per la sezione RG il codice della Regione; per la sezione ER resta vuoto.</li>
-              <li><strong>Ravv., Immob. variati, Acc., Saldo:</strong> caselle da barrare rispettivamente in caso di ravvedimento operoso, di variazioni che richiedono la dichiarazione IMU, di versamento in acconto o a saldo. Se paghi in un'unica soluzione entro giugno barri entrambe le caselle Acc. e Saldo.</li>
-              <li><strong>Numero immobili:</strong> quanti fabbricati dello stesso Comune e della stessa tipologia sono compresi nella riga, fino a un massimo di 999.</li>
-              <li><strong>Rateazione/mese rif. e anno di riferimento:</strong> la rata nel formato NNRR per i pagamenti rateali (0102 per la prima di due rate) e l'anno d'imposta a cui si riferisce il versamento.</li>
-              <li><strong>Detrazione:</strong> usata solo per l'abitazione principale di lusso (A/1, A/8, A/9), che ha diritto a 200 € annui ripartiti fra acconto e saldo.</li>
-              <li><strong>Importi a debito e a credito:</strong> nella sezione EL sono arrotondati all'euro; in ER e RG si indicano con i centesimi.</li>
-            </ul>
-            <p>Il compilatore di questa pagina gestisce sezione, codice tributo, codice ente e importi, e calcola i totali in tempo reale. Le caselle di acconto, saldo e ravvedimento, il numero di immobili e l'anno di riferimento vanno verificati sul modello prima del pagamento.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Un modello o più modelli?</h3>
-            <p>Nello stesso Semplificato puoi mettere l'IMU di più Comuni, la TARI e un'addizionale regionale, fino a dieci righe. Servono modelli separati per contribuenti diversi: due comproprietari di un immobile compilano ciascuno il proprio F24 con il proprio codice fiscale e la propria quota. Contributi INPS e premi INAIL richiedono invece il modello Ordinario.</p>
-          </div>
-        </details>
-
-        <!-- PREGUNTAS FRECUENTES (DESPLEGABLES INDIVIDUALES) -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati riprodotti nel compilatore della pagina, con il calcolatore rapido IMU e le righe del modello. I totali corrispondono a quelli del riepilogo.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: acconto e saldo della seconda casa in rata unica o in due rate</h3>
-            <p>L'appartamento A/2 dell'esempio precedente, con rendita di 750 € e aliquota del 10,6‰, genera un'imposta annua di 1.335,60 €. Il pulsante «Calcola e Aggiungi» inserisce una riga EL 3918 da 1.336 €.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pagamento in due rate: acconto 668 € entro il 16 giugno, saldo 668 € entro il 16 dicembre</li>
-            <li>Pagamento unico entro il 16 giugno: 1.336 €, barrando sia Acc. sia Saldo</li>
-            <li>Codice ente: codice catastale del Comune, ad esempio L219 per Torino</li>
-            </ul>
-            <p>Per la rata di giugno basta sostituire 1.336 con 668 nella riga generata. Se a ottobre il Comune pubblica un'aliquota diversa, il saldo di dicembre si ricalcola con la nuova aliquota sottraendo l'acconto già versato.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: box non pertinenziale e TARI nello stesso modello</h3>
-            <p>Un contribuente possiede un box C/6 con rendita di 95 € in un quartiere diverso da quello in cui abita, quindi non pertinenza della sua abitazione principale. Nello stesso F24 paga anche la prima rata TARI di 210 €, richiesta dal Comune con modello precompilato.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riga 1, EL 3918: 95 × 1,05 × 160 × 10,6‰ = 169,18 €, arrotondati a 169 €</li>
-            <li>Riga 2, EL 3944: TARI 210 €</li>
-            <li>Totale da versare: 379 €</li>
-            </ul>
-            <p>Se il box fosse pertinenza dell'abitazione principale, la riga IMU non andrebbe compilata. Per la TARI conviene riportare esattamente codice tributo e importo indicati nell'avviso del Comune o del gestore.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: addizionale regionale compensata con un credito IRPEF</h3>
-            <p>Una contribuente senza sostituto d'imposta deve versare 312 € di saldo dell'addizionale regionale e ha un credito IRPEF di 120 € dalla dichiarazione.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riga 1, sezione RG, codice 3801: debito 312,00 €</li>
-            <li>Riga 2, sezione ER, codice 4001: credito 120,00 €</li>
-            <li>Saldo da versare: 192,00 €</li>
-            </ul>
-            <p>La presenza del credito rende obbligatoria la presentazione con i servizi telematici dell'Agenzia delle Entrate, anche se il saldo è positivo e la contribuente non ha Partita IVA. Senza il credito, lo stesso modello da 312 € potrebbe essere pagato allo sportello.</p>
-          </div>
-        </details>
-
-        <div id="faq-f24s">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Domande Frequenti (FAQ)</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Cosa si intende per "Sezione" nel Modello Semplificato?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Nell'F24 Semplificato, i tributi confluiscono in un'unica griglia. Per indicare l'ente destinatario è obbligatorio inserire la sigla: <strong>ER</strong> per l'Erario (es. IRPEF), <strong>RG</strong> per le Regioni, oppure <strong>EL</strong> per gli Enti Locali (come nel caso dell'IMU).
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Posso usare l'F24 Semplificato per saldare obbligazioni INPS o INAIL?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                No, il Modello F24 Semplificato non ospita campi compatibili con il versamento di contributi INPS, premi INAIL o casse professionali. Qualora ci siano tali pendenze, è perentorio l'uso del Modello F24 Ordinario.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Cosa accade se un immobile viene venduto prima della fine dell'anno?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Il possesso dei mesi si ripartisce fra venditore e acquirente: il mese conta per chi lo ha posseduto per più della metà dei giorni, il giorno del rogito si attribuisce all'acquirente e, in caso di parità, il mese spetta a quest'ultimo. In pratica, se il rogito è stipulato entro il giorno 16 del mese (entro il 15 a febbraio), quel mese è interamente a carico dell'acquirente.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Sono autorizzato a presentare in posta l'F24 se compenso un credito a Saldo Zero?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                Assolutamente no. I modelli unificati che chiudono con Saldo pari a Zero per effetto della compensazione non sono accettati da banche o uffici postali e richiedono la trasmissione online sul canale dell'Agenzia delle Entrate.
-              </p>
-            </details>
-
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si calcola l&rsquo;IMU e come si paga con l&rsquo;F24 semplificato</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>L&rsquo;F24 semplificato &egrave; il modello di una sola pagina che usa chi paga IMU, TARI, addizionali e imposte erariali senza contributi INPS. In questa pagina puoi anche calcolare l&rsquo;IMU di un immobile e aggiungere la riga pronta al modello.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si calcola l&rsquo;IMU</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Prendi la rendita catastale dalla visura e aumentala del 5%.</li>
+            <li>Moltiplica per il coefficiente della categoria: 160 per le abitazioni (gruppo A tranne A/10) e le pertinenze C/2, C/6, C/7; 140 per il gruppo B e le categorie C/3, C/4, C/5; 80 per uffici (A/10) e banche (D/5); 65 per il gruppo D tranne D/5; 55 per i negozi (C/1).</li>
+            <li>Applica l&rsquo;aliquota deliberata dal tuo Comune e dividi l&rsquo;imposta annua in acconto (16 giugno) e saldo (16 dicembre), oppure paga tutto a giugno.</li>
+          </ol>
+          <p>L&rsquo;abitazione principale e le sue pertinenze non pagano l&rsquo;IMU, salvo le categorie di lusso A/1, A/8 e A/9, che hanno un&rsquo;aliquota ridotta e una detrazione di 200 &euro; l&rsquo;anno.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si compila una riga</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Sezione</strong>: EL per IMU, TARI e altri tributi locali, RG per l&rsquo;addizionale regionale, ER per i tributi erariali.</li>
+            <li><strong>Codice tributo</strong>: per esempio 3918 per l&rsquo;IMU sugli altri fabbricati, 3944 per la TARI.</li>
+            <li><strong>Codice ente</strong>: nella sezione EL il codice catastale del Comune (quattro caratteri, per esempio L219 per Torino).</li>
+            <li><strong>Caselle Acc. e Saldo</strong>: barri Acc. per l&rsquo;acconto, Saldo per il saldo, entrambe se paghi tutto in una volta. Ravv. se stai pagando con il ravvedimento.</li>
+            <li><strong>Importi</strong>: nella sezione EL arrotondati all&rsquo;euro; in ER e RG con i centesimi.</li>
+          </ul>
+          <p>Nello stesso modello puoi mettere fino a dieci righe, anche di Comuni diversi. Due comproprietari fanno invece un F24 ciascuno, con il proprio codice fiscale e la propria quota.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Seconda casa A/2.</strong> Rendita 750 &euro;, aliquota 10,6 per mille: 750 &times; 1,05 &times; 160 = 126.000 &euro; di base imponibile; 126.000 &times; 1,06% = 1.335,60 &euro; l&rsquo;anno, arrotondati a 1.336 &euro;. Acconto e saldo da 668 &euro;, oppure 1.336 &euro; a giugno barrando sia Acc. sia Saldo.</p>
+          <p><strong>Box e TARI insieme.</strong> Un box C/6 con rendita 95 &euro;, non pertinenza dell&rsquo;abitazione principale: 95 &times; 1,05 &times; 160 &times; 10,6&permil; = 169,18 &euro;, arrotondati a 169 &euro;. Con la prima rata TARI da 210 &euro; (codice 3944) il modello fa 379 &euro;.</p>
+          <p><strong>Addizionale regionale con un credito.</strong> 312 &euro; di addizionale regionale (sezione RG, codice 3801) e un credito IRPEF di 120 &euro; (sezione ER, codice 4001): si pagano 192 &euro;. Per&ograve;, con un credito nel modello, si paga solo con i servizi telematici dell&rsquo;Agenzia delle Entrate.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Dove si paga</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Senza partita IVA e senza crediti da compensare</strong>: puoi pagare dove vuoi, per qualsiasi importo: in banca, alla posta, agli sportelli dell&rsquo;agente della riscossione, con l&rsquo;home banking o con i servizi online dell&rsquo;Agenzia delle Entrate.</li>
+            <li><strong>Con la partita IVA</strong>: sempre per via telematica (home banking, servizi dell&rsquo;Agenzia o intermediario). Il modello cartaceo allo sportello non &egrave; ammesso.</li>
+            <li><strong>Se nel modello c&rsquo;&egrave; un credito compensato</strong>, anche piccolo e anche se resta qualcosa da pagare: solo con i servizi telematici dell&rsquo;Agenzia delle Entrate (F24 web o online, Fisconline, Entratel), direttamente o tramite un CAF o un commercialista. Dal 1&deg; luglio 2024 l&rsquo;home banking non accetta pi&ugrave; questi modelli.</li>
+            <li><strong>Se il modello chiude a zero</strong> perch&eacute; i crediti coprono tutti i debiti: solo con i servizi dell&rsquo;Agenzia delle Entrate. Allo sportello non c&rsquo;&egrave; niente da addebitare.</li>
+          </ul>
         </div>
-
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quando scadono acconto e saldo IMU?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">L&rsquo;acconto il 16 giugno e il saldo il 16 dicembre. Se la scadenza cade di sabato o in un giorno festivo, slitta al primo giorno lavorativo successivo.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove trovo l&rsquo;aliquota del mio Comune?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nella delibera IMU del Comune, pubblicata sul sito del Dipartimento delle Finanze. Il saldo di dicembre si calcola con le aliquote dell&rsquo;anno, sottraendo l&rsquo;acconto gi&agrave; versato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso pagare i contributi INPS con l&rsquo;F24 semplificato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: contributi INPS e premi INAIL richiedono l&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="text-indigo-700 underline">F24 ordinario</a>.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho pagato l&rsquo;IMU in ritardo: come rimedio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con il ravvedimento operoso: aggiungi a imposta sanzione ridotta e interessi, sommati nella stessa riga con il codice del fabbricato (per esempio 3918), e barri la casella Ravv. Puoi calcolarli con il <a href="/fisco-professioni/ravvedimento-operoso/" class="text-indigo-700 underline">calcolatore del ravvedimento</a>.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho sbagliato codice tributo o anno: devo pagare di nuovo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il pagamento resta valido: si chiede la correzione della delega all&rsquo;Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarit&agrave; per il tributo che risulta non pagato.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Legge 27 dicembre 2019, n. 160, art. 1, commi 738-783: disciplina dell&rsquo;IMU, coefficienti e scadenze.</li>
+          <li>Dipartimento delle Finanze: delibere comunali sulle aliquote IMU.</li>
+          <li>Agenzia delle Entrate: modello F24 semplificato e istruzioni.</li>
+        </ul>
       </section>
 
       <!-- Pubblicità Extra per Dispositivi Mobili -->

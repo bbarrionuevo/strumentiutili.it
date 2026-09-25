@@ -258,26 +258,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Errore 1: Omesso inserimento del Codice Identificativo a 17 caratteri",
+            "name": "Chi paga l’imposta di registro, proprietario o inquilino?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nella compilazione di un'annualità successiva (Codice 1501), omettere il codice identificativo del contratto (la stringa di 17 caratteri rilasciata dall'Agenzia) priva il pagamento del suo vincolo telematico. Si genera in questo modo un \"versamento orfano\". I server dell'Agenzia delle Entrate non riescono a incrociare in maniera automatizzata l'afflusso di cassa con il contratto specifico depositato a registro. L'amministrazione procederà quindi all'emissione di avvisi di liquidazione maggiorati del 25% a titolo di sanzione per presunto omesso versamento, costringendo il contribuente o il suo consulente fiscale ad attivare una defatigante pratica di autotutela per richiedere l'abbinamento manuale della delega F24 pagata al contratto di locazione."
+              "text": "Per legge entrambi, in solido. Di solito la dividono a metà: paga uno dei due, di solito il proprietario, che poi chiede all’altro la sua quota."
             }
           },
           {
             "@type": "Question",
-            "name": "Errore 2: Utilizzo del Modello F24 Ordinario in luogo dell'ELIDE",
+            "name": "Ho pagato con l’F24 ordinario invece dell’ELIDE: cosa faccio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La confusione modulistica è una delle principali cause di contenzioso formale. Utilizzare per errore il Modello F24 Ordinario per sanare i codici della serie 1500 (che il software di alcune banche non blocca nativamente in input) rende l'operazione di pagamento fiscalmente inservibile ai fini dell'aggiornamento delle banche dati immobiliari dell'Agenzia. In questo scenario, il contribuente deve attivare tempestivamente un'istanza telematica tramite il canale \"Civis\" dell'Agenzia delle Entrate per richiedere lo spostamento formale dei fondi dal modello Ordinario al modello ELIDE. Finché tale riversamento interno non viene validato, l'imposta di registro risulta formalmente non pagata, esponendo le parti (locatore e conduttore) a contestazioni civili o alla temporanea nullità contrattuale per mancata registrazione."
+              "text": "Il versamento non viene abbinato al contratto. Chiedi la correzione all’Agenzia delle Entrate con il servizio CIVIS o in un ufficio, indicando il codice identificativo del contratto: non serve pagare di nuovo."
             }
           },
           {
             "@type": "Question",
-            "name": "Errore 3: Tardivo versamento senza autoliquidazione",
+            "name": "Ho pagato in ritardo solo l’imposta, senza sanzione: basta?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Eseguire un F24 ELIDE per il rinnovo di un'annualità successiva (1501) oltrepassando la finestra temporale dei 30 giorni concessi dalla legge, provvedendo al versamento del solo importo capitale, non regolarizza la posizione fiscale del contribuente. Questo atto configura a tutti gli effetti un omesso versamento parziale. L'Agenzia delle Entrate, rilevando la data di pagamento disallineata rispetto alla scadenza naturale, emetterà una cartella esattoriale addebitando la sanzione piena per omesso versamento (25% post Riforma Sanzioni D.Lgs. 87/2024), senza riconoscere le riduzioni premiali previste dal Ravvedimento Operoso, le quali devono essere obbligatoriamente autoliquidate dal contribuente in via contestuale al versamento tardivo adoperando i codici tributo 1507 per la sanzione e 1509 per gli interessi."
+              "text": "No: il pagamento tardivo senza sanzione e interessi resta un versamento incompleto. Aggiungi le righe 1507 e 1509 con il ravvedimento operoso il prima possibile: più aspetti, più la sanzione cresce."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso compensare un credito IRPEF nell’F24 ELIDE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: l’F24 ELIDE non ha la colonna dei crediti. Si paga l’importo pieno."
             }
           }
         ]
@@ -534,178 +542,60 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Manuale Tecnico, Normativo e Operativo al Modello F24 ELIDE (Aggiornamento 2026)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il modello <strong>F24 ELIDE (Elementi Identificativi)</strong> rappresenta un'infrastruttura di pagamento specializzata, concepita per colmare le lacune del modello F24 Ordinario. L'esigenza della sua introduzione, cristallizzata nel Provvedimento dell'Agenzia delle Entrate del 3 gennaio 2014, nasce dalla necessità di versare imposte che richiedono l'identificazione inequivocabile di parti contrattuali terze, dati catastali o riferimenti di atti amministrativi specifici. La sua funzione primaria nell'ordinamento tributario italiano è il versamento dell'Imposta di Registro disciplinata dal D.P.R. 131/1986 (Testo Unico Imposta di Registro), applicata in particolar modo ai contratti di locazione immobiliare, alle successioni, al trasferimento di diritti reali e al deposito di marchi e brevetti.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> 1. Inquadramento Normativo e Regole Bloccanti</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Divieto Assoluto di Compensazione Fiscale</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il cardine architettonico e legale del Modello F24 ELIDE risiede nell'esclusione strutturale della compensazione orizzontale. A differenza del Modello F24 Ordinario, disciplinato dal D.Lgs. 241/1997, il formato ELIDE è privo della colonna dedicata agli "Importi a credito compensati". Di conseguenza, il contribuente che vanti crediti d'imposta ordinari (quali eccedenze IRPEF, IRES, o IVA) o crediti d'imposta agevolativi non potrà in alcuna misura impiegarli per sanare i debiti esposti nell'F24 ELIDE. Il versamento deve sempre concludersi con un esborso di liquidità pari all'ammontare totale dei tributi dovuti. Questo divieto mira a separare nettamente i flussi finanziari legati al registro e al demanio dalle dinamiche di compensazione d'impresa.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Il Vincolo dell'Elemento Identificativo e i Codici Ufficio</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'operatività del modello è subordinata alla corretta valorizzazione di specifici campi identificativi, senza i quali i sistemi informativi dell'Anagrafe Tributaria operano lo scarto della delega o ne impediscono l'abbinamento contabile. In primo luogo, la triangolazione matriciale dell'F24 ELIDE impone la presenza del <strong>Tipo Atto</strong> (ad esempio, la lettera "F" utilizzata per identificare i contratti di locazione). In secondo luogo, è richiesta la stringa dell'<strong>Elemento Identificativo</strong>, un codice alfanumerico di 17 caratteri rilasciato dall'Agenzia delle Entrate al momento della prima registrazione telematica del contratto. La mancanza o l'inesattezza di questo codice a 17 caratteri genera il fenomeno del "versamento orfano", disconnettendo il pagamento dal contratto locatizio di competenza.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Parimenti stringente è il vincolo in caso di versamenti effettuati in risposta ad atti liquidatori, avvisi di accertamento o comunicazioni di irregolarità. In tali casistiche, il versamento viene respinto o non contabilizzato correttamente se il blocco composto da "Codice Ufficio" (es. l'ufficio territoriale T6R) e "Codice Atto" non corrisponde in modo speculare ed esatto alla stringa stampata dall'Agenzia delle Entrate nell'avviso notificato al contribuente.
-              </p>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si paga l&rsquo;imposta di registro dell&rsquo;affitto con l&rsquo;F24 ELIDE</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>L&rsquo;F24 ELIDE (elementi identificativi) serve soprattutto per l&rsquo;imposta di registro sui contratti di affitto: prima registrazione, annualit&agrave; successive, proroghe, cessioni e risoluzioni. A differenza dell&rsquo;F24 ordinario, ogni riga porta il codice identificativo del contratto, cos&igrave; il pagamento viene abbinato all&rsquo;affitto giusto. Non si possono compensare crediti.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I codici tributo delle locazioni</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Quando</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Quanto</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1500</td><td class="px-3 py-2 align-top">Prima registrazione, entro 30 giorni dalla stipula</td><td class="px-3 py-2 align-top">2% del canone per gli anni pagati, minimo 67 &euro;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1501</td><td class="px-3 py-2 align-top">Annualit&agrave; successive, entro 30 giorni dalla ricorrenza</td><td class="px-3 py-2 align-top">2% del canone annuo, senza minimo</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1502</td><td class="px-3 py-2 align-top">Cessione del contratto</td><td class="px-3 py-2 align-top">67 &euro; fissi, o proporzionale se c&rsquo;&egrave; un corrispettivo</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1503</td><td class="px-3 py-2 align-top">Risoluzione anticipata</td><td class="px-3 py-2 align-top">67 &euro; fissi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1504</td><td class="px-3 py-2 align-top">Proroga</td><td class="px-3 py-2 align-top">2% del canone del periodo prorogato</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1507 e 1509</td><td class="px-3 py-2 align-top">Ravvedimento: sanzione e interessi</td><td class="px-3 py-2 align-top">Su righe separate, con lo stesso codice identificativo</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Con la cedolare secca l&rsquo;imposta di registro non si paga, n&eacute; per le annualit&agrave; n&eacute; per proroghe e risoluzioni: resta solo la comunicazione con il <a href="/cittadino-tasse/modello-rli/" class="text-indigo-700 underline">modello RLI</a>.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I dati che servono</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Codice identificativo del contratto</strong>: 17 caratteri, lo trovi nella ricevuta di registrazione. Senza, il pagamento resta &laquo;orfano&raquo; e l&rsquo;Agenzia lo considera non fatto.</li>
+            <li><strong>Tipo</strong>: F per le locazioni.</li>
+            <li><strong>Codice fiscale</strong> di chi paga e, nel campo del secondo soggetto, dell&rsquo;altra parte del contratto.</li>
+            <li><strong>Codice ufficio e codice atto</strong>: solo se paghi in seguito a un avviso, e vanno copiati esattamente da l&igrave;.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Terza annualit&agrave; di un 4+4.</strong> Canone annuo 7.800 &euro;: 7.800 &times; 2% = 156 &euro;, codice 1501, entro 30 giorni dalla ricorrenza. Di solito la met&agrave; (78 &euro;) &egrave; a carico dell&rsquo;inquilino.</p>
+          <p><strong>La stessa annualit&agrave; pagata con 10 giorni di ritardo.</strong> Con il ravvedimento la sanzione &egrave; circa lo 0,083% per giorno: 156 &times; 0,0833% &times; 10 = 1,30 &euro; (codice 1507); interessi al tasso legale dell&rsquo;1,60%: 156 &times; 1,60% &times; 10/365 = 0,07 &euro; (codice 1509). Totale 157,37 &euro; su tre righe, tutte con lo stesso codice identificativo.</p>
+          <p><strong>Risoluzione dopo due anni.</strong> L&rsquo;inquilino lascia prima della scadenza: entro 30 giorni si versano 67 &euro; con il codice 1503 e si comunica la cessazione con il modello RLI.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi paga l&rsquo;imposta di registro, proprietario o inquilino?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per legge entrambi, in solido. Di solito la dividono a met&agrave;: paga uno dei due, di solito il proprietario, che poi chiede all&rsquo;altro la sua quota.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> 2. Meccanica di Calcolo, Formule e Codici Tributo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Calcolo dell'Imposta di Registro sulle Locazioni</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'Imposta di Registro gravante sui contratti di locazione immobiliare di natura abitativa (non sottoposti al regime sostitutivo della cedolare secca) o di natura commerciale si calcola applicando un'aliquota proporzionale di base pari al 2% sull'ammontare del canone annuo stabilito contrattualmente. La formula algebrica adottata per la liquidazione è:
-              </p>
-              <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg text-sm text-gray-800 font-mono text-center overflow-x-auto my-3">
-                $$Imposta = (Canone_{Annuo} \times Anni\ Pagati) \times 2\%$$
-              </div>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Una norma di garanzia per l'Erario stabilisce che, esclusivamente in sede di prima registrazione del contratto (entro i 30 giorni dalla stipula), l'importo da versare non possa essere inferiore alla soglia minima inderogabile di <strong>67,00 euro</strong>. Tale limite minimo non opera per le annualità successive, le proroghe o le risoluzioni.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Tassonomia dei Codici Tributo (Serie 1500)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                L'Agenzia delle Entrate ha codificato le diverse fasi della vita contrattuale attribuendo stringhe numeriche univoche per l'F24 ELIDE:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-3 mb-4">
-                <li><strong>1500 (Prima Registrazione):</strong> Obbligo di versamento entro 30 giorni dalla data di stipula dell'atto o dalla sua decorrenza, se anteriore. Sconta il limite minimo di 67€.</li>
-                <li><strong>1501 (Annualità Successive):</strong> Applicabile per i rinnovi annuali dei contratti in essere, a condizione che non vi sia stata opzione per la cedolare secca. Non soggiace al minimo di 67€.</li>
-                <li><strong>1502 (Cessione del Contratto):</strong> Richiede un'imposta fissa di 67€, che si trasforma in proporzionale qualora sia pattuito un corrispettivo per la cessione.</li>
-                <li><strong>1503 (Risoluzione del Contratto):</strong> Sconta un'imposta in misura fissa pari a 67€, per chiudere anticipatamente il rapporto locatizio.</li>
-                <li><strong>1504 (Proroga del Contratto):</strong> Segue la base di calcolo analoga alla prima registrazione (2% sul canone del periodo prorogato), ma non impone il versamento minimo di 67€.</li>
-                <li><strong>C300 (Marchi e Brevetti):</strong> Dedicato al versamento di diritti e tasse per il deposito o il rinnovo della proprietà industriale presso le C.C.I.A.A.</li>
-              </ul>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho pagato con l&rsquo;F24 ordinario invece dell&rsquo;ELIDE: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il versamento non viene abbinato al contratto. Chiedi la correzione all&rsquo;Agenzia delle Entrate con il servizio CIVIS o in un ufficio, indicando il codice identificativo del contratto: non serve pagare di nuovo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> 3. Casuistica Reale: Esempio Pratico e Ravvedimento Operoso</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Versamento Tardivo e Calcolo delle Sanzioni 2026</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Si configuri lo scenario di un contratto di locazione commerciale stipulato con un canone annuo di 24.000 euro. Il contribuente (Soggetto 1, conduttore) deve versare l'imposta per la seconda annualità (Codice Tributo 1501). L'imposta teorica calcolata al 2% è pari a 480,00 euro. 
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Tuttavia, il versamento avviene con un ritardo di 45 giorni rispetto alla scadenza naturale. Omettere l'autoliquidazione aggiuntiva configura un "omesso versamento parziale". È obbligatorio procedere con l'istituto del <strong>Ravvedimento Operoso</strong>, implementando le riduzioni fissate dal D.Lgs. 87/2024 per l'omesso o tardivo versamento. Essendo il ritardo compreso tra i 31 e i 90 giorni, la tipologia di ravvedimento è quella "Intermedia". La sanzione base del 25% viene ridotta a 1/9 del 12,5%, corrispondente all'aliquota dell'<strong>1,3889%</strong> applicata sull'imposta non versata. Parimenti, si computano gli interessi moratori applicando il tasso legale fissato all'<strong>1,60%</strong> per l'anno 2026 calcolato pro-rata temporis (per i 45 giorni di ritardo).
-              </p>
-              <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-3 text-sm text-gray-800 font-mono">
-                <strong>Dimostrazione Matematica F24 ELIDE:</strong><br><br>
-                1. <strong>Tributo Base (Cod. 1501):</strong><br>
-                - Importo = 24.000,00 € × 2% = <strong>480,00 €</strong><br><br>
-                
-                2. <strong>Sanzione Ravvedimento (Cod. 1507):</strong><br>
-                - Calcolo: 480,00 € × 1,3889% = <strong>6,67 €</strong><br><br>
-
-                3. <strong>Interessi Legali (Cod. 1509):</strong><br>
-                - Calcolo: 480,00 € × 1,60% × (45 / 365) = <strong>0,95 €</strong><br><br>
-
-                <strong>Totale Versamento ELIDE:</strong><br>
-                Saldo F24 = 480,00 € + 6,67 € + 0,95 € = <strong>487,62 €</strong>
-              </div>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3">
-                La delega F24 ELIDE dovrà riportare le tre righe distinte con i codici 1501, 1507 (sanzione da ravvedimento sull'imposta di registro) e 1509 (interessi da ravvedimento sull'imposta di registro). Compilare il modulo inserendo unicamente 487,62 euro nel codice 1501 comporterà un grave disallineamento nei database dell'Agenzia delle Entrate, che contesterà il mancato versamento delle sanzioni e degli interessi (formalmente omessi nei codici corretti).
-              </p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho pagato in ritardo solo l&rsquo;imposta, senza sanzione: basta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il pagamento tardivo senza sanzione e interessi resta un versamento incompleto. Aggiungi le righe 1507 e 1509 con il ravvedimento operoso il prima possibile: pi&ugrave; aspetti, pi&ugrave; la sanzione cresce.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I tre casi seguenti riguardano locazioni abitative in regime ordinario, senza cedolare secca, e sono stati riprodotti nel compilatore della pagina con gli stessi importi.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: terza annualità di un contratto 4+4</h3>
-            <p>Il canone annuo è di 7.800 €. Alla ricorrenza del terzo anno il proprietario versa l'imposta di registro entro trenta giorni, senza minimo di 67 € perché non si tratta della prima registrazione.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Codice tributo 1501: 7.800 × 2% = 156,00 €</li>
-            <li>Quota a carico dell'inquilino: 78,00 €, da recuperare secondo gli accordi</li>
-            <li>Totale F24 ELIDE: 156,00 €</li>
-            </ul>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: la stessa annualità pagata con dieci giorni di ritardo</h3>
-            <p>Se il versamento avviene dieci giorni dopo la scadenza, il proprietario può regolarizzare con il ravvedimento sprint. La sanzione del 25%, dimezzata per i ritardi entro 90 giorni e ridotta a un quindicesimo per ogni giorno entro i primi 14, è poi ridotta a un decimo dal ravvedimento: circa lo 0,083% per giorno. Gli interessi sono calcolati ipotizzando un tasso legale dell'1,60%.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Codice 1501, imposta: 156,00 €</li>
-            <li>Codice 1507, sanzione: 156,00 × 0,0833% × 10 = 1,30 €</li>
-            <li>Codice 1509, interessi: 156,00 × 1,60% × 10/365 = 0,07 €</li>
-            <li>Totale F24 ELIDE: 157,37 €</li>
-            </ul>
-            <p>Tre righe con lo stesso codice identificativo del contratto. Versare 157,37 € su un'unica riga 1501 lascerebbe la sanzione formalmente non pagata.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: risoluzione anticipata dopo due anni</h3>
-            <p>L'inquilino dà disdetta per motivi di lavoro e il contratto termina prima della scadenza. Entro trenta giorni dalla risoluzione va versata l'imposta fissa e comunicata la cessazione con il modello RLI.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Codice tributo 1503: imposta fissa 67,00 €</li>
-            <li>Totale F24 ELIDE: 67,00 €</li>
-            </ul>
-            <p>Se il proprietario avesse optato per la cedolare secca, per la risoluzione non sarebbe dovuta alcuna imposta di registro: resterebbe solo la comunicazione con il modello RLI.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso compensare un credito IRPEF nell&rsquo;F24 ELIDE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: l&rsquo;F24 ELIDE non ha la colonna dei crediti. Si paga l&rsquo;importo pieno.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> 4. Risoluzione degli Errori e Sanzioni Procedurali (FAQ)</span>
-            <span class="text-indigo-600 transition-transform transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Errore 1: Omesso inserimento del Codice Identificativo a 17 caratteri</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Nella compilazione di un'annualità successiva (Codice 1501), omettere il codice identificativo del contratto (la stringa di 17 caratteri rilasciata dall'Agenzia) priva il pagamento del suo vincolo telematico. Si genera in questo modo un "versamento orfano". I server dell'Agenzia delle Entrate non riescono a incrociare in maniera automatizzata l'afflusso di cassa con il contratto specifico depositato a registro. L'amministrazione procederà quindi all'emissione di avvisi di liquidazione maggiorati del 25% a titolo di sanzione per presunto omesso versamento, costringendo il contribuente o il suo consulente fiscale ad attivare una defatigante pratica di autotutela per richiedere l'abbinamento manuale della delega F24 pagata al contratto di locazione.
-              </p>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Errore 2: Utilizzo del Modello F24 Ordinario in luogo dell'ELIDE</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                La confusione modulistica è una delle principali cause di contenzioso formale. Utilizzare per errore il Modello F24 Ordinario per sanare i codici della serie 1500 (che il software di alcune banche non blocca nativamente in input) rende l'operazione di pagamento fiscalmente inservibile ai fini dell'aggiornamento delle banche dati immobiliari dell'Agenzia. In questo scenario, il contribuente deve attivare tempestivamente un'istanza telematica tramite il canale "Civis" dell'Agenzia delle Entrate per richiedere lo spostamento formale dei fondi dal modello Ordinario al modello ELIDE. Finché tale riversamento interno non viene validato, l'imposta di registro risulta formalmente non pagata, esponendo le parti (locatore e conduttore) a contestazioni civili o alla temporanea nullità contrattuale per mancata registrazione.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Errore 3: Tardivo versamento senza autoliquidazione</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Eseguire un F24 ELIDE per il rinnovo di un'annualità successiva (1501) oltrepassando la finestra temporale dei 30 giorni concessi dalla legge, provvedendo al versamento del solo importo capitale, non regolarizza la posizione fiscale del contribuente. Questo atto configura a tutti gli effetti un omesso versamento parziale. L'Agenzia delle Entrate, rilevando la data di pagamento disallineata rispetto alla scadenza naturale, emetterà una cartella esattoriale addebitando la sanzione piena per omesso versamento (25% post Riforma Sanzioni D.Lgs. 87/2024), senza riconoscere le riduzioni premiali previste dal Ravvedimento Operoso, le quali devono essere obbligatoriamente autoliquidate dal contribuente in via contestuale al versamento tardivo adoperando i codici tributo 1507 per la sanzione e 1509 per gli interessi.
-              </p>
-            </div>
-          </div>
-        </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 26 aprile 1986, n. 131 (Testo unico dell&rsquo;imposta di registro), art. 5 della Tariffa, parte I.</li>
+          <li>Provvedimento del Direttore dell&rsquo;Agenzia delle Entrate del 3 gennaio 2014: F24 ELIDE per le locazioni.</li>
+          <li>D.Lgs. 18 dicembre 1997, n. 472, art. 13, e D.Lgs. 14 giugno 2024, n. 87: ravvedimento operoso.</li>
+        </ul>
       </section>
 
       <!-- Pubblicità Extra per Dispositivi Mobili -->

@@ -149,50 +149,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il bollo si paga sul possesso o sull'effettiva circolazione del veicolo?",
+            "name": "Quando si paga il bollo auto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dal trasferimento alle Regioni la tassa automobilistica ha natura di tributo sul possesso, non sulla circolazione. Ne consegue che va versata anche per un'auto ferma in garage, non assicurata o temporaneamente inutilizzata. L'obbligo cessa soltanto con la radiazione dal Pubblico Registro Automobilistico, con l'esportazione o con la vendita regolarmente trascritta."
+              "text": "Per un’auto nuova entro la fine del mese di immatricolazione (o il mese dopo, se immatricolata negli ultimi dieci giorni). Poi ogni anno entro la fine del mese successivo a quello di scadenza. Alcune Regioni hanno scadenze proprie."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si determina l'età del veicolo ai fini del decalage del superbollo?",
+            "name": "Se non uso l’auto devo pagare lo stesso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Si computano gli anni interi decorsi dalla data di costruzione del veicolo, non dalla data di immatricolazione o di acquisto. La distinzione è rilevante per i mezzi rimasti a lungo invenduti presso il concessionario, che possono beneficiare della riduzione con anticipo rispetto a quanto il proprietario si attende."
+              "text": "Sì: il bollo è una tassa sul possesso, non sulla circolazione. Smette di essere dovuto solo con la radiazione dal PRA o in casi particolari previsti dalla Regione."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa succede in caso di vendita dell'auto a metà anno?",
+            "name": "Ho pagato in ritardo: cosa rischio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La tassa non è frazionabile e non è previsto alcun rimborso pro rata. L'obbligo grava su chi risulta proprietario al PRA nell'ultimo giorno utile del mese in cui scade il precedente periodo di validità. È il motivo per cui la data di trascrizione dell'atto di vendita va verificata con attenzione: un ritardo di pochi giorni può far ricadere sul venditore un'intera annualità."
+              "text": "Una sanzione che il ravvedimento operoso riduce: dal 25% pieno si scende a pochi punti percentuali se paghi presto, più gli interessi. Il pagamento con ravvedimento si fa con gli stessi canali del bollo, indicando il ritardo."
             }
           },
           {
             "@type": "Question",
-            "name": "Quali sono le conseguenze del mancato pagamento?",
+            "name": "Mi trasferisco in un’altra Regione: cosa cambia?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il tardivo versamento comporta una sanzione amministrativa che cresce con il ritardo, oltre agli interessi. Il ravvedimento operoso consente di regolarizzare spontaneamente con sanzioni ridotte. Trascorsi tre anni senza pagamento la Regione può disporre la radiazione d'ufficio del veicolo, che non potrà più circolare."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché per la stessa auto pago un importo diverso da quello di un amico in un'altra Regione?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Perché la tariffa per kilowatt è fissata autonomamente da ciascuna Regione entro i margini consentiti dalla legge statale. La differenza può superare il venti per cento a parità di veicolo, classe ambientale e potenza. Fa fede la residenza del proprietario, non il luogo di immatricolazione."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Un veicolo ibrido o plug-in gode di agevolazioni?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Dipende dalla Regione. Molte amministrazioni hanno introdotto esenzioni temporanee o riduzioni per gli ibridi, con durate e requisiti eterogenei che spaziano dai tre ai cinque anni. Non esiste una disciplina nazionale uniforme, quindi la verifica va condotta sul regolamento regionale vigente al momento della scadenza."
+              "text": "Il bollo segue la residenza del proprietario al PRA: dopo il cambio di residenza, dalla scadenza successiva si paga alla nuova Regione con le sue tariffe."
             }
           }
         ]
@@ -498,230 +482,59 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Dossier Analitico: Impianto Normativo e Meccanica Computazionale del Bollo Auto e Superbollo</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il gravame fiscale inerente alla circolazione e alla proprietà dei veicoli a motore in Italia si articola su due livelli di competenza: l'imposizione ordinaria a carattere regionale e l'addizionale straordinaria erariale, comunemente nota come Superbollo. La corretta determinazione dell'obbligazione tributaria impone un calcolo algoritmico che fonde le direttive statali con le molteplici deliberazioni tariffarie locali.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📈</span> Tassa Automobilistica Regionale: Soglie in kW e Coefficienti (L. 449/1997)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              L'architettura della tassa automobilistica ordinaria affonda le proprie basi normative nella Legge n. 449/1997 (Art. 17). La formula impositiva non guarda alla cilindrata, ma si struttura matematicamente sulla potenza netta del propulsore, espressa in Kilowatt (kW).
-            </p>
-            <p>
-              Il modello di calcolo prevede una tariffazione a scaglioni. Per la frazione di potenza fino a 100 kW, si applica una tariffa agevolata (fissata nazionalmente a 2,58 €/kW per i veicoli in classe ambientale Euro 4, 5 e 6). Superato lo sbarramento dei 100 kW, ogni singolo Kilowatt addizionale subisce una maggiorazione tariffaria (pari a 3,87 €/kW per le medesime classi ecologiche).
-            </p>
-            <p>
-              Tale base nazionale può essere modificata dalle Regioni, che deliberano tariffe per kW proprie entro i margini fissati dalla legge statale. Nel motore di calcolo, ad esempio, Campania, Lazio e Toscana hanno tariffe dedicate più elevate di quella nazionale, quindi a parità di veicolo l'importo finale cresce.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏎️</span> Il Superbollo: Addizionale Erariale e Meccanismo di Decalage (D.L. 201/2011)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Con la promulgazione del Decreto Legge n. 201/2011 (Art. 16, comma 1), noto come Decreto "Salva Italia", è stata istituita un'addizionale erariale alla tassa automobilistica (Superbollo) finalizzata a colpire la detenzione di veicoli ad altissime prestazioni. L'imposta si innesca esclusivamente qualora la potenza netta del veicolo varchi la soglia limite dei 185 kW (equivalenti a circa 252 CV).
-            </p>
-            <p>
-              L'algoritmo di calcolo estrae il differenziale ($\text{kW totali} - 185$) e vi applica un'imposizione forfettaria originaria di 20,00 € per ogni Kilowatt eccedente. A differenza della tassa regionale ordinaria, il legislatore ha introdotto un meccanismo di deprezzamento cronologico (decalage) per adeguare l'imposta all'effettivo valore commerciale del bene, applicando specifiche percentuali di abbattimento:
-            </p>
-            <ul class="list-disc pl-5 space-y-2 mb-4">
-              <li><strong>100% dell'importo</strong> (20 € per kW) per i primi 5 anni dalla data di costruzione.</li>
-              <li><strong>60% dell'importo</strong> (12 € per kW) dal 6° al 10° anno di anzianità.</li>
-              <li><strong>30% dell'importo</strong> (6 € per kW) dall'11° al 15° anno.</li>
-              <li><strong>15% dell'importo</strong> (3 € per kW) dal 16° al 20° anno.</li>
-              <li><strong>Esenzione totale (0%)</strong> trascorsi 20 anni dalla data di costruzione, momento in cui il veicolo entra nella categoria di potenziale interesse storico e collezionistico.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Computo Avanzato e Differenziali Territoriali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Per illustrare l'applicazione pratica delle direttive sopraesposte, si analizzino due profili di contribuzione antitetici.
-            </p>
-            <h4 class="font-bold text-gray-900 mt-2">Scenario Alpha: Vettura ad alte prestazioni (200 kW, Euro 6, Immatricolata nel 2024, Residenza Lazio)</h4>
-            <p>
-              Il veicolo sviluppa 200 kW. La frazione ordinaria si scompone in due scaglioni: i primi 100 kW generano 258,00 € (100 * 2,58 €). I restanti 100 kW eccedenti generano 387,00 € (100 * 3,87 €). Il Bollo Base Nazionale ammonterebbe a 645,00 €. Tuttavia, la Regione Lazio applica tariffe proprie (2,84 €/kW fino a 100 kW e 4,26 €/kW oltre): la tassa regionale sale a 710,00 € (284,00 € + 426,00 €). Sul fronte erariale, l'auto supera la soglia di 185 kW di ben 15 kW. Essendo costruita da meno di 5 anni, si applica la tariffa piena del Superbollo: 15 kW * 20,00 € = 300,00 €. L'onere complessivo è di 1.010,00 €.
-            </p>
-            <h4 class="font-bold text-gray-900 mt-2">Scenario Beta: Vettura compatta (55 kW, Euro 3, Residenza Nazionale)</h4>
-            <p>
-              La vettura eroga 55 kW, posizionandosi ampiamente al di sotto della soglia limite dei 100 kW e azzerando l'esposizione al Superbollo. Tuttavia, appartenendo alla classe inquinante Euro 3, la tariffa base subisce un inasprimento. La quota per kW si eleva a 2,70 € (rispetto ai 2,58 € previsti per le classi Euro 4, 5 e 6). L'imposta regionale si cristallizza in 148,50 € (55 * 2,70 €), non soggetta ad ulteriori addizionali erariali.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> Sanzioni per Omesso Versamento e Ravvedimento Operoso</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Quali sono le sanzioni per il ritardato pagamento del Bollo?</h4>
-              <p>
-                Il mancato o tardivo versamento del tributo regionale attiva l'istituto sanzionatorio. Il contribuente può tuttavia sanare la propria posizione beneficiando del Ravvedimento Operoso (Art. 13 del D.Lgs. 472/1997 e successive modifiche ex D.Lgs. 87/2024). Le sanzioni si calcolano in progressione cronologica: per le violazioni commesse dal 1° settembre 2024 la sanzione piena è del 25%, ridotta con il ravvedimento a circa lo 0,083% per ogni giorno di ritardo entro i primi 14 giorni, all'1,25% entro 30 giorni, all'1,39% entro 90 giorni e al 3,125% entro un anno, a cui si aggiungono gli interessi al tasso legale annuo vigente. Alcune Regioni disciplinano il ravvedimento con proprie leggi: prima di versare conviene verificare il servizio di calcolo regionale.
-              </p>
-            </div>
-
-            <div class="border-l-4 border-amber-500 pl-4 py-1">
-              <h4 class="font-bold text-gray-900 mb-1">Cosa accade ai veicoli in locazione a lungo termine (Noleggio/Leasing)?</h4>
-              <p>
-                A seguito delle modifiche introdotte dal Decreto Legge n. 124/2019 (Decreto Fiscale), la soggettività passiva d'imposta per i veicoli assoggettati a contratti di noleggio a lungo termine (NLT) senza conducente si è trasferita in capo all'utilizzatore finale. Di conseguenza, è responsabilità del locatario corrispondere il tributo in favore della Regione in cui egli medesimo (o l'azienda utilizzatrice) ha fissato la propria residenza o sede legale, svincolando la società di noleggio proprietaria del bene.
-              </p>
-            </div>
-
-          </div>
-        </details>
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>La tassa automobilistica non è proporzionale alla potenza in modo lineare: il legislatore ha costruito una funzione <strong>definita a tratti</strong>, con una tariffa ordinaria fino a 100 kW e una tariffa maggiorata sulla potenza eccedente. A questa si somma, oltre una certa soglia, un'addizionale erariale autonoma.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Componente regionale</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Se kW &lt;= 100:   Bollo = kW x tariffa_base</li>
-              <li>Se kW &gt; 100:    Bollo = (100 x tariffa_base) + ((kW - 100) x tariffa_eccedente)</li>
-              <li>tariffa_base e tariffa_eccedente dipendono da classe ambientale e Regione</li>
-            </ul>
-            <p>La tariffa eccedente è fissata in misura pari a una volta e mezza quella base: sul parametro nazionale per veicoli Euro 4, 5 e 6 si passa da 2,58 a 3,87 euro per kW. Il risultato è una curva spezzata che penalizza in modo progressivo le vetture ad alta potenza, con una discontinuità di pendenza esattamente sui 100 kW.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Componente erariale: il superbollo</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Se kW &gt; 185:   Superbollo = (kW - 185) x tariffa_eta</li>
-              <li>tariffa_eta = 20,00 EUR/kW   per veicoli da 0 a 4 anni</li>
-              <li>tariffa_eta = 12,00 EUR/kW   da 5 a 9 anni dalla costruzione</li>
-              <li>tariffa_eta =  6,00 EUR/kW   da 10 a 14 anni</li>
-              <li>tariffa_eta =  3,00 EUR/kW   da 15 a 19 anni</li>
-              <li>tariffa_eta =  0,00 EUR/kW   dal ventesimo anno (esenzione totale)</li>
-            </ul>
-            <p>La franchigia di 185 kW opera come soglia di esenzione e non come scaglione: solo i kilowatt eccedenti sono colpiti dall'addizionale. Il <em>decalage</em> per anzianità riduce la tariffa per fasce quinquennali fino ad azzerarla, ed è un meccanismo a gradini: al compimento del quinto anno la tariffa non decresce gradualmente ma scende di colpo da 20 a 12 euro per kW.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio integrale: berlina Euro 6 da 220 kW, immatricolata da 6 anni, tariffa nazionale</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Componente</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Calcolo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Importo</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Quota fino a 100 kW</td><td class="px-3 py-2 border-t border-gray-200">100 x 2,58</td><td class="px-3 py-2 border-t border-gray-200">258,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Quota eccedente 100 kW</td><td class="px-3 py-2 border-t border-gray-200">120 x 3,87</td><td class="px-3 py-2 border-t border-gray-200">464,40 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale tassa regionale</td><td class="px-3 py-2 border-t border-gray-200">258,00 + 464,40</td><td class="px-3 py-2 border-t border-gray-200">722,40 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">kW soggetti a superbollo</td><td class="px-3 py-2 border-t border-gray-200">220 - 185</td><td class="px-3 py-2 border-t border-gray-200">35 kW</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Superbollo con decalage</td><td class="px-3 py-2 border-t border-gray-200">35 x 12,00</td><td class="px-3 py-2 border-t border-gray-200">420,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Esborso annuo complessivo</td><td class="px-3 py-2 border-t border-gray-200">722,40 + 420,00</td><td class="px-3 py-2 border-t border-gray-200">1.142,40 EUR</td></tr></tbody></table></div>
-            <p>Lo stesso veicolo, se avesse meno di cinque anni, sconterebbe un superbollo di 700,00 euro invece di 420,00: la sola anzianità anagrafica produce un risparmio di 280 euro all'anno. Superati i vent'anni dalla costruzione l'addizionale si azzera integralmente e resta dovuta la sola componente regionale.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il peso del fattore territoriale</h3>
-            <p>Le Regioni dispongono di un margine di manovra sulle tariffe, e lo scostamento fra il territorio più oneroso e quello più leggero supera il venti per cento. Il medesimo veicolo Euro 6 da 220 kW paga 722,40 euro di tassa regionale con il parametro nazionale, 874,80 euro in Campania e 795,20 euro nel Lazio. Poiché la competenza segue la residenza del proprietario risultante al Pubblico Registro Automobilistico, un trasferimento anagrafico modifica l'importo dovuto a partire dalla scadenza successiva.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.P.R. 5 febbraio 1953 n. 39</strong> — testo unico delle leggi sulle tasse automobilistiche, matrice originaria del tributo.</li>
-              <li><strong>Legge 27 dicembre 1997 n. 449, articolo 17</strong> — ha trasferito alle Regioni a statuto ordinario la gestione della tassa automobilistica e il potere di modularne gli importi.</li>
-              <li><strong>D.L. 6 dicembre 2011 n. 201, articolo 16</strong> — istituisce l'addizionale erariale nota come superbollo, con la franchigia dei 185 kW e il sistema di riduzione per anzianità.</li>
-              <li><strong>D.Lgs. 30 aprile 1992 n. 285 (Codice della Strada)</strong> — definisce le categorie di veicoli e i dati tecnici della carta di circolazione utilizzati per la liquidazione.</li>
-              <li><strong>Legge 21 novembre 2000 n. 342, articolo 63</strong> — disciplina il regime agevolato per i veicoli di interesse storico e collezionistico.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esenzioni e riduzioni da conoscere</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Veicoli elettrici puri</strong>: esenzione quinquennale dalla prima immatricolazione, seguita nella maggior parte delle Regioni da una tassazione ridotta a un quarto dell'importo ordinario.</li>
-              <li><strong>Disabilità (Legge 104/1992)</strong>: esenzione totale e permanente per un solo veicolo, entro i limiti di cilindrata previsti e a condizione che il mezzo sia intestato alla persona con disabilità o al familiare che la ha fiscalmente a carico.</li>
-              <li><strong>Veicoli storici oltre i trent'anni</strong>: esenzione dal tributo ordinario, sostituita da una tassa di circolazione forfetaria dovuta solo se il mezzo circola effettivamente.</li>
-              <li><strong>Veicoli in leasing o noleggio a lungo termine</strong>: l'obbligo grava sull'utilizzatore o sulla società concedente a seconda del contratto e della normativa regionale applicabile.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le tariffe sono deliberate dalle singole Regioni e possono essere aggiornate nel corso dell'anno. I valori impiegati dal motore rappresentano i parametri nazionali e alcune declinazioni territoriali di riferimento: per un importo da versare con certezza è sempre opportuno verificare presso il portale della propria Regione, l'Automobile Club d'Italia o un'agenzia di pratiche auto.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono calcolati con le tariffe caricate dal motore della pagina e si riproducono inserendo gli stessi dati nel modulo. L'età del veicolo è riferita al 2026.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: comprare un'usata Euro 3 o una Euro 6 da 85 kW</h3>
-            <p>Chi cerca un'auto usata spesso scarta i modelli più vecchi pensando a un bollo molto più alto. Con la tariffa nazionale il confronto fra due vetture da 85 kW è questo:</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Euro 3: 85 × 2,70 = 229,50 € l'anno</li>
-            <li>Euro 6: 85 × 2,58 = 219,30 € l'anno</li>
-            <li>Differenza: 10,20 € l'anno</li>
-            </ul>
-            <p>Il bollo non è quindi il criterio decisivo. Contano di più consumi, assicurazione e divieti di circolazione per le classi più inquinanti, che in molte città colpiscono già gli Euro 3 diesel.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: SUV Euro 6 da 140 kW, proprietario residente in Toscana</h3>
-            <p>La potenza supera i 100 kW, quindi i 40 kW eccedenti sono tassati a tariffa maggiorata. Resta invece sotto i 185 kW e non paga superbollo.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Quota fino a 100 kW: 100 × 2,71 = 271,00 €</li>
-            <li>Quota eccedente: 40 × 4,26 = 170,40 €</li>
-            <li>Totale Toscana: 441,40 € l'anno</li>
-            </ul>
-            <p>Con la tariffa nazionale lo stesso SUV pagherebbe 412,80 €: la residenza toscana costa 28,60 € in più. Se il proprietario trasferisce la residenza, il nuovo importo vale dalla scadenza successiva.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: sportiva Euro 5 da 294 kW, un anno prima dello scalino del superbollo</h3>
-            <p>Un'auto da 400 CV costruita nel 2017 ha 9 anni nel 2026. I 109 kW oltre la soglia di 185 pagano il superbollo con la tariffa ridotta al 60%.</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Bollo nazionale: 100 × 2,58 + 194 × 3,87 = 1.008,78 €</li>
-            <li>Superbollo 2026 (9 anni): 109 × 12,00 = 1.308,00 €</li>
-            <li>Totale 2026: 2.316,78 €</li>
-            <li>Stessa auto costruita nel 2016 (10 anni): 109 × 6,00 = 654,00 €, totale 1.662,78 €</li>
-            </ul>
-            <p>Un solo anno di costruzione in più dimezza il superbollo e fa risparmiare 654,00 € l'anno. Per chi compra un'auto sportiva usata vicino alla soglia dei 10 o dei 15 anni, verificare la data di costruzione nel libretto può valere quanto una trattativa sul prezzo.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il bollo si paga sul possesso o sull'effettiva circolazione del veicolo?</h3>
-              <p>Dal trasferimento alle Regioni la tassa automobilistica ha natura di tributo sul possesso, non sulla circolazione. Ne consegue che va versata anche per un'auto ferma in garage, non assicurata o temporaneamente inutilizzata. L'obbligo cessa soltanto con la radiazione dal Pubblico Registro Automobilistico, con l'esportazione o con la vendita regolarmente trascritta.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Come si determina l'età del veicolo ai fini del decalage del superbollo?</h3>
-              <p>Si computano gli anni interi decorsi dalla data di costruzione del veicolo, non dalla data di immatricolazione o di acquisto. La distinzione è rilevante per i mezzi rimasti a lungo invenduti presso il concessionario, che possono beneficiare della riduzione con anticipo rispetto a quanto il proprietario si attende.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa succede in caso di vendita dell'auto a metà anno?</h3>
-              <p>La tassa non è frazionabile e non è previsto alcun rimborso pro rata. L'obbligo grava su chi risulta proprietario al PRA nell'ultimo giorno utile del mese in cui scade il precedente periodo di validità. È il motivo per cui la data di trascrizione dell'atto di vendita va verificata con attenzione: un ritardo di pochi giorni può far ricadere sul venditore un'intera annualità.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Quali sono le conseguenze del mancato pagamento?</h3>
-              <p>Il tardivo versamento comporta una sanzione amministrativa che cresce con il ritardo, oltre agli interessi. Il ravvedimento operoso consente di regolarizzare spontaneamente con sanzioni ridotte. Trascorsi tre anni senza pagamento la Regione può disporre la radiazione d'ufficio del veicolo, che non potrà più circolare.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché per la stessa auto pago un importo diverso da quello di un amico in un'altra Regione?</h3>
-              <p>Perché la tariffa per kilowatt è fissata autonomamente da ciascuna Regione entro i margini consentiti dalla legge statale. La differenza può superare il venti per cento a parità di veicolo, classe ambientale e potenza. Fa fede la residenza del proprietario, non il luogo di immatricolazione.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Un veicolo ibrido o plug-in gode di agevolazioni?</h3>
-              <p>Dipende dalla Regione. Molte amministrazioni hanno introdotto esenzioni temporanee o riduzioni per gli ibridi, con durate e requisiti eterogenei che spaziano dai tre ai cinque anni. Non esiste una disciplina nazionale uniforme, quindi la verifica va condotta sul regolamento regionale vigente al momento della scadenza.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore del bollo auto è uno strumento <strong>100% client-side, privo di qualsiasi backend</strong>. La potenza in kilowatt, la classe ambientale, l'anno di costruzione e la Regione di residenza vengono elaborati esclusivamente dal browser sul tuo dispositivo. Nessuna targa, nessun dato del libretto di circolazione e nessuna informazione anagrafica viene inviata, registrata o conservata su server remoti.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">L'assenza totale di trasmissione dei dati assicura la conformità al Regolamento UE 2016/679 (GDPR). L'incrocio fra targa, potenza del veicolo e residenza costituirebbe un profilo identificativo e patrimoniale significativo: non raccogliendolo, eliminiamo il rischio alla radice anziché limitarci a proteggerlo. L'impostazione attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dei dati dell'articolo 5. Nessun registro di calcolo viene mantenuto e nulla di ciò che digiti è tecnicamente recuperabile da noi.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si calcola il bollo auto e il superbollo</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il bollo auto &egrave; una tassa regionale sul possesso del veicolo: si paga ogni anno anche se l&rsquo;auto resta ferma in garage. Si calcola sulla potenza in kW (la trovi alla voce P.2 del libretto) e sulla classe ambientale Euro, con le tariffe della Regione in cui risiede il proprietario. Sopra i 185 kW si aggiunge il superbollo, che va allo Stato.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Il bollo regionale</h3>
+          <p>Fino a 100 kW si paga una tariffa per kW; per i kW oltre i 100 la tariffa &egrave; pi&ugrave; alta di met&agrave;. Con le tariffe nazionali per le auto Euro 4, 5 e 6:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>fino a 100 kW: 2,58 &euro; per kW;</li>
+            <li>oltre 100 kW: 3,87 &euro; per ogni kW in pi&ugrave;;</li>
+            <li>le classi pi&ugrave; vecchie pagano di pi&ugrave;: per esempio 2,70 &euro; per kW le Euro 3.</li>
+          </ul>
+          <p>Molte Regioni applicano tariffe proprie, pi&ugrave; alte di quella nazionale: il calcolatore usa quelle verificate e, per le Regioni di cui non ha ancora i dati, la tariffa nazionale, avvisandoti. L&rsquo;importo da pagare con certezza &egrave; quello del <a href="https://www.aci.it/i-servizi/servizi-online/calcolo-bollo-auto.html" class="text-indigo-700 underline">calcolo ufficiale dell&rsquo;ACI</a> o del sito della tua Regione.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Il superbollo</h3>
+          <p>Si paga sui kW oltre i 185: 20 &euro; per kW nei primi cinque anni dalla costruzione, poi 12 &euro; dopo cinque anni, 6 &euro; dopo dieci, 3 &euro; dopo quindici. Dopo vent&rsquo;anni non &egrave; pi&ugrave; dovuto. Il calo &egrave; a scalini: al compimento dei cinque anni si passa di colpo da 20 a 12 &euro; per kW.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Usata Euro 3 o Euro 6 da 85 kW.</strong> Euro 3: 85 &times; 2,70 = 229,50 &euro;; Euro 6: 85 &times; 2,58 = 219,30 &euro;. La differenza &egrave; di 10,20 &euro; l&rsquo;anno: per scegliere un&rsquo;usata contano di pi&ugrave; consumi, assicurazione e i divieti di circolazione per le classi pi&ugrave; inquinanti.</p>
+          <p><strong>SUV Euro 6 da 140 kW in Toscana.</strong> 100 &times; 2,71 = 271,00 &euro; pi&ugrave; 40 &times; 4,26 = 170,40 &euro;: totale 441,40 &euro;. Con la tariffa nazionale sarebbero 412,80 &euro;. Niente superbollo, perch&eacute; resta sotto i 185 kW.</p>
+          <p><strong>Berlina Euro 6 da 220 kW di sei anni, tariffa nazionale.</strong> Bollo: 100 &times; 2,58 + 120 &times; 3,87 = 722,40 &euro;. Superbollo: 35 kW &times; 12 &euro; = 420 &euro;. Totale 1.142,40 &euro; l&rsquo;anno; con meno di cinque anni il superbollo sarebbe stato di 700 &euro;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Chi non paga o paga meno</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Auto elettriche</strong>: esenti per i primi cinque anni dall&rsquo;immatricolazione; dopo, in molte Regioni pagano un quarto della tariffa, e alcune Regioni sono pi&ugrave; generose.</li>
+            <li><strong>Persone con disabilit&agrave;</strong> (legge 104/1992): esenzione per un veicolo, entro i limiti di cilindrata previsti, intestato alla persona o al familiare che la ha a carico.</li>
+            <li><strong>Auto storiche oltre i trent&rsquo;anni</strong>: esenti dal bollo, pagano una tassa di circolazione forfettaria solo se circolano.</li>
+            <li><strong>Noleggio a lungo termine</strong>: il bollo lo paga chi usa l&rsquo;auto, nella Regione della sua residenza o sede.</li>
+          </ul>
+          <p>Se vuoi sapere se dal 2027 non pagherai il bollo, prova la <a href="/cittadino-tasse/esenzione-bollo-auto-2027/" class="text-indigo-700 underline">simulazione dell&rsquo;esenzione bollo 2027</a>.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quando si paga il bollo auto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per un&rsquo;auto nuova entro la fine del mese di immatricolazione (o il mese dopo, se immatricolata negli ultimi dieci giorni). Poi ogni anno entro la fine del mese successivo a quello di scadenza. Alcune Regioni hanno scadenze proprie.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se non uso l&rsquo;auto devo pagare lo stesso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: il bollo &egrave; una tassa sul possesso, non sulla circolazione. Smette di essere dovuto solo con la radiazione dal PRA o in casi particolari previsti dalla Regione.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho pagato in ritardo: cosa rischio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Una sanzione che il ravvedimento operoso riduce: dal 25% pieno si scende a pochi punti percentuali se paghi presto, pi&ugrave; gli interessi. Il pagamento con ravvedimento si fa con gli stessi canali del bollo, indicando il ritardo.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Mi trasferisco in un&rsquo;altra Regione: cosa cambia?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il bollo segue la residenza del proprietario al PRA: dopo il cambio di residenza, dalla scadenza successiva si paga alla nuova Regione con le sue tariffe.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 5 febbraio 1953, n. 39: testo unico delle tasse automobilistiche.</li>
+          <li>Legge 27 dicembre 1997, n. 449, art. 17: tariffe per kW e poteri delle Regioni.</li>
+          <li>D.L. 6 dicembre 2011, n. 201, art. 16: superbollo.</li>
+          <li>Legge 21 novembre 2000, n. 342, art. 63: veicoli storici.</li>
+          <li>ACI: calcolo del bollo e tariffe regionali.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile Bottom -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
