@@ -51,8 +51,7 @@
         canone: inputCanone.value,
         dataStipula: inputDataStipula.value,
         cedolare: checkCedolare.checked,
-        cfLocatore: inputCfLocatore.value,
-        cfConduttore: inputCfConduttore.value,
+        // i codici fiscali non si salvano (vedi js/storage-helper.js, campoSensibile)
         pagine: inputPagine.value,
         copie: inputCopie.value
       };
@@ -67,8 +66,11 @@
         if (state.canone) inputCanone.value = state.canone;
         if (state.dataStipula) inputDataStipula.value = state.dataStipula;
         if (state.cedolare !== undefined) checkCedolare.checked = state.cedolare;
-        if (state.cfLocatore) inputCfLocatore.value = state.cfLocatore;
-        if (state.cfConduttore) inputCfConduttore.value = state.cfConduttore;
+        // i salvataggi di prima contenevano anche i codici fiscali: si riscrivono senza
+        if (state.cfLocatore || state.cfConduttore) {
+          delete state.cfLocatore; delete state.cfConduttore;
+          window.AppStorage.save('rli_state', state);
+        }
         if (state.pagine) inputPagine.value = state.pagine;
         if (state.copie) inputCopie.value = state.copie;
       } else {

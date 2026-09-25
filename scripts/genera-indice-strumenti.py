@@ -70,19 +70,19 @@ def main() -> int:
         cartella_cat = ROOT / categoria
         if not cartella_cat.is_dir():
             continue
-        for sub in sorted(p for p in cartella_cat.iterdir() if p.is_dir()):
-            pagina = sub / "index.html"
-            if not pagina.exists():
-                continue
+        # anche le pagine annidate, come i singoli modelli F24 sotto /f24-editabile/
+        for pagina in sorted(cartella_cat.glob("*/**/index.html")):
+            sub = pagina.parent
+            relativo = sub.relative_to(cartella_cat).as_posix()
             testo = pagina.read_text(encoding="utf-8", errors="replace")
             voce = {
-                "percorso": f"/{categoria}/{sub.name}/",
+                "percorso": f"/{categoria}/{relativo}/",
                 "categoria": categoria,
                 "nomeCategoria": nome_categoria,
                 "titolo": titolo(testo) or sub.name.replace("-", " ").title(),
                 "descrizione": meta(testo, "description"),
             }
-            v = variante_di(categoria, sub.name)
+            v = variante_di(categoria, relativo)
             if v:
                 voce["variante"] = v
             voci.append(voce)

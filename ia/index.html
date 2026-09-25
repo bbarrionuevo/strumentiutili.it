@@ -10,28 +10,22 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
      crossorigin="anonymous"></script>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-        // Registramos el interceptor de cabeceras
-        navigator.serviceWorker.register('/sw-headers.js').then(
-            function(registration) {
-                // Si el SW se acaba de instalar, necesitamos recargar la página 
-                // para que las cabeceras COOP/COEP apliquen desde el inicio.
-                if (registration.active && !navigator.serviceWorker.controller) {
-                    window.location.reload();
-                }
-            },
-            function(err) {
-                console.log('Error al registrar el Service Worker COOP/COEP: ', err);
-            }
-        );
-    }
-</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Intelligenza Artificiale (Offline) — StrumentiUtili.it</title>
-  <meta name="description" content="Strumenti IA come traduttore documenti, riassunto testi, OCR e trascrizione audio 100% eseguiti nel browser." />
+  <meta name="description" content="Trascrizione audio, traduzione, riassunti e testo dalle foto con l'intelligenza artificiale che gira sul tuo dispositivo, senza inviare i file." />
   <link rel="canonical" href="https://strumentiutili.it/ia/" />
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Intelligenza Artificiale (Offline)" />
+  <meta property="og:description" content="Trascrizione audio, traduzione, riassunti e testo dalle foto con l'intelligenza artificiale che gira sul tuo dispositivo, senza inviare i file." />
+  <meta property="og:url" content="https://strumentiutili.it/ia/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png" />
   
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
@@ -92,7 +86,7 @@
           <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
           <span class="hidden sm:block">
             <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
-            <span class="block text-xs text-gray-500">Micro-strumenti gratuiti 100% client-side</span>
+            <span class="block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
           </span>
         </a>
 
@@ -162,7 +156,7 @@
         <h1 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
           🤖 Intelligenza Artificiale Locale
         </h1>
-        <p class="text-sm text-gray-600 mt-1">Esecuzione IA nel browser: riassunti, traduzioni, OCR e trascrizione voce. 0% Inviato su internet.</p>
+        <p class="text-sm text-gray-600 mt-1">Trascrivere un audio, tradurre, riassumere o leggere il testo di una foto con l&rsquo;intelligenza artificiale che gira sul tuo dispositivo: i file non vengono inviati a nessuno.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -234,61 +228,17 @@
     </aside>
 
     <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <!-- SILO-2026:seo-ia -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🆕</span> OCR e Intelligenza Artificiale nel browser: WebAssembly, WebGPU e GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p class="">Gli strumenti di IA Locale scaricano i modelli una sola volta e poi li eseguono sul tuo dispositivo. Il riconoscimento ottico dei caratteri (OCR) usa un motore compilato in WebAssembly all'interno di un Web Worker, così l'interfaccia resta reattiva anche durante l'analisi di immagini pesanti; per i PDF digitali il testo viene estratto direttamente con pdf.js, senza passare dall'OCR.</p>
-            <p class="">L'<a href="/ia/assistente-documenti/" class="text-indigo-600 font-semibold hover:underline">Assistente IA Documenti</a> esegue un modello linguistico tramite WebGPU e lo conserva nello spazio di archiviazione privato del browser (OPFS), per analizzare contratti e documenti senza inviarli a un servizio cloud.</p>
-            <p class=""><strong>Privacy:</strong> nei servizi di IA online testi e immagini vengono trasmessi a server esterni e possono essere conservati. L'esecuzione locale evita qualsiasi trasferimento di dati, applicando i principi di minimizzazione (Art. 5) e di protezione dei dati fin dalla progettazione (Art. 25) del GDPR.</p>
-          </div>
-        </details>
-
-        <details class="group cursor-pointer">
-          <summary class="text-2xl font-bold text-gray-900 mb-3 select-none">
-            La Rivoluzione dell'Edge Computing IA: Conformità, Formule e Casistiche
-          </summary>
-          <div class="text-sm text-gray-700 leading-relaxed mt-4 space-y-6">
-            
-            <h3 class="text-lg font-semibold text-gray-900">Inquadramento Normativo</h3>
-            <p>
-              L'evoluzione delle tecnologie web ha catalizzato un cambio di paradigma architetturale fondamentale: il superamento dell'elaborazione server-side (Cloud computing) a favore dell'elaborazione puramente client-side. Sfruttando standard avanzati quali WebAssembly (WASM), Web Workers e WebGPU, l'architettura Zero-Backend definisce un ecosistema in cui l'intero ciclo di vita del dato avviene esclusivamente all'interno della sandbox del browser dell'utente. Da un punto di vista normativo, questo approccio rivoluziona radicalmente la gestione della conformità al Regolamento Generale sulla Protezione dei Dati (GDPR). L'Articolo 25 del GDPR codifica il principio della Data Protection by Design e by Default, imponendo che le misure tecniche e organizzative a tutela della privacy siano integrate direttamente nell'architettura del sistema fin dalla fase di progettazione concettuale. L'infrastruttura client-side incarna questo principio applicando impostazioni restrittive in maniera predefinita e impedendo fisicamente l'esfiltrazione dei dati (Zero-Upload), azzerando così il rischio di data breach in transito o a riposo. Inoltre, tale architettura risolve le complessità dell'Articolo 28 del GDPR, il quale disciplina i rapporti tra Data Controller e Data Processor. Con l'elaborazione 100% client-side, il fornitore dell'applicativo fornisce un software eseguibile ma non processa dati sui propri server, facendo decadere la qualifica di Responsabile del Trattamento, esonerando il professionista dall'auditing, dai DPA e dalle complesse Valutazioni d'Impatto (DPIA) richieste per il trasferimento verso paesi terzi (un aspetto critico dopo la sentenza Schrems II).
-            </p>
-
-            <h3 class="text-lg font-semibold text-gray-900">Meccanica e Formule</h3>
-            <p>
-              La capacità di eseguire reti neurali profonde e modelli linguistici (LLM) interamente nel browser si fonda su ecosistemi come Transformers.js e ONNX Runtime Web, che sdoganano l'esecuzione locale attingendo alle risorse delle GPU integrate. Attraverso la libreria <code>onnxruntime-web</code>, i modelli in formato ONNX vengono eseguiti tramite specifiche interfacce hardware (Execution Providers - EP). Tra questi, l'EP WebGPU fornisce ai browser un accesso di basso livello all'hardware grafico, sfruttando i compute shader e la precisione nativa a 16 bit (FP16), accelerando le inferenze dalle 15 alle 19 volte rispetto alla pura esecuzione CPU in WASM.
-              <br><br>
-              L'ostacolo gravoso della larghezza di banda e dei limiti RAM viene superato tramite la <strong>Quantizzazione INT8 post-addestramento</strong>. Questa complessa tecnica matematica converte i pesi dei neuroni dal formato ad alta precisione in virgola mobile a numeri interi con segno:
-              <br>
-              $$FP32 \rightarrow INT8$$
-              <br>
-              Durante la fase di calibrazione, i fattori di offset ottimali vengono calcolati minimizzando l'errore di ricostruzione tramite la divergenza di Kullback-Leibler, riducendo il peso del modello del 75% (es. scendendo da 90 MB a 22 MB) e dividendo per quattro la larghezza di banda necessaria. Ulteriore efficienza è garantita dall'<em>IO Binding</em> in WebGPU, in cui i buffer in uscita sono allocati direttamente in memoria video per i cicli computazionali successivi.
-            </p>
-
-            <h3 class="text-lg font-semibold text-gray-900">Casuistica Reale</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Trascrizione Legale Istruttoria:</strong> Un avvocato necessita di sbobinare rapidamente l'intervista riservata di un testimone. Trascinando il file MP3 nel browser, il modello OpenAI Whisper quantizzato in INT8 analizza le onde sonore in un Web Worker accelerato da WebGPU; la trascrizione testuale avviene in totale isolamento offline, impedendo che capi di imputazione e nomi sensibili fuoriescano dalla RAM del computer.</li>
-              <li><strong>Due Diligence e M&A:</strong> Un team aziendale operativo in fusioni e acquisizioni analizza contratti scansionati mediante OCR locale, inviando le clausole estratte a modelli di traduzione sequence-to-sequence residenti in WebAssembly. La valutazione finanziaria è protetta, evitando reati di insider trading facilitati da leak telematici.</li>
-              <li><strong>Referti Psichiatrici:</strong> Un medico psichiatra elabora lunghi referti narrativi da sedute cliniche. L'analisi semantica per la classificazione dei sintomi viene condotta offline, assicurando che diagnosi e informazioni intime non vengano profilate né ingerite per l'addestramento di algoritmi cloud.</li>
-              <li><strong>Generazione Credenziali Sicure:</strong> Un amministratore IT che genera batch di password ad altissima entropia (24 caratteri) per l'accesso a database sanitari adopera il generatore offline. Sfruttando l'API globale <code>window.crypto.getRandomValues()</code> del protocollo SubtleCrypto, la generazione si affida a entropia a livello kernel (CSPRNG), non intercettabile da proxy firewall, preservando le reti DMZ.</li>
-            </ul>
-
-            <h3 class="text-lg font-semibold text-gray-900">FAQ e Errores</h3>
-            <p>
-              <strong>Quali sono i colli di bottiglia hardware nell'esecuzione di OpenCV.js e modelli Transformer?</strong><br>
-              Il caricamento di modelli non quantizzati FP32 satura rapidamente la memoria RAM/VRAM, inducendo l'interruzione forzata del processo da parte del sistema operativo (OOM - Out of Memory). Inoltre, l'esecuzione ininterrotta di algoritmi pesanti causa il surriscaldamento del SoC (System on a Chip), innescando il thermal throttling e il rapido degrado della batteria. Per evitare che il thread principale si blocchi (congelando l'interfaccia utente), gli algoritmi più onerosi devono essere compartimentati all'interno di Web Workers dedicati.
-              <br><br>
-              <strong>Qual è l'errore di base nei generatori di password comuni?</strong><br>
-              Un difetto critico in numerosi applicativi web è l'utilizzo della funzione pseudocasuale nativa <code>Math.random()</code> per popolare stringhe e codici. Questa formula non offre garanzie di natura crittografica e produce sequenze prevedibili; i sistemi professionali devono implementare il SubtleCrypto per interrogare direttamente il pool entropico del sistema operativo. Infine, è vitale l'implementazione dello <em>Zeroing</em>, ovvero la pratica di sovrascrivere attivamente con zeri i vettori di memoria temporanea immediatamente dopo il trasferimento agli appunti, neutralizzando minacce remote quali i Cold Boot Attacks.
-            </p>
-
-          </div>
-        </details>
+      <section id="guida-categoria" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-categoria-titolo">
+        <h2 id="guida-categoria-titolo" class="text-xl font-bold text-gray-900 mb-3">Come funzionano questi strumenti</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">La prima volta il browser scarica il modello di intelligenza artificiale: da qualche decina di MB per il traduttore a oltre un GB per l&rsquo;assistente, quindi conviene il Wi-Fi. Le volte successive il modello &egrave; gi&agrave; salvato nel browser, e il lavoro avviene sul tuo telefono o computer.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">Sui dispositivi pi&ugrave; vecchi l&rsquo;elaborazione pu&ograve; essere lenta: per i file lunghi conviene un computer.</p>
+        <ul class="list-disc pl-5 text-sm text-gray-700 leading-relaxed space-y-2 mb-4">
+            <li>Registrazioni e vocali: <a href="/ia/trascrizione-audio/" class="text-indigo-700 font-semibold hover:underline">Trascrizione audio</a>.</li>
+            <li>Testi in altre lingue: <a href="/ia/traduttore/" class="text-indigo-700 font-semibold hover:underline">Traduttore</a>.</li>
+            <li>Documenti lunghi: <a href="/ia/riassunto-testo/" class="text-indigo-700 font-semibold hover:underline">Riassunto</a> e <a href="/ia/assistente-documenti/" class="text-indigo-700 font-semibold hover:underline">Assistente per documenti</a>.</li>
+            <li>Foto e scansioni: <a href="/ia/ocr-immagini/" class="text-indigo-700 font-semibold hover:underline">Estrarre il testo (OCR)</a>.</li>
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed">L&rsquo;intelligenza artificiale pu&ograve; sbagliare: rileggi sempre il risultato prima di usarlo.</p>
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
@@ -314,7 +264,7 @@
 
         <div class="sm:col-span-2 lg:col-span-1">
           <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
-          <p class="text-sm text-gray-600 mt-2">Micro-strumenti gratuiti. I calcoli avvengono nel browser: i tuoi dati non lasciano il dispositivo.</p>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
         </div>
 
         <nav aria-label="Categorie del sito">
