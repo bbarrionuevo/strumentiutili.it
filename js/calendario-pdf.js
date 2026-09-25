@@ -147,64 +147,75 @@
 
   // ---------------------------------------------------------------- mensile
 
-  function mensile(PDFLib, doc, F, font, grassetto, o, festivi) {
+  // Una pagina A4 orizzontale con la griglia del mese. La usa anche il
+  // calendario dei turni (js/turni-pdf.js), che passa in "extra":
+  //   cella(pagina, data, x, yTop, larghezza, altezza)  per disegnare dentro ogni giorno;
+  //   firma                                              il testo in basso a sinistra.
+  function paginaMese(PDFLib, doc, F, font, grassetto, anno, m, o, festivi, extra) {
     var C = colori(PDFLib);
+    var x0 = extra || {};
+    var fasi = o.fasi || {};
+    var ricorrenze = o.ricorrenzeMappa || {};
+    var W = A4[1], H = A4[0], M = 30;
+    var p = doc.addPage([W, H]);
+    p.drawText(F.NOMI_MESI[m - 1] + ' ' + anno, { x: M, y: H - M - 20, size: 24, font: grassetto, color: C.testo });
+    var righe = F.grigliaMese(anno, m);
+    var ox = o.settimane ? 18 : 0;
+    var top = H - M - 44;
+    var cw = (W - 2 * M - ox) / 7;
+    var ch = (top - 18 - M - 14) / righe.length;
+
+    GIORNI_LUNGHI.forEach(function (g, i) {
+      centra(p, g, grassetto, 9, M + ox + i * cw, cw, top - 12, i === 6 ? C.rosso : C.tenue);
+    });
+    righe.forEach(function (r, ri) {
+      var yTop = top - 18 - ri * ch;
+      if (o.settimane) {
+        centra(p, String(r.settimana), font, 7, M, ox, yTop - ch / 2 - 3, C.tenue);
+      }
+      r.giorni.forEach(function (d, i) {
+        var x = M + ox + i * cw;
+        var festa = d && festivi[d];
+        p.drawRectangle({
+          x: x, y: yTop - ch, width: cw, height: ch,
+          borderColor: C.linea, borderWidth: 0.6,
+          color: festa ? C.sfondoFesta : undefined
+        });
+        if (!d) return;
+        var rosso = i === 6 || (festa && festa.some(function (f) { return f.tipo === 'nazionale'; }));
+        p.drawText(String(Number(d.slice(8))), {
+          x: x + 6, y: yTop - 18, size: 14, font: grassetto,
+          color: rosso ? C.rosso : (festa ? C.arancio : C.testo)
+        });
+        // Dal basso verso l'alto: prima le ricorrenze in grigio, poi le feste.
+        var scritte = (ricorrenze[d] || []).map(function (nome) { return { nome: nome, colore: C.tenue }; }).reverse()
+          .concat((festa || []).map(function (f) { return { nome: f.nome, colore: f.tipo === 'patrono' ? C.arancio : C.rosso }; }).reverse());
+        scritte.forEach(function (r, k) {
+          p.drawText(adatta(r.nome, font, 7, cw - 10), { x: x + 6, y: yTop - ch + 6 + k * 9, size: 7, font: font, color: r.colore });
+        });
+        if (fasi[d]) luna(PDFLib, p, fasi[d], x + cw - 11, yTop - 12, 4.5, C.tenue);
+        if (x0.cella) x0.cella(p, d, x, yTop, cw, ch);
+      });
+    });
+    p.drawText(x0.firma || 'strumentiutili.it — calendario da stampare', { x: M, y: 14, size: 7, font: font, color: C.linea });
+    if (o.lune) {
+      var legenda = [['nuova', 'luna nuova'], ['primo-quarto', 'primo quarto'], ['piena', 'luna piena'], ['ultimo-quarto', 'ultimo quarto']];
+      var xl = W - M - 300;
+      legenda.forEach(function (l, i) {
+        luna(PDFLib, p, l[0], xl + i * 75, 17, 3.5, C.tenue);
+        p.drawText(l[1], { x: xl + i * 75 + 7, y: 14, size: 7, font: font, color: C.tenue });
+      });
+    }
+    return { pagina: p, margine: M, larghezza: W, altezza: H };
+  }
+
+  function mensile(PDFLib, doc, F, font, grassetto, o, festivi) {
     var fasi = {};
     if (o.lune) F.fasiLunari(o.anno).forEach(function (f) { fasi[f.data] = f.fase; });
     var ricorrenze = {};
     if (o.ricorrenze) F.ricorrenze(o.anno).forEach(function (r) { (ricorrenze[r.data] = ricorrenze[r.data] || []).push(r.breve || r.nome); });
-    var W = A4[1], H = A4[0], M = 30;
-
-    for (var m = 1; m <= 12; m++) {
-      var p = doc.addPage([W, H]);
-      p.drawText(F.NOMI_MESI[m - 1] + ' ' + o.anno, { x: M, y: H - M - 20, size: 24, font: grassetto, color: C.testo });
-      var righe = F.grigliaMese(o.anno, m);
-      var ox = o.settimane ? 18 : 0;
-      var top = H - M - 44;
-      var cw = (W - 2 * M - ox) / 7;
-      var ch = (top - 18 - M - 14) / righe.length;
-
-      GIORNI_LUNGHI.forEach(function (g, i) {
-        centra(p, g, grassetto, 9, M + ox + i * cw, cw, top - 12, i === 6 ? C.rosso : C.tenue);
-      });
-      righe.forEach(function (r, ri) {
-        var yTop = top - 18 - ri * ch;
-        if (o.settimane) {
-          centra(p, String(r.settimana), font, 7, M, ox, yTop - ch / 2 - 3, C.tenue);
-        }
-        r.giorni.forEach(function (d, i) {
-          var x = M + ox + i * cw;
-          var festa = d && festivi[d];
-          p.drawRectangle({
-            x: x, y: yTop - ch, width: cw, height: ch,
-            borderColor: C.linea, borderWidth: 0.6,
-            color: festa ? C.sfondoFesta : undefined
-          });
-          if (!d) return;
-          var rosso = i === 6 || (festa && festa.some(function (f) { return f.tipo === 'nazionale'; }));
-          p.drawText(String(Number(d.slice(8))), {
-            x: x + 6, y: yTop - 18, size: 14, font: grassetto,
-            color: rosso ? C.rosso : (festa ? C.arancio : C.testo)
-          });
-          // Dal basso verso l'alto: prima le ricorrenze in grigio, poi le feste.
-          var scritte = (ricorrenze[d] || []).map(function (nome) { return { nome: nome, colore: C.tenue }; }).reverse()
-            .concat((festa || []).map(function (f) { return { nome: f.nome, colore: f.tipo === 'patrono' ? C.arancio : C.rosso }; }).reverse());
-          scritte.forEach(function (r, k) {
-            p.drawText(adatta(r.nome, font, 7, cw - 10), { x: x + 6, y: yTop - ch + 6 + k * 9, size: 7, font: font, color: r.colore });
-          });
-          if (fasi[d]) luna(PDFLib, p, fasi[d], x + cw - 11, yTop - 12, 4.5, C.tenue);
-        });
-      });
-      p.drawText('strumentiutili.it — calendario da stampare', { x: M, y: 14, size: 7, font: font, color: C.linea });
-      if (o.lune) {
-        var legenda = [['nuova', 'luna nuova'], ['primo-quarto', 'primo quarto'], ['piena', 'luna piena'], ['ultimo-quarto', 'ultimo quarto']];
-        var xl = W - M - 300;
-        legenda.forEach(function (l, i) {
-          luna(PDFLib, p, l[0], xl + i * 75, 17, 3.5, C.tenue);
-          p.drawText(l[1], { x: xl + i * 75 + 7, y: 14, size: 7, font: font, color: C.tenue });
-        });
-      }
-    }
+    var om = Object.assign({}, o, { fasi: fasi, ricorrenzeMappa: ricorrenze });
+    for (var m = 1; m <= 12; m++) paginaMese(PDFLib, doc, F, font, grassetto, o.anno, m, om, festivi);
   }
 
   /**
@@ -231,5 +242,5 @@
     });
   }
 
-  return { crea: crea, winAnsi: winAnsi };
+  return { crea: crea, winAnsi: winAnsi, paginaMese: paginaMese, colori: colori, adatta: adatta, centra: centra };
 });
