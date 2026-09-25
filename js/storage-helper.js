@@ -116,7 +116,8 @@
     // Dati sensibili salvati dalle versioni precedenti: via.
     let ripulito = false;
     Object.keys(savedData).forEach((k) => {
-      if (sensibile(k)) { delete savedData[k]; ripulito = true; }
+      const campo = document.getElementById(k);
+      if (sensibile(k) || (campo && campo.closest && campo.closest('[data-no-save]'))) { delete savedData[k]; ripulito = true; }
     });
     if (ripulito) AppStorage.save(storageKey, savedData);
 

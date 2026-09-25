@@ -314,10 +314,12 @@
       });
 
       let totalImponibileDoc = 0;
+      let totalImpostaDoc = 0;
       let xmlDatiRiepilogo = "";
       for (const key in riepilogoMap) {
         const item = riepilogoMap[key];
         totalImponibileDoc += item.imponibile;
+        totalImpostaDoc += item.imposta;
         xmlDatiRiepilogo += `
         <DatiRiepilogo>
           <AliquotaIVA>${item.iva}</AliquotaIVA>`;
@@ -345,6 +347,28 @@
           <CausalePagamento>${causale}</CausalePagamento>
         </DatiRitenuta>`;
       }
+
+      // Bollo virtuale da 2 euro: fatture senza IVA dei forfettari e dei minimi sopra 77,47 euro
+      const xmlDatiBollo = (selectRegime.value === "RF19" || selectRegime.value === "RF02") && totalImpostaDoc === 0 && totalImponibileDoc > 77.47
+        ? `
+        <DatiBollo>
+          <BolloVirtuale>SI</BolloVirtuale>
+          <ImportoBollo>2.00</ImportoBollo>
+        </DatiBollo>`
+        : "";
+
+      // Sede di cedente e cliente, dai campi del modulo
+      const sede = (prefisso) => {
+        const v = (campo) => document.getElementById(`${prefisso}-${campo}`).value.trim();
+        const provincia = v('provincia').toUpperCase();
+        return `<Sede>
+        <Indirizzo>${escapeXml(v('indirizzo'))}</Indirizzo>
+        <CAP>${escapeXml(v('cap'))}</CAP>
+        <Comune>${escapeXml(v('comune'))}</Comune>${provincia ? `
+        <Provincia>${escapeXml(provincia)}</Provincia>` : ''}
+        <Nazione>IT</Nazione>
+      </Sede>`;
+      };
 
       // Cliente privato (codice fiscale di 16 caratteri): va nel nodo CodiceFiscale, non in IdFiscaleIVA (scarto SdI)
       const cliId = inputCliId.value.trim().toUpperCase();
@@ -378,12 +402,7 @@
         </Anagrafica>
         <RegimeFiscale>${selectRegime.value}</RegimeFiscale>
       </DatiAnagrafici>
-      <Sede>
-        <Indirizzo>Indirizzo da configurare</Indirizzo>
-        <CAP>00100</CAP>
-        <Comune>Roma</Comune>
-        <Nazione>IT</Nazione>
-      </Sede>
+      ${sede('emittente')}
     </CedentePrestatore>
     <CessionarioCommittente>
       <DatiAnagrafici>
@@ -392,12 +411,7 @@
           <Denominazione>${escapeXml(document.getElementById('cliente-nome').value)}</Denominazione>
         </Anagrafica>
       </DatiAnagrafici>
-      <Sede>
-        <Indirizzo>Indirizzo da configurare</Indirizzo>
-        <CAP>00100</CAP>
-        <Comune>Roma</Comune>
-        <Nazione>IT</Nazione>
-      </Sede>
+      ${sede('cliente')}
     </CessionarioCommittente>
   </FatturaElettronicaHeader>
   <FatturaElettronicaBody>
@@ -406,7 +420,7 @@
         <TipoDocumento>${document.getElementById('doc-tipo').value}</TipoDocumento>
         <Divisa>EUR</Divisa>
         <Data>${dataFatturaInput}</Data>
-        <Numero>${escapeXml(numeroFatturaInput)}</Numero>${xmlDatiRitenuta}
+        <Numero>${escapeXml(numeroFatturaInput)}</Numero>${xmlDatiRitenuta}${xmlDatiBollo}
         <ImportoTotaleDocumento>${outTotale.textContent.replace('€ ', '')}</ImportoTotaleDocumento>
       </DatiGeneraliDocumento>
     </DatiGenerali>

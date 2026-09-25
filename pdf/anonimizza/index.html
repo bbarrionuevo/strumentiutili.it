@@ -143,7 +143,7 @@
             "name": "Il file oscurato è ancora ricercabile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le pagine non oscurate sì. La pagina su cui hai applicato i riquadri diventa un'immagine e il suo testo non è più selezionabile né ricercabile."
+              "text": "Le pagine non oscurate sì. Quella con i riquadri diventa un’immagine e il suo testo non si può più cercare o copiare."
             }
           },
           {
@@ -151,23 +151,31 @@
             "name": "Posso oscurare più pagine in una volta?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, le selezioni valgono per la pagina visualizzata. Applica la redazione, carica il file scaricato e ripeti per le altre pagine."
+              "text": "No, una pagina per volta: applica, carica il file scaricato e ripeti."
             }
           },
           {
             "@type": "Question",
-            "name": "Un documento oscurato è anonimo ai fini del GDPR?",
+            "name": "La qualità peggiora?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo se non è più possibile risalire alla persona con mezzi ragionevoli. Se restano date, luoghi o dettagli che la rendono identificabile, i dati sono pseudonimizzati e restano dati personali."
+              "text": "La pagina oscurata viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza."
             }
           },
           {
             "@type": "Question",
-            "name": "La qualità della pagina oscurata peggiora?",
+            "name": "Il PDF viene caricato su un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La pagina viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza rispetto all'originale vettoriale."
+              "text": "No: lettura, oscuramento e salvataggio avvengono nel browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il file è troppo pesante per la PEC: cosa faccio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dopo la redazione riducilo con Comprimi PDF. Per fascicoli molto grandi estrai prima solo le pagine da oscurare con Unisci e dividi PDF."
             }
           }
         ]
@@ -381,204 +389,60 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Sanificazione Strutturale del PDF, Ingegneria della Redazione Distruttiva e Compliance GDPR (Zero-Backend)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          L'oscuramento permanente dei dati identificativi, finanziari e clinici all'interno dei documenti Portable Document Format (PDF) rappresenta un'operazione critica per la sicurezza delle informazioni e la conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). Molti oscuramenti eseguiti con editor grafici o con le annotazioni dei lettori PDF incorrono nella vulnerabilità della "falsa redazione", lasciando i dati riservati pienamente accessibili nel codice sorgente del file. Il seguente trattato disamina l'inquadramento legislativo europeo, il metodo di redazione per rasterizzazione della pagina, le strategie di mitigazione della memoria per grandi volumi documentali e la risoluzione delle casuistiche reali in ambito penale, sanitario e tributario.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Sterilizzazione del Data Processor (Art. 28) e Deposito Telematico (PCT/PAT)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La manipolazione e censura dei file PDF contenenti categorie particolari di dati personali (ex Articolo 9 GDPR: dati sanitari, biometrici, orientamento politico, convinzioni religiose) o dati giudiziarie ed economico-finanziari richiede la massima rispondenza ai principi di minimizzazione del trattamento (Articolo 5, paragrafo 1, lettera c) del GDPR).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'Articolo 25 del GDPR codifica i principi inderogabili di Data Protection by Design e by Default. L'infrastruttura di questo applicativo incarna tale precetto in forma matematica: operando al 100% in modalità Client-Side (Zero-Backend / Zero-Upload), impedisce fisicamente al documento non ancora oscurato di abbandonare la RAM volatile del dispositivo dell'utente, azzerando il rischio di intercettazione di rete (attacchi Man-in-the-Middle) o di conservazione non autorizzata su server di terze parti.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Sul piano delle responsabilità legali, l'elaborazione locale risolve le rilevanti complessità dell'Articolo 28 del GDPR. Qualora uno studio legale, una struttura ospedaliera o un consulente tributario utilizzi una piattaforma Cloud SaaS tradizionale per l'anonimizzazione dei PDF, il fornitore esterno assume giuridicamente la qualifica di Responsabile del Trattamento (Data Processor). Ciò impone al Titolare (Data Controller) la stipula di un vincolante Data Processing Agreement (DPA), la costante verifica delle garanzie di sicurezza ex Articolo 32, la mappatura nel Registro dei Trattamenti (Art. 30) e l'esecuzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35) per accertare i rischi inerenti alla trasmissione.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Con la suite puramente client-side, il fornitore dell'applicativo non riceve né elabora alcun dato personale sui propri server, facendo decadere la qualifica stessa di Data Processor e sollevando l'utente dagli oneri burocratici di auditing e dalle responsabilità legali legate al trasferimento transfrontaliero dei dati extra-UE. In ambito giudiziario, la conformità risponde inoltre alle regole tecniche del Processo Civile Telematico (PCT), del Processo Amministrativo Telematico (PAT) e ai requisiti di invio delle notifiche via Posta Elettronica Certificata (PEC).
-            </p>
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Oscurare dati in un PDF in modo che non si possano recuperare</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Un rettangolo nero disegnato con un editor PDF spesso nasconde il testo solo alla vista: selezionando l&rsquo;area e incollandola in un editor il dato ricompare. Lo strumento fa una redazione vera: ridisegna la pagina come immagine con i riquadri neri gi&agrave; dentro, cos&igrave; sotto non resta nulla da copiare. Il file resta sul tuo dispositivo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica il PDF e scegli la pagina.</li>
+            <li>Trascina dei riquadri sui dati da nascondere: nomi, codici fiscali, IBAN, indirizzi, firme.</li>
+            <li>Applica la redazione e scarica il file &laquo;-redacted&raquo;.</li>
+            <li>Se ci sono altre pagine da oscurare, carica il file appena scaricato e ripeti.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa succede al file</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>La pagina oscurata viene ridisegnata a circa 180 DPI e diventa un&rsquo;immagine: il suo testo non &egrave; pi&ugrave; selezionabile n&eacute; ricercabile, compreso l&rsquo;eventuale livello OCR delle scansioni.</li>
+            <li>Le altre pagine restano identiche, con il loro testo.</li>
+            <li>Vengono tolti i metadati del documento, come autore e titolo.</li>
+            <li>Un&rsquo;eventuale firma digitale non &egrave; pi&ugrave; valida: se serve, firma il file dopo la redazione.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Referto da allegare a una domanda.</strong> Riquadri su nome e codice fiscale a pagina 1: dopo la redazione dalla pagina non si estrae pi&ugrave; testo e l&rsquo;autore nei metadati &egrave; vuoto. Attenzione: a pagina 2 c&rsquo;&egrave; ancora &laquo;Firma del paziente: Mario Rossi&raquo;, da oscurare con un secondo passaggio.</p>
+          <p><strong>Contratto d&rsquo;affitto con IBAN a pagina 1 e firma a pagina 4.</strong> Redazione di pagina 1, poi del file ottenuto a pagina 4. Le pagine 2 e 3 restano ricercabili, utile se chi riceve deve leggere le clausole.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Controlla prima di inviare</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il test della falsa redazione: seleziona l&rsquo;area nera, copia e incolla in un editor di testo. Se compare il dato, &egrave; ancora nel file.</li>
+            <li>Controlla intestazioni, pi&egrave; di pagina, allegati e pagine successive.</li>
+            <li>Un documento oscurato &egrave; anonimo solo se non si pu&ograve; pi&ugrave; risalire alla persona: date, luoghi o dettagli rari possono bastare a identificarla.</li>
+            <li>Il file originale in chiaro resta nella cartella da cui l&rsquo;hai caricato: conservalo o cancellalo secondo le tue regole.</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il file oscurato &egrave; ancora ricercabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le pagine non oscurate s&igrave;. Quella con i riquadri diventa un&rsquo;immagine e il suo testo non si pu&ograve; pi&ugrave; cercare o copiare.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e Formule: Falsa Redazione vs Redazione Distruttiva dei Content Stream, Web Crypto API e V8 Heap Management</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">1. La Vulnerabilità Tecnica della Falsa Redazione (Vector Overlay Leak)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura interna del formato PDF renderizza i contenuti sovrapponendo livelli nidificati (content streams, oggetti vettoriali, form XObjects, metadati XMP e annotazioni). L'errore tecnico più diffuso consiste nell'eseguire l'oscuramento disegnando un rettangolo nero opaco sopra il testo sensibile tramite un editor grafico. Questa operazione si limita ad aggiungere un mero nodo grafico nello stack visivo in cima alla pagina. Il testo originale sottostante, l'albero degli oggetti vettoriali, le stringhe delle annotazioni e i livelli di testo invisibili generati dal riconoscimento ottico dei caratteri (OCR) rimangono integralmente intatti nel codice sorgente del file. Un potenziale attaccante non necessita di strumenti avanzati: è sufficiente selezionare l'area nera con il mouse, copiare il contenuto negli appunti e incollarlo in un editor di testo per svelare istantaneamente l'informazione protetta.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Come funziona la redazione distruttiva in questo strumento</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Modificare in modo affidabile i content stream di un PDF qualsiasi è complesso: il testo può essere spezzato in frammenti, codificato con font incorporati o nascosto in livelli OCR. Per garantire che nulla resti sotto i riquadri, lo strumento usa la rasterizzazione della pagina, con `pdf.js` e `pdf-lib` eseguiti nel browser:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
-              <li>la pagina selezionata viene disegnata a circa 180 DPI in un canvas;</li>
-              <li>sul canvas vengono dipinti i rettangoli neri nelle posizioni tracciate;</li>
-              <li>il risultato diventa un'immagine JPEG che sostituisce la pagina originale;</li>
-              <li>viene creato un nuovo PDF che contiene le altre pagine copiate così come sono e la pagina ricostruita, senza gli oggetti della pagina originale né i metadati del documento, come autore e titolo.</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il prezzo della sicurezza è che la pagina oscurata non contiene più testo selezionabile o ricercabile. Le altre pagine restano identiche: se contengono dati personali vanno oscurate anch'esse, caricando il file già redatto e ripetendo l'operazione.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Firma digitale e integrità dopo la redazione</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La redazione crea un file nuovo: un'eventuale firma digitale presente nel documento originale non è più valida. Se il file oscurato deve avere valore legale va firmato dopo la redazione con il proprio dispositivo di firma (PAdES o CAdES). L'integrità del file può essere documentata con un'impronta crittografica, per esempio:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$H = \text{SHA-256}(\text{PDF}_{\text{Redacted}})$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'impronta $H$ è quella che il software di firma cifra con la chiave privata del firmatario: questo strumento non firma i documenti e non accede ai dispositivi di firma.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Gestione dell'Heap Memory V8 e Web Workers per Grandi Fascicoli</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'elaborazione di fascicoli processuali o perizie scansionate ad alta risoluzione che superano i 500 MB in un browser incontra stringenti limiti fisici d'allocazione memoria nell'heap del motore JavaScript (es. motore V8 di Chrome). Caricare un file massivo in un singolo buffer continuo (`ArrayBuffer`) provoca l'esaurimento della RAM allocabile e il crash imprevisto della tab (*Out of Memory - OOM*).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Lo strumento carica il file intero in memoria: la ricostruzione del documento avviene in un Web Worker, a cui i dati vengono passati come oggetti trasferibili (`Transferable Objects`) senza copiarli, così l'interfaccia resta reattiva. Su smartphone e con fascicoli molto grandi conviene prima estrarre solo le pagine da oscurare con lo strumento Unisci e Dividi.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso oscurare pi&ugrave; pagine in una volta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, una pagina per volta: applica, carica il file scaricato e ripeti.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Risoluzione Passo-Passo in Ambito Penale, Sanitario e Societario</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: Deposito Giudiziario di Atti di Indagine e Tutela dei Minori (Ambito Penalistico).</strong><br />
-              Un avvocato penalista deve depositare una memoria difensiva nel Processo Penale Telematico allegando i verbali di sommarie informazioni testimoniali. Gli atti recano i nominativi in chiaro di persone minori di età, vittime di reati sensibili e testimoni protetti.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'invio del file non oscurato a portali di conversione online commerciali esporrebbe il professionista alla violazione del segreto professionale e a sanzioni disciplinari dell'Ordine degli Avvocati. Tramite l'Anonimizzatore PDF client-side, il legale carica il fascicolo, traccia i rettangoli di selezione sui dati riservati e applica l'oscuramento distruttivo. Ogni pagina oscurata viene ricostruita come immagine e il file viene scaricato per il deposito telematico. Il file in chiaro resta sul computer dello studio, da cui non è mai stato inviato.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: Pseudonimizzazione di Cartelle Cliniche per Trial Farmacologici Universitari (Art. 9 GDPR).</strong><br />
-              Un direttore sanitario ospedaliero deve trasmettere 200 cartelle cliniche in formato PDF al centro di ricerca di un ateneo universitario per uno studio scientifico. I documenti contengono dati identificativi dei pazienti, codici fiscali e storie patologiche.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il medico carica i PDF nell'applicativo locale e oscura nome, codice fiscale e recapiti su ogni pagina che li contiene; le pagine oscurate perdono anche il livello di testo OCR e il file finale non conserva i metadati del software di refertazione. I documenti così ottenuti sono pseudonimizzati, non anonimi: restano dati personali relativi alla salute, e la condivisione per ricerca richiede comunque una base giuridica, il parere del comitato etico e le garanzie previste dal Codice privacy. Per centinaia di cartelle un oscuramento pagina per pagina è poco pratico e va preferita l'estrazione dei dati dal sistema di refertazione.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 3: Riduzione DPI e Offuscamento Dati Finanziari in Operazioni M&amp;A.</strong><br />
-              Un commercialista incaricato di una *Due Diligence* aziendale deve condividere dichiarazioni dei redditi e verbali di CDA contenenti i saldi dei conti correnti bancari personali dei soci. I file scansionati ad altissima risoluzione superano i tetti di allegato PEC (25 MB).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Sfruttando la suite client-side, il professionista censura i dati bancari riservati sulle pagine interessate e, se il file resta troppo pesante per la PEC, lo riduce successivamente con lo strumento Comprimi PDF. I dati bancari oscurati non sono più presenti nelle pagine ricostruite.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La qualit&agrave; peggiora?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La pagina oscurata viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati riprodotti con lo strumento su un PDF di prova di due pagine con dati sanitari fittizi; il testo del file risultante è stato estratto con pdf.js per verificarne il contenuto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: referto da allegare a una domanda di invalidità</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pagina 1: «Paziente: Mario Rossi», «Codice fiscale: RSSMRA80A01H501U»</li>
-            <li>Autore nei metadati del file: «Dott. Bianchi»</li>
-            <li>Riquadro sulle righe di nome e codice fiscale, pagina 1</li>
-            <li>Testo estraibile dalla pagina 1 dopo la redazione: nessuno</li>
-            <li>Metadati autore dopo la redazione: vuoti</li>
-            </ul>
-            <p>La pagina 1 è ora un'immagine: il codice fiscale non compare più nemmeno cercando i byte del file. La pagina 2, non oscurata, contiene ancora «Firma del paziente: Mario Rossi» e va trattata con una seconda redazione sul file scaricato.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: il test che rivela una falsa redazione</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>File ricevuto con riquadri neri aggiunti con un editor PDF</li>
-            <li>Seleziona l'area nera, copia e incolla in un editor di testo</li>
-            <li>Se compare il nome, il dato è ancora nel file</li>
-            </ul>
-            <p>Lo stesso controllo va fatto su qualunque documento oscurato prima di pubblicarlo o depositarlo. Sui file prodotti da questo strumento la selezione della pagina oscurata non restituisce testo.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: contratto di affitto da allegare a una richiesta di contributo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Dati da nascondere: IBAN del locatore e firma del conduttore</li>
-            <li>Pagine interessate: 1 e 4</li>
-            <li>Procedura: redazione di pagina 1, caricamento del file «-redacted», redazione di pagina 4</li>
-            </ul>
-            <p>Le pagine 2 e 3 restano testuali e ricercabili, utile se l'ente deve leggerne le clausole. Il file finale ha due redazioni successive: prima di inviarlo verifica che la seconda sia stata applicata al file già oscurato e non all'originale.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF viene caricato su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: lettura, oscuramento e salvataggio avvengono nel browser.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Fallimenti Storici ed Errori Operativi: Il Caso Paul Manafort e Sanzioni GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Analisi del Caso Giudiziario Paul Manafort (Il Fallimento della Falsa Redazione):</strong><br />
-              Uno dei casi più celebri di data breach causato da falsa redazione si è verificato durante il procedimento giudiziario federale statunitense a carico di Paul Manafort. I legali della difesa depositarono un atto contenente trascrizioni segrete coprendo visivamente il testo con rettangoli neri tramite un lettore PDF comune. I giornalisti d'inchiesta scaricarono il file dal portale del tribunale, evidenziarono i riquadri neri con il cursore e copiarono il testo sottostante negli appunti, pubblicando integralmente le informazioni secretate sulle testate mondiali. Questo strumento evita l'errore sostituendo la pagina oscurata con un'immagine in cui i riquadri neri sono già parte dei pixel: non esiste più un testo da selezionare.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Il Rischio del Testo OCR Trasparente:</strong><br />
-              Molti scanner multifunzione moderni generano file PDF contenenti l'immagine raster della pagina sovrapposta a un livello di testo OCR trasparente situato al di sotto. Applicare un rettangolo nero sull'immagine di scansione copre l'aspetto visivo ma lascia intatto e ricercabile il livello di testo OCR. Con la ricostruzione della pagina come immagine, in questo strumento anche il livello OCR della pagina oscurata viene eliminato; le pagine non oscurate conservano invece il loro testo OCR.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Permanenza in Memoria Volatile e Garanzie di Zeroing:</strong><br />
-              Il file originale resta in memoria finché la scheda è aperta; chiudendola il browser libera la memoria, ma JavaScript non consente di azzerarla in modo garantito. Il rischio concreto è un altro: il file in chiaro resta nella cartella da cui è stato caricato e va conservato o eliminato secondo le regole dello studio.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Quadro Sanzionatorio GDPR (Articolo 83):</strong><br />
-              L'omessa anonimizzazione o la fuga accidentale di dati personali e particolari ascrivibile a false redazioni costituisce una violazione grave del GDPR sanzionata ai sensi dell'Articolo 83, paragrafo 5 con sanzioni amministrative pecuniarie fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. Una redazione distruttiva riduce il rischio di diffusione accidentale, ma la conformità dipende anche da cosa si oscura: vanno controllati intestazioni, piè di pagina, allegati e pagine successive.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il file &egrave; troppo pesante per la PEC: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dopo la redazione riducilo con <a href="/pdf/comprimi-pdf/" class="text-indigo-700 underline">Comprimi PDF</a>. Per fascicoli molto grandi estrai prima solo le pagine da oscurare con <a href="/pdf/unisci-pdf/" class="text-indigo-700 underline">Unisci e dividi PDF</a>.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il file oscurato è ancora ricercabile?</h3>
-            <p>Le pagine non oscurate sì. La pagina su cui hai applicato i riquadri diventa un'immagine e il suo testo non è più selezionabile né ricercabile.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso oscurare più pagine in una volta?</h3>
-            <p>No, le selezioni valgono per la pagina visualizzata. Applica la redazione, carica il file scaricato e ripeti per le altre pagine.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Un documento oscurato è anonimo ai fini del GDPR?</h3>
-            <p>Solo se non è più possibile risalire alla persona con mezzi ragionevoli. Se restano date, luoghi o dettagli che la rendono identificabile, i dati sono pseudonimizzati e restano dati personali.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La qualità della pagina oscurata peggiora?</h3>
-            <p>La pagina viene ricostruita a circa 180 DPI: il testo resta ben leggibile a schermo e in stampa, ma i dettagli molto piccoli possono perdere nitidezza rispetto all'originale vettoriale.</p>
-            </div>
-          </div>
-        </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 2016/679 (GDPR), artt. 5, 9 e 25: minimizzazione, dati particolari e protezione fin dalla progettazione.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

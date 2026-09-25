@@ -155,26 +155,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il mio documento viene inviato a un server per l'analisi?",
+            "name": "Il documento viene inviato a un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il testo viene estratto dal file direttamente nel browser e passato a un modello linguistico che gira sulla scheda grafica del tuo dispositivo. L'unico traffico di rete riguarda il download iniziale dei pesi del modello da un archivio pubblico. Il contenuto dei documenti, le domande e le risposte non attraversano mai la rete."
+              "text": "No. Il testo viene letto nel browser e passato al modello che gira sul tuo computer. Dalla rete arriva solo il modello, al primo avvio."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il primo avvio richiede così tanto tempo?",
+            "name": "Perché il primo avvio è così lento?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Al primo utilizzo il browser deve scaricare i pesi del modello, circa 980 MB per il livello 1 e circa 1,85 GB per il livello 2, e compilare i programmi per la scheda grafica. I pesi vengono poi salvati nello spazio privato del browser, quindi gli avvii successivi sono molto più rapidi e non richiedono un nuovo download."
+              "text": "Perché il browser scarica il modello (fino a 1,85 GB) e lo prepara per la scheda grafica. Dalla volta dopo lo trova già salvato."
             }
           },
           {
             "@type": "Question",
-            "name": "Quali dispositivi sono compatibili?",
+            "name": "Funziona sul telefono?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Serve un browser con supporto WebGPU, disponibile nelle versioni recenti di Chrome ed Edge e in fase di diffusione negli altri browser. Per il livello 2 è consigliata una scheda grafica con almeno quattro gigabyte di memoria disponibile. Sui dispositivi più modesti conviene scegliere il livello 1 e suddividere i documenti lunghi."
+              "text": "Solo se il browser supporta WebGPU, cosa ancora rara sui telefoni. Su computer usa Chrome o Edge aggiornati."
             }
           },
           {
@@ -182,23 +182,23 @@
             "name": "Posso analizzare un contratto di cinquanta pagine?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non in un'unica richiesta. Un documento di quella lunghezza supera la finestra di contesto e la memoria disponibile sulla maggior parte dei dispositivi. La soluzione corretta è analizzarlo per capitoli o per gruppi di articoli, ponendo domande mirate su ciascuna sezione, così che il modello lavori su un testo che rientra interamente nella sua memoria di lavoro."
+              "text": "Non in una volta sola: dividilo per capitoli o gruppi di articoli e fai domande mirate su ciascuna parte."
             }
           },
           {
             "@type": "Question",
-            "name": "Le risposte del modello sono affidabili?",
+            "name": "Le risposte sono affidabili?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sono un supporto alla lettura, non una fonte autonoma. Un modello linguistico può fraintendere una clausola o riportare un dettaglio non presente nel testo. È buona pratica chiedere al modello di indicare il passaggio da cui ricava ogni affermazione e controllarlo sul documento originale prima di prendere qualsiasi decisione."
+              "text": "Sono un aiuto alla lettura. Controlla sempre sul documento originale, soprattutto termini, importi e date."
             }
           },
           {
             "@type": "Question",
-            "name": "Come elimino i dati salvati nel browser?",
+            "name": "Come cancello i dati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "I documenti e le conversazioni non vengono salvati in modo permanente e scompaiono alla chiusura della pagina. I pesi del modello restano invece nello spazio privato del browser per velocizzare gli avvii successivi. Si possono eliminare cancellando i dati del sito dalle impostazioni del browser, operazione che libera lo spazio su disco occupato."
+              "text": "Le conversazioni con il pulsante × accanto a ciascuna; il modello scaricato cancellando i dati del sito dalle impostazioni del browser."
             }
           }
         ]
@@ -446,190 +446,74 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Infrastruttura di Sicurezza per l'Analisi Documentale (Edge Computing)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La revisione di accordi societari, memorie processuali e documentazione aziendale impone livelli di riservatezza inconciliabili con i provider in cloud. Questo strumento esegue un modello linguistico compatto direttamente nel browser tramite WebGPU, leggendo file PDF, DOCX e TXT senza trasmetterli in rete. Richiede quindi un browser con WebGPU (Chrome o Edge aggiornati su computer; su molti dispositivi mobili non è disponibile) e lo scaricamento iniziale del modello, da circa 1 a 1,9 GB secondo il livello scelto.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🇮🇹</span> Conformità Giuridica Italiana (Qwen 2.5)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Il modello predefinito è <strong>Qwen2.5-3B-Instruct</strong> quantizzato, da 3 miliardi di parametri, scelto perché il suo vocabolario molto ampio frammenta meno i termini italiani rispetto ai modelli anglocentrici di dimensioni simili. Resta un modello compatto: comprende e riformula bene i testi, ma può sbagliare riferimenti normativi, date e importi, e non va usato come fonte di diritto. Ogni risposta va verificata sul documento originale: è un supporto alla lettura, non un parere.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Fare domande a un documento con un&rsquo;intelligenza artificiale che gira sul tuo computer</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>L&rsquo;assistente usa un modello linguistico compatto (Qwen 2.5) che gira nel browser, sulla scheda grafica del tuo computer. Puoi allegare un PDF, un file Word o un testo e chiedere un riassunto, una spiegazione o dove si trova una clausola. Il documento non viene inviato a nessun server.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa serve</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Un browser con WebGPU: Chrome o Edge aggiornati su computer. Su molti smartphone non &egrave; disponibile e il pulsante di avvio resta disattivato.</li>
+            <li>Il primo avvio scarica il modello: circa 980 MB per il livello 1 e 1,85 GB per il livello 2. Poi resta salvato nel browser e gli avvii successivi sono pi&ugrave; rapidi, anche senza connessione.</li>
+            <li>Per il livello 2 &egrave; consigliata una scheda grafica con almeno 4 GB di memoria.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scegli il livello: 1 &egrave; pi&ugrave; leggero e veloce, 2 capisce meglio i testi complessi.</li>
+            <li>Avvia il modello e aspetta che sia pronto.</li>
+            <li>Allega il file o incolla il testo e scrivi la domanda.</li>
+          </ol>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cosa vuoi fare</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Livello consigliato</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Correggere o riformulare un testo</td><td class="px-3 py-2 align-top">1</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Riassumere un documento breve</td><td class="px-3 py-2 align-top">1</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Trovare clausole, obblighi e scadenze</td><td class="px-3 py-2 align-top">2</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Confrontare due versioni di un contratto</td><td class="px-3 py-2 align-top">2, una sezione alla volta</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📎</span> Limiti della KV-Cache e Analisi PDF Locale</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Quando alleghi un file, un Web Worker separato ne estrae il testo con <code>pdf.js</code> per i PDF e con <code>Mammoth.js</code> per i documenti Word; il testo viene poi inserito nella richiesta inviata al modello. Dai PDF che contengono solo immagini non si ricava alcun testo: vanno prima passati allo strumento OCR. Il testo dell'allegato resta nella memoria della scheda per la conversazione in corso e non viene scritto nella cronologia salvata sul dispositivo. 
-            </p>
-            <p>
-              La memoria intermedia del modello (<strong>KV-Cache</strong>) occupa memoria grafica proporzionale alla lunghezza del testo caricato. Oltre le 3.500 parole circa lo strumento avvisa che la memoria potrebbe non bastare: in quel caso conviene dividere il documento per capitoli e analizzarli uno alla volta. Anche la conversazione consuma memoria, perché a ogni domanda vengono rinviati al modello tutti i messaggi precedenti: per un nuovo documento è meglio aprire una nuova analisi.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>💾</span> Persistenza OPFS e Sanificazione VRAM</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              I pesi quantizzati del modello vengono conservati dal browser nella propria area di memoria locale (cache e Origin Private File System). Lo scaricamento avviene quindi una sola volta: nelle sessioni successive il modello viene ricaricato dal disco, anche senza connessione, in un tempo che dipende dal dispositivo e dalla dimensione del modello. Svuotando i dati del sito, il modello va riscaricato per intero.
-            </p>
-            <p>
-              Chiudendo la scheda il browser libera la memoria grafica occupata dal modello. Restano invece sul dispositivo, finché non li elimini, la cronologia delle conversazioni salvata dal browser e i file che hai analizzato: il pulsante ✕ accanto a ogni sessione la cancella definitivamente.
-            </p>
-          </div>
-        </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Un modello linguistico non legge il documento come farebbe una persona. Lo trasforma in una sequenza di numeri, la elabora attraverso miliardi di moltiplicazioni matriciali e genera la risposta un frammento alla volta, scegliendo a ogni passo il frammento statisticamente più coerente con tutto ciò che precede.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Dalla parola al token</h3>
-            <p>Il testo estratto dal file viene suddiviso in <strong>token</strong>, unità sub-lessicali che non coincidono con le parole. Un vocabolario ampio, come quello da oltre centocinquantamila voci dei modelli Qwen 2.5, riduce la frammentazione dei termini italiani: un'espressione tecnica come «inadempimento contrattuale» viene rappresentata con pochi token invece che con una lunga catena di sillabe, preservando il significato e riducendo il consumo di memoria.</p>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Stima pratica per l'italiano: 1 parola = circa 1,3 - 1,6 token</li>
-              <li>Documento di 3.000 parole = circa 4.000 - 4.800 token</li>
-              <li>Token totali = Token del documento + Token della domanda + Token della risposta</li>
-              <li>Vincolo: Token totali &lt;= Finestra di contesto disponibile</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Quanto pesa un modello: la matematica della quantizzazione</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Memoria dei pesi = Numero di parametri x Bit per parametro / 8</li>
-              <li>Qwen 2.5 3B in FP16:  3 miliardi x 16 bit / 8 = circa 6 GB</li>
-              <li>Qwen 2.5 3B in INT4:  3 miliardi x 4 bit / 8  = circa 1,5 GB</li>
-              <li>Con tabelle di scala e strati non quantizzati il download reale e di circa 1,85 GB</li>
-              <li>Qwen 2.5 1.5B in INT4: download reale di circa 980 MB</li>
-            </ul>
-            <p>La quantizzazione a quattro bit riduce l'ingombro dei pesi di circa quattro volte rispetto alla precisione a sedici bit. È ciò che rende possibile eseguire un modello da tre miliardi di parametri sulla scheda grafica di un normale portatile. La perdita di qualità esiste ma è contenuta, perché i pesi vengono quantizzati per gruppi, ognuno con un proprio fattore di scala che ne preserva la distribuzione.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">La memoria di lavoro: la KV-Cache</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Memoria KV = 2 x Strati x Teste KV x Dimensione testa x Token x Byte per valore</li>
-              <li>La memoria cresce in modo lineare con la lunghezza del documento</li>
-              <li>VRAM totale richiesta = Pesi del modello + KV-Cache + Buffer di attivazione</li>
-            </ul>
-            <p>Ogni token già letto lascia in memoria una coppia di vettori, chiave e valore, per ciascuno strato della rete. Questa memoria cresce proporzionalmente alla lunghezza del testo ed è la ragione per cui i documenti molto lunghi esauriscono la VRAM prima ancora di iniziare la risposta. La strategia corretta non è ridurre la qualità del modello ma suddividere il documento in sezioni omogenee e interrogarle separatamente.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Scegliere il livello del modello</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Esigenza</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Modello consigliato</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Motivazione</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">Correzione ortografica e riformulazione</td><td class="px-3 py-2 border-t border-gray-200">Qwen 1.5B</td><td class="px-3 py-2 border-t border-gray-200">Download ridotto, risposta rapida anche su hardware modesto</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Sintesi di documenti brevi</td><td class="px-3 py-2 border-t border-gray-200">Qwen 1.5B</td><td class="px-3 py-2 border-t border-gray-200">Compito prevalentemente estrattivo, poca inferenza</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Individuazione di clausole e obblighi</td><td class="px-3 py-2 border-t border-gray-200">Qwen 3B</td><td class="px-3 py-2 border-t border-gray-200">Richiede di collegare parti distanti del testo</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Analisi comparativa fra versioni di un contratto</td><td class="px-3 py-2 border-t border-gray-200">Qwen 3B, per sezioni</td><td class="px-3 py-2 border-t border-gray-200">Carico elevato sulla finestra di contesto</td></tr></tbody></table></div>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Regolamento UE 2016/679 (GDPR), articoli 5, 25 e 32</strong> — principi di minimizzazione, protezione dei dati fin dalla progettazione e sicurezza del trattamento.</li>
-              <li><strong>Regolamento UE 2024/1689 (AI Act)</strong> — quadro europeo sull'intelligenza artificiale, che impone obblighi di trasparenza e di supervisione umana commisurati al livello di rischio dell'uso.</li>
-              <li><strong>Codice deontologico forense, articolo 13</strong> — dovere di segretezza e riservatezza sulle informazioni apprese nell'esercizio del mandato.</li>
-              <li><strong>Codice penale, articolo 622</strong> — punisce la rivelazione del segreto professionale da parte di chi ne abbia notizia per ragione del proprio stato o professione.</li>
-              <li><strong>Regolamento UE 2016/679, capo V</strong> — disciplina i trasferimenti di dati personali verso Paesi terzi, rilevante quando i servizi di IA in cloud elaborano i dati fuori dallo Spazio economico europeo.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Perché l'elaborazione locale cambia il quadro giuridico</h3>
-            <p>Caricare un contratto su un servizio di intelligenza artificiale in cloud configura un trattamento di dati personali affidato a un fornitore esterno. Ne derivano obblighi precisi: la nomina del fornitore come responsabile del trattamento, la verifica delle garanzie sui trasferimenti extra-UE, la valutazione dell'eventuale uso dei contenuti per l'addestramento e, per i professionisti, il rischio di violare il segreto professionale. L'elaborazione nel browser elimina alla radice il flusso di dati verso terzi e con esso questi adempimenti.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Uso responsabile dei risultati</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Supervisione umana</strong>: le risposte vanno sempre verificate sul testo originale, soprattutto quando riguardano termini, importi, date e obblighi.</li>
-              <li><strong>Allucinazioni</strong>: un modello linguistico può produrre affermazioni plausibili ma non presenti nel documento. Chiedere di citare il passaggio di riferimento riduce il rischio.</li>
-              <li><strong>Nessun parere legale</strong>: lo strumento aiuta a leggere e organizzare un testo, ma non sostituisce la valutazione di un professionista abilitato.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> i modelli linguistici compatti hanno una conoscenza del diritto limitata e non aggiornata in tempo reale. Non vanno usati per stabilire la normativa vigente, ma soltanto per analizzare il contenuto del documento fornito. Ogni conclusione con rilevanza giuridica o economica richiede una verifica indipendente.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti con lo strumento, verificando il comportamento dell'interfaccia e l'estrazione del testo dagli allegati.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: referto in PDF e verbale in Word allegati</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>PDF di due pagine: testo estratto per intero, comprese entrambe le pagine</li>
-            <li>File DOCX: testo estratto a partire dal titolo «VERBALE DI ASSEMBLEA»</li>
-            <li>Estrazione eseguita in un Web Worker separato, senza invio in rete</li>
-            </ul>
-            <p>Fino alla revisione di questo strumento l'estrazione dai PDF non funzionava affatto: il motore di lettura non riusciva ad avviarsi dentro il worker e la pagina rispondeva con un avviso fuorviante, che invitava a controllare se il file fosse protetto da password.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: browser senza WebGPU</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Messaggio: «WebGPU non supportato. Impossibile avviare il motore locale.»</li>
-            <li>Pulsante di attivazione: disattivato</li>
-            <li>Riquadro della richiesta: disattivato</li>
-            </ul>
-            <p>È la situazione tipica di molti smartphone e dei browser meno recenti. In precedenza il pulsante restava cliccabile e non produceva alcun effetto: ora è chiaramente disattivato.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: cosa resta sul dispositivo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Cronologia delle conversazioni: salvata nel browser (localStorage)</li>
-            <li>Testo dei documenti allegati: non incluso nella cronologia salvata</li>
-            <li>Pesi del modello: conservati nella cache del browser dopo il primo scaricamento</li>
-            </ul>
-            <p>In precedenza l'intero testo dei documenti analizzati veniva scritto nella memoria del browser insieme alla conversazione, e vi restava a tempo indeterminato. Ora resta solo la richiesta visibile; per cancellare del tutto una sessione basta il pulsante ✕ accanto al suo nome.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il mio documento viene inviato a un server per l'analisi?</h3>
-              <p>No. Il testo viene estratto dal file direttamente nel browser e passato a un modello linguistico che gira sulla scheda grafica del tuo dispositivo. L'unico traffico di rete riguarda il download iniziale dei pesi del modello da un archivio pubblico. Il contenuto dei documenti, le domande e le risposte non attraversano mai la rete.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Perché il primo avvio richiede così tanto tempo?</h3>
-              <p>Al primo utilizzo il browser deve scaricare i pesi del modello, circa 980 MB per il livello 1 e circa 1,85 GB per il livello 2, e compilare i programmi per la scheda grafica. I pesi vengono poi salvati nello spazio privato del browser, quindi gli avvii successivi sono molto più rapidi e non richiedono un nuovo download.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Quali dispositivi sono compatibili?</h3>
-              <p>Serve un browser con supporto WebGPU, disponibile nelle versioni recenti di Chrome ed Edge e in fase di diffusione negli altri browser. Per il livello 2 è consigliata una scheda grafica con almeno quattro gigabyte di memoria disponibile. Sui dispositivi più modesti conviene scegliere il livello 1 e suddividere i documenti lunghi.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso analizzare un contratto di cinquanta pagine?</h3>
-              <p>Non in un'unica richiesta. Un documento di quella lunghezza supera la finestra di contesto e la memoria disponibile sulla maggior parte dei dispositivi. La soluzione corretta è analizzarlo per capitoli o per gruppi di articoli, ponendo domande mirate su ciascuna sezione, così che il modello lavori su un testo che rientra interamente nella sua memoria di lavoro.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Le risposte del modello sono affidabili?</h3>
-              <p>Sono un supporto alla lettura, non una fonte autonoma. Un modello linguistico può fraintendere una clausola o riportare un dettaglio non presente nel testo. È buona pratica chiedere al modello di indicare il passaggio da cui ricava ogni affermazione e controllarlo sul documento originale prima di prendere qualsiasi decisione.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Come elimino i dati salvati nel browser?</h3>
-              <p>I documenti e le conversazioni non vengono salvati in modo permanente e scompaiono alla chiusura della pagina. I pesi del modello restano invece nello spazio privato del browser per velocizzare gli avvii successivi. Si possono eliminare cancellando i dati del sito dalle impostazioni del browser, operazione che libera lo spazio su disco occupato.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">L'assistente documentale è un'applicazione <strong>100% client-side, a infrastruttura zero-backend</strong>. I file PDF, DOCX e TXT che alleghi, il testo che incolli, le domande e le risposte generate vengono elaborati esclusivamente sul tuo dispositivo, nella memoria del browser e della scheda grafica. L'unica connessione di rete riguarda il download iniziale dei pesi del modello da un archivio pubblico: si tratta di un flusso in entrata che non contiene alcuna informazione tua. Nessun contratto, codice fiscale, IBAN, dato retributivo o altro contenuto dei documenti viene caricato su server.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Questa architettura rispetta il Regolamento UE 2016/679 (GDPR) nella forma più rigorosa. Non esiste un fornitore esterno che tratti i contenuti, quindi non servono accordi ai sensi dell'articolo 28, non avvengono trasferimenti verso Paesi terzi e nessun documento può essere usato per addestrare modelli. I principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5 sono garantiti dall'architettura stessa, ed è ciò che rende lo strumento adatto a professionisti vincolati dal segreto professionale.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Limiti da conoscere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Documenti lunghi:</strong> oltre circa 3.500 parole la memoria pu&ograve; non bastare. Dividi il documento per capitoli e fai domande su una parte alla volta.</li>
+            <li><strong>PDF scansionati:</strong> se il PDF contiene solo immagini non c&rsquo;&egrave; testo da leggere: passalo prima dal <a href="/ia/ocr-immagini/" class="text-indigo-700 underline">riconoscimento del testo (OCR)</a>.</li>
+            <li><strong>Errori:</strong> un modello compatto pu&ograve; sbagliare date, importi e riferimenti di legge, o affermare cose che il documento non dice. Chiedi di citare il passaggio e controllalo sull&rsquo;originale.</li>
+            <li><strong>Non &egrave; un parere:</strong> aiuta a leggere e organizzare un testo, non sostituisce un professionista.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa resta sul dispositivo</h3>
+          <p>La cronologia delle conversazioni resta salvata nel browser finch&eacute; non la cancelli con il pulsante &times; accanto alla sessione; il testo dei documenti allegati non viene salvato nella cronologia. Il modello resta nella memoria del browser: svuotando i dati del sito si libera lo spazio, ma andr&agrave; riscaricato.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il documento viene inviato a un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il testo viene letto nel browser e passato al modello che gira sul tuo computer. Dalla rete arriva solo il modello, al primo avvio.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il primo avvio &egrave; cos&igrave; lento?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; il browser scarica il modello (fino a 1,85 GB) e lo prepara per la scheda grafica. Dalla volta dopo lo trova gi&agrave; salvato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona sul telefono?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Solo se il browser supporta WebGPU, cosa ancora rara sui telefoni. Su computer usa Chrome o Edge aggiornati.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso analizzare un contratto di cinquanta pagine?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Non in una volta sola: dividilo per capitoli o gruppi di articoli e fai domande mirate su ciascuna parte.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le risposte sono affidabili?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono un aiuto alla lettura. Controlla sempre sul documento originale, soprattutto termini, importi e date.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come cancello i dati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le conversazioni con il pulsante &times; accanto a ciascuna; il modello scaricato cancellando i dati del sito dalle impostazioni del browser.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 2016/679 (GDPR), artt. 5 e 25: minimizzazione e protezione dei dati fin dalla progettazione.</li>
+          <li>Regolamento UE 2024/1689 (AI Act): trasparenza e supervisione umana.</li>
+        </ul>
+      </section>
     </main>
 
     <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">

@@ -146,15 +146,15 @@
             "name": "Il processo civile telematico richiede il PDF/A?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Per l'atto principale le specifiche tecniche chiedono un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma non il PDF/A. Il PDF/A è invece richiesto nei processi amministrativo e tributario telematici."
+              "text": "Per l’atto principale no: serve un PDF nativo, senza scansioni ed elementi attivi. Il PDF/A è richiesto nei processi amministrativo e tributario telematici."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso convertire l'atto principale con questo strumento?",
+            "name": "Posso convertire l’atto principale con questo strumento?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non è consigliato: le pagine diventano immagini e l'atto non sarebbe più testo nativo. Esporta il PDF/A dal programma di videoscrittura e usa questo strumento per gli allegati."
+              "text": "Meglio di no: le pagine diventano immagini e l’atto non sarebbe più testo nativo. Esporta il PDF/A dal programma di videoscrittura."
             }
           },
           {
@@ -162,23 +162,31 @@
             "name": "Il file convertito resta ricercabile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, se l'originale conteneva testo: sopra ogni immagine viene scritto un livello di testo invisibile. Le scansioni senza OCR restano non ricercabili."
+              "text": "Sì, se l’originale conteneva testo."
             }
           },
           {
             "@type": "Question",
-            "name": "Il validatore certifica la conformità PDF/A?",
+            "name": "Il validatore certifica la conformità?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, controlla i requisiti violati più spesso: dichiarazione, script, cifratura, font e profilo colore. Per una verifica completa della norma ISO 19005 usa veraPDF."
+              "text": "No: controlla i problemi più frequenti (dichiarazione, script, password, font, profilo colore). Per una verifica completa usa veraPDF."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il file PDF/A pesa più dell'originale?",
+            "name": "Posso convertire un PDF protetto da password?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ogni pagina viene salvata come immagine a 150 DPI. Per un documento di solo testo il peso cresce di alcune decine di kilobyte per pagina."
+              "text": "No: il PDF/A vieta la cifratura. Serve prima una copia senza protezione."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il documento viene inviato a un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: viene letto, ridisegnato e salvato nel browser."
             }
           }
         ]
@@ -507,223 +515,76 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Standard ISO 19005 (PDF/A), Ingegneria della Conservazione Sostitutiva e Compliance GDPR (Zero-Backend)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il formato PDF/A (PDF for Archiving), definito dalla norma ISO 19005, è la versione del PDF pensata per la conservazione a lungo termine. Il file deve contenere tutto ciò che serve a riprodurlo nello stesso modo in futuro: font incorporati, colori con profilo ICC e metadati XMP, senza script, contenuti esterni né cifratura. In Italia le Linee guida AgID indicano il PDF/A tra i formati per la conservazione, e le specifiche tecniche di alcuni processi telematici lo richiedono. Questa guida spiega cosa impone lo standard, come lavorano il convertitore e il validatore della pagina e quando conviene invece esportare il PDF/A dal programma che ha creato il documento.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Specifiche ISO 19005, CAD D.Lgs. 82/2005, PCT D.M. 44/2011 e GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Le Linee guida AgID sulla formazione, gestione e conservazione dei documenti informatici (allegato 2) indicano il PDF/A tra i formati idonei alla conservazione dei documenti impaginati. Le regole dei processi telematici sono diverse. Nel processo civile telematico l'atto principale deve essere un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma il PDF/A non è obbligatorio. Le specifiche del processo amministrativo telematico e del processo tributario telematico richiedono invece il PDF/A (PDF/A-1a o PDF/A-1b) anche per gli atti, sempre ottenuti dal documento testuale. Un file che non rispetta le specifiche può essere rifiutato dai controlli automatici del sistema di deposito.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Parallelamente, la gestione dei documenti amministrativi, contabili e sanitari soggetti a conservazione sostitutiva (contratti, fatture, cartelle cliniche, sentenze) sconta il ferreo regime di conformità al Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). Affidare la conversione o validazione strutturale di documenti riservati a microservizi Cloud SaaS commerciali terzi genera un flusso di dati verso l'esterno che impone l'obbligo di censimento nei Registri del Trattamento (Articolo 30 GDPR), la conduzione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Articolo 35 GDPR) e la stipula di un Data Processing Agreement (DPA ex Articolo 28 GDPR) con il fornitore esterno.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura Zero-Backend applica il principio della protezione dei dati fin dalla progettazione (articolo 25 GDPR): il PDF viene letto, ridisegnato e salvato nella memoria del browser, senza essere trasmesso a server. Chi gestisce atti o referti non deve quindi valutare un fornitore esterno per la conversione. Restano a carico dello studio o della struttura le altre misure, come la custodia dei file sul computer e la scelta dei canali di invio.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Convertire un PDF in PDF/A per archiviarlo o depositarlo</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il PDF/A (norma ISO 19005) &egrave; il PDF fatto per durare: contiene tutto ci&ograve; che serve a mostrarlo uguale fra molti anni (font, colori con profilo, metadati) e niente script, contenuti esterni o password. Lo richiedono alcuni sistemi di deposito e le Linee guida AgID lo indicano per la conservazione. La pagina converte un PDF in PDF/A-1b o PDF/A-2b e controlla i problemi pi&ugrave; comuni.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica il PDF (non protetto da password).</li>
+            <li>Scegli il livello: PDF/A-1b (il pi&ugrave; richiesto) o PDF/A-2b.</li>
+            <li>Scarica il file convertito e, se vuoi, controllalo con il validatore della pagina.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come lavora il convertitore</h3>
+          <p>Molti convertitori scrivono solo &laquo;questo &egrave; un PDF/A&raquo; nei metadati: il file si dichiara conforme ma non lo &egrave;, e i sistemi con controllo completo lo rifiutano. Questo strumento invece ricostruisce il documento:</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>ogni pagina viene ridisegnata a 150 DPI come immagine, cos&igrave; font mancanti, trasparenze e oggetti vietati spariscono;</li>
+            <li>il testo originale viene riscritto sopra, invisibile, cos&igrave; il file resta ricercabile;</li>
+            <li>vengono aggiunti il profilo colore sRGB, i metadati coerenti e la dichiarazione del livello scelto.</li>
+          </ul>
+          <p>I file prodotti sono stati controllati con veraPDF, il validatore di riferimento, con esito conforme per PDF/A-1b e PDF/A-2b.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Limiti da conoscere</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il testo non si pu&ograve; pi&ugrave; modificare; link, segnalibri, moduli e allegati si perdono; una firma digitale non &egrave; pi&ugrave; valida.</li>
+            <li>Il file pesa di pi&ugrave;: circa 28 KB in pi&ugrave; per ogni pagina di solo testo.</li>
+            <li>Il livello &laquo;a&raquo; (accessibile) non si pu&ograve; ottenere, perch&eacute; richiede la struttura del documento.</li>
+            <li>Le scansioni senza OCR restano non ricercabili: prima passa dal <a href="/ia/ocr-immagini/" class="text-indigo-700 underline">riconoscimento del testo</a>.</li>
+          </ul>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Se hai il file originale (Word, LibreOffice), esporta il PDF/A direttamente dal programma: il file &egrave; pi&ugrave; leggero e il testo resta vero testo. Usa questo strumento per gli allegati che ricevi gi&agrave; in PDF.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Quando serve</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Contesto</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cosa chiede</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Processo civile telematico</td><td class="px-3 py-2 align-top">Atto principale in PDF nativo, senza scansioni; il PDF/A non &egrave; obbligatorio</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Processo amministrativo e tributario telematico</td><td class="px-3 py-2 align-top">PDF/A (1a o 1b), anche per gli atti, ottenuti dal documento testuale</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Conservazione dei documenti</td><td class="px-3 py-2 align-top">Il PDF/A &egrave; fra i formati indicati dalle Linee guida AgID</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Convertire in PDF/A non equivale alla conservazione a norma, che richiede un conservatore e procedure specifiche. Il PDF/A-3, che pu&ograve; contenere altri file (per esempio l&rsquo;XML di una fattura), non &egrave; gestito da questo strumento; in Italia la fattura valida resta comunque l&rsquo;XML inviato al Sistema di Interscambio.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il processo civile telematico richiede il PDF/A?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per l&rsquo;atto principale no: serve un PDF nativo, senza scansioni ed elementi attivi. Il PDF/A &egrave; richiesto nei processi amministrativo e tributario telematici.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Vincoli ISO 19005 e funzionamento del convertitore: rasterizzazione, OutputIntent ICC e metadati XMP</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La norma ISO 19005 definisce una serie di vincoli sintattici e strutturali draconiani volti a garantire che un documento sia totalmente auto-contenuto (*self-contained*). La tabella seguente riassume i vincoli architetturali differenziali tra un PDF standard e lo standard ISO 19005 (PDF/A):
-            </p>
-
-            <!-- Tabella Comparativa PDF Standard vs PDF/A -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-2 mb-4">
-              <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                  <tr class="bg-gray-100 text-gray-800">
-                    <th class="py-2.5 px-3 border-b font-bold">Caratteristica Architetturale</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Vincoli PDF Standard (ISO 32000)</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Requisiti ISO 19005 (PDF/A)</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                  <tr>
-                    <td class="py-2 px-3 font-bold">Gestione Tipografica (Font)</td>
-                    <td class="py-2 px-3">Possono essere referenziati per nome al sistema operativo host.</td>
-                    <td class="py-2 px-3 font-semibold text-indigo-900">Obbligo di incorporare i font del testo visibile (ammesso il subsetting); esente il solo testo invisibile.</td>
-                  </tr>
-                  <tr class="bg-gray-50/50">
-                    <td class="py-2 px-3 font-bold">Riproduzione del Colore</td>
-                    <td class="py-2 px-3">Dipendente dal dispositivo (es. DeviceRGB) senza calibrazione.</td>
-                    <td class="py-2 px-3 font-semibold text-indigo-900">Spazi colore basati su profili ICC, oppure un OutputIntent con profilo ICC incorporato se si usano colori del dispositivo.</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-3 font-bold">Crittografia e Protezione</td>
-                    <td class="py-2 px-3">Pienamente supportata (DRM, password di apertura/modifica).</td>
-                    <td class="py-2 px-3 font-semibold text-rose-700">Severamente proibita in tutte le versioni per garantire l'accessibilità futura.</td>
-                  </tr>
-                  <tr class="bg-gray-50/50">
-                    <td class="py-2 px-3 font-bold">Elementi Dinamici e Attivi</td>
-                    <td class="py-2 px-3">Supporto per JavaScript, form XFA, audio, video integrati.</td>
-                    <td class="py-2 px-3 font-semibold text-rose-700">Totalmente proibiti per evitare comportamenti non deterministici a runtime.</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-3 font-bold">Metadati Descrittivi</td>
-                    <td class="py-2 px-3">Opzionali e con schemi informali liberi.</td>
-                    <td class="py-2 px-3 font-semibold text-indigo-900">Obbligo di inclusione strutturata tramite flussi XML basati su standard XMP.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. Perché non basta aggiungere i metadati</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Molti convertitori si limitano a scrivere nei metadati XMP le proprietà <code>pdfaid:part</code> e <code>pdfaid:conformance</code>. Il file si dichiara PDF/A ma il contenuto resta quello di prima. Un validatore ISO come veraPDF, applicato a un file ottenuto così, segnala le violazioni delle clausole 6.1.3 (manca l'identificativo nel trailer), 6.2.3.3 (colori del dispositivo senza OutputIntent), 6.3.4 (font non incorporati) e 6.7.3 (metadati XMP non coerenti con il dizionario Info). I portali che eseguono un controllo completo rifiutano questi file.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Come lavora questo convertitore</h3>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
-              <li>pdf.js disegna ogni pagina a 150 DPI su fondo bianco, così font, trasparenze e oggetti non ammessi diventano pixel;</li>
-              <li>pdf-lib crea un nuovo documento e inserisce ogni pagina come immagine JPEG, con la stessa dimensione in punti dell'originale;</li>
-              <li>il testo estratto da pdf.js viene riscritto sopra l'immagine nella modalità di rendering 3 (invisibile). PDF/A la consente senza incorporare il font, quindi il documento resta ricercabile;</li>
-              <li>il catalogo riceve un OutputIntent con un profilo ICC sRGB versione 2 incorporato (profilo compatto di 456 byte, licenza CC0);</li>
-              <li>il dizionario Info e i metadati XMP riportano gli stessi titolo, programma e date, insieme alla dichiarazione pdfaid del livello scelto;</li>
-              <li>il trailer contiene l'identificativo del file e il documento viene salvato senza object stream, che PDF/A-1 non ammette.</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              I file prodotti con i due livelli sono stati controllati con veraPDF 1.24, che ha dato esito positivo per PDF/A-1b e per PDF/A-2b.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Limiti della conversione in immagini</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La ricostruzione rende conforme qualsiasi PDF leggibile, ma il documento cambia natura. Il testo non si può più modificare. Link, segnalibri, campi dei moduli e allegati vengono persi, e una firma digitale presente non è più valida. Un documento di solo testo diventa più pesante: nel test, un referto di due pagine è passato da 1 KB a 57 KB. Il livello «a» (accessibile) non si può ottenere, perché richiede la struttura logica del documento. Se hai il file sorgente (Word, LibreOffice), esporta il PDF/A direttamente dal programma di videoscrittura: ottieni un file più leggero e con testo vettoriale.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso convertire l&rsquo;atto principale con questo strumento?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Meglio di no: le pagine diventano immagini e l&rsquo;atto non sarebbe pi&ugrave; testo nativo. Esporta il PDF/A dal programma di videoscrittura.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Deposito Atti PCT/PAT, Conservazione Referti Medici e Fatturazione PDF/A-3 (Factur-X)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Scenario 1: allegati da depositare nel processo tributario o amministrativo.</strong><br />
-              Un difensore deve allegare al ricorso la copia di un avviso ricevuto come PDF generico, e il sistema di deposito richiede il PDF/A. Converte il file in PDF/A-1b, lo controlla con il validatore della pagina e, per un deposito importante, anche con veraPDF. L'atto principale invece va esportato in PDF/A dal programma di videoscrittura, perché deve restare testo nativo e non un'immagine.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Scenario 2: referti da archiviare.</strong><br />
-              Un ambulatorio vuole archiviare referti prodotti da software diversi, alcuni con font non incorporati. La conversione in PDF/A-2b fissa l'aspetto di ogni pagina così come appare oggi e mantiene il testo ricercabile. Non sostituisce però un sistema di conservazione a norma: la conservazione con valore legale richiede un conservatore e le procedure previste dalle Linee guida AgID.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Scenario 3: PDF/A-3 e file incorporati.</strong><br />
-              Il livello PDF/A-3 (ISO 19005-3) consente di incorporare file di qualsiasi formato, per esempio l'XML di una fattura nei formati ibridi europei Factur-X e ZUGFeRD. In Italia la fattura elettronica valida resta il file XML FatturaPA trasmesso tramite il Sistema di Interscambio: un PDF/A-3 può esserne solo una copia di cortesia. Questo strumento produce PDF/A-1b e PDF/A-2b e non gestisce file incorporati.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il file convertito resta ricercabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se l&rsquo;originale conteneva testo.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati riprodotti con lo strumento; i file prodotti sono stati validati con veraPDF 1.24, e il testo è stato estratto con pdf.js per confrontarlo con l'originale.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: referto testuale di due pagine convertito in PDF/A-1b</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>File originale: 1,1 KB, font Helvetica non incorporato, nessuna dichiarazione PDF/A</li>
-            <li>Validatore della pagina sull'originale: «Il file non si dichiara PDF/A»</li>
-            <li>File convertito: 57 KB, formato pagina A4 invariato</li>
-            <li>veraPDF, profilo PDF/A-1B: conforme</li>
-            <li>Testo estratto dal file convertito: «Codice fiscale: RSSMRA80A01H501U» alla stessa posizione dell'originale</li>
-            </ul>
-            <p>Il peso cresce di circa 28 KB per pagina, perché ogni pagina diventa un'immagine; la ricerca e la copia del testo continuano a funzionare. Scegliendo PDF/A-2b si ottiene un file dello stesso peso, conforme al profilo PDF/A-2B.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: file che si dichiara PDF/A senza esserlo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Stesso referto, con la sola aggiunta dei metadati pdfaid:part=1 e conformance=B</li>
-            <li>veraPDF: non conforme, clausole 6.1.3, 6.2.3.3, 6.3.4 e 6.7.3</li>
-            <li>Validatore della pagina: dichiarazione PDF/A-1b presente, font Helvetica non incorporato, profilo colore assente</li>
-            </ul>
-            <p>È l'errore tipico dei convertitori che scrivono solo i metadati; questa pagina usava lo stesso metodo prima della revisione. Un controllo che cerca soltanto la dichiarazione considera il file valido, mentre i sistemi di deposito con validazione completa lo rifiutano.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: PDF di fotografie con un logo trasparente in PDF/A-2b</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>File originale: 2 pagine A4 (una fotografia JPEG e un logo PNG con trasparenza), 300 KB</li>
-            <li>File convertito: 340 KB</li>
-            <li>veraPDF, profilo PDF/A-2B: conforme</li>
-            </ul>
-            <p>La trasparenza del logo viene fusa su fondo bianco, quindi l'aspetto non cambia. Le pagine contengono solo immagini e nessun testo: il file resta non ricercabile, come l'originale. Per renderlo ricercabile serve prima un riconoscimento del testo (OCR).</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il validatore certifica la conformit&agrave;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: controlla i problemi pi&ugrave; frequenti (dichiarazione, script, password, font, profilo colore). Per una verifica completa usa veraPDF.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e anomalie: file rifiutati, documenti voluminosi, PDF protetti e GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Causa Principale di Reiezione dai Portali PA ("File Non Conforme"):</strong><br />
-              Le cause più frequenti di rifiuto sono i font non incorporati, la mancanza del profilo colore, gli elementi attivi come JavaScript, moduli XFA o azioni `/Launch`, e i file che dichiarano PDF/A nei metadati senza rispettarne i requisiti. Il validatore della pagina controlla dichiarazione, script, cifratura, font e profilo colore; per una verifica completa della norma usa veraPDF.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Documenti voluminosi e lentezza:</strong><br />
-              La conversione ridisegna una pagina per volta a 150 DPI. Durante il disegno una pagina A4 occupa circa 9 MB di memoria, e nel file finale ogni pagina di testo aggiunge qualche decina di kilobyte (di più se contiene fotografie). Per fascicoli di centinaia di pagine, soprattutto su smartphone, conviene dividere prima il file con lo strumento Unisci e Dividi e convertire le parti separatamente.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Proibizione Assoluta della Crittografia e Password in PDF/A:</strong><br />
-              Tutti i livelli dello standard ISO 19005 proibiscono tassativamente l'impiego di password di apertura o algoritmi di cifratura DRM (es. AES-128/256). La ratio normativa risiede nel fatto che la perdita delle chiavi di cifratura o l'obsolescenza degli algoritmi crittografici renderebbe il documento del tutto inaccessibile dopo decenni di conservazione. Qualsiasi tentativo di convertire un PDF protetto da password richiede la preventiva de-cifratura ed espunzione del dizionario `/Encrypt`.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Sanzioni GDPR per il Trattamento Non Autorizzato su Cloud (Articolo 83):</strong><br />
-              Inviare documenti legali, atti giudiziari o cartelle cliniche a portali online di conversione gratuiti gestiti da società prive di nomina a Responsabile del Trattamento (DPA ex Art. 28 GDPR) può costituire un trattamento illecito, esposto alle sanzioni amministrative pecuniarie previste dall'Articolo 83, paragrafo 5 del GDPR: sanzioni fino a 20 milioni di euro o fino al 4% del fatturato globale annuo dell'impresa. Con l'elaborazione nel browser il documento non viene comunicato a terzi per la conversione, quindi questo rischio specifico non si pone.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso convertire un PDF protetto da password?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il PDF/A vieta la cifratura. Serve prima una copia senza protezione.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il processo civile telematico richiede il PDF/A?</h3>
-            <p>Per l'atto principale le specifiche tecniche chiedono un PDF nativo ottenuto dal documento testuale, senza scansioni e senza elementi attivi, ma non il PDF/A. Il PDF/A è invece richiesto nei processi amministrativo e tributario telematici.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso convertire l'atto principale con questo strumento?</h3>
-            <p>Non è consigliato: le pagine diventano immagini e l'atto non sarebbe più testo nativo. Esporta il PDF/A dal programma di videoscrittura e usa questo strumento per gli allegati.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il file convertito resta ricercabile?</h3>
-            <p>Sì, se l'originale conteneva testo: sopra ogni immagine viene scritto un livello di testo invisibile. Le scansioni senza OCR restano non ricercabili.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il validatore certifica la conformità PDF/A?</h3>
-            <p>No, controlla i requisiti violati più spesso: dichiarazione, script, cifratura, font e profilo colore. Per una verifica completa della norma ISO 19005 usa veraPDF.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il file PDF/A pesa più dell'originale?</h3>
-            <p>Ogni pagina viene salvata come immagine a 150 DPI. Per un documento di solo testo il peso cresce di alcune decine di kilobyte per pagina.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il documento viene inviato a un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: viene letto, ridisegnato e salvato nel browser.</p>
         </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>ISO 19005-1 e 19005-2 (PDF/A).</li>
+          <li>Linee guida AgID sulla formazione, gestione e conservazione dei documenti informatici, allegato 2.</li>
+          <li>Specifiche tecniche del processo civile, amministrativo e tributario telematico.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

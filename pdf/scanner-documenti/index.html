@@ -160,10 +160,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il PDF prodotto è ricercabile?",
+            "name": "Il PDF è ricercabile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No: contiene le immagini delle pagine. Per cercare il testo serve un riconoscimento OCR, disponibile nello strumento dedicato."
+              "text": "No: contiene le immagini delle pagine. Per cercare il testo usa il riconoscimento del testo (OCR)."
             }
           },
           {
@@ -171,23 +171,23 @@
             "name": "Che risoluzione ha il risultato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il raddrizzamento è applicato alla foto originale, con un limite di 3.000 × 4.000 pixel per pagina: su un foglio A4 sono circa 250 punti per pollice, adatti alla stampa."
+              "text": "Fino a 3.000 × 4.000 pixel per pagina, circa 250 punti per pollice su un A4."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché a volte compare «Manuale»?",
+            "name": "Perché compare «Manuale»?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Significa che il contorno del foglio non è stato riconosciuto, di solito per scarso contrasto con il piano d'appoggio o per un'ombra sul bordo. Tocca l'anteprima e sistema i quattro angoli."
+              "text": "Il bordo del foglio non è stato riconosciuto, di solito per poco contrasto con il piano o per un’ombra. Tocca l’anteprima e sistema gli angoli."
             }
           },
           {
             "@type": "Question",
-            "name": "Lo strumento legge il chip della carta d'identità?",
+            "name": "Legge il chip della carta d’identità?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Acquisisce solo l'immagine del documento: non dialoga con il microchip, né via NFC né con lettori di smart card."
+              "text": "No, acquisisce solo l’immagine."
             }
           },
           {
@@ -195,7 +195,7 @@
             "name": "Le foto vengono caricate da qualche parte?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Vengono elaborate nella memoria del browser e il PDF viene salvato sul tuo dispositivo; nessuna immagine viene inviata a server."
+              "text": "No: vengono elaborate nel browser e il PDF viene salvato sul tuo dispositivo."
             }
           }
         ]
@@ -306,7 +306,7 @@
         <div class="mt-4 flex items-start gap-3 rounded-lg bg-emerald-50 border border-emerald-200 p-4 shadow-sm">
           <div class="text-xl">🔒</div>
           <div>
-            <div class="font-semibold text-emerald-900">Privacy Assoluta (Zero-Upload)</div>
+            <div class="font-semibold text-emerald-900">I dati restano sul tuo dispositivo</div>
             <p class="text-sm text-emerald-800 mt-1">
               Le immagini restano nella memoria del dispositivo e non vengono inviate a server. Il riconoscimento dei bordi usa algoritmi di visione artificiale classici (OpenCV), non un modello addestrato.
             </p>
@@ -468,7 +468,7 @@
           </div>
           <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
             <p class="font-bold text-emerald-900 mb-1">🔒 I tuoi dati</p>
-            <p class="text-emerald-900 leading-relaxed">Le foto vengono lette, raddrizzate e unite in PDF nel browser: nessuna immagine viene inviata a server. Le librerie OpenCV.js e pdf-lib sono scaricate da CDN al primo utilizzo e non ricevono le immagini (GDPR, artt. 5 e 25).</p>
+            <p class="text-emerald-900 leading-relaxed">Le foto vengono lette, raddrizzate e unite in PDF nel browser: nessuna immagine viene inviata a server. La libreria OpenCV.js viene scaricata al primo utilizzo e non riceve le immagini (GDPR, artt. 5 e 25).</p>
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
             <p class="font-bold text-gray-900 mb-1">📚 Fonti tecniche e normative</p>
@@ -477,183 +477,55 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Visione Artificiale Client-Side, Protocolli Smart Card CIE 3.0 e Compliance GDPR (Zero-Backend)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Trasformare la foto di un documento in un PDF leggibile richiede due passaggi: individuare i bordi del foglio nella foto e raddrizzare la prospettiva, in modo che il risultato assomigli a una scansione. Questa guida spiega come lo strumento esegue queste operazioni con la libreria di visione artificiale OpenCV compilata in WebAssembly, quali sono i suoi limiti e quali cautele valgono quando si fotografano documenti d'identità o dati sanitari.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Privacy by Design (Art. 25 GDPR), Soppressione del Data Processor (Art. 28) ed Interfacciamento CIE 3.0</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'acquisizione digitale di documenti di riconoscimento personali e attestati di reddito comporta il trattamento di dati anagrafici e biometrici definiti come "categorie particolari di dati" dall'Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679). L'impiego di piattaforme SaaS tradizionali o di API di scansione ospitate su server cloud terzi costringe l'operatore ad inviare l'immagine non rielaborata dell'identità del cliente verso reti esterne, innescando l'obbligo formale di censimento nel Registro delle Attività di Trattamento (Art. 30 GDPR), la redazione di una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR) e la stipula di un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore cloud.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura Zero-Backend (Serverless Client-Side) di questo applicativo incarna in forma algebrica il principio di Data Protection by Design e by Default (Articolo 25 GDPR). Rifiutando qualsiasi trasmissione telematica verso l'esterno (Zero-Upload), le immagini catturate dalla webcam o dalla fotocamera dello smartphone vengono conservate ed elaborate unicamente nella memoria RAM volatile del browser locale. Non essendoci trasmissione, per questa operazione non c'è un fornitore esterno da nominare responsabile del trattamento. Restano gli obblighi generali: base giuridica della raccolta, informativa, sicurezza dei dispositivi e tempi di conservazione dei file prodotti.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Questo strumento non dialoga con il microchip della Carta d'identità elettronica e non legge tessere via NFC o con lettori USB: acquisisce soltanto l'immagine del documento, ne raddrizza i bordi e la inserisce in un PDF. La copia fotografica di un documento d'identità resta un dato personale da conservare con attenzione: va salvata in una cartella protetta e cancellata quando non serve più. Ricorda inoltre che la richiesta di copia di un documento d'identità è ammessa solo quando una norma o una finalità legittima la giustifica.
-            </p>
-          </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Trasformare le foto dei documenti in un PDF come da scanner</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Lo scanner trova i bordi del foglio nella foto, raddrizza la prospettiva e unisce le pagine in un PDF, come se il documento fosse passato da uno scanner piano. Le foto restano sul tuo dispositivo: al primo uso il browser scarica solo la libreria di visione artificiale (OpenCV).</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scatta o scegli le foto delle pagine.</li>
+            <li>Controlla le anteprime: &laquo;&#10003; Auto&raquo; vuol dire che il foglio &egrave; stato trovato, &laquo;Manuale&raquo; che va sistemato. Toccando l&rsquo;anteprima puoi spostare i quattro angoli.</li>
+            <li>Scegli il filtro (per esempio &laquo;Bianco e nero&raquo; per testi e moduli: file pi&ugrave; leggero e testo pi&ugrave; nitido).</li>
+            <li>Elimina le pagine che non servono e genera il PDF, nell&rsquo;ordine delle anteprime.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Per foto che si raddrizzano bene</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Appoggia il foglio su una superficie di colore diverso: un foglio bianco su un tavolo chiaro &egrave; il caso pi&ugrave; difficile.</li>
+            <li>Evita ombre sul bordo e riflessi.</li>
+            <li>Inquadra tutto il foglio con un po&rsquo; di margine.</li>
+            <li>Se il bordo non viene trovato, lo strumento prova di nuovo con una sensibilit&agrave; pi&ugrave; alta; se non basta, la foto resta intera e si sistemano gli angoli a mano. Non inventa mai un ritaglio.</li>
+          </ul>
+          <p>Nelle prove su un foglio fotografato di sbieco su un tavolo scuro, gli angoli sono stati trovati con uno scarto di uno o due pixel.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Qualit&agrave; e memoria</h3>
+          <p>Il raddrizzamento viene applicato alla foto originale, fino a 3.000 &times; 4.000 pixel per pagina: su un A4 sono circa 250 punti per pollice, adatti alla stampa e all&rsquo;OCR. Le foto da 24&ndash;48 megapixel occupano molta memoria: sul telefono conviene procedere a gruppi di pagine e fare pi&ugrave; PDF.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Documenti d&rsquo;identit&agrave; e dati personali</h3>
+          <p>Lo strumento acquisisce solo l&rsquo;immagine: non legge il chip della carta d&rsquo;identit&agrave; elettronica, n&eacute; via NFC n&eacute; con lettori USB. La copia di un documento d&rsquo;identit&agrave; resta un dato personale: salvala in una cartella protetta, cancellala quando non serve pi&ugrave; e chiedila ad altri solo quando c&rsquo;&egrave; un motivo legittimo. Se devi mandare la copia a qualcuno, aggiungi una filigrana con lo scopo e la data con <a href="/identita-burocrazia/proteggi-documento/" class="text-indigo-700 underline">Proteggi la copia del documento</a>.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF &egrave; ricercabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: contiene le immagini delle pagine. Per cercare il testo usa il <a href="/ia/ocr-immagini/" class="text-indigo-700 underline">riconoscimento del testo (OCR)</a>.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e formule: rilevamento dei bordi, matrice prospettica 3×3 e risoluzione del risultato</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Isolamento dei Contorni tramite Canny Edge Detector</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il motore matematico compilato in WebAssembly (`OpenCV.js`) analizza il frame acquisito converting preliminarmente l'immagine in scala di grigi. L'algoritmo di Canny Edge Detection calcola il gradiente di intensità luminosa $G$ e l'orientamento della direzione $\Theta$ per ogni singolo pixel tramite gli operatori differenziali di Sobel $G_x$ e $G_y$:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$G = \sqrt{G_x^2 + G_y^2}, \quad \Theta = \arctan\left(\frac{G_y}{G_x}\right)$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              I contorni estratti vengono filtrati per isolare il quadrilatero convesso di area maggiore, scartando le forme troppo piccole (meno dell'8% dell'immagine) o che coprono quasi tutto il fotogramma. Poiché i bordi rilevati sono spesso interrotti da ombre e riflessi, prima della ricerca dei contorni viene applicata una chiusura morfologica che ricongiunge i segmenti vicini, e il contorno viene ridotto al suo inviluppo convesso. Se con le soglie standard non emerge alcun quadrilatero, il rilevamento viene ripetuto con soglie più basse, utili per i fogli chiari su superfici chiare.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Omografia e Matrice di Trasformazione Prospettica 3x3</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Ottenute le coordinate spaziali distorte dei quattro vertici sorgente del documento nel frame $\mathbf{S}_i(x_i, y_i)$ per $i \in \{1,2,3,4\}$, la funzione `cv.getPerspectiveTransform` costruisce la matrice di omografia prospettica 3x3 ($\mathbf{M}$). La matrice mappa i punti sorgente sulle coordinate rettangolari ideali di destinazione $\mathbf{D}_i(x'_i, y'_i)$ con scala metrica prestabilita:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-xs">
-              $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \mathbf{M} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} m_{00} & m_{01} & m_{02} \\ m_{10} & m_{11} & m_{12} \\ m_{20} & m_{21} & m_{22} \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La trasformazione `cv.warpPerspective` applica la matrice $\mathbf{M}$ interpolando i pixel con algoritmo bilineare, "raddrizzando" e appiattendo visivamente il documento come su un piano ottico planare.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Risoluzione, memoria ed elaborazione in background</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'elaborazione non avviene su un flusso video: ogni foto viene trattata una volta sola, quando la carichi. Il rilevamento dei bordi lavora su una copia ridotta a 1.200 pixel sul lato lungo, abbastanza per individuare il foglio senza impegnare memoria inutilmente; il raddrizzamento viene poi applicato all'immagine originale, con un limite di 3.000 × 4.000 pixel per la pagina prodotta. Su un foglio A4 questo corrisponde a circa 250 punti per pollice, sufficienti per la stampa e per una successiva lettura OCR. Tutto il calcolo di visione artificiale avviene in un <code>Web Worker</code> separato, così l'interfaccia resta reattiva, e le immagini vengono passate fra i thread come oggetti trasferibili, senza duplicarle in memoria.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che risoluzione ha il risultato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Fino a 3.000 &times; 4.000 pixel per pagina, circa 250 punti per pollice su un A4.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casi d'uso: pratiche, moduli cartacei e giustificativi di spesa</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: documenti da allegare a una pratica.</strong><br />
-              Un consulente deve digitalizzare i documenti di un cliente durante un incontro fuori ufficio. Fotografarli con l'app della fotocamera significa spesso ritrovarseli sincronizzati sul cloud personale dello smartphone.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Con questo strumento le foto vengono scelte dal browser, raddrizzate e unite in un PDF salvato dove decide l'operatore: le immagini non vengono inviate a server. Il PDF prodotto non è cifrato né firmato: se serve, va protetto o firmato con gli strumenti dedicati.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: moduli cartacei da archiviare.</strong><br />
-              Una segreteria riceve ogni giorno moduli compilati a mano e deve archiviarli in formato digitale.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Fotografando i fogli e usando il filtro «Bianco e nero», il testo resta nitido e il file leggero. Le pagine vengono accodate in un unico PDF nell'ordine in cui compaiono le anteprime, che si possono eliminare singolarmente prima di generare il documento.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 3: ricevute e giustificativi di spesa.</strong><br />
-              Chi presenta note spese deve allegare scontrini e ricevute, spesso stropicciati e fotografati di sbieco.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il raddrizzamento prospettico rende ogni ricevuta leggibile come se fosse stata appoggiata su uno scanner piano. Per gli scontrini molto chiari su superfici chiare può essere necessario sistemare a mano i quattro angoli, toccando l'anteprima.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; compare &laquo;Manuale&raquo;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il bordo del foglio non &egrave; stato riconosciuto, di solito per poco contrasto con il piano o per un&rsquo;ombra. Tocca l&rsquo;anteprima e sistema gli angoli.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati riprodotti con lo strumento su foto di prova costruite al computer (un foglio A4 con testo, deformato in prospettiva su uno sfondo), confrontando gli angoli rilevati con quelli reali del foglio.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: foglio inquadrato di sbieco su un tavolo scuro</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Foto 1200 × 1600, foglio con prospettiva accentuata</li>
-            <li>Angoli reali: (190,210) (980,150) (1060,1400) (120,1330)</li>
-            <li>Angoli rilevati: (189,211) (979,149) (1059,1399) (120,1329)</li>
-            <li>Pagina raddrizzata: 941 × 1252 pixel, PDF A4</li>
-            </ul>
-            <p>Lo scarto è di uno o due pixel: il foglio viene ritagliato esattamente sul bordo e raddrizzato. L'etichetta sull'anteprima indica «✓ Auto».</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: foglio chiaro su superficie chiara, foto leggermente sfocata</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Sfondo grigio chiaro (RGB 196) e foglio quasi bianco (RGB 252)</li>
-            <li>Rilevamento con le soglie standard: nessun contorno</li>
-            <li>Secondo tentativo con soglie più basse: angoli rilevati a meno di 2 pixel da quelli reali</li>
-            </ul>
-            <p>È la situazione più difficile, e la più comune sui tavoli da ufficio chiari. Se anche il secondo tentativo fallisce, l'anteprima resta «Manuale» e gli angoli si sistemano a mano in pochi secondi.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: foto senza documento</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Immagine di colore uniforme, senza foglio</li>
-            <li>Rilevamento: nessun contorno, in entrambi i tentativi</li>
-            <li>Risultato: l'immagine viene mantenuta intera, etichetta «Manuale»</li>
-            </ul>
-            <p>È il comportamento voluto: quando non c'è un foglio riconoscibile, lo strumento non inventa un ritaglio. Meglio una foto intera da correggere a mano che un ritaglio sbagliato che taglia via metà documento.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Legge il chip della carta d&rsquo;identit&agrave;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, acquisisce solo l&rsquo;immagine.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ e anomalie: bordi non rilevati, foto molto grandi e cautele sui documenti</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Bordi non rilevati (sfondo poco contrastato):</strong><br />
-              Il rilevamento si basa sul salto di luminosità fra il documento e il piano d'appoggio. Con un foglio bianco su un tavolo chiaro il salto può essere troppo debole: in questo caso viene eseguito un secondo tentativo con soglie più basse, che nelle prove ha recuperato anche una foto sfocata di un foglio chiaro su fondo chiaro. Se nemmeno questo basta, l'anteprima viene contrassegnata come «Manuale» e mantiene l'intera foto: toccandola si apre la finestra di ritaglio, dove si trascinano i quattro angoli. Per ridurre il problema conviene appoggiare il documento su una superficie di colore diverso ed evitare ombre sul bordo.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Foto molto grandi e dispositivi lenti:</strong><br />
-              Le foto da 24 o 48 megapixel richiedono molta memoria. Il rilevamento dei bordi viene eseguito su una copia ridotta a 1.200 pixel sul lato lungo, mentre il raddrizzamento è applicato all'immagine originale e limitato a 3.000 × 4.000 pixel: la qualità resta adeguata alla stampa senza saturare la memoria del dispositivo. Caricando molte foto insieme, le anteprime restano tutte in memoria: sui telefoni conviene procedere a gruppi e generare più PDF.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Sanzioni per Esfiltrazione di Dati d'Identità (Articolo 83 GDPR):</strong><br />
-              Il caricamento sconsiderato di passaporti, carte d'identità o patenti su server cloud non protetti gestiti da soggetti terzi privi di DPA costituisce una violazione sistemica dell'Articolo 9 e dell'Articolo 32 del GDPR. Le sanzioni previste dall'articolo 83 possono raggiungere 20 milioni di euro o il 4% del fatturato mondiale annuo. Elaborando le immagini nel browser questo passaggio non comporta alcun invio a terzi; restano da valutare la legittimità della raccolta della copia e la sicurezza del luogo in cui il PDF viene salvato.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le foto vengono caricate da qualche parte?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: vengono elaborate nel browser e il PDF viene salvato sul tuo dispositivo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il PDF prodotto è ricercabile?</h3>
-            <p>No: contiene le immagini delle pagine. Per cercare il testo serve un riconoscimento OCR, disponibile nello strumento dedicato.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Che risoluzione ha il risultato?</h3>
-            <p>Il raddrizzamento è applicato alla foto originale, con un limite di 3.000 × 4.000 pixel per pagina: su un foglio A4 sono circa 250 punti per pollice, adatti alla stampa.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché a volte compare «Manuale»?</h3>
-            <p>Significa che il contorno del foglio non è stato riconosciuto, di solito per scarso contrasto con il piano d'appoggio o per un'ombra sul bordo. Tocca l'anteprima e sistema i quattro angoli.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Lo strumento legge il chip della carta d'identità?</h3>
-            <p>No. Acquisisce solo l'immagine del documento: non dialoga con il microchip, né via NFC né con lettori di smart card.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Le foto vengono caricate da qualche parte?</h3>
-            <p>No. Vengono elaborate nella memoria del browser e il PDF viene salvato sul tuo dispositivo; nessuna immagine viene inviata a server.</p>
-            </div>
-          </div>
-        </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 2016/679 (GDPR), artt. 5 e 25.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

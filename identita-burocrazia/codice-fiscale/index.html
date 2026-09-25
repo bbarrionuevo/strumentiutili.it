@@ -145,74 +145,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Il codice generato ha lo stesso valore di quello sulla Tessera Sanitaria?",
+            "name": "Il codice calcolato vale come quello sulla tessera?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il codice calcolato è una ricostruzione matematica corretta nella grande maggioranza dei casi, ma l'unico codice giuridicamente valido è quello attribuito dall'Agenzia delle Entrate e riportato sul tesserino. In presenza di omocodia, di rettifiche anagrafiche o di variazioni di stato civile il codice ufficiale può differire da quello calcolabile a partire dai dati anagrafici."
+              "text": "No: è una ricostruzione, corretta nella grande maggioranza dei casi. Con omocodia o rettifiche anagrafiche il codice ufficiale è diverso."
             }
           },
           {
             "@type": "Question",
-            "name": "Il codice fiscale cambia in caso di matrimonio o di cambio di cognome?",
+            "name": "Il codice cambia se mi sposo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il codice si forma sui dati anagrafici di nascita e non varia per effetto del matrimonio, poiché il cognome anagrafico resta invariato. Cambia invece a seguito di un provvedimento di rettifica del nome, del cognome o della data di nascita, oppure di rettificazione di attribuzione di sesso: in questi casi l'Agenzia delle Entrate attribuisce un nuovo codice e annulla il precedente."
+              "text": "No: si basa sui dati di nascita. Cambia solo dopo una rettifica di nome, cognome, data di nascita o sesso."
             }
           },
           {
             "@type": "Question",
-            "name": "Che cos'è esattamente l'omocodia?",
+            "name": "Come si fa per chi è nato all’estero?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Si verifica quando l'algoritmo produce lo stesso codice per due persone diverse, circostanza possibile perché l'algoritmo comprime le informazioni anagrafiche e non è biiettivo. L'Agenzia delle Entrate risolve il conflitto sostituendo progressivamente le cifre del secondo codice, a partire da quella più a destra, con lettere corrispondenti secondo una tabella di conversione, e ricalcolando poi il carattere di controllo."
+              "text": "Al posto del Comune si usa il codice dello Stato, che comincia con Z. Scegli «Nato all’estero» e lo Stato, non la città."
             }
           },
           {
             "@type": "Question",
-            "name": "Uno straniero può ottenere il codice fiscale italiano?",
+            "name": "Uno straniero può avere il codice fiscale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, ed è anzi necessario per qualsiasi rapporto giuridicamente rilevante nel Paese, dall'apertura di un conto corrente alla stipula di un contratto di lavoro o di locazione. Viene attribuito dall'Agenzia delle Entrate o, per i cittadini stranieri che ne facciano richiesta contestuale, dagli Sportelli Unici per l'immigrazione e dalle Questure nell'ambito delle procedure di soggiorno."
+              "text": "Sì, e serve per un conto, un contratto di lavoro o d’affitto. Lo rilascia l’Agenzia delle Entrate, o lo Sportello unico per l’immigrazione e la Questura nelle pratiche di soggiorno."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso usare il codice fiscale per verificare l'identità di una persona?",
+            "name": "Posso usarlo per verificare l’identità di qualcuno?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, e sarebbe un errore metodologico rilevante. Il codice fiscale è un identificativo derivato da dati anagrafici pubblicamente ricostruibili: chiunque conosca nome, cognome, data e luogo di nascita può calcolarlo. Non ha quindi alcuna funzione autenticativa e non va mai impiegato come elemento di verifica dell'identità o come credenziale di accesso."
+              "text": "No: chiunque conosca i dati di nascita può calcolarlo. Non è una prova d’identità né una password."
             }
           },
           {
             "@type": "Question",
-            "name": "Cosa fare se il codice sulla mia tessera sembra errato?",
+            "name": "Il codice sulla mia tessera sembra sbagliato: cosa faccio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Occorre rivolgersi a un ufficio dell'Agenzia delle Entrate con un documento di identità e, se necessario, con la documentazione anagrafica che attesti i dati corretti. Se l'errore deriva da una trascrizione inesatta dei dati anagrafici, la correzione richiede il preventivo allineamento presso il Comune di residenza. Fino alla rettifica il codice errato può generare scarti negli invii telematici e nelle procedure bancarie."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Cosa si intende per Omocodia e come viene risolta operativamente?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La collisione anagrafica, definita tecnicamente Omocodia, rappresenta la vulnerabilità principale dell'architettura e si manifesta qualora due cittadini generino la medesima stringa. Per risolvere la collisione, l'Agenzia delle Entrate procede alla destrutturazione del codice primario, sostituendo forzatamente le cifre numeriche con equivalenti alfabetici pre-codificati (L=0, M=1, N=2, P=3, Q=4, R=5, S=6, T=7, U=8, V=9). L'operazione procede a ritroso verso sinistra, partendo dall'ultima cifra del codice Belfiore. Nessun generatore basato sui soli dati anagrafici può sapere se a una persona è stato attribuito un codice omocodico: solo l'anagrafe tributaria conosce la sostituzione applicata, quindi il codice va sempre confrontato con la tessera."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Qual è la procedura corretta per soggetti nati all'estero?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'anomalia procedurale investe sistematicamente la naturalizzazione di soggetti esteri. I cittadini nati fuori dal territorio della Repubblica non possiedono un codice Belfiore comunale. Essi devono obbligatoriamente utilizzare un identificativo nazionale prefissato dalla lettera \"Z\" (ad esempio, Z112 per la Germania, Z100 per l'Albania, Z404 per gli Stati Uniti). L'errore operativo consistente nel compilare atti giudiziari o bancari imputando testualmente la città estera provoca un disallineamento critico nei database istituzionali."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Perché l'onomastica complessa (nomi composti) genera scarti in ambiente bancario o AML?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La validazione algoritmica stringe con particolare severità sui nomi polirematici o composti. Lo standard di decodifica governativo impone che la stringa anagrafica venga normalizzata rimuovendo apici, spaziature e accenti. La mancata esecuzione di questo rigoroso processo di sanitizzazione pre-elaborazione (ad esempio ignorando lo spazio in un cognome composto) altera drasticamente il flusso di estrazione consonantica. Questo falso logico inficia il calcolo del parametro CIN, determinando la conseguente e immediata repulsione della pratica in ambienti severamente monitorati come l'adeguata verifica antiriciclaggio (AML)."
+              "text": "Vai a un ufficio dell’Agenzia delle Entrate con un documento. Se l’errore è nei dati anagrafici, prima va corretto in Comune."
             }
           }
         ]
@@ -525,195 +501,66 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-2xl font-bold text-gray-900 mb-3">Guida Normativa Avanzata al Calcolo e Verifica del Codice Fiscale (Architettura Client-Side)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il sistema alfanumerico del Codice Fiscale, gestito centralmente dal partner tecnologico Sogei per conto dell'Anagrafe Tributaria, è normato dal Decreto Ministeriale del 23 dicembre 1976. Questo standard a sedici caratteri costituisce la chiave primaria nei database della Pubblica Amministrazione, fungendo da identificatore univoco per l'assolvimento degli obblighi tributari, previdenziali e civili. Dal punto di vista sistemistico e normativo, l'applicativo erogato in questa pagina opera interamente nel rispetto del paradigma architetturale Zero-Backend. L'elaborazione algoritmica avviene al 100% all'interno della sandbox del browser locale dell'utente, annullando di fatto il trasferimento dei dati anagrafici verso server esterni e conformandosi rigorosamente al principio di Data Protection by Design e by Default imposto dall'Articolo 25 del Regolamento Generale sulla Protezione dei Dati (GDPR). Neutralizzando l'esfiltrazione crittografica, tale architettura esenta il fornitore dell'applicativo web dalla qualifica di Responsabile del Trattamento (Data Processor), eliminando per il professionista gli oneri legati alla redazione di complessi Data Processing Agreements (DPA) delineati dall'Articolo 28 del GDPR.
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📖</span> Meccanica e Formule: Algoritmo di Generazione e Modulo 26</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3">Scomposizione della Matrice Anagrafica a 16 Caratteri</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Il procedimento di hashing alfanumerico opera una scomposizione deterministica della matrice anagrafica secondo rigorose regole sintattiche:
-              </p>
-              <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-                <li><strong>Cognome (3 caratteri):</strong> L'algoritmo estrae in sequenza le prime tre consonanti. Qualora il cognome risulti breve, si attinge progressivamente alle vocali fino a saturare il blocco di tre lettere; in extrema ratio, per cognomi composti da soli due caratteri, il campo viene colmato con la lettera X.</li>
-                <li><strong>Nome (3 caratteri):</strong> Segue la medesima struttura del cognome, prevedendo tuttavia una specifica deroga per l'onomastica complessa: per nomi che contengono quattro o più consonanti, si impone matematicamente l'estrazione della prima, terza e quarta consonante, scartando sistematicamente la seconda.</li>
-                <li><strong>Anno e Mese (3 caratteri):</strong> L'anno di nascita si contrae alle sole decine e unità (es. 1980 si riduce alla stringa 80). Il mese si converte invece mediante l'applicazione di una tabella alfabetica posizionale fissa: A = Gennaio, B = Febbraio, C = Marzo, D = Aprile, E = Maggio, H = Giugno, L = Luglio, M = Agosto, P = Settembre, R = Ottobre, S = Novembre, T = Dicembre.</li>
-                <li><strong>Giorno e Sesso (2 caratteri):</strong> Per i nati di sesso maschile, il parametro fissa il giorno effettivo (da 01 a 31), mentre per le nate di sesso femminile interviene un'operazione che trasla di un parametro scalare costante di 40 unità la data di nascita (generando un intervallo da 41 a 71).</li>
-                <li><strong>Comune di Nascita (4 caratteri):</strong> Il parametro geografico si allinea al Codice Belfiore a 4 caratteri alfanumerici (es. Milano corrisponde a F205, Roma a H501).</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Determinazione del Carattere Interno di Controllo (CIN)</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                La chiusura crittografica della stringa è affidata al Carattere Interno di Controllo (CIN), determinato tramite il calcolo dell'Algoritmo Modulo 26. I quindici caratteri primari generati vengono isolati alternativamente nelle rispettive posizioni pari e dispari, per poi essere convertiti in numeri interi secondo mappe di pesi asimmetriche. Ad esempio, per le posizioni pari, il carattere 'A' (o lo '0') assume peso 0, e il carattere 'C' (o '2') assume peso 2; per le posizioni dispari, 'A'/'0' assume peso 1, 'B'/'1' peso 0, e 'C'/'2' assume peso 5. Al termine dell'assegnazione, i valori vengono sommati in un montante unico e ridotti matematicamente al modulo 26, producendo un resto finale che viene associato ad una lettera dell'alfabeto (dove A=0 e Z=25).
-              </p>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mt-4">
-              <h3 class="text-base font-bold text-gray-900 mb-2">Casuistica Reale: Compilazione Algebrica Passo-Passo</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                Prendiamo in esame la procedura di compilazione algebrica per il cittadino fittizio MARIO ROSSI, uomo, nato il 15/05/1980 a Roma (Codice Belfiore H501).
-              </p>
-              <div class="bg-white p-4 rounded-lg border border-gray-300 font-mono text-xs text-gray-800 space-y-2">
-                <p>1. <strong>Cognome (ROSSI):</strong> L'estrazione delle prime tre consonanti produce la stringa RSS.</p>
-                <p>2. <strong>Nome (MARIO):</strong> L'algoritmo individua due sole consonanti (M, R) e sopperisce all'assenza della terza importando la prima vocale utile (A), producendo MRA.</p>
-                <p>3. <strong>Data e Sesso:</strong> L'anno 1980 fornisce la stringa 80. Il mese di Maggio si converte nella lettera E. Il giorno 15, declinato per il sesso maschile, rimane invariato in 15.</p>
-                <p>4. <strong>Luogo di Nascita:</strong> Innesta il blocco H501. La stringa provvisoria a quindici caratteri si attesta su RSSMRA80E15H501.</p>
-                <p>5. <strong>Calcolo CIN:</strong> Il checksum CIN si calcola aggregando i pesi posizionali. R(Dispari)=8, S(Pari)=18, S(Dispari)=12, M(Pari)=12, R(Dispari)=8, A(Pari)=0, 8(Dispari)=19, 0(Pari)=0, E(Dispari)=9, 1(Pari)=1, 5(Dispari)=13, H(Pari)=7, 5(Dispari)=13, 0(Pari)=0, 1(Dispari)=0. La somma di tali interi ammonta algebricamente a 120. Applicando l'operazione matematica $120 \pmod{26}$, si ottiene un resto formale pari a 16. Mappando tale resto sulla matrice alfabetica standard, il valore 16 restituisce inoppugnabilmente il carattere Q.</p>
-                <p class="mt-2 text-indigo-700 font-bold">La sintesi definitiva approvata dall'Anagrafe Tributaria è RSSMRA80E15H501Q.</p>
-              </div>
-            </div>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come si calcola, verifica e legge il codice fiscale</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il codice fiscale ha 16 caratteri ricavati da cognome, nome, data e luogo di nascita e sesso, pi&ugrave; un carattere di controllo. La pagina ha tre strumenti: calcolare il codice dai dati, verificare se un codice &egrave; formalmente corretto e ricavare i dati da un codice.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I 16 caratteri</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Posizioni</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Cosa sono</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Regola</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">1&ndash;3</td><td class="px-3 py-2 align-top">Cognome</td><td class="px-3 py-2 align-top">Prime tre consonanti; se non bastano, le vocali; poi X</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">4&ndash;6</td><td class="px-3 py-2 align-top">Nome</td><td class="px-3 py-2 align-top">Come il cognome, ma con 4 o pi&ugrave; consonanti si prendono la 1&ordf;, la 3&ordf; e la 4&ordf;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">7&ndash;8</td><td class="px-3 py-2 align-top">Anno</td><td class="px-3 py-2 align-top">Le ultime due cifre</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">9</td><td class="px-3 py-2 align-top">Mese</td><td class="px-3 py-2 align-top">A gen, B feb, C mar, D apr, E mag, H giu, L lug, M ago, P set, R ott, S nov, T dic</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">10&ndash;11</td><td class="px-3 py-2 align-top">Giorno e sesso</td><td class="px-3 py-2 align-top">Il giorno; per le donne +40 (da 41 a 71)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">12&ndash;15</td><td class="px-3 py-2 align-top">Luogo</td><td class="px-3 py-2 align-top">Codice del Comune (Roma H501) o dello Stato estero (Z&hellip;)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">16</td><td class="px-3 py-2 align-top">Controllo</td><td class="px-3 py-2 align-top">Lettera calcolata dagli altri 15 caratteri</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">FAQ e Criticità: Errori Operativi e Anomalie di Decodifica</h3>
-          <div class="space-y-3">
-            
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Cosa si intende per Omocodia e come viene risolta operativamente?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                La collisione anagrafica, definita tecnicamente Omocodia, rappresenta la vulnerabilità principale dell'architettura e si manifesta qualora due cittadini generino la medesima stringa. Per risolvere la collisione, l'Agenzia delle Entrate procede alla destrutturazione del codice primario, sostituendo forzatamente le cifre numeriche con equivalenti alfabetici pre-codificati (L=0, M=1, N=2, P=3, Q=4, R=5, S=6, T=7, U=8, V=9). L'operazione procede a ritroso verso sinistra, partendo dall'ultima cifra del codice Belfiore. Nessun generatore basato sui soli dati anagrafici può sapere se a una persona è stato attribuito un codice omocodico: solo l'anagrafe tributaria conosce la sostituzione applicata, quindi il codice va sempre confrontato con la tessera.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Qual è la procedura corretta per soggetti nati all'estero?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                L'anomalia procedurale investe sistematicamente la naturalizzazione di soggetti esteri. I cittadini nati fuori dal territorio della Repubblica non possiedono un codice Belfiore comunale. Essi devono obbligatoriamente utilizzare un identificativo nazionale prefissato dalla lettera "Z" (ad esempio, Z112 per la Germania, Z100 per l'Albania, Z404 per gli Stati Uniti). L'errore operativo consistente nel compilare atti giudiziari o bancari imputando testualmente la città estera provoca un disallineamento critico nei database istituzionali.
-              </p>
-            </details>
-
-            <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
-              <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none">
-                <span>Perché l'onomastica complessa (nomi composti) genera scarti in ambiente bancario o AML?</span>
-                <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-              </summary>
-              <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">
-                La validazione algoritmica stringe con particolare severità sui nomi polirematici o composti. Lo standard di decodifica governativo impone che la stringa anagrafica venga normalizzata rimuovendo apici, spaziature e accenti. La mancata esecuzione di questo rigoroso processo di sanitizzazione pre-elaborazione (ad esempio ignorando lo spazio in un cognome composto) altera drasticamente il flusso di estrazione consonantica. Questo falso logico inficia il calcolo del parametro CIN, determinando la conseguente e immediata repulsione della pratica in ambienti severamente monitorati come l'adeguata verifica antiriciclaggio (AML).
-              </p>
-            </details>
-
-          </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Mario Rossi, nato a Roma il 15/05/1980.</strong> ROSSI &rarr; RSS; MARIO &rarr; MRA; 1980 &rarr; 80; maggio &rarr; E; giorno 15; Roma &rarr; H501; controllo Q: <strong>RSSMRA80E15H501Q</strong>.</p>
+          <p><strong>Gianfranco Esposito, Napoli, 22/07/1978.</strong> Il nome ha pi&ugrave; di tre consonanti (G N F R N C): si prendono la prima, la terza e la quarta, GFR. Codice SPSGFR78L22F839D. Prendendo le prime tre (GNF) si otterrebbe un codice sbagliato: &egrave; l&rsquo;errore pi&ugrave; comune nei calcoli a mano.</p>
+          <p><strong>Giulia Bianchi, Torino, 12/04/1990.</strong> BNCGLI90D52L219I: il 52 indica una donna nata il 12, la D aprile, L219 Torino.</p>
+          <p><strong>Stefan Popescu, nato in Romania.</strong> Per chi &egrave; nato all&rsquo;estero conta lo Stato, non la citt&agrave;: Romania = Z129, codice PPSSFN85C02Z129A.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Omocodia: quando il codice vero &egrave; diverso</h3>
+          <p>Se due persone avrebbero lo stesso codice, l&rsquo;Agenzia delle Entrate cambia le ultime cifre in lettere (0=L, 1=M, 2=N, 3=P, 4=Q, 5=R, 6=S, 7=T, 8=U, 9=V), partendo da destra, e ricalcola il controllo. Per esempio BNCGLI90D52L219I pu&ograve; diventare BNCGLI90D52L21VX. Il verificatore accetta anche questi codici.</p>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Nessun calcolatore pu&ograve; sapere se a una persona &egrave; stato dato un codice omocodico. Il codice valido &egrave; sempre quello sulla tessera sanitaria o sul tesserino dell&rsquo;Agenzia delle Entrate.</p>
         </div>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.P.R. 29 settembre 1973 n. 605</strong> — istituisce l'anagrafe tributaria e il codice fiscale quale strumento univoco di identificazione dei contribuenti.</li>
-              <li><strong>D.M. 23 dicembre 1976</strong> — definisce l'algoritmo di formazione del codice fiscale, le regole di estrazione dei caratteri e il metodo di calcolo del carattere di controllo.</li>
-              <li><strong>D.M. 13 dicembre 1993</strong> — disciplina le modalità di risoluzione dei casi di omocodia mediante sostituzione progressiva dei caratteri numerici.</li>
-              <li><strong>Regolamento UE 2016/679 (GDPR)</strong> — qualifica il codice fiscale come dato personale, il cui trattamento richiede una base giuridica idonea e misure di sicurezza adeguate.</li>
-              <li><strong>D.Lgs. 21 novembre 2007 n. 231</strong> — normativa antiriciclaggio, che impone la verifica dell'identità del cliente e la corretta acquisizione del codice fiscale.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">La struttura dei sedici caratteri</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Posizione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Contenuto</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Regola di formazione</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">1 – 3</td><td class="px-3 py-2 border-t border-gray-200">Cognome</td><td class="px-3 py-2 border-t border-gray-200">Prime tre consonanti; se insufficienti si integrano le vocali nell'ordine</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">4 – 6</td><td class="px-3 py-2 border-t border-gray-200">Nome</td><td class="px-3 py-2 border-t border-gray-200">Se le consonanti sono quattro o più si prendono la prima, la terza e la quarta</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">7 – 8</td><td class="px-3 py-2 border-t border-gray-200">Anno di nascita</td><td class="px-3 py-2 border-t border-gray-200">Ultime due cifre dell'anno</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">9</td><td class="px-3 py-2 border-t border-gray-200">Mese di nascita</td><td class="px-3 py-2 border-t border-gray-200">Lettera convenzionale secondo la tabella ministeriale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">10 – 11</td><td class="px-3 py-2 border-t border-gray-200">Giorno e sesso</td><td class="px-3 py-2 border-t border-gray-200">Giorno di nascita, aumentato di 40 per il sesso femminile</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">12 – 15</td><td class="px-3 py-2 border-t border-gray-200">Luogo di nascita</td><td class="px-3 py-2 border-t border-gray-200">Codice catastale del Comune o codice dello Stato estero</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">16</td><td class="px-3 py-2 border-t border-gray-200">Carattere di controllo</td><td class="px-3 py-2 border-t border-gray-200">Calcolato con l'algoritmo a pesi alternati modulo 26</td></tr></tbody></table></div>
-            <p>La regola di estrazione del nome merita attenzione perché è l'unica asimmetrica rispetto al cognome: in presenza di quattro o più consonanti si scarta la seconda. È la fonte di errore più frequente nella generazione manuale e produce codici formalmente plausibili ma non corrispondenti a quelli attribuiti dall'anagrafe tributaria.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il valore giuridico del codice calcolato</h3>
-            <p>Il codice generato da un algoritmo è una <strong>ricostruzione deterministica</strong>, non un'attribuzione ufficiale. L'unico codice fiscale valido è quello registrato presso l'anagrafe tributaria e attestato dal tesserino o dalla Tessera Sanitaria. Nei casi di omocodia il codice effettivamente attribuito diverge da quello calcolabile, perché l'amministrazione sostituisce progressivamente caratteri numerici con lettere secondo una tabella di conversione predefinita.</p>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> per i soggetti nati all'estero il codice impiega il codice dello Stato estero in luogo di quello catastale comunale, e la verifica va condotta sull'elenco ufficiale dei codici Stato. Il codice ricostruito ha finalità di controllo e di compilazione assistita: per usi contrattuali, bancari o fiscali occorre sempre riscontrare il dato con il documento rilasciato dall'Agenzia delle Entrate.</p>
-          </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice calcolato vale come quello sulla tessera?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: &egrave; una ricostruzione, corretta nella grande maggioranza dei casi. Con omocodia o rettifiche anagrafiche il codice ufficiale &egrave; diverso.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati generati e decodificati con gli strumenti della pagina.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: nata a Torino, controllo della decodifica</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Giulia Bianchi, femmina, nata a Torino il 12/04/1990</li>
-            <li>Codice: BNC GLI 90 D 52 L219 I</li>
-            <li>Decodifica: 12/04/1990, femmina, Torino</li>
-            </ul>
-            <p>Il giorno 52 indica una donna nata il 12 del mese (12 + 40). La lettera D corrisponde ad aprile e L219 è il codice catastale di Torino.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: nato in Romania</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Stefan Popescu, maschio, nato a Bucarest il 02/03/1985</li>
-            <li>Luogo: «Nato all'Estero», Stato Romania, codice Z129</li>
-            <li>Codice: PPSSFN85C02Z129A</li>
-            </ul>
-            <p>Per i nati all'estero conta solo lo Stato: Bucarest e Cluj producono lo stesso codice. Indicando la città come se fosse un Comune italiano il luogo non viene riconosciuto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: nome con quattro consonanti</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Gianfranco Esposito, maschio, nato a Napoli il 22/07/1978</li>
-            <li>Consonanti del nome: G N F R N C, si usano la 1ª, la 3ª e la 4ª: GFR</li>
-            <li>Codice: SPSGFR78L22F839D</li>
-            </ul>
-            <p>Prendendo le prime tre consonanti si otterrebbe GNF e un codice diverso con carattere di controllo errato: è l'errore più comune nei calcoli fatti a mano.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: codice omocodico</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Codice di partenza: BNCGLI90D52L219I</li>
-            <li>Ultima cifra del codice comune sostituita: 9 → V</li>
-            <li>Codice omocodico con nuovo controllo: BNCGLI90D52L21VX</li>
-            <li>Verifica: valido; decodifica: Torino</li>
-            </ul>
-            <p>Il Verificatore accetta il codice perché il carattere di controllo è ricalcolato sulla stringa con la lettera. Se nella tessera di una persona compare un codice di questo tipo, va usato quello e non la versione calcolata dai dati anagrafici.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice cambia se mi sposo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: si basa sui dati di nascita. Cambia solo dopo una rettifica di nome, cognome, data di nascita o sesso.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il codice generato ha lo stesso valore di quello sulla Tessera Sanitaria?</h3>
-              <p>No. Il codice calcolato è una ricostruzione matematica corretta nella grande maggioranza dei casi, ma l'unico codice giuridicamente valido è quello attribuito dall'Agenzia delle Entrate e riportato sul tesserino. In presenza di omocodia, di rettifiche anagrafiche o di variazioni di stato civile il codice ufficiale può differire da quello calcolabile a partire dai dati anagrafici.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il codice fiscale cambia in caso di matrimonio o di cambio di cognome?</h3>
-              <p>Il codice si forma sui dati anagrafici di nascita e non varia per effetto del matrimonio, poiché il cognome anagrafico resta invariato. Cambia invece a seguito di un provvedimento di rettifica del nome, del cognome o della data di nascita, oppure di rettificazione di attribuzione di sesso: in questi casi l'Agenzia delle Entrate attribuisce un nuovo codice e annulla il precedente.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Che cos'è esattamente l'omocodia?</h3>
-              <p>Si verifica quando l'algoritmo produce lo stesso codice per due persone diverse, circostanza possibile perché l'algoritmo comprime le informazioni anagrafiche e non è biiettivo. L'Agenzia delle Entrate risolve il conflitto sostituendo progressivamente le cifre del secondo codice, a partire da quella più a destra, con lettere corrispondenti secondo una tabella di conversione, e ricalcolando poi il carattere di controllo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Uno straniero può ottenere il codice fiscale italiano?</h3>
-              <p>Sì, ed è anzi necessario per qualsiasi rapporto giuridicamente rilevante nel Paese, dall'apertura di un conto corrente alla stipula di un contratto di lavoro o di locazione. Viene attribuito dall'Agenzia delle Entrate o, per i cittadini stranieri che ne facciano richiesta contestuale, dagli Sportelli Unici per l'immigrazione e dalle Questure nell'ambito delle procedure di soggiorno.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso usare il codice fiscale per verificare l'identità di una persona?</h3>
-              <p>No, e sarebbe un errore metodologico rilevante. Il codice fiscale è un identificativo derivato da dati anagrafici pubblicamente ricostruibili: chiunque conosca nome, cognome, data e luogo di nascita può calcolarlo. Non ha quindi alcuna funzione autenticativa e non va mai impiegato come elemento di verifica dell'identità o come credenziale di accesso.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa fare se il codice sulla mia tessera sembra errato?</h3>
-              <p>Occorre rivolgersi a un ufficio dell'Agenzia delle Entrate con un documento di identità e, se necessario, con la documentazione anagrafica che attesti i dati corretti. Se l'errore deriva da una trascrizione inesatta dei dati anagrafici, la correzione richiede il preventivo allineamento presso il Comune di residenza. Fino alla rettifica il codice errato può generare scarti negli invii telematici e nelle procedure bancarie.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si fa per chi &egrave; nato all&rsquo;estero?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Al posto del Comune si usa il codice dello Stato, che comincia con Z. Scegli &laquo;Nato all&rsquo;estero&raquo; e lo Stato, non la citt&agrave;.</p>
         </details>
-
-        </section>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Uno straniero pu&ograve; avere il codice fiscale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, e serve per un conto, un contratto di lavoro o d&rsquo;affitto. Lo rilascia l&rsquo;Agenzia delle Entrate, o lo Sportello unico per l&rsquo;immigrazione e la Questura nelle pratiche di soggiorno.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usarlo per verificare l&rsquo;identit&agrave; di qualcuno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: chiunque conosca i dati di nascita pu&ograve; calcolarlo. Non &egrave; una prova d&rsquo;identit&agrave; n&eacute; una password.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice sulla mia tessera sembra sbagliato: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Vai a un ufficio dell&rsquo;Agenzia delle Entrate con un documento. Se l&rsquo;errore &egrave; nei dati anagrafici, prima va corretto in Comune.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 29 settembre 1973, n. 605: anagrafe tributaria e codice fiscale.</li>
+          <li>D.M. 23 dicembre 1976: regole di calcolo del codice fiscale.</li>
+          <li>D.M. 13 dicembre 1993: omocodia.</li>
+        </ul>
+      </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

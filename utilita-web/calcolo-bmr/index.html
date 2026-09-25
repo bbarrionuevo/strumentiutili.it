@@ -128,26 +128,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Qual è la differenza fra BMR e TDEE?",
+            "name": "Che differenza c’è fra BMR e TDEE?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il BMR è l'energia spesa a riposo completo per le funzioni vitali. Il TDEE aggiunge digestione, movimento quotidiano e sport, ed è il riferimento per mantenere il peso: si ottiene moltiplicando il BMR per il livello di attività."
+              "text": "Il BMR è il consumo a riposo completo. Il TDEE aggiunge digestione, movimento e sport ed è il riferimento per mantenere il peso."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso mangiare meno del mio BMR per dimagrire più in fretta?",
+            "name": "Posso mangiare meno del BMR per dimagrire più in fretta?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "È sconsigliato senza controllo medico. Un deficit del 15-20% rispetto al TDEE permette un calo graduale; scendere sotto il BMR aumenta il rischio di perdere massa muscolare e di carenze nutrizionali."
+              "text": "È sconsigliato senza controllo medico: aumenta il rischio di perdere muscoli e di carenze. Meglio un deficit del 15–20% rispetto al TDEE."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché il risultato è diverso da quello del mio smartwatch?",
+            "name": "Perché lo smartwatch mi dà un numero diverso?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Lo smartwatch stima il consumo dal battito cardiaco e dai movimenti misurati, con errori anche del 20-30% sulle calorie. Il calcolatore usa una formula su dati anagrafici: sono due stime diverse, da verificare con l'andamento reale del peso."
+              "text": "Lo smartwatch stima dal battito e dai movimenti, con errori anche del 20–30%. Sono due stime diverse: la verifica vera è l’andamento del peso nel tempo."
             }
           },
           {
@@ -155,7 +155,15 @@
             "name": "Il calcolo vale in gravidanza?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. In gravidanza e allattamento il fabbisogno aumenta in modo variabile a seconda del trimestre e dello stato nutrizionale: le indicazioni vanno chieste al medico o al ginecologo."
+              "text": "No: il fabbisogno cambia secondo il trimestre. Chiedi al medico."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati vengono inviati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: il calcolo si fa nel browser e i valori restano sul tuo dispositivo."
             }
           }
         ]
@@ -454,245 +462,67 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Clinico: Modelli di Stima Energetica, Equazioni Predittive BMR/TDEE e Tutela dei Dati Biometrici (GDPR)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La determinazione del Metabolismo Basale (BMR - Basal Metabolic Rate o REE - Resting Energy Expenditure) e del Dispendio Energetico Giornaliero Totale (TDEE - Total Daily Energy Expenditure) costituisce il presupposto fisiologico e diagnostico imprescindibile per qualsiasi intervento di pianificazione nutrizionale, ricomposizione corporea o terapia dietetica clinica. La modellizzazione matematica del fabbisogno energetico richiede un'analisi rigorosa delle variabili antropometriche ed etarie. Il seguente trattato disamina l'evoluzione scientifica delle equazioni predittive, la loro accuratezza relativa, la gestione delle casuistiche complesse e l'architettura informatica di isolamento locale adottata per garantire la totale conformità con la normativa europea di protezione dei dati personali e sanitari.
-        </p>
-
-        <!-- Inquadramento Normativo e GDPR -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Inquadramento Normativo: Privacy by Design, Art. 25 e Art. 28 GDPR e Dati Sanitari</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              I dati antropometrici (altezza, peso corporeo, età) uniti al genere biologico e al livello di attività fisica costituiscono, dal punto di vista giuridico, informazioni riconducibili alla sfera della salute dell'interessato o comunque parametri biometrici idonei a profilare lo stato di benessere fisio-metabolico dell'individuo. Ai sensi dell'Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679), il trattamento delle "categorie particolari di dati personali" (inclusi i dati relativi alla salute) è severamente vietato in via di principio, salvo l'esplicita adozione di deroghe legali o l'acquisizione di un consenso informato, granulare e dimostrabile.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura software di questo calcolatore risolve alla radice le criticità di compliance mediante l'implementazione del paradigma Zero-Backend (Serverless Client-Side). L'intero ciclo di vita del dato — dalla sua digitazione all'esecuzione delle moltiplicazioni di matrice e polinomiali, fino alla resa visiva dei risultati — avviene esclusivamente all'interno della sandbox del browser dell'utente. Applicando rigorosamente il principio della Data Protection by Design e by Default codificato dall'Articolo 25 del GDPR, il software impedisce fisicamente l'esfiltrazione dei dati (Zero-Upload) verso server remoti di terze parti o piattaforme Cloud SaaS. L'informazione risiede unicamente nella memoria RAM volatile del dispositivo dell'utente e viene distrutta dal Garbage Collector del motore JavaScript alla chiusura della scheda.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Questo approccio ingegneristico sterilizza altresì gli obblighi derivanti dall'Articolo 28 del GDPR. Poiché il fornitore dell'applicativo web non riceve, archivia o processa alcun dato personale sui propri server, viene a cadere la qualifica giuridica di "Responsabile del Trattamento" (Data Processor). Di conseguenza, i professionisti dell'ambito sanitario (medici, dietisti, biologi nutrizionisti) che utilizzano il software nel contesto ambulatoriale sono esonerati dalla stipula di complesse Data Processing Agreements (DPA), dalla redazione dei Registri delle Attività di Trattamento (Art. 30) per questo strumento e dall'esecuzione di Valutazioni d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35) relative al trasferimento transfrontaliero verso paesi terzi.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Metabolismo basale e fabbisogno calorico: come si calcolano</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il metabolismo basale (BMR) sono le calorie che il corpo consuma a riposo completo per respirare, far battere il cuore e mantenere la temperatura. Il fabbisogno giornaliero (TDEE) aggiunge movimento e sport: &egrave; il numero di calorie per mantenere il peso. Il calcolatore usa l&rsquo;equazione di Mifflin-St Jeor, considerata la pi&ugrave; affidabile per gli adulti.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le formule</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Uomo:</strong> BMR = 10 &times; peso (kg) + 6,25 &times; altezza (cm) &minus; 5 &times; et&agrave; + 5</li>
+            <li><strong>Donna:</strong> BMR = 10 &times; peso (kg) + 6,25 &times; altezza (cm) &minus; 5 &times; et&agrave; &minus; 161</li>
+            <li><strong>Fabbisogno:</strong> TDEE = BMR &times; livello di attivit&agrave;</li>
+          </ul>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Livello di attivit&agrave;</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Moltiplicatore</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Per chi</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Sedentario</td><td class="px-3 py-2 align-top">1,2</td><td class="px-3 py-2 align-top">Lavoro d&rsquo;ufficio, niente sport</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Poco attivo</td><td class="px-3 py-2 align-top">1,375</td><td class="px-3 py-2 align-top">Camminate o allenamenti leggeri 1&ndash;3 volte a settimana</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Moderatamente attivo</td><td class="px-3 py-2 align-top">1,55</td><td class="px-3 py-2 align-top">Sport di media intensit&agrave; 3&ndash;5 volte a settimana</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Molto attivo</td><td class="px-3 py-2 align-top">1,725</td><td class="px-3 py-2 align-top">Allenamento intenso 6&ndash;7 giorni a settimana</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Extra attivo</td><td class="px-3 py-2 align-top">1,9</td><td class="px-3 py-2 align-top">Lavori fisici pesanti o atleti con doppi allenamenti</td></tr>
+              </tbody>
+            </table>
           </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Uomo di 40 anni, 175 cm, 85 kg, sedentario.</strong> BMR = 850 + 1.093,75 &minus; 200 + 5 = 1.749 kcal; fabbisogno 1.749 &times; 1,2 = 2.099 kcal. Per dimagrire di solito si consiglia un deficit del 15&ndash;20%, cio&egrave; circa 1.680&ndash;1.780 kcal.</p>
+          <p><strong>Donna di 34 anni, 165 cm, 62 kg, corre tre volte a settimana.</strong> BMR 1.320 kcal, fabbisogno 2.046 kcal.</p>
+          <p><strong>Pensionato di 68 anni, 172 cm, 78 kg, cammina ogni giorno.</strong> BMR 1.520 kcal, fabbisogno 2.090 kcal.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">L&rsquo;errore pi&ugrave; comune: il livello di attivit&agrave;</h3>
+          <p>Un impiegato di 28 anni (180 cm, 76 kg) con tre ore di palestra a settimana ha un BMR di 1.750 kcal. Se si considera &laquo;poco attivo&raquo; il fabbisogno &egrave; 2.406 kcal; se sceglie &laquo;molto attivo&raquo; diventa 3.019 kcal. Mangiando 2.500 kcal convinto di essere in deficit, in realt&agrave; sarebbe sopra il suo fabbisogno e il peso non scenderebbe. Nel dubbio scegli il livello pi&ugrave; basso.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Limiti della stima</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>La formula usa il peso totale: per chi ha molta massa muscolare sottostima il fabbisogno, per chi ha molta massa grassa lo sovrastima.</li>
+            <li>Negli anziani con poca massa muscolare e nell&rsquo;obesit&agrave; grave la stima &egrave; meno precisa.</li>
+            <li>Non vale in gravidanza e allattamento.</li>
+          </ul>
+          <p class="rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900">Il risultato &egrave; una stima a scopo informativo, non una prescrizione. Per una dieta, soprattutto con diabete, malattie o disturbi alimentari, rivolgiti a un medico o a un nutrizionista.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra BMR e TDEE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il BMR &egrave; il consumo a riposo completo. Il TDEE aggiunge digestione, movimento e sport ed &egrave; il riferimento per mantenere il peso.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📐</span> Meccanica e Formule: Validazione di Mifflin-St Jeor e Parametri PAL</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il Tasso Metabolico Basale (BMR) sintetizza la quota di energia chimica espressa in kilocalorie (kcal) o megajoule (MJ) indispensabile a garantire l'omeostasi vegetativa e le funzioni fisiologiche di base (attività respiratoria, circolazione cardiaca, ricambio cellulare, sintesi proteica e funzione renale) in un individuo in stato di veglia, a riposo psicofisico assoluto, a digiuno da almeno 12 ore e in ambiente a neutralità termica (20-25 °C).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Storicamente, la stima del BMR si è affidata all'equazione sviluppata nel 1919 da Harris e Benedict, ricalibrata empiricamente nel 1984. Tuttavia, la progressiva transizione demografica, la variazione della composizione corporea media e la diffusione della sedentarietà hanno evidenziato un bias sistemico in tale modello, caratterizzato da una sovrastima costante del 5-7% rispetto alle misurazioni reali ottenute via calorimetria indiretta. L'attuale *gold standard* acclarato dalla letteratura scientifica ed elevato a linea guida primaria dall'Academy of Nutrition and Dietetics (ADA) è l'equazione formulata nel 1990 da Mifflin e St Jeor nello studio *“A predictive equation for resting energy expenditure in healthy individuals”*. Il modello mostra una percentuale di accuratezza compresa tra il 61% e l'82% nel posizionarsi entro uno scarto del 10% dal dispendio reale, superando nettamente sia la Harris-Benedict sia la formula FAO/WHO/UNU (1985).
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Formalizzazione Matematica di Mifflin-St Jeor</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              L'algoritmo estrapola il BMR combinando la massa corporea totale, la statura, l'età anagrafica e un fattore scalare legato al dimorfismo sessuale biologico:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
-              $$\text{BMR}_{\text{Uomo}} = (10 \times \text{Peso}_{\text{kg}}) + (6.25 \times \text{Altezza}_{\text{cm}}) - (5 \times \text{Età}_{\text{anni}}) + 5$$
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
-              $$\text{BMR}_{\text{Donna}} = (10 \times \text{Peso}_{\text{kg}}) + (6.25 \times \text{Altezza}_{\text{cm}}) - (5 \times \text{Età}_{\text{anni}}) - 161$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Nei casi in cui sia nota la composizione corporea mediante bioimpedenziometria (BIA) o densitometria a raggistica X a doppia energia (DXA), lo studio originale di Mifflin e St Jeor ha validato un'equazione alternativa basata sulla Massa Magra (FFM - Fat Free Mass in kg):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
-              $$\text{REE} = (19.7 \times \text{FFM}_{\text{kg}}) + 413$$
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Integrazione del Fattore PAL per la Determinazione del TDEE</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Per convertire il BMR nel Dispendio Energetico Giornaliero Totale (TDEE), il valore basale deve essere integrato con il livello di attività fisica (PAL - Physical Activity Level). Il PAL agisce da coefficiente moltiplicativo scalare che ingloba l'Effetto Termico del Cibo (TEF - Thermic Effect of Food, circa il 10% del TDEE), la Termogenesi da Attività Non Legata all'Esercizio (NEAT - Non-Exercise Activity Thermogenesis) e il dispendio legato all'esercizio fisico strutturato (EAT - Exercise Activity Thermogenesis).
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-xs font-mono mb-4 text-center font-bold">
-              $$\text{TDEE} = \text{BMR} \times \text{PAL}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">Scaglioni di attribuzione standard del parametro PAL:</p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
-              <li><strong>1.20 (Sedentario):</strong> Soggetti dediti a mansioni d'ufficio, privi di attività sportiva e con mobilità ridotta.</li>
-              <li><strong>1.375 (Poco Attivo):</strong> Lavoro d'ufficio integrato con allenamenti leggeri o camminate 1-3 volte a settimana.</li>
-              <li><strong>1.55 (Moderatamente Attivo):</strong> Esercizio di media intensità praticato 3-5 volte a settimana.</li>
-              <li><strong>1.725 (Molto Attivo):</strong> Attività fisica intensa o professionale svolta 6-7 giorni a settimana.</li>
-              <li><strong>1.90 (Extra Attivo):</strong> Lavori manuali logoranti o atleti agonisti soggetti a doppi turni di allenamento.</li>
-            </ul>
-
-            <!-- Tabella Comparativa Equazioni -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mt-4">
-              <table class="w-full text-left border-collapse text-xs">
-                <thead>
-                  <tr class="bg-gray-100 text-gray-800">
-                    <th class="py-2.5 px-3 border-b font-bold">Formula Predittiva</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Popolazione Target Storica</th>
-                    <th class="py-2.5 px-3 border-b font-bold">Caratteristiche e Bias Predittivo</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                  <tr>
-                    <td class="py-2 px-3 font-bold">Harris-Benedict (1984)</td>
-                    <td class="py-2 px-3">Campione magro e giovane (inizio '900)</td>
-                    <td class="py-2 px-3">Sovrastima il REE del 5-7% nelle popolazioni moderne.</td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-3 font-bold">FAO/WHO/UNU (1985)</td>
-                    <td class="py-2 px-3">Popolazione globale distribuita per età</td>
-                    <td class="py-2 px-3">Bias marcato nei pazienti anziani e nei soggetti con BMI elevato.</td>
-                  </tr>
-                  <tr class="bg-indigo-50/50">
-                    <td class="py-2 px-3 font-bold text-indigo-900">Mifflin-St Jeor (1990)</td>
-                    <td class="py-2 px-3 text-indigo-900">Campione moderno (normopeso, sovrappeso, obesi)</td>
-                    <td class="py-2 px-3 text-indigo-900 font-medium">Massima accuratezza clinica (61-82%). Privilegiata dalle linee guida ADA.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso mangiare meno del BMR per dimagrire pi&ugrave; in fretta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; sconsigliato senza controllo medico: aumenta il rischio di perdere muscoli e di carenze. Meglio un deficit del 15&ndash;20% rispetto al TDEE.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Protocollo Operativo e Risoluzione Passo-Passo</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              A titolo di applicazione clinico-operativa, si valuti la profilazione energetica di un soggetto maschio, impiegato d'ufficio con condotta di vita rigidamente sedentaria (PAL assegnato ex ante = 1.20).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2 font-semibold">Parametri antropometrici di ingresso:</p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
-              <li><strong>Sesso Biologico:</strong> Maschile</li>
-              <li><strong>Età:</strong> 40 anni</li>
-              <li><strong>Statura:</strong> 175 cm</li>
-              <li><strong>Massa Corporea Totale:</strong> 85 kg (Indice di Massa Corporea / BMI = 27.76 kg/m², nella fascia del sovrappeso fra 25 e 29,9)</li>
-            </ul>
-
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Risoluzione Algebrica Passo-Passo</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              1. Impostazione del polinomio di Mifflin-St Jeor per il genere maschile:
-            </p>
-            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
-              $$\text{BMR} = (10 \times 85) + (6.25 \times 175) - (5 \times 40) + 5$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              2. Risoluzione dei singoli prodotti aritmetici intermedi:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-3">
-              <li>Quota Peso: $10 \times 85 = 850$</li>
-              <li>Quota Altezza: $6.25 \times 175 = 1093.75$</li>
-              <li>Quota Età: $5 \times 40 = 200$</li>
-              <li>Costante di Genere Maschile: $+5$</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              3. Sommatoria algebrica per la determinazione del BMR:
-            </p>
-            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
-              $$\text{BMR} = 850 + 1093.75 - 200 + 5 = 1748.75\ \text{kcal/giorno}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              4. Calcolo del Fabbisogno Isocalorico di Mantenimento (TDEE):
-            </p>
-            <div class="bg-gray-100 p-3 rounded font-mono text-xs mb-3">
-              $$\text{TDEE} = 1748.75 \times 1.20 = 2098.50\ \text{kcal/giorno}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Interpretazione Clinico-Nutrizionale:</strong> Il calcolatore, che arrotonda all'unità, mostra 1.749 kcal di BMR e 2.099 kcal di TDEE. La stima indica che il soggetto necessita di circa 2098.50 kcal al giorno per preservare inalterata la propria massa corporea. Qualora l'obiettivo terapeutico concordato con il medico sia il calo ponderale mirato alla riduzione della massa grassa, la pianificazione dietetica dovrà impostare un deficit ipocalorico controllato (tipicamente compreso tra il 15% e il 20% del TDEE), posizionando la quota calorica target a circa 1678-1783 kcal/giorno.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; lo smartwatch mi d&agrave; un numero diverso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Lo smartwatch stima dal battito e dai movimenti, con errori anche del 20&ndash;30%. Sono due stime diverse: la verifica vera &egrave; l&rsquo;andamento del peso nel tempo.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono calcolati con il motore della pagina, che applica l'equazione di Mifflin-St Jeor e arrotonda il risultato all'unità.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: donna di 34 anni che corre tre volte a settimana</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>165 cm, 62 kg, moderatamente attiva (PAL 1,55)</li>
-            <li>BMR = 620 + 1.031,25 − 170 − 161 = 1.320 kcal</li>
-            <li>TDEE = 1.320,25 × 1,55 = 2.046 kcal</li>
-            </ul>
-            <p>Con lo stesso peso e la stessa altezza un uomo avrebbe un BMR di 1.486 kcal: la differenza di 166 kcal dipende solo dalla costante di genere dell'equazione, che riflette la diversa quota media di massa magra.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: pensionato di 68 anni che cammina ogni giorno</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>172 cm, 78 kg, poco attivo (PAL 1,375)</li>
-            <li>BMR = 780 + 1.075 − 340 + 5 = 1.520 kcal</li>
-            <li>TDEE = 1.520 × 1,375 = 2.090 kcal</li>
-            </ul>
-            <p>Rispetto a quando aveva 40 anni, con lo stesso peso, il BMR stimato è più basso di 140 kcal. Negli anziani la perdita di massa muscolare può rendere la stima ottimistica: se l'obiettivo è dimagrire conviene non scendere sotto il BMR e privilegiare le proteine e l'attività di forza.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: impiegato di 28 anni che sceglie il livello di attività sbagliato</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>180 cm, 76 kg, lavoro d'ufficio e 3 ore di palestra a settimana</li>
-            <li>BMR = 1.750 kcal</li>
-            <li>«Poco attivo» (1,375): 2.406 kcal; «Molto attivo» (1,725): 3.019 kcal</li>
-            <li>Differenza: 613 kcal al giorno</li>
-            </ul>
-            <p>Impostando una dieta da 2.500 kcal convinto di essere in deficit di 500 kcal rispetto a 3.019, l'impiegato mangerebbe in realtà circa 94 kcal più del suo fabbisogno: il peso non scende. La guida del campo mostra quante calorie aggiunge ogni livello.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il calcolo vale in gravidanza?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il fabbisogno cambia secondo il trimestre. Chiedi al medico.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Limiti Clinici ed Errori Procedurali Ricorrenti</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Devianza in Popolazioni Estreme (Geriatria e Obesità Severa): Sebbene l'equazione di Mifflin-St Jeor rappresenti la formula predittiva più solida per contenere i margini di errore, la letteratura clinica evidenzia un crollo dell'indice di accuratezza (accuracy rate inferiore al 60%) quando applicata a pazienti affetti da obesità di III classe ($\text{BMI} > 40\ \text{kg/m}^2$) o in soggetti anziani affetti da grave sarcopenia. In tali quadri patologici, l'aumento sproporzionato del tessuto adiposo metabolicamente poco attivo o la drastica riduzione del tessuto muscolare alterano il rapporto peso/dispendio. Affidarsi ciecamente alla formula per regimi di dimagrimento drastici espone il paziente a rischi di malnutrizione depletiva, rendendo indispensabile il ricorso alla calorimetria indiretta mediante analisi degli scambi gassosi $O_2/CO_2$.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il Paradosso della Conformazione Tissutale (Massa Magra vs Massa Grassa): L'algoritmo imputa algebricamente il peso corporeo grezzo. Di conseguenza, due soggetti maschi di 100 kg con medesima altezza ed età — uno affetto da adiposità viscerale severa e l'altro atleta ipertrofico da culturismo — riceveranno dal simulatore il medesimo BMR. Trattandosi di fisicità con tassi metabolici diametralmente opposti (poiché la massa magra FFM consuma circa 13 kcal/kg/giorno contro le sole 4.5 kcal/kg/giorno del tessuto adiposo), la stima risulterà sottostimata per l'atleta e sovrastimata per l'obeso. Per ovviare a questo bias nelle fisicità non standard, è necessario valutare la FFM tramite BIA e applicare l'equazione basata sulla massa magra ($\text{REE} = 19.7 \times \text{FFM} + 413$).
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Inquinamento Volontario del Parametro PAL (Self-Reporting Fallacy): L'errore comportamentale più diffuso nell'impiego dei simulatori energetici da parte dell'utenza è la "sovrastima psicologica" del livello di attività fisica. Un utente che svolge lavoro d'ufficio sedentario ma si allena disordinatamente 3 ore a settimana tende a selezionare i parametri "Molto Attivo" (PAL 1.725) anziché "Poco Attivo" (PAL 1.375). Questo errore vettoriale inietta nel calcolo finale un surplus matematico compreso tra le 500 e le 700 kcal "fantasma". Quando il piano alimentare sfrutta questo TDEE adulterato, il regime ipocalorico teorico si trasforma in realtà in una dieta normocalorica o ipercalorica, causando il blocco del peso e la frustrazione del percorso riabilitativo.
-            </p>
-            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
-              <p class="text-xs text-amber-900 leading-relaxed font-medium">
-                <strong>Clausola di Esclusione di Responsabilità Medica (YMYL Disclaimer):</strong> Le informazioni e le stime energetiche fornite da questo applicativo hanno finalità esclusivamente informative, educative e tecnico-statistiche. Tali modelli matematici e formule predittive non costituiscono in alcun modo diagnosi, prescrizione medica o consulenza dietetica personalizzata. Per la formulazione di piani alimentari diete-terapici, il trattamento di stati patologici (diabete, sindrome metabolica, disturbi del comportamento alimentare) o la valutazione clinica dello stato di salute, è tassativo e inderogabile rivolgersi a un medico chirurgo, a un dietologo o a un nutrizionista regolarmente iscritto all'ordine professionale.
-              </p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I miei dati vengono inviati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il calcolo si fa nel browser e i valori restano sul tuo dispositivo.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra BMR e TDEE?</h3>
-            <p>Il BMR è l'energia spesa a riposo completo per le funzioni vitali. Il TDEE aggiunge digestione, movimento quotidiano e sport, ed è il riferimento per mantenere il peso: si ottiene moltiplicando il BMR per il livello di attività.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso mangiare meno del mio BMR per dimagrire più in fretta?</h3>
-            <p>È sconsigliato senza controllo medico. Un deficit del 15-20% rispetto al TDEE permette un calo graduale; scendere sotto il BMR aumenta il rischio di perdere massa muscolare e di carenze nutrizionali.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Perché il risultato è diverso da quello del mio smartwatch?</h3>
-            <p>Lo smartwatch stima il consumo dal battito cardiaco e dai movimenti misurati, con errori anche del 20-30% sulle calorie. Il calcolatore usa una formula su dati anagrafici: sono due stime diverse, da verificare con l'andamento reale del peso.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Il calcolo vale in gravidanza?</h3>
-            <p>No. In gravidanza e allattamento il fabbisogno aumenta in modo variabile a seconda del trimestre e dello stato nutrizionale: le indicazioni vanno chieste al medico o al ginecologo.</p>
-            </div>
-          </div>
-        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Mifflin M.D., St Jeor S.T. et al., <em>A new predictive equation for resting energy expenditure in healthy individuals</em>, American Journal of Clinical Nutrition, 1990.</li>
+        </ul>
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

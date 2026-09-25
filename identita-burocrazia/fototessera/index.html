@@ -144,34 +144,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Posso usare la stessa foto per CIE, passaporto e permesso di soggiorno?",
+            "name": "La stessa foto va bene per CIE, passaporto e permesso di soggiorno?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, i requisiti sono gli stessi: 35×45 mm, testa fra 32 e 36 mm, sfondo chiaro uniforme ed espressione neutra. La foto deve essere recente, di norma scattata da non più di sei mesi."
+              "text": "Sì: i requisiti sono gli stessi, 35×45 mm, testa fra 32 e 36 mm, sfondo chiaro, espressione neutra."
             }
           },
           {
             "@type": "Question",
-            "name": "Si può sorridere nella fototessera?",
+            "name": "Si può sorridere?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. L'espressione deve essere neutra, con la bocca chiusa e gli occhi aperti e ben visibili."
+              "text": "No: bocca chiusa, espressione neutra e occhi ben visibili."
             }
           },
           {
             "@type": "Question",
-            "name": "La fototessera di un neonato segue le stesse regole?",
+            "name": "E per un neonato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Per i bambini piccoli sono ammesse tolleranze su espressione e posizione, ma lo sfondo deve essere uniforme e non devono comparire le mani o il viso di chi lo sostiene."
+              "text": "Sono ammesse tolleranze su espressione e posizione, ma lo sfondo deve essere uniforme e non devono vedersi mani o viso di chi lo tiene."
             }
           },
           {
             "@type": "Question",
-            "name": "La foto viene caricata su un server per il rilevamento del volto?",
+            "name": "La foto viene caricata su un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il rilevamento avviene nel browser; dalla rete vengono scaricati solo la libreria e i modelli di riconoscimento al primo utilizzo."
+              "text": "No. Riconoscimento del volto e ritaglio avvengono nel browser; dalla rete arrivano solo le librerie e i modelli, al primo uso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usare una foto fatta con il telefono?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, se è nitida, frontale, con luce uniforme e sfondo chiaro. Fatti fotografare da un’altra persona a circa un metro e mezzo, non con un selfie."
             }
           }
         ]
@@ -503,205 +511,71 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Standard Biometrici ICAO Doc 9303, Inquadratura Cefalometrica e Protezione dei Dati Sensibili (GDPR)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La generazione di fotografie destinate ai Documenti di Viaggio Leggibili Macchinalmente (MRTD - Machine Readable Travel Documents), quali passaporti elettronici, Carte d'Identità Elettroniche (CIE 3.0) e permessi di soggiorno, è disciplinata da severe direttive sovranazionali e nazionali. La rispondenza geometrica del ritratto facciale costituisce un requisito vincolante per consentire ai sistemi di controllo alle frontiere (gate biometrici) e alle banche dati delle Forze dell'Ordine l'estrazione automatizzata delle caratteristiche somatiche. Il presente trattato esamina dettagliatamente l'inquadramento normativo internazionale, le equazioni geometriche e cefalometriche di trasformazione del canvas, i protocolli d'impiego in settori ad alta riservatezza e l'analisi preventiva delle anomalie software.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Standard ICAO Doc 9303, Direttive CIE e Protezione dei Dati Biometrici (Art. 9, 25 e 28 GDPR)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il riferimento normativo globale per la standardizzazione delle fotografie identitarie è il manuale ICAO Doc 9303 (*Machine Readable Travel Documents*), edito dall'Organizzazione Internazionale dell'Aviazione Civile. Tale specifica è recepita nell'ordinamento italiano dalle disposizioni del Ministero dell'Interno per il rilascio della Carta d'Identità Elettronica (CIE 3.0) e dalla Questura per l'emissione del passaporto biometrico.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Sul piano della protezione dei dati personali, le immagini del volto umano elaborate per estrarre la mappa dei punti caratteristici somatici (landmark facciali: vertici oculari, giunzione naso-labiale, bordo inferiore del mento, sommità della calotta cranica) rientrano giuridicamente nella definizione di dati biometrici. L'Articolo 9 del Regolamento Generale sulla Protezione dei Dati (GDPR - Regolamento UE 2016/679) classifica i dati biometrici intesi a identificare in modo univoco una persona fisica all'interno delle "categorie particolari di dati personali", vietandone tassativamente il trattamento in assenza di un esplicito e dimostrabile consenso informato dell'interessato o di stringenti deroghe normative.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'impiego di generatori di fototessere basati su architetture Cloud SaaS tradizionali obbliga l'utente o il professionista a trasmettere la fotografia non elaborata verso server remoti gestiti da terzi. Questo flusso innesca l'obbligo di redigere una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR), di registrare il trattamento nel Registro delle Attività (Art. 30 GDPR) e di sottoscrivere un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore esterno.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'architettura Zero-Backend (Serverless Client-Side) del presente applicativo neutralizza alla radice queste complessità giuridiche. In rigorosa adesione al principio di Data Protection by Design e by Default (Articolo 25 GDPR), la libreria di rilevamento facciale `face-api.js` e i suoi modelli vengono scaricati dal CDN al primo utilizzo ed eseguiti in un Web Worker del browser. L'estrazione della maschera biometrica e il ritaglio cefalometrico avvengono unicamente all'interno del Document Object Model (DOM) e della memoria RAM volatile del dispositivo dell'utente. Nessun byte dell'immagine e nessuna coordinata biometrica viene mai trasmessa su rete pubblica (Zero-Upload), facendo decadere la qualifica stessa di Responsabile del Trattamento in capo al gestore del sito e garantendo un isolamento eremitico dei dati sensibili.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Fototessera per carta d&rsquo;identit&agrave; e passaporto: misure e consigli</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>La fototessera per carta d&rsquo;identit&agrave; elettronica, passaporto e permesso di soggiorno misura 35 &times; 45 mm, con la testa alta fra 32 e 36 mm. Lo strumento trova il volto nella foto, la ritaglia a queste misure e prepara il file o un foglio 10&times;15 cm da stampare. La foto resta sul tuo dispositivo; al primo uso il browser scarica solo i modelli per riconoscere il volto e lo sfondo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica una foto recente, di fronte, con luce uniforme ed espressione neutra.</li>
+            <li>Controlla che la testa stia nel contorno verde e gli occhi sulla linea blu; se serve usa zoom, rotazione o trascina la foto.</li>
+            <li>Se vuoi, cambia lo sfondo in bianco, grigio o celeste chiaro.</li>
+            <li>Scarica la foto singola (PNG) o il PDF con 4 o 6 foto su un foglio 10&times;15 cm.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le misure</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Requisito</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Valore</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Formato</td><td class="px-3 py-2 align-top">35 &times; 45 mm (413 &times; 531 pixel a 300 DPI)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Altezza della testa, dal mento alla sommit&agrave;</td><td class="px-3 py-2 align-top">32&ndash;36 mm (70&ndash;80% dell&rsquo;altezza)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Spazio sopra la testa</td><td class="px-3 py-2 align-top">qualche millimetro, senza tagliare i capelli</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Sfondo</td><td class="px-3 py-2 align-top">chiaro e uniforme</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Espressione</td><td class="px-3 py-2 align-top">neutra, bocca chiusa, occhi aperti</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Et&agrave; della foto</td><td class="px-3 py-2 align-top">di norma non pi&ugrave; di sei mesi</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Nella foto prodotta la testa &egrave; alta circa 34 mm (75%), con circa 4 mm di margine sopra.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Stampare correttamente</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Stampa il PDF a <strong>dimensione effettiva (scala 100%)</strong>: con &laquo;Adatta alla pagina&raquo; le foto escono di circa 32&times;41 mm e vengono rifiutate.</li>
+            <li>Il layout da 6 foto ha margini di pochi millimetri: va bene in un laboratorio fotografico. Su una stampante di casa scegli quello da 4.</li>
+            <li>Molti Comuni acquisiscono la foto allo sportello da una stampa su carta fotografica; se il Comune accetta il caricamento online, usa il file PNG.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Se qualcosa non va</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>&laquo;Volto non rilevato&raquo;:</strong> succede con foto in controluce o con il viso di tre quarti. Puoi sistemare il ritaglio a mano, ma spesso conviene rifare la foto.</li>
+            <li><strong>Pi&ugrave; persone nella foto:</strong> lo strumento avvisa; la sostituzione dello sfondo funziona bene solo se c&rsquo;&egrave; una persona sola.</li>
+            <li><strong>Luce e ombre:</strong> il ritaglio non corregge ombre, riflessi o occhiali che coprono gli occhi, motivi comuni di rifiuto.</li>
+          </ul>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La stessa foto va bene per CIE, passaporto e permesso di soggiorno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: i requisiti sono gli stessi, 35&times;45 mm, testa fra 32 e 36 mm, sfondo chiaro, espressione neutra.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica Computazionale e Formule: Proporzione Cefalometrica e Matrix Scaling (300 DPI)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Le specifiche ICAO Doc 9303 stabiliscono che la fototessera stampata debba presentare una geometria fisica rettangolare rigorosamente definita in 35 mm di larghezza e 45 mm di altezza.
-            </p>
-            
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">1. L'Equazione della Proporzione Cefalometrica (Face Ratio)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              Il vincolo matematico più stringente della normativa ICAO riguarda l'altezza del viso, definita dalla distanza lineare compresa tra l'estremità inferiore del mento e la sommità fisica della calotta cranica (*crown-to-chin*). Tale misura deve costituire una percentuale compresa tassativamente tra il 70% e l'80% dell'altezza totale del riquadro:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$70\% \le R_{\text{face}} = \left( \frac{H_{\text{crown-to-chin}}}{H_{\text{totale}}} \right) \times 100 \le 80\%$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              In termini assoluti sul formato cartaceo da 45 mm, l'altezza testa deve misurare esattamente tra 32 mm e 36 mm. La distanza compresa tra il bordo superiore del foglio e la sommità della testa deve essere mantenuta tra 2 mm e 6 mm per evitare la troncatura dei capelli.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Conversione Pixel/Millimetri alle Risoluzioni Tipografiche (DPI)</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-2">
-              Per garantire una nitidezza di grado fotografico esente da artefatti di sgranatura, il canvas d'uscita rasterizza i dati vettoriali trasformando le dimensioni metriche in pixel in base alla densità di stampa espressa in Punti Per Pollice ($DPI$, con 1 pollice $= 25.4\text{ mm}$):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$W_{\text{px}} = \left( \frac{35\text{ mm}}{25.4} \right) \times DPI, \quad H_{\text{px}} = \left( \frac{45\text{ mm}}{25.4} \right) \times DPI$$
-            </div>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-4">
-              <li><strong>Risoluzione Baseline 300 DPI:</strong> $W = 413\text{ px}$, $H = 531\text{ px}$ (Matrice di output standard caricata di default).</li>
-              <li><strong>Risoluzione Alta Definizione 600 DPI:</strong> $W = 827\text{ px}$, $H = 1063\text{ px}$ (valore di riferimento: questo generatore produce sempre il file a 300 DPI).</li>
-            </ul>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Distanza Euclidea dei Landmark e Downscaling Proxy Pipeline</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La rete neurale analizza la fotocamera localizzando le coordinate bidimensionali dei punti caratteristici del volto. Calcolata la distanza Euclidea tra il mento e la corona della testa:
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold">
-              $$d_{\text{head}} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Poiché la valutazione diretta di immagini ad altissima risoluzione (24-48 Megapixel) causerebbe l'esaurimento della RAM volatile (Heap V8) dei dispositivi mobili, l'applicativo trasferisce i pixel al Web Worker senza copiarli (transferable object), così l'analisi non blocca la pagina. Il modello lavora comunque su un'immagine ridotta a 512 pixel di lato, e il ritaglio finale viene disegnato dall'originale nel canvas da 413×531 px, pari a 35×45 mm a 300 DPI. Con foto oltre i 24 megapixel su smartphone datati conviene ridurre prima la risoluzione.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si pu&ograve; sorridere?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: bocca chiusa, espressione neutra e occhi ben visibili.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Applicazioni Operative in Ambito Consolare, Risorse Umane e Sanitario</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: Gestione Documentale per Richiedenti Asilo e Visti Consolari (Tutelati della Privacy).</strong><br />
-              Un avvocato specializzato in diritto dell'immigrazione o un'agenzia d'assistenza consolare deve predisporre la documentazione per l'ottenimento del visto di ingresso o del permesso di soggiorno per rifugiati politici. I soggetti interessati versano in condizioni di elevata vulnerabilità e le fotografie originali contengono nei metadati EXIF dettagli di geolocalizzazione GPS, data e modello di fotocamera. 
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Caricare tali scatti su portali cloud commerciali esporrebbe le immagini al rischio di intercettazione di rete o profilazione. Utilizzando il generatore 100% client-side, il legale acquisisce lo scatto, esegue il ritaglio automatico con la testa al 75% dell'altezza (34 mm) e genera il foglio di stampa PDF. L'immagine viene completamente depurata dai metadati EXIF e il file non esce mai dal computer dello studio, sigillando la catena di custodia dei dati biometrici.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: Emissione di Badge Aziendali di Sicurezza in Infrastrutture Critiche.</strong><br />
-              Il responsabile IT e il comparto Risorse Umane di un impianto industriale ad alta sicurezza (es. sito energetico o centro di ricerca aerospaziale) deve emettere centinaia di tesserini identificativi provvisti di Smart Card. Le rappresentanze sindacali negano il consenso per il caricamento dei ritratti dei dipendenti su piattaforme SaaS esterne di fornitori terzi.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'operatore HR fotografa il dipendente, sfrutta il rilevamento neurale locale per centrare gli occhi sulla linea ICAO e invia l'output direttamente alla stampante termica badges via USB. Non essendoci un fornitore esterno che riceve le immagini, non serve un accordo di trattamento per questo strumento; restano però a carico dell'azienda l'informativa ai dipendenti e le misure sugli archivi dei badge.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">E per un neonato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono ammesse tolleranze su espressione e posizione, ma lo sfondo deve essere uniforme e non devono vedersi mani o viso di chi lo tiene.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti mostrano come il generatore traduce i requisiti in millimetri nel file e nel foglio di stampa.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: foto per la Carta d'Identità Elettronica</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>File: 413 × 531 px, cioè 35 × 45 mm a 300 DPI (11,8 px per mm)</li>
-            <li>Testa dal mento alla sommità: 401 px, circa 34 mm (75% dell'altezza, dentro la forbice 70-80% richiesta)</li>
-              <li>Linea degli occhi: 230 px dal bordo superiore, pari al 57% dell'altezza misurata dal basso</li>
-            <li>Margine sopra la testa: circa 47 px = 4 mm</li>
-            </ul>
-            <p>Molti Comuni acquisiscono la foto con lo scanner allo sportello: portane una stampata su carta fotografica. Se il Comune accetta il caricamento online nella prenotazione, usa il file PNG scaricato con «Scarica Singola Foto».</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: foglio 10×15 cm con 6 fototessere</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pagina: 100 × 150 mm</li>
-            <li>2 colonne da 35 mm: margini orizzontali di 10 mm</li>
-            <li>3 righe da 45 mm: margini verticali di 3,75 mm</li>
-            </ul>
-            <p>Con margini così stretti conviene la stampa in un laboratorio fotografico, che stampa al vivo. Su una stampante domestica con bordi non stampabili di 5 mm scegli il layout da 4 foto, che lascia 20 mm fra le righe.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: volto non rilevato</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Foto controluce o con il viso di tre quarti</li>
-            <li>Esito: «Volto non rilevato. Utilizza i controlli manuali.»</li>
-            <li>Correzione: trascina la foto, usa lo zoom fino a far coincidere la testa con il contorno verde e gli occhi con la linea blu</li>
-            </ul>
-            <p>Il rilevamento non valuta luce, espressione o sfondo: una foto inquadrata correttamente può essere rifiutata per ombre o riflessi. In questi casi la soluzione è rifare lo scatto, non correggere il ritaglio.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 4: sostituzione dello sfondo</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Ritratto singolo su sfondo di interni: dopo la sostituzione gli angoli in alto risultano bianchi puri (255, 255, 255)</li>
-            <li>Pixel scuri nella metà superiore dell'inquadratura: dal 32,8% allo 0,7%</li>
-            <li>Inquadratura invariata: occhi sulla linea guida e testa al 75% dell'altezza</li>
-            <li>Foto con più persone: compare l'avviso «nella foto sono presenti 3 volti»</li>
-            </ul>
-            <p>Su un ritratto in cui compare una sola persona il contorno regge anche sui capelli mossi. Quando invece nello scatto c'è qualcun altro a contatto con il soggetto, la separazione non riesce: il modello riconosce come persona anche l'altra figura e non esiste un criterio geometrico per dividerle. È il motivo per cui la norma chiede una foto in cui compare il solo interessato, e lo strumento lo segnala prima di procedere.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La foto viene caricata su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Riconoscimento del volto e ritaglio avvengono nel browser; dalla rete arrivano solo le librerie e i modelli, al primo uso.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ, Criticità Tecniche e Sanzioni Economiche: Memory Leaks, Thermal Throttling e Sanzioni GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Fallimento del Rilevamento Neurale (Pitch, Yaw, Roll Elevati):</strong><br />
-              Qualora lo scatto presenti un'inclinazione del volto troppo accentuata lungo gli assi tridimensionali (rotazione laterale *yaw*, inclinazione testa *roll* o flessione *pitch* superiori a 5 gradi), la rete neurale `face-api.js` potrebbe restituire un indice di confidenza insufficiente o posizionare i landmark in modo asimmetrico. In tali scenari, il sistema attiva un fallback segnalando lo stato all'utente e abilitando i controlli manuali per la rotazione libera (-180° / +180°) e il trascinamento diretto del Canvas.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Surriscaldamento dell'Hardware (Thermal Throttling) nei Dispositivi Mobili:</strong><br />
-              L'esecuzione continuativa di modelli di Machine Learning per l'analisi dei fotogrammi della fotocamera su smartphone di fascia media può generare un elevato carico di lavoro sul SoC, provocando il surriscaldamento del dispositivo e il conseguente *thermal throttling* (taglio di frequenza della CPU da parte del sistema operativo). L'applicativo mitiga l'inconveniente eseguendo l'inferenza neurale *one-shot* unicamente al momento del caricamento dello scatto fisso.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Errore di Scala nelle Impostazioni di Stampa del Foglio PDF (10x15 cm):</strong><br />
-              Un errore comune al momento della stampa del PDF contenente la griglia da 4 o 6 fototessere consiste nel lasciare selezionata l'opzione "Adatta alla pagina" o "Adatta all'area stampabile" all'interno del driver di stampa del sistema operativo. Tale opzione scala l'intero documento di un fattore pari al 92-95%, riducendo la dimensione effettiva della singola fototessera a 32x41 mm e causando il rifiuto certo dello scatto allo sportello comunale CIE. È imperativo impostare la scala di stampa tassativamente su "Dimensione Effettiva" / "Scala 100%".
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Quadro Sanzionatorio GDPR (Articolo 83):</strong><br />
-              Il trattamento illecito di dati biometrici (Art. 9 GDPR) condotto in assenza dei presupposti di legge espone le imprese e i professionisti all'irrogazione delle sanzioni amministrative pecuniarie previste dall'Articolo 83, paragrafo 5 del GDPR: sanzioni fino a 20 milioni di euro o, per le imprese, fino al 4% del fatturato mondiale totale annuo dell'esercizio precedente. L'adozione dell'architettura Serverless Client-Side elimina radicalmente la superficie di attacco e azzera l'esposizione sanzionatoria per trasferimento non autorizzato.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usare una foto fatta con il telefono?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se &egrave; nitida, frontale, con luce uniforme e sfondo chiaro. Fatti fotografare da un&rsquo;altra persona a circa un metro e mezzo, non con un selfie.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso usare la stessa foto per CIE, passaporto e permesso di soggiorno?</h3>
-            <p>Sì, i requisiti sono gli stessi: 35×45 mm, testa fra 32 e 36 mm, sfondo chiaro uniforme ed espressione neutra. La foto deve essere recente, di norma scattata da non più di sei mesi.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Si può sorridere nella fototessera?</h3>
-            <p>No. L'espressione deve essere neutra, con la bocca chiusa e gli occhi aperti e ben visibili.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La fototessera di un neonato segue le stesse regole?</h3>
-            <p>Per i bambini piccoli sono ammesse tolleranze su espressione e posizione, ma lo sfondo deve essere uniforme e non devono comparire le mani o il viso di chi lo sostiene.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La foto viene caricata su un server per il rilevamento del volto?</h3>
-            <p>No. Il rilevamento avviene nel browser; dalla rete vengono scaricati solo la libreria e i modelli di riconoscimento al primo utilizzo.</p>
-            </div>
-          </div>
-        </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>ICAO Doc 9303: fotografie per i documenti di viaggio.</li>
+          <li>Ministero dell&rsquo;Interno: requisiti della fotografia per la carta d&rsquo;identit&agrave; elettronica e il passaporto.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

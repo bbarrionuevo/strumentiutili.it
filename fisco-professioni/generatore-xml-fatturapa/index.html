@@ -139,50 +139,50 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Cosa devo fare se il Sistema di Interscambio scarta la mia fattura?",
+            "name": "Cosa faccio se la fattura viene scartata?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il documento scartato si considera giuridicamente non emesso. Occorre correggere l'errore segnalato dal codice di scarto e ritrasmettere il file entro cinque giorni dalla notifica, mantenendo la data e il numero originari. Se il termine viene rispettato non si incorre in alcuna sanzione per tardiva emissione, perché la trasmissione si considera tempestiva."
+              "text": "Una fattura scartata è come non emessa. Correggi l’errore indicato nella ricevuta e reinviala entro 5 giorni, con la stessa data e lo stesso numero: così non ci sono sanzioni."
             }
           },
           {
             "@type": "Question",
-            "name": "Un contribuente in regime forfettario deve emettere fattura elettronica?",
+            "name": "Anche i forfettari devono fare la fattura elettronica?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. L'obbligo si è esteso a tutti i titolari di partita IVA, senza più esclusioni legate al regime o al volume dei ricavi. Il forfettario espone l'operazione senza IVA, indicando il regime fiscale corrispondente e la natura relativa alle operazioni non soggette, e applica l'imposta di bollo virtuale quando l'importo supera la soglia di legge."
+              "text": "Sì, oggi tutti i titolari di partita IVA. Il forfettario indica RF19, righe con IVA 0% e natura N2.2, e il bollo da 2 € sopra 77,47 €."
             }
           },
           {
             "@type": "Question",
-            "name": "Il file XML generato è già valido per l'invio?",
+            "name": "Il file è pronto per l’invio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il generatore produce un tracciato conforme alle specifiche e ne verifica la coerenza formale, compresa la quadratura del castelletto e la validità del codice di controllo delle partite IVA. La trasmissione resta però un passaggio separato: va effettuata tramite il portale Fatture e Corrispettivi, un intermediario abilitato o un canale accreditato. Questo strumento non invia nulla ad alcun sistema."
+              "text": "Sì, una volta compilati tutti i campi. Prima di caricarlo controlla i dati; per casi particolari (cassa previdenziale, sconti, più rate) usa un gestionale o chiedi al tuo commercialista."
             }
           },
           {
             "@type": "Question",
-            "name": "Qual è la differenza fra codice destinatario e PEC?",
+            "name": "Che differenza c’è fra codice destinatario e PEC?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sono i due recapiti alternativi attraverso cui il Sistema di Interscambio consegna il documento. Il codice destinatario è un identificativo di sette caratteri associato al canale telematico del ricevente. In assenza di codice si valorizza il campo con sette zeri e si indica la PEC del destinatario. Se nessuno dei due è noto, la fattura viene comunque recapitata nell'area riservata del cessionario."
+              "text": "Sono due modi per ricevere la fattura. Il codice destinatario ha 7 caratteri; se non c’è, si usa 0000000 e la fattura arriva alla PEC registrata o nell’area riservata del cliente."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso modificare una fattura già accettata dal Sistema di Interscambio?",
+            "name": "Posso modificare una fattura già consegnata?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Una volta consegnata, la fattura è immodificabile. La rettifica avviene esclusivamente mediante emissione di una nota di credito, che storna in tutto o in parte il documento originario, o di una nota di debito per gli aumenti. Entrambe seguono lo stesso tracciato e le stesse regole di trasmissione della fattura."
+              "text": "No: si corregge con una nota di credito (TD04), che annulla tutto o in parte la fattura, ed eventualmente una nuova fattura."
             }
           },
           {
             "@type": "Question",
-            "name": "Conservare il file XML sul mio computer soddisfa l'obbligo di legge?",
+            "name": "I dati dei clienti restano salvati?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. La conservazione a norma richiede l'apposizione di riferimenti temporali opponibili a terzi, la generazione di pacchetti di archiviazione conformi e la garanzia di integrità e leggibilità per dieci anni. Il salvataggio su disco o su un servizio cloud generico non integra questi requisiti. Il servizio di conservazione gratuito offerto dall'Agenzia delle Entrate va attivato espressamente mediante adesione."
+              "text": "Solo sul tuo dispositivo, per ritrovarli la volta dopo. Partite IVA e codici fiscali dei clienti non vengono salvati, e nulla viene inviato a un server."
             }
           }
         ]
@@ -283,7 +283,7 @@
         <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">🔒 I dati restano nel tuo browser</span>
         <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Generatore XML Fattura Elettronica</h1>
         <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Crea il file <strong>.xml (FatturaPA vers. 1.2.2)</strong> pronto per l'invio al Sistema di Interscambio (SdI). Valida le Partite IVA con algoritmo di Luhn ed evita gli scarti formali. Non richiede registrazione o abbonamenti.
+          Crea il file <strong>XML della fattura elettronica</strong> (formato FatturaPA) da caricare sul portale Fatture e Corrispettivi. Controlla la Partita IVA, il riepilogo IVA e la natura delle operazioni senza IVA, per evitare gli scarti più comuni. Senza registrazione.
         </p>
       </div>
 
@@ -321,7 +321,25 @@
               </select>
               <div id="guida-xml-regime" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Quale scegliere:</strong> RF01 per il regime ordinario, RF19 per il forfettario, RF02 per i vecchi contribuenti minimi. Il codice deve coincidere con quello comunicato all'Agenzia all'apertura della Partita IVA.</p>
-                <p><strong class="text-indigo-900">Forfettario:</strong> con RF19 la ritenuta viene disattivata e le righe vanno impostate con IVA 0% e natura N2.2. Sopra 77,47 € serve il bollo da 2 €, che il generatore non inserisce: va indicato nel gestionale o nel servizio dell'Agenzia prima dell'invio.</p>
+                <p><strong class="text-indigo-900">Forfettario:</strong> con RF19 la ritenuta viene disattivata e le righe vanno impostate con IVA 0% e natura N2.2. Sopra 77,47 € il generatore indica nel file il bollo virtuale da 2 €, che si paga poi con F24 ogni trimestre.</p>
+              </div>
+            </div>
+            <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-6 gap-3">
+              <div class="col-span-2 sm:col-span-6">
+                <label for="emittente-indirizzo" class="block text-xs font-bold text-gray-700 mb-1">Indirizzo della sede *</label>
+                <input type="text" id="emittente-indirizzo" required autocomplete="off" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="Es. Via Roma 12" />
+              </div>
+              <div class="col-span-1 sm:col-span-2">
+                <label for="emittente-cap" class="block text-xs font-bold text-gray-700 mb-1">CAP *</label>
+                <input type="text" id="emittente-cap" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" title="5 cifre" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="00100" />
+              </div>
+              <div class="col-span-1 sm:col-span-3">
+                <label for="emittente-comune" class="block text-xs font-bold text-gray-700 mb-1">Comune *</label>
+                <input type="text" id="emittente-comune" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+              </div>
+              <div class="col-span-1">
+                <label for="emittente-provincia" class="block text-xs font-bold text-gray-700 mb-1">Prov.</label>
+                <input type="text" id="emittente-provincia" pattern="[A-Za-z]{2}" maxlength="2" title="Sigla di 2 lettere" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state uppercase" placeholder="RM" />
               </div>
             </div>
           </div>
@@ -340,7 +358,7 @@
                 <label for="cliente-id" class="text-xs font-bold text-gray-700">Partita IVA / Codice Fiscale *</label>
                 <button type="button" data-guida-toggle="guida-xml-cliente" aria-expanded="false" aria-controls="guida-xml-cliente" aria-label="Guida al campo Identificativo del cliente" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
               </div>
-              <input data-guida="guida-xml-cliente" aria-describedby="guida-xml-cliente" type="text" id="cliente-id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="P.IVA 11 cifre o CF 16 cifre" />
+              <input data-guida="guida-xml-cliente" aria-describedby="guida-xml-cliente" type="text" id="cliente-id" required data-no-save class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="P.IVA 11 cifre o CF 16 cifre" />
               <div id="guida-xml-cliente" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Azienda o professionista:</strong> la Partita IVA di 11 cifre: viene inserita nel nodo IdFiscaleIVA.</p>
                 <p><strong class="text-indigo-900">Privato:</strong> il codice fiscale di 16 caratteri: viene inserito nel nodo CodiceFiscale. In questo caso usa 0000000 come codice destinatario e consegna al cliente anche una copia PDF.</p>
@@ -355,6 +373,24 @@
               <div id="guida-xml-sdi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Dove trovarlo:</strong> il codice di 7 caratteri che il cliente ha registrato presso l'Agenzia o quello del suo software di fatturazione, di solito indicato nella visura o chiesto per email. Le pubbliche amministrazioni usano un codice ufficio di 6 caratteri.</p>
                 <p><strong class="text-indigo-900">Se non lo conosci:</strong> usa 0000000: la fattura arriva nell'area riservata del cliente o alla PEC registrata. Un codice sbagliato non causa lo scarto ma una mancata consegna.</p>
+              </div>
+            </div>
+            <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-6 gap-3">
+              <div class="col-span-2 sm:col-span-6">
+                <label for="cliente-indirizzo" class="block text-xs font-bold text-gray-700 mb-1">Indirizzo del cliente *</label>
+                <input type="text" id="cliente-indirizzo" required autocomplete="off" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="Es. Via Roma 12" />
+              </div>
+              <div class="col-span-1 sm:col-span-2">
+                <label for="cliente-cap" class="block text-xs font-bold text-gray-700 mb-1">CAP *</label>
+                <input type="text" id="cliente-cap" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" title="5 cifre" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" placeholder="00100" />
+              </div>
+              <div class="col-span-1 sm:col-span-3">
+                <label for="cliente-comune" class="block text-xs font-bold text-gray-700 mb-1">Comune *</label>
+                <input type="text" id="cliente-comune" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state" />
+              </div>
+              <div class="col-span-1">
+                <label for="cliente-provincia" class="block text-xs font-bold text-gray-700 mb-1">Prov.</label>
+                <input type="text" id="cliente-provincia" pattern="[A-Za-z]{2}" maxlength="2" title="Sigla di 2 lettere" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state uppercase" placeholder="RM" />
               </div>
             </div>
           </div>
@@ -531,239 +567,80 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold text-gray-900 mb-5">Manuale Fiscale: Evitare gli Scarti del Sistema di Interscambio (SdI)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          Il perimetro normativo della fatturazione elettronica in Italia impone il rigoroso rispetto dell'XML Schema Definition (XSD) in versione 1.2.2 emanato dall'Agenzia delle Entrate. Questo generatore client-side è stato ingegnerizzato appositamente per le Partite IVA, risolvendo alla radice e in via automatizzata i tre errori formali più frequenti che causano la temuta ricevuta di scarto da parte del Sistema di Interscambio (SdI).
-        </p>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❌</span> Errore 00424 e 00400: Gestione Rigida Aliquote e Natura IVA</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              Una vulnerabilità classica nei software non aggiornati o nella compilazione manuale è la formattazione inesatta del tag <code>&lt;AliquotaIVA&gt;</code>. Il SdI scarta sistematicamente i file in cui l'aliquota è espressa come fattore decimale (ad esempio, <code>0.22</code>). L'algoritmo di StrumentiUtili converte, formatta e impone forzatamente l'espressione nominale percentuale tassativa a due cifre decimali (es. <code>22.00</code>), neutralizzando l'<strong>Errore 00424</strong>.
-            </p>
-            <p>
-              Inoltre, qualora la prestazione sia configurata come esente o non imponibile (Aliquota 0%), la business logic del portale interviene attivamente per prevenire l'<strong>Errore 00400</strong>. L'interfaccia obbligherà l'utente alla valorizzazione del nodo <code>&lt;Natura&gt;</code> (es. N2.2 per i contribuenti in Regime Forfettario o N3.1 per le esportazioni), bloccando la generazione dell'XML in caso di omissione.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Creare il file XML di una fattura elettronica ed evitare gli scarti</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il generatore crea il file XML della fattura nel formato richiesto dal Sistema di Interscambio (SdI). Controlla prima gli errori che causano pi&ugrave; spesso lo scarto. L&rsquo;invio lo fai tu, dal portale dell&rsquo;Agenzia delle Entrate o con il tuo intermediario.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Compila i tuoi dati: nome, partita IVA, regime fiscale e indirizzo della sede.</li>
+            <li>Compila quelli del cliente: partita IVA o codice fiscale, codice destinatario (0000000 se non lo conosci) e indirizzo.</li>
+            <li>Scrivi numero e data della fattura e aggiungi le righe, con aliquota IVA o, se l&rsquo;IVA &egrave; zero, la natura.</li>
+            <li>Scarica il file XML.</li>
+            <li>Entra in &laquo;Fatture e Corrispettivi&raquo; sul sito dell&rsquo;Agenzia delle Entrate (SPID, CIE o CNS), scegli &laquo;Trasmissione&raquo; e carica il file. Entro 5 giorni ricevi la ricevuta di consegna o di scarto.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa controlla il generatore</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Partita IVA:</strong> il controllo dell&rsquo;ultima cifra scopre gli errori di battitura (scarto 00305). Non verifica che la partita IVA sia attiva.</li>
+            <li><strong>Aliquota:</strong> scritta come la vuole lo SdI, per esempio 22.00 (scarto 00424).</li>
+            <li><strong>Natura:</strong> obbligatoria sulle righe con IVA zero, per esempio N2.2 per i forfettari (scarto 00400).</li>
+            <li><strong>Riepilogo IVA:</strong> un blocco per ogni aliquota, con importi che tornano con le righe (scarti 00419 e 00421).</li>
+            <li><strong>Codice destinatario:</strong> 7 caratteri, o 6 per la pubblica amministrazione.</li>
+            <li><strong>Numero gi&agrave; usato:</strong> ti avvisa se hai gi&agrave; generato una fattura con lo stesso numero nello stesso anno (scarto 00404).</li>
+            <li><strong>Bollo:</strong> per forfettari e minimi, sopra 77,47 &euro; senza IVA indica il bollo virtuale da 2 &euro;.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Consulente in regime ordinario.</strong> 12 ore a 60 &euro; = 720 &euro; + IVA 22% (158,40 &euro;) = 878,40 &euro;. Con la ritenuta del 20% su 720 &euro; (144 &euro;) il cliente paga 734,40 &euro; e versa i 144 &euro; con F24, codice tributo 1040, entro il 16 del mese dopo.</p>
+          <p><strong>Traduzione con volume allegato.</strong> 900 &euro; al 22% e 30 &euro; al 4%: due blocchi di riepilogo, IVA 199,20 &euro;, totale 1.129,20 &euro;.</p>
+          <p><strong>Fotografa forfettaria.</strong> Regime RF19, riga da 1.200 &euro; con IVA 0% e natura N2.2, senza ritenuta, con bollo virtuale da 2 &euro;.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Codici utili</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Campo</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Significato</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Tipo documento</td><td class="px-3 py-2 align-top">TD01 / TD04 / TD06</td><td class="px-3 py-2 align-top">Fattura / nota di credito / parcella</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Regime fiscale</td><td class="px-3 py-2 align-top">RF01 / RF19</td><td class="px-3 py-2 align-top">Ordinario / forfettario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Natura</td><td class="px-3 py-2 align-top">N2.2</td><td class="px-3 py-2 align-top">Non soggetta: tipica dei forfettari</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Natura</td><td class="px-3 py-2 align-top">N3.1</td><td class="px-3 py-2 align-top">Non imponibile: esportazioni</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Natura</td><td class="px-3 py-2 align-top">N4</td><td class="px-3 py-2 align-top">Esente</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Causale ritenuta</td><td class="px-3 py-2 align-top">A / M</td><td class="px-3 py-2 align-top">Lavoro autonomo abituale / occasionale</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🔢</span> Errore 00305 e 00311: Validazione P.IVA tramite Algoritmo di Luhn</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              L'invio di Partite IVA inesistenti, scaturite da banali errori di digitazione, causa lo scarto istantaneo dell'intero documento (<strong>Errore 00305</strong>). Il nostro script integra nativamente la verifica matematica locale tramite la <strong>Formula di Luhn (modulo 10)</strong> sulle 11 cifre inserite. Questa validazione client-side rileva le incongruenze nel check-digit finale, avvisandoti preventivamente prima ancora che il file venga generato.
-            </p>
-            <p>
-              Parallelamente, il sistema sorveglia l'integrità del Codice Destinatario (<strong>Errore 00311</strong>), assicurandosi che la stringa contenga esattamente 7 caratteri (per B2B) o 6 caratteri (per fatturazione P.A.). Qualora il cliente sia un privato cittadino sprovvisto di PEC o codice univoco, è concesso forzare il blocco utilizzando l'override convenzionale a sette zeri: <code>0000000</code>.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Errore 00419: Costruzione Automatica dei DatiRiepilogo (Castelletto IVA)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>
-              L'architettura del nodo XML <code>&lt;DatiRiepilogo&gt;</code> (il cosiddetto "Castelletto IVA") rappresenta l'ostacolo computazionale più arduo nella fatturazione elettronica manuale. L'applicativo mappa in tempo reale (tramite funzioni di array mapping JavaScript) tutte le righe di prodotto inserite dall'utente.
-            </p>
-            <p>
-              Successivamente, aggrega matematicamente l'Imponibile e l'Imposta raggruppandoli per combinazioni univoche di Aliquota IVA e Codice Natura. Questa ricomposizione esatta previene la discordanza tra il totale delle linee e i riepiloghi finali (<strong>Errori 00419 e 00421</strong>), restituendo un castelletto IVA coerente con le righe. Prima della trasmissione il file va completato con gli indirizzi reali di fornitore e cliente, che il generatore imposta con valori segnaposto.
-            </p>
-          </div>
-        </details>
-
-        <details class="bg-emerald-50/50 rounded-xl border border-emerald-100 group" open>
-          <summary class="font-bold text-emerald-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-emerald-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🚀</span> Guida Operativa: Come inviare il file XML allo SdI?</span>
-            <span class="text-emerald-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-emerald-100 space-y-5 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            
-            <p>Scaricare il file XML da questa pagina è solo il primo passo. Essendo uno strumento <em>Zero-Backend</em>, noi generiamo il documento, ma <strong>la trasmissione fiscale spetta a te</strong>. Segui questa procedura in 3 step:</p>
-            
-            <div class="space-y-4">
-              <!-- Step 1 -->
-              <div class="flex gap-4">
-                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">1</div>
-                <div>
-                  <h4 class="font-bold text-gray-900">Genera e Scarica l'XML</h4>
-                  <p class="mt-1">Compila il form prestando attenzione alle Partite IVA. Clicca su "Scarica File XML". Il file verrà salvato nella tua cartella Download con la nomenclatura ufficiale richiesta dallo Stato (es. <code>IT01234567890_00001.xml</code>).</p>
-                </div>
-              </div>
-
-              <!-- Step 2 -->
-              <div class="flex gap-4">
-                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">2</div>
-                <div>
-                  <h4 class="font-bold text-gray-900">Accedi al Cassetto Fiscale (Fatture e Corrispettivi)</h4>
-                  <p class="mt-1">Entra nel portale <strong>Fatture e Corrispettivi</strong> dell'Agenzia delle Entrate utilizzando le tue credenziali SPID, CIE o CNS. Puoi usare anche il portale della tua Camera di Commercio o software di terze parti.</p>
-                </div>
-              </div>
-
-              <!-- Step 3 -->
-              <div class="flex gap-4">
-                <div class="shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">3</div>
-                <div>
-                  <h4 class="font-bold text-gray-900">Effettua l'Upload e Trasmetti</h4>
-                  <p class="mt-1">Cerca la sezione <em>"Trasmissione"</em> e seleziona l'opzione <em>"Carica un file XML"</em>. Seleziona il file appena scaricato. Il sistema dell'Agenzia effettuerà i controlli formali e ti rilascerà, entro 5 giorni, la ricevuta di avvenuta consegna (o di scarto, in caso di pendenze gravi).</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 p-3 bg-white border border-gray-200 rounded-lg text-xs text-gray-500 text-center">
-              ⚠️ Attenzione: Se il file viene rifiutato per "Fattura Duplicata" (Errore 00404), significa che hai inserito un Numero Fattura già utilizzato nel corso dell'anno. Modifica il numero progressivo nel nostro tool e riscarica il file.
-            </div>
-
-          </div>
-        </details>
-
-      <!-- su-seo-expansion -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🧮</span> Come funziona il calcolo matematico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>Il file XML della fattura elettronica non è un documento testuale ma una struttura dati sottoposta a validazione automatica dal Sistema di Interscambio. Due sono i meccanismi computazionali che determinano l'accettazione o lo scarto: il controllo di integrità della partita IVA e la quadratura del castelletto IVA.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il codice di controllo della partita IVA</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>La partita IVA italiana e composta da 11 cifre: 10 identificative + 1 di controllo</li>
-              <li>1. Si sommano le cifre in posizione dispari (1a, 3a, 5a, 7a, 9a)</li>
-              <li>2. Si raddoppia ogni cifra in posizione pari; se il risultato supera 9 si sottrae 9</li>
-              <li>3. Si sommano i valori ottenuti al punto 2 e li si aggiunge alla somma del punto 1</li>
-              <li>4. Cifra di controllo = (10 - (Somma totale mod 10)) mod 10</li>
-              <li>La validazione fallisce se la cifra calcolata differisce dall'undicesima</li>
-            </ul>
-            <p>L'algoritmo appartiene alla famiglia delle verifiche di parità pesata e intercetta la totalità degli errori di digitazione su singola cifra e la quasi totalità delle inversioni fra cifre adiacenti. Il controllo è puramente matematico e non accerta l'effettiva esistenza del soggetto: una partita IVA formalmente valida ma cessata supera la verifica locale e viene respinta soltanto dai controlli anagrafici del Sistema di Interscambio.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">La quadratura del castelletto IVA</h3>
-            <ul class="list-disc pl-5 space-y-2 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-              <li>Per ogni aliquota presente nelle righe di dettaglio:</li>
-              <li>ImponibileImporto = Somma dei PrezzoTotale delle righe con quella aliquota</li>
-              <li>Imposta = ImponibileImporto x AliquotaIVA / 100</li>
-              <li>Vincolo: deve esistere un blocco DatiRiepilogo per ciascuna aliquota distinta</li>
-              <li>Arrotondamento obbligatorio alla seconda cifra decimale su ogni singolo blocco</li>
-            </ul>
-            <p>Il castelletto è il punto in cui si concentra la maggior parte degli scarti evitabili. La causa tipica non è un errore di calcolo ma un problema di arrotondamento: sommare valori già arrotondati riga per riga produce risultati diversi dall'arrotondamento della somma. Su una fattura con molte righe lo scostamento di un centesimo è sufficiente a far respingere il documento, perché il validatore applica un confronto esatto.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Esempio di quadratura con due aliquote</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Riga</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Descrizione</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Imponibile</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Aliquota</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">1</td><td class="px-3 py-2 border-t border-gray-200">Consulenza tecnica</td><td class="px-3 py-2 border-t border-gray-200">1.500,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">22%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">2</td><td class="px-3 py-2 border-t border-gray-200">Materiale editoriale</td><td class="px-3 py-2 border-t border-gray-200">400,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">4%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">3</td><td class="px-3 py-2 border-t border-gray-200">Assistenza continuativa</td><td class="px-3 py-2 border-t border-gray-200">600,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">22%</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Riepilogo 22%</td><td class="px-3 py-2 border-t border-gray-200">Righe 1 e 3</td><td class="px-3 py-2 border-t border-gray-200">2.100,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 462,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Riepilogo 4%</td><td class="px-3 py-2 border-t border-gray-200">Riga 2</td><td class="px-3 py-2 border-t border-gray-200">400,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 16,00 EUR</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Totale documento</td><td class="px-3 py-2 border-t border-gray-200">—</td><td class="px-3 py-2 border-t border-gray-200">2.500,00 EUR</td><td class="px-3 py-2 border-t border-gray-200">Imposta 478,00 EUR</td></tr></tbody></table></div>
-            <p>Si noti che i blocchi di riepilogo sono due e non tre: l'aggregazione avviene per aliquota, non per riga. Un documento che esponesse tre riepiloghi, uno per riga, verrebbe scartato pur essendo aritmeticamente corretto, perché violerebbe la regola di unicità del blocco per ciascuna combinazione di aliquota e natura.</p>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Il caso delle operazioni senza imposta</h3>
-            <p>Quando l'aliquota è pari a zero il tracciato impone la valorizzazione del campo Natura, che spiega la ragione giuridica dell'assenza di imposta. L'omissione genera lo scarto per incoerenza fra aliquota nulla e natura mancante. È l'errore più frequente fra i contribuenti in regime forfettario, che devono indicare il codice relativo alle operazioni non soggette per effetto del proprio regime agevolato.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚖️</span> Riferimenti Normativi 2026</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>D.Lgs. 5 agosto 2015 n. 127</strong> — introduce la fatturazione elettronica generalizzata fra privati e il Sistema di Interscambio come canale obbligatorio.</li>
-              <li><strong>D.P.R. 26 ottobre 1972 n. 633, articolo 21</strong> — stabilisce il contenuto obbligatorio della fattura e i termini di emissione.</li>
-              <li><strong>Provvedimento del Direttore dell'Agenzia delle Entrate del 30 aprile 2018</strong> — approva le specifiche tecniche del tracciato FatturaPA e le regole di validazione applicate dal Sistema di Interscambio.</li>
-              <li><strong>D.M. 17 giugno 2014</strong> — disciplina le modalità di assolvimento dell'imposta di bollo sui documenti informatici e la conservazione digitale.</li>
-              <li><strong>D.Lgs. 7 marzo 2005 n. 82 (CAD)</strong> — regola il valore probatorio dei documenti informatici, la firma elettronica e la conservazione a norma.</li>
-            </ul>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Codifiche fondamentali del tracciato</h3>
-            <div class="overflow-x-auto"><table class="min-w-full text-sm border border-gray-200 rounded-lg bg-gray-50"><thead class="bg-gray-100"><tr><th class="px-3 py-2 text-left font-semibold text-gray-900">Campo</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th class="px-3 py-2 text-left font-semibold text-gray-900">Significato</th></tr></thead><tbody><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD01</td><td class="px-3 py-2 border-t border-gray-200">Fattura ordinaria</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD04</td><td class="px-3 py-2 border-t border-gray-200">Nota di credito</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD05</td><td class="px-3 py-2 border-t border-gray-200">Nota di debito</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">TipoDocumento</td><td class="px-3 py-2 border-t border-gray-200">TD06</td><td class="px-3 py-2 border-t border-gray-200">Parcella professionale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">RegimeFiscale</td><td class="px-3 py-2 border-t border-gray-200">RF01</td><td class="px-3 py-2 border-t border-gray-200">Regime ordinario</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">RegimeFiscale</td><td class="px-3 py-2 border-t border-gray-200">RF19</td><td class="px-3 py-2 border-t border-gray-200">Regime forfettario</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N1</td><td class="px-3 py-2 border-t border-gray-200">Operazioni escluse ex articolo 15</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N2.2</td><td class="px-3 py-2 border-t border-gray-200">Operazioni non soggette, altri casi, tipiche dei forfettari</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N3.1</td><td class="px-3 py-2 border-t border-gray-200">Operazioni non imponibili, esportazioni</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">Natura</td><td class="px-3 py-2 border-t border-gray-200">N4</td><td class="px-3 py-2 border-t border-gray-200">Operazioni esenti ex articolo 10</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">A</td><td class="px-3 py-2 border-t border-gray-200">Prestazioni di lavoro autonomo abituale</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">M</td><td class="px-3 py-2 border-t border-gray-200">Lavoro autonomo non esercitato abitualmente</td></tr><tr><td class="px-3 py-2 border-t border-gray-200">CausalePagamento</td><td class="px-3 py-2 border-t border-gray-200">Q</td><td class="px-3 py-2 border-t border-gray-200">Provvigioni ad agenti e rappresentanti</td></tr></tbody></table></div>
-            <h3 class="font-bold text-gray-900 text-base mt-4">Termini e adempimenti</h3>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Emissione</strong>: entro dodici giorni dall'effettuazione dell'operazione per la fattura immediata, entro il giorno quindici del mese successivo per la differita.</li>
-              <li><strong>Esito della trasmissione</strong>: il Sistema di Interscambio restituisce ricevuta di consegna o di mancata consegna, oppure notifica di scarto entro cinque giorni.</li>
-              <li><strong>Correzione dopo lo scarto</strong>: il documento respinto si considera non emesso e va ritrasmesso corretto entro cinque giorni dalla notifica, conservando data e numerazione originarie.</li>
-              <li><strong>Imposta di bollo</strong>: 2,00 euro sulle fatture senza IVA di importo superiore a 77,47 euro, assolta in modo virtuale con versamento trimestrale.</li>
-              <li><strong>Conservazione</strong>: dieci anni in modalità conforme alle regole tecniche, obbligo che non è assolto dal semplice salvataggio del file su un disco locale.</li>
-            </ul>
-            <p class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-900"><strong>Attenzione:</strong> le specifiche tecniche del tracciato vengono aggiornate periodicamente dall'Agenzia delle Entrate e l'introduzione di nuovi codici o controlli può rendere non conformi documenti prodotti secondo versioni precedenti. Il file generato da questo strumento va verificato con il proprio intermediario o software gestionale prima della trasmissione al Sistema di Interscambio.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <p>I casi seguenti sono stati riprodotti nel generatore. I totali sono quelli del riepilogo laterale, che nel file XML diventano ImportoTotaleDocumento.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: consulente in regime ordinario con ritenuta</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riga: 12 ore di consulenza × 60,00 € = 720,00 € al 22%</li>
-            <li>IVA: 158,40 €; totale documento: 878,40 €</li>
-            <li>Ritenuta 20% su 720 € (nodo DatiRitenuta): 144,00 €</li>
-            <li>Importo effettivamente pagato dal cliente: 734,40 €</li>
-            </ul>
-            <p>Il cliente versa i 144 € all'Erario con il codice tributo 1040 entro il 16 del mese successivo al pagamento. Il consulente li recupera in dichiarazione.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: traduzione con volume allegato, due aliquote</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Riga 1: traduzione tecnica 900,00 € al 22%, IVA 198,00 €</li>
-            <li>Riga 2: copia cartacea del manuale 30,00 € al 4%, IVA 1,20 €</li>
-            <li>Imponibile 930,00 €; IVA 199,20 €; totale 1.129,20 €</li>
-            </ul>
-            <p>Nel file compaiono due blocchi DatiRiepilogo, uno per aliquota. Un'unica aliquota per entrambe le righe sarebbe un errore sostanziale, da correggere con nota di credito e nuova fattura.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: fotografa in regime forfettario</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Regime RF19: la ritenuta viene disattivata automaticamente</li>
-            <li>Riga: servizio fotografico 1.200,00 € con IVA 0% e natura N2.2</li>
-            <li>Totale documento: 1.200,00 €</li>
-            </ul>
-            <p>Sopra 77,47 € la fattura del forfettario richiede il bollo virtuale da 2 €, che l'Agenzia addebita trimestralmente: il generatore non lo inserisce, quindi va aggiunto nel file prima dell'invio, insieme agli indirizzi reali delle parti.</p>
-          </div>
-        </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Cosa devo fare se il Sistema di Interscambio scarta la mia fattura?</h3>
-              <p>Il documento scartato si considera giuridicamente non emesso. Occorre correggere l'errore segnalato dal codice di scarto e ritrasmettere il file entro cinque giorni dalla notifica, mantenendo la data e il numero originari. Se il termine viene rispettato non si incorre in alcuna sanzione per tardiva emissione, perché la trasmissione si considera tempestiva.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Un contribuente in regime forfettario deve emettere fattura elettronica?</h3>
-              <p>Sì. L'obbligo si è esteso a tutti i titolari di partita IVA, senza più esclusioni legate al regime o al volume dei ricavi. Il forfettario espone l'operazione senza IVA, indicando il regime fiscale corrispondente e la natura relativa alle operazioni non soggette, e applica l'imposta di bollo virtuale quando l'importo supera la soglia di legge.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Il file XML generato è già valido per l'invio?</h3>
-              <p>Il generatore produce un tracciato conforme alle specifiche e ne verifica la coerenza formale, compresa la quadratura del castelletto e la validità del codice di controllo delle partite IVA. La trasmissione resta però un passaggio separato: va effettuata tramite il portale Fatture e Corrispettivi, un intermediario abilitato o un canale accreditato. Questo strumento non invia nulla ad alcun sistema.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la differenza fra codice destinatario e PEC?</h3>
-              <p>Sono i due recapiti alternativi attraverso cui il Sistema di Interscambio consegna il documento. Il codice destinatario è un identificativo di sette caratteri associato al canale telematico del ricevente. In assenza di codice si valorizza il campo con sette zeri e si indica la PEC del destinatario. Se nessuno dei due è noto, la fattura viene comunque recapitata nell'area riservata del cessionario.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Posso modificare una fattura già accettata dal Sistema di Interscambio?</h3>
-              <p>No. Una volta consegnata, la fattura è immodificabile. La rettifica avviene esclusivamente mediante emissione di una nota di credito, che storna in tutto o in parte il documento originario, o di una nota di debito per gli aumenti. Entrambe seguono lo stesso tracciato e le stesse regole di trasmissione della fattura.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-              <h3 class="font-bold text-gray-900 text-base mb-1">Conservare il file XML sul mio computer soddisfa l'obbligo di legge?</h3>
-              <p>No. La conservazione a norma richiede l'apposizione di riferimenti temporali opponibili a terzi, la generazione di pacchetti di archiviazione conformi e la garanzia di integrità e leggibilità per dieci anni. Il salvataggio su disco o su un servizio cloud generico non integra questi requisiti. Il servizio di conservazione gratuito offerto dall'Agenzia delle Entrate va attivato espressamente mediante adesione.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il generatore di XML per la fatturazione elettronica è un'applicazione <strong>100% client-side, senza alcun backend</strong>. Le partite IVA, i codici fiscali, le ragioni sociali, gli indirizzi e gli importi dei tuoi clienti vengono composti nel tracciato direttamente dal browser, sul tuo dispositivo. Il file XML nasce localmente e resta nella tua esclusiva disponibilità: nessun dato di fatturazione transita su nostri server, perché nessun server di elaborazione esiste.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Il punto è particolarmente rilevante perché una fattura contiene dati personali di un terzo, il cliente, rispetto ai quali tu operi come titolare del trattamento ai sensi del Regolamento UE 2016/679 (GDPR). Utilizzando uno strumento che non trasmette nulla, eviti di introdurre un responsabile del trattamento esterno nella tua catena di fornitura e la conseguente necessità di un accordo ai sensi dell'articolo 28. L'architettura attua i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5, paragrafo 1, lettera c.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa faccio se la fattura viene scartata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Una fattura scartata &egrave; come non emessa. Correggi l&rsquo;errore indicato nella ricevuta e reinviala entro 5 giorni, con la stessa data e lo stesso numero: cos&igrave; non ci sono sanzioni.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Anche i forfettari devono fare la fattura elettronica?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, oggi tutti i titolari di partita IVA. Il forfettario indica RF19, righe con IVA 0% e natura N2.2, e il bollo da 2 &euro; sopra 77,47 &euro;.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il file &egrave; pronto per l&rsquo;invio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, una volta compilati tutti i campi. Prima di caricarlo controlla i dati; per casi particolari (cassa previdenziale, sconti, pi&ugrave; rate) usa un gestionale o chiedi al tuo commercialista.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra codice destinatario e PEC?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono due modi per ricevere la fattura. Il codice destinatario ha 7 caratteri; se non c&rsquo;&egrave;, si usa 0000000 e la fattura arriva alla PEC registrata o nell&rsquo;area riservata del cliente.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso modificare una fattura gi&agrave; consegnata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: si corregge con una nota di credito (TD04), che annulla tutto o in parte la fattura, ed eventualmente una nuova fattura.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I dati dei clienti restano salvati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Solo sul tuo dispositivo, per ritrovarli la volta dopo. Partite IVA e codici fiscali dei clienti non vengono salvati, e nulla viene inviato a un server.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.Lgs. 5 agosto 2015, n. 127: fatturazione elettronica fra privati.</li>
+          <li>D.P.R. 26 ottobre 1972, n. 633, art. 21: contenuto e termini della fattura.</li>
+          <li>Provvedimento dell&rsquo;Agenzia delle Entrate del 30 aprile 2018 e specifiche tecniche FatturaPA.</li>
+          <li>D.M. 17 giugno 2014: bollo virtuale sui documenti informatici.</li>
+        </ul>
+      </section>
 
       <!-- Pubblicità Mobile -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">

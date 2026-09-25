@@ -144,15 +144,15 @@
             "name": "Questa firma ha valore legale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "È una firma elettronica semplice: può essere usata in molti contratti, ma il suo valore in giudizio è liberamente valutabile dal giudice. Non equivale alla firma digitale e non ha l'efficacia probatoria dell'articolo 2702 del Codice civile."
+              "text": "È una firma elettronica semplice: vale per molti accordi fra privati, ma in caso di contestazione il giudice ne valuta liberamente il valore. Non equivale alla firma digitale."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso usarla per il processo telematico o per un atto notarile?",
+            "name": "Posso usarla per il processo telematico o un atto notarile?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. In quei casi serve una firma elettronica qualificata rilasciata da un prestatore qualificato, con smart card, token o firma remota."
+              "text": "No: serve una firma elettronica qualificata."
             }
           },
           {
@@ -160,7 +160,7 @@
             "name": "La firma esce più piccola di quanto impostato?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No: la larghezza si applica al tratto disegnato, perché l'immagine viene ritagliata sui pixel effettivamente tracciati. Il riquadro blu dell'anteprima mostra la dimensione reale."
+              "text": "No: la larghezza si applica al tratto. Il riquadro blu dell’anteprima mostra la dimensione reale."
             }
           },
           {
@@ -168,7 +168,7 @@
             "name": "Funziona con le scansioni ruotate?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Le pagine con rotazione /Rotate 90, 180 o 270 vengono gestite: la firma compare dritta nel punto scelto sull'anteprima."
+              "text": "Sì: la firma compare dritta nel punto scelto."
             }
           },
           {
@@ -176,7 +176,15 @@
             "name": "Chi riceve il documento può togliere la firma?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, con un editor PDF l'immagine può essere rimossa o spostata, e il file non conserva traccia della modifica. Per impedirlo serve una firma con certificato."
+              "text": "Sì, con un editor PDF. Per impedirlo serve una firma con certificato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il documento viene caricato online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: firma e PDF vengono elaborati nel browser."
             }
           }
         ]
@@ -434,197 +442,72 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Trattato Tecnico-Normativo: Giurisprudenza della Firma Elettronica, Mappatura Cartesiana Inversa e Protezione dei Dati Sensibili (Zero-Backend)</h2>
-        <p class="text-sm text-gray-700 leading-relaxed mb-6">
-          La sottoscrizione informatica dei documenti in formato Portable Document Format (PDF) rappresenta un pilastro operativo imprescindibile per professionisti, aziende e pubbliche amministrazioni. Sovrapporre a un PDF l'immagine della propria firma è rapido, ma non equivale a firmare digitalmente: cambia il valore probatorio del documento e cambia ciò che si può dimostrare in caso di contestazione. Poiché l'elaborazione avviene nel browser, il documento e il tratto della firma non vengono trasmessi ad alcun servizio. Questa guida spiega quali livelli di firma prevede la normativa, come lo strumento colloca la firma nella pagina (comprese le pagine ruotate) e quali sono i suoi limiti.
-        </p>
-
-        <!-- Inquadramento Normativo -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>🏛️</span> Inquadramento Normativo: Regolamento eIDAS (UE 910/2014), CAD D.Lgs. 82/2005 e Compliance GDPR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La disciplina della sottoscrizione digitale dei documenti si incardina a livello europeo sul Regolamento UE n. 910/2014 (eIDAS - Electronic Identification Authentication and Trust Services) e, nell'ordinamento italiano, sul Codice dell'Amministrazione Digitale (CAD - D.Lgs. 82/2005). L'architettura giuridica stratifica le firme elettroniche secondo tre livelli a valore probatorio crescente:
-            </p>
-            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-4">
-              <li><strong>Firma Elettronica Semplice (FES):</strong> Definita dall'Articolo 3, n. 10 del Regolamento eIDAS e dall'Articolo 20 del CAD come l'insieme dei dati in forma elettronica, allegati oppure connessi tramite associazione logica ad altri dati elettronici, utilizzati dal firmatario per firmare. L'articolo 20 del CAD stabilisce che l'idoneità del documento informatico a soddisfare il requisito della forma scritta e il suo valore probatorio sono liberamente valutabili in giudizio, tenuto conto delle caratteristiche oggettive di qualità, sicurezza, integrità e immodificabilità. Il documento non gode quindi dell'efficacia probatoria rafforzata dell'articolo 2702 del Codice civile, riservata alle firme di livello superiore.</li>
-              <li><strong>Firma Elettronica Avanzata (FEA):</strong> Disciplinata dall'articolo 26 eIDAS. Richiede la connessione univoca al firmatario, la sua identificazione, il controllo esclusivo dei dati di creazione della firma e la capacità di rilevare ogni modifica successiva del documento. Il documento firmato con FEA ha l'efficacia probatoria della scrittura privata prevista dall'articolo 2702 del Codice civile.</li>
-              <li><strong>Firma Elettronica Qualificata (FEQ) / Firma Digitale:</strong> Basata su un certificato qualificato rilasciato da un prestatore di servizi fiduciari qualificato, vigilato da AgID, e creata con un dispositivo sicuro (smart card, token USB o firma remota). Ha lo stesso effetto giuridico della firma autografa e il documento fa piena prova, fino a querela di falso, della provenienza delle dichiarazioni (art. 2702 del Codice civile).</li>
-            </ul>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Questo strumento produce una firma elettronica semplice: l'immagine PNG del tratto viene sovrapposta alla pagina del PDF. Anche l'immagine di una firma autografa è un dato personale e va trattata con le stesse cautele del documento che accompagna.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              I servizi commerciali cloud tradizionali impongono l'upload remoto del documento e dell'immagine della firma. Tale architettura introduce una severa criticità di conformità, costringendo il Titolare del Trattamento (Data Controller) ad eseguire una Valutazione d'Impatto sulla Protezione dei Dati (DPIA ex Art. 35 GDPR), a registrare il flusso nel Registro dei Trattamenti (Art. 30 GDPR) e a stipulare un Data Processing Agreement (DPA ex Art. 28 GDPR) con il fornitore esterno.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              L'infrastruttura Zero-Backend (Serverless Client-Side) di questo strumento incarna matematicamente il principio di Data Protection by Design e by Default (Articolo 25 GDPR). L'intero ciclo — acquisizione del tratto, disegno su canvas, conversione delle coordinate e riscrittura del PDF con `pdf-lib` — avviene nella memoria del dispositivo. Non essendoci trasmissione del documento, per questa operazione non c'è un fornitore da nominare responsabile del trattamento; restano a carico di chi usa lo strumento la sicurezza del dispositivo e la conservazione dei file firmati.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Firmare un PDF: cosa vale una firma disegnata</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Lo strumento inserisce nel PDF l&rsquo;immagine della tua firma, tracciata con il mouse, il dito o una penna, oppure ricavata da una foto. &Egrave; una <em>firma elettronica semplice</em>: comoda e valida per molti usi fra privati, ma non &egrave; una firma digitale. Documento e firma restano sul tuo dispositivo.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Carica il PDF.</li>
+            <li>Disegna la firma nel riquadro o carica la foto di una firma su carta bianca.</li>
+            <li>Scegli la larghezza e fai clic sull&rsquo;anteprima nel punto dove vuoi la firma, o usa le posizioni rapide.</li>
+            <li>Se serve una sigla su ogni pagina, spunta &laquo;Applica la firma a tutte le pagine&raquo;.</li>
+            <li>Scarica il PDF firmato.</li>
+          </ol>
+          <p>Per sigla su tutte le pagine e firma estesa sull&rsquo;ultima: applica prima la sigla a tutte le pagine, poi carica il file scaricato, disegna la firma estesa e mettila sull&rsquo;ultima pagina.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I livelli di firma</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Firma</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Come si ottiene</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Valore</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Elettronica semplice (questo strumento)</td><td class="px-3 py-2 align-top">Immagine della firma, clic su &laquo;accetto&raquo;, email</td><td class="px-3 py-2 align-top">Valutato caso per caso dal giudice</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Elettronica avanzata</td><td class="px-3 py-2 align-top">Sistemi che identificano chi firma e rilevano modifiche (per esempio firma grafometrica in banca)</td><td class="px-3 py-2 align-top">Come una scrittura privata firmata (art. 2702 c.c.)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Qualificata / digitale</td><td class="px-3 py-2 align-top">Certificato di un prestatore qualificato, con smart card, token o firma remota</td><td class="px-3 py-2 align-top">Come la firma autografa, piena prova</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Per il processo telematico, gli atti notarili, i contratti che la legge vuole per iscritto (per esempio sugli immobili) o i documenti per la pubblica amministrazione che la richiedono serve la firma qualificata o digitale.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Cosa fa bene lo strumento</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Dimensione reale:</strong> la larghezza scelta vale per il tratto, non per il riquadro di disegno; il riquadro blu dell&rsquo;anteprima mostra dove finir&agrave; la firma.</li>
+            <li><strong>Scansioni ruotate:</strong> anche nelle pagine con rotazione interna (90, 180, 270 gradi) la firma compare dritta nel punto scelto.</li>
+            <li><strong>Foto di una firma:</strong> la carta bianca diventa trasparente e il tratto mantiene il suo colore. Funziona meglio con un foglio bianco ben illuminato; con fogli a righe o foto scure il risultato peggiora.</li>
+            <li><strong>File leggero:</strong> applicata a tutte le pagine, la firma viene inserita una sola volta e richiamata da ogni pagina.</li>
+          </ul>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Limiti</h3>
+          <p>La firma &egrave; un&rsquo;immagine sovrapposta: non contiene un certificato e non protegge il documento. Chi ha un editor PDF pu&ograve; toglierla o spostarla senza lasciare traccia. Per documenti importanti di lavoro o con valore legale valuta una firma elettronica avanzata o digitale.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Questa firma ha valore legale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; una firma elettronica semplice: vale per molti accordi fra privati, ma in caso di contestazione il giudice ne valuta liberamente il valore. Non equivale alla firma digitale.</p>
         </details>
-
-        <!-- Meccanica e Formule -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚙️</span> Meccanica e formule: coordinate dello schermo e della pagina, ritaglio del tratto e pagine ruotate</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">1. Dalle coordinate dello schermo a quelle della pagina</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Nel browser l'origine $(0,0)$ dell'elemento <code>canvas</code> è nell'angolo in alto a sinistra e l'asse $Y$ cresce verso il basso; nello standard PDF (ISO 32000) l'origine è in basso a sinistra e l'asse $Y$ cresce verso l'alto. Il punto in cui fai clic sull'anteprima diventa l'angolo in alto a sinistra della firma, espresso come frazione della pagina, e viene convertito in punti tipografici ($1\text{ pt} = 1/72$ di pollice, circa $0,35$ mm):
-            </p>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-sm">
-              $X_{\text{pdf}} = \left( \frac{X_{\text{canvas}}}{W_{\text{canvas}}} \right) \times W_{\text{pagina}}$
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg flex justify-center overflow-x-auto mb-4 font-mono text-gray-800 font-bold text-sm">
-              $Y_{\text{pdf}} = H_{\text{pagina}} - \left( \frac{Y_{\text{canvas}}}{H_{\text{canvas}}} \right) \times H_{\text{pagina}} - H_{\text{firma}}$
-            </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Dove $H_{\text{firma}}$ è l'altezza della firma, calcolata dalla larghezza scelta mantenendo le proporzioni del tratto.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">2. Ritaglio del tratto e dimensione reale</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Il riquadro di disegno misura 600×200 pixel, ma la firma ne occupa solo una parte. Prima di inserirla nel PDF, lo strumento individua il rettangolo dei pixel effettivamente disegnati e ritaglia l'immagine su quel rettangolo, con un piccolo margine. Senza questo passaggio la larghezza impostata si applicherebbe a tutto il riquadro: in una prova con 180 punti la firma finiva larga 21 punti, molto più piccola e spostata rispetto al riquadro mostrato nell'anteprima. L'immagine ritagliata viene salvata in PNG con sfondo trasparente e inserita una sola volta nel documento come oggetto immagine (<code>/XObject</code>); applicandola a tutte le pagine, ogni pagina richiama lo stesso oggetto, quindi il file cresce di poco.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">3. Pagine ruotate</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Molte scansioni hanno una rotazione registrata nel dizionario della pagina (<code>/Rotate 90</code>, <code>180</code> o <code>270</code>): il documento appare dritto, ma le coordinate interne sono ruotate. Lo strumento calcola la posizione nella pagina così come la vedi, poi la converte nelle coordinate interne e ruota l'immagine della firma della stessa quantità, in modo che risulti dritta. Il comportamento è stato verificato sui quattro valori di rotazione confrontando la posizione dell'inchiostro nel file prodotto con il riquadro dell'anteprima.
-            </p>
-
-            <h3 class="text-lg font-bold text-gray-900 mt-4 mb-2">4. Cosa questo strumento non fa</h3>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La firma è un'immagine sovrapposta alla pagina: non c'è alcuna operazione crittografica, nessun certificato e nessun campo firma PAdES. Il file prodotto non contiene un'impronta che permetta di accorgersi di modifiche successive, e chiunque disponga di un editor PDF può rimuovere o spostare l'immagine. Per una firma con valore di firma digitale serve un certificato qualificato e il software del proprio fornitore.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usarla per il processo telematico o un atto notarile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: serve una firma elettronica qualificata.</p>
         </details>
-
-        <!-- Casuistica Reale -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>📊</span> Casuistica Reale: Accordi di Riservatezza (NDA), Consensi Informati Medici e Pratiche HR</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 1: accordo di riservatezza (NDA) da sottoscrivere in giornata.</strong><br />
-              Un consulente deve firmare un NDA di 12 pagine prima di accedere ai documenti di un'operazione societaria: serve una sigla su ogni pagina e la firma estesa sull'ultima.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Con lo strumento traccia la sigla, spunta «Applica la firma a tutte le pagine» e sceglie la posizione in basso a sinistra. Poi toglie la spunta, ridisegna la firma estesa e la posiziona con un clic sull'anteprima dell'ultima pagina, ripetendo l'operazione sul file appena scaricato. Il documento non lascia il computer; resta però una firma elettronica semplice, il cui valore dipende da quanto le parti possono dimostrare sulla sua provenienza.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 2: consensi informati in uno studio sanitario.</strong><br />
-              Uno studio medico fa firmare ai pazienti il consenso informato e l'informativa sul trattamento dei dati.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              Su un tablet, la segreteria apre il modulo PDF e il paziente firma sullo schermo con il dito o con un pennino; il file firmato viene salvato nella cartella dello studio. Non essendoci un servizio esterno, per questa operazione non serve nominare un responsabile del trattamento; restano da rispettare gli altri obblighi, come informativa, conservazione dei file e misure di sicurezza sul dispositivo.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Caso 3: fogli presenza e note spese.</strong><br />
-              L'ufficio del personale raccoglie ogni mese fogli firmati da decine di dipendenti.</p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              La firma grafica sul PDF evita il ciclo stampa-firma-scansione e produce file già pronti per l'archiviazione. Per documenti che incidono su rapporti di lavoro conviene però valutare una firma elettronica avanzata, che lega la firma all'identità del firmatario e rileva le modifiche successive.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La firma esce pi&ugrave; piccola di quanto impostato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: la larghezza si applica al tratto. Il riquadro blu dell&rsquo;anteprima mostra la dimensione reale.</p>
         </details>
-
-        <!-- FAQ ed Errori -->
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>👥</span> Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p>I casi seguenti sono stati riprodotti con lo strumento su pagine A4 create per la prova; la posizione dell'inchiostro nel file scaricato è stata misurata rendendo la pagina con pdf.js e confrontandola con il riquadro dell'anteprima.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: firma larga 180 punti in basso a destra</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pagina A4 (595 × 842 punti), posizione rapida «Destra»</li>
-            <li>Riquadro dell'anteprima: 415 punti da sinistra, 702 dall'alto, 180 × 140 punti</li>
-            <li>Inchiostro nel PDF: 425 punti da sinistra, 711 dall'alto, 161 × 122 punti</li>
-            </ul>
-            <p>Lo scarto di una decina di punti è il margine trasparente lasciato attorno al tratto: la firma resta dentro il riquadro mostrato. Prima della revisione di questo strumento la stessa firma veniva inserita larga 21 punti, perché la larghezza si applicava all'intero riquadro di disegno invece che al tratto.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: scansione con pagina ruotata</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Pagina con rotazione /Rotate 90: visualizzata 842 × 595 punti</li>
-            <li>Riquadro dell'anteprima: 589 punti da sinistra, 455 dall'alto</li>
-            <li>Inchiostro nel PDF: 599 punti da sinistra, 465 dall'alto, orientato come nell'anteprima</li>
-            </ul>
-            <p>Le prove ripetute con rotazione 0, 90, 180 e 270 danno lo stesso risultato: la firma compare dritta e nel punto scelto. È il caso più frequente con i documenti scansionati o ricevuti da fotocopiatrici di rete.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: foto di una firma a penna blu</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Immagine JPEG 400 × 150, tratto blu su carta bianca</li>
-            <li>Dopo il caricamento: 114.618 pixel resi trasparenti, 4.731 opachi</li>
-            <li>Colore medio del tratto conservato: RGB 41, 49, 142</li>
-            </ul>
-            <p>Lo sfondo della carta sparisce e il tratto mantiene il colore originale: la firma si appoggia sul documento senza il rettangolo bianco della foto. Con fogli a righe o fotografie molto scure il risultato peggiora, perché la separazione si basa sulla luminosità dei pixel.</p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona con le scansioni ruotate?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: la firma compare dritta nel punto scelto.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>⚠️</span> FAQ ed errori: pagine ruotate, firma fotografata e valore giuridico</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Alineazione delle Aspettative: Differenza tra FES (Firma Grafica) e FEQ / Firma Digitale:</strong><br />
-              È fondamentale chiarire in modo trasparente l'ambito di efficacia giuridica della firma applicata da questo strumento. Lo strumento sovrappone al documento l'immagine della firma, senza certificati: è una firma elettronica semplice. È utilizzabile per contratti fra privati e imprese, accordi di riservatezza, accettazione di preventivi, fogli presenze e liberatorie, ma non garantisce da sola chi ha firmato né che il documento non sia stato modificato dopo. Tuttavia, non sostituisce e non costituisce una Firma Elettronica Qualificata (FEQ / Firma Digitale) basata su certificati cifrati forniti da enti accreditati AgID (es. Aruba, InfoCert, Namirial tramite smartcard o token USB). Per il deposito di atti giudiziari nel Processo Civile Telematico (PCT) o per atti immobiliari ad *substantiam* ex Art. 1350 C.C., è obbligatorio utilizzare un software di firma qualificata PAdES/CAdES.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Pagine ruotate (chiave <code>/Rotate</code>):</strong><br />
-              Un documento può contenere pagine che appaiono dritte ma hanno una rotazione registrata nel codice (<code>/Rotate 90</code>, <code>180</code> o <code>270</code>): è il caso tipico delle scansioni. Un'applicazione che ignora questo attributo colloca la firma ruotata o in un punto diverso da quello scelto. Lo strumento converte le coordinate dell'anteprima nel sistema di riferimento interno della pagina e ruota l'immagine di conseguenza; la corrispondenza fra anteprima e risultato è stata verificata sulle quattro rotazioni.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Firma fotografata su carta:</strong><br />
-              Se carichi la foto di una firma, lo strumento rende trasparenti i pixel chiari e conserva il colore del tratto, con un passaggio graduale sui bordi per evitare l'effetto ritaglio. Funziona meglio con un foglio bianco ben illuminato e senza ombre: su carta a quadretti o con fondo scuro il risultato è irregolare. Una firma tracciata direttamente nel riquadro resta la soluzione più pulita.
-            </p>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">
-              <strong>Sanzioni per Esfiltrazione Involontaria di Tratti Autografi (Articolo 83 GDPR):</strong><br />
-              L'invio di contratti contenenti firme autografe a convertitori o editor cloud non verificati espone le aziende al rischio di data breach e profilazione grafologica. Le sanzioni edittali previste dal GDPR per la mancata adozione di adeguate misure di sicurezza (Art. 32 GDPR) o per il trattamento illecito possono raggiungere 20 milioni di euro o fino al 4% del fatturato globale annuo. Con l'elaborazione nel browser il documento e la firma non vengono trasmessi ad alcun servizio, quindi questo rischio specifico non si pone; restano da curare la sicurezza del dispositivo e la custodia dei file.
-            </p>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi riceve il documento pu&ograve; togliere la firma?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, con un editor PDF. Per impedirlo serve una firma con certificato.</p>
         </details>
-
-        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-8 mb-4">
-          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
-            <span class="text-lg flex items-center gap-2"><span>❓</span> Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="p-5 border-t border-indigo-100 space-y-6 bg-white rounded-b-xl">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Questa firma ha valore legale?</h3>
-            <p>È una firma elettronica semplice: può essere usata in molti contratti, ma il suo valore in giudizio è liberamente valutabile dal giudice. Non equivale alla firma digitale e non ha l'efficacia probatoria dell'articolo 2702 del Codice civile.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Posso usarla per il processo telematico o per un atto notarile?</h3>
-            <p>No. In quei casi serve una firma elettronica qualificata rilasciata da un prestatore qualificato, con smart card, token o firma remota.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">La firma esce più piccola di quanto impostato?</h3>
-            <p>No: la larghezza si applica al tratto disegnato, perché l'immagine viene ritagliata sui pixel effettivamente tracciati. Il riquadro blu dell'anteprima mostra la dimensione reale.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Funziona con le scansioni ruotate?</h3>
-            <p>Sì. Le pagine con rotazione /Rotate 90, 180 o 270 vengono gestite: la firma compare dritta nel punto scelto sull'anteprima.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Chi riceve il documento può togliere la firma?</h3>
-            <p>Sì, con un editor PDF l'immagine può essere rimossa o spostata, e il file non conserva traccia della modifica. Per impedirlo serve una firma con certificato.</p>
-            </div>
-          </div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il documento viene caricato online?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: firma e PDF vengono elaborati nel browser.</p>
         </details>
-
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>Regolamento UE 910/2014 (eIDAS), artt. 3, 25 e 26: livelli di firma elettronica.</li>
+          <li>D.Lgs. 7 marzo 2005, n. 82 (Codice dell&rsquo;amministrazione digitale), art. 20.</li>
+          <li>Codice civile, art. 2702: efficacia della scrittura privata.</li>
+        </ul>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->

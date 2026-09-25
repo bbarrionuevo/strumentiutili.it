@@ -13,7 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calcolo IVA — StrumentiUtili.it</title>
-  <meta name="description" content="Calcola IVA con aliquote 22%, 10%, 5% e 4% direttamente nel browser. Aggiungi o scorpora l'IVA senza inviare dati a server esterni." />
+  <meta name="description" content="Calcola l'IVA da aggiungere o da scorporare con aliquote 22%, 10%, 5% e 4%: formule, esempi e gli errori più comuni." />
   <link rel="canonical" href="https://strumentiutili.it/fisco-professioni/calcolo-iva/" />
   
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
@@ -137,26 +137,42 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Qual è la formula per scorporare l'IVA da un prezzo?",
+            "name": "Qual è la formula per scorporare l’IVA?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Si divide il prezzo lordo per 1 più l'aliquota: per il 22% si divide per 1,22, per il 10% per 1,10, per il 4% per 1,04. L'IVA è la differenza fra prezzo lordo e imponibile. Sottrarre direttamente la percentuale dal totale dà un imponibile troppo basso."
+              "text": "Dividi il prezzo finale per 1 più l’aliquota: 1,22 per il 22%, 1,10 per il 10%, 1,04 per il 4%. L’IVA è la differenza. Sottrarre la percentuale dal totale dà un imponibile troppo basso."
             }
           },
           {
             "@type": "Question",
-            "name": "I forfettari devono aggiungere l'IVA in fattura?",
+            "name": "I forfettari devono aggiungere l’IVA in fattura?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. I contribuenti in regime forfettario non addebitano IVA sulle vendite e non la detraggono sugli acquisti: in fattura indicano la norma di esonero e, sopra 77,47 €, applicano la marca da bollo da 2 €. Per loro l'IVA pagata ai fornitori è un costo."
+              "text": "No: non la addebitano ai clienti e non la detraggono sugli acquisti. In fattura indicano la norma di esonero e, sopra 77,47 €, la marca da bollo da 2 €."
             }
           },
           {
             "@type": "Question",
-            "name": "Che cos'è il reverse charge?",
+            "name": "Che cos’è il reverse charge?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "È un meccanismo in cui il fornitore emette fattura senza IVA e l'imposta viene integrata e contemporaneamente detratta dal cliente soggetto IVA. Si applica, fra gli altri casi, a subappalti edili, cessioni di rottami e servizi resi da fornitori esteri: in questi casi non si usa l'aliquota ordinaria in fattura."
+              "text": "Il fornitore emette fattura senza IVA e il cliente con partita IVA la integra e la detrae nello stesso momento. Si usa per esempio nei subappalti edili e per molti servizi di fornitori esteri."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché lo sconto del 22% non equivale a togliere l’IVA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché l’IVA si calcola sull’imponibile, non sul prezzo finale. Togliere l’IVA da 122 € porta a 100 €, cioè uno sconto del 18,03%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gli importi che scrivo vengono inviati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: il calcolo si fa nel browser. L’ultimo importo viene ricordato solo sul tuo dispositivo."
             }
           }
         ]
@@ -389,149 +405,73 @@
         </div>
       </section>
 
-      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-        
-        <details class="group mb-4" open>
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            Inquadramento Normativo e Adempimenti F24 (Aggiornamento 2026)
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <p>
-              L'imposizione fiscale e i criteri di territorialità, detraibilità e rivalsa dell'Imposta sul Valore Aggiunto (IVA) trovano la loro radice giuridica nel D.P.R. 26 ottobre 1972, n. 633, e nelle direttive di armonizzazione fiscale del mercato unico europeo, specificamente la Direttiva 2006/112/CE. Nell'esecuzione dei cicli attivi, come la Fatturazione Elettronica B2B/B2C tramite Sistema di Interscambio, il procedimento inverso all'applicazione – denominato tecnicamente Scorporo dell'Imposta – diviene uno step obbligatorio per gli operatori del commercio al minuto. Ai sensi dell'art. 22 del D.P.R. 633/72, i prezzi esposti al pubblico devono essere comprensivi di imposta, richiedendo l'isolamento contabile a posteriori del fatturato imponibile (Ricavo netto) per la corretta redazione del Libro Giornale e per i versamenti periodici o annuali.
-            </p>
-            <p>
-              Il versamento del tributo IVA a debito, risultante dalle liquidazioni periodiche, deve essere effettuato tramite il modello F24 Ordinario, il cui utilizzo è regolamentato dal D.Lgs. 241/1997, dal D.L. 223/2006, nonché dalle recenti Legge 213/2023 e Legge 199/2025 (Legge di Bilancio 2026). Un aspetto fondamentale e bloccante dell'operatività contabile odierna risiede nell'obbligo telematico: a far data dal 1° luglio 2024, è scattato l'obbligo assoluto di utilizzare esclusivamente i servizi telematici dell'Agenzia delle Entrate (Entratel o F24 Web/Online) per qualsiasi modello F24 che includa la compensazione di un credito, indipendentemente dalla natura o dall'importo del credito stesso, e anche qualora il saldo finale sia positivo. L'utilizzo dell'home banking tradizionale è pertanto del tutto precluso in presenza di compensazioni. 
-            </p>
-            <p>
-              Inoltre, il sistema tributario impone severi divieti di compensazione per carichi a ruolo pendenti. Il primo blocco, stabilito dall'art. 31 del D.L. 78/2010, vieta la compensazione orizzontale in presenza di debiti erariali iscritti a ruolo (scaduti e non pagati) superiori a 1.500€. Il secondo blocco, originariamente introdotto dalla Legge 213/2023 con soglia a 100.000€, è stato inasprito dalla Legge 199/2025 (Legge di Bilancio 2026), che ha dimezzato la soglia a 50.000€. Al superamento di tale limite per carichi affidati all'Agente della Riscossione o atti di recupero, scatta il divieto totale di compensazione; tentare di aggirare tale blocco comporta lo scarto telematico del modello F24, rendendo il versamento IVA omesso e innescando l'applicazione delle sanzioni per omesso versamento, che dal 1° settembre 2024 (D.Lgs. 87/2024) ammontano al 25% del tributo.
-            </p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come aggiungere o scorporare l&rsquo;IVA senza sbagliare</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Aggiungere l&rsquo;IVA a un imponibile &egrave; facile: si moltiplica. Toglierla da un prezzo che la comprende gi&agrave; (lo scorporo) &egrave; dove si sbaglia pi&ugrave; spesso, perch&eacute; non basta sottrarre la percentuale. Il calcolatore fa entrambe le cose con le aliquote italiane.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li>Scegli &laquo;Aggiungi IVA&raquo; se parti dall&rsquo;imponibile, &laquo;Scorporo IVA&raquo; se parti dal prezzo finale.</li>
+            <li>Scrivi l&rsquo;importo.</li>
+            <li>Scegli l&rsquo;aliquota: 22%, 10%, 5% o 4%.</li>
+          </ol>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le formule</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Aggiungere:</strong> totale = imponibile &times; (1 + aliquota). Al 22%: imponibile &times; 1,22.</li>
+            <li><strong>Scorporare:</strong> imponibile = prezzo finale &divide; (1 + aliquota). Al 22%: prezzo &divide; 1,22.</li>
+            <li><strong>IVA:</strong> la differenza fra prezzo finale e imponibile.</li>
+          </ul>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Aliquota</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Si usa per esempio per</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Divisore per lo scorporo</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">22%</td><td class="px-3 py-2 align-top">la maggior parte di beni e servizi</td><td class="px-3 py-2 align-top">1,22</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">10%</td><td class="px-3 py-2 align-top">ristoranti e bar, energia per la casa, alcuni lavori edilizi</td><td class="px-3 py-2 align-top">1,10</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">5%</td><td class="px-3 py-2 align-top">alcuni servizi sociali e sanitari, alcuni prodotti specifici</td><td class="px-3 py-2 align-top">1,05</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">4%</td><td class="px-3 py-2 align-top">alimenti di base, libri e giornali, prima casa</td><td class="px-3 py-2 align-top">1,04</td></tr>
+              </tbody>
+            </table>
           </div>
-        </details>
-
-        <details class="group mb-4">
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            Meccanica e Formule Matematiche
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <p>
-              La matematica dello scorporo è frequentemente mal compresa dagli operatori sprovvisti di basi ragionieristiche, i quali attuano detrazioni percentuali fallaci. L'algoritmo IVA si basa su un'equazione di proporzionalità diretta: la base imponibile (100) più la percentuale di aliquota (r) stanno alla base imponibile (100), come il prezzo lordo incassato sta al prezzo netto.
-            </p>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>L'equazione fondamentale si esprime come: (100 + r) : 100 = Prezzo Lordo : Prezzo Netto.</li>
-              <li>Per estrarre il valore al netto dell'imposta: Base Imponibile = Prezzo Lordo / (1 + (Aliquota IVA / 100)).</li>
-              <li>Per determinare l'imposta da versare all'Erario: IVA Scorporata = Prezzo Lordo - Base Imponibile.</li>
-            </ul>
-            <p>
-              L'architettura tributaria del 2026 prevede diversi scaglioni di imposizione a seconda del comparto merceologico, che si riflettono matematicamente sul coefficiente divisore di estrazione. L'Aliquota Ordinaria (22%) si applica a elettronica, servizi generali e lusso, e il divisore per lo scorporo è 1,22. L'Aliquota Ridotta (10%) si applica a ristorazione, energia elettrica e farmaci, con un divisore di 1,10. L'Aliquota Agevolata (5%) riguarda il settore socio-sanitario ed erbe aromatiche, impiegando il divisore 1,05. Infine, l'Aliquota Super Agevolata (4%), dedicata a beni essenziali, editoria e ortofrutta, richiede il divisore 1,04.
-            </p>
-          </div>
-        </details>
-
-        <details class="group mb-4">
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            Casuistica Reale e Risoluzione dei Calcoli
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <p>
-              Si assuma la vendita over the counter di un apparato elettronico assoggettato ad aliquota ordinaria del 22%, battuto sul registratore di cassa telematico al prezzo finale di 4.850,00 €. L'esercente necessita di desumere la quota erariale trattenuta a titolo di imposta e il proprio ricavo puro. Procedendo con la formula del divisore corretto, il Ricavo Netto (Base Imponibile) si ottiene dividendo 4.850,00 per 1,22, che produce il risultato esatto di 3.975,41 €. L'IVA a debito per l'Erario si calcola per differenza: 4.850,00 - 3.975,41 = 874,59 €.
-            </p>
-            <p>
-              L'errore cognitivo più diffuso in queste mansioni porterebbe a detrarre seccamente il 22% dal totale incassato (4.850,00 - 22% = 3.783,00 €). Questo calcolo è inaccettabile poiché sotto-stimerebbe la base imponibile di quasi 200 €, causando a catena un versamento IVA ipertrofico, indebito e un'erosione ingiustificata del margine di profitto esposto in bilancio. Allo stesso modo, sopravvive sul mercato retail la prassi occulta del "falso sconto": un commerciante che promette lo "Sconto IVA" non sta abbassando il prezzo del 22%. Matematicamente, lo scorporo reale riduce l'onere del consumatore di circa il 18,03% rispetto al prezzo lordo. L'Antitrust sanziona le campagne promozionali che decantano il "Togliamo il 22%" se il commerciante applica invece il coefficiente di scorporo 1,22, palesandosi l'inganno matematico a danno del consumatore.
-            </p>
-            <p>
-              Un'ulteriore casistica critica per il 2026 riguarda la permanenza nel Regime Forfettario. La normativa prevede un limite annuo di fatturato incassato pari a 85.000 €. Tuttavia, se nell'anno solare si incassano oltre 100.000 €, la decadenza dal regime non avviene l'anno successivo, ma in via istantanea. Il professionista o l'impresa è obbligato ad applicare l'IVA ordinaria già a partire dalla specifica fattura che comporta il superamento dei 100.000 €, subendo inoltre l'immediato passaggio alla liquidazione trimestrale e all'IRPEF progressiva per l'intero residuo dell'anno. Incassare una fattura che porta il volume d'affari da 95.000 € a 105.000 € omettendo di integrare l'IVA sul documento "invalicante" comporta l'irrogazione di sanzioni per infedele fatturazione, variabili dal 70% al 140% post riforma, per l'omessa applicazione dell'imposta sul valore aggiunto sull'intero importo del documento.
-            </p>
-          </div>
-        </details>
-
-        <details class="group mb-4">
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">👥 Casi Pratici ed Esempi Reali</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <p>I casi seguenti sono stati riprodotti nel calcolatore della pagina.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 1: preventivo di un grafico in regime ordinario</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Imponibile concordato: 1.500,00 €</li>
-            <li>IVA 22%: 330,00 €</li>
-            <li>Totale fattura: 1.830,00 €</li>
-            </ul>
-            <p>Il cliente con Partita IVA detrae i 330 € e il costo reale per lui resta 1.500 €. Per un privato il costo è invece di 1.830 €: prima di confrontare due preventivi conviene sempre verificare se i prezzi sono «più IVA» o «IVA inclusa». Se il cliente è un sostituto d'imposta, dal totale va poi sottratta la ritenuta del 20% calcolata sui soli 1.500 €.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 2: scontrino del ristorante da registrare come spesa</h3>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Totale pagato: 64,90 € con IVA al 10%</li>
-            <li>Imponibile: 64,90 / 1,10 = 59,00 €</li>
-            <li>IVA: 5,90 €</li>
-            </ul>
-            <p>Calcolare il 10% di 64,90 € e sottrarlo darebbe 58,41 € di imponibile, 59 centesimi in meno del corretto. Su un anno di trasferte l'errore si accumula e altera la contabilità delle spese.</p>
-
-            <h3 class="font-bold text-gray-900 text-base mt-4">Caso 3: il falso «sconto IVA» del negozio</h3>
-            <p>Un televisore costa 1.220,00 € e il venditore promette di «togliere l'IVA».</p>
-            <ul class="list-disc pl-5 space-y-1 font-mono text-sm bg-gray-50 p-4 border border-gray-200 rounded-lg">
-            <li>Scorporo corretto al 22%: imponibile 1.000,00 €, IVA 220,00 €</li>
-            <li>Sconto del 22% sul prezzo: 1.220 × 0,78 = 951,60 €</li>
-            <li>Differenza fra le due promesse: 48,40 €</li>
-            </ul>
-            <p>Lo «sconto IVA» è solo una promozione commerciale: l'IVA resta dovuta sul prezzo effettivamente praticato, che sia 1.000 € o 951,60 €. Lo scontrino riporterà comunque l'imposta calcolata sul nuovo prezzo.</p>
-          </div>
-        </details>
-
-        <details class="group mb-4">
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            FAQ, Errori Operativi e Sanzioni Economiche
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <p>
-              Il calcolo dell'IVA diviene un campo minato quando applicato al Reverse Charge (Inversione Contabile ex art. 17). Nelle prestazioni di servizi edilizi o nel commercio di componentistica informatica tra soggetti IVA, il cedente emette fattura senza esposizione d'imposta. Se i software gestionali non sono parametrizzati per trasferire l'onere dell'integrazione contabile, l'azienda fornitrice rischia di addebitare al lordo; il ricevente, se detrae tale imposta addebitata erroneamente, incorre nella violazione formale per "indebita detrazione" e viene punito con sanzioni pecuniarie e interessi moratori da parte dell'Agenzia delle Entrate. 
-            </p>
-            <p>
-              Sul piano puramente computazionale relativo alla Fatturazione Elettronica, il Rounding Error (errore di arrotondamento centesimale) invalida migliaia di file XML verso il Sistema di Interscambio. Sommare l'IVA arrotondata ai centesimi su ogni singola riga di una fattura multi-articolo non produce quasi mai lo stesso risultato derivante dall'applicare l'aliquota IVA alla somma delle basi imponibili. La Direttiva Europea impone la tolleranza al centesimo di Euro o prescrive di calcolare l'imposta in calce sull'imponibile di riepilogo, evitando la parcellizzazione dell'errore.
-            </p>
-            <p>
-              In caso di omesso o tardivo versamento dell'IVA liquidata, si rende necessaria l'applicazione del Ravvedimento Operoso (Art. 13 D.Lgs. 472/1997 e 471/1997, aggiornati dalla Riforma delle Sanzioni D.Lgs. 87/2024 e dal D.Lgs. 173/2024). La sanzione edittale base per gli omessi o tardivi versamenti commessi dal 1° settembre 2024 è scesa dal 30% al 25%. Se il ritardo non supera i 90 giorni, la sanzione base subisce un dimezzamento automatico al 12,5%. Le frazioni di riduzione si applicano in cascata: Ravvedimento Sprint (entro i primi 14 giorni) al 0,0833% per ogni giorno di ritardo; Breve (dal 15° al 30° giorno) all'1,2500% fissa; Intermedio (dal 31° al 90° giorno) all'1,3889%; Lungo (entro 1 anno) al 3,1250%; Lunghissimo (oltre 1 anno) al 3,5714%. Il calcolo matematico finale richiede la corresponsione degli interessi legali determinati pro-rata temporis; il tasso d'interesse legale è stato ridotto all'1,60% annuo a partire dal 1° gennaio 2026.
-            </p>
-            <p>
-              Infine, la compensazione indebita di crediti IVA nel Modello F24 è soggetta a un duplice binario sanzionatorio. La compensazione di un credito inesistente – ancorato a una situazione non reale, privo di presupposti normativi o caratterizzato da frode – comporta l'irrogazione di una sanzione base del 70%, che può aumentare dal 105% al 140% in caso di frode o simulazione (D.Lgs. 87/2024). Il termine di decadenza per l'accertamento di crediti inesistenti è esteso al 31 dicembre dell'ottavo anno successivo all'utilizzo. Qualora si tratti invece di credito non spettante (errori formali, superamento di limiti quantitativi annui o violazioni rilevabili in sede di controllo automatizzato), la sanzione è pari al 25% dell'importo indebitamente utilizzato in compensazione, con un termine di decadenza ordinario fissato al quinto anno successivo alla dichiarazione.
-            </p>
-          </div>
-        </details>
-
-      <!-- su-seo-expansion -->
-        <details class="group mb-4">
-          <summary class="text-2xl font-bold text-gray-900 cursor-pointer list-none flex items-center justify-between border-b border-gray-200 pb-3">
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">❓ Domande Frequenti (FAQ)</span>
-            <span class="text-indigo-600 transition-transform group-open:rotate-180">▼</span>
-          </summary>
-          <div class="pt-4 text-sm text-gray-700 leading-relaxed space-y-4">
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Qual è la formula per scorporare l'IVA da un prezzo?</h3>
-            <p>Si divide il prezzo lordo per 1 più l'aliquota: per il 22% si divide per 1,22, per il 10% per 1,10, per il 4% per 1,04. L'IVA è la differenza fra prezzo lordo e imponibile. Sottrarre direttamente la percentuale dal totale dà un imponibile troppo basso.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">I forfettari devono aggiungere l'IVA in fattura?</h3>
-            <p>No. I contribuenti in regime forfettario non addebitano IVA sulle vendite e non la detraggono sugli acquisti: in fattura indicano la norma di esonero e, sopra 77,47 €, applicano la marca da bollo da 2 €. Per loro l'IVA pagata ai fornitori è un costo.</p>
-            </div>
-            <div class="border-l-4 border-indigo-200 pl-4 py-1">
-            <h3 class="font-bold text-gray-900 text-base mb-1">Che cos'è il reverse charge?</h3>
-            <p>È un meccanismo in cui il fornitore emette fattura senza IVA e l'imposta viene integrata e contemporaneamente detratta dal cliente soggetto IVA. Si applica, fra gli altri casi, a subappalti edili, cessioni di rottami e servizi resi da fornitori esteri: in questi casi non si usa l'aliquota ordinaria in fattura.</p>
-            </div>
-          </div>
-        </details>
-
-        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
-          <h3 class="font-bold text-emerald-900 text-lg mb-3 flex items-center gap-2"><span>🔒</span> Elaborazione 100% Client-Side / Zero-Backend e conformità GDPR</h3>
-          <p class="text-sm text-emerald-900/90 leading-relaxed mb-3">Il calcolatore IVA opera <strong>100% lato client, senza alcun server di elaborazione</strong>. Gli imponibili, le aliquote e gli importi lordi che digiti restano nel browser: per comodità l'ultimo importo inserito viene ricordato nella memoria locale del dispositivo e si cancella svuotando i dati del sito. Non esiste alcuna trasmissione di rete, alcun registro delle operazioni effettuate e alcuna possibilità tecnica per noi di conoscere i valori inseriti.</p>
-          <p class="text-sm text-emerald-900/90 leading-relaxed">Gli importi di fatturato e i corrispettivi sono dati economici che rivelano l'andamento di un'attività professionale o d'impresa. Escludendo per costruzione il loro invio a un backend, lo strumento realizza la conformità al Regolamento UE 2016/679 (GDPR) sul piano architetturale anziché su quello delle dichiarazioni: i principi di <em>privacy by design</em> e <em>privacy by default</em> dell'articolo 25 e la minimizzazione dell'articolo 5 sono soddisfatti perché il dato non viene mai raccolto. Lo strumento può essere usato anche offline, una volta caricata la pagina.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>Scontrino di 4.850 &euro; al 22%.</strong> Imponibile 4.850 &divide; 1,22 = 3.975,41 &euro;, IVA 874,59 &euro;. Togliere il 22% dal totale darebbe 3.783 &euro;: quasi 200 &euro; di errore.</p>
+          <p><strong>Pranzo di lavoro di 64,90 &euro; al 10%.</strong> Imponibile 59,00 &euro;, IVA 5,90 &euro;.</p>
+          <p><strong>Preventivo di 1.500 &euro; pi&ugrave; IVA.</strong> Totale 1.830 &euro;. Per un&rsquo;azienda che detrae l&rsquo;IVA il costo resta 1.500 &euro;; per un privato &egrave; 1.830 &euro;. Prima di confrontare due preventivi controlla se sono &laquo;IVA inclusa&raquo; o &laquo;pi&ugrave; IVA&raquo;.</p>
+          <p><strong>Il finto &laquo;sconto IVA&raquo;.</strong> Su un televisore da 1.220 &euro;, &laquo;togliere l&rsquo;IVA&raquo; vuol dire pagarlo 1.000 &euro;, non 951,60 &euro; (che sarebbe uno sconto del 22%). In ogni caso lo scontrino riporta l&rsquo;IVA sul prezzo pagato: lo sconto lo fa il negozio.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Casi particolari</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Regime forfettario:</strong> non si aggiunge IVA in fattura; sopra 77,47 &euro; va la marca da bollo da 2 &euro;. Chi incassa pi&ugrave; di 100.000 &euro; nell&rsquo;anno esce subito dal regime e applica l&rsquo;IVA dalla fattura che supera la soglia.</li>
+            <li><strong>Reverse charge:</strong> in alcuni casi (per esempio subappalti edili) il fornitore fattura senza IVA e l&rsquo;imposta la integra il cliente con partita IVA.</li>
+            <li><strong>Fatture con molte righe:</strong> arrotondare l&rsquo;IVA riga per riga pu&ograve; dare qualche centesimo di differenza rispetto al calcolo sul totale; conta il riepilogo per aliquota.</li>
+          </ul>
+          <p>Per pagare l&rsquo;IVA in ritardo con la sanzione ridotta usa il <a href="/fisco-professioni/ravvedimento-operoso/" class="text-indigo-700 underline">calcolo del ravvedimento operoso</a>.</p>
         </div>
-
-        </section>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Qual &egrave; la formula per scorporare l&rsquo;IVA?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dividi il prezzo finale per 1 pi&ugrave; l&rsquo;aliquota: 1,22 per il 22%, 1,10 per il 10%, 1,04 per il 4%. L&rsquo;IVA &egrave; la differenza. Sottrarre la percentuale dal totale d&agrave; un imponibile troppo basso.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I forfettari devono aggiungere l&rsquo;IVA in fattura?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: non la addebitano ai clienti e non la detraggono sugli acquisti. In fattura indicano la norma di esonero e, sopra 77,47 &euro;, la marca da bollo da 2 &euro;.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che cos&rsquo;&egrave; il reverse charge?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il fornitore emette fattura senza IVA e il cliente con partita IVA la integra e la detrae nello stesso momento. Si usa per esempio nei subappalti edili e per molti servizi di fornitori esteri.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; lo sconto del 22% non equivale a togliere l&rsquo;IVA?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; l&rsquo;IVA si calcola sull&rsquo;imponibile, non sul prezzo finale. Togliere l&rsquo;IVA da 122 &euro; porta a 100 &euro;, cio&egrave; uno sconto del 18,03%.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Gli importi che scrivo vengono inviati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il calcolo si fa nel browser. L&rsquo;ultimo importo viene ricordato solo sul tuo dispositivo.</p>
+        </details>
+        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+          <li>D.P.R. 26 ottobre 1972, n. 633: disciplina dell&rsquo;IVA e tabelle delle aliquote ridotte.</li>
+          <li>Legge 23 dicembre 2014, n. 190, commi 54-89: regime forfettario.</li>
+        </ul>
+      </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <span class="su-ad-etichetta">Pubblicit&agrave;</span>

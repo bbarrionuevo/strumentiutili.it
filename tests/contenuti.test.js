@@ -12,49 +12,9 @@ const C = require('./helpers/contenuti.js');
 
 const PAGINE = C.pagineIndicizzabili();
 
-// Pagine con il vecchio trattato ancora da riscrivere in italiano semplice.
-// La lista puo' solo accorciarsi: quando una pagina e' riscritta, va tolta.
-const DA_RISCRIVERE = new Set([
-  'fisco-professioni/calcolo-iva/index.html',
-  'fisco-professioni/calcolo-rata-mutuo/index.html',
-  'fisco-professioni/contributo-unificato/index.html',
-  'fisco-professioni/fattura-elettronica/index.html',
-  'fisco-professioni/generatore-xml-fatturapa/index.html',
-  'fisco-professioni/interessi-moratori/index.html',
-  'fisco-professioni/modelli-partita-iva/index.html',
-  'fisco-professioni/parcella-avvocato/index.html',
-  'fisco-professioni/rivalutazione-istat/index.html',
-  'fisco-professioni/usufrutto/index.html',
-  'ia/assistente-documenti/index.html',
-  'ia/ocr-immagini/index.html',
-  'ia/riassunto-testo/index.html',
-  'ia/traduttore/index.html',
-  'ia/trascrizione-audio/index.html',
-  'identita-burocrazia/autocertificazione/index.html',
-  'identita-burocrazia/calcolo-quote-ereditarie/index.html',
-  'identita-burocrazia/codice-fiscale/index.html',
-  'identita-burocrazia/fototessera/index.html',
-  'identita-burocrazia/generatore-cv-ats/index.html',
-  'identita-burocrazia/generatore-password/index.html',
-  'identita-burocrazia/validatore-iban/index.html',
-  'pdf/anonimizza/index.html',
-  'pdf/convertitore-pdfa/index.html',
-  'pdf/firma/index.html',
-  'pdf/scanner-documenti/index.html',
-  'utilita-web/budget-planner/index.html',
-  'utilita-web/calcolo-bmr/index.html',
-  'utilita-web/calcolo-percentuale/index.html',
-  'utilita-web/contaparole/index.html',
-  'utilita-web/convertitore-immagini/index.html',
-  'utilita-web/generatore-qr/index.html',
-  'utilita-web/interessi-composti/index.html',
-  'utilita-web/media-universitaria/index.html'
-]);
-
-test('niente gergo da trattato nelle pagine gia riscritte', () => {
+test('niente gergo da trattato nelle pagine', () => {
   const sbagliate = PAGINE
-    .filter((p) => !DA_RISCRIVERE.has(p.percorso))
-    .map((p) => [p.percorso, (C.testoVisibile(p.html).match(C.LESSICO) || [])[0]])
+    .map((p) => [p.percorso, (C.testoVisibile(p.html).match(C.LESSICO) || C.testoVisibile(p.html).match(/Zero-Upload|Zero-Leak|Client-Side|client-side/) || [])[0]])
     .filter((x) => x[1]);
   assert.deepStrictEqual(sbagliate, []);
 });
@@ -69,15 +29,6 @@ test('titoli e descrizioni senza gergo tecnico', () => {
     }
   }
   assert.deepStrictEqual(sbagliate, []);
-});
-
-test('la lista delle pagine da riscrivere contiene solo pagine che lo sono ancora', () => {
-  const esistenti = new Set(PAGINE.map((p) => p.percorso));
-  for (const f of DA_RISCRIVERE) {
-    assert.ok(esistenti.has(f), f + ' non esiste piu: toglila dalla lista');
-    const p = PAGINE.find((x) => x.percorso === f);
-    assert.ok(C.LESSICO.test(C.testoVisibile(p.html)), f + ' e gia pulita: toglila dalla lista DA_RISCRIVERE');
-  }
 });
 
 test('niente commenti in spagnolo o sul SEO nel codice delle pagine', () => {
