@@ -136,7 +136,7 @@ test('niente parole inglesi rimaste nei pulsanti', () => {
 // I commenti nel codice sono in italiano, come il sito: prima una parte dei
 // file pubblici aveva ancora i commenti in spagnolo della prima stesura.
 test('i commenti del codice pubblico sono in italiano', () => {
-  const SPAGNOLO = /[ñáíóúÁÍÓÚÑ¿¡]|\b(los|las|el|para|que|hacemos|usamos|enviamos|matamos|instanciamos|archivo|nuevo|nueva|también|aquí|cuando|pero|está|están|esto|este)\b/;
+  const SPAGNOLO = /[ñáíóúÁÍÓÚÑ¿¡]|\b(los|las|el|para|que|hacemos|usamos|enviamos|matamos|instanciamos|archivo|nuevo|nueva|también|aquí|cuando|pero|está|están|esto|este|[Cc]otizaciones|[Ii]mponible|[Dd]educciones|[Ii]mpuestos|[Nn]etos|[Oo]btener|[Cc]rear|[Mm]ostrar|[Aa]ctualizar|[Ii]nicializar|[Cc]argar|[Gg]enerar|[Gg]uardar)\b/;
   const trovati = [];
   function commenti(codice) {
     const fuori = [];

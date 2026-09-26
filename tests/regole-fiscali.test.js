@@ -170,10 +170,13 @@ test('la fonte ufficiale per le tariffe mancanti e indicata', () => {
 });
 
 test('js/bollo-auto.js dichiara quale tariffa sta usando', () => {
-  const codice = fs.readFileSync(path.join(RADICE, 'js', 'bollo-auto.js'), 'utf8');
-  assert.match(codice, /mostraOrigine/, 'manca la funzione che dichiara la tariffa');
-  assert.match(codice, /nazionale_provvisoria/, 'manca il caso della Regione con tariffe non caricate');
-  assert.match(codice, /regioni_con_tariffa_propria/, 'il codice non legge l elenco dal JSON');
+  // Il conto sta in js/bollo-calcolo.js, la pagina lo mostra
+  const pagina = fs.readFileSync(path.join(RADICE, 'js', 'bollo-auto.js'), 'utf8');
+  const conto = fs.readFileSync(path.join(RADICE, 'js', 'bollo-calcolo.js'), 'utf8');
+  assert.match(pagina, /mostraOrigine\(r\.origine\)/, 'la pagina non dichiara la tariffa usata');
+  assert.match(pagina, /nazionale_provvisoria/, 'manca il messaggio per la Regione con tariffe non caricate');
+  assert.match(conto, /nazionale_provvisoria/, 'manca il caso della Regione con tariffe non caricate');
+  assert.match(conto, /regioni_con_tariffa_propria/, 'il codice non legge l elenco dal JSON');
 });
 
 test('tutte le pagine del bollo mostrano l origine della tariffa', () => {

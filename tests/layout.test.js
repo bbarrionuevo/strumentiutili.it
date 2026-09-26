@@ -76,9 +76,9 @@ test('la categoria corrente e segnalata una volta per menu', () => {
   const problemi = [];
   for (const p of PAGINE) {
     const quante = (p.html.match(/aria-current="page"/g) || []).length;
-    if (p.ctx.tipo === 'home' || p.ctx.tipo === 'legale') {
-      // nessuna categoria attiva; le briciole ne aggiungono una sulle legali
-      const atteso = p.ctx.tipo === 'legale' ? 1 : 0;
+    if (p.ctx.tipo === 'home' || p.ctx.tipo === 'legale' || p.ctx.tipo === 'guida' || p.ctx.tipo === 'sezione') {
+      // nessuna categoria attiva; le briciole ne aggiungono una sulle legali e sulle guide
+      const atteso = p.ctx.tipo === 'home' ? 0 : 1;
       if (quante !== atteso) problemi.push(p.rel + ' -> ' + quante + ' (atteso ' + atteso + ')');
     } else {
       // due nei menu + una nelle briciole (strumento) o due (categoria)
@@ -382,7 +382,7 @@ test('la pagina dell estratto conto ha il selettore del sesso', () => {
   // Il requisito della pensione anticipata e diverso per uomini e donne:
   // 42 anni e 10 mesi contro 41 e 10. Il codice legge questo controllo e, se
   // sparisce, ricade su 'M' senza dirlo — sbagliando per meta delle persone.
-  const pagina = PAGINE.find((p) => p.rel.indexOf('estratto-conto-contributivo') !== -1);
+  const pagina = PAGINE.find((p) => p.rel === 'lavoro-contratti/estratto-conto-contributivo/index.html');
   assert.ok(pagina, 'pagina non trovata');
   assert.ok(pagina.html.indexOf('id="sesso"') !== -1,
     'manca il selettore #sesso: l anticipata verrebbe calcolata sempre da uomo');

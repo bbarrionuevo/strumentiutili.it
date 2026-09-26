@@ -37,6 +37,7 @@ const CATEGORIE = [
 ];
 
 const LEGALI = [
+  { href: '/guide/', testo: 'Guide pratiche' },
   { href: '/contatti/', testo: 'Chi siamo / Contatti' },
   { href: '/metodo/', testo: 'Come verifichiamo i dati' },
   { href: '/politica-sulla-privacy/', testo: 'Privacy' },
@@ -125,19 +126,25 @@ function urlPagina(rel) {
   return '/' + rel.replace(/\.html$/, '') + '/';
 }
 
+const SEZIONE_GUIDE = { nome: 'Guide', href: '/guide/' };
+
 function contestoPagina(rel, html) {
   const url = urlPagina(rel);
   const primoSegmento = rel.split('/')[0];
   const categoria = CATEGORIE.find((c) => c.slug === primoSegmento) || null;
 
+  // Le guide sono una sezione a se': /guide/ e' l'indice, /guide/<slug>/ un articolo
+  const sezione = primoSegmento === 'guide' ? SEZIONE_GUIDE : null;
+
   let tipo;
   if (rel === 'index.html') tipo = 'home';
   else if (categoria && rel === categoria.slug + '/index.html') tipo = 'categoria';
   else if (categoria) tipo = 'strumento';
+  else if (sezione) tipo = rel === 'guide/index.html' ? 'sezione' : 'guida';
   else tipo = 'legale';
 
   const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
-  return { rel, url, tipo, categoria, titolo: m ? testoSemplice(m[1]) : '' };
+  return { rel, url, tipo, categoria, sezione, titolo: m ? testoSemplice(m[1]) : '' };
 }
 
 // ---------------------------------------------------------- teste della pagina
@@ -311,7 +318,8 @@ function piede(bloccoPubblicitario) {
 function catenaBriciole(ctx) {
   const catena = [{ nome: 'Home', href: '/' }];
   if (ctx.categoria) catena.push({ nome: ctx.categoria.lungo, href: '/' + ctx.categoria.slug + '/' });
-  if (ctx.tipo === 'strumento' || ctx.tipo === 'legale') {
+  if (ctx.sezione) catena.push({ nome: ctx.sezione.nome, href: ctx.sezione.href });
+  if (ctx.tipo === 'strumento' || ctx.tipo === 'legale' || ctx.tipo === 'guida') {
     catena.push({ nome: ctx.titolo || ctx.url, href: ctx.url });
   }
   return catena;

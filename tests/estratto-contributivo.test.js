@@ -107,6 +107,23 @@ test('periodi contigui o sovrapposti non generano buchi', () => {
   assert.deepStrictEqual(sovrapposti.buchi, []);
 });
 
+test('un periodo corto dentro uno lungo non fa comparire un buco dopo', () => {
+  // Dipendente 2013-2015 e, in mezzo, una collaborazione nel 2014: prima il
+  // buco si misurava dalla fine della collaborazione (dicembre 2014) e
+  // compariva un vuoto inesistente per tutto il 2015.
+  const a = E.analizza([
+    { dal: '2013-01-14', al: '2015-12-31' },
+    { dal: '2014-03-01', al: '2014-12-31' },
+    { dal: '2016-06-01', al: '2020-12-31' }
+  ], {});
+  assert.strictEqual(a.buchi.length, 1);
+  assert.strictEqual(a.buchi[0].dal.getFullYear(), 2016);
+  assert.strictEqual(a.buchi[0].dal.getMonth(), 0);
+  assert.strictEqual(a.buchi[0].dal.getDate(), 1);
+  assert.strictEqual(a.buchi[0].al.getMonth(), 4);   // 31 maggio 2016
+  assert.strictEqual(a.buchi[0].al.getDate(), 31);
+});
+
 test('le interruzioni brevi non vengono segnalate come buchi', () => {
   // Fra un contratto e l'altro qualche giorno e normale: allarmare su quello
   // renderebbe lo strumento inutile.

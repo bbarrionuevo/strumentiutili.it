@@ -24,12 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function calculateNaspi() {
-    if (!regole) return;
-
-    const eta = parseInt(inEta.value) || 0;
-    const retribuzione = parseFloat(inRetribuzione.value) || 0;
-    const settimane = parseInt(inSettimane.value) || 0;
-    const scomputo = parseInt(inScomputo.value) || 0;
+    if (!regole || !window.NaspiCalcolo) return;
 
     // Reset UI
     alertRequisiti.classList.add('hidden');
@@ -38,77 +33,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     outDurata.textContent = "0 mesi";
     outTotaleLordo.textContent = "€ 0,00";
 
-    if (eta <= 0 || retribuzione <= 0 || settimane <= 0) return;
+    // Il conto e' in js/naspi-calcolo.js, lo stesso usato dalla guida e dai test.
+    const r = window.NaspiCalcolo.calcola({
+      eta: inEta.value,
+      retribuzione: inRetribuzione.value,
+      settimane: inSettimane.value,
+      scomputo: inScomputo.value
+    }, regole);
 
-    // 1. Controllo Requisiti Minimi (13 settimane)
-    if (settimane < regole.requisiti.settimane_minime_richieste) {
+    if (r.esito === 'settimane_insufficienti') {
       alertRequisiti.classList.remove('hidden');
       return;
     }
+    if (r.esito !== 'ok') return;
 
-    // 2. Calcolo Retribuzione Media Mensile (RMM)
-    const rmm = (retribuzione / settimane) * regole.coefficiente_mensilizzazione;
-
-    // 3. Calcolo Importo Base (con massimale INPS)
-    let importoBase = 0;
-    if (rmm <= regole.soglia_retribuzione_inps) {
-      importoBase = rmm * regole.aliquota_base;
-    } else {
-      importoBase = (regole.soglia_retribuzione_inps * regole.aliquota_base) + 
-                    ((rmm - regole.soglia_retribuzione_inps) * regole.aliquota_eccedenza);
-    }
-    
-    // Tetto Massimo
-    importoBase = Math.min(importoBase, regole.massimale_mensile_inps);
-
-    // 4. Calcolo Durata (metà delle settimane lavorate, meno quelle già fruite)
-    const settimaneValide = Math.max(0, settimane - scomputo);
-    const settimaneSpettanti = Math.min(settimaneValide / 2, regole.requisiti.settimane_massime_fruibili);
-    const mesiDurata = Math.floor(settimaneSpettanti / regole.coefficiente_mensilizzazione);
-
-    if (mesiDurata <= 0) return;
-
-    // 5. Generazione Piano Mensile e Decalage
-    const mesePartenzaDecalage = eta >= regole.decalage.soglia_eta_anni 
-                                 ? regole.decalage.mese_partenza_over55 
-                                 : regole.decalage.mese_partenza_standard;
-
-    let totaleLordoSpettante = 0;
-    let pianoMensile = [];
-    let importoCorrente = importoBase;
-
-    for (let m = 1; m <= mesiDurata; m++) {
-      let decurtazione = 0;
-      
-      // Applica il decalage del 3% dal mese stabilito
-      if (m >= mesePartenzaDecalage) {
-        // La riduzione è cumulativa sul mese precedente
-        const riduzione = importoCorrente * regole.decalage.percentuale_decurtazione;
-        decurtazione = riduzione;
-        importoCorrente = importoCorrente - riduzione;
-      }
-      
-      totaleLordoSpettante += importoCorrente;
-      
-      pianoMensile.push({
-        mese: m,
-        lordo: importoCorrente,
-        taglio: decurtazione
-      });
-    }
-
-    // 6. Rendering UI
     const fmt = val => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(val);
-    outImportoBase.textContent = fmt(importoBase);
-    outDurata.textContent = `${mesiDurata} mesi (${Math.floor(settimaneSpettanti)} sett.)`;
-    outTotaleLordo.textContent = fmt(totaleLordoSpettante);
+    outImportoBase.textContent = fmt(r.importoBase);
+    outDurata.textContent = `${r.mesi} mesi (${Math.floor(r.settimaneSpettanti)} sett.)`;
+    outTotaleLordo.textContent = fmt(r.totale);
 
-    // Rendering Tabella
-    if(tableBody) {
+    if (tableBody) {
       tableBody.innerHTML = '';
       const frag = document.createDocumentFragment();
-      pianoMensile.forEach(row => {
-        const isDecalage = row.mese >= mesePartenzaDecalage;
+      r.piano.forEach(row => {
+        const isDecalage = row.mese >= r.mesePartenzaDecalage;
         const tr = document.createElement('tr');
         tr.className = "border-b border-gray-100 hover:bg-gray-50 text-sm";
         tr.innerHTML = `

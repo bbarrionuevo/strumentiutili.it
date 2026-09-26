@@ -22,7 +22,7 @@ const SITO = L.SITO;
 
 function priorita(ctx) {
   if (ctx.tipo === 'home') return '1.0';
-  if (ctx.tipo === 'categoria') return '0.9';
+  if (ctx.tipo === 'categoria' || ctx.tipo === 'sezione') return '0.9';
   if (ctx.tipo === 'legale') return '0.3';
   return '0.8';
 }

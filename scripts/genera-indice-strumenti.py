@@ -95,6 +95,19 @@ def main() -> int:
 
     voci += voci_varianti({v["percorso"]: v for v in voci})
 
+    # Le guide (scritte da scripts/genera-guide.js): chi cerca "dimissioni"
+    # trova anche la guida, con l'etichetta «Guida» nei risultati.
+    guide = ROOT / "data" / "guide.json"
+    if guide.exists():
+        for g in json.loads(guide.read_text(encoding="utf-8"))["guide"]:
+            voci.append({
+                "percorso": g["percorso"],
+                "categoria": "guide",
+                "nomeCategoria": "Guida",
+                "titolo": g["titoloBreve"],
+                "descrizione": g["descrizione"],
+            })
+
     voci.sort(key=lambda v: (v["categoria"], "variante" in v, v["titolo"].lower()))
 
     USCITA.parent.mkdir(exist_ok=True)
@@ -104,7 +117,8 @@ def main() -> int:
     )
 
     varianti = sum(1 for v in voci if "variante" in v)
-    print(f"{USCITA.relative_to(ROOT)}: {len(voci)} voci ({len(voci) - varianti} strumenti, {varianti} varianti)")
+    n_guide = sum(1 for v in voci if v["categoria"] == "guide")
+    print(f"{USCITA.relative_to(ROOT)}: {len(voci)} voci ({len(voci) - varianti - n_guide} strumenti, {varianti} varianti, {n_guide} guide)")
     for categoria in CATEGORIE:
         n = sum(1 for v in voci if v["categoria"] == categoria)
         nv = sum(1 for v in voci if v["categoria"] == categoria and "variante" in v)
