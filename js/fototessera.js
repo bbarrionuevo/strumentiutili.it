@@ -1,4 +1,4 @@
-// js/fototessera.js — Generador de Fototessera ICAO con Detección IA en Web Worker
+// js/fototessera.js — Fototessera ICAO, con il riconoscimento del viso in un Web Worker
 (() => {
   'use strict';
 

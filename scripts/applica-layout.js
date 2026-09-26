@@ -85,18 +85,8 @@ function applicaTestata(html, ctx) {
 function applicaPiede(html) {
   const b = blocco(html, 'footer');
 
-  // Lo spazio pubblicitario si recupera dal piede attuale (o da quello gia'
-  // generato) e si riporta identico: gli slot cambiano da pagina a pagina.
-  let pubblicita = null;
-  if (b) {
-    const i = b.testo.indexOf('<div class="su-ad');
-    if (i !== -1) {
-      const j = b.testo.indexOf('</div>', i);
-      if (j !== -1) pubblicita = b.testo.slice(i, j + 6);
-    }
-  }
-
-  const nuovo = L.piede(pubblicita);
+  // Nel piede non ci sono annunci (vedi build-layout.js).
+  const nuovo = L.piede(null);
   const conMarcatori = traMarcatori(html, M.piedeApri, M.piedeChiudi, nuovo);
   if (conMarcatori !== null) return conMarcatori;
 

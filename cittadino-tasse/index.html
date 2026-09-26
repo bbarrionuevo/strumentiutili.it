@@ -80,29 +80,29 @@
         <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
           <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
           <span class="hidden sm:block">
-            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
-            <span class="block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+            <span class="block text-xl xl:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block lg:hidden xl:block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
           </span>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
-          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
-          <a href="/cittadino-tasse/" class="text-indigo-600 font-semibold" aria-current="page">🏛️ Cittadino &amp; Tasse</a>
-          <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro</a>
-          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
-          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
-          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
-          <a href="/utilita-web/" class="text-gray-600 hover:text-indigo-600 font-medium">🛠️ Utilità</a>
+        <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="whitespace-nowrap text-indigo-600 font-semibold" aria-current="page">Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Lavoro</a>
+          <a href="/identita-burocrazia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Identità</a>
+          <a href="/pdf/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">PDF</a>
+          <a href="/ia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">IA</a>
+          <a href="/utilita-web/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Utilità</a>
         </nav>
 
-        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">
           <label for="search" class="sr-only">Cerca uno strumento</label>
-          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"
                  role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
                  class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
           <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
-               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
-        </div>
+               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </form>
 
         <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
                 class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -131,11 +131,6 @@
     
     <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
       
-      <div class="su-ad su-ad--testata mb-6 w-full text-center" data-su-pos="testata">
-        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
-        <ins data-su-pos="testata" data-ad-format="horizontal" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="4436348652" data-full-width-responsive="true"></ins>
-        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
-      </div>
 
       <!-- su:briciole -->
       <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
@@ -414,9 +409,7 @@
     <!-- ASIDE UNIFICATO PER ADSENSE -->
     <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
       <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
-        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
         <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
-        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
       </div>
     </aside>
 
@@ -435,9 +428,7 @@
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
-        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
-        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
       </div>
     </div>
   </div>
@@ -446,11 +437,6 @@
   <footer class="bg-white border-t mt-12 w-full block">
     <div class="container mx-auto px-4 py-8 w-full block">
 
-      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
-      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
-      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle" style="display:block;width:100%;min-width:250px;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="1157333219"></ins>
-      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
-      </div>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -484,6 +470,7 @@
             <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
             <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
             <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li><a href="/mappa-del-sito/" class="hover:text-indigo-600 transition-colors">Mappa del sito</a></li>
             <li hidden id="riapri-consenso-voce">
               <button type="button" id="riapri-consenso"
                       class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>

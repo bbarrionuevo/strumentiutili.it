@@ -28,7 +28,7 @@ const pdfService = {
     return Comlink.transfer(bytes.buffer, [bytes.buffer]);
   },
 
-  // 2. Unir imágenes en PDF
+  // 2. Immagini in un PDF
   async imagesToPdf(imagesData) { 
     const out = await PDFLib.PDFDocument.create();
     for (const imgData of imagesData) {
@@ -61,7 +61,7 @@ const pdfService = {
     return Comlink.transfer(bytes.buffer, [bytes.buffer]);
   },
 
-  // 3. Organizar y Unir múltiples PDFs
+  // 3. Riordinare e unire piu' PDF
   async organizePdfs(sourcePdfs, pageSequence) {
     const loadedPdfs = new Map();
     for (const src of sourcePdfs) {
@@ -203,7 +203,7 @@ const pdfService = {
     return Comlink.transfer(out.buffer, [out.buffer]);
   },
 
-  // 7. Extraer Texto (NUEVO: Para el Asistente IA)
+  // 7. Estrarre il testo (per l'assistente documenti)
   async extractText(pdfBuffer) {
     const pdf = await pdfjsLib.getDocument({ data: pdfBuffer, isEvalSupported: false }).promise;
     let fullText = '';

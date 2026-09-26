@@ -311,7 +311,7 @@ function aggiungiMesi(d, n) {
         const ccnlLabel = dataMatrix[inputCcnl.value].label;
         
         // Testo con Disclaimer Sospensivo obbligatorio integrato
-        // 1. Texto de la carta formateado (líneas más cortas para evitar cortes)
+        // 1. Testo della lettera (righe piu' corte, per non tagliare le parole)
         const bodyLines = [
           `Io sottoscritto/a ${nome} ${cognome}`,
           `(C.F. ${cf}), con la presente intendo`,
@@ -350,14 +350,14 @@ function aggiungiMesi(d, n) {
         y -= 25;
         page.drawText(`${nome} ${cognome}`, { x: margin, y, size: 11, font: fontBold });
 
-        // 4. ESPACIO PARA FIRMA MANUSCRITA (35px de respiro) Y LÍNEAS DE FIRMA
+        // 4. Spazio per la firma a mano (35px d'aria) e righe per firmare
         y -= 35; 
         
         // Firma Trabajatore (Izquierda)
         page.drawLine({ start: { x: margin, y }, end: { x: margin + 170, y }, thickness: 1 });
         page.drawText(`(Firma del Lavoratore)`, { x: margin, y: y - 12, size: 9, font: fontNormal });
 
-        // Recepción Empresa (Derecha)
+        // Ricevuta dell'azienda (a destra)
         page.drawLine({ start: { x: width - 220, y }, end: { x: width - 50, y }, thickness: 1 });
         page.drawText(`Per ricevuta e accettazione (L'Azienda)`, { x: width - 220, y: y - 12, size: 9, font: fontNormal });
 

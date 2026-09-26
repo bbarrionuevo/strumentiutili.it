@@ -25,12 +25,10 @@ const FAQ = [
 ];
 
 const AD_CONTENUTO = `      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
-        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
              style="display:block;width:100%;min-width:0;"
              data-ad-client="${CLIENT}"
              data-ad-slot="8859818557"></ins>
-        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
       </div>`;
 
 function pagina() {
@@ -213,26 +211,16 @@ ${faq}
       </nav>
 
       <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
-        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
         <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
              style="display:block;width:100%;min-width:0;"
              data-ad-client="${CLIENT}"
              data-ad-slot="6912312067"></ins>
-        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
       </div>
     </aside>
 
   </div>
 
   <footer>
-      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
-      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
-      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
-      style="display:block;width:100%;min-width:250px;"
-      data-ad-client="${CLIENT}"
-      data-ad-slot="1157333219"></ins>
-      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
-      </div>
   </footer>
 
   <script defer src="/js/festivita.js"></script>

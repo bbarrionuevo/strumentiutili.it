@@ -1,4 +1,4 @@
-// js/traduttore.js — Controlador de traducción conectado a Web Worker vía Comlink
+// js/traduttore.js — Interfaccia del traduttore; il modello lavora in un worker (Comlink)
 
 let currentFile = null;
 let extractedParagraphs = [];
@@ -290,7 +290,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       if (modelStatusEl) modelStatusEl.textContent = 'Caricamento modello IA...';
 
-      // Cargar Modelo en el Worker con callback de progreso
+      // Caricamento del modello nel worker, con l'avanzamento
       await service.loadModel(
         modelId,
         Comlink.proxy((pct) => {
@@ -306,7 +306,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const segmenti = segmentaParagrafi(extractedParagraphs, 400);
 
-      // Traducir Chunks en el Worker con callback de progreso
+      // Traduzione dei blocchi nel worker, con l'avanzamento
       const tradotti = await service.translateChunks(
         segmenti.map(s => s.testo),
         modelId,

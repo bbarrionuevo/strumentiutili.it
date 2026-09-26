@@ -39,7 +39,8 @@ const CATEGORIE = [
 const LEGALI = [
   { href: '/contatti/', testo: 'Chi siamo / Contatti' },
   { href: '/politica-sulla-privacy/', testo: 'Privacy' },
-  { href: '/avviso-legale/', testo: 'Avviso legale' }
+  { href: '/avviso-legale/', testo: 'Avviso legale' },
+  { href: '/mappa-del-sito/', testo: 'Mappa del sito' }
 ];
 
 // Origini di terzi presenti in TUTTE le pagine e sul percorso critico: vale la
@@ -171,8 +172,12 @@ function intestazione(ctx) {
       ? 'text-indigo-600 font-semibold'
       : 'text-gray-600 hover:text-indigo-600 font-medium';
     const corrente = attiva(c.slug) ? ' aria-current="page"' : '';
-    return '          <a href="/' + c.slug + '/" class="' + classe + '"' + corrente + '>' +
-      c.emoji + ' ' + esc(c.breve) + '</a>';
+    // whitespace-nowrap: senza, «Fisco & Professioni» andava a capo e la
+    // barra occupava due o tre righe fra 1024 e 1440 pixel. Le emoji restano
+    // nel menu da telefono: qui la riga (al massimo 1068px, .container) con
+    // logo, sette voci e ricerca non ci stava e la pagina scorreva di lato.
+    return '          <a href="/' + c.slug + '/" class="whitespace-nowrap ' + classe + '"' + corrente + '>' +
+      esc(c.breve) + '</a>';
   };
 
   const voceMobile = (c) => {
@@ -193,23 +198,24 @@ function intestazione(ctx) {
     '        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">',
     '          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>',
     '          <span class="hidden sm:block">',
-    '            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>',
-    '            <span class="block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>',
+    '            <span class="block text-xl xl:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>',
+    '            <span class="block lg:hidden xl:block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>',
     '          </span>',
     '        </a>',
     '',
-    '        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">',
+    '        <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm mx-auto" aria-label="Categorie">',
     CATEGORIE.map(voceDesktop).join('\n'),
     '        </nav>',
     '',
-    '        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">',
+    // Senza JavaScript, Invio porta alla mappa del sito (con la parola cercata).
+    '        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">',
     '          <label for="search" class="sr-only">Cerca uno strumento</label>',
-    '          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"',
+    '          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"',
     '                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"',
     '                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />',
     '          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden',
-    '               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>',
-    '        </div>',
+    '               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>',
+    '        </form>',
     '',
     '        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"',
     '                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">',
@@ -230,9 +236,8 @@ function intestazione(ctx) {
 
 // --------------------------------------------------------------------- piede
 
-// `bloccoPubblicitario` e' lo spazio AdSense gia' presente nella pagina: viene
-// riportato tale e quale, perche' lo slot cambia da pagina a pagina e non e'
-// compito di questo script deciderlo.
+// Il piede non ha piu' annunci: stava subito dopo quello del contenuto, due
+// riquadri di fila. `bloccoPubblicitario` resta per compatibilita' e si ignora.
 function piede(bloccoPubblicitario) {
   const vociCategoria = (c) =>
     '            <li><a href="/' + c.slug + '/" class="hover:text-indigo-600 transition-colors">' +
@@ -242,9 +247,8 @@ function piede(bloccoPubblicitario) {
     '            <li><a href="' + l.href + '" class="hover:text-indigo-600 transition-colors">' +
     esc(l.testo) + '</a></li>';
 
-  const pubblicita = bloccoPubblicitario
-    ? bloccoPubblicitario.split('\n').map((l) => (l.trim() ? '      ' + l.trim() : l)).join('\n') + '\n'
-    : '';
+  void bloccoPubblicitario;
+  const pubblicita = '';
 
   return [
     '  <footer class="bg-white border-t mt-12 w-full block">',

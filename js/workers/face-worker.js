@@ -1,4 +1,4 @@
-// js/workers/face-worker.js — Detección facial biométrica con face-api.js y Comlink
+// js/workers/face-worker.js — Riconoscimento del viso con face-api.js (Comlink)
 // Versioni fissate: un aggiornamento della libreria non deve cambiare il comportamento senza verifica
 importScripts('/vendor/comlink@4.4.2/comlink.js');
 importScripts('https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.15/dist/face-api.js');

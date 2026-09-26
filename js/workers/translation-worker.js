@@ -1,4 +1,4 @@
-// js/workers/translation-worker.js — Worker dedicado para traducción IA con Comlink
+// js/workers/translation-worker.js — Worker del traduttore (Comlink)
 importScripts('/vendor/comlink@4.4.2/comlink.js');
 
 let loadedPipelines = new Map();

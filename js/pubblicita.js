@@ -2,26 +2,20 @@
 //
 // Non carica la libreria di AdSense (e' nel <head> di ogni pagina) e non crea
 // riquadri. Fa due cose: chiede un annuncio per ogni riquadro visibile, e
-// tiene il segnaposto grigio finche' l'annuncio non c'e', togliendolo appena
-// arriva.
+// segna sul riquadro lo stato dell'annuncio (data-su-stato), che il CSS usa.
 //
-// Perche' serve. Il riquadro ha un'altezza riservata fin dal primo istante,
-// cosi' la pagina non salta quando l'annuncio si carica (e' il Cumulative
-// Layout Shift, uno dei Core Web Vitals). Ma un riquadro alto e vuoto, durante
-// il caricamento, sembra un errore: il segnaposto dice che li' ci va la
-// pubblicita'. Quando AdSense non ha nulla da mostrare mette da se'
-// data-ad-status="unfilled": in quel caso il riquadro si chiude, perche' un
-// rettangolo grigio permanente e' solo spazio rubato al contenuto.
+// Finche' l'annuncio non c'e', il riquadro non si vede (src/input.css): niente
+// altezza riservata, niente fondo grigio, nessuna scritta. Quando AdSense lo
+// riempie (data-ad-status="filled") compare con l'etichetta «Pubblicità»;
+// quando non ha niente da mostrare ("unfilled") sparisce del tutto.
 //
-// Anteprima: aggiungendo ?anteprima-pubblicita=1 all'indirizzo i segnaposto
-// restano visibili anche dove l'annuncio c'e', per vedere l'impaginazione.
+// Anteprima: aggiungendo ?anteprima-pubblicita=1 all'indirizzo i riquadri si
+// vedono come rettangoli tratteggiati, per controllare l'impaginazione.
 //
 // Qui si fa anche la richiesta dell'annuncio, adsbygoogle.push({}), una volta
 // per riquadro. Senza quella chiamata un <ins class="adsbygoogle"> resta vuoto
-// per sempre. Prima ogni pagina se ne portava dietro una copia in linea, in
-// sei varianti: le pagine piu' recenti ne erano rimaste senza e i loro annunci
-// non partivano mai. Ora e' solo qui, e il segno data-su-ad-init impedisce di
-// chiedere due volte lo stesso riquadro.
+// per sempre. Il segno data-su-ad-init impedisce di chiedere due volte lo
+// stesso riquadro.
 (() => {
   'use strict';
 
@@ -38,8 +32,8 @@
       return;
     }
     if (stato === 'filled') {
-      // L'annuncio c'e': via il segnaposto, resta l'etichetta "Pubblicita'"
-      // che le norme di AdSense chiedono per distinguerlo dal contenuto.
+      // L'annuncio c'e': il CSS mostra il riquadro con l'etichetta
+      // «Pubblicità», che le norme di AdSense chiedono.
       riquadro.dataset.suStato = 'pieno';
       return;
     }
@@ -114,7 +108,7 @@
 
     // Rete di sicurezza: se dopo 8 secondi AdSense non ha detto nulla, il
     // riquadro e' quasi certamente rimasto vuoto (script bloccato da un
-    // adblocker, oppure consenso negato). Si chiude e si restituisce lo spazio.
+    // adblocker, consenso negato, sito non ancora approvato): si segna vuoto.
     setTimeout(() => {
       riquadri.forEach((riquadro) => {
         if (riquadro.dataset.suStato !== 'attesa') return;

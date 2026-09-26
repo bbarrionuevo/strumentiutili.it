@@ -23,6 +23,10 @@ Come si fa, una volta sola:
 
 Le posizioni lasciate vuote non vengono toccate: si puo' procedere un blocco
 alla volta. Lo script non aggiunge e non toglie annunci.
+
+Dal settembre 2026 le pagine hanno solo i riquadri «contenuto» e «laterale»
+(quelli in testata e in fondo sono stati tolti): le altre due voci di SLOT
+restano per memoria e non trovano niente da riscrivere.
 """
 
 from __future__ import annotations

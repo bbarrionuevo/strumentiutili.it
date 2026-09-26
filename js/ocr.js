@@ -1,4 +1,4 @@
-// js/ocr.js — Reconocimiento OCR Tesseract WASM (servido desde vendor/) + Exportación TXT, DOCX y PDF
+// js/ocr.js — Riconoscimento del testo (Tesseract WASM, servito da vendor/) ed esportazione in TXT, DOCX e PDF
 (function () {
   'use strict';
 
