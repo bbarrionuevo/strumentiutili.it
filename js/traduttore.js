@@ -86,7 +86,7 @@ async function extractTextFromFile(file) {
   if (name.endsWith('.pdf')) {
     if (typeof pdfjsLib === 'undefined') throw new Error('Libreria PDF.js non disponibile');
     const arr = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arr }).promise;
+    const pdf = await pdfjsLib.getDocument({ data: arr, isEvalSupported: false }).promise;
     let fullText = '';
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);

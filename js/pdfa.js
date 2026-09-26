@@ -342,7 +342,7 @@
     async function costruisciPdfA(bytesOriginali, parte, titolo) {
       const pdfjs = await caricaPdfJs();
       const L = window.PDFLib;
-      const sorgente = await pdfjs.getDocument({ data: new Uint8Array(bytesOriginali) }).promise;
+      const sorgente = await pdfjs.getDocument({ data: new Uint8Array(bytesOriginali), isEvalSupported: false }).promise;
       const out = await L.PDFDocument.create({ updateMetadata: false });
       const RISOLUZIONE = 150 / 72;
       // Il font serve solo al livello di testo invisibile: un documento di sole immagini non deve contenerlo

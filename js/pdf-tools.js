@@ -76,7 +76,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         doSplitBtn.disabled = true;
 
         const arr = await file.arrayBuffer();
-        const pdfJsDoc = await window.pdfjsLib.getDocument({ data: arr.slice(0) }).promise;
+        const pdfJsDoc = await window.pdfjsLib.getDocument({ data: arr.slice(0), isEvalSupported: false }).promise;
         const pages = parsePages(pagesInput, pdfJsDoc.numPages);
         if (!pages.length) {
           msg.textContent = pagesInput
@@ -168,7 +168,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
           
           organizerSourcePdfs.push({ id: sourceId, buffer: arr.slice(0) });
 
-          const pdfJsDoc = await window.pdfjsLib.getDocument({ data: arr }).promise;
+          const pdfJsDoc = await window.pdfjsLib.getDocument({ data: arr, isEvalSupported: false }).promise;
           for (let i = 1; i <= pdfJsDoc.numPages; i++) {
             const page = await pdfJsDoc.getPage(i);
             const viewport = page.getViewport({ scale: 0.4 }); 
@@ -273,7 +273,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         msg.textContent = 'Rasterizzazione in corso...';
         
         const arr = await input.files[0].arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({data:arr}).promise;
+        const pdf = await pdfjsLib.getDocument({ data: arr, isEvalSupported: false }).promise;
         
         const payload = [];
         const transferables = [];
@@ -373,7 +373,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     try {
       const bytes = await file.arrayBuffer();
       redactState.pdfBytes = bytes; 
-      const pdf = await window.pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+      const pdf = await window.pdfjsLib.getDocument({ data: bytes.slice(0), isEvalSupported: false }).promise;
       redactState.pageNumber = Math.min(Math.max(1, Number(redactPageInput?.value || 1)), pdf.numPages);
       const page = await pdf.getPage(redactState.pageNumber);
       redactState.viewport = page.getViewport({ scale: 1.25 });
@@ -432,7 +432,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
         // La pagina viene renderizzata ad alta risoluzione (circa 180 DPI) con i riquadri neri già applicati:
         // il worker la sostituisce con questa immagine, così il testo coperto non resta nel file
         const RISOLUZIONE = 2.5;
-        const docJs = await window.pdfjsLib.getDocument({ data: redactState.pdfBytes.slice(0) }).promise;
+        const docJs = await window.pdfjsLib.getDocument({ data: redactState.pdfBytes.slice(0), isEvalSupported: false }).promise;
         const paginaJs = await docJs.getPage(redactState.pageNumber);
         const vpAlta = paginaJs.getViewport({ scale: RISOLUZIONE });
         const vpPunti = paginaJs.getViewport({ scale: 1 });
@@ -486,7 +486,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     const msg = document.getElementById('signature-msg');
     try {
       const bytes = await file.arrayBuffer();
-      const pdf = await window.pdfjsLib.getDocument({ data: bytes }).promise;
+      const pdf = await window.pdfjsLib.getDocument({ data: bytes, isEvalSupported: false }).promise;
       const pageNum = Math.max(1, Number(document.getElementById('sign-page')?.value || 1));
       const page = await pdf.getPage(Math.min(pageNum, pdf.numPages));
 

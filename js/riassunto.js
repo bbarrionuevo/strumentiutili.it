@@ -98,7 +98,7 @@
     async function extractTextFromPDF(file) {
       if (!window.pdfjsLib) throw new Error('PDF.js non disponibile.');
       const buffer = await file.arrayBuffer();
-      const pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+      const pdf = await window.pdfjsLib.getDocument({ data: buffer, isEvalSupported: false }).promise;
       let fullText = '';
 
       for (let i = 1; i <= pdf.numPages; i++) {

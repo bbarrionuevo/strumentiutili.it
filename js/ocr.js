@@ -42,7 +42,7 @@
       if (file.name.toLowerCase().endsWith('.pdf')) {
         if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js non disponibile.');
         const buffer = await file.arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+        const pdf = await pdfjsLib.getDocument({ data: buffer, isEvalSupported: false }).promise;
         // Tutte le pagine, non solo la prima
         for (let n = 1; n <= pdf.numPages; n++) {
           setProgress(`Conversione della pagina ${n} di ${pdf.numPages}...`);

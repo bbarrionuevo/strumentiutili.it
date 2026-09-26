@@ -162,7 +162,7 @@
     if (!lib) return Promise.reject(new Error('Lettore PDF non disponibile.'));
 
     return file.arrayBuffer()
-      .then(function (dati) { return lib.getDocument({ data: new Uint8Array(dati) }).promise; })
+      .then(function (dati) { return lib.getDocument({ data: new Uint8Array(dati), isEvalSupported: false }).promise; })
       .then(function (doc) {
         var testi = [], perPagina = [];
 
