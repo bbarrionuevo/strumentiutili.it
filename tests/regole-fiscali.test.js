@@ -94,12 +94,13 @@ test('nessun valore numerico e NaN o Infinity in tutto il file', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
-// Quello che resta da fare: cinque Regioni deliberano tariffe proprie che non
-// abbiamo ancora caricato (abruzzo, calabria, emilia_romagna, liguria, veneto).
+// Quello che resta da fare: tre Regioni deliberano tariffe proprie che non
+// abbiamo ancora caricato (calabria, liguria, veneto): i tariffari ufficiali
+// si leggono con il workflow .github/workflows/leggi-fonti.yml.
 // Per loro il calcolo usa la tariffa nazionale e lo dichiara con un avviso, ma
 // il numero resta indicativo. Le altre dodici applicano davvero la tariffa
 // nazionale, quindi per loro non manca niente.
-test('le Regioni con tariffa propria hanno le tariffe caricate', { todo: 'mancano 5 Regioni su 9' }, () => {
+test('le Regioni con tariffa propria hanno le tariffe caricate', { todo: 'mancano 3 Regioni su 9' }, () => {
   const b = regole.bollo_auto_2026;
   const mancanti = b.regioni_con_tariffa_propria.filter((r) => !b.regioni[r]);
   assert.deepStrictEqual(mancanti, [], 'tariffe da caricare dal tariffario ACI: ' + mancanti.join(', '));

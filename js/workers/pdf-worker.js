@@ -205,7 +205,7 @@ const pdfService = {
 
   // 7. Extraer Texto (NUEVO: Para el Asistente IA)
   async extractText(pdfBuffer) {
-    const pdf = await pdfjsLib.getDocument({ data: pdfBuffer }).promise;
+    const pdf = await pdfjsLib.getDocument({ data: pdfBuffer, isEvalSupported: false }).promise;
     let fullText = '';
     
     for (let i = 1; i <= pdf.numPages; i++) {

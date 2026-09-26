@@ -144,7 +144,7 @@
               : '';
           } else {
             const differenza = (r.unitario - migliore.unitario) / migliore.unitario * 100;
-            confronto.innerHTML = `<span class="text-rose-600">+${window.SuNumeri.percentuale(differenza)} rispetto a ${migliore.nome}</span>`;
+            confronto.innerHTML = `<span class="text-rose-600">+${window.SuNumeri.percentuale(differenza)} rispetto a ${escapeHtml(migliore.nome)}</span>`;
           }
         });
 

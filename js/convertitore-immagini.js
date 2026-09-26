@@ -54,7 +54,11 @@
         const card = document.createElement('div'); card.className='p-3 border rounded bg-white flex items-center gap-3';
         const img = document.createElement('img'); img.src = url; img.style.maxWidth='120px'; img.style.maxHeight='80px';
         const info = document.createElement('div');
-        info.innerHTML = `<div class="font-semibold">${f.name}</div><div class="text-sm">Prima: ${(before/1024).toFixed(1)} KB — Dopo: ${(after/1024).toFixed(1)} KB (${pct >= 0 ? pct + '% risparmio' : 'file più pesante del ' + (-pct) + '%'})</div>`;
+        // il nome del file lo sceglie chi lo carica: solo come testo
+        const nome = document.createElement('div'); nome.className = 'font-semibold'; nome.textContent = f.name;
+        const pesi = document.createElement('div'); pesi.className = 'text-sm';
+        pesi.textContent = `Prima: ${(before/1024).toFixed(1)} KB — Dopo: ${(after/1024).toFixed(1)} KB (${pct >= 0 ? pct + '% risparmio' : 'file più pesante del ' + (-pct) + '%'})`;
+        info.appendChild(nome); info.appendChild(pesi);
         const dl = document.createElement('a'); dl.href = url; dl.className='ml-auto btn btn-primary'; dl.download = (f.name.replace(/\.[^.]+$/, '') + '.' + (target.split('/')[1] || 'out')) ; dl.textContent='Scarica';
         convertiti.push(new File([blob], dl.download, { type: target }));
         // revoke object URL shortly after initiating download to free memory

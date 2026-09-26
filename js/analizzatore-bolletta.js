@@ -165,7 +165,7 @@
     if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js non disponibile.');
     pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs@3.11.174/pdf.worker.min.js';
     const buffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    const pdf = await pdfjsLib.getDocument({ data: buffer, isEvalSupported: false }).promise;
     let fullText = '';
     // Legge fino a 2 pagine
     const maxPages = Math.min(pdf.numPages, 2);
@@ -181,7 +181,7 @@
   // --- RENDER PDF -> IMMAGINE (Per OCR) ---
   async function renderPdfToImageBlob(file) {
     const buffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    const pdf = await pdfjsLib.getDocument({ data: buffer, isEvalSupported: false }).promise;
     const pageNum = pdf.numPages >= 2 ? 2 : 1; 
     const page = await pdf.getPage(pageNum);
     const viewport = page.getViewport({ scale: 2.0 });

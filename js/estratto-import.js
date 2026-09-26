@@ -357,7 +357,7 @@
       return Promise.resolve({ ok: false, periodi: [], motivo: 'Lettore PDF non disponibile.' });
     }
 
-    return lib.getDocument({ data: dati }).promise.then(function (doc) {
+    return lib.getDocument({ data: dati, isEvalSupported: false }).promise.then(function (doc) {
       var pagine = [];
       for (var i = 1; i <= doc.numPages; i++) pagine.push(i);
 

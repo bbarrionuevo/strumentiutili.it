@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(number);
   }
 
+  // I campi arrivano dall'XML di chi ha emesso la fattura: prima di finire
+  // nell'HTML vanno sempre "disinnescati", altrimenti un <img onerror=...>
+  // scritto nella descrizione verrebbe eseguito in questa pagina.
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
   function normalizeText(value) {
     return value == null ? '' : String(value).replace(/\s+/g, ' ').trim();
   }
@@ -160,24 +167,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderInvoice(invoice) {
     const righeHtml = invoice.righe.length ? invoice.righe.map((row) => `
       <tr>
-        <td>${row.descrizione || '—'}</td>
-        <td class="text-right">${row.quantita || '—'}</td>
+        <td>${esc(row.descrizione || '—')}</td>
+        <td class="text-right">${esc(row.quantita || '—')}</td>
         <td class="text-right">${money(row.prezzoUnitario)}</td>
         <td class="text-right">${money(row.prezzoTotale)}</td>
-        <td class="text-right">${row.aliquotaIva ? `${row.aliquotaIva}%` : '—'}</td>
+        <td class="text-right">${row.aliquotaIva ? `${esc(row.aliquotaIva)}%` : '—'}</td>
       </tr>
     `).join('') : '<tr><td colspan="5" class="text-center py-4">Nessuna riga trovata.</td></tr>';
 
     const riepilogoHtml = invoice.riepiloghi.length ? invoice.riepiloghi.map((r) => `
       <div style="display:flex; justify-content:space-between; border-bottom:1px solid #000; padding: 4px 0; font-size: 0.85rem;">
-        <span>IVA ${r.aliquota}% ${r.natura ? '(Nat. '+r.natura+')' : ''}</span>
+        <span>IVA ${esc(r.aliquota)}% ${r.natura ? '(Nat. ' + esc(r.natura) + ')' : ''}</span>
         <span>Imponibile: ${money(r.imponibile)} | Imposta: ${money(r.imposta)}</span>
       </div>
     `).join('') : '<div style="font-size:0.85rem;">Nessun riepilogo IVA.</div>';
 
     const pagamentiHtml = invoice.pagamenti.length ? invoice.pagamenti.map((p) => `
       <div style="display:flex; justify-content:space-between; border-bottom:1px solid #000; padding: 4px 0; font-size: 0.85rem;">
-        <span>Scadenza: <strong>${p.scadenza || 'N/D'}</strong></span>
+        <span>Scadenza: <strong>${esc(p.scadenza || 'N/D')}</strong></span>
         <span>Importo: ${money(p.importo)}</span>
       </div>
     `).join('') : '<div style="font-size:0.85rem;">Nessun dato di pagamento.</div>';
@@ -192,24 +199,24 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
           <div style="width: 48%;">
             <div class="invoice-label">Cedente Prestatore (Fornitore)</div>
-            <div style="font-weight: bold; font-size: 1.1rem;">${invoice.fornitore.ragioneSociale}</div>
-            <div>P.IVA: ${invoice.fornitore.partitaIva}</div>
-            <div>${invoice.fornitore.indirizzo}</div>
+            <div style="font-weight: bold; font-size: 1.1rem;">${esc(invoice.fornitore.ragioneSociale)}</div>
+            <div>P.IVA: ${esc(invoice.fornitore.partitaIva)}</div>
+            <div>${esc(invoice.fornitore.indirizzo)}</div>
           </div>
           <div style="width: 48%; text-align: right;">
              <div class="invoice-label">Cessionario Committente (Cliente)</div>
-            <div style="font-weight: bold; font-size: 1.1rem;">${invoice.cessionario.ragioneSociale}</div>
-            ${invoice.cessionario.codiceFiscale !== 'N/D' ? `<div>CF: ${invoice.cessionario.codiceFiscale}</div>` : ''}
-            ${invoice.cessionario.partitaIva !== 'N/D' ? `<div>P.IVA: ${invoice.cessionario.partitaIva}</div>` : ''}
-            <div>${invoice.cessionario.indirizzo}</div>
+            <div style="font-weight: bold; font-size: 1.1rem;">${esc(invoice.cessionario.ragioneSociale)}</div>
+            ${invoice.cessionario.codiceFiscale !== 'N/D' ? `<div>CF: ${esc(invoice.cessionario.codiceFiscale)}</div>` : ''}
+            ${invoice.cessionario.partitaIva !== 'N/D' ? `<div>P.IVA: ${esc(invoice.cessionario.partitaIva)}</div>` : ''}
+            <div>${esc(invoice.cessionario.indirizzo)}</div>
           </div>
         </div>
 
         <div style="border: 2px solid #000; padding: 1rem; margin-bottom: 2rem; display: flex; justify-content: space-between;">
             <div>
                 <div class="invoice-label">Dati Documento</div>
-                <div>Numero: <strong>${invoice.documento.numero}</strong></div>
-                <div>Data: <strong>${invoice.documento.data}</strong></div>
+                <div>Numero: <strong>${esc(invoice.documento.numero)}</strong></div>
+                <div>Data: <strong>${esc(invoice.documento.data)}</strong></div>
             </div>
             <div style="text-align: right;">
                  <div class="invoice-label">Totale Documento</div>
@@ -260,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const arrayBuffer = await file.arrayBuffer();
       const xmlText = isP7m ? await extractXmlFromP7m(arrayBuffer) : extractXmlFromBinary(arrayBuffer);
       const invoice = parseInvoiceFromXml(xmlText);
-      if (metaTarget) metaTarget.innerHTML = `<strong>${invoice.fornitore.ragioneSociale}</strong> · N. ${invoice.documento.numero} · Data ${invoice.documento.data}`;
+      if (metaTarget) metaTarget.innerHTML = `<strong>${esc(invoice.fornitore.ragioneSociale)}</strong> · N. ${esc(invoice.documento.numero)} · Data ${esc(invoice.documento.data)}`;
       renderInvoice(invoice);
       if (statusTarget) statusTarget.textContent = 'Fattura generata correttamente.';
     } catch (error) {

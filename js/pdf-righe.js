@@ -135,7 +135,7 @@
     var lib = pdfjs || (typeof pdfjsLib !== 'undefined' ? pdfjsLib : null);
     if (!lib) return Promise.reject(new Error('[PdfRighe] pdf.js non disponibile.'));
 
-    return lib.getDocument({ data: dati }).promise.then(function (doc) {
+    return lib.getDocument({ data: dati, isEvalSupported: false }).promise.then(function (doc) {
       var numeri = [];
       for (var i = 1; i <= doc.numPages; i++) numeri.push(i);
 

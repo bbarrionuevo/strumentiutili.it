@@ -129,7 +129,7 @@
   function daPdf(file) {
     return caricaScript(PDF_JS, 'pdfjsLib').then(function (pdfjs) {
       pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER;
-      return file.arrayBuffer().then(function (b) { return pdfjs.getDocument({ data: new Uint8Array(b) }).promise; });
+      return file.arrayBuffer().then(function (b) { return pdfjs.getDocument({ data: new Uint8Array(b), isEvalSupported: false }).promise; });
     }).then(function (doc) {
       var n = Math.min(doc.numPages, MAX_PAGINE);
       var fuori = [];
