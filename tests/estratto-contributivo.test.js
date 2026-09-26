@@ -74,6 +74,25 @@ test('trova il buco fra due periodi e ne misura la durata', () => {
   assert.strictEqual(r.buchi[0].settimaneMancate, 104, 'due anni scoperti');
 });
 
+// Con +/- 86.400.000 ms il giorno dopo un cambio d'ora usciva sbagliato
+// (a Los Angeles l'ora legale 2026 inizia l'8 marzo; il test gira anche li').
+test('i limiti del buco sono giorni di calendario, anche col cambio d ora', () => {
+  const r = E.analizza([
+    { dal: '2025-01-01', al: '2025-12-31', settimane: 52 },
+    { dal: '2026-03-09', al: '2026-12-31', settimane: 42 }
+  ], {});
+  const giorno = (d) => d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  assert.strictEqual(r.buchi.length, 1);
+  assert.strictEqual(giorno(r.buchi[0].dal), '2026-1-1');
+  assert.strictEqual(giorno(r.buchi[0].al), '2026-3-8');
+  const europa = E.analizza([
+    { dal: '2025-01-01', al: '2026-03-29', settimane: 64 },
+    { dal: '2026-05-10', al: '2026-12-31', settimane: 33 }
+  ], {});
+  assert.strictEqual(giorno(europa.buchi[0].dal), '2026-3-30');
+  assert.strictEqual(giorno(europa.buchi[0].al), '2026-5-9');
+});
+
 test('periodi contigui o sovrapposti non generano buchi', () => {
   const contigui = E.analizza([
     { dal: '2018-01-01', al: '2018-12-31', settimane: 52 },

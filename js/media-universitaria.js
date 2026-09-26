@@ -20,7 +20,9 @@
     const resMediaArit = document.getElementById('res-media-arit');
 
     // Caricamento dati da LocalStorage
-    let esami = JSON.parse(localStorage.getItem('su_libretto_uni')) || [];
+    let esami = [];
+    try { esami = JSON.parse(localStorage.getItem('su_libretto_uni')) || []; } catch (e) { esami = []; }
+    if (!Array.isArray(esami)) esami = [];
     let lodeValue = parseInt(localStorage.getItem('su_lode_val') || '30', 10);
     configLode.value = lodeValue;
 

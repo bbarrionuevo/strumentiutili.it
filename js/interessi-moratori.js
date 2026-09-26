@@ -1,3 +1,10 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
 // js/interessi-moratori.js — Calcolatore Interessi Moratori D.Lgs. 231/2002 (JSON Decoupled)
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -29,10 +36,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const resForfettario = document.getElementById('res-forfettario');
     const resTotale = document.getElementById('res-totale');
 
-    // Pre-popola la data di pagamento ad oggi
-    const today = new Date();
+    // Pre-popola la data di pagamento ad oggi (in Italia)
     if (inputPagamento && !inputPagamento.value) {
-        inputPagamento.value = today.toISOString().split('T')[0];
+        inputPagamento.value = oggiInItalia();
     }
 
     function fmt(val) {

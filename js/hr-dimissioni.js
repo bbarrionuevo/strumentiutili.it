@@ -1,3 +1,18 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
+// Aggiunge n mesi restando nel mese giusto: 31/1 + 1 mese = 28/2 (29/2 nei bisestili).
+function aggiungiMesi(d, n) {
+  const r = new Date(d.getFullYear(), d.getMonth() + n, 1);
+  const ultimo = new Date(r.getFullYear(), r.getMonth() + 1, 0).getDate();
+  r.setDate(Math.min(d.getDate(), ultimo));
+  return r;
+}
+
 (() => {
   'use strict';
 
@@ -115,7 +130,7 @@
         if (state.dataAnticipata && inputDataAnticipata) inputDataAnticipata.value = state.dataAnticipata;
         if (state.esenzione !== undefined && checkEsenzione) checkEsenzione.checked = state.esenzione;
       } else {
-        inputDataNotifica.valueAsDate = new Date();
+        inputDataNotifica.value = oggiInItalia();
         updateLivelli();
       }
       if(inputCf) checkCFVisualFeedback();
@@ -204,8 +219,8 @@
           dataInizioCalcolo.setDate(16);
           shiftWarning.innerHTML = `⚠️ <strong>Decorrenza Fissa:</strong> Hai consegnato le dimissioni il ${g} del mese. Il preavviso partirà per legge dal <strong>16 del mese in corso</strong>.`;
         } else {
-          dataInizioCalcolo.setMonth(dataInizioCalcolo.getMonth() + 1);
-          dataInizioCalcolo.setDate(1);
+          // il 1 del mese dopo; setMonth() dal 31 gennaio sarebbe finito a marzo
+          dataInizioCalcolo = new Date(dataInizioCalcolo.getFullYear(), dataInizioCalcolo.getMonth() + 1, 1);
           shiftWarning.innerHTML = `⚠️ <strong>Decorrenza Fissa:</strong> Hai consegnato le dimissioni dopo il 15 del mese. Il preavviso partirà per legge dal <strong>1° del mese successivo</strong>.`;
         }
         shiftWarning.classList.remove('hidden');
@@ -219,12 +234,13 @@
         shiftWarning.classList.add('hidden');
       }
 
-      const dataFine = new Date(dataInizioCalcolo);
       let mInt = Math.floor(rules.m);
       let isHalfMonth = (rules.m % 1 !== 0);
 
-      // Aggiunge mesi e giorni in modo accurato per gestire CCNL Metalmeccanici
-      if (mInt > 0) { dataFine.setMonth(dataFine.getMonth() + mInt); }
+      // Aggiunge mesi e giorni in modo accurato per gestire CCNL Metalmeccanici.
+      // I mesi non sconfinano: dal 31 gennaio, un mese porta al 28 (o 29)
+      // febbraio, non al 3 marzo come farebbe setMonth().
+      const dataFine = mInt > 0 ? aggiungiMesi(dataInizioCalcolo, mInt) : new Date(dataInizioCalcolo);
       if (isHalfMonth) { dataFine.setDate(dataFine.getDate() + 15); }
       if (rules.d > 0) { dataFine.setDate(dataFine.getDate() + rules.d); }
       
@@ -379,8 +395,7 @@
           });
         }
         
-        const today = new Date();
-        inputDataNotifica.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        inputDataNotifica.value = oggiInItalia();
         
         updateLivelli();
         

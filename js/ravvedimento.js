@@ -1,3 +1,10 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
 // js/ravvedimento_2.js — Motor de Cálculo Ravvedimento Operoso (JSON Decoupled)
 document.addEventListener('DOMContentLoaded', async () => {
     // UI Elements
@@ -7,10 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const inputRegolarizzazione = document.getElementById('data_regolarizzazione');
     const btnCalcola = document.getElementById('calcola-ravvedimento');
 
-    // Pre-popola la data di regolarizzazione ad oggi
-    const today = new Date();
+    // Pre-popola la data di regolarizzazione ad oggi (in Italia)
     if (inputRegolarizzazione && !inputRegolarizzazione.value) {
-        inputRegolarizzazione.value = today.toISOString().split('T')[0];
+        inputRegolarizzazione.value = oggiInItalia();
     }
 
     // Results
@@ -37,19 +43,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    const configRavv = regole.ravvedimento;
+    const configRavv = regole && regole.ravvedimento;
+    if (!configRavv || !Array.isArray(configRavv.frazioniTemporaliSanzione)) {
+        alert("Le regole del ravvedimento non sono disponibili. Riprova più tardi.");
+        return;
+    }
 
     function fmt(val) {
         return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(val);
     }
 
     // 2. Calcolo Sanzioni Ridotte (D.Lgs. 87/2024 via JSON)
-    function calcolaSanzioneRidotta(giorniRitardo) {
+    // Le misure dipendono da quando e' stata commessa la violazione: dal 1°
+    // settembre 2024 (D.Lgs. 87/2024) la sanzione e' del 25% (12,5% entro 90
+    // giorni) e l'ultima riduzione e' 1/7 oltre un anno; prima era del 30%
+    // (15%) con 1/7 fino a due anni e 1/6 oltre. Tabelle dell'Agenzia delle Entrate.
+    function calcolaSanzioneRidotta(giorniRitardo, scadenzaIso) {
         let aliquota = 0;
         let etichetta = '';
+        // la violazione e' il giorno dopo la scadenza
+        const p = String(scadenzaIso || '').split('-').map(Number);
+        const giornoDopo = p.length === 3 ? new Date(Date.UTC(p[0], p[1] - 1, p[2] + 1)).toISOString().slice(0, 10) : '9999-12-31';
+        const nuove = giornoDopo >= (configRavv.dataNuoveSanzioni || '2024-09-01');
+        const fasce = nuove || !configRavv.frazioniTemporaliSanzionePrecedenti
+            ? configRavv.frazioniTemporaliSanzione : configRavv.frazioniTemporaliSanzionePrecedenti;
 
-        // Itera sull'array JSON delle frazioni temporali
-        for (const fascia of configRavv.frazioniTemporaliSanzione) {
+        let precedente = 0;
+        for (const fascia of fasce) {
             if (fascia.giorniMax === null || giorniRitardo <= fascia.giorniMax) {
                 // Se la logica è incrementale (es. Sprint 1/15 al giorno)
                 if (fascia.logicaIncrementaleGiornaliera) {
@@ -57,12 +77,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 } else {
                     aliquota = fascia.tassoApplicato;
                 }
-                
-                const maxLabel = fascia.giorniMax ? `Entro ${fascia.giorniMax} gg` : 'Oltre 2 anni';
+                const oltre = precedente === 365 ? '1 anno' : precedente === 730 ? '2 anni' : precedente + ' gg';
+                const maxLabel = fascia.giorniMax ? `Entro ${fascia.giorniMax} gg` : 'Oltre ' + oltre;
                 const tipoCap = fascia.tipo.charAt(0).toUpperCase() + fascia.tipo.slice(1);
-                etichetta = `(${tipoCap} - ${maxLabel})`;
+                etichetta = `(${tipoCap} - ${maxLabel}${nuove ? '' : ', regole prima del 1° settembre 2024'})`;
                 break;
             }
+            precedente = fascia.giorniMax;
         }
 
         return { aliquota, etichetta };
@@ -99,8 +120,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!importo || importo <= 0) return alert('Inserisci un importo valido.');
             if (!inputScadenza.value || !inputRegolarizzazione.value) return alert('Inserisci le date richieste.');
 
-            const dataScad = new Date(inputScadenza.value);
-            const dataReg = new Date(inputRegolarizzazione.value);
+            // "AAAA-MM-GG" in ora locale: new Date('2026-03-16') sarebbe la
+            // mezzanotte UTC, cioe' il giorno prima nei fusi a ovest di Greenwich
+            const locale = (s) => { const p = s.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); };
+            const dataScad = locale(inputScadenza.value);
+            const dataReg = locale(inputRegolarizzazione.value);
 
             const utcScad = Date.UTC(dataScad.getFullYear(), dataScad.getMonth(), dataScad.getDate());
             const utcReg = Date.UTC(dataReg.getFullYear(), dataReg.getMonth(), dataReg.getDate());
@@ -115,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const interessi = calcolaInteressiStorici(importo, dataScad, dataReg);
 
             // 2. Calcolo Sanzioni 
-            const sanzioneData = calcolaSanzioneRidotta(giorni);
+            const sanzioneData = calcolaSanzioneRidotta(giorni, inputScadenza.value);
             const sanzione = Math.round((importo * sanzioneData.aliquota) * 100) / 100;
 
             const totale = importo + interessi + sanzione;

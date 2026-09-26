@@ -118,8 +118,10 @@
       var giorni = giorniFra(finePrec, inizio) - 1;
       if (giorni < soglia) continue;
       fuori.push({
-        dal: new Date(finePrec.getTime() + 86400000),
-        al: new Date(inizio.getTime() - 86400000),
+        // giorno dopo e giorno prima con il calendario, non con 86.400.000 ms:
+        // nei giorni del cambio d'ora un giorno dura 23 o 25 ore
+        dal: new Date(finePrec.getFullYear(), finePrec.getMonth(), finePrec.getDate() + 1),
+        al: new Date(inizio.getFullYear(), inizio.getMonth(), inizio.getDate() - 1),
         giorni: giorni,
         settimaneMancate: Math.round(giorni / GIORNI_SETTIMANA)
       });

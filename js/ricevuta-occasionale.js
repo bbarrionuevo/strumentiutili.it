@@ -1,3 +1,10 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
 // js/ricevuta-occasionale.js — Ricevuta Prestazione Occasionale (Blindado)
 (() => {
   'use strict';
@@ -60,7 +67,7 @@
     if (!inputAmount || !btnGeneratePdf) return;
 
     if (docDate && !docDate.value) {
-      docDate.value = new Date().toISOString().split('T')[0];
+      docDate.value = oggiInItalia();
     }
 
     let currentCalculations = {
@@ -231,7 +238,8 @@
 
         const docNum = clean(document.getElementById('doc-num').value) || '1/2026';
         const rawDate = document.getElementById('doc-date').value;
-        const formattedDate = rawDate ? new Date(rawDate).toLocaleDateString('it-IT') : new Date().toLocaleDateString('it-IT');
+        // dalla stringa, senza passare da una data UTC (all'estero usciva il giorno prima)
+        const formattedDate = (rawDate || oggiInItalia()).split('-').reverse().join('/');
         const docOggetto = clean(document.getElementById('doc-oggetto').value) || 'Prestazione d\'opera occasionale';
         const bolloID = clean(document.getElementById('bollo-id').value);
 
