@@ -1,4 +1,4 @@
-// js/ocr.js — Reconocimiento OCR Tesseract WASM con CDN jsDelivr + Exportación TXT, DOCX y PDF
+// js/ocr.js — Reconocimiento OCR Tesseract WASM (servido desde vendor/) + Exportación TXT, DOCX y PDF
 (function () {
   'use strict';
 
@@ -52,20 +52,17 @@
         immagini.push(file);
       }
 
-      // USO DE JSDELIVR CDN EN LUGAR DE RAW.GITHUBUSERCONTENT (EVITA ERROR 503)
+      // Programma, motore e modelli dal sito stesso (vendor/): nessun CDN.
       const workerOptions = {
         logger: m => {
           if (m && m.status === 'loading tesseract core') setProgress('Caricamento del motore OCR...');
           else if (m && m.status === 'loading language traineddata') setProgress('Scaricamento del modello linguistico...');
           else if (m && m.status === 'initializing api') setProgress('Preparazione del riconoscimento...');
         },
-        langPath: 'https://cdn.jsdelivr.net/gh/naptha/tessdata@gh-pages/4.0.0_fast',
-        corePath: 'https://unpkg.com/tesseract.js-core@5.0.0/tesseract-core.wasm.js',
+        workerPath: '/vendor/tesseract@5.1.1/worker.min.js',
+        corePath: '/vendor/tesseract-core@5.1.1',
+        langPath: '/vendor/tessdata@1.0.0',
       };
-
-      if (window.crossOriginIsolated) {
-        workerOptions.corePath = 'https://unpkg.com/tesseract.js-core@5.0.0/tesseract-core-simd.wasm.js';
-      }
 
       worker = await Tesseract.createWorker(langs, 1, workerOptions);
 

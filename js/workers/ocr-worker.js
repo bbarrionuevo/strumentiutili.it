@@ -5,21 +5,24 @@
  */
 'use strict';
 
+// Tesseract.js, il motore WebAssembly e i modelli delle lingue sono serviti
+// dal sito (vendor/, vedi scripts/copia-vendor.js): nessun CDN di terzi.
 try {
-    importScripts('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js');
+    importScripts('/vendor/tesseract@5.1.1/tesseract.min.js');
 } catch (e) {
     self.postMessage({ type: 'error', msg: 'Impossibile caricare il motore OCR (Tesseract.js). Verifica la connessione di rete.' });
 }
 
-// CDN paths espliciti: la risoluzione automatica di Tesseract.js fallisce
-// quando la libreria viene eseguita dentro un Worker annidato (nessun document.currentScript).
-var WORKER_PATH = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js';
-var CORE_PATH = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1/tesseract-core-simd-lstm.wasm.js';
+// Indirizzi completi: dentro un Worker Tesseract.js non sa risolvere quelli
+// relativi (non c'e' window.location). corePath e' una cartella: Tesseract.js
+// sceglie da solo la variante con o senza SIMD.
+var ORIGINE = self.location.origin;
+var WORKER_PATH = ORIGINE + '/vendor/tesseract@5.1.1/worker.min.js';
+var CORE_PATH = ORIGINE + '/vendor/tesseract-core@5.1.1';
 
-// I modelli 4.0.0_best_int NON esistono su tessdata.projectnaptha.com (404):
-// sono pubblicati solo nei pacchetti @tesseract.js-data/<lingua> su jsDelivr.
-function buildLangPath(lang) {
-    return 'https://cdn.jsdelivr.net/npm/@tesseract.js-data/' + lang + '@1.0.0/4.0.0_best_int';
+// Modelli 4.0.0_best_int di italiano, inglese e spagnolo, tutti nella stessa cartella.
+function buildLangPath() {
+    return ORIGINE + '/vendor/tessdata@1.0.0';
 }
 
 // Tesseract.js propaga alcuni errori interni fuori dalla catena delle Promise:
