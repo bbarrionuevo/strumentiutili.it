@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inputEuro = document.getElementById('calc-euro');
   const inputRegione = document.getElementById('calc-regione');
   const inputImmatricolazione = document.getElementById('calc-anno');
+  // max="2026" scritto nella pagina sarebbe diventato sbagliato a gennaio
+  if (inputImmatricolazione) inputImmatricolazione.max = String(new Date().getFullYear() + 1);
   
   const outBollo = document.getElementById('res-bollo');
   const outSuperbollo = document.getElementById('res-superbollo');

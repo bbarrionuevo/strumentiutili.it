@@ -1,3 +1,10 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
 (() => {
   'use strict';
 
@@ -230,6 +237,14 @@
     document.querySelector(".immobile-tipo").addEventListener("change", validateImmobili);
 
 
+    // La spiegazione del ritardo, sotto l'importo delle sanzioni.
+    function notaRitardo(r) {
+      const fr = { 0.1: '1/10', 0.111111: '1/9', 0.125: '1/8', 0.142857: '1/7' }[r.frazione] || '';
+      const scad = r.scadenza.split('-').reverse().join('/');
+      return 'Scadenza ' + scad + ', ' + r.giorniRitardo + (r.giorniRitardo === 1 ? ' giorno' : ' giorni') + ' di ritardo: sanzione ' +
+        money(r.sanzionePiena) + ' ridotta a ' + fr + ' con il ravvedimento' + (r.interessi ? ', più ' + money(r.interessi) + ' di interessi legali' : '') + '.';
+    }
+
     // 3. MOTORE DI CALCOLO TRIBUTARIO
     function calculateTaxes() {
       if (!regole) return;
@@ -237,16 +252,23 @@
       const canone = parseFloat(inputCanone.value) || 0;
       const isCedolare = checkCedolare.checked;
       const tipoContratto = inputTipo.value;
-      const dataStipula = new Date(inputDataStipula.value);
-      const dataOggi = new Date();
 
       let impostaRegistro = 0;
       let impostaBollo = 0;
       let sanzioni = 0;
 
-      const diffTime = Math.abs(dataOggi - dataStipula);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      const giorniRitardo = Math.max(0, diffDays - regole.rli.giorniScadenzaRegistrazione);
+      // Ritardo in giorni di calendario fino a oggi (in Italia), con il segno:
+      // prima una data futura contava come ritardo (Math.abs) e le ore del
+      // giorno spostavano il conto di uno.
+      const ritardo = inputDataStipula.value && window.RliSanzioni && regole.rli.sanzioniRegistrazione
+        ? window.RliSanzioni.calcola({
+            imposta: 0, cedolare: isCedolare, stipula: inputDataStipula.value, pagamento: oggiInItalia(),
+            regole: regole.rli.sanzioniRegistrazione, tassi: regole.ravvedimento.tassiStoriciLegali, tassoVigente: regole.ravvedimento.tassoInteresseLegaleVigente
+          })
+        : null;
+      const giorniRitardo = ritardo ? ritardo.giorniRitardo : 0;
+      let interessi = 0;
+      let notaSanzioni = '';
 
       if (!isCedolare) {
         
@@ -272,16 +294,15 @@
         impostaBollo = fogli * regole.rli.impostaBolloFoglio * copie;
 
         if (giorniRitardo > 0) {
-          const sanzioneBase = impostaRegistro * regole.ravvedimento.sanzioneBase;
-          let riduzione = 1;
-          
-          if (giorniRitardo <= 14) riduzione = 0.1;
-          else if (giorniRitardo <= 30) riduzione = 1/10;
-          else if (giorniRitardo <= 90) riduzione = 1/9;
-          else if (giorniRitardo <= 365) riduzione = 1/8;
-          else riduzione = 1/7;
-
-          sanzioni = sanzioneBase * riduzione;
+          // 45% (minimo 150 €) fino a 30 giorni di ritardo, poi 120% (minimo
+          // 250 €), ridotti con il ravvedimento; piu' gli interessi legali
+          const r = window.RliSanzioni.calcola({
+            imposta: impostaRegistro, cedolare: false, stipula: inputDataStipula.value, pagamento: oggiInItalia(),
+            regole: regole.rli.sanzioniRegistrazione, tassi: regole.ravvedimento.tassiStoriciLegali, tassoVigente: regole.ravvedimento.tassoInteresseLegaleVigente
+          });
+          sanzioni = r.sanzione;
+          interessi = r.interessi;
+          notaSanzioni = notaRitardo(r);
         }
 
       } else {
@@ -289,29 +310,28 @@
         impostaBollo = 0;
 
         if (giorniRitardo > 0) {
-          let sanzioneBaseFlat = (giorniRitardo <= 30) ? regole.rli.sanzioniCedolareSecca.ritardoFino30gg : regole.rli.sanzioniCedolareSecca.ritardoOltre30gg;
-          
-          let riduzione = 1;
-          if (giorniRitardo <= 30) riduzione = 1/10;
-          else if (giorniRitardo <= 90) riduzione = 1/9;
-          else if (giorniRitardo <= 365) riduzione = 1/8;
-          else riduzione = 1/7;
-
-          sanzioni = sanzioneBaseFlat * riduzione;
+          // senza imposta di registro restano i minimi (150 o 250 €), ridotti
+          sanzioni = ritardo.sanzione;
+          notaSanzioni = notaRitardo(ritardo) + ' Con la cedolare secca la sanzione si calcola sull’imposta di registro che si sarebbe pagata: per canoni alti può superare il minimo, verifica con RLI web.';
         }
       }
 
       outRegistro.textContent = money(impostaRegistro);
       outBollo.textContent = money(impostaBollo);
       
+      if (ritardo && ritardo.regime === 'precedente') {
+        notaSanzioni = 'La scadenza per registrare era prima del 1° settembre 2024: per quei ritardi valgono le sanzioni precedenti, che questo calcolo non comprende. Verifica con RLI web o con l’Agenzia delle Entrate.';
+      }
       if (sanzioni > 0) {
         boxSanzioni.classList.remove("hidden");
-        outSanzioni.textContent = money(sanzioni);
+        outSanzioni.textContent = money(sanzioni + interessi);
       } else {
         boxSanzioni.classList.add("hidden");
       }
+      const nota = document.getElementById('out-sanzioni-nota');
+      if (nota) { nota.textContent = notaSanzioni; nota.hidden = !notaSanzioni; }
 
-      outTotale.textContent = money(impostaRegistro + impostaBollo + sanzioni);
+      outTotale.textContent = money(impostaRegistro + impostaBollo + sanzioni + interessi);
     }
 
     // 4. GENERAZIONE PROSPETTO PDF (PDF/A-1b) E GARBAGE COLLECTION

@@ -1,3 +1,17 @@
+// La data di oggi in Italia, AAAA-MM-GG. toISOString() da' la data UTC:
+// fra mezzanotte e l'una (le due d'estate) risultava ancora ieri.
+function oggiInItalia() {
+  try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+  catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+}
+
+// Un numero con almeno 2 e al massimo 8 decimali: 3 -> "3.00", 0.125 -> "0.125".
+function decimali(n) {
+  const s = Number(n).toFixed(8).replace(/0+$/, '');
+  const p = s.split('.');
+  return p[0] + '.' + (p[1] || '').padEnd(2, '0');
+}
+
 (() => {
   'use strict';
 
@@ -236,7 +250,8 @@
       });
     }
 
-    document.getElementById("doc-data").valueAsDate = new Date();
+    // valueAsDate usa la data UTC: di notte sarebbe stata quella di ieri
+    document.getElementById("doc-data").value = oggiInItalia();
     addLine();
 
     // 5. GENERAZIONE XML ZERO-BACKEND CON PREVENZIONE SCARTO 00404
@@ -253,7 +268,7 @@
       const dataFatturaInput = document.getElementById('doc-data').value;
       
       // PREVENZIONE SCARTO 00404 (Fattura Duplicata)
-      const currentYear = new Date(dataFatturaInput).getFullYear();
+      const currentYear = Number(String(dataFatturaInput).slice(0, 4));
       const invoiceKey = `fattura_${emiPiva}_${currentYear}_${numeroFatturaInput.toUpperCase()}`;
       let invoiceHistory = [];
       try { invoiceHistory = JSON.parse(localStorage.getItem('su_fatture_history')) || []; } catch(e) {}
@@ -289,14 +304,17 @@
         const price = parseFloat(line.querySelector('.line-price').value) || 0;
         const ivaStr = line.querySelector('.line-iva').value; 
         const natura = line.querySelector('.line-natura').value;
-        const prezzoTot = (qty * price).toFixed(2);
+        // PrezzoUnitario e Quantita' fino a 8 decimali (tracciato FatturaPA):
+        // arrotondare il prezzo a 2 decimali e calcolare il totale sul prezzo
+        // vero faceva scartare la fattura (errore 00423, PrezzoTotale errato).
+        const prezzoTot = (Math.round(qty * price * 100 + Number.EPSILON) / 100).toFixed(2);
 
         xmlDettaglioLinee += `
         <DettaglioLinee>
           <NumeroLinea>${numRiga}</NumeroLinea>
           <Descrizione>${desc}</Descrizione>
-          <Quantita>${qty.toFixed(2)}</Quantita>
-          <PrezzoUnitario>${price.toFixed(2)}</PrezzoUnitario>
+          <Quantita>${decimali(qty)}</Quantita>
+          <PrezzoUnitario>${decimali(price)}</PrezzoUnitario>
           <PrezzoTotale>${prezzoTot}</PrezzoTotale>
           <AliquotaIVA>${ivaStr}</AliquotaIVA>`;
         

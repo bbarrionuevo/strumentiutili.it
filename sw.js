@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v69';
+const CACHE_NAME = 'strumentiutili-v70';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -138,6 +138,7 @@ const APP_SHELL = [
   '/js/storage-helper.js',
   
   // Script delle calcolatrici
+  '/js/rli-sanzioni.js',
   '/js/rli.js',
   '/js/fatturapa.js',
   '/js/compilatore-moduli.js',
@@ -360,6 +361,13 @@ self.addEventListener('fetch', (event) => {
   // Le statistiche di Vercel passano dritte: dalla cache misurerebbero visite
   // finte, e offline non hanno niente da misurare.
   if (url.pathname.startsWith('/_vercel/')) return;
+
+  // Dati (regole fiscali, tariffe, santi): prima la rete, perche' una regola
+  // vecchia in cache darebbe un calcolo sbagliato; offline, la copia salvata.
+  if (url.pathname.startsWith('/data/')) {
+    event.respondWith(aggiornaInSecondoPiano(request).catch(() => caches.match(request)));
+    return;
+  }
 
   // Statici: risposta immediata dalla cache, aggiornamento silenzioso.
   if (STATICI.test(url.pathname)) {

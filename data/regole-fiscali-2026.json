@@ -1,7 +1,7 @@
 {
   "meta": {
     "anno": 2026,
-    "versione": "2.6.0",
+    "versione": "2.7.0",
     "descrizione": "Configurazione centralizzata parametri fiscali, legali e previdenziali italiani 2026"
   },
   "generale": {
@@ -241,6 +241,7 @@
     "codiciTributo": {
       "TERRENO": "3914",
       "FABBRICATO_D": "3925",
+      "FABBRICATO_D_COMUNE": "3930",
       "ALTRI_FABBRICATI": "3918"
     }
   },
@@ -471,6 +472,16 @@
         "tassoApplicato": 0.035714,
         "logicaIncrementaleGiornaliera": false
       }
+    ],
+    "_nota_frazioni": "Sanzione ridotta da ravvedimento per omesso o tardivo versamento, percentuale sull'imposta (scheda Ravvedimento dell'Agenzia delle Entrate). frazioniTemporaliSanzione vale per le violazioni dal 1° settembre 2024 (sanzione 25%, 12,5% entro 90 giorni); le precedenti usano frazioniTemporaliSanzionePrecedenti (30%, 15% entro 90 giorni).",
+    "dataNuoveSanzioni": "2024-09-01",
+    "frazioniTemporaliSanzionePrecedenti": [
+      { "tipo": "sprint", "giorniMax": 14, "tassoApplicato": 0.001, "logicaIncrementaleGiornaliera": true },
+      { "tipo": "breve", "giorniMax": 30, "tassoApplicato": 0.015, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "intermedio", "giorniMax": 90, "tassoApplicato": 0.016667, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "lungo", "giorniMax": 365, "tassoApplicato": 0.0375, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "biennale", "giorniMax": 730, "tassoApplicato": 0.042857, "logicaIncrementaleGiornaliera": false },
+      { "tipo": "lunghissimo", "giorniMax": null, "tassoApplicato": 0.05, "logicaIncrementaleGiornaliera": false }
     ],
     "tassoInteresseLegaleVigente": 0.016,
     "tassiStoriciLegali": {
@@ -1819,6 +1830,19 @@
     "sanzioniCedolareSecca": {
       "ritardoFino30gg": 150.0,
       "ritardoOltre30gg": 250.0
+    },
+    "sanzioniRegistrazione": {
+      "fonte": "Art. 69 DPR 131/1986 (modificato dai D.Lgs. 87/2024 e 81/2025), Agenzia delle Entrate risoluzione n. 56 del 13/10/2025; riduzioni: art. 13 D.Lgs. 472/1997, scheda Ravvedimento dell'Agenzia",
+      "dal": "2024-09-01",
+      "giorniPerRegistrare": 30,
+      "entro30giorni": { "percentuale": 0.45, "minimo": 150 },
+      "oltre30giorni": { "percentuale": 1.2, "minimo": 250 },
+      "ravvedimento": [
+        { "giorniMax": 30, "frazione": 0.1 },
+        { "giorniMax": 90, "frazione": 0.111111 },
+        { "giorniMax": 365, "frazione": 0.125 },
+        { "giorniMax": null, "frazione": 0.142857 }
+      ]
     }
   },
   "fattura_elettronica": {
