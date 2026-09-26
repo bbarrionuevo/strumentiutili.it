@@ -42,6 +42,12 @@ jobs:
               # togliendo i tag andrebbero persi
               echo "--- collegamenti a PDF nella pagina:"
               grep -oiE 'href="[^"]+\.pdf[^"]*"' documento | sed -e 's/^href="//I' -e 's/"$//' | sort -u | head -100
+              # alcuni portali (Liferay) servono i PDF da indirizzi senza
+              # ".pdf": si riconoscono dal testo del collegamento
+              echo "--- collegamenti a tariffe e tabelle:"
+              grep -oiE "<a [^>]*href=[\"'][^\"']+[\"'][^>]*>[^<]{0,200}" documento \
+                | grep -iE 'pdf|tariff|tabell|importi|get_file|/documents/' \
+                | sed -E "s/<a [^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*)/\1  «\2»/I" | sort -u | head -150
               echo "--- testo della pagina:"
               sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/ /g' documento | tr -s ' \t' | grep -v '^\s*$' | head -c 200000
             fi
