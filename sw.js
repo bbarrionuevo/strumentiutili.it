@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v66';
+const CACHE_NAME = 'strumentiutili-v67';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -109,6 +109,7 @@ const APP_SHELL = [
   '/utilita-web/sudoku-del-giorno/',
   '/utilita-web/parola-del-giorno/',
   '/utilita-web/flashcard/',
+  '/utilita-web/che-file-e/',
   '/utilita-web/accordatore/',
   '/utilita-web/metronomo/',
   '/utilita-web/rimuovi-dati-foto/',
@@ -168,6 +169,8 @@ const APP_SHELL = [
   '/js/parola-ui.js',
   '/js/flashcard.js',
   '/js/flashcard-ui.js',
+  '/js/tipo-file.js',
+  '/js/tipo-file-ui.js',
   // il ripasso deve funzionare offline; i lettori di Anki si scaricano solo se servono
   '/vendor/ts-fsrs@5.4.2/ts-fsrs.umd.js',
   '/js/intonazione.js',

@@ -64,8 +64,27 @@
   }
 
   function mostraErrore(codice) {
+    // se non e' una busta di firma, puo' essere qualsiasi cosa: lo dice "Che file e'?"
+    var altro = codice === 'non-firmato' || codice === 'danneggiato'
+      ? '<p class="mt-2 text-sm text-red-900">Per scoprire che file è davvero, usa <a href="/utilita-web/che-file-e/" class="font-semibold underline">Che file è?</a></p>'
+      : '';
     risultato.innerHTML = '<div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg" role="alert">' +
-      '<p class="text-sm text-red-900 leading-relaxed">' + esc(MESSAGGI[codice] || 'Non è stato possibile leggere il file.') + '</p></div>';
+      '<p class="text-sm text-red-900 leading-relaxed">' + esc(MESSAGGI[codice] || 'Non è stato possibile leggere il file.') + '</p>' + altro + '</div>';
+  }
+
+  // Il lettore della busta riconosce i formati piu' comuni. Per gli altri
+  // (un'email .eml, un foglio .ods, un EPUB, un'immagine HEIC...) si chiede
+  // a js/tipo-file.js, che la pagina carica prima di questo file.
+  var GENERICI = { bin: true, zip: true, txt: true };
+  function affina(r) {
+    var T = window.TipoFile;
+    if (!T || !GENERICI[r.tipo.estensione] || !r.contenuto || !r.contenuto.length) return r;
+    var c = r.contenuto;
+    var t = T.riconosci(c.subarray(0, T.INIZIO), { fine: c.subarray(Math.max(0, c.length - T.FINE)), dimensione: c.length }).tipo;
+    if (!t || t.id === 'bin' || t.id === 'vuoto' || !t.estensione || t.estensione === r.tipo.estensione) return r;
+    r.tipo = { estensione: t.estensione, mime: t.mime, descrizione: t.nome };
+    r.nome = T.nomeCorretto(r.nome.replace(/\.(bin|zip|txt)$/i, ''), t);
+    return r;
   }
 
   function mostra(r) {
@@ -81,7 +100,7 @@
         '<a href="/fisco-professioni/fattura-elettronica/" class="text-indigo-600 hover:underline">visualizzatore di fatture elettroniche</a>.</p>';
     }
     if (tipo.estensione === 'bin') {
-      note += '<p class="mt-4 text-sm text-amber-900">Non è stato possibile riconoscere il tipo di documento dal contenuto: il file viene scaricato così com’è, con l’estensione .bin. Se sai che cos’è, rinominalo.</p>';
+      note += '<p class="mt-4 text-sm text-amber-900">Non è stato possibile riconoscere il tipo di documento dal contenuto: il file viene scaricato così com’è, con l’estensione .bin. Se sai che cos’è, rinominalo, oppure prova con <a href="/utilita-web/che-file-e/" class="font-semibold underline">Che file è?</a></p>';
     }
 
     var intestazioneFirme = r.firme.length === 1 ? 'Firma letta nel file' : 'Firme lette nel file (' + r.firme.length + ')';
@@ -118,7 +137,7 @@
 
     var r;
     try {
-      r = window.P7mLettura.leggi(new Uint8Array(await file.arrayBuffer()), file.name);
+      r = affina(window.P7mLettura.leggi(new Uint8Array(await file.arrayBuffer()), file.name));
     } catch (e) {
       esito.textContent = '';
       mostraErrore(e && e.codice);

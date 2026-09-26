@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Che file è? Riconosci un file senza estensione e aprilo — StrumentiUtili.it</title>
+  <meta name="description" content="Scopri che file hai ricevuto, anche senza estensione o con l’estensione sbagliata: PDF, Word, foto, audio, P7M, ZIP, programmi. Anteprima e nome giusto per aprirlo. Gratis, il file resta sul tuo dispositivo." />
+  <link rel="canonical" href="https://strumentiutili.it/utilita-web/che-file-e/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Che file è? Riconosci qualsiasi file dal contenuto" />
+  <meta property="og:description" content="Scopri che file hai ricevuto, anche senza estensione o con l’estensione sbagliata: PDF, Word, foto, audio, P7M, ZIP, programmi. Anteprima e nome giusto per aprirlo. Gratis, il file resta sul tuo dispositivo." />
+  <meta property="og:url" content="https://strumentiutili.it/utilita-web/che-file-e/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/utilita-web/che-file-e/#app",
+        "name": "Che file è? Riconoscere un file dal contenuto",
+        "url": "https://strumentiutili.it/utilita-web/che-file-e/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Richiede JavaScript. Funziona senza inviare dati a server.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Scopri che file hai ricevuto, anche senza estensione o con l’estensione sbagliata: PDF, Word, foto, audio, P7M, ZIP, programmi. Anteprima e nome giusto per aprirlo. Gratis, il file resta sul tuo dispositivo.",
+        "featureList": [
+          "Riconosce oltre cento formati dal contenuto, anche senza estensione",
+          "Estensione giusta e programma per aprire il file",
+          "Anteprima di PDF, foto, audio, video, testi e archivi ZIP",
+          "Avviso per programmi travestiti da documenti e foto con la posizione GPS",
+          "Passaggio diretto agli altri strumenti del sito",
+          "Il file resta sul dispositivo, funziona offline"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/utilita-web/che-file-e/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Come fa a capire che file è se non ha estensione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Guarda il contenuto, non il nome. I primi byte di quasi ogni formato sono sempre uguali: un PDF comincia con «%PDF», uno ZIP con «PK», una foto JPEG con tre byte fissi. Per i formati che sono contenitori guarda anche dentro: un file Word moderno è uno ZIP con una cartella «word», un .p7m è una busta di firma con dentro il documento vero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il file viene caricato su un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il browser legge il file sul tuo dispositivo, in memoria: non viene inviato da nessuna parte e sparisce quando chiudi la pagina. Anche le librerie per l’anteprima dei PDF e per aprire gli ZIP sono servite da questo sito, non da servizi esterni."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quali formati riconosce?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oltre cento: documenti (PDF, Word, Excel, PowerPoint, OpenDocument, EPUB, i vecchi .doc e .xls), firme digitali e PEC (.p7m, .p7s, .eml, daticert.xml), fatture elettroniche, foto e immagini (JPEG, PNG, HEIC dell’iPhone, WebP, TIFF, Photoshop), audio e video (MP3, vocali di WhatsApp, M4A, MP4, MOV, MKV), archivi (ZIP, RAR, 7z), programmi, caratteri, calendari, contatti, database e file di testo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché dice che il file è un programma e non va aperto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché un trucco comune delle truffe è mandare un programma con un nome da documento, come «fattura.pdf.exe»: Windows spesso nasconde l’ultima estensione e il file sembra un PDF. Lo strumento guarda il contenuto e ti avvisa. Se non aspettavi un programma da quella persona, non aprirlo e cancellalo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cos’è un file winmail.dat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È il modo in cui Outlook a volte spedisce gli allegati: dentro ci sono i file veri che il mittente voleva mandarti. Si aprono con programmi o app per file TNEF; in alternativa chiedi al mittente di rispedirli."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Si può aprire il file qui?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per PDF, foto, audio, video, testi e archivi ZIP sì: c’è un’anteprima, e dagli ZIP puoi estrarre un file alla volta. Per gli altri formati scaricalo con l’estensione giusta e aprilo con il programma indicato. Alcuni file, come PDF, foto e fatture elettroniche, si possono passare direttamente agli altri strumenti del sito."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funziona senza connessione?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì: dopo la prima visita il riconoscimento funziona anche offline. L’anteprima dei PDF e l’apertura degli ZIP, la prima volta che le usi, scaricano un componente dal sito, che poi resta sul dispositivo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Utilità & Web",
+        "item": "https://strumentiutili.it/utilita-web/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Che file è?",
+        "item": "https://strumentiutili.it/utilita-web/che-file-e/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl lg:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-3 xl:gap-4 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="text-gray-600 hover:text-indigo-600 font-medium">💼 Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="text-gray-600 hover:text-indigo-600 font-medium">🏛️ Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="text-gray-600 hover:text-indigo-600 font-medium">🤝 Lavoro</a>
+          <a href="/identita-burocrazia/" class="text-gray-600 hover:text-indigo-600 font-medium">🪪 Identità</a>
+          <a href="/pdf/" class="text-gray-600 hover:text-indigo-600 font-medium">📄 PDF</a>
+          <a href="/ia/" class="text-gray-600 hover:text-indigo-600 font-medium">🤖 IA</a>
+          <a href="/utilita-web/" class="text-indigo-600 font-semibold" aria-current="page">🛠️ Utilità</a>
+        </nav>
+
+        <div class="relative flex-1 lg:flex-none lg:w-64 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Cerca uno strumento…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="absolute left-0 right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </div>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/utilita-web/" class="hover:text-indigo-600 hover:underline">Utilità &amp; Web</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Che file è?</span></li>
+        </ol>
+        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/che-file-e/" data-titolo="Che file è?" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+      </nav>
+  <!-- /su:briciole -->
+
+
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Che file è?</h1>
+      <p class="mt-3 text-gray-700 leading-relaxed">
+        Ti &egrave; arrivato un file che il telefono o il computer non sa aprire, senza estensione o con un nome come &laquo;allegato.dat&raquo;? Sceglilo qui: viene riconosciuto dal contenuto, non dal nome. Scopri che cos&rsquo;&egrave;, con che programma si apre e scaricalo con l&rsquo;estensione giusta.
+      </p>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-strumento">
+        <h2 id="t-strumento" class="text-xl font-bold text-gray-900 mb-1">Scegli il file</h2>
+        <p class="text-sm text-gray-600 mb-4">Qualsiasi file: un allegato, un download, un file senza estensione.</p>
+
+        <label for="tf-file" id="tf-drop" class="block cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-indigo-400 hover:bg-indigo-50/40 transition">
+          <input id="tf-file" type="file" data-condivisi class="sr-only" />
+          <span class="block text-4xl" aria-hidden="true">&#128269;</span>
+          <span class="block mt-2 text-sm font-semibold text-gray-800">Scegli il file da riconoscere</span>
+          <span class="block text-xs text-gray-500 mt-1">oppure trascinalo qui</span>
+          <span id="tf-nome" class="block mt-2 text-xs text-gray-600 font-mono break-all"></span>
+        </label>
+        <p class="mt-3 text-xs text-emerald-800 flex items-start gap-1.5"><span aria-hidden="true">&#128274;</span><span>Il file resta sul tuo dispositivo: viene letto dal browser e non viene caricato su nessun server.</span></p>
+        <p id="tf-esito" class="mt-3 text-sm text-gray-700" aria-live="polite"></p>
+        <noscript><p class="mt-3 text-sm text-red-700">Per riconoscere il file serve JavaScript. La guida qui sotto si legge anche senza.</p></noscript>
+      </section>
+
+      <div id="tf-risultato" class="mt-6" aria-live="polite"></div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6" aria-labelledby="t-passi">
+        <h2 id="t-passi" class="text-xl font-bold text-gray-900 mb-4">Come si fa</h2>
+        <ol class="space-y-4 text-sm leading-relaxed">
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">1</span>
+            <div><p class="font-semibold text-gray-900">Scegli il file</p><p class="text-gray-700 mt-0.5">Dal telefono o dal computer. Su Android puoi anche condividerlo verso l&rsquo;app di StrumentiUtili, se l&rsquo;hai installata.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">2</span>
+            <div><p class="font-semibold text-gray-900">Leggi che cos&rsquo;&egrave;</p><p class="text-gray-700 mt-0.5">Tipo di file, estensione giusta, programma per aprirlo ed eventuali avvisi di sicurezza. Per PDF, foto, audio, video, testi e ZIP c&rsquo;&egrave; anche l&rsquo;anteprima.</p></div>
+          </li>
+          <li class="flex gap-3">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
+            <div><p class="font-semibold text-gray-900">Aprilo</p><p class="text-gray-700 mt-0.5">Scaricalo con il nome giusto e si apre con doppio clic, oppure passalo a uno strumento del sito: comprimere un PDF, convertire una foto, leggere una fattura.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Perch&eacute; un file non si apre</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>Il telefono e il computer scelgono il programma guardando solo la fine del nome, l&rsquo;<strong>estensione</strong>: .pdf va al lettore di PDF, .jpg alla galleria. Se l&rsquo;estensione manca, &egrave; sbagliata o non la conoscono, si fermano e chiedono con che cosa aprire il file. Succede spesso con gli allegati della PEC, con i file scaricati da portali e gestionali, con le foto dell&rsquo;iPhone e con i file passati attraverso chat o chiavette.</p>
+          <p>Il contenuto per&ograve; non mente: quasi ogni formato comincia con una sequenza di byte fissa, una specie di firma. Questo strumento legge quei byte e, per i formati che sono contenitori, guarda anche dentro. Cos&igrave; distingue un Word moderno da uno ZIP qualsiasi, un vocale di WhatsApp da un altro audio, una fattura elettronica da un XML generico.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I casi pi&ugrave; comuni</h3>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Nome o situazione</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Di solito &egrave;</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Che cosa fare</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Un allegato della PEC senza estensione, o <code>postacert.eml</code></td><td class="px-3 py-2 align-top">Il messaggio originale della PEC</td><td class="px-3 py-2 align-top">Si apre con il programma di posta; gli allegati veri sono dentro.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>daticert.xml</code> e <code>smime.p7s</code></td><td class="px-3 py-2 align-top">La ricevuta della PEC e la firma del gestore</td><td class="px-3 py-2 align-top">Non serve aprirli: conservali con il messaggio come prova dell&rsquo;invio.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">Un file che finisce in <code>.p7m</code></td><td class="px-3 py-2 align-top">Un documento con firma digitale</td><td class="px-3 py-2 align-top">Dentro c&rsquo;&egrave; il documento vero, di solito un PDF: si estrae con &laquo;Aprire un file P7M&raquo;.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>PTT-2026&hellip;.opus</code> o un audio di WhatsApp</td><td class="px-3 py-2 align-top">Un vocale</td><td class="px-3 py-2 align-top">Si ascolta con il browser o con VLC; si pu&ograve; anche trascrivere in testo.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>IMG_1234.HEIC</code></td><td class="px-3 py-2 align-top">Una foto dell&rsquo;iPhone</td><td class="px-3 py-2 align-top">Su Windows e Android spesso va convertita in JPG.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>winmail.dat</code></td><td class="px-3 py-2 align-top">Gli allegati di un&rsquo;email mandata da Outlook</td><td class="px-3 py-2 align-top">Servono un programma per file TNEF o un nuovo invio da parte del mittente.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>documento.pdf.exe</code>, <code>foto.jpg.scr</code></td><td class="px-3 py-2 align-top">Un programma travestito da documento</td><td class="px-3 py-2 align-top">&Egrave; quasi sempre una truffa: non aprirlo e cancellalo.</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><code>download</code>, <code>file.bin</code>, <code>allegato.dat</code></td><td class="px-3 py-2 align-top">Qualsiasi cosa: il nome non dice niente</td><td class="px-3 py-2 align-top">&Egrave; il caso per cui serve questo strumento.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Attenzione ai programmi travestiti</h3>
+          <p>Un file che dice di essere una fattura, un avviso di pagamento o una foto ma dentro contiene un programma (.exe, .scr, .js, un collegamento .lnk, un&rsquo;app .apk) &egrave; il modo pi&ugrave; comune per infettare un computer o un telefono. Lo strumento controlla il contenuto e avvisa quando il nome e il contenuto non corrispondono, e quando un documento di Office contiene macro. Nel dubbio non aprire il file e chiedi al mittente, con un altro mezzo, se te l&rsquo;ha mandato davvero.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Le foto dicono dove sono state scattate</h3>
+          <p>Le foto del telefono contengono spesso le coordinate GPS del luogo dello scatto, il modello del telefono e la data. Se nella foto ci sono, lo strumento lo segnala e ti porta a <a href="/utilita-web/rimuovi-dati-foto/" class="text-indigo-700 underline">togliere posizione e dati</a> prima di condividerla.</p>
+          <p class="text-xs text-gray-600">L&rsquo;anteprima dei PDF usa <a href="https://github.com/mozilla/pdf.js" target="_blank" rel="noopener" class="text-indigo-700 underline">pdf.js</a> (licenza Apache 2.0) e l&rsquo;apertura degli ZIP <a href="https://github.com/101arrowz/fflate" target="_blank" rel="noopener" class="text-indigo-700 underline">fflate</a> (licenza MIT), entrambi serviti da questo sito.</p>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come fa a capire che file &egrave; se non ha estensione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Guarda il contenuto, non il nome. I primi byte di quasi ogni formato sono sempre uguali: un PDF comincia con &laquo;%PDF&raquo;, uno ZIP con &laquo;PK&raquo;, una foto JPEG con tre byte fissi. Per i formati che sono contenitori guarda anche dentro: un file Word moderno &egrave; uno ZIP con una cartella &laquo;word&raquo;, un .p7m &egrave; una busta di firma con dentro il documento vero.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il file viene caricato su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il browser legge il file sul tuo dispositivo, in memoria: non viene inviato da nessuna parte e sparisce quando chiudi la pagina. Anche le librerie per l&rsquo;anteprima dei PDF e per aprire gli ZIP sono servite da questo sito, non da servizi esterni.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quali formati riconosce?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Oltre cento: documenti (PDF, Word, Excel, PowerPoint, OpenDocument, EPUB, i vecchi .doc e .xls), firme digitali e PEC (.p7m, .p7s, .eml, daticert.xml), fatture elettroniche, foto e immagini (JPEG, PNG, HEIC dell&rsquo;iPhone, WebP, TIFF, Photoshop), audio e video (MP3, vocali di WhatsApp, M4A, MP4, MOV, MKV), archivi (ZIP, RAR, 7z), programmi, caratteri, calendari, contatti, database e file di testo.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; dice che il file &egrave; un programma e non va aperto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; un trucco comune delle truffe &egrave; mandare un programma con un nome da documento, come &laquo;fattura.pdf.exe&raquo;: Windows spesso nasconde l&rsquo;ultima estensione e il file sembra un PDF. Lo strumento guarda il contenuto e ti avvisa. Se non aspettavi un programma da quella persona, non aprirlo e cancellalo.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che cos&rsquo;&egrave; un file winmail.dat?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; il modo in cui Outlook a volte spedisce gli allegati: dentro ci sono i file veri che il mittente voleva mandarti. Si aprono con programmi o app per file TNEF; in alternativa chiedi al mittente di rispedirli.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si pu&ograve; aprire il file qui?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per PDF, foto, audio, video, testi e archivi ZIP s&igrave;: c&rsquo;&egrave; un&rsquo;anteprima, e dagli ZIP puoi estrarre un file alla volta. Per gli altri formati scaricalo con l&rsquo;estensione giusta e aprilo con il programma indicato. Alcuni file, come PDF, foto e fatture elettroniche, si possono passare direttamente agli altri strumenti del sito.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona senza connessione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: dopo la prima visita il riconoscimento funziona anche offline. L&rsquo;anteprima dei PDF e l&rsquo;apertura degli ZIP, la prima volta che le usi, scaricano un componente dal sito, che poi resta sul dispositivo.</p>
+          </details>
+      </section>
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-bold text-gray-900 mb-3">Strumenti collegati</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="/pdf/apri-file-p7m/" class="hover:text-indigo-600 transition">Aprire un file P7M</a></li>
+          <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition">Visualizzatore fattura elettronica</a></li>
+          <li><a href="/utilita-web/convertitore-immagini/" class="hover:text-indigo-600 transition">Convertitore di immagini</a></li>
+          <li><a href="/utilita-web/rimuovi-dati-foto/" class="hover:text-indigo-600 transition">Togliere posizione e dati dalle foto</a></li>
+          <li><a href="/utilita-web/" class="hover:text-indigo-600 transition font-semibold">Tutti gli strumenti Utilit&agrave; &amp; Web &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
+        <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="6912312067"></ins>
+        <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+      <div class="su-ad su-ad--fondo mb-8 text-center w-full" data-su-pos="fondo">
+      <span class="su-ad-etichetta">Pubblicit&agrave;</span>
+      <ins data-su-pos="fondo" data-ad-format="autorelaxed" class="adsbygoogle"
+      style="display:block;width:100%;min-width:250px;"
+      data-ad-client="ca-pub-9434300808171957"
+      data-ad-slot="1157333219"></ins>
+      <span class="su-ad-segnaposto" aria-hidden="true">Spazio pubblicitario</span>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/dropzone.js"></script>
+  <script defer src="/js/p7m-lettura.js"></script>
+  <script defer src="/js/exif.js"></script>
+  <script defer src="/js/tipo-file.js"></script>
+  <script defer src="/js/tipo-file-ui.js"></script>
+  <script defer src="/js/condivisi.js"></script>
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

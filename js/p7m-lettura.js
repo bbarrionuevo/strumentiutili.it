@@ -487,6 +487,7 @@
     nomeDocumento: nomeDocumento,
     codiceFiscale: codiceFiscale,
     tempo: tempo,
-    daBase64: daBase64
+    daBase64: daBase64,
+    eBusta: eBusta
   };
 });

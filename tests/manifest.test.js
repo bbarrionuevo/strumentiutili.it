@@ -56,3 +56,10 @@ test('le pagine che ricevono file dal sistema caricano condivisi.js', () => {
   }
   assert.deepStrictEqual(problemi, []);
 });
+
+// Qualsiasi file si puo' condividere verso l'app: quelli che nessuno
+// strumento lavora finiscono in /condividi/, che propone «Che file è?».
+test('share_target accetta qualsiasi file', () => {
+  assert.ok(M.share_target.params.files[0].accept.includes('*/*'));
+  assert.ok(esiste('/utilita-web/che-file-e/'));
+});
