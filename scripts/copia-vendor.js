@@ -48,6 +48,23 @@ const LIBRERIE = [
   // OpenCV.js per lo scanner (circa 10 MB, WebAssembly incluso nel file):
   // prima arrivava da docs.opencv.org, che riceveva l'IP di chi scansionava.
   { pacchetto: '@techstark/opencv-js', nome: 'opencv', file: { 'dist/opencv.js': 'opencv.js' }, licenza: 'LICENSE' },
+  // OCR (Tesseract.js): il programma, il motore WebAssembly e i modelli di
+  // italiano, inglese e spagnolo. Prima arrivavano da jsDelivr e unpkg.
+  // Del motore bastano le due varianti "solo LSTM" (con e senza SIMD): il
+  // sito usa sempre il riconoscimento LSTM, e Tesseract.js sceglie da solo
+  // la variante adatta al browser nella cartella indicata con corePath.
+  { pacchetto: 'tesseract.js', nome: 'tesseract', file: { 'dist/tesseract.min.js': 'tesseract.min.js', 'dist/worker.min.js': 'worker.min.js' }, licenza: 'LICENSE.md' },
+  { pacchetto: 'tesseract.js-core', nome: 'tesseract-core', file: { 'tesseract-core-simd-lstm.wasm.js': 'tesseract-core-simd-lstm.wasm.js', 'tesseract-core-lstm.wasm.js': 'tesseract-core-lstm.wasm.js' }, licenza: 'LICENSE' },
+  // I modelli stanno in una sola cartella perche' Tesseract.js cerca tutte
+  // le lingue nello stesso langPath: gli altri due pacchetti (stessa
+  // versione) aggiungono i loro file.
+  { pacchetto: '@tesseract.js-data/ita', nome: 'tessdata', file: { '4.0.0_best_int/ita.traineddata.gz': 'ita.traineddata.gz' },
+    altri: [
+      { pacchetto: '@tesseract.js-data/eng', file: { '4.0.0_best_int/eng.traineddata.gz': 'eng.traineddata.gz' } },
+      { pacchetto: '@tesseract.js-data/spa', file: { '4.0.0_best_int/spa.traineddata.gz': 'spa.traineddata.gz' } }
+    ],
+    testoLicenza: 'Modelli tessdata_best (versione intera "best_int") di Tesseract OCR, Apache License 2.0 (https://github.com/tesseract-ocr/tessdata_best).\n' +
+      'File presi dai pacchetti npm @tesseract.js-data/ita, eng e spa 1.0.0 (licenza MIT).\n' },
   // I caratteri Roboto per il modello RLI: nel pacchetto npm di pdfmake
   // esistono solo dentro vfs_fonts.js, in base64. La licenza di pdfmake (MIT)
   // non e' quella dei caratteri, che e' la Apache 2.0 di Google.
@@ -74,6 +91,14 @@ function atteso() {
     const cartella = lib.nome + '@' + versione(lib.pacchetto);
     for (const [origine, nome] of Object.entries(lib.file || {})) {
       fuori.set(path.join(cartella, nome), fs.readFileSync(path.join(MODULI, lib.pacchetto, origine)));
+    }
+    for (const altro of lib.altri || []) {
+      if (versione(altro.pacchetto) !== versione(lib.pacchetto)) {
+        throw new Error(altro.pacchetto + ' deve avere la stessa versione di ' + lib.pacchetto + ' (' + versione(lib.pacchetto) + ')');
+      }
+      for (const [origine, nome] of Object.entries(altro.file)) {
+        fuori.set(path.join(cartella, nome), fs.readFileSync(path.join(MODULI, altro.pacchetto, origine)));
+      }
     }
     if (lib.vfs) {
       const vfs = leggiVfs(lib.pacchetto);

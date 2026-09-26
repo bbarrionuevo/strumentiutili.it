@@ -115,7 +115,12 @@
       if (!window.Tesseract) throw new Error('Tesseract OCR non disponibile.');
       showProgress('Esecuzione OCR (riconoscimento testo) in corso...');
       
-      const worker = await window.Tesseract.createWorker('ita');
+      // programma, motore e modello dal sito stesso (vendor/), non dai CDN predefiniti
+      const worker = await window.Tesseract.createWorker('ita', 1, {
+        workerPath: '/vendor/tesseract@5.1.1/worker.min.js',
+        corePath: '/vendor/tesseract-core@5.1.1',
+        langPath: '/vendor/tessdata@1.0.0'
+      });
       const ret = await worker.recognize(fileOrBlob);
       await worker.terminate();
       return ret.data.text;

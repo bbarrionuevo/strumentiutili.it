@@ -26,16 +26,11 @@ const SORGENTI = [...file(RADICE)].map((f) => ({ rel: path.relative(RADICE, f), 
 
 // Librerie che devono arrivare da vendor/: se ricompaiono su un CDN, il sito
 // torna a non funzionare offline e a consegnare l'IP degli utenti a terzi.
-const SOLO_VENDOR = /https:\/\/[^'"`\s]*(pdf-lib|pdf\.js\/|pdfjs-dist|fontkit|comlink|mammoth|jspdf|Chart\.js|chart\.js|docx@|qrcodejs|pdfmake|opencv\.js|ts-fsrs@|sql-wasm|fflate@|fzstd@)/i;
+const SOLO_VENDOR = /https:\/\/[^'"`\s]*(pdf-lib|pdf\.js\/|pdfjs-dist|fontkit|comlink|mammoth|jspdf|Chart\.js|chart\.js|docx@|qrcodejs|pdfmake|opencv\.js|ts-fsrs@|sql-wasm|fflate@|fzstd@|tesseract|naptha\/tessdata)/i;
 
 // Terze parti ancora ammesse, una per una.
 const AMMESSI = [
   'pagead2.googlesyndication.com',               // AdSense (e la CMP di Google)
-  'cdn.jsdelivr.net/npm/tesseract.js',           // OCR: motore...
-  'cdn.jsdelivr.net/npm/tesseract.js-core',
-  'unpkg.com/tesseract.js-core',
-  'cdn.jsdelivr.net/npm/@tesseract.js-data/',    // ...e dati delle lingue
-  'cdn.jsdelivr.net/gh/naptha/tessdata',
   'cdn.jsdelivr.net/npm/@xenova/transformers',   // trascrizione e traduzione
   'cdn.jsdelivr.net/npm/@vladmandic/face-api',   // fototessera
   'cdn.jsdelivr.net/npm/@mediapipe/tasks-vision',
