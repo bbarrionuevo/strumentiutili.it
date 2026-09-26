@@ -1,4 +1,4 @@
-// js/scanner.js — Controlador UI del Scanner con Web Worker OpenCV (Comlink)
+// js/scanner.js — Interfaccia dello scanner; OpenCV lavora in un worker (Comlink)
 (function () {
   'use strict';
 
@@ -110,7 +110,7 @@
 
           let detectedPoints = null;
           if (chkAutoCrop.checked) {
-            // Transferir la memoria de la imagen al Worker para que OpenCV la analice
+            // La memoria dell'immagine passa al worker (senza copia) perche' OpenCV la analizzi
             detectedPoints = await (await avviaMotore()).detectCorners(Comlink.transfer(imageData, [imageData.data.buffer]));
           }
 
@@ -150,7 +150,7 @@
 
     async function processDocWithWorker(doc) {
       const imgData = imageToImageData(doc.imgElement);
-      // Procesar perspectiva y filtros en el Worker sin congelar la pantalla
+      // Prospettiva e filtri nel worker, senza bloccare la pagina
       const processedImageData = await (await avviaMotore()).processDocument(
         Comlink.transfer(imgData, [imgData.data.buffer]),
         doc.points,
@@ -297,7 +297,7 @@
       setStatus('Ritaglio applicato.', 'green');
     });
 
-    // EXPORTACIÓN PDF VÍA WORKER
+    // Esportazione in PDF, nel worker
     btnGeneratePdf.addEventListener('click', async () => {
       if (!documents.length) return;
       btnGeneratePdf.disabled = true;

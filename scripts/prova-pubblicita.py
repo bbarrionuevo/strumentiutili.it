@@ -7,9 +7,11 @@ Tre cose, che sono i tre modi di farsi rifiutare o sospendere da AdSense:
    una voce dentro a un menu chiuso ha una casella ma non e' raggiungibile, e
    contarla darebbe un falso allarme. Si verifica con elementFromPoint.
 
-2. Spazio riservato. Ogni riquadro deve avere un'altezza propria fin da subito,
-   altrimenti la pagina salta quando l'annuncio arriva (Cumulative Layout
-   Shift). E l'altezza dev'essere quella del formato, non 250px per tutti.
+2. Spazio riservato. Finche' AdSense non manda annunci i riquadri non si
+   vedono (src/input.css, --su-ad-riserva: 0). Qui si aprono le pagine con
+   ?anteprima-pubblicita=1, che li mostra come dopo l'approvazione: ognuno
+   deve avere un'altezza propria, altrimenti la pagina salta quando
+   l'annuncio arriva (Cumulative Layout Shift).
 
 3. Larghezza utile. Sotto i 300px AdSense non ha formati che rendano: un
    riquadro laterale piu' stretto e' spazio sprecato.
@@ -24,7 +26,7 @@ try:
     from playwright.sync_api import sync_playwright
 except ImportError:  # pragma: no cover
     sys.exit("Serve playwright:  python -m pip install playwright\n"
-             "e poi:  python -m playwright install msedge")
+             "e poi:  python -m playwright install chromium")
 
 PORTA = 8863
 PAGINE = [
@@ -86,7 +88,7 @@ def main():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
 
     with sync_playwright() as pw:
-        b = pw.chromium.launch(channel="msedge", headless=True)
+        b = pw.chromium.launch(headless=True)
         for schermo, misure in SCHERMI.items():
             ctx = b.new_context(viewport=misure)
             print("\n=== %s (%dpx) ===" % (schermo, misure["width"]))
@@ -95,7 +97,7 @@ def main():
                 # senza rete verso Google: si misura lo spazio riservato, che e'
                 # quello che conta per il salto dell'impaginazione
                 pag.route("**/pagead2.googlesyndication.com/**", lambda r: r.abort())
-                pag.goto("http://127.0.0.1:%d%s" % (PORTA, percorso), wait_until="load")
+                pag.goto("http://127.0.0.1:%d%s?anteprima-pubblicita=1" % (PORTA, percorso), wait_until="load")
                 pag.wait_for_timeout(500)
                 riquadri = pag.evaluate(MISURA)
                 problemi = []

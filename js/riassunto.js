@@ -254,7 +254,7 @@
       });
     });
 
-    // Sanitizador para evitar fallos con emojis/símbolos en pdf-lib
+    // Toglie emoji e simboli che il font standard di pdf-lib non sa scrivere
     // Il font Helvetica del PDF usa la codifica WinAnsi: le emoji vengono rimosse, mentre le lettere
     // fuori dal set diventano la lettera base (č → c) invece di sparire insieme al resto della parola.
     const WINANSI_EXTRA = '€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ';

@@ -1,4 +1,4 @@
-// js/workers/scanner-worker.js — Motor de visión artificial OpenCV en segundo plano
+// js/workers/scanner-worker.js — OpenCV in un worker: bordi, prospettiva e filtri
 importScripts('/vendor/comlink@4.4.2/comlink.js');
 importScripts('/vendor/pdf-lib@1.17.1/pdf-lib.min.js');
 

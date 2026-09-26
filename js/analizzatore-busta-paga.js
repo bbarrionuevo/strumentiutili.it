@@ -33,7 +33,7 @@
     if (btnReset) btnReset.addEventListener('click', resetAnalyzer);
   }
 
-  // Hacemos que los contenedores numéricos sean editables por el usuario
+  // Le cifre dei risultati si possono correggere a mano
   function makeResultsEditable() {
     var campi = [
       { el: resLordo, key: 'lordo' },
@@ -219,7 +219,7 @@
       
       if (targetIdx !== -1) {
         var targetWord = words[targetIdx];
-        // Busca a la derecha, en la misma línea (y0 +- 25px)
+        // Cerca a destra, sulla stessa riga (y0 ± 25px)
         var candidates = words.filter(w => w.x0 > targetWord.x1 && Math.abs(w.y0 - targetWord.y0) <= 25);
         candidates.sort((a, b) => a.x0 - b.x0);
 

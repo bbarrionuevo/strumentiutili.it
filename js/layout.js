@@ -186,18 +186,21 @@
       apri(true);
     }
 
-    function cerca(testo) {
+    function risultati(testo) {
       var parole = senzaAccenti(testo).split(/\s+/).filter(Boolean);
-      if (!parole.length) { apri(false); return; }
-
-      caricaIndice().then(function (voci) {
-        var trovati = voci
+      return caricaIndice().then(function (voci) {
+        if (!parole.length) return [];
+        return voci
           .map(function (v) { return { v: v, p: punteggio(v, parole) }; })
           .filter(function (x) { return x.p >= 0; })
           .sort(function (a, b) { return b.p - a.p || a.v.titolo.localeCompare(b.v.titolo); })
           .map(function (x) { return x.v; });
-        disegna(trovati, testo);
       });
+    }
+
+    function cerca(testo) {
+      if (!senzaAccenti(testo).trim()) { apri(false); return; }
+      risultati(testo).then(function (trovati) { disegna(trovati, testo); });
     }
 
     var attesa = null;
@@ -208,14 +211,26 @@
     });
 
     campo.addEventListener('keydown', function (e) {
+      if (e.isComposing) return;   // Invio che conferma un carattere (tastiere IME)
       if (e.key === 'Escape') { apri(false); return; }
+      if (e.key === 'Enter') {
+        // Invio: la voce scelta con le frecce o, se non se n'e' scelta
+        // nessuna, il primo risultato. Prima Invio da solo non faceva niente.
+        var testo = campo.value.trim();
+        e.preventDefault();
+        if (!testo) return;
+        var attivo = !tendina.hidden && evidenziato >= 0 ? voci()[evidenziato] : null;
+        if (attivo) { window.location.href = attivo.getAttribute('href'); return; }
+        clearTimeout(attesa);
+        risultati(testo).then(function (trovati) {
+          if (trovati.length) window.location.href = trovati[0].percorso;
+          else disegna(trovati, testo);
+        });
+        return;
+      }
       if (tendina.hidden) return;
       if (e.key === 'ArrowDown') { e.preventDefault(); evidenzia(evidenziato + 1); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); evidenzia(evidenziato - 1); }
-      else if (e.key === 'Enter' && evidenziato >= 0) {
-        var attivo = voci()[evidenziato];
-        if (attivo) { e.preventDefault(); window.location.href = attivo.getAttribute('href'); }
-      }
     });
 
     campo.addEventListener('focus', function () {

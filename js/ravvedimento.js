@@ -5,7 +5,7 @@ function oggiInItalia() {
   catch (e) { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 }
 
-// js/ravvedimento_2.js — Motor de Cálculo Ravvedimento Operoso (JSON Decoupled)
+// js/ravvedimento.js — Calcolo del ravvedimento operoso (regole lette dal JSON)
 document.addEventListener('DOMContentLoaded', async () => {
     // UI Elements
     const selectTributo = document.getElementById('tipo_tributo');

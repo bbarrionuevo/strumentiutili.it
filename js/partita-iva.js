@@ -1,4 +1,4 @@
-// js/partita-iva_2.js — Motor de Cálculo Regime Forfettario (JSON Decoupled)
+// js/partita-iva.js — Calcolo del regime forfettario (regole lette dal JSON)
 (function () {
   'use strict';
 
@@ -18,7 +18,7 @@
     }).format(Number(value) || 0);
   }
 
-  // 1. Mapear reglas desde JSON a la estructura de la aplicación
+  // 1. Le regole del JSON nella forma che usa la pagina
   function getContributionRules(config) {
     return {
       professionisti: {

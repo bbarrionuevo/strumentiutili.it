@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v70';
+const CACHE_NAME = 'strumentiutili-v71';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -122,13 +122,15 @@ const APP_SHELL = [
   '/utilita-web/budget-planner/',
 
   // Pagine Legali e Contatti
-  '/contatti.html',
-  '/politica-sulla-privacy.html',
-  '/avviso-legale.html',
+  '/contatti/',
+  '/politica-sulla-privacy/',
+  '/avviso-legale/',
+  '/mappa-del-sito/',
 
   // Script condivisi e utilità
   '/js/spazio.js',
   '/js/layout.js',
+  '/js/mappa.js',
   '/js/data-loader.js',
   '/js/esenzione-bollo.js',
   '/js/esenzione-bollo-ui.js',
@@ -271,16 +273,9 @@ const APP_SHELL = [
   '/assets/icon.svg',
   '/assets/icon.png',
   '/assets/og-image.png',
-  // --- Aggiunte automaticamente ---
-  '/',
-  '/avviso-legale/',
   '/cittadino-tasse/analizzatore-bolletta/',
-  '/contatti/',
   '/ia/assistente-documenti/',
   '/lavoro-contratti/analizzatore-busta-paga/',
-  '/politica-sulla-privacy/',
-  // --- Aggiunte automaticamente ---
-  '/',
   '/cittadino-tasse/consumo-elettrodomestici/',
   '/identita-burocrazia/disdetta/',
   '/utilita-web/costo-ricarica-auto-elettrica/',

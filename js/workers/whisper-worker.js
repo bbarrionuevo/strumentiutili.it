@@ -1,4 +1,4 @@
-// js/workers/whisper-worker.js — Worker dedicado para Whisper AI (Comlink)
+// js/workers/whisper-worker.js — Worker della trascrizione con Whisper (Comlink)
 import * as Comlink from '/vendor/comlink@4.4.2/comlink.mjs';
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.16.0';
 

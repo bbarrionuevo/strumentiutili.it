@@ -189,16 +189,16 @@ test('nessun BreadcrumbList punta a una vecchia URL da redirect', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
-test('il piede conserva lo spazio pubblicitario della pagina', () => {
+// Il piede non ha annunci: stava subito dopo quello del contenuto e faceva
+// due riquadri di fila, piu' spazio pubblicitario che testo in fondo a ogni pagina.
+test('il piede non ha annunci', () => {
   const problemi = [];
   for (const p of PAGINE) {
     const i = p.html.indexOf(L.M.piedeApri);
     const j = p.html.indexOf(L.M.piedeChiudi, i);
-    const piede = p.html.slice(i, j);
-    if (!piede.includes('adsbygoogle')) problemi.push(p.rel);
+    if (i >= 0 && /adsbygoogle|su-ad/.test(p.html.slice(i, j))) problemi.push(p.rel);
   }
-  assert.deepStrictEqual(problemi, [],
-    'il generatore del piede deve riportare il blocco AdSense che trova');
+  assert.deepStrictEqual(problemi, []);
 });
 
 test('il piede porta a tutte le categorie e alle pagine legali', () => {
@@ -528,23 +528,29 @@ test('statistiche di Vercel: una volta in ogni pagina, dichiarate e fuori dal se
   assert.ok(sw.includes("url.pathname.startsWith('/_vercel/')) return;"), 'sw.js intercetta /_vercel/');
 });
 
-test('ogni riquadro pubblicitario ha etichetta, segnaposto e altezza riservata', () => {
-  // Senza il modificatore .su-ad--* il riquadro non riserva spazio e la pagina
-  // salta quando arriva l'annuncio; senza etichetta l'annuncio non si
-  // distingue dal contenuto, che le norme di AdSense chiedono.
+// Revisione AdSense del 26/09/2026: «concentrati sui contenuti». Prima ogni
+// pagina aveva 3-4 riquadri, il primo prima del titolo, e finche' il sito non
+// e' approvato mostravano rettangoli grigi con «Spazio pubblicitario». Ora:
+// al massimo 2 riquadri (nel contenuto e laterale da computer), mai prima
+// del titolo, nessun testo pubblicitario nell'HTML (l'etichetta la mette il
+// CSS quando l'annuncio arriva) e nessun annuncio sulle pagine noindex.
+test('riquadri pubblicitari: pochi, dopo il contenuto e senza testo di riempimento', () => {
   const problemi = [];
   for (const p of PAGINE) {
-    // Pattern costruito da stringa: evita le sequenze di escape, che in questo
-    // file sono gia' state mangiate una volta da un passaggio di editing.
-    const re = new RegExp('<div class="su-ad[^"]*"[^>]*>([^]*?)</div>', 'g');
-    for (const m of p.html.matchAll(re)) {
-      const classe = m[0].slice(0, m[0].indexOf('>'));
-      if (!/su-ad--/.test(classe)) problemi.push(p.rel + ' -> riquadro senza formato: ' + classe.slice(0, 60));
-      if (!m[1].includes('su-ad-etichetta')) problemi.push(p.rel + ' -> riquadro senza etichetta');
-      if (!m[1].includes('su-ad-segnaposto')) problemi.push(p.rel + ' -> riquadro senza segnaposto');
-    }
+    if (/Spazio pubblicitario|su-ad-segnaposto|su-ad-etichetta/.test(p.html)) problemi.push(p.rel + ' -> testo di riempimento');
+    const riquadri = [...p.html.matchAll(/<div class="su-ad ([^"]*)"/g)].map((m) => m[1]);
+    if (riquadri.length > 2) problemi.push(p.rel + ' -> ' + riquadri.length + ' riquadri');
+    for (const c of riquadri) if (!/^su-ad--(contenuto|laterale)\b/.test(c)) problemi.push(p.rel + ' -> formato ' + c.split(' ')[0]);
+    const h1 = p.html.indexOf('<h1');
+    const primo = p.html.indexOf('<div class="su-ad');
+    if (primo >= 0 && h1 >= 0 && primo < h1) problemi.push(p.rel + ' -> annuncio prima del titolo');
+    if (/<meta name="robots" content="[^"]*noindex/.test(p.html) && primo >= 0) problemi.push(p.rel + ' -> annuncio su pagina noindex');
+    if (/su-ad--laterale/.test(p.html) && !/su-ad--laterale ad-slot-desktop/.test(p.html)) problemi.push(p.rel + ' -> laterale visibile anche da telefono');
   }
   assert.deepStrictEqual(problemi, []);
+  const css = fs.readFileSync(path.join(RADICE, 'src', 'input.css'), 'utf8');
+  assert.match(css, /\.ad-slot-desktop \{ display: none; \}/);
+  assert.match(css, /--su-ad-riserva: 0;/);
 });
 
 test('ogni pagina con riquadri pubblicitari chiede davvero gli annunci', () => {
@@ -650,10 +656,12 @@ test('l informativa non descrive piu la CMP di Cookiebot', () => {
 test('ogni pagina ha un solo canonical', () => {
   // Due canonical identici, o nessuno, confondono i motori. Le pagine
   // regionali del bollo li avevano doppi perche' ereditati dal modello.
+  // Una pagina noindex (la 404) puo' non averlo: non ha un indirizzo suo.
   const problemi = [];
   for (const p of PAGINE) {
     const quanti = (p.html.match(/rel="canonical"/g) || []).length;
-    if (quanti !== 1) problemi.push(p.rel + ' -> ' + quanti);
+    const noindex = /<meta[^>]+name="robots"[^>]+noindex/i.test(p.html);
+    if (quanti !== 1 && !(noindex && quanti === 0)) problemi.push(p.rel + ' -> ' + quanti);
   }
   assert.deepStrictEqual(problemi, []);
 });

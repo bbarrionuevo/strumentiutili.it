@@ -95,21 +95,27 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
    css/styles.css: i blocchi <style> in linea che la ripetevano in 120 pagine
    sono stati tolti. */
 
+/* Finche' AdSense non riempie un riquadro, il riquadro non si vede: niente
+   altezza riservata, niente fondo grigio e nessuna scritta. Un sito ancora in
+   revisione mostrava su ogni pagina tre o quattro rettangoli vuoti con
+   «Spazio pubblicitario», prima ancora del titolo: al revisore sembrava un
+   sito fatto per gli annunci.
+   --su-ad-riserva: 0 = nessuno spazio riservato in attesa dell'annuncio;
+   dopo l'approvazione si puo' portare a 1, per riservare l'altezza e non far
+   saltare la pagina quando l'annuncio arriva (Cumulative Layout Shift). */
+:root { --su-ad-riserva: 0; }
+
 .su-ad {
   width: 100%;
   box-sizing: border-box;
-  background-color: #f8fafc;
-  border: 1px dashed #e2e8f0;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  padding: 0.5rem;
-  /* Margine ampio: un annuncio appiccicato a un pulsante e' il modo piu'
-     rapido per farsi sospendere l'account AdSense. */
-  margin-block: 2rem;
+  /* Margine ampio quando c'e' l'annuncio: un annuncio appiccicato a un
+     pulsante e' il modo piu' rapido per farsi sospendere l'account. */
+  margin-block: calc(2rem * var(--su-ad-riserva));
 }
 
 .su-ad > ins.adsbygoogle {
@@ -120,28 +126,33 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
   align-self: stretch;
 }
 
-/* L'altezza si riserva in base al FORMATO dell'annuncio, non alla sua
-   posizione: e' il formato a decidere quanto spazio occupera', ed e' cosi' che
-   si evita il salto di impaginazione (Cumulative Layout Shift). */
-.su-ad--testata,
-.su-ad--orizzontale { min-height: 100px; }
-.su-ad--contenuto { min-height: 280px; }
-.su-ad--laterale { min-height: 280px; }
-.su-ad--fondo { min-height: 280px; }
+/* Altezza per FORMATO dell'annuncio, solo se si sceglie di riservarla. */
+.su-ad--contenuto { min-height: calc(280px * var(--su-ad-riserva)); }
+.su-ad--laterale { min-height: calc(280px * var(--su-ad-riserva)); }
+
+/* Il riquadro laterale e' solo per i computer: sul telefono finirebbe in mezzo
+   alla pagina, fra lo strumento e la guida. */
+.ad-slot-desktop { display: none; }
 
 @media (min-width: 1024px) {
-  .su-ad--testata,
-  .su-ad--orizzontale { min-height: 90px; }
+  .ad-slot-desktop { display: flex; }
   .su-ad--laterale {
-    min-height: 600px;
+    min-height: calc(600px * var(--su-ad-riserva));
     position: sticky;
     top: 6rem;
   }
 }
 
-/* Le norme di AdSense chiedono che l'annuncio si distingua dal contenuto:
-   l'etichetta resta anche quando l'annuncio e' caricato. */
-.su-ad-etichetta {
+/* Annuncio arrivato: spazio attorno ed etichetta «Pubblicità», che le norme
+   di AdSense chiedono per distinguerlo dal contenuto. L'etichetta la scrive
+   il CSS, cosi' nell'HTML non c'e' nessun testo pubblicitario finche' non c'e'
+   un annuncio. */
+.su-ad[data-su-stato="pieno"] { margin-block: 2rem; }
+.su-ad--contenuto[data-su-stato="pieno"],
+.su-ad--laterale[data-su-stato="pieno"] { min-height: 280px; }
+.su-ad[data-su-stato="pieno"]::before,
+.su-ad[data-su-stato="anteprima"]::before {
+  content: "Pubblicità";
   font-size: 10px;
   line-height: 1;
   text-transform: uppercase;
@@ -151,27 +162,18 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
   flex: 0 0 auto;
 }
 
-.su-ad-segnaposto {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: #cbd5e1;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  min-height: inherit;
+/* Anteprima dell'impaginazione (?anteprima-pubblicita=1): i riquadri si
+   vedono come rettangoli tratteggiati con l'altezza del formato. */
+.su-ad[data-su-stato="anteprima"] {
+  margin-block: 2rem;
+  min-height: 280px;
+  background-color: #f8fafc;
+  border: 1px dashed #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
-/* Annuncio arrivato: via il fondo grigio e il bordo tratteggiato del segnaposto. */
-.su-ad[data-su-stato="pieno"] {
-  background: none;
-  border-color: transparent;
-}
-.su-ad[data-su-stato="pieno"] .su-ad-segnaposto { display: none; }
-
-/* Niente da mostrare: il riquadro si chiude e lo spazio torna al contenuto,
-   invece di lasciare un rettangolo grigio per sempre. */
+/* Niente da mostrare: il riquadro sparisce del tutto. */
 .su-ad[data-su-stato="vuoto"] { display: none; }
 
 /* Il contenuto di un <details> chiuso resta nascosto anche quando un figlio
@@ -332,9 +334,7 @@ details:not([open]) > *:not(summary) { display: none !important; }
   .su-salta,
   #menu-toggle,
   #menu-mobile,
-  #risultati-menu,
-  .su-ad-etichetta,
-  .su-ad-segnaposto {
+  #risultati-menu {
     display: none !important;
   }
 

@@ -1,4 +1,4 @@
-// js/trascrizione.js — Controlador de Trascripción Audio con Comlink y Transferable Objects
+// js/trascrizione.js — Trascrizione dell'audio; il modello lavora in un worker (Comlink, memoria trasferita senza copia)
 document.addEventListener('DOMContentLoaded', () => {
   const audioInput = document.getElementById('audio-input');
   const fileNameDisplay = document.getElementById('file-name');

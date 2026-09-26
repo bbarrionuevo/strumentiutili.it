@@ -1,4 +1,4 @@
-// js/stipendio-netto_2.js — Motor de Cálculo Busta Paga Dal Lordo al Netto (JSON Decoupled)
+// js/stipendio-netto.js — Dal lordo al netto in busta paga (regole lette dal JSON)
 (function () {
   'use strict';
 
@@ -32,7 +32,7 @@
     return motoreIrpef.computeIRPEF(imponibile, configIrpef);
   }
 
-  // Deducción por Trabajo Asalariado (Art. 13 TUIR) + Salvaguardia y Corrección (Leída desde JSON)
+  // Detrazione per lavoro dipendente (art. 13 TUIR), con salvaguardia e correttivo (dal JSON)
   function computeDetrazioneLavoroDipendente(imponibile, workedDays, configIrpef) {
     const income = Math.max(0, safeNumber(imponibile, 0));
     const days = Math.min(365, Math.max(1, safeNumber(workedDays, 365)));
@@ -49,21 +49,21 @@
       base = 0;
     }
 
-    // Cláusula de salvaguardia mínima para contratos indefinidos
+    // Clausola di salvaguardia: minimo per i contratti a tempo indeterminato
     if (income <= 15000 && base < ded.salvaguardiaMinimaIndeterminato) {
       base = ded.salvaguardiaMinimaIndeterminato;
     }
 
-    // Corrección suplementaria Art. 13, c. 1.1 TUIR
+    // Correttivo dell'art. 13, comma 1.1 TUIR
     if (income > 25000 && income <= 35000) {
       base += ded.correzioneAggiuntiva25k35k;
     }
 
-    // Proporcionalidad según días trabajados
+    // In proporzione ai giorni lavorati
     return round2(Math.max(0, base * (days / 365)));
   }
 
-  // Nuevo Cuneo Fiscale Estructural 2026 (Leído desde JSON)
+  // Taglio del cuneo fiscale strutturale 2026 (dal JSON)
   function computeCuneoFiscale(imponibile, workedDays, configIrpef) {
     const income = Math.max(0, safeNumber(imponibile, 0));
     const days = Math.min(365, Math.max(1, safeNumber(workedDays, 365)));

@@ -5,7 +5,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
 }
 
 (async ()=>{
-  // Importar Comlink e instanciar el Worker con la ruta exacta corregida
+  // Comlink e il worker dei PDF, con il percorso completo
   const Comlink = await import('/vendor/comlink@4.4.2/comlink.mjs');
   const worker = new Worker('/js/workers/pdf-worker.js'); 
   worker.onerror = (err) => console.error("Error crítico en Web Worker PDF:", err);
@@ -572,7 +572,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     disegnaOverlay();
   }
 
-  // Lógica Recuadro Firma
+  // Riquadro della firma
   if (previewCanvas) {
     previewCanvas.addEventListener('pointerdown', (ev) => {
       if (!previewState.viewport) return;
@@ -583,7 +583,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     });
   }
 
-  // Posiciones Rápidas
+  // Posizioni rapide
   function updateOverlayPosition(fracX, fracYTop) {
     if(!previewState.viewport) {
       alert("Per favore, carica un PDF prima di posizionare la firma.");
@@ -654,7 +654,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     });
   }
 
-  // Carga de imagen con Extracción de Fondo 
+  // Firma da immagine, con lo sfondo tolto 
   if (uploadSignatureInput && signatureCanvas) {
     let uploadBtn = document.getElementById('btn-upload-signature') || Array.from(document.querySelectorAll('button')).find(b => b.textContent.includes('Carica (JPG/PNG)'));
     if (uploadBtn) {
@@ -713,7 +713,7 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
     });
   }
 
-  // Aplicar firma en el Web Worker
+  // La firma si applica nel worker
   if (applySignatureBtn) {
     applySignatureBtn.addEventListener('click', async () => {
       const file = document.getElementById('sign-file').files[0];
