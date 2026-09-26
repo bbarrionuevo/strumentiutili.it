@@ -14,14 +14,14 @@ const CLIENT = 'ca-pub-9434300808171957';
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const TITOLO = 'Santo del giorno e onomastici di oggi, con gli auguri da inviare';
-const DESCRIZIONE = 'Il santo di oggi e degli altri giorni, l’onomastico di ogni nome e un biglietto di auguri da mandare su WhatsApp. In piu’: fase lunare, alba e tramonto, prossima festa e ponte. Gratis, senza app.';
+const DESCRIZIONE = 'Il santo di oggi e degli altri giorni, l’onomastico di ogni nome e un biglietto di auguri da mandare su WhatsApp. In più: fase lunare, alba e tramonto, prossima festa e ponte. Gratis, senza app.';
 
 const FAQ = [
-  { d: 'Da dove vengono i santi del giorno?', r: 'Da Wikidata, la base di dati libera collegata a Wikipedia (licenza CC0). Per ogni giorno mostriamo i santi e i beati festeggiati, i piu’ conosciuti per primi. Il calendario della tua diocesi puo’ avere feste proprie in piu’.' },
-  { d: 'Come si trova il giorno dell’onomastico?', r: 'Scrivi il nome nel campo «Quando e’ l’onomastico di…»: compare il giorno del santo piu’ festeggiato con quel nome. Per i nomi portati da piu’ santi (Antonio, Teresa, Maria…) indichiamo la data piu’ diffusa in Italia; in alcune famiglie e paesi si festeggia un altro giorno.' },
-  { d: 'Onomastico e compleanno sono la stessa cosa?', r: 'No. Il compleanno e’ il giorno in cui sei nato; l’onomastico e’ la festa del santo di cui porti il nome. In Italia si fanno gli auguri per tutti e due.' },
+  { d: 'Da dove vengono i santi del giorno?', r: 'Il primo santo di ogni giorno è quello del Calendario romano generale, il calendario liturgico della Chiesa cattolica, con alcuni santi molto festeggiati in Italia (San Valentino, San Rocco, Santa Barbara…). Gli altri santi e beati vengono da Wikidata, la base di dati libera collegata a Wikipedia (licenza CC0). Il calendario della tua diocesi può avere feste proprie in più.' },
+  { d: 'Come si trova il giorno dell’onomastico?', r: 'Scrivi il nome nel campo «Quando è l’onomastico di…»: compare il giorno del santo più festeggiato con quel nome. Per i nomi portati da più santi (Antonio, Teresa, Maria…) indichiamo la data più diffusa in Italia; in alcune famiglie e paesi si festeggia un altro giorno.' },
+  { d: 'Onomastico e compleanno sono la stessa cosa?', r: 'No. Il compleanno è il giorno in cui sei nato; l’onomastico è la festa del santo di cui porti il nome. In Italia si fanno gli auguri per tutti e due.' },
   { d: 'Come mando gli auguri su WhatsApp?', r: 'Scegli il nome e i colori, poi premi «Condividi»: sul telefono si apre l’elenco delle app e puoi scegliere WhatsApp. Dal computer premi «Scarica l’immagine» e allegala al messaggio. Il biglietto si crea sul tuo dispositivo.' },
-  { d: 'Alba e tramonto sono precisi?', r: 'Sono calcolati con l’algoritmo della NOAA, lo stesso degli almanacchi, con uno scarto di circa un minuto. Puoi scegliere il capoluogo di regione piu’ vicino o usare la tua posizione, che resta sul dispositivo.' }
+  { d: 'Alba e tramonto sono precisi?', r: 'Sono calcolati con l’algoritmo della NOAA, lo stesso degli almanacchi, con uno scarto di circa un minuto. Puoi scegliere il capoluogo di regione più vicino o usare la tua posizione, che resta sul dispositivo.' }
 ];
 
 const AD_CONTENUTO = `      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
@@ -275,7 +275,7 @@ function calendario(dati) {
 
 function fonte(dati) {
   const d = String(dati.generato || '').split('-');
-  return 'Santi e onomastici: <a href="https://www.wikidata.org" target="_blank" rel="noopener" class="underline">Wikidata</a> (licenza CC0)' +
+  return 'Santi e onomastici: <a href="https://it.wikipedia.org/wiki/Calendario_romano_generale" target="_blank" rel="noopener" class="underline">Calendario romano generale</a> e <a href="https://www.wikidata.org" target="_blank" rel="noopener" class="underline">Wikidata</a> (licenza CC0)' +
     (d.length === 3 ? ', dati del ' + d[2] + '/' + d[1] + '/' + d[0] : '') + '. Alba e tramonto: algoritmo NOAA. Fasi lunari: J. Meeus.';
 }
 

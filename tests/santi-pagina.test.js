@@ -65,3 +65,16 @@ test('pagina pubblicata: coerente con i dati e registrata', { skip: !ESISTE }, (
     assert.ok(sw.includes("'" + u + "'"), u + ' non e nel precache');
   }
 });
+
+test('pagina pubblicata: indice, sitemap, home, categoria, fonti e privacy', { skip: !ESISTE }, () => {
+  const leggi = (...p) => fs.readFileSync(path.join(RADICE, ...p), 'utf8');
+  const u = '/utilita-web/santo-del-giorno/';
+  assert.ok(leggi('sw.js').includes("'/data/santi.json'"), 'i dati servono anche offline');
+  assert.ok(leggi('data', 'strumenti.json').includes(u));
+  assert.ok(leggi('sitemap.xml').includes(u));
+  assert.ok(leggi('index.html').includes('href="' + u + '"'));
+  assert.ok(leggi('utilita-web', 'index.html').includes('href="' + u + '"'));
+  const html = fs.readFileSync(PAGINA, 'utf8');
+  assert.ok(html.includes('Calendario romano generale') && html.includes('Wikidata'), 'le due fonti citate');
+  assert.match(leggi('politica-sulla-privacy.html'), /Santo del giorno[^<]*alba e tramonto/);
+});
