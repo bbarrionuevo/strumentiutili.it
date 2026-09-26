@@ -52,6 +52,7 @@
     if (tipo.indexOf('video/') === 0 || ['mp4', 'mov', 'm4v'].indexOf(est) !== -1) return 'video';
     if (est === 'docx') return 'docx';
     if (est === 'xml' || tipo === 'application/xml' || tipo === 'text/xml') return 'xml';
+    if (['csv', 'tsv', 'apkg', 'colpkg'].indexOf(est) !== -1 || tipo === 'text/csv') return 'studio';
     return 'altro';
   }
 
@@ -91,15 +92,28 @@
     ],
     video: [
       ['/ia/trascrizione-audio/', 'Trascrivere l’audio', 'Trasformare in testo quello che si dice nel video']
+    ],
+    // un file senza estensione o di un tipo che nessuno strumento accetta:
+    // prima di tutto bisogna capire che cos'e'
+    altro: [
+      ['/utilita-web/che-file-e/', 'Scoprire che file è', 'Riconoscere il formato dal contenuto e aprirlo con il programma giusto']
+    ],
+    // dati per le flashcard: tabelle CSV e mazzi di Anki
+    studio: [
+      ['/utilita-web/flashcard/', 'Studiare con le flashcard', 'Importare domande e risposte e ripassarle']
     ]
   };
+
+  function azioniPerGenere(g) {
+    return (AZIONI[g] || []).map(function (a) { return { percorso: a[0], titolo: a[1], descrizione: a[2] }; });
+  }
 
   // Che cosa si puo' fare con i file ricevuti: le azioni valide per il genere
   // del primo file. Una fattura .xml.p7m si puo' anche leggere impaginata.
   function azioni(files) {
     if (!files || !files.length) return [];
     var g = genere(files[0]);
-    var elenco = (AZIONI[g] || []).map(function (a) { return { percorso: a[0], titolo: a[1], descrizione: a[2] }; });
+    var elenco = azioniPerGenere(g);
     if (g === 'p7m' && /\.xml\.p7m$/i.test(nomeDi(files[0]))) {
       elenco.push({ percorso: '/fisco-professioni/fattura-elettronica/', titolo: 'Leggere la fattura', descrizione: 'Visualizzare la fattura elettronica firmata' });
     }
@@ -229,6 +243,7 @@
   return {
     genere: genere,
     azioni: azioni,
+    azioniPerGenere: azioniPerGenere,
     stessoGenere: stessoGenere,
     scaduto: scaduto,
     salva: salva,

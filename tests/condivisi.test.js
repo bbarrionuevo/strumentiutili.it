@@ -15,12 +15,15 @@ test('il genere dal tipo o, se manca, dall estensione', () => {
   assert.strictEqual(C.genere({ nome: 'IMG_1234.HEIC', tipo: '' }), 'immagine');
   assert.strictEqual(C.genere({ nome: 'PTT-20260924-WA0001.opus', tipo: 'audio/ogg' }), 'audio', 'vocale di WhatsApp');
   assert.strictEqual(C.genere({ nome: 'lettera.docx', tipo: '' }), 'docx');
+  assert.strictEqual(C.genere({ nome: 'domande.csv', tipo: 'text/csv' }), 'studio');
+  assert.strictEqual(C.genere({ nome: 'Diritto.apkg', tipo: '' }), 'studio');
   assert.strictEqual(C.genere({ nome: 'boh.xyz', tipo: '' }), 'altro');
+  assert.strictEqual(C.genere({ nome: 'senza-estensione', tipo: '' }), 'altro');
 });
 
 test('le azioni proposte portano a pagine che esistono e accettano i file', () => {
-  const generi = ['pdf', 'foto', 'immagine', 'p7m', 'xml', 'docx', 'audio', 'video'];
-  const esempi = { pdf: 'a.pdf', foto: 'a.jpg', immagine: 'a.heic', p7m: 'a.xml.p7m', xml: 'a.xml', docx: 'a.docx', audio: 'a.opus', video: 'a.mp4' };
+  const generi = ['pdf', 'foto', 'immagine', 'p7m', 'xml', 'docx', 'audio', 'video', 'studio', 'altro'];
+  const esempi = { pdf: 'a.pdf', foto: 'a.jpg', immagine: 'a.heic', p7m: 'a.xml.p7m', xml: 'a.xml', docx: 'a.docx', audio: 'a.opus', video: 'a.mp4', studio: 'a.csv', altro: 'scansione' };
   const problemi = [];
   for (const g of generi) {
     const azioni = C.azioni([{ nome: esempi[g], tipo: '' }]);
@@ -37,7 +40,11 @@ test('le azioni proposte portano a pagine che esistono e accettano i file', () =
   }
   assert.deepStrictEqual(problemi, []);
   assert.deepStrictEqual(C.azioni([]), []);
-  assert.deepStrictEqual(C.azioni([{ nome: 'x.xyz' }]), []);
+  // un file che nessuno strumento accetta va a «Che file è?»
+  assert.deepStrictEqual(C.azioni([{ nome: 'x.xyz' }]).map((a) => a.percorso), ['/utilita-web/che-file-e/']);
+  // ...che riceve qualsiasi file: il suo campo non ha "accept"
+  const che = fs.readFileSync(path.join(RADICE, 'utilita-web/che-file-e/index.html'), 'utf8');
+  assert.ok(!/<input[^>]*data-condivisi[^>]*accept=|<input[^>]*accept=[^>]*data-condivisi/.test(che));
 });
 
 test('una fattura firmata si puo anche leggere impaginata', () => {

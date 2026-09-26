@@ -152,6 +152,18 @@ test('le tariffe caricate sono coerenti fra classi Euro', () => {
   }
 });
 
+// Cifre copiate dai tariffari ACI 2026 (letti con .github/workflows/leggi-fonti.yml):
+// se qualcuno le cambia deve farlo con un tariffario nuovo in mano.
+test('Toscana e Campania: tariffe 2026 del tariffario ACI', () => {
+  const r = regole.bollo_auto_2026.regioni;
+  const riga = (reg) => Object.values(r[reg].classi_euro).map((t) => [t.tariffa_base, t.tariffa_eccedente]);
+  assert.deepStrictEqual(riga('toscana'), [[3.47, 5.45], [3.35, 5.37], [3.23, 5.08], [3.12, 4.91], [2.71, 4.26]]);
+  assert.deepStrictEqual(riga('campania'), [[3.63, 5.45], [3.51, 5.27], [3.39, 5.08], [3.27, 4.91], [3.12, 4.69]]);
+  for (const reg of ['abruzzo', 'emilia_romagna', 'campania', 'toscana']) {
+    assert.match(r[reg].fonte, /^https:\/\/aci\.gov\.it\/app\/uploads\/2026\/\d\d\/Tariffario-/, reg + ': manca la fonte');
+  }
+});
+
 test('la fonte ufficiale per le tariffe mancanti e indicata', () => {
   assert.match(regole.bollo_auto_2026.fonte_ufficiale || '', /aci.it/,
     'senza una fonte da citare l avviso sulle tariffe mancanti non aiuta nessuno');
