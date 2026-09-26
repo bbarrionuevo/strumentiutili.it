@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v71';
+const CACHE_NAME = 'strumentiutili-v72';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -126,6 +126,7 @@ const APP_SHELL = [
   '/politica-sulla-privacy/',
   '/avviso-legale/',
   '/mappa-del-sito/',
+  '/metodo/',
 
   // Script condivisi e utilità
   '/js/spazio.js',

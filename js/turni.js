@@ -234,7 +234,7 @@
     for (var i = 0; i < s.tipi.length; i++) {
       var t = s.tipi[i];
       if (!t || !SIGLA.test(t.sigla)) return 'Sigla non valida: usa da 1 a 3 lettere maiuscole o cifre';
-      if (ASSENZE[t.sigla]) return 'La sigla ' + t.sigla + ' e’ riservata a ' + ASSENZE[t.sigla].nome.toLowerCase();
+      if (ASSENZE[t.sigla]) return 'La sigla ' + t.sigla + ' è riservata a ' + ASSENZE[t.sigla].nome.toLowerCase();
       if (viste[t.sigla]) return 'Sigla ripetuta: ' + t.sigla;
       viste[t.sigla] = true;
       if (typeof t.nome !== 'string' || !t.nome.trim() || t.nome.length > 30) return 'Nome del turno ' + t.sigla + ' mancante o troppo lungo';

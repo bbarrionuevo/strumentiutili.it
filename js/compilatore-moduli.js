@@ -755,7 +755,7 @@
       const saldo = valutaCalcolo(regole.saldo, modello) || 0;
       const negativo = saldo < 0;
       avvertenza.textContent = negativo
-        ? 'I crediti superano i debiti: il saldo di un F24 non puo’ essere negativo. '
+        ? 'I crediti superano i debiti: il saldo di un F24 non può essere negativo. '
           + 'Riduci il credito compensato fino ad azzerare i debiti.'
         : '';
       avvertenza.classList.toggle('hidden', !negativo);

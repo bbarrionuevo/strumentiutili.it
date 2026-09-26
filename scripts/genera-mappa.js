@@ -24,6 +24,7 @@ const CHIUDI = '<!-- /su:mappa -->';
 // Pagine che non sono strumenti. Le guide si aggiungono da data/guide.json se c'e'.
 const ALTRE = [
   { percorso: '/contatti/', titolo: 'Chi siamo e contatti' },
+  { percorso: '/metodo/', titolo: 'Come verifichiamo i dati' },
   { percorso: '/politica-sulla-privacy/', titolo: 'Privacy e cookie' },
   { percorso: '/avviso-legale/', titolo: 'Avviso legale' }
 ];

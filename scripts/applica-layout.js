@@ -40,9 +40,13 @@ function traMarcatori(html, apri, chiudi, nuovo) {
   return html.slice(0, i) + apri + '\n' + nuovo + '\n' + '  ' + html.slice(j);
 }
 
-function avvolgi(apri, contenuto, chiudi, rientro) {
+// rientroChiudi: traMarcatori rimette sempre il marcatore di chiusura a due
+// spazi; chi inserisce per la prima volta deve fare lo stesso, altrimenti il
+// secondo giro cambia il file e --check segnala una pagina appena generata.
+function avvolgi(apri, contenuto, chiudi, rientro, rientroChiudi) {
   const sp = rientro == null ? '  ' : rientro;
-  return sp + apri + '\n' + contenuto + '\n' + sp + chiudi;
+  const spChiudi = rientroChiudi == null ? sp : rientroChiudi;
+  return sp + apri + '\n' + contenuto + '\n' + spChiudi + chiudi;
 }
 
 // --------------------------------------------------------------- sostituzioni
@@ -109,7 +113,7 @@ function applicaBriciole(html, ctx) {
   const conMarcatori = traMarcatori(html, M.briciolaApri, M.briciolaChiudi, nuovo);
   if (conMarcatori !== null) return conMarcatori;
 
-  const avvolto = avvolgi(M.briciolaApri, nuovo, M.briciolaChiudi, '      ');
+  const avvolto = avvolgi(M.briciolaApri, nuovo, M.briciolaChiudi, '      ', '  ');
 
   // Prima esecuzione: al posto del vecchio link "torna a...", che stava
   // esattamente li' e faceva lo stesso mestiere con 26 diciture diverse.

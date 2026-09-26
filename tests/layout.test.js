@@ -675,3 +675,13 @@ test('le pagine del bollo rimandano allo strumento sull esenzione 2027', () => {
     .map((p) => p.rel);
   assert.deepStrictEqual(problemi, []);
 });
+
+test('una pagina nuova e stabile gia dopo il primo giro del layout', () => {
+  // Le pagine scritte dai generatori (mappa, guide) partono senza marcatori:
+  // il primo giro li inserisce, e il secondo non deve cambiare niente.
+  const B = require('../scripts/pagina-base.js');
+  const nuova = B.pagina({ percorso: '/prova/', titolo: 'Prova', descrizione: 'Prova', corpo: '      <h1 class="text-3xl">Prova</h1>' });
+  const primo = A.trasforma(nuova, L.contestoPagina('prova/index.html', nuova));
+  const secondo = A.trasforma(primo, L.contestoPagina('prova/index.html', primo));
+  assert.strictEqual(secondo, primo);
+});

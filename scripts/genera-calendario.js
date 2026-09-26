@@ -109,7 +109,9 @@ function testa(anno) {
           'Festività nazionali, 4 ottobre compreso, e santo patrono',
           'Numeri delle settimane e fasi lunari',
           'Festività da aggiungere al calendario del telefono (.ics)'
-        ]
+        ],
+        author: { '@type': 'Person', name: 'Brian Barrionuevo', url: 'https://strumentiutili.it/contatti/' },
+        publisher: { '@type': 'Organization', name: 'StrumentiUtili.it', url: 'https://strumentiutili.it/' }
       },
       {
         '@type': 'FAQPage',
