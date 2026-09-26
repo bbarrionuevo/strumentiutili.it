@@ -271,27 +271,13 @@ function oggiInItalia() {
       let notaSanzioni = '';
 
       if (!isCedolare) {
-        
-        let calcoloRegistro = 0;
-        
-        // Logica per Fondi Rustici e Terreni (T2 / T3)
-        if(tipoContratto === "T2" || tipoContratto === "T3") {
-            // L'aliquota agevolata è dello 0,5%
-             calcoloRegistro = canone * 0.005;
-        } else {
-             const parametriContratto = regole.rli.codiciContratto[tipoContratto];
-             if(parametriContratto) {
-                const baseImponibile = canone * parametriContratto.moltiplicatoreImponibile;
-                calcoloRegistro = baseImponibile * parametriContratto.aliquota;
-             }
-        }
-        
-        impostaRegistro = Math.max(regole.rli.impostaRegistroMinima, calcoloRegistro);
-
-        const pagine = parseInt(inputPagine.value) || 4;
-        const copie = parseInt(inputCopie.value) || 2;
-        const fogli = Math.ceil(pagine / 4);
-        impostaBollo = fogli * regole.rli.impostaBolloFoglio * copie;
+        // Registro e bollo: js/rli-imposte.js, lo stesso conto della guida e dei test
+        const imposte = window.RliImposte.calcola({
+          canone: canone, tipo: tipoContratto, cedolare: false,
+          pagine: inputPagine.value, copie: inputCopie.value
+        }, regole.rli);
+        impostaRegistro = imposte.registro;
+        impostaBollo = imposte.bollo;
 
         if (giorniRitardo > 0) {
           // 45% (minimo 150 €) fino a 30 giorni di ritardo, poi 120% (minimo

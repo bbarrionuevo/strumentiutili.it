@@ -47,6 +47,8 @@ function collegamenti() {
     for (const m of html.matchAll(/<a\b[^>]*?\bhref=\\?"(https:\/\/[^"\\]+)\\?"/g)) {
       const url = m[1].replace(/&amp;/g, '&');
       if (SALTA.test(url) || url.startsWith('https://strumentiutili.it')) continue;
+      // un indirizzo composto dal codice ("...?mlat=' + p.lat + '...") non e' un collegamento fisso
+      if (/'\s*\+|\+\s*'|`|\$\{/.test(url)) continue;
       if (!dove.has(url)) dove.set(url, new Set());
       dove.get(url).add(path.relative(RADICE, f));
     }

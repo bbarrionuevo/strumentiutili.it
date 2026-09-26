@@ -116,20 +116,20 @@
     const INPS_STANDARD = 0.0919; // regole.inpsLavoroDipendente?.aliquotaStandard || 0.0919;
     const INPS_SOLIDARITY = 0.1019; // regole.inpsLavoroDipendente?.aliquotaSolidarieta || 0.1019;
 
-    // 1. Cotizaciones Previsionales INPS
+    // 1. Contributi previdenziali INPS a carico del dipendente
     const inpsBaseStandard = Math.min(safeRal, INPS_CEILING);
     const inpsStandard = inpsBaseStandard * INPS_STANDARD;
     const inpsExcess = Math.max(0, safeRal - INPS_CEILING);
     const inpsSolidarity = inpsExcess * INPS_SOLIDARITY;
     const totalInps = round2(inpsStandard + inpsSolidarity);
 
-    // 2. Base Imponible Fiscale (RC)
+    // 2. Imponibile fiscale
     const imponibileIrpef = round2(Math.max(0, safeRal - totalInps));
 
     // 3. IRPEF Lorda
     const irpefLorda = computeIRPEF(imponibileIrpef, regole.irpef);
 
-    // 4. Deducciones
+    // 4. Detrazioni
     const detrazioneLavoro = config.applyDetrazione === false
       ? 0
       : computeDetrazioneLavoroDipendente(imponibileIrpef, workedDays, regole.irpef);
@@ -152,12 +152,12 @@
     // 7. IRPEF Netta
     const irpefNetta = round2(Math.max(0, irpefLorda - detrazioniTotali));
 
-    // 8. Impuestos Locales
+    // 8. Addizionali regionale e comunale
     const regionalTax = round2(imponibileIrpef * regionalRate);
     const municipalTax = round2(imponibileIrpef * comunalRate);
     const addizionali = round2(regionalTax + municipalTax);
 
-    // 9. Netos Consolidados
+    // 9. Netto annuo e mensile
     const nettoAnnuo = round2(
       safeRal - totalInps - irpefNetta - addizionali + cuneo.bonusErogato + trattamentoIntegrativo
     );

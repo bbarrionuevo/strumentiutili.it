@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v72';
+const CACHE_NAME = 'strumentiutili-v73';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -127,6 +127,14 @@ const APP_SHELL = [
   '/avviso-legale/',
   '/mappa-del-sito/',
   '/metodo/',
+  // --- Guide ---
+  '/guide/',
+  '/guide/bollo-auto-2026/',
+  '/guide/registrare-contratto-affitto/',
+  '/guide/imu-2026/',
+  '/guide/leggere-busta-paga/',
+  '/guide/dimissioni-tfr-naspi/',
+  '/guide/estratto-conto-contributivo/',
 
   // Script condivisi e utilità
   '/js/spazio.js',
@@ -142,6 +150,7 @@ const APP_SHELL = [
   
   // Script delle calcolatrici
   '/js/rli-sanzioni.js',
+  '/js/rli-imposte.js',
   '/js/rli.js',
   '/js/fatturapa.js',
   '/js/compilatore-moduli.js',
@@ -149,8 +158,10 @@ const APP_SHELL = [
   '/js/mutuo.js',
   '/js/rivalutazione-istat.js',
   '/js/imposte-casa.js',
+  '/js/bollo-calcolo.js',
   '/js/bollo-auto.js',
   '/js/passaggio-proprieta.js',
+  '/js/naspi-calcolo.js',
   '/js/naspi.js',
   '/js/successioni.js',
   '/js/irpef.js',

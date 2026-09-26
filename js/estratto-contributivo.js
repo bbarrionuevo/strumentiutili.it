@@ -111,9 +111,15 @@
   function buchi(periodi, giorniMinimi) {
     var soglia = Number.isFinite(giorniMinimi) ? giorniMinimi : 31;
     var fuori = [];
+    // La fine da cui misurare il buco e' la piu' lontana raggiunta finora, non
+    // quella del periodo precedente: con due gestioni sovrapposte (dipendente
+    // 2013-2015 e una collaborazione nel 2014) il periodo corto finiva prima e
+    // faceva comparire un buco inesistente nel 2015.
+    var fineMax = periodi.length ? periodi[0].al : null;
     for (var i = 1; i < periodi.length; i++) {
-      var finePrec = periodi[i - 1].al;
+      var finePrec = fineMax;
       var inizio = periodi[i].dal;
+      if (periodi[i].al > fineMax) fineMax = periodi[i].al;
       // I periodi possono sovrapporsi: in quel caso non c'e' nessun buco.
       var giorni = giorniFra(finePrec, inizio) - 1;
       if (giorni < soglia) continue;

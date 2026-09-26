@@ -32,7 +32,8 @@ const ALTRE = [
 function voci() {
   const indice = JSON.parse(fs.readFileSync(path.join(RADICE, 'data', 'strumenti.json'), 'utf8')).strumenti;
   // le varianti (?regione=...) portano alla stessa pagina: una voce sola
-  return indice.filter((v) => !v.variante && !v.percorso.includes('?'));
+  // le guide stanno nell'indice della ricerca ma hanno la loro sezione (guide())
+  return indice.filter((v) => !v.variante && !v.percorso.includes('?') && v.categoria !== 'guide');
 }
 
 function guide() {

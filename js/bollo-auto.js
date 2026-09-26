@@ -30,66 +30,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function calculateBollo() {
-    if (!regoleBollo) return;
+    if (!regoleBollo || !window.BolloCalcolo) return;
 
-    // Troncamento legale rigoroso della potenza (es. 185.8 kW -> 185 kW)
-    const kwInput = parseFloat(inputKw.value) || 0;
-    const kw = Math.floor(kwInput); 
-
-    const euroClass = inputEuro.value;
-    const regione = inputRegione.value;
-    
     const annoImmatricolazione = parseInt(inputImmatricolazione.value) || new Date().getFullYear();
-    const currentYear = new Date().getFullYear();
-    const anniAnzianita = Math.max(0, currentYear - annoImmatricolazione);
+    const anniAnzianita = Math.max(0, new Date().getFullYear() - annoImmatricolazione);
 
-    let bollo = 0;
-    let superbollo = 0;
+    // Il conto e' in js/bollo-calcolo.js, lo stesso usato dalle guide e dai test.
+    const r = window.BolloCalcolo.calcola({
+      kw: inputKw.value,
+      classe: inputEuro.value,
+      regione: inputRegione.value,
+      anni: anniAnzianita
+    }, regoleBollo);
 
-    // 1. Calcolo Bollo Regionale Base
-      // Se la Regione non ha tariffe proprie caricate si ricade su quelle
-      // nazionali. Prima succedeva in silenzio: la pagina prometteva un calcolo
-      // regionale e mostrava un numero nazionale. Adesso il ripiego si dichiara.
-      // "nazionale" non e' una Regione: e' la tariffa di riferimento, usata
-      // finche' non se ne sceglie una.
-      const propria = regione && regione !== "nazionale" ? regoleBollo.regioni[regione] : null;
-      const regioneData = propria || regoleBollo.regioni["nazionale"];
-      const conTariffaPropria = (regoleBollo.regioni_con_tariffa_propria || []).indexOf(regione) !== -1;
-      mostraOrigine(!regione ? "da_scegliere" : propria ? "regionale" : (conTariffaPropria ? "nazionale_provvisoria" : "nazionale"));
-    const tariffe = regioneData.classi_euro[euroClass];
+    // Se la Regione non ha tariffe proprie caricate si ricade su quelle
+    // nazionali, e lo si dice: prima succedeva in silenzio.
+    mostraOrigine(r.origine);
 
-    if (tariffe && kw > 0) {
-      if (kw <= 100) {
-        bollo = kw * tariffe.tariffa_base;
-      } else {
-        bollo = (100 * tariffe.tariffa_base) + ((kw - 100) * tariffe.tariffa_eccedente);
-      }
-    }
-
-    // 2. Calcolo Superbollo Erariale (Addizionale oltre 185 kW)
-    const regoleSuperbollo = regoleBollo.superbollo;
-    if (kw > regoleSuperbollo.franchigia_kw) {
-      const kwEccedenti = kw - regoleSuperbollo.franchigia_kw;
-      
-      let tariffaApplicabile = 0;
-      for (const fascia of regoleSuperbollo.scaglioni_riduzione) {
-        if (anniAnzianita >= fascia.anni_min && anniAnzianita <= fascia.anni_max) {
-          tariffaApplicabile = fascia.tariffa_kw;
-          break;
-        }
-      }
-      superbollo = kwEccedenti * tariffaApplicabile;
-    }
-
-    // Arrotondamento commerciale simmetrico a 2 decimali
-    const totaleLordo = bollo + superbollo;
-    const totale = Math.round((totaleLordo + Number.EPSILON) * 100) / 100;
-
-    // Rendering UI
     const fmt = val => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(val);
-    outBollo.textContent = fmt(bollo);
-    outSuperbollo.textContent = fmt(superbollo);
-    outTotale.textContent = fmt(totale);
+    outBollo.textContent = fmt(r.bollo);
+    outSuperbollo.textContent = fmt(r.superbollo);
+    outTotale.textContent = fmt(r.totale);
   }
 
     // Dice quale tariffa e stata usata. Per le Regioni che hanno tariffe
@@ -112,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         box.textContent = "Questa Regione applica le tariffe nazionali di riferimento.";
         return;
       }
+      // origine === "nazionale_provvisoria": la Regione ha tariffe proprie non ancora caricate
       box.className = "mt-3 text-[11px] leading-snug text-amber-300";
       box.innerHTML = "Attenzione: questa Regione delibera tariffe proprie che non abbiamo ancora caricato. " +
         "L’importo qui sopra usa la tariffa nazionale ed è quindi indicativo: verificalo sul " +

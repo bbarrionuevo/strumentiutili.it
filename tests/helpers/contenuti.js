@@ -35,7 +35,7 @@ function pagineIndicizzabili() {
   return tutteLePagine().filter((p) => indicizzabile(p.html));
 }
 
-const ENTITA = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', rsquo: '’', lsquo: '‘', laquo: '«', raquo: '»', egrave: 'è', eacute: 'é', agrave: 'à', igrave: 'ì', ograve: 'ò', ugrave: 'ù', Egrave: 'È', ndash: '–', mdash: '—', hellip: '…', euro: '€', rarr: '→' };
+const ENTITA = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', rsquo: '’', lsquo: '‘', laquo: '«', raquo: '»', egrave: 'è', eacute: 'é', agrave: 'à', igrave: 'ì', ograve: 'ò', ugrave: 'ù', Egrave: 'È', ndash: '–', mdash: '—', hellip: '…', euro: '€', rarr: '→', times: '×', middot: '·', permil: '‰', minus: '−', deg: '°' };
 
 function entita(t) {
   return t.replace(/&(#x?[0-9a-f]+|\w+);/gi, (m, e) => {
