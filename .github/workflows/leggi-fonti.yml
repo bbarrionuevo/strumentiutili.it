@@ -12,6 +12,10 @@ on:
       indirizzi:
         description: 'Indirizzi https dei documenti, separati da spazi'
         required: true
+      modo:
+        description: 'testo (stampa il documento) o stato (solo codice HTTP, indirizzo finale e titolo: per controllare i collegamenti)'
+        required: false
+        default: 'testo'
 
 permissions:
   contents: read
@@ -22,11 +26,29 @@ jobs:
     runs-on: ubuntu-latest
     env:
       INDIRIZZI: ${{ inputs.indirizzi }}
+      MODO: ${{ inputs.modo }}
     steps:
+      # Un collegamento vale se risponde 200 e se la pagina finale e' quella
+      # giusta: Normattiva, per un URN che non esiste, risponde 200 con una
+      # pagina d'errore. Per questo si stampano anche indirizzo finale e titolo.
+      - name: Stato dei collegamenti
+        if: ${{ inputs.modo == 'stato' }}
+        run: |
+          set -f
+          for u in $INDIRIZZI; do
+            case "$u" in https://*) ;; *) echo "SALTO $u"; continue ;; esac
+            esito=$(curl -sSL --max-time 60 -A "Mozilla/5.0 (StrumentiUtili.it verifica fonti)" -o pagina -w '%{http_code} %{url_effective}' "$u" 2>&1 || true)
+            titolo=$(tr -d '\r\n' < pagina 2>/dev/null | grep -oiE '<title[^>]*>[^<]{0,200}' | head -1 | sed -E 's/<title[^>]*>//I' | tr -s ' \t')
+            errore=$(grep -oiE 'atto non (trovato|presente)|nessun (atto|documento) trovato|pagina non trovata|page not found|documento non disponibile' pagina 2>/dev/null | head -1)
+            printf 'STATO\t%s\t%s\t%s\t[%s]\n' "$u" "$esito" "$titolo" "$errore"
+          done
+
       - name: Installa pdftotext
+        if: ${{ inputs.modo != 'stato' }}
         run: sudo apt-get install -y -qq poppler-utils > /dev/null
 
       - name: Testo dei documenti
+        if: ${{ inputs.modo != 'stato' }}
         run: |
           set -f
           for u in $INDIRIZZI; do
