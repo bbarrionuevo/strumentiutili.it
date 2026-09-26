@@ -135,7 +135,7 @@
     try {
       disegna(window.EsenzioneBollo.valuta(veicoli, regole), veicoli);
     } catch (e) {
-      risultato.innerHTML = '<p class="text-sm text-red-600">Non e stato possibile completare la verifica.</p>';
+      risultato.innerHTML = '<p class="text-sm text-red-600">Non è stato possibile completare la verifica.</p>';
     }
   }
 
@@ -173,7 +173,7 @@
 
   window.StrumentiData.getRegoleFiscali().then(function (dati) {
     if (!dati || !dati.esenzione_bollo_2027) {
-      risultato.innerHTML = '<p class="text-sm text-red-600">Regole non disponibili: riprova piu tardi.</p>';
+      risultato.innerHTML = '<p class="text-sm text-red-600">Regole non disponibili: riprova più tardi.</p>';
       return;
     }
     regole = dati.esenzione_bollo_2027;

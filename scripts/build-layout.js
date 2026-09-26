@@ -38,6 +38,7 @@ const CATEGORIE = [
 
 const LEGALI = [
   { href: '/contatti/', testo: 'Chi siamo / Contatti' },
+  { href: '/metodo/', testo: 'Come verifichiamo i dati' },
   { href: '/politica-sulla-privacy/', testo: 'Privacy' },
   { href: '/avviso-legale/', testo: 'Avviso legale' },
   { href: '/mappa-del-sito/', testo: 'Mappa del sito' }

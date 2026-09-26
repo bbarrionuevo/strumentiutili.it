@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       box.className = "mt-3 text-[11px] leading-snug text-amber-300";
       box.innerHTML = "Attenzione: questa Regione delibera tariffe proprie che non abbiamo ancora caricato. " +
-        "L’importo qui sopra usa la tariffa nazionale ed e quindi indicativo: verificalo sul " +
-        "<a href=\"https://www.aci.it/i-servizi/servizi-online/calcolo-bollo-auto.html\" target=\"_blank\" rel=\"noopener nofollow\" class=\"underline\">calcolatore ACI</a>.";
+        "L’importo qui sopra usa la tariffa nazionale ed è quindi indicativo: verificalo sul " +
+        "<a href=\"https://online.aci.it/acinet/calcolobollo/\" target=\"_blank\" rel=\"noopener nofollow\" class=\"underline\">calcolatore ACI</a>.";
     }
 
   // Event Listeners

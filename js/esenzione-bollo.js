@@ -63,8 +63,8 @@
     if (regole.stato !== 'in_vigore') {
       elenco.push({
         tipo: 'norma',
-        testo: 'La misura e stata annunciata il ' + (regole.data_annuncio || '16 settembre 2026') +
-               ' e non e ancora legge: il risultato e una simulazione, non una certezza.'
+        testo: 'La misura è stata annunciata il ' + (regole.data_annuncio || '16 settembre 2026') +
+               ' e non è ancora legge: il risultato è una simulazione, non una certezza.'
       });
     }
 

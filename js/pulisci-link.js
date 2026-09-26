@@ -56,7 +56,7 @@
   // potrebbe servire alla pagina (su un sito qualsiasi "si" puo' voler dire
   // qualcosa), quindi si tolgono solo dove si sa che cosa sono.
   var PER_SITO = [
-    { dominio: /(^|\.)(youtube\.com|youtu\.be)$/, parametri: { si: 'identificativo della condivisione', feature: 'modo in cui e’ stato condiviso', pp: 'dati di tracciamento della ricerca' } },
+    { dominio: /(^|\.)(youtube\.com|youtu\.be)$/, parametri: { si: 'identificativo della condivisione', feature: 'modo in cui è stato condiviso', pp: 'dati di tracciamento della ricerca' } },
     { dominio: /(^|\.)spotify\.com$/, parametri: { si: 'identificativo della condivisione', context: 'contesto della condivisione' } },
     { dominio: /(^|\.)(x\.com|twitter\.com)$/, parametri: { s: 'tipo di condivisione', t: 'identificativo della condivisione' } },
     { dominio: /(^|\.)(tiktok\.com)$/, parametri: { _t: 'identificativo della condivisione', _r: 'identificativo della condivisione', is_from_webapp: 'origine della condivisione', sender_device: 'dispositivo di chi ha condiviso', sender_web_id: 'identificativo di chi ha condiviso' } },

@@ -1,0 +1,27 @@
+name: Controlla collegamenti
+
+# Una volta al mese apre tutti i collegamenti esterni del sito (Normattiva,
+# Agenzia delle Entrate, ACI, EUR-Lex...) e fallisce se uno porta a una
+# pagina che non esiste piu'. Il fallimento arriva per email al proprietario
+# del repository: e' il segnale per correggere l'indirizzo.
+on:
+  schedule:
+    - cron: '17 6 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controlla:
+    name: Collegamenti esterni
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apri ogni collegamento
+        run: node scripts/controlla-collegamenti.js

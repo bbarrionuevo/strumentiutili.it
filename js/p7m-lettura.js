@@ -101,7 +101,7 @@
     nodo.dati = p;
     nodo.fineDati = p + lunghezza;
     nodo.fine = nodo.fineDati;
-    if (nodo.fine > limite) throw errore('danneggiato', 'Il file e\' troncato: un elemento dichiara piu\' byte di quelli presenti.');
+    if (nodo.fine > limite) throw errore('danneggiato', 'Il file è troncato: un elemento dichiara più byte di quelli presenti.');
     if (nodo.costruito) {
       nodo.figli = [];
       var q = nodo.dati;
@@ -253,22 +253,22 @@
   function apriBusta(b) {
     var radice = leggiNodo(b, 0, b.length, 0);
     if (!universale(radice, 16) || !radice.figli || !universale(radice.figli[0], 6)) {
-      throw errore('non-firmato', 'Il file non e\' una busta di firma digitale (CAdES/.p7m).');
+      throw errore('non-firmato', 'Il file non è una busta di firma digitale (CAdES/.p7m).');
     }
     var tipo = oid(b, radice.figli[0]);
     if (tipo !== OID_SIGNED_DATA) {
-      throw errore('non-firmato', 'Il file e\' una struttura CMS ma non contiene una firma (tipo ' + tipo + ').');
+      throw errore('non-firmato', 'Il file è una struttura CMS ma non contiene una firma (tipo ' + tipo + ').');
     }
     var involucro = radice.figli[1];
     var sd = involucro && involucro.figli && involucro.figli[0];
     if (!contesto(involucro, 0) || !universale(sd, 16) || !sd.figli || sd.figli.length < 4) {
-      throw errore('danneggiato', 'La busta di firma e\' incompleta.');
+      throw errore('danneggiato', 'La busta di firma è incompleta.');
     }
 
     var eci = sd.figli[2];
     var contenutoNodo = eci && eci.figli && eci.figli[1];
     if (!contenutoNodo || !contesto(contenutoNodo, 0) || !contenutoNodo.figli || !contenutoNodo.figli[0]) {
-      throw errore('firma-separata', 'Questo file contiene solo la firma: il documento firmato e\' un file a parte (firma "separata").');
+      throw errore('firma-separata', 'Questo file contiene solo la firma: il documento firmato è un file a parte (firma "separata").');
     }
     var contenuto = ottetti(b, contenutoNodo.figli[0]);
 
@@ -454,10 +454,10 @@
 
   function leggi(dati, nomeFile) {
     var b = dati instanceof Uint8Array ? dati : new Uint8Array(dati || []);
-    if (!b.length) throw errore('vuoto', 'Il file e\' vuoto.');
+    if (!b.length) throw errore('vuoto', 'Il file è vuoto.');
     var decodificato = daBase64(b);
     if (decodificato) b = decodificato;
-    if (b[0] !== 0x30) throw errore('non-firmato', 'Il file non e\' una busta di firma digitale (CAdES/.p7m).');
+    if (b[0] !== 0x30) throw errore('non-firmato', 'Il file non è una busta di firma digitale (CAdES/.p7m).');
 
     var firme = [];
     var buste = 0;

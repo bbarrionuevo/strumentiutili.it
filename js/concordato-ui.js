@@ -133,7 +133,7 @@
       }
       disegna(r);
     } catch (e) {
-      risultato.innerHTML = '<p class="text-sm text-red-600">Non e stato possibile completare il confronto.</p>';
+      risultato.innerHTML = '<p class="text-sm text-red-600">Non è stato possibile completare il confronto.</p>';
     }
   }
 
@@ -145,7 +145,7 @@
 
   window.StrumentiData.getRegoleFiscali().then(function (dati) {
     if (!dati || !dati.concordato_preventivo) {
-      risultato.innerHTML = '<p class="text-sm text-red-600">Regole non disponibili: riprova piu tardi.</p>';
+      risultato.innerHTML = '<p class="text-sm text-red-600">Regole non disponibili: riprova più tardi.</p>';
       return;
     }
     regole = dati;

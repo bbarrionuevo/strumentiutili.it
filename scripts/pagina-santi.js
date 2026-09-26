@@ -41,7 +41,9 @@ function pagina() {
         browserRequirements: 'Richiede JavaScript. Funziona senza inviare dati a server.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
         description: DESCRIZIONE,
-        featureList: ['Santo del giorno e degli altri giorni', 'Onomastico di ogni nome', 'Biglietto di auguri da condividere', 'Fase lunare, alba e tramonto', 'Prossima festa e ponte']
+        featureList: ['Santo del giorno e degli altri giorni', 'Onomastico di ogni nome', 'Biglietto di auguri da condividere', 'Fase lunare, alba e tramonto', 'Prossima festa e ponte'],
+        author: { '@type': 'Person', name: 'Brian Barrionuevo', url: 'https://strumentiutili.it/contatti/' },
+        publisher: { '@type': 'Organization', name: 'StrumentiUtili.it', url: 'https://strumentiutili.it/' }
       },
       { '@type': 'FAQPage', '@id': URL_PAGINA + '#faq', mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.d, acceptedAnswer: { '@type': 'Answer', text: f.r } })) }
     ]
