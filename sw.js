@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v67';
+const CACHE_NAME = 'strumentiutili-v68';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -108,6 +108,7 @@ const APP_SHELL = [
   '/utilita-web/calendario-da-stampare/',
   '/utilita-web/sudoku-del-giorno/',
   '/utilita-web/parola-del-giorno/',
+  '/utilita-web/santo-del-giorno/',
   '/utilita-web/flashcard/',
   '/utilita-web/che-file-e/',
   '/utilita-web/accordatore/',
@@ -167,6 +168,10 @@ const APP_SHELL = [
   '/js/parole-valide.js',
   '/js/parola.js',
   '/js/parola-ui.js',
+  '/js/sole.js',
+  '/js/santi.js',
+  '/js/auguri.js',
+  '/js/santi-ui.js',
   '/js/flashcard.js',
   '/js/flashcard-ui.js',
   '/js/tipo-file.js',
@@ -249,6 +254,7 @@ const APP_SHELL = [
   // di runtime alla prima visita di quelle pagine.
   '/data/regole-fiscali-2026.json',
   '/data/strumenti.json',
+  '/data/santi.json',
   '/data/modelli-piva-schema.json',
   '/data/modello-rli-schema.json',
   '/data/modello-f24-ordinario-schema.json',
