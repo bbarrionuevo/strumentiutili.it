@@ -141,3 +141,21 @@ test('lo strumento dichiara cosa non modella', () => {
   assert.ok(Array.isArray(r.nonModellato) && r.nonModellato.length >= 3,
     'la stima deve dire quali aspetti restano fuori');
 });
+
+// --- lettura dei campi -------------------------------------------------------
+
+test('i campi accettano il punto decimale e il punto delle migliaia', () => {
+  // prima «26.07» (aliquota contributiva scritta con il punto) diventava 2607%
+  const src = fs.readFileSync(path.join(RADICE, 'js', 'concordato-ui.js'), 'utf8');
+  const i = src.indexOf('function numero(el)');
+  let d = 0, j = i;
+  for (; j < src.length; j++) { if (src[j] === '{') d++; if (src[j] === '}' && --d === 0) break; }
+  const numero = new Function(src.slice(i, j + 1) + '; return numero;')();
+  const n = (v) => numero({ value: v });
+  assert.strictEqual(n('26.07'), 26.07);
+  assert.strictEqual(n('26,07'), 26.07);
+  assert.strictEqual(n('40.000'), 40000);
+  assert.strictEqual(n('1.234.567'), 1234567);
+  assert.strictEqual(n('40.000,50'), 40000.5);
+  assert.strictEqual(n(''), 0);
+});

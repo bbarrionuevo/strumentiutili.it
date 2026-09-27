@@ -33,30 +33,140 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Suite Strumenti PDF e Scanner Client-Side",
-    "url": "https://strumentiutili.it/pdf/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript, WebAssembly, WebGPU",
-    "description": "Software interattivo client-side per la gestione, conversione ISO 19005 (PDF/A), redazione distruttiva, firma PAdES e scansione documenti in totale conformità GDPR.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Brian Barrionuevo",
-      "url": "https://strumentiutili.it/contatti/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "StrumentiUtili.it",
-      "url": "https://strumentiutili.it/"
-    }
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://strumentiutili.it/pdf/#pagina",
+        "name": "PDF e scanner",
+        "url": "https://strumentiutili.it/pdf/",
+        "inLanguage": "it-IT",
+        "description": "Strumenti per unire, dividere, comprimere, firmare e oscurare i PDF, trasformare foto e documenti Word in PDF e aprire i file .p7m, nel browser.",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://strumentiutili.it/pdf/unisci-pdf/",
+              "name": "Unire PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://strumentiutili.it/pdf/dividi-pdf/",
+              "name": "Dividere un PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://strumentiutili.it/pdf/comprimi-pdf/",
+              "name": "Comprimere un PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://strumentiutili.it/pdf/jpg-in-pdf/",
+              "name": "Da JPG a PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://strumentiutili.it/pdf/word-in-pdf/",
+              "name": "Da Word a PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://strumentiutili.it/pdf/apri-file-p7m/",
+              "name": "Aprire un file P7M"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://strumentiutili.it/pdf/firma/",
+              "name": "Firma PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "url": "https://strumentiutili.it/pdf/anonimizza/",
+              "name": "Anonimizzatore PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "url": "https://strumentiutili.it/pdf/scanner-documenti/",
+              "name": "Scanner documenti"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "url": "https://strumentiutili.it/pdf/convertitore-pdfa/",
+              "name": "Convertitore e validatore PDF/A"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/pdf/#domande",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "I file vengono caricati su un server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. I PDF vengono letti e trasformati nel browser, sul tuo dispositivo; dalla rete arrivano solo le librerie che fanno il lavoro, scaricate da questo stesso sito. Quando chiudi la pagina i file spariscono dalla memoria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso modificare un PDF firmato digitalmente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Si può, ma il file che ottieni non ha più una firma valida: qualsiasi modifica la invalida. Conserva l’originale e, se devi consegnare un documento firmato, fai prima le altre operazioni e firma per ultimo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il PDF è troppo pesante per la PEC: cosa faccio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le scansioni si riducono molto con Comprimere un PDF, che ridisegna le pagine come immagini leggere. Se non basta, dividi il documento in più file. Il limite di peso lo trovi nelle istruzioni del portale o del tuo gestore."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funziona dal telefono?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, nel browser del telefono. Per fascicoli molto lunghi conviene un computer, perché tutto il lavoro avviene nella memoria del dispositivo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come apro un file .p7m?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È un documento con firma digitale: con Aprire un file P7M estrai il documento vero, di solito un PDF, e vedi chi ha firmato e quando."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -233,8 +343,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Firma PDF Online</h3>
-            <p class="text-sm text-gray-600 mb-4">Apponi la tua firma autografa o carica un'immagine PNG trasparente sui tuoi documenti in totale privacy.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Firma PDF</h3>
+            <p class="text-sm text-gray-600 mb-4">Disegna la tua firma o carica un’immagine e mettila nel punto giusto del PDF, senza caricare il documento.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/pdf/firma/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -243,8 +353,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Anonimizza PDF (Redact)</h3>
-            <p class="text-sm text-gray-600 mb-4">Censura ed elimina in modo permanente dati sensibili, IBAN e nomi propri dai tuoi documenti PDF.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Anonimizzatore PDF</h3>
+            <p class="text-sm text-gray-600 mb-4">Copri in modo definitivo nomi, IBAN e altri dati personali prima di condividere un PDF.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/pdf/anonimizza/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -253,8 +363,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Scanner Documenti (IA)</h3>
-            <p class="text-sm text-gray-600 mb-4">Fotografa documenti o scontrini. Rileva i bordi, raddrizza e pulisce lo sfondo per un PDF perfetto.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Scanner documenti</h3>
+            <p class="text-sm text-gray-600 mb-4">Fotografa un documento o uno scontrino: i bordi vengono trovati e raddrizzati e lo sfondo schiarito, per un PDF leggibile.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/pdf/scanner-documenti/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -263,8 +373,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Convertitore &amp; Validatore PDF/A</h3>
-            <p class="text-sm text-gray-600 mb-4">Verifica la conformità ISO 19005 o converti un PDF standard nel formato di conservazione richiesto dalla PA.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Convertitore e validatore PDF/A</h3>
+            <p class="text-sm text-gray-600 mb-4">Controlla se un PDF è PDF/A o convertilo nel formato di conservazione chiesto da tribunali e pubblica amministrazione.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/pdf/convertitore-pdfa/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -303,7 +413,30 @@
             <li>File firmati digitalmente: <a href="/pdf/apri-file-p7m/" class="text-indigo-700 font-semibold hover:underline">Aprire un file P7M</a>.</li>
         </ul>
         <p class="text-sm text-gray-600 leading-relaxed">Dopo la prima visita molti strumenti funzionano anche senza connessione.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Tre casi tipici</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Mandare documenti a un ufficio o con la PEC.</strong> Molti portali della pubblica amministrazione e molte caselle PEC accettano allegati fino a un certo peso, e a volte chiedono un solo file. Il percorso tipico: le pagine di carta con lo <a href="/pdf/scanner-documenti/" class="text-indigo-700 font-semibold hover:underline">Scanner documenti</a> (o le foto con <a href="/pdf/jpg-in-pdf/" class="text-indigo-700 font-semibold hover:underline">Da JPG a PDF</a>), un unico file con <a href="/pdf/unisci-pdf/" class="text-indigo-700 font-semibold hover:underline">Unire PDF</a> e, se pesa troppo, <a href="/pdf/comprimi-pdf/" class="text-indigo-700 font-semibold hover:underline">Comprimere un PDF</a>. Il limite esatto &egrave; nelle istruzioni del portale o del tuo gestore PEC.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Un fascicolo lungo di cui servono poche pagine.</strong> Con <a href="/pdf/dividi-pdf/" class="text-indigo-700 font-semibold hover:underline">Dividere un PDF</a> estrai solo le pagine richieste, per esempio <code>1, 3-5</code>, invece di mandare tutto. Se il documento contiene dati che non devono girare, come l&rsquo;IBAN o i dati di altre persone, prima coprili con l&rsquo;<a href="/pdf/anonimizza/" class="text-indigo-700 font-semibold hover:underline">Anonimizzatore PDF</a>.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Un contratto da firmare e rimandare.</strong> <a href="/pdf/firma/" class="text-indigo-700 font-semibold hover:underline">Firma PDF</a> mette sul documento la firma che disegni: &egrave; una firma elettronica semplice, che va bene per moduli e accordi privati. Dove serve la firma digitale ci vuole il dispositivo di un prestatore qualificato: le differenze sono nella guida sulla firma.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Che cosa succede ai tuoi file</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Tutte le operazioni avvengono nel browser: il PDF viene letto e trasformato nella memoria del tuo dispositivo e il risultato si scarica come file nuovo, mentre l&rsquo;originale resta com&rsquo;&egrave;. Non c&rsquo;&egrave; un limite fisso di dimensione, ma con fascicoli di centinaia di pagine un telefono pu&ograve; andare in difficolt&agrave;: in quel caso conviene un computer.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Attenzione ai PDF firmati digitalmente: qualsiasi modifica, anche solo unire o comprimere, crea un file nuovo sul quale la firma non &egrave; pi&ugrave; valida. Conserva sempre l&rsquo;originale firmato e, se devi firmare, fai prima le altre operazioni e firma per ultimo.</p>
       </section>
+      <!-- su:guide-categoria -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-6" aria-labelledby="guide-categoria-titolo">
+        <h2 id="guide-categoria-titolo" class="text-xl font-bold text-gray-900 mb-3"><span aria-hidden="true">📖</span> Guide su questo tema</h2>
+        <ul class="space-y-4">
+          <li>
+            <a href="/guide/file-p7m-pec-daticert/" class="font-semibold text-indigo-700 hover:underline">File P7M, PEC e daticert: che cosa sono e come aprirli</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">Che cosa c’è dentro un file .p7m e come si apre, che cosa sono postacert.eml, daticert.xml e smime.p7s nei messaggi PEC, quali ricevute conservare come prova e come riconoscere le false PEC.</p>
+          </li>
+          <li>
+            <a href="/guide/firma-digitale-elettronica-differenze/" class="font-semibold text-indigo-700 hover:underline">Firma digitale, elettronica o disegnata: le differenze</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">Che differenza c’è fra firma digitale, firma elettronica avanzata, firma semplice e firma disegnata su un PDF, quanto vale ciascuna come prova, quando la firma digitale è obbligatoria e come si firma una domanda alla pubblica amministrazione.</p>
+          </li>
+        </ul>
+        <p class="mt-4 text-sm"><a href="/guide/" class="font-semibold text-indigo-700 hover:underline">Tutte le guide <span aria-hidden="true">&rarr;</span></a></p>
+      </section>
+      <!-- /su:guide-categoria -->
 
       <!-- Ad Mobile (Solo Mobile) -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
@@ -313,6 +446,31 @@
              data-ad-slot="8859818557"
              data-full-width-responsive="true"></ins>
       </div>
+
+      <section id="domande-categoria" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="domande-categoria-titolo">
+        <h2 id="domande-categoria-titolo" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I file vengono caricati su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. I PDF vengono letti e trasformati nel browser, sul tuo dispositivo; dalla rete arrivano solo le librerie che fanno il lavoro, scaricate da questo stesso sito. Quando chiudi la pagina i file spariscono dalla memoria.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso modificare un PDF firmato digitalmente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Si pu&ograve;, ma il file che ottieni non ha pi&ugrave; una firma valida: qualsiasi modifica la invalida. Conserva l&rsquo;originale e, se devi consegnare un documento firmato, fai prima le altre operazioni e firma per ultimo.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF &egrave; troppo pesante per la PEC: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le scansioni si riducono molto con Comprimere un PDF, che ridisegna le pagine come immagini leggere. Se non basta, dividi il documento in pi&ugrave; file. Il limite di peso lo trovi nelle istruzioni del portale o del tuo gestore.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Funziona dal telefono?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, nel browser del telefono. Per fascicoli molto lunghi conviene un computer, perch&eacute; tutto il lavoro avviene nella memoria del dispositivo.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come apro un file .p7m?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; un documento con firma digitale: con Aprire un file P7M estrai il documento vero, di solito un PDF, e vedi chi ha firmato e quando.</p>
+          </details>
+      </section>
+
 
     </div>
 

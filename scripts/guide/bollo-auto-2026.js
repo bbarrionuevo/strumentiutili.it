@@ -78,7 +78,7 @@ module.exports = function (ctx) {
       '<strong>Auto con pi&ugrave; di trent&rsquo;anni:</strong> esenti dal bollo; se circolano pagano una tassa di circolazione forfettaria.',
       '<strong>Auto ibride e a gas:</strong> diverse Regioni prevedono riduzioni o esenzioni temporanee; le regole cambiano da Regione a Regione.'
     ]),
-    h.p('Per il 2027 il Governo ha annunciato la sospensione del bollo per un veicolo a persona fino a 80 kW. Finch&eacute; non diventa legge non cambia nulla: se vuoi sapere se rientreresti, c&rsquo;&egrave; la <a href="/cittadino-tasse/esenzione-bollo-auto-2027/" class="text-indigo-700 underline">simulazione dell&rsquo;esenzione 2027</a>.'),
+    h.p('Per il 2027 il decreto-legge 17 settembre 2026, n. 162 (art. 2) esenta dal bollo un solo veicolo a persona: un&rsquo;auto a benzina o gasolio, anche ibrida, fino a 80 kW oppure, per chi non ha auto fino a 80 kW, una moto o un ciclomotore a benzina. Il decreto &egrave; in vigore dal 18 settembre 2026 ma deve essere convertito in legge e pu&ograve; ancora cambiare; il bollo del 2026 si paga come sempre. Per sapere su quale dei tuoi veicoli si applica c&rsquo;&egrave; la <a href="/cittadino-tasse/esenzione-bollo-auto-2027/" class="text-indigo-700 underline">verifica dell&rsquo;esenzione 2027</a>.'),
 
     h.h2('fine', 'Quando il bollo non &egrave; pi&ugrave; dovuto'),
     h.p('Il bollo smette di essere dovuto quando l&rsquo;auto esce dal Pubblico Registro Automobilistico: demolizione o esportazione con radiazione. In caso di furto, conta l&rsquo;annotazione della perdita di possesso al PRA. Vendere l&rsquo;auto senza fare il passaggio di propriet&agrave; non basta: per la Regione il proprietario resta chi risulta al PRA. Chi vende deve quindi assicurarsi che il <a href="/cittadino-tasse/passaggio-di-proprieta/" class="text-indigo-700 underline">passaggio di propriet&agrave;</a> sia stato registrato.'),
@@ -92,7 +92,7 @@ module.exports = function (ctx) {
     titoloBreve: 'Bollo auto 2026: quanto si paga Regione per Regione',
     descrizione: 'Come si calcola il bollo auto 2026: tariffe per kW e classe Euro, differenze fra Regioni, superbollo sopra i 185 kW, scadenze, esenzioni ed esempi con i numeri.',
     pubblicata: '2026-09-26',
-    aggiornata: '2026-09-26',
+    aggiornata: '2026-09-27',
     introduzione: 'Due auto uguali possono pagare un bollo diverso solo perch&eacute; i proprietari abitano in Regioni diverse. Questa guida spiega come si fa il conto, quanto cambia da una Regione all&rsquo;altra con le tariffe 2026, quando scatta il superbollo e chi pu&ograve; non pagarlo.',
     riassunto: [
       'Il bollo dipende da kW (voce P.2 del libretto), classe Euro e Regione di residenza del proprietario al PRA.',
@@ -123,6 +123,7 @@ module.exports = function (ctx) {
       'D.L. 6 dicembre 2011, n. 201, art. 16: superbollo.',
       'Legge 21 novembre 2000, n. 342, art. 63: veicoli con pi&ugrave; di trent&rsquo;anni.',
       'D.L. 30 dicembre 1982, n. 953, art. 5: prescrizione delle tasse automobilistiche.',
+      'D.L. 17 settembre 2026, n. 162, art. 2: esenzione dal bollo per il 2027.',
       { href: 'https://online.aci.it/acinet/calcolobollo/', testo: 'ACI: calcolo del bollo online' },
       { href: 'https://aci.gov.it/servizi/bollo-auto/', testo: 'ACI: servizi per il bollo auto' }
     ]
