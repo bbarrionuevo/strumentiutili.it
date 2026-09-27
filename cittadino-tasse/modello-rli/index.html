@@ -409,6 +409,22 @@
         </p>
       </div>
 
+      <!-- PONTE: dal contratto appena preparato con lo strumento del contratto di locazione -->
+      <aside id="ponte-contratto" hidden class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl" aria-hidden="true">&#128221;</span>
+          <div class="flex-1">
+            <h2 class="text-sm font-bold text-emerald-900">Hai appena preparato un contratto qui sul sito</h2>
+            <p class="mt-1 text-xs text-emerald-800 leading-relaxed">Dal <a href="/cittadino-tasse/contratto-affitto-canone-concordato/" class="underline font-semibold">contratto di locazione</a> risultano <strong id="ponte-contratto-valori"></strong>. Vuoi riportarli qui e nel modello? Tipologia, codici fiscali e dati catastali restano da inserire.</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button type="button" id="ponte-contratto-usa" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition">S&igrave;, usa questi dati</button>
+              <button type="button" id="ponte-contratto-ignora" class="text-xs font-bold text-emerald-700 hover:text-emerald-900 px-3 py-2">No, grazie</button>
+            </div>
+            <p id="ponte-contratto-esito" role="status" class="mt-2 text-xs font-semibold text-emerald-900"></p>
+          </div>
+        </div>
+      </aside>
+
       <!-- FORM INTERFACCIA RLI -->
       <form id="rli-form" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-8 space-y-8">
         
@@ -674,6 +690,7 @@
           <p class="mb-3 text-sm"><a href="/guide/registrare-contratto-affitto/" class="font-semibold text-indigo-700 hover:underline"><span aria-hidden="true">📖</span> Guida: Registrare un contratto d’affitto: RLI, costi e sanzioni</a></p>
           <!-- /su:guida -->
           <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/cittadino-tasse/contratto-affitto-canone-concordato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📝</span> Contratto di affitto (modello ministeriale)</a></li>
             <li><a href="/cittadino-tasse/imposta-registro-locazioni/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📋</span> Cedolare Secca vs Registro</a></li>
             <li><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🧾</span> F24 Elide Editabile</a></li>
             <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte Acquisto Casa</a></li>
@@ -970,6 +987,45 @@ window.SuGuidaLive = window.SuGuidaLive || {};
         }
       });
     })();
+  </script>
+  <!-- Ponte dal contratto di locazione: solo date e importi, mai nomi o codici fiscali -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const banner = document.getElementById('ponte-contratto');
+      if (!banner) return;
+      let dati = null;
+      try { dati = JSON.parse(localStorage.getItem('su_contratto_ponte_rli') || 'null'); } catch (e) { dati = null; }
+      if (!dati || !dati.dal) return;
+      const it = (iso) => (/^\d{4}-\d{2}-\d{2}$/.test(iso || '') ? iso.split('-').reverse().join('/') : '');
+      const pezzi = [`durata dal ${it(dati.dal)}` + (dati.al ? ` al ${it(dati.al)}` : '')];
+      if (dati.canone) pezzi.push(`canone di ${Number(dati.canone).toLocaleString('it-IT')} euro`);
+      if (dati.dataStipula) pezzi.push(`firma il ${it(dati.dataStipula)}`);
+      document.getElementById('ponte-contratto-valori').textContent = pezzi.join(', ');
+      banner.hidden = false;
+      if (location.hash === '#ponte-contratto') banner.scrollIntoView({ block: 'start' });
+      const imposta = (id, valore) => {
+        const el = document.getElementById(id);
+        if (!el || valore === '' || valore == null) return;
+        if (el.type === 'checkbox') el.checked = Boolean(valore); else el.value = valore;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+      document.getElementById('ponte-contratto-ignora').addEventListener('click', () => { banner.hidden = true; });
+      document.getElementById('ponte-contratto-usa').addEventListener('click', () => {
+        imposta('rli-canone', dati.canone);
+        imposta('rli-data-stipula', dati.dataStipula);
+        if (dati.cedolare) imposta('rli-cedolare-secca', true);
+        const quanti = window.CompilatoreModuli ? window.CompilatoreModuli.precompila({
+          'contratto.durataDal': dati.dal, 'contratto.durataAl': dati.al,
+          'contratto.importoCanone': dati.canone ? String(dati.canone) : '', 'registrazione.dataStipula': dati.dataStipula
+        }, { attiva: ['registrazione'] }) : 0;
+        document.getElementById('ponte-contratto-esito').textContent = quanti
+          ? 'Dati riportati nel calcolo e nel modello: controlla la tipologia del contratto e completa i campi mancanti.'
+          : 'Dati riportati nel calcolo: completa gli altri campi.';
+        const form = document.getElementById('rli-form');
+        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
   </script>
   <script defer src="/js/guida-campi.js"></script>
   <script defer src="/js/pubblicita.js"></script>
