@@ -213,6 +213,19 @@ test('scadenze scritte nel registro: una volta per periodo', () => {
   assert.strictEqual(C.scadenzeDovute(registro, {}, '2027-01-01')[0].id, 'scadenza:arera:2027-01-01');
 });
 
+test('dati vivi: avviso quando un aggiornamento automatico si ferma', () => {
+  const file = { 'data/a.json': { aggiornato: '2026-09-25T06:00:00Z' }, 'data/b.json': { meta: { data: '2026-09-01' } } };
+  const voci = [
+    { id: 'a', file: 'data/a.json', campo: 'aggiornato', max_giorni: 3 },
+    { id: 'b', file: 'data/b.json', campo: 'meta.data', max_giorni: 7 },
+    { id: 'c', file: 'data/c.json', campo: 'aggiornato', max_giorni: 3 }
+  ];
+  const r = C.datiVecchi(voci, (f) => file[f] || null, '2026-09-27');
+  assert.deepStrictEqual(r.map((v) => [v.id, v.quando, v.giorni]), [['b', '2026-09-01', 26], ['c', null, null]]);
+  assert.deepStrictEqual(C.datiVecchi(voci.slice(0, 1), (f) => file[f], '2026-09-29').map((v) => v.giorni), [4]);
+  assert.strictEqual(C.classifica({ tipo: 'dato-vecchio' }), 'alta');
+});
+
 test('priorita\': alta quando cambia quel che il sito mostra o calcola', () => {
   for (const t of ['modello-cambiato', 'articolo-cambiato', 'cifra-sparita', 'collegamento-rotto', 'scadenza', 'pdf-cambiato', 'elenco-modelli-cambiato']) {
     assert.strictEqual(C.classifica({ tipo: t }), 'alta', t);

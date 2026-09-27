@@ -1,90 +1,169 @@
 {
-  "_nota": "Fonti che la sentinella (scripts/sentinella.js) controlla ogni settimana, oltre a quelle che ricava da sola: i modelli di scripts/scarica-modelli-ufficiali.py, gli articoli di Normattiva collegati dalle pagine e gli indirizzi scritti in data/regole-fiscali-2026.json. In deve_contenere vanno solo espressioni lette davvero nel documento ufficiale. Le scadenze sono promemoria: dicono quando ricontrollare un dato, non il suo valore.",
+  "_nota": "Fonti che la sentinella (scripts/sentinella.js) controlla ogni settimana, oltre a quelle che ricava da sola: i modelli di scripts/scarica-modelli-ufficiali.py, gli articoli di Normattiva collegati dalle pagine e gli indirizzi scritti in data/regole-fiscali-2026.json. In deve_contenere vanno solo espressioni lette davvero nel documento ufficiale. Le scadenze sono promemoria: dicono quando ricontrollare un dato, non il suo valore. La copertura dice, per ogni blocco di data/regole-fiscali-2026.json, come la sentinella se ne accorge quando cambia: ogni nuovo dato che invecchia va registrato qui (lo impone tests/fonti-monitorate.test.js). I dati_vivi sono i file aggiornati da soli da un workflow: la sentinella avvisa se smettono di aggiornarsi.",
   "schede": [
     {
       "id": "canone-tv-come-si-paga",
       "tipo": "pagina",
       "url": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/come-si-paga-canone-tv",
-      "dati": ["canone_tv.importo_annuo", "canone_tv.rate_in_bolletta"],
-      "pagine": ["cittadino-tasse/disdetta-canone-rai/", "cittadino-tasse/esenzione-canone-rai-over-75/", "cittadino-tasse/rimborso-canone-rai/", "guide/canone-rai/"],
-      "deve_contenere": ["90 euro l'anno"]
+      "dati": [
+        "canone_tv.importo_annuo",
+        "canone_tv.rate_in_bolletta"
+      ],
+      "pagine": [
+        "cittadino-tasse/disdetta-canone-rai/",
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "cittadino-tasse/rimborso-canone-rai/",
+        "guide/canone-rai/"
+      ],
+      "deve_contenere": [
+        "90 euro l'anno"
+      ]
     },
     {
       "id": "canone-tv-dichiarazione-sostitutiva",
       "tipo": "pagina",
       "url": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv",
-      "dati": ["canone_tv"],
-      "pagine": ["cittadino-tasse/disdetta-canone-rai/", "guide/canone-rai/"],
-      "motori": ["js/canone-tv.js"],
-      "deve_contenere": ["entro il 31 gennaio dell'anno di riferimento", "entro il 30 giugno dell'anno di riferimento"]
+      "dati": [
+        "canone_tv"
+      ],
+      "pagine": [
+        "cittadino-tasse/disdetta-canone-rai/",
+        "guide/canone-rai/"
+      ],
+      "motori": [
+        "js/canone-tv.js"
+      ],
+      "deve_contenere": [
+        "entro il 31 gennaio dell'anno di riferimento",
+        "entro il 30 giugno dell'anno di riferimento"
+      ]
     },
     {
       "id": "canone-tv-over-75",
       "tipo": "pagina",
       "url": "https://www.agenziaentrate.gov.it/portale/aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni",
-      "dati": ["canone_tv.esenzione_over_75.soglia_reddito"],
-      "pagine": ["cittadino-tasse/esenzione-canone-rai-over-75/", "guide/canone-rai/"],
-      "motori": ["js/canone-tv.js"],
-      "deve_contenere": ["8.000 euro"]
+      "dati": [
+        "canone_tv.esenzione_over_75.soglia_reddito"
+      ],
+      "pagine": [
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "guide/canone-rai/"
+      ],
+      "motori": [
+        "js/canone-tv.js"
+      ],
+      "deve_contenere": [
+        "8.000 euro"
+      ]
     },
     {
       "id": "bollo-tariffario-abruzzo",
       "tipo": "pdf",
       "url": "https://aci.gov.it/app/uploads/2026/01/Tariffario-Abruzzo-2026.pdf",
-      "dati": ["bollo_auto_2026.regioni.abruzzo"],
-      "pagine": ["cittadino-tasse/calcolo-bollo-auto/", "guide/bollo-auto-2026/"]
+      "dati": [
+        "bollo_auto_2026.regioni.abruzzo"
+      ],
+      "pagine": [
+        "cittadino-tasse/calcolo-bollo-auto/",
+        "guide/bollo-auto-2026/"
+      ]
     },
     {
       "id": "bollo-tariffario-emilia-romagna",
       "tipo": "pdf",
       "url": "https://aci.gov.it/app/uploads/2026/02/Tariffario-Emilia-Romagna-2026.pdf",
-      "dati": ["bollo_auto_2026.regioni.emilia_romagna"],
-      "pagine": ["cittadino-tasse/calcolo-bollo-auto/", "guide/bollo-auto-2026/"]
+      "dati": [
+        "bollo_auto_2026.regioni.emilia_romagna"
+      ],
+      "pagine": [
+        "cittadino-tasse/calcolo-bollo-auto/",
+        "guide/bollo-auto-2026/"
+      ]
     },
     {
       "id": "bollo-tariffario-campania",
       "tipo": "pdf",
       "url": "https://aci.gov.it/app/uploads/2026/01/Tariffario-Campania-2026.pdf",
-      "dati": ["bollo_auto_2026.regioni.campania"],
-      "pagine": ["cittadino-tasse/calcolo-bollo-auto/", "guide/bollo-auto-2026/"]
+      "dati": [
+        "bollo_auto_2026.regioni.campania"
+      ],
+      "pagine": [
+        "cittadino-tasse/calcolo-bollo-auto/",
+        "guide/bollo-auto-2026/"
+      ]
     },
     {
       "id": "bollo-tariffario-toscana",
       "tipo": "pdf",
       "url": "https://aci.gov.it/app/uploads/2026/01/Tariffario-Toscana-2026.pdf",
-      "dati": ["bollo_auto_2026.regioni.toscana"],
-      "pagine": ["cittadino-tasse/calcolo-bollo-auto/", "guide/bollo-auto-2026/"]
+      "dati": [
+        "bollo_auto_2026.regioni.toscana"
+      ],
+      "pagine": [
+        "cittadino-tasse/calcolo-bollo-auto/",
+        "guide/bollo-auto-2026/"
+      ]
     },
     {
       "id": "bollo-calcolo-aci",
       "tipo": "stato",
       "url": "https://online.aci.it/acinet/calcolobollo/",
-      "dati": ["bollo_auto_2026.fonte_ufficiale"],
-      "pagine": ["cittadino-tasse/calcolo-bollo-auto/", "guide/bollo-auto-2026/"]
+      "dati": [
+        "bollo_auto_2026.fonte_ufficiale"
+      ],
+      "pagine": [
+        "cittadino-tasse/calcolo-bollo-auto/",
+        "guide/bollo-auto-2026/"
+      ]
     },
     {
       "id": "arera-vulnerabili-iii-2026",
       "tipo": "pagina",
       "url": "https://www.arera.it/comunicati-stampa/dettaglio/elettricita-maggior-tutela-46-nel-iii-trimestre-2026-per-i-clienti-vulnerabili",
-      "dati": ["consumi_energia_2026.elettricita"]
+      "dati": [
+        "consumi_energia_2026.elettricita"
+      ]
     },
     {
       "id": "adiconsum-ricarica",
       "tipo": "pagina",
       "url": "https://adiconsum.it/mobilita-elettrica-tabelle-di-gennaio-2026-dellosservatorio-prezzi-delle-tariffe-di-ricarica/",
-      "dati": ["consumi_energia_2026.ricarica_veicoli"]
+      "dati": [
+        "consumi_energia_2026.ricarica_veicoli"
+      ]
+    },
+    {
+      "id": "fatturapa-documentazione-sdi",
+      "tipo": "pagina",
+      "url": "https://www.fatturapa.gov.it/it/norme-e-regole/DocumentazioneSDI/",
+      "dati": [
+        "fattura_elettronica"
+      ],
+      "pagine": [
+        "fisco-professioni/generatore-xml-fatturapa/",
+        "guide/fattura-elettronica-scartata/"
+      ],
+      "deve_contenere": [
+        "Specifiche tecniche relative al Sistema di Interscambio versione 1.8.4"
+      ]
     }
   ],
   "pagine_modelli": [
     {
       "id": "modello-aa7-10",
       "url": "https://www.agenziaentrate.gov.it/portale/schede/istanze/aa7_10/modello-aa7_10",
-      "file": ["assets/pdf/modello-aa7-10-ufficiale.pdf", "assets/pdf/istruzioni-aa7-10.pdf"]
+      "file": [
+        "assets/pdf/modello-aa7-10-ufficiale.pdf",
+        "assets/pdf/istruzioni-aa7-10.pdf"
+      ]
     },
     {
       "id": "modello-aa9-12",
       "url": "https://www.agenziaentrate.gov.it/portale/schede/istanze/aa9_11-apertura-variazione-chiusura-pf/modello-e-istr-pi-pf",
-      "file": ["assets/pdf/modello-aa9-12-ufficiale.pdf", "assets/pdf/istruzioni-aa9-12.pdf"]
+      "file": [
+        "assets/pdf/modello-aa9-12-ufficiale.pdf",
+        "assets/pdf/istruzioni-aa9-12.pdf"
+      ]
     }
   ],
   "scadenze": [
@@ -100,7 +179,9 @@
       "dal": "2026-11-17",
       "titolo": "Conversione in legge del D.L. 162/2026 (esenzione bollo 2027)",
       "cosa": "Il decreto-legge 17 settembre 2026, n. 162 va convertito entro 60 giorni e il Parlamento puo' cambiarlo. Rileggere l'art. 2 nel testo vigente dopo la conversione e aggiornare i dati dell'esenzione.",
-      "dati": ["esenzione_bollo_2027"],
+      "dati": [
+        "esenzione_bollo_2027"
+      ],
       "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2026-09-17;162~art2"
     },
     {
@@ -108,15 +189,21 @@
       "dal": "2026-12-15",
       "ripeti": "anno",
       "titolo": "Tasso di interesse legale dell'anno nuovo",
-      "cosa": "Il decreto del Ministero dell'economia con il tasso legale dell'anno dopo esce di solito a dicembre. Aggiungere il nuovo anno alla serie, con il valore del decreto.",
-      "dati": ["rivalutazione_interessi_2026.interessi_legali"]
+      "cosa": "Il decreto del Ministero dell'economia con il tasso legale dell'anno dopo esce di solito a dicembre, con il nuovo prospetto dei coefficienti per usufrutto e rendite. Aggiungere il nuovo anno alla serie e aggiornare i coefficienti, con i valori del decreto.",
+      "dati": [
+        "rivalutazione_interessi_2026.interessi_legali",
+        "usufruttoENudaProprieta",
+        "ravvedimento"
+      ]
     },
     {
       "id": "concordato-art-20-bis",
       "dal": "2027-01-01",
       "titolo": "Concordato: l'art. 20-bis letto valeva fino al 31/12/2026",
       "cosa": "Il testo dell'art. 20-bis del D.Lgs. 13/2024 usato per l'imposta sostitutiva era in vigore fino al 31 dicembre 2026. Rileggere il testo vigente e controllare aliquote e addizionali.",
-      "dati": ["concordato_preventivo.imposta_sostitutiva"],
+      "dati": [
+        "concordato_preventivo.imposta_sostitutiva"
+      ],
       "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-02-12;13~art20bis"
     },
     {
@@ -130,16 +217,35 @@
       "dal": "2027-01-02",
       "ripeti": "anno",
       "titolo": "Legge di bilancio: cifre che cambiano dal 1° gennaio",
-      "cosa": "Controllare nel testo pubblicato in Gazzetta le misure che toccano i dati del sito: scaglioni IRPEF, busta paga, forfettario, cedolare secca, canone TV, bollo. Solo cifre lette nel testo.",
-      "dati": ["irpef", "busta_paga_2026", "partitaIvaForfettario", "locazioni", "canone_tv"]
+      "cosa": "Controllare nel testo pubblicato in Gazzetta le misure che toccano i dati del sito: scaglioni IRPEF, busta paga, forfettario, ritenute, cedolare secca, IMU, imposte sulla casa, imposta di bollo, contributo unificato, canone TV, bollo auto. Solo cifre lette nel testo.",
+      "dati": [
+        "irpef",
+        "busta_paga_2026",
+        "partitaIvaForfettario",
+        "locazioni",
+        "canone_tv",
+        "prestazioneOccasionale",
+        "ritenutaAcconto",
+        "imu",
+        "imposte_acquisto_casa_2026",
+        "generale",
+        "contributoUnificato",
+        "mutuo_francese_2026"
+      ]
     },
     {
       "id": "importi-inps",
       "dal": "2027-02-01",
       "ripeti": "anno",
       "titolo": "Importi INPS dell'anno nuovo",
-      "cosa": "Fra gennaio e febbraio l'INPS pubblica le circolari con soglie e importi dell'assegno unico, il massimale della NASpI e l'assegno sociale. Aggiornare con le cifre delle circolari.",
-      "dati": ["assegnoUnico", "naspi_parametri_2026", "pensioni"]
+      "cosa": "Fra gennaio e febbraio l'INPS pubblica le circolari con soglie e importi dell'assegno unico, il massimale della NASpI, l'assegno sociale, le aliquote della gestione separata e i minimali contributivi. Aggiornare con le cifre delle circolari.",
+      "dati": [
+        "assegnoUnico",
+        "naspi_parametri_2026",
+        "pensioni",
+        "prestazioneOccasionale",
+        "busta_paga_2026"
+      ]
     },
     {
       "id": "tariffari-bollo",
@@ -147,7 +253,9 @@
       "ripeti": "anno",
       "titolo": "Tariffari regionali del bollo auto dell'anno nuovo",
       "cosa": "Controllare sul sito ACI i tariffari dell'anno nuovo per le Regioni gia' presenti e per quelle che mancano (Calabria, Liguria, Veneto).",
-      "dati": ["bollo_auto_2026"]
+      "dati": [
+        "bollo_auto_2026"
+      ]
     },
     {
       "id": "arera-trimestre",
@@ -155,7 +263,10 @@
       "ripeti": "trimestre",
       "titolo": "ARERA: aggiornamento trimestrale per i clienti vulnerabili",
       "cosa": "A ogni trimestre ARERA aggiorna le condizioni per i clienti vulnerabili. Se c'e' un comunicato nuovo, aggiornare spesa del cliente tipo e prezzo indicativo.",
-      "dati": ["consumi_energia_2026.elettricita", "mercato_energia_2026"]
+      "dati": [
+        "consumi_energia_2026.elettricita",
+        "mercato_energia_2026"
+      ]
     },
     {
       "id": "calendario-anno-dopo",
@@ -163,6 +274,322 @@
       "ripeti": "anno",
       "titolo": "Calendario da stampare dell'anno dopo",
       "cosa": "A settembre si comincia a cercare il calendario dell'anno dopo: node scripts/genera-calendario.js --anno <anno dopo>, poi npm run build e l'indice degli strumenti."
+    },
+    {
+      "id": "rinnovi-ccnl",
+      "dal": "2026-10-01",
+      "ripeti": "trimestre",
+      "titolo": "Rinnovi dei contratti collettivi (preavvisi di dimissioni)",
+      "cosa": "I termini di preavviso della lettera di dimissioni vengono dai CCNL. A ogni trimestre controllare nell'archivio dei contratti del CNEL se i CCNL presenti nel sito sono stati rinnovati e se i preavvisi sono cambiati.",
+      "dati": [
+        "ccnl_dimissioni"
+      ]
+    },
+    {
+      "id": "tariffe-pra",
+      "dal": "2027-01-15",
+      "ripeti": "anno",
+      "titolo": "Costi del passaggio di proprieta' dell'anno nuovo",
+      "cosa": "Controllare gli emolumenti ACI, i diritti della Motorizzazione e l'imposta provinciale di trascrizione (IPT) dell'anno nuovo, con le fonti ufficiali (ACI e delibere provinciali).",
+      "dati": [
+        "passaggio_proprieta_2026"
+      ]
     }
-  ]
+  ],
+  "norme": [],
+  "dati_vivi": [],
+  "copertura": {
+    "generale": {
+      "norme": [
+        "presidente.repubblica:decreto:1972-10-26;642"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "prestazioneOccasionale": {
+      "norme": [
+        "presidente.repubblica:decreto:1973-09-29;600~art25"
+      ],
+      "scadenze": [
+        "legge-di-bilancio",
+        "importi-inps"
+      ]
+    },
+    "ritenutaAcconto": {
+      "norme": [
+        "presidente.repubblica:decreto:1973-09-29;600~art25"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "partitaIvaForfettario": {
+      "norme": [
+        "stato:legge:2014-12-23;190~art1"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "isee": {
+      "norme": [
+        "presidente.consiglio.ministri:decreto:2013-12-05;159"
+      ],
+      "nota": "Scala di equivalenza e maggiorazioni sono quelle del DPCM 159/2013: cambiano solo se cambia il decreto, che la sentinella rilegge ogni settimana."
+    },
+    "assegnoUnico": {
+      "norme": [
+        "stato:decreto.legislativo:2021-12-29;230"
+      ],
+      "scadenze": [
+        "importi-inps"
+      ]
+    },
+    "tfr": {
+      "norme": [
+        "stato:regio.decreto:1942-03-16;262:2~art2120"
+      ],
+      "serie": [
+        "istat-foi"
+      ]
+    },
+    "imu": {
+      "norme": [
+        "stato:legge:2019-12-27;160~art1"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "parcellaAvvocato": {
+      "norme": [
+        "stato:legge:2012-12-31;247",
+        "presidente.repubblica:decreto:1973-09-29;600~art25"
+      ],
+      "nota": "Spese generali, cassa forense, IVA e ritenuta vengono dalla legge professionale e dai testi fiscali citati nella pagina, riletti ogni settimana."
+    },
+    "contributoUnificato": {
+      "norme": [
+        "presidente.repubblica:decreto:2002-05-30;115~art13"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "interessiMoratori": {
+      "norme": [
+        "stato:decreto.legislativo:2002-10-09;231"
+      ],
+      "serie": [
+        "tasso-bce"
+      ]
+    },
+    "locazioni": {
+      "norme": [
+        "stato:decreto.legislativo:2011-03-14;23~art3",
+        "presidente.repubblica:decreto:1986-04-26;131"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "irpef": {
+      "norme": [
+        "presidente.repubblica:decreto:1986-12-22;917~art11"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "ravvedimento": {
+      "norme": [
+        "stato:decreto.legislativo:1997-12-18;472~art13"
+      ],
+      "scadenze": [
+        "interessi-legali-anno-nuovo"
+      ],
+      "serie": [
+        "interessi-legali"
+      ]
+    },
+    "usufruttoENudaProprieta": {
+      "norme": [
+        "presidente.repubblica:decreto:1986-04-26;131~art46",
+        "stato:decreto.legislativo:1990-10-31;346:1~art17"
+      ],
+      "scadenze": [
+        "interessi-legali-anno-nuovo"
+      ]
+    },
+    "bollo_auto_2026": {
+      "schede": [
+        "bollo-tariffario-abruzzo",
+        "bollo-tariffario-emilia-romagna",
+        "bollo-tariffario-campania",
+        "bollo-tariffario-toscana",
+        "bollo-calcolo-aci"
+      ],
+      "scadenze": [
+        "tariffari-bollo",
+        "legge-di-bilancio"
+      ]
+    },
+    "passaggio_proprieta_2026": {
+      "norme": [
+        "stato:legge:2000-11-21;342~art63",
+        "stato:decreto.legislativo:1997-12-15;446~art56"
+      ],
+      "scadenze": [
+        "tariffe-pra"
+      ]
+    },
+    "mutuo_francese_2026": {
+      "norme": [
+        "presidente.repubblica:decreto:1973-09-29;601"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ],
+      "nota": "I costi bancari sono valori indicativi che l'utente puo' cambiare; l'imposta sostitutiva viene dal DPR 601/1973."
+    },
+    "imposte_acquisto_casa_2026": {
+      "norme": [
+        "presidente.repubblica:decreto:1986-04-26;131",
+        "stato:legge:2005-12-23;266~art1"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    },
+    "rivalutazione_interessi_2026": {
+      "norme": [
+        "stato:regio.decreto:1942-03-16;262:2"
+      ],
+      "serie": [
+        "istat-foi",
+        "interessi-legali"
+      ],
+      "scadenze": [
+        "interessi-legali-anno-nuovo"
+      ]
+    },
+    "naspi_parametri_2026": {
+      "norme": [
+        "stato:decreto.legislativo:2015-03-04;22"
+      ],
+      "scadenze": [
+        "importi-inps"
+      ]
+    },
+    "successioni_italia_2026": {
+      "norme": [
+        "stato:regio.decreto:1942-03-16;262:2",
+        "stato:decreto.legislativo:1990-10-31;346"
+      ],
+      "nota": "Quote di legittima e franchigie vengono dal codice civile e dal testo unico sulle successioni, riletti ogni settimana."
+    },
+    "ccnl_dimissioni": {
+      "norme": [
+        "stato:regio.decreto:1942-03-16;262:2~art2118"
+      ],
+      "scadenze": [
+        "rinnovi-ccnl"
+      ]
+    },
+    "rli_parametri": {
+      "norme": [
+        "presidente.repubblica:decreto:1986-04-26;131",
+        "stato:decreto.legislativo:2011-03-14;23~art3"
+      ],
+      "modelli": [
+        "modello-rli-ufficiale.pdf",
+        "istruzioni-rli.pdf"
+      ]
+    },
+    "fattura_elettronica": {
+      "norme": [
+        "presidente.repubblica:decreto:1972-10-26;633~art21",
+        "stato:decreto.legislativo:2015-08-05;127"
+      ],
+      "schede": [
+        "fatturapa-documentazione-sdi"
+      ]
+    },
+    "modelli_partita_iva": {
+      "modelli": [
+        "modello-aa7-10",
+        "modello-aa9-12"
+      ],
+      "nota": "Codici e tabelle dei modelli AA7 e AA9: cambiano con il modello, di cui la sentinella controlla la pagina ufficiale."
+    },
+    "mercato_energia_2026": {
+      "scadenze": [
+        "arera-trimestre"
+      ]
+    },
+    "busta_paga_2026": {
+      "norme": [
+        "presidente.repubblica:decreto:1986-12-22;917~art11"
+      ],
+      "scadenze": [
+        "legge-di-bilancio",
+        "importi-inps"
+      ]
+    },
+    "pensioni": {
+      "norme": [
+        "stato:legge:1995-08-08;335",
+        "stato:decreto.legge:2011-12-06;201~art24"
+      ],
+      "scadenze": [
+        "importi-inps"
+      ]
+    },
+    "consumi_energia_2026": {
+      "schede": [
+        "arera-vulnerabili-iii-2026",
+        "adiconsum-ricarica"
+      ],
+      "scadenze": [
+        "arera-trimestre"
+      ]
+    },
+    "esenzione_bollo_2027": {
+      "norme": [
+        "stato:decreto.legge:2026-09-17;162~art2"
+      ],
+      "scadenze": [
+        "conversione-dl-162-2026"
+      ]
+    },
+    "concordato_preventivo": {
+      "norme": [
+        "stato:decreto.legislativo:2024-02-12;13~art20bis",
+        "stato:decreto.legislativo:2024-02-12;13~art9"
+      ],
+      "scadenze": [
+        "concordato-art-20-bis"
+      ]
+    },
+    "codice_strada_verbali": {
+      "norme": [
+        "stato:decreto.legislativo:1992-04-30;285"
+      ],
+      "nota": "Solo termini del Codice della Strada (gli importi si leggono dal verbale): cambiano se cambia il codice, che la sentinella rilegge."
+    },
+    "canone_tv": {
+      "schede": [
+        "canone-tv-come-si-paga",
+        "canone-tv-dichiarazione-sostitutiva",
+        "canone-tv-over-75"
+      ],
+      "norme": [
+        "stato:legge:2015-12-28;208~art1"
+      ],
+      "scadenze": [
+        "legge-di-bilancio"
+      ]
+    }
+  }
 }

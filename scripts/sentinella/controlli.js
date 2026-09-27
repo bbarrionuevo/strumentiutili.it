@@ -368,6 +368,27 @@ function scadenzeDovute(registro, regole, oggi, titoli = {}) {
 }
 
 /**
+ * I dati aggiornati da soli (prezzi, tassi, indici scaricati ogni giorno da un
+ * workflow) che hanno smesso di aggiornarsi. Ogni voce dice in quale file e in
+ * quale campo sta la data dell'ultimo aggiornamento e quanti giorni puo' avere.
+ * `leggi(file)` restituisce il contenuto JSON del file, o null se manca.
+ */
+function datiVecchi(voci, leggi, oggi) {
+  const fuori = [];
+  for (const v of voci || []) {
+    const dati = leggi(v.file);
+    const quando = dati ? String(valore(dati, v.campo) || '').slice(0, 10) : '';
+    if (!isoValida(quando)) {
+      fuori.push({ ...v, quando: null, giorni: null });
+      continue;
+    }
+    const giorni = Math.round((Date.parse(oggi + 'T00:00:00Z') - Date.parse(quando + 'T00:00:00Z')) / 86400000);
+    if (giorni > v.max_giorni) fuori.push({ ...v, quando, giorni });
+  }
+  return fuori;
+}
+
+/**
  * Quanto e' urgente un esito. Alta: cambia cio' che il sito mostra o calcola
  * (un modello, un articolo di legge, una cifra, un collegamento morto, una
  * scadenza). Bassa: una pagina e' cambiata ma le cifre controllate ci sono
@@ -375,7 +396,7 @@ function scadenzeDovute(registro, regole, oggi, titoli = {}) {
  */
 function classifica(esito) {
   const alta = ['modello-cambiato', 'modello-sparito', 'elenco-modelli-cambiato', 'articolo-cambiato', 'articolo-sbagliato', 'versione-futura', 'norma-abrogata', 'pdf-cambiato',
-    'cifra-sparita', 'collegamento-rotto', 'scadenza', 'forma-cambiata', 'cieca'];
+    'cifra-sparita', 'collegamento-rotto', 'scadenza', 'forma-cambiata', 'cieca', 'dato-vecchio'];
   return alta.includes(esito.tipo) ? 'alta' : 'bassa';
 }
 
@@ -383,5 +404,5 @@ module.exports = {
   decodificaEntita, testoDaHtml, articoloNormattiva, numeroArticolo, articoloChiesto, vigoreDal, abrogatoDa, vigenzeDaSegnalare,
   attoNormattiva, paginaErrore, indizioForma,
   righeConCifre, collegamentiDocumenti, impronta, diffRighe, espressioniMancanti,
-  isoValida, aggiungiMesi, occorrenza, valore, scadenzeDovute, classifica
+  isoValida, aggiungiMesi, occorrenza, valore, scadenzeDovute, datiVecchi, classifica
 };
