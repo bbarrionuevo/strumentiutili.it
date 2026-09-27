@@ -206,7 +206,7 @@ function oggiInItalia() {
           <button type="button" class="btn-remove-immobile absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-white border border-red-100 rounded text-xs">&times; Rimuovi</button>
           <div class="md:col-span-2 mt-4">
             <label class="block text-xs font-bold text-gray-700 mb-1">Tipologia *</label>
-            <select class="immobile-tipo w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required>
+            <select aria-label="Tipologia" class="immobile-tipo w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required>
               <option value="1">1 - Immobile Principale</option>
               <option value="2" selected>2 - Pertinenza locata congiuntamente</option>
               <option value="3">3 - Pertinenza locata separatamente</option>
@@ -214,7 +214,7 @@ function oggiInItalia() {
           </div>
           <div class="md:col-span-2 mt-4">
              <label class="block text-xs font-bold text-gray-700 mb-1">Categoria Catastale</label>
-             <input type="text" class="w-full px-3 py-1.5 border border-gray-300 rounded text-sm uppercase" placeholder="Es. C/2" />
+             <input type="text" aria-label="Categoria catastale" class="w-full px-3 py-1.5 border border-gray-300 rounded text-sm uppercase" placeholder="Es. C/2" />
           </div>
           <p class="error-catastale hidden md:col-span-4 text-xs text-red-600 font-bold mt-1">⚠️ Errore Catastale: Impossibile inserire una pertinenza senza prima inserire l'immobile principale.</p>
         </div>`;

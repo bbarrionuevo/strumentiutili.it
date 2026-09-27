@@ -1,0 +1,64 @@
+name: Scarica modelli ufficiali
+
+# I siti dell'Agenzia delle Entrate e di Agenzia delle entrate-Riscossione non
+# sono raggiungibili da tutti gli ambienti in cui si sviluppa il sito. Qui li
+# raggiunge il runner di GitHub: scripts/scarica-modelli-ufficiali.py scarica i
+# PDF elencati nel suo dizionario MODELLI (mai indirizzi presi dall'input) e il
+# risultato viene salvato come commit sul ramo scelto, per passare dalla solita
+# revisione (pull request, test, anteprima) prima di arrivare online.
+on:
+  workflow_dispatch:
+    inputs:
+      ramo:
+        description: 'Ramo di lavoro su cui salvare i PDF (non main)'
+        required: true
+      nomi:
+        description: 'Nomi dei file da scaricare (chiavi di MODELLI), separati da spazi; vuoto = tutti'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  scarica:
+    name: Scarica i PDF dai siti ufficiali
+    runs-on: ubuntu-latest
+    env:
+      RAMO: ${{ inputs.ramo }}
+      NOMI: ${{ inputs.nomi }}
+    steps:
+      - name: Controlla il ramo
+        run: |
+          case "$RAMO" in
+            main|'') echo "Usa un ramo di lavoro: i modelli devono passare da una pull request." ; exit 1 ;;
+          esac
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ramo }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Scarica i modelli
+        run: |
+          set -f
+          # i nomi arrivano come argomenti separati; lo script rifiuta quelli
+          # che non sono nel suo elenco
+          python3 scripts/scarica-modelli-ufficiali.py $NOMI
+
+      - name: Impronte dei file scaricati
+        run: |
+          git status --short assets/pdf
+          git ls-files --others --modified assets/pdf | xargs -r sha256sum
+
+      - name: Salva sul ramo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/pdf
+          if git diff --cached --quiet; then echo "Niente di nuovo da salvare."; exit 0; fi
+          git commit -m "Modelli ufficiali scaricati: ${NOMI:-tutti}"
+          git push origin "HEAD:refs/heads/$RAMO"

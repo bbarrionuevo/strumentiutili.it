@@ -149,19 +149,19 @@ function decimali(n) {
           <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
             <div class="md:col-span-3">
               <label class="block text-xs font-bold text-gray-700 mb-1">Descrizione *</label>
-              <input type="text" class="line-desc w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required placeholder="Consulenza..." />
+              <input type="text" aria-label="Descrizione, riga ${id}" class="line-desc w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500" required placeholder="Consulenza..." />
             </div>
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Q.tà *</label>
-              <input type="number" step="0.01" min="0" value="1" class="line-qty w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
+              <input type="number" step="0.01" min="0" value="1" aria-label="Quantità, riga ${id}" class="line-qty w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
             </div>
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Prezzo Un. (€) *</label>
-              <input type="number" step="0.01" min="0" value="0.00" class="line-price w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
+              <input type="number" step="0.01" min="0" value="0.00" aria-label="Prezzo unitario in euro, riga ${id}" class="line-price w-full px-3 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 text-right" required />
             </div>
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">IVA %</label>
-              <select class="line-iva w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500">
+              <select aria-label="Aliquota IVA, riga ${id}" class="line-iva w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500">
                 <option value="22.00">22%</option>
                 <option value="10.00">10%</option>
                 <option value="5.00">5%</option>
@@ -171,7 +171,7 @@ function decimali(n) {
             </div>
             <div class="md:col-span-2">
               <label class="block text-xs font-bold text-gray-700 mb-1">Natura (se IVA 0%)</label>
-              <select class="line-natura w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 bg-gray-100" disabled>
+              <select aria-label="Natura IVA, riga ${id}" class="line-natura w-full px-2 py-1.5 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-indigo-500 bg-gray-100" disabled>
                 ${naturaOptions}
               </select>
             </div>

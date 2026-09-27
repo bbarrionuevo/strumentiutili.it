@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         row.className = 'flex items-center gap-2 immobile-row';
         row.innerHTML = `
             <span class="text-sm font-bold text-gray-500 w-6">#${numeroImmobiliMultipli}</span>
-            <input type="number" min="0" step="100" class="immobile-val w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-sm" placeholder="Incasso Immobile ${numeroImmobiliMultipli} (€)" />
+            <input type="number" min="0" step="100" aria-label="Incasso dell’immobile ${numeroImmobiliMultipli} (€)" class="immobile-val w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-sm" placeholder="Incasso Immobile ${numeroImmobiliMultipli} (€)" />
         `;
         immobiliContainer.appendChild(row);
 
