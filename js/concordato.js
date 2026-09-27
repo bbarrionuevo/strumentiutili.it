@@ -6,9 +6,13 @@
 //   B. Con concordato          imposte sul reddito proposto dall'Agenzia,
 //                              con IRPEF ordinaria su tutto.
 //   C. Con concordato + sostitutiva
-//                              IRPEF ordinaria sulla parte fino al reddito
+//                              IRPEF e addizionali sulla parte fino al reddito
 //                              gia' dichiarato l'anno prima, imposta
-//                              sostitutiva sull'eccedenza concordata.
+//                              sostitutiva sull'eccedenza concordata. La
+//                              sostitutiva prende il posto delle imposte sul
+//                              reddito "addizionali comprese" (D.Lgs. 13/2024,
+//                              art. 20-bis, comma 1): sull'eccedenza le
+//                              addizionali regionale e comunale non si pagano.
 //
 // Il vantaggio nasce quando il reddito vero supera quello concordato: si paga
 // sul minore dei due. Se invece si guadagna meno del concordato, si paga su un
@@ -103,7 +107,11 @@
       irpef = motoreIrpef().computeIRPEF(concordato, ctx.irpef);
     }
 
-    var addizionali = round2(concordato * ctx.aliquotaAddizionali);
+    // Con la sostitutiva le addizionali restano solo sulla parte non coperta
+    // dalla sostitutiva: sull'eccedenza sono gia' comprese nel 10-15%.
+    var comprese = ctx.regole.imposta_sostitutiva.comprende_addizionali !== false;
+    var baseAddizionali = conSostitutiva && comprese ? Math.min(concordato, ctx.redditoPrecedente) : concordato;
+    var addizionali = round2(baseAddizionali * ctx.aliquotaAddizionali);
 
     // Qui sta la differenza che costa cara: l'INPS segue il concordato, le
     // casse dei professionisti no.

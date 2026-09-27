@@ -51,6 +51,20 @@ test('sopra gli 85.000 di eccedenza si applica il 43%', () => {
   assert.strictEqual(C.impostaSostitutiva(85000, 9, CPB).oltreTetto, 0);
 });
 
+test('con la sostitutiva le addizionali restano solo fino al reddito precedente (art. 20-bis)', () => {
+  // D.Lgs. 13/2024, art. 20-bis, comma 1: la sostitutiva sostituisce le
+  // imposte sul reddito "addizionali comprese". Sull'eccedenza di 10.000 euro
+  // non si pagano quindi le addizionali.
+  const r = caso({ aliquotaAddizionali: 0.02, anni: [{ concordato: 50000, effettivo: 50000 }, { concordato: 50000, effettivo: 50000 }] });
+  const [anno] = r.scenari.conSostitutiva;
+  assert.strictEqual(anno.addizionali, 800, '2% di 40.000, non di 50.000');
+  assert.strictEqual(anno.sostitutiva, 1000, '10% di 10.000 con ISA 9');
+  assert.strictEqual(r.scenari.conOrdinaria[0].addizionali, 1000, 'senza sostitutiva si pagano su tutto il concordato');
+  // se il concordato non supera il reddito precedente non c'e' eccedenza e nulla cambia
+  const pari = caso({ aliquotaAddizionali: 0.02, anni: [{ concordato: 38000, effettivo: 38000 }] });
+  assert.strictEqual(pari.scenari.conSostitutiva[0].addizionali, 760);
+});
+
 test('senza eccedenza non si paga sostitutiva', () => {
   assert.strictEqual(C.impostaSostitutiva(0, 9, CPB).imposta, 0);
   assert.strictEqual(C.impostaSostitutiva(-5000, 9, CPB).imposta, 0);
