@@ -105,12 +105,26 @@ test('controlli prima di pubblicare: file troncati o vecchi non passano', () => 
   assert.ok(guai.some((g) => /vecchia/.test(g)));
 });
 
+// I nomi di province e regioni vengono da data/comuni.json, che usano anche
+// le pagine del codice fiscale: c'erano 607 nomi con le lettere accentate
+// rovinate da una doppia codifica ("ForlÃ¬" invece di "Forlì"), che la
+// ricerca del comune non trovava.
+test('comuni: lettere accentate scritte bene', () => {
+  const testo = fs.readFileSync(path.join(RADICE, 'data', 'comuni.json'), 'utf8').replace(/^﻿/, '');
+  assert.deepStrictEqual(testo.match(/[ÂÃ][\u0080-¿]/g), null);
+  const comuni = JSON.parse(testo);
+  const nome = (n) => comuni.find((c) => c.nome === n);
+  assert.ok(nome('Forlì') && nome('Cantù') && nome('Agliè'));
+  assert.strictEqual(comuni.find((c) => c.sigla === 'BZ').regione.nome, 'Trentino-Alto Adige/Südtirol');
+});
+
 // I dati pubblicati (scritti ogni giorno dal workflow): coerenti fra loro.
 const CARTELLA = path.join(RADICE, 'data', 'vivi', 'carburanti');
 test('dati pubblicati: riepilogo, impianti e prezzi coerenti', { skip: !fs.existsSync(path.join(CARTELLA, 'riepilogo.json')) && 'dati non ancora scaricati' }, () => {
   const r = JSON.parse(fs.readFileSync(path.join(CARTELLA, 'riepilogo.json'), 'utf8'));
   assert.match(r.estrazione, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(Object.keys(r.province).length >= 100);
+  assert.doesNotMatch(JSON.stringify(r), /[\u00C2\u00C3][\u0080-\u00BF]/, 'nomi con le lettere accentate rovinate');
   for (const [sigla, info] of Object.entries(r.province)) {
     const imp = JSON.parse(fs.readFileSync(path.join(CARTELLA, 'impianti', sigla + '.json'), 'utf8'));
     const pr = JSON.parse(fs.readFileSync(path.join(CARTELLA, 'prezzi', sigla + '.json'), 'utf8'));
@@ -124,4 +138,65 @@ test('dati pubblicati: riepilogo, impianti e prezzi coerenti', { skip: !fs.exist
   }
   const s = JSON.parse(fs.readFileSync(path.join(CARTELLA, 'storico.json'), 'utf8'));
   assert.ok(s.serie.length >= 1 && s.serie[s.serie.length - 1].d === r.estrazione);
+});
+
+// --- Il motore della pagina (js/carburanti.js) ---------------------------------
+const K = require('../js/carburanti.js');
+
+test('pagina: prezzi dalle righe in millesimi, self, servito o il migliore', () => {
+  const riga = [2309, 2669, 2469, null, null, 849, null, 1794];
+  assert.strictEqual(K.prezzo(riga, 'benzina', 'self'), 2.309);
+  assert.strictEqual(K.prezzo(riga, 'benzina', 'servito'), 2.669);
+  assert.strictEqual(K.prezzo(riga, 'gasolio', 'servito'), null);
+  assert.strictEqual(K.prezzo(riga, 'gpl', 'migliore'), 0.849);
+  assert.strictEqual(K.prezzo(riga, 'benzina', 'migliore'), 2.309);
+  assert.strictEqual(K.prezzo(riga, 'metano', 'self'), null);
+  assert.strictEqual(K.prezzo(undefined, 'benzina', 'self'), null);
+  assert.strictEqual(K.prezzo(riga, 'kerosene', 'self'), null);
+});
+
+test('pagina: distanze e province vicine', () => {
+  // Milano Duomo - Roma Colosseo: circa 477 km in linea d'aria
+  const km = K.distanzaKm(45.4642, 9.19, 41.8902, 12.4922);
+  assert.ok(km > 470 && km < 485, String(km));
+  assert.strictEqual(K.distanzaKm(45, 9, 45, 9), 0);
+  const province = { MI: { centro: [45.488, 9.159] }, MB: { centro: [45.6, 9.27] }, RM: { centro: [41.9, 12.5] }, XX: { centro: null } };
+  assert.deepStrictEqual(K.provinceVicine(province, 45.47, 9.19, 60, 4), ['MI', 'MB']);
+  // in mezzo al mare: almeno la provincia piu' vicina
+  assert.deepStrictEqual(K.provinceVicine(province, 40, 10, 60, 4), ['RM']);
+});
+
+test('pagina: elenco dei piu\' economici, con e senza posizione', () => {
+  const impianti = [
+    [1, 'A', 'Q8', 'Via 1', 'MILANO', 45.47, 9.19, 0],
+    [2, 'B', 'Eni', 'Via 2', 'MILANO', 45.50, 9.20, 0],
+    [3, 'C', 'IP', 'A1 km 10', 'MILANO', 45.40, 9.10, 1],
+    [4, 'D', 'Tamoil', 'Via 4', 'MILANO', null, null, 0],
+    [5, 'E', 'Esso', 'Via 5', 'MILANO', 45.70, 9.40, 0]
+  ];
+  const prezzi = { 1: [2200, 2400, 0, 0, 0, 0, 0, 0], 2: [2100, null, 0, 0, 0, 0, 0, 0], 3: [1900, null, 0, 0, 0, 0, 0, 0], 4: [2000, null, 0, 0, 0, 0, 0, 0], 5: [2050, null, 0, 0, 0, 0, 0, 0] };
+  // senza posizione: per prezzo, niente autostrade
+  assert.deepStrictEqual(K.elenca(impianti, prezzi, { carb: 'benzina', modo: 'self' }).map((x) => x.id), [4, 5, 2, 1]);
+  assert.deepStrictEqual(K.elenca(impianti, prezzi, { carb: 'benzina', modo: 'self', autostrade: true, limite: 2 }).map((x) => x.id), [3, 4]);
+  // con posizione e raggio: fuori chi non ha coordinate o e' lontano
+  const vicino = K.elenca(impianti, prezzi, { carb: 'benzina', modo: 'self', origine: { lat: 45.47, lon: 9.19 }, raggioKm: 10 });
+  assert.deepStrictEqual(vicino.map((x) => x.id), [2, 1]);
+  assert.ok(vicino[1].km < 0.01);
+  const perDistanza = K.elenca(impianti, prezzi, { carb: 'benzina', modo: 'self', origine: { lat: 45.47, lon: 9.19 }, raggioKm: 50, ordine: 'distanza' });
+  assert.deepStrictEqual(perDistanza.map((x) => x.id), [1, 2, 5]);
+});
+
+test('pagina: risparmio sul pieno, costo del viaggio, variazione e indicazioni', () => {
+  assert.strictEqual(K.risparmio(40, 2.1, 2.2), 4);
+  assert.strictEqual(K.risparmio(0, 2.1, 2.2), null);
+  assert.deepStrictEqual(K.costoViaggio(300, 15, 2, false), { km: 300, quantita: 20, costo: 40 });
+  assert.deepStrictEqual(K.costoViaggio(300, 15, 2, true), { km: 600, quantita: 40, costo: 80 });
+  assert.strictEqual(K.costoViaggio(300, 0, 2, false), null);
+  const serie = [{ d: '2026-09-18', benzina: 2.2 }, { d: '2026-09-19', benzina: 2.18 }, { d: '2026-09-25', benzina: 2.16 }, { d: '2026-09-26', benzina: 2.158 }];
+  assert.deepStrictEqual(K.variazione(serie, 'benzina', 1), { da: '2026-09-25', differenza: -0.002 });
+  assert.deepStrictEqual(K.variazione(serie, 'benzina', 7), { da: '2026-09-19', differenza: -0.022 });
+  assert.strictEqual(K.variazione(serie.slice(-1), 'benzina', 1), null);
+  assert.strictEqual(K.variazione(serie, 'gpl', 1), null);
+  assert.strictEqual(K.indicazioni(45.4, 9.1), 'https://www.google.com/maps/dir/?api=1&destination=45.400000,9.100000');
+  assert.strictEqual(K.indicazioni(null, 9.1), null);
 });

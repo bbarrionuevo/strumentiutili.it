@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v79';
+const CACHE_NAME = 'strumentiutili-v80';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -269,6 +269,8 @@ const APP_SHELL = [
   '/js/simulatore-pensione.js',
   '/js/generatore-cv-ats.js',
   '/js/budget-planner.js',
+  '/js/carburanti.js',
+  '/js/carburanti-ui.js',
 
   // Web Workers
   '/js/workers/translation-worker.js',
@@ -307,6 +309,7 @@ const APP_SHELL = [
   '/cittadino-tasse/consumo-elettrodomestici/',
   '/identita-burocrazia/disdetta/',
   '/utilita-web/costo-ricarica-auto-elettrica/',
+  '/utilita-web/prezzi-carburanti-oggi/',
   '/utilita-web/prezzo-unitario/'
 ];
 
