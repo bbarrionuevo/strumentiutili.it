@@ -9,7 +9,16 @@ dalla dimensione, se qualcosa e' cambiato.
 Le pagine di riferimento sono elencate accanto a ogni voce: se un link diretto
 smette di funzionare, e' da li' che si recupera quello nuovo.
 
-Uso:  python scripts/scarica-modelli-ufficiali.py
+I percorsi relativi si intendono sul portale dell'Agenzia delle Entrate; per
+altri siti ufficiali (Agenzia delle entrate-Riscossione) si scrive l'indirizzo
+intero, che comincia con https://.
+
+Uso:  python scripts/scarica-modelli-ufficiali.py             (tutti i modelli)
+      python scripts/scarica-modelli-ufficiali.py NOME [NOME…] (solo quelli)
+
+Dagli ambienti di sviluppo i siti dell'Agenzia spesso non si raggiungono: in
+quel caso si lancia il workflow .github/workflows/scarica-modelli.yml, che
+esegue questo script su GitHub e salva i PDF nel ramo.
 """
 
 from __future__ import annotations
@@ -140,11 +149,15 @@ MODELLI = {
 }
 
 
+def indirizzo(percorso: str) -> str:
+    return percorso if percorso.startswith("https://") else BASE + percorso
+
+
 def scarica(nome: str, percorso: str) -> int:
     destinazione = PDF_DIR / nome
     prima = destinazione.stat().st_size if destinazione.exists() else 0
     richiesta = urllib.request.Request(
-        BASE + percorso,
+        indirizzo(percorso),
         headers={"User-Agent": "Mozilla/5.0 (StrumentiUtili.it aggiornamento modelli)"},
     )
     with urllib.request.urlopen(richiesta, timeout=60) as risposta:
@@ -164,11 +177,17 @@ def scarica(nome: str, percorso: str) -> int:
     return dopo
 
 
-def main() -> int:
+def main(richiesti: list[str]) -> int:
+    sconosciuti = [n for n in richiesti if n not in MODELLI]
+    if sconosciuti:
+        print("Modelli sconosciuti: " + ", ".join(sconosciuti))
+        print("Quelli disponibili sono le chiavi di MODELLI in questo script.")
+        return 2
+    scelti = {n: MODELLI[n] for n in richiesti} if richiesti else MODELLI
     PDF_DIR.mkdir(parents=True, exist_ok=True)
     print(f"Scaricamento in {PDF_DIR.relative_to(ROOT)}\n")
     errori = 0
-    for nome, (percorso, _pagina) in MODELLI.items():
+    for nome, (percorso, _pagina) in scelti.items():
         try:
             if not scarica(nome, percorso):
                 errori += 1
@@ -180,4 +199,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

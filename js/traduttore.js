@@ -112,7 +112,7 @@ function prepareDownload() {
   downloadArea.innerHTML = `
     <div class="w-full text-left">
       <div class="text-sm font-bold text-gray-800 mb-2">Testo tradotto</div>
-      <textarea id="trans-preview" readonly class="w-full h-48 p-3 border border-gray-300 rounded-lg bg-white text-sm text-gray-800 text-left"></textarea>
+      <textarea id="trans-preview" readonly aria-label="Testo tradotto" class="w-full h-48 p-3 border border-gray-300 rounded-lg bg-white text-sm text-gray-800 text-left"></textarea>
     </div>
     <div class="text-sm font-bold text-gray-800 mt-4 mb-3">Scarica il file tradotto:</div>
     <div class="flex flex-wrap gap-2 justify-center">
