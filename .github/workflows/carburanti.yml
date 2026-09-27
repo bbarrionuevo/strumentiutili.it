@@ -1,0 +1,58 @@
+name: Prezzi carburanti (open data MIMIT)
+
+# Due volte al giorno scarica gli open data del Ministero delle Imprese e del
+# Made in Italy sui prezzi dei carburanti, li controlla
+# (scripts/carburanti/aggiorna.js) e, se passano i controlli e i test, salva
+# su main SOLO i file di data/vivi/carburanti/. E' l'unica eccezione alla
+# regola "tutto passa da una pull request": un prezzo che cambia ogni giorno
+# non si puo' approvare a mano. Il codice e le pagine passano sempre dalla
+# revisione. Se qualcosa va storto non si pubblica niente: online restano i
+# dati precedenti e la sentinella se ne accorge (dati_vivi).
+on:
+  schedule:
+    - cron: '41 6 * * *'
+    - cron: '41 14 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: carburanti
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    name: Scarica, controlla e pubblica
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Scarica e controlla i dati del Ministero
+        run: node scripts/carburanti/aggiorna.js
+
+      - name: Test sui dati appena scritti
+        run: node --test tests/carburanti.test.js tests/fonti-monitorate.test.js
+
+      - name: Salva su main (solo data/vivi/carburanti)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/vivi/carburanti
+          if git diff --cached --quiet; then echo "Nessun dato nuovo."; exit 0; fi
+          if git diff --cached --name-only | grep -v '^data/vivi/carburanti/'; then
+            echo "File fuori da data/vivi/carburanti: non si pubblica."; exit 1
+          fi
+          ESTRAZIONE=$(node -p "require('./data/vivi/carburanti/riepilogo.json').estrazione")
+          git commit -q -m "Prezzi carburanti del $ESTRAZIONE (open data MIMIT)"
+          for tentativo in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 15
+          done
+          exit 1
