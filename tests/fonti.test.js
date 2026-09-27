@@ -129,8 +129,8 @@ test('la pagina sul metodo esiste, si indicizza ed e collegata', () => {
 
 test('nessun collegamento a pagine ufficiali sparite', () => {
   // Indirizzi che rispondevano 404 (o non esistevano piu') a settembre 2026:
-  // non devono tornare. Il controllo completo lo fa ogni mese
-  // .github/workflows/controlla-collegamenti.yml.
+  // non devono tornare. Il controllo completo lo fa ogni settimana
+  // .github/workflows/sentinella.yml.
   const SPARITI = [
     'iservices.aci.it',
     'www.aci.it/i-servizi/servizi-online/calcolo-bollo-auto.html',
