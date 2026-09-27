@@ -83,10 +83,21 @@ const esc = (t) => String(t == null ? '' : t)
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
-// Testo senza tag ne' entita', per il JSON-LD.
+// Le entita' con nome usate nei titoli del sito (&rsquo;, &ugrave;...)
+const ENTITA = {
+  rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c', laquo: '\u00ab', raquo: '\u00bb',
+  agrave: '\u00e0', egrave: '\u00e8', eacute: '\u00e9', igrave: '\u00ec', ograve: '\u00f2', ugrave: '\u00f9',
+  Agrave: '\u00c0', Egrave: '\u00c8', Eacute: '\u00c9', deg: '\u00b0', euro: '\u20ac', hellip: '\u2026',
+  middot: '\u00b7', times: '\u00d7', ndash: '\u2013', mdash: '\u2014'
+};
+
+// Testo senza tag ne' entita', per il JSON-LD e per le briciole (che poi
+// passano da esc: un'entita' lasciata qui comparirebbe scritta per intero).
 function testoSemplice(t) {
   return String(t == null ? '' : t)
     .replace(/<[^>]*>/g, '')
+    .replace(/&([A-Za-z]+);/g, (e, nome) => ENTITA[nome] || e)
+    .replace(/&#(\d+);/g, (e, n) => String.fromCodePoint(Number(n)))
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')

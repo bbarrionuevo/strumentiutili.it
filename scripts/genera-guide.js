@@ -49,7 +49,7 @@ function formato(x, decimali) {
 }
 
 function contesto() {
-  const { window } = caricaScript(['js/irpef.js', 'js/stipendio-netto.js', 'js/tfr.js', 'js/imu.js']);
+  const { window } = caricaScript(['js/irpef.js', 'js/stipendio-netto.js', 'js/tfr.js', 'js/imu.js', 'js/partita-iva.js']);
   const ctx = {
     regole: regoleFiscali(),
     motori: {
@@ -57,6 +57,9 @@ function contesto() {
       naspi: require('../js/naspi-calcolo.js'),
       rli: require('../js/rli-imposte.js'),
       rliSanzioni: require('../js/rli-sanzioni.js'),
+      ravvedimento: require('../js/ravvedimento-calcolo.js'),
+      forfettario: window.PartitaIvaForfettaria,
+      tipoFile: require('../js/tipo-file.js'),
       estratto: require('../js/estratto-contributivo.js'),
       irpef: window.StrumentiIrpef,
       stipendio: window.StipendioNetto,

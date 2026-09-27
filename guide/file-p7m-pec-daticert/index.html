@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>File P7M, PEC e daticert: che cosa sono e come aprirli — StrumentiUtili.it</title>
+  <meta name="description" content="Che cosa c’è dentro un file .p7m e come si apre, che cosa sono postacert.eml, daticert.xml e smime.p7s nei messaggi PEC, quali ricevute conservare come prova e come riconoscere le false PEC." />
+  <link rel="canonical" href="https://strumentiutili.it/guide/file-p7m-pec-daticert/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="File P7M, PEC e daticert: che cosa sono e come aprirli" />
+  <meta property="og:description" content="Che cosa c’è dentro un file .p7m e come si apre, che cosa sono postacert.eml, daticert.xml e smime.p7s nei messaggi PEC, quali ricevute conservare come prova e come riconoscere le false PEC." />
+  <meta property="og:url" content="https://strumentiutili.it/guide/file-p7m-pec-daticert/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://strumentiutili.it/guide/file-p7m-pec-daticert/#articolo",
+        "headline": "File P7M, PEC e daticert.xml: che cosa sono e come si aprono",
+        "description": "Che cosa c’è dentro un file .p7m e come si apre, che cosa sono postacert.eml, daticert.xml e smime.p7s nei messaggi PEC, quali ricevute conservare come prova e come riconoscere le false PEC.",
+        "inLanguage": "it-IT",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-09-27",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://strumentiutili.it/assets/icon.png"
+          }
+        },
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "mainEntityOfPage": "https://strumentiutili.it/guide/file-p7m-pec-daticert/",
+        "about": [
+          {
+            "@type": "WebApplication",
+            "name": "Apri un file P7M",
+            "url": "https://strumentiutili.it/pdf/apri-file-p7m/"
+          },
+          {
+            "@type": "WebApplication",
+            "name": "Che file è?",
+            "url": "https://strumentiutili.it/utilita-web/che-file-e/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/guide/file-p7m-pec-daticert/#domande",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il PDF estratto da un .p7m ha valore legale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È una copia del documento senza la firma: va bene per leggerlo, stamparlo o inoltrarlo. Il valore legale è nel file .p7m, che va conservato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che differenza c’è fra .p7m e .p7s?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il .p7m contiene documento e firma insieme. Il .p7s contiene solo la firma: il documento firmato è un altro file, spedito insieme. Nella PEC, smime.p7s è la firma del gestore sulla busta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Una PEC vale anche se il destinatario non la apre?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Si considera consegnata quando è disponibile nella casella del destinatario, e la ricevuta di avvenuta consegna viene rilasciata in quel momento, indipendentemente dalla lettura."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso mandare una PEC a un indirizzo email normale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il messaggio parte e ricevi la ricevuta di accettazione, ma non quella di avvenuta consegna: per la prova della consegna servono due indirizzi PEC."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho perso le ricevute di una PEC: c’è rimedio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il gestore conserva il registro dei messaggi per trenta mesi, e le informazioni del registro valgono verso i terzi. Chiedile al tuo gestore."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guide",
+        "item": "https://strumentiutili.it/guide/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "File P7M, PEC e daticert.xml: che cosa sono e come si aprono",
+        "item": "https://strumentiutili.it/guide/file-p7m-pec-daticert/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl xl:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block lg:hidden xl:block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Lavoro</a>
+          <a href="/identita-burocrazia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Identità</a>
+          <a href="/pdf/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">PDF</a>
+          <a href="/ia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">IA</a>
+          <a href="/utilita-web/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Utilità</a>
+        </nav>
+
+        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </form>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <main id="contenuto" class="container mx-auto px-4 py-8 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/guide/" class="hover:text-indigo-600 hover:underline">Guide</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">File P7M, PEC e daticert.xml: che cosa sono e come si aprono</span></li>
+        </ol>
+      </nav>
+  <!-- /su:briciole -->
+
+      <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-10 max-w-3xl mx-auto">
+      <p class="text-sm font-semibold text-indigo-700"><a href="/guide/" class="hover:underline">Guida</a> &middot; Documenti, PEC e firma</p>
+      <h1 class="mt-1 text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">File P7M, PEC e daticert.xml: che cosa sono e come si aprono</h1>
+      <p class="mt-3 text-sm text-gray-500">di <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> &middot; aggiornata il <time datetime="2026-09-27">27 settembre 2026</time> &middot; 6 minuti di lettura</p>
+      <p class="mt-5 text-lg text-gray-700 leading-relaxed">Un documento firmato che il computer non apre, una PEC piena di allegati dai nomi strani, una &laquo;fattura di cortesia&raquo; da un&rsquo;azienda sconosciuta. Questa guida spiega che cosa sono i file .p7m e i file della PEC, come si aprono, che cosa provano le ricevute e come non cadere nelle false PEC.</p>
+      <div class="mt-6 rounded-xl bg-indigo-50 border border-indigo-100 p-5">
+        <h2 class="text-base font-bold text-indigo-900">In breve</h2>
+        <ul class="mt-2 list-disc pl-5 space-y-1.5 text-indigo-950">
+          <li>Un file .p7m &egrave; un documento con firma digitale: dentro c&rsquo;&egrave; il file vero, che si estrae; il valore legale resta nella busta .p7m.</li>
+          <li>In una PEC il messaggio originale &egrave; postacert.eml, i dati di invio e consegna sono in daticert.xml e smime.p7s &egrave; la firma del gestore.</li>
+          <li>La PEC si considera consegnata quando entra nella casella del destinatario, anche se non la legge; ma una PEC pu&ograve; portare allegati truffa come una email qualsiasi.</li>
+        </ul>
+      </div>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+          <span class="text-sm text-gray-700">Fai il conto con i tuoi dati:</span>
+          <a href="/pdf/apri-file-p7m/" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2.5 text-sm">Apri un file P7M <span aria-hidden="true">&rarr;</span></a>
+          <a href="/utilita-web/che-file-e/" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2.5 text-sm">Che file &egrave;? <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+      <h2 id="p7m" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Che cos&rsquo;&egrave; un file P7M</h2>
+      <p>Un file che finisce in <strong>.p7m</strong> &egrave; un documento con <strong>firma digitale</strong> nel formato CAdES: una &laquo;busta&raquo; che contiene il documento originale (di solito un PDF, a volte un XML o un file Word), la firma e il certificato di chi ha firmato. Il nome dice che cosa c&rsquo;&egrave; dentro: <em>contratto.pdf.p7m</em> &egrave; un PDF firmato, <em>IT01234567890_00001.xml.p7m</em> una fattura elettronica firmata.</p>
+      <p>Il computer e il telefono non lo aprono perch&eacute; guardano solo l&rsquo;ultima estensione, .p7m, e non sanno a quale programma darlo. Il documento dentro per&ograve; &egrave; intatto: basta tirarlo fuori dalla busta. Rinominare il file da .p7m a .pdf non serve: la busta resta, e il lettore PDF non la riconosce.</p>
+      <h3 class="text-lg font-bold text-gray-900 pt-3">Come si apre</h3>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>Con lo strumento &laquo;Aprire un file P7M&raquo;</strong> del sito: estrae il documento nel browser, senza caricarlo su un server, e mostra chi ha firmato, quando e con quale certificato, come &egrave; scritto nel file.</li>
+        <li><strong>Con un programma di firma digitale</strong>, come quelli che i prestatori di firma (le aziende che rilasciano i dispositivi, sotto la vigilanza di AgID) mettono a disposizione: aprono il documento e verificano la firma.</li>
+        <li><strong>Un file .p7m.p7m</strong> &egrave; stato firmato due volte, una busta dentro l&rsquo;altra: succede quando firmano due persone una dopo l&rsquo;altra. Si aprono tutte le buste in fila, e le firme sono due.</li>
+      </ul>
+      <h3 class="text-lg font-bold text-gray-900 pt-3">Aprire non &egrave; verificare</h3>
+      <p>Estrarre il documento serve a leggerlo. <strong>Verificare</strong> la firma &egrave; un&rsquo;altra cosa: vuol dire controllare, con la crittografia, che il documento non sia stato modificato dopo la firma e che il certificato del firmatario fosse valido, non scaduto n&eacute; revocato, nel momento in cui ha firmato. Lo fanno i programmi di verifica, non un semplice lettore. E il valore legale sta nella busta: conserva il file .p7m, non solo il PDF estratto, che &egrave; una copia senza firma.</p>
+      <p>Esiste anche la firma digitale <strong>PAdES</strong>, messa dentro il PDF: il file resta .pdf, si apre normalmente e il lettore mostra il pannello delle firme. Ha lo stesso valore della CAdES; cambia solo la confezione.</p>
+      <h2 id="pec" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Che cosa c&rsquo;&egrave; dentro un messaggio PEC</h2>
+      <p>La PEC, posta elettronica certificata, &egrave; una email con ricevute: il gestore del mittente e quello del destinatario rilasciano ricevute firmate che provano l&rsquo;invio e la consegna, con data e ora. Per il Codice dell&rsquo;amministrazione digitale la trasmissione con PEC <strong>equivale alla notificazione per mezzo della posta</strong>, salvo che la legge disponga diversamente, e data e ora di invio e ricezione sono opponibili ai terzi.</p>
+      <p>Il messaggio che arriva al destinatario non &egrave; l&rsquo;email originale ma una <strong>busta di trasporto</strong>, creata e firmata dal gestore del mittente. Dentro ci sono file con nomi fissati dalle regole tecniche:</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200">
+          <caption class="text-left text-sm font-semibold text-gray-700 pb-2">I file di un messaggio PEC</caption>
+          <thead class="bg-gray-50 text-left"><tr><th scope="col" class="p-2.5 font-semibold text-gray-900">File</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Che cos&rsquo;&egrave;</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Che cosa farne</th></tr></thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">postacert.eml</th><td class="p-2.5 tabular-nums">Il messaggio originale, immodificato, con testo e allegati</td><td class="p-2.5 tabular-nums">Aprilo con il programma di posta: gli allegati veri sono qui dentro</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">daticert.xml</th><td class="p-2.5 tabular-nums">I dati di certificazione: mittente, destinatari, oggetto, data e ora, identificativo del messaggio</td><td class="p-2.5 tabular-nums">Non serve aprirlo; se vuoi, si legge con il browser</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">smime.p7s</th><td class="p-2.5 tabular-nums">La firma del gestore sulla busta, che garantisce che niente &egrave; stato cambiato</td><td class="p-2.5 tabular-nums">Non si apre: serve al programma di posta per controllare la busta</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Quando la webmail o il programma di posta non gestiscono bene la PEC, questi file compaiono come allegati separati, a volte senza estensione. &laquo;Che file &egrave;?&raquo; li riconosce dal contenuto:</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200">
+          <caption class="text-left text-sm font-semibold text-gray-700 pb-2">Tre allegati di una PEC riconosciuti dal contenuto</caption>
+          <thead class="bg-gray-50 text-left"><tr><th scope="col" class="p-2.5 font-semibold text-gray-900">Nome ricevuto</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Che cos&rsquo;&egrave;</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Nome giusto</th></tr></thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">allegato (senza estensione)</th><td class="p-2.5 tabular-nums">Messaggio di posta certificata (PEC)</td><td class="p-2.5 tabular-nums">allegato.eml</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">daticert.xml</th><td class="p-2.5 tabular-nums">Ricevuta della PEC (daticert.xml)</td><td class="p-2.5 tabular-nums">daticert.xml</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">fattura_cortesia.pdf</th><td class="p-2.5 tabular-nums">Programma per Windows (EXE)</td><td class="p-2.5 tabular-nums"><strong>non aprirlo</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>L&rsquo;ultima riga &egrave; il motivo per cui conviene guardare dentro i file prima di aprirli: per lo strumento quel &laquo;PDF&raquo; &egrave; un programma, e l&rsquo;avviso &egrave; esplicito: &laquo;Il nome dice .pdf ma dentro c’è un programma: è un trucco usato nelle truffe per far aprire un virus. Non aprirlo.&raquo;</p>
+      <h2 id="ricevute" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Le ricevute: che cosa provano e quali conservare</h2>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>Ricevuta di accettazione:</strong> la rilascia il tuo gestore quando il messaggio parte. Contiene i dati di certificazione ed &egrave; la prova della spedizione.</li>
+        <li><strong>Ricevuta di avvenuta consegna:</strong> la rilascia il gestore del destinatario quando il messaggio entra nella sua casella, <em>indipendentemente dal fatto che lo legga</em>. &Egrave; la prova della consegna, con il momento esatto.</li>
+        <li><strong>Avviso di mancata consegna:</strong> il messaggio non &egrave; arrivato, per esempio perch&eacute; la casella &egrave; piena o l&rsquo;indirizzo non esiste. Se entro dodici ore il gestore del destinatario non ha risposto, il tuo gestore ti avvisa che la consegna potrebbe non riuscire.</li>
+      </ul>
+      <p>La ricevuta di consegna pu&ograve; essere <strong>completa</strong> (allega anche il messaggio originale con i suoi allegati), <strong>breve</strong> (allega un estratto) o <strong>sintetica</strong> (solo i dati di certificazione). La completa &egrave; la pi&ugrave; utile come prova, perch&eacute; mostra anche che cosa hai mandato; si sceglie nelle impostazioni della casella.</p>
+      <p>Conserva il messaggio inviato e le ricevute come <strong>file</strong> (.eml), non solo stampati: la prova sta nella firma del gestore, che la stampa perde. Se le ricevute vanno perse, il gestore conserva per trenta mesi il registro dei messaggi, e quelle informazioni valgono verso i terzi.</p>
+      <p>Mandare una PEC a un indirizzo email normale si pu&ograve;, ma la ricevuta di consegna non arriva: il gestore di una casella ordinaria non la rilascia. Per avere la prova della consegna servono due indirizzi PEC.</p>
+      <h2 id="false-pec" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">PEC vere e PEC false</h2>
+      <p>La PEC certifica chi ha spedito il messaggio e quando, non che sia onesto. La Polizia Postale ha segnalato campagne di PEC spedite da aziende &laquo;fantasma&raquo;, con oggetto come &laquo;Emissione fattura&raquo; e un testo che imita quello delle fatture elettroniche vere (&laquo;vi trasmettiamo copia PDF di cortesia della fattura&raquo;). Aprire il finto PDF allegato pu&ograve; installare un virus o un ransomware, che rende inutilizzabili i file del computer.</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li>Se il mittente &egrave; sconosciuto, <strong>non aprire l&rsquo;allegato</strong>. Se &egrave; un&rsquo;azienda o una persona che conosci ma il file non te lo aspettavi, chiedi conferma per un&rsquo;altra via, per esempio al telefono.</li>
+        <li>Controlla che cosa &egrave; davvero l&rsquo;allegato: &laquo;Che file &egrave;?&raquo; lo legge nel browser senza aprirlo n&eacute; eseguirlo.</li>
+        <li>Proteggi la casella: una password lunga e diversa da quella degli altri account, e l&rsquo;accesso in due passaggi con un codice sul telefono, dove il gestore lo offre.</li>
+        <li>Fai copie di sicurezza dei file e tieni aggiornato il sistema operativo: sono i consigli della Polizia Postale contro i ransomware.</li>
+      </ul>
+      </div>
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+      </div>
+      <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+      <h2 id="errori" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Errori comuni</h2>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li>Conservare solo il PDF estratto e cancellare il file .p7m, che &egrave; quello con la firma.</li>
+        <li>Pensare che aprire un .p7m voglia dire averne verificato la firma.</li>
+        <li>Rinominare il file da .p7m a .pdf sperando che si apra.</li>
+        <li>Stampare le ricevute PEC invece di salvarle come file.</li>
+        <li>Aprire l&rsquo;allegato di una PEC solo perch&eacute; &egrave; una PEC.</li>
+      </ul>
+      <h2 id="domande" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Domande frequenti</h2>
+      <div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF estratto da un .p7m ha valore legale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">&Egrave; una copia del documento senza la firma: va bene per leggerlo, stamparlo o inoltrarlo. Il valore legale &egrave; nel file .p7m, che va conservato.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che differenza c&rsquo;&egrave; fra .p7m e .p7s?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">Il .p7m contiene documento e firma insieme. Il .p7s contiene solo la firma: il documento firmato &egrave; un altro file, spedito insieme. Nella PEC, smime.p7s &egrave; la firma del gestore sulla busta.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Una PEC vale anche se il destinatario non la apre?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">S&igrave;. Si considera consegnata quando &egrave; disponibile nella casella del destinatario, e la ricevuta di avvenuta consegna viene rilasciata in quel momento, indipendentemente dalla lettura.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso mandare una PEC a un indirizzo email normale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">Il messaggio parte e ricevi la ricevuta di accettazione, ma non quella di avvenuta consegna: per la prova della consegna servono due indirizzi PEC.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho perso le ricevute di una PEC: c&rsquo;&egrave; rimedio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">Il gestore conserva il registro dei messaggi per trenta mesi, e le informazioni del registro valgono verso i terzi. Chiedile al tuo gestore.</p>
+        </details>
+      </div>
+      <h2 id="fonti" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Fonti ufficiali</h2>
+      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-03-07;82~art45" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 7 marzo 2005, n. 82, art. 45</a>: quando un documento trasmesso si considera spedito e consegnato.</li>
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-03-07;82~art48" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 7 marzo 2005, n. 82, art. 48</a>: la PEC equivale alla notificazione per posta.</li>
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2005-02-11;68~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 11 febbraio 2005, n. 68, art. 6</a>: ricevute di accettazione e di avvenuta consegna.</li>
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2005-02-11;68~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 11 febbraio 2005, n. 68, art. 11</a>: registro dei messaggi conservato per trenta mesi.</li>
+        <li><a href="https://www.agid.gov.it/sites/default/files/repository_files/leggi_decreti_direttive/pec_regole_tecniche_dm_2-nov-2005.pdf" class="text-indigo-700 underline" target="_blank" rel="noopener">Regole tecniche della posta elettronica certificata (D.M. 2 novembre 2005)</a>, AgID: busta di trasporto, postacert.eml, daticert.xml e tipi di ricevuta.</li>
+        <li><a href="https://www.agid.gov.it/it/piattaforme/firma-elettronica-qualificata/ottenere-firma-elettronica" class="text-indigo-700 underline" target="_blank" rel="noopener">AgID, &laquo;Ottenere la firma elettronica&raquo;</a>: prestatori di firma e firma locale o remota.</li>
+        <li><a href="https://www.commissariatodips.it/notizie/articolo/nuovo-fenomeno-di-spammingattenzione-agli-allegati-ricevuti-da-false-pec/index.html" class="text-indigo-700 underline" target="_blank" rel="noopener">Polizia Postale, &laquo;Attenzione agli allegati ricevuti da false PEC&raquo;</a>.</li>
+      </ul>
+      <p class="text-sm text-gray-600">Le cifre degli esempi sono calcolate con gli stessi motori degli strumenti del sito, sulle regole in vigore alla data di aggiornamento. Come le controlliamo: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Questa guida non sostituisce il parere di un professionista.</p>
+      </div>
+      <nav aria-label="Altre guide" class="mt-10 border-t border-gray-100 pt-6">
+        <h2 class="text-lg font-bold text-gray-900">Leggi anche</h2>
+        <ul class="mt-3 space-y-2">
+          <li><a href="/guide/firma-digitale-elettronica-differenze/" class="font-semibold text-indigo-700 hover:underline">Firma digitale, elettronica o disegnata: le differenze e quando vale</a></li>
+          <li><a href="/guide/file-non-si-apre/" class="font-semibold text-indigo-700 hover:underline">Il file non si apre: estensioni, formati e allegati truffa</a></li>
+        </ul>
+      </nav>
+      </article>
+  </main>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/guide/" class="hover:text-indigo-600 transition-colors">Guide pratiche</a></li>
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/metodo/" class="hover:text-indigo-600 transition-colors">Come verifichiamo i dati</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li><a href="/mappa-del-sito/" class="hover:text-indigo-600 transition-colors">Mappa del sito</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

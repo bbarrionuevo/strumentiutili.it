@@ -58,7 +58,8 @@ test('preavviso di dimissioni: i mesi non sconfinano', () => {
 // dell'Agenzia delle Entrate, prima e dopo il 1° settembre 2024.
 test('ravvedimento: misure nuove e precedenti al 1° settembre 2024', () => {
   const regole = JSON.parse(leggi('data/regole-fiscali-2026.json')).ravvedimento;
-  const calcola = new Function('configRavv', funzione(leggi('js/ravvedimento.js'), 'calcolaSanzioneRidotta') + '; return calcolaSanzioneRidotta;')(regole);
+  const R = require('../js/ravvedimento-calcolo.js');
+  const calcola = (g, scad) => R.sanzioneRidotta(g, scad, regole);
   const pct = (g, scad) => Math.round(calcola(g, scad).aliquota * 10000) / 100;
   // dal 1° settembre 2024
   assert.deepStrictEqual([2, 20, 60, 200, 500].map((g) => pct(g, '2025-06-16')), [0.17, 1.25, 1.39, 3.13, 3.57]);

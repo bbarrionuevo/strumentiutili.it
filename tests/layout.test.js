@@ -141,6 +141,16 @@ test('le briciole di pane ci sono e dicono il percorso giusto', () => {
   assert.deepStrictEqual(problemi, []);
 });
 
+test('le briciole scrivono gli accenti, non le entita', () => {
+  // i titoli delle guide usano &rsquo; e &ugrave;: se testoSemplice non li
+  // decodifica, esc li scrive per intero («pi&ugrave;» a video)
+  assert.strictEqual(L.testoSemplice('SdI pi&ugrave; comuni, d&rsquo;affitto, 10&#8364;'), 'SdI più comuni, d’affitto, 10€');
+  const doppie = PAGINE
+    .filter((p) => /&amp;(rsquo|lsquo|egrave|agrave|ugrave|ograve|eacute|igrave|laquo|raquo|deg|times|euro|hellip|nbsp);/.test(p.html))
+    .map((p) => p.rel);
+  assert.deepStrictEqual(doppie, []);
+});
+
 test('non resta nessun vecchio link "torna a"', () => {
   const problemi = PAGINE
     .filter((p) => /<a [^>]*>\s*←/.test(p.html))

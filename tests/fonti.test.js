@@ -39,6 +39,8 @@ test('le citazioni diventano collegamenti, senza indovinare', () => {
   assert.deepStrictEqual(r.usati, ['https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131']);
   const due = F.collegaVoce('D.Lgs. 30 dicembre 2023, n. 216, e Legge 30 dicembre 2024, n. 207: tre scaglioni.');
   assert.strictEqual(due.usati.length, 2);
+  const eidas = F.collegaVoce('Regolamento UE n. 910/2014 (eIDAS), art. 25.');
+  assert.deepStrictEqual(eidas.usati, ['https://eur-lex.europa.eu/eli/reg/2014/910/oj/ita']);
   const niente = F.collegaVoce('Indici FOI senza tabacchi pubblicati dall&rsquo;ISTAT.');
   assert.deepStrictEqual(niente.usati, []);
   // gia' collegata: resta com'e'

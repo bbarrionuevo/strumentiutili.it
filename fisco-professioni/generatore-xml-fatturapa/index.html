@@ -372,7 +372,7 @@
               <input data-guida="guida-xml-sdi" aria-describedby="guida-xml-sdi" type="text" id="cliente-sdi" required maxlength="7" value="0000000" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 font-mono su-save-state" placeholder="7 caratteri (es. M5UXCR1 o 0000000)" />
               <div id="guida-xml-sdi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Dove trovarlo:</strong> il codice di 7 caratteri che il cliente ha registrato presso l'Agenzia o quello del suo software di fatturazione, di solito indicato nella visura o chiesto per email. Le pubbliche amministrazioni usano un codice ufficio di 6 caratteri.</p>
-                <p><strong class="text-indigo-900">Se non lo conosci:</strong> usa 0000000: la fattura arriva nell'area riservata del cliente o alla PEC registrata. Un codice sbagliato non causa lo scarto ma una mancata consegna.</p>
+                <p><strong class="text-indigo-900">Se non lo conosci:</strong> usa 0000000: la fattura arriva nell'area riservata del cliente o alla PEC registrata. Un codice che non esiste o non è attivo causa lo scarto (errori 00311 e 00312); un codice esistente ma di un altro soggetto manda la fattura al canale sbagliato.</p>
               </div>
             </div>
             <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-6 gap-3">
@@ -512,6 +512,9 @@
         </div>
         <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti collegati</h2>
+          <!-- su:guida -->
+          <p class="mb-3 text-sm"><a href="/guide/fattura-elettronica-scartata/" class="font-semibold text-indigo-700 hover:underline"><span aria-hidden="true">📖</span> Guida: Fattura elettronica scartata: codici di errore SdI</a></p>
+          <!-- /su:guida -->
           <ul class="space-y-3 text-sm font-bold text-gray-600">
             <li><a href="/fisco-professioni/fattura-elettronica/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔒</span> Visualizzatore Fattura XML</a></li>
             <li><a href="/fisco-professioni/calcolo-iva/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">✂️</span> Calcolo Scorporo IVA</a></li>
