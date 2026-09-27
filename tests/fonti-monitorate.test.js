@@ -152,6 +152,20 @@ test('la sentinella gira ogni settimana, non scrive su main e non passa testo es
   assert.ok(!fs.existsSync(path.join(RADICE, '.github', 'workflows', 'controlla-collegamenti.yml')), 'i collegamenti li controlla la sentinella');
 });
 
+// L'unica cosa che arriva su main senza pull request sono i dati vivi,
+// scritti da un workflow dopo controlli e test, e solo nella loro cartella.
+test('solo i dati vivi arrivano su main senza pull request', () => {
+  const cartella = path.join(RADICE, '.github', 'workflows');
+  for (const nome of fs.readdirSync(cartella)) {
+    const w = fs.readFileSync(path.join(cartella, nome), 'utf8');
+    if (!/HEAD:main|refs\/heads\/main/.test(w)) continue;
+    const dir = (w.match(/git add -A (data\/vivi\/[a-z0-9-]+)\s*$/m) || [])[1];
+    assert.ok(dir, `${nome}: su main si scrive solo una cartella di data/vivi/`);
+    assert.ok(w.includes(`grep -v '^${dir}/'`), `${nome}: manca il controllo che blocca file fuori da ${dir}`);
+    assert.match(w, /node --test /, `${nome}: i test devono girare prima di scrivere su main`);
+  }
+});
+
 test('archivio e istruzioni per la manutenzione non finiscono online', () => {
   const ignora = leggi('.vercelignore');
   for (const voce of ['fonti/', 'CLAUDE.md', '.claude/']) assert.match(ignora, new RegExp('^/?' + voce.replace('.', '\\.') + '$', 'm'), voce);

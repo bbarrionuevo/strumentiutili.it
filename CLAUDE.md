@@ -8,6 +8,9 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
 - **Consentimiento de cookies:** Google AdSense exige el cartel de aceptar o rechazar, y ya lo configuró Brian en Google. No tocar la carga de los anuncios ni el consentimiento sin necesidad.
 - **Privacidad:** no publicar el email de Brian. Los campos con código fiscal o IBAN no se guardan en el navegador (regex `SENSIBILE` en `js/storage-helper.js`).
 - **Nada llega a `main` sin una pull request con CI y Vercel en verde.**
+  - Única excepción: los datos vivos (`data/vivi/<nombre>/`) que un workflow actualiza solo, como los precios de los carburantes.
+  - Ese workflow valida los datos, corre los tests y solo puede escribir en su carpeta: lo comprueba un test.
+  - El código y las páginas siguen pasando por PR.
 
 ## Idiomas
 - Textos del sitio: italiano llano. Comentarios del código: italiano.
