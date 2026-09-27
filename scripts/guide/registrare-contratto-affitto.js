@@ -100,6 +100,7 @@ module.exports = function (ctx) {
       'In ritardo: sanzione del ' + pct(S.entro30giorni.percentuale) + ' o del ' + pct(S.oltre30giorni.percentuale) + ' con minimi di ' + euro(S.entro30giorni.minimo, 0) + ' e ' + euro(S.oltre30giorni.minimo, 0) + ', ridotta molto dal ravvedimento.'
     ],
     strumenti: [
+      { href: '/cittadino-tasse/contratto-affitto-canone-concordato/', testo: 'Prepara il contratto sul modello ministeriale' },
       { href: '/cittadino-tasse/modello-rli/', testo: 'Compila il modello RLI' },
       { href: '/cittadino-tasse/imposta-registro-locazioni/', testo: 'Cedolare secca o registro?' }
     ],
