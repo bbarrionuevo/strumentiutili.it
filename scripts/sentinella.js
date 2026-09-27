@@ -280,6 +280,7 @@ async function main() {
     for (const u of indirizziIn(regole)) if (urn(u)) norme.add(u);
     for (const s of registro.scadenze || []) if (s.fonte && urn(s.fonte)) norme.add(s.fonte);
     let formaIgnota = 0;
+    const articoliLetti = [];
     for (const url of [...norme].sort()) {
       lavori.push((async () => {
         const rel = 'normattiva/' + fileNormattiva(url);
@@ -296,7 +297,17 @@ async function main() {
         const articolo = url.includes('~art');
         const righe = articolo ? C.articoloNormattiva(html) : C.attoNormattiva(html);
         if (!righe) { formaIgnota++; conta('normattiva', 'errori'); errori.push(`normattiva: pagina di forma sconosciuta ${url}`); return; }
+        const chiesto = C.articoloChiesto(url);
+        const mostrato = articolo ? C.numeroArticolo(righe) : null;
+        if (chiesto && mostrato && chiesto !== mostrato) {
+          conta('normattiva', 'controllate');
+          if (aggiorna) { errori.push(`normattiva: mostra l'art. ${mostrato} invece dell'art. ${chiesto} ${url}`); return; }
+          return esito({ id: 'sbagliato:' + url, tipo: 'articolo-sbagliato', titolo: `Collegamento all'articolo sbagliato: ${url.split('?')[1] || url}`,
+            url, impronta: mostrato, pagine,
+            corpo: `Il collegamento chiede l'art. ${chiesto}, ma Normattiva mostra l'art. ${mostrato}. Succede con i testi unici allegati a un decreto: l'URN giusto indica l'allegato (per esempio \`;346:1~art17\` invece di \`;346~art17\`). Verificare l'indirizzo con leggi-fonti in modo stato e correggerlo nelle pagine.` + elencoPagine(pagine) });
+        }
         const id = 'norma:' + rel;
+        if (articolo) articoliLetti.push({ url, righe, pagine });
         const diff = confronta('normattiva', rel, righe, id);
         if (!diff) return;
         esito({ id, tipo: articolo ? 'articolo-cambiato' : 'atto-aggiornato',
@@ -360,6 +371,28 @@ async function main() {
     }
 
     await Promise.all(lavori);
+
+    // Articoli citati che cambiano in una data futura o sono gia' abrogati
+    if (!aggiorna) {
+      const V = C.vigenzeDaSegnalare(articoliLetti, oggi);
+      const riga = (a) => `- [${a.url.split('?')[1]}](${a.url}) — ${a.righe.slice(1, 3).join(' · ').slice(0, 240)}` +
+        (a.pagine.length ? `\n  pagine: ${a.pagine.map((p) => '`' + p + '`').join(', ')}` : '');
+      for (const g of V.futuri) {
+        const leggi = [...new Set(g.articoli.map((a) => a.da).filter(Boolean))];
+        esito({ id: 'futura:' + g.dal, tipo: 'versione-futura', titolo: `Dal ${g.dal} cambiano ${g.articoli.length} articoli citati dal sito`,
+          url: '', impronta: C.impronta(g.articoli.map((a) => a.url + '\n' + a.righe.join('\n')).join('\n')),
+          corpo: `Normattiva ha gia' pubblicato il testo che questi articoli avranno dal ${g.dal}` +
+            (leggi.length ? ` (abrogazioni disposte da: ${leggi.join('; ')})` : '') +
+            '. Prima di quella data vanno controllate le pagine che li citano: riferimenti da spostare al nuovo testo, regole che cambiano.\n\n' +
+            g.articoli.map(riga).join('\n') });
+      }
+      for (const g of V.abrogati) {
+        esito({ id: 'abrogata:' + g.da, tipo: 'norma-abrogata', titolo: `Articoli citati abrogati dal ${g.da}`,
+          url: '', impronta: C.impronta(g.articoli.map((a) => a.url).join('\n')),
+          corpo: `Il sito cita articoli che non sono piu' in vigore (abrogati dal ${g.da}). Vanno sostituiti con le norme che li hanno rimpiazzati:\n\n` +
+            g.articoli.map(riga).join('\n') });
+      }
+    }
 
     if (formaIgnota >= 5 && !aggiorna) {
       esito({ id: 'forma:normattiva', tipo: 'forma-cambiata', titolo: 'Normattiva ha cambiato la forma delle pagine', url: 'https://www.normattiva.it/', impronta: 'normattiva',

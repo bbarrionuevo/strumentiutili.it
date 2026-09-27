@@ -62,8 +62,14 @@ function articoloNormattiva(html) {
   const s = String(html || '');
   const inizio = s.search(/Testo in vigore dal:/);
   if (inizio < 0) return null;
-  const fineTesto = s.indexOf('articolo precedente', inizio);
-  if (fineTesto < 0) return null;
+  // l'articolo finisce al primo pulsante di navigazione (il primo articolo di
+  // un atto non ha "articolo precedente"); si cerca il pulsante, non le parole,
+  // che possono stare anche nel testo ("di cui all'articolo precedente")
+  const pulsante = /class="btn"\s*>\s*articolo (precedente|successivo)/g;
+  pulsante.lastIndex = inizio;
+  const trovato = pulsante.exec(s);
+  if (!trovato) return null;
+  const fineTesto = trovato.index;
   const tag = s.lastIndexOf('<a', fineTesto);
   const pezzo = s.slice(inizio, tag > inizio ? tag : fineTesto);
   const righe = testoDaHtml(pezzo).filter((r) => !/^aggiornamenti all'articolo$/i.test(r));
@@ -73,6 +79,62 @@ function articoloNormattiva(html) {
   }
   if (righe.length < 2 || !/^Testo in vigore dal: \d/.test(righe[0])) return null;
   return righe;
+}
+
+/**
+ * Il numero dell'articolo mostrato ("Art. 4-bis" -> "4bis") e quello chiesto
+ * nell'indirizzo ("~art4bis" -> "4bis"). Se non coincidono, il collegamento
+ * porta all'articolo sbagliato: succede con i testi unici allegati a un
+ * decreto, dove "~art17" apre l'art. 1 del decreto che li approva.
+ */
+function numeroArticolo(righe) {
+  // "Art. 4-bis", oppure per un testo unico allegato "(Testo Unico ... - Art. 17)"
+  const r = (righe || []).map((x) => x.match(/^(?:\(?.* - )?Art\.\s*(\d+(?:[\s-]*(?:bis|ter|quater|quinquies|sexies|septies|octies|novies|decies))?)\b/)).find(Boolean);
+  return r ? r[1].replace(/[\s-]/g, '').toLowerCase() : null;
+}
+
+function articoloChiesto(url) {
+  const m = String(url).match(/~art(\d+[a-z]*)/i);
+  return m ? m[1].toLowerCase() : null;
+}
+
+/** "Testo in vigore dal: 1-1-2027" -> "2027-01-01" (null se manca). */
+function vigoreDal(righe) {
+  const m = String((righe || [])[0] || '').match(/^Testo in vigore dal: (\d{1,2})-(\d{1,2})-(\d{4})$/);
+  return m ? `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}` : null;
+}
+
+/** "((ARTICOLO ABROGATO DAL D.LGS. 19 GENNAIO 2026, N. 10 ))" -> "D.LGS. 19 GENNAIO 2026, N. 10" */
+function abrogatoDa(righe) {
+  const m = (righe || []).join('\n').match(/\(\((?:ARTICOLO|PROVVEDIMENTO) ABROGATO DA(?:L|LLA|LLO)? ([^)]+?)\s*\)\)/);
+  return m ? m[1].trim() : null;
+}
+
+/**
+ * Normattiva mostra l'ultima versione approvata di un articolo, anche se
+ * entra in vigore piu' avanti: "Testo in vigore dal: 1-1-2027". Qui si
+ * raggruppano gli articoli citati dal sito che cambiano (o sono abrogati) in
+ * una data futura, e quelli gia' abrogati, per legge che li abroga: una
+ * segnalazione per gruppo, con tutte le pagine da rivedere.
+ */
+function vigenzeDaSegnalare(articoli, oggi) {
+  const futuri = new Map(), abrogati = new Map();
+  for (const a of articoli) {
+    const dal = vigoreDal(a.righe);
+    const da = abrogatoDa(a.righe);
+    if (dal && dal > oggi) {
+      if (!futuri.has(dal)) futuri.set(dal, []);
+      futuri.get(dal).push({ ...a, dal, da });
+    } else if (da) {
+      if (!abrogati.has(da)) abrogati.set(da, []);
+      abrogati.get(da).push({ ...a, dal, da });
+    }
+  }
+  const ordina = (v) => v.sort((x, y) => x.url.localeCompare(y.url));
+  return {
+    futuri: [...futuri].sort().map(([dal, v]) => ({ dal, articoli: ordina(v) })),
+    abrogati: [...abrogati].sort().map(([da, v]) => ({ da, articoli: ordina(v) }))
+  };
 }
 
 /**
@@ -302,13 +364,14 @@ function scadenzeDovute(registro, regole, oggi, titoli = {}) {
  * ancora, o un atto e' stato aggiornato in articoli che il sito non cita.
  */
 function classifica(esito) {
-  const alta = ['modello-cambiato', 'modello-sparito', 'elenco-modelli-cambiato', 'articolo-cambiato', 'pdf-cambiato',
+  const alta = ['modello-cambiato', 'modello-sparito', 'elenco-modelli-cambiato', 'articolo-cambiato', 'articolo-sbagliato', 'versione-futura', 'norma-abrogata', 'pdf-cambiato',
     'cifra-sparita', 'collegamento-rotto', 'scadenza', 'forma-cambiata', 'cieca'];
   return alta.includes(esito.tipo) ? 'alta' : 'bassa';
 }
 
 module.exports = {
-  decodificaEntita, testoDaHtml, articoloNormattiva, attoNormattiva, paginaErrore,
+  decodificaEntita, testoDaHtml, articoloNormattiva, numeroArticolo, articoloChiesto, vigoreDal, abrogatoDa, vigenzeDaSegnalare,
+  attoNormattiva, paginaErrore,
   righeConCifre, collegamentiDocumenti, impronta, diffRighe, espressioniMancanti,
   isoValida, aggiungiMesi, occorrenza, valore, scadenzeDovute, classifica
 };
