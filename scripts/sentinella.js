@@ -296,7 +296,12 @@ async function main() {
         if (guasta(r)) return;
         const articolo = url.includes('~art');
         const righe = articolo ? C.articoloNormattiva(html) : C.attoNormattiva(html);
-        if (!righe) { formaIgnota++; conta('normattiva', 'errori'); errori.push(`normattiva: pagina di forma sconosciuta ${url}`); return; }
+        if (!righe) {
+          formaIgnota++;
+          conta('normattiva', 'errori');
+          errori.push(`normattiva: pagina di forma sconosciuta ${url}` + (formaIgnota <= 3 ? `\n      ${C.indizioForma(html)}` : ''));
+          return;
+        }
         const chiesto = C.articoloChiesto(url);
         const mostrato = articolo ? C.numeroArticolo(righe) : null;
         if (chiesto && mostrato && chiesto !== mostrato) {

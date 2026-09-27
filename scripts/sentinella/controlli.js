@@ -65,11 +65,13 @@ function articoloNormattiva(html) {
   // l'articolo finisce al primo pulsante di navigazione (il primo articolo di
   // un atto non ha "articolo precedente"); si cerca il pulsante, non le parole,
   // che possono stare anche nel testo ("di cui all'articolo precedente")
-  const pulsante = /class="btn"\s*>\s*articolo (precedente|successivo)/g;
+  const pulsante = /class=["']btn["'][^>]*>(?:\s|<[^>]*>|&nbsp;|&#160;)*articolo (?:precedente|successivo)/g;
   pulsante.lastIndex = inizio;
   const trovato = pulsante.exec(s);
-  if (!trovato) return null;
-  const fineTesto = trovato.index;
+  // se la forma del pulsante cambia, si ripiega sulle parole
+  const fineTesto = trovato ? trovato.index
+    : Math.min(...['articolo precedente', 'articolo successivo'].map((m) => s.indexOf(m, inizio)).filter((i) => i >= 0), Infinity);
+  if (!Number.isFinite(fineTesto)) return null;
   const tag = s.lastIndexOf('<a', fineTesto);
   const pezzo = s.slice(inizio, tag > inizio ? tag : fineTesto);
   const righe = testoDaHtml(pezzo).filter((r) => !/^aggiornamenti all'articolo$/i.test(r));
@@ -148,6 +150,14 @@ function attoNormattiva(html) {
   if (!nome) return null;
   const agg = righe.map((r) => r.match(/Ultimo aggiornamento all'atto pubblicato il (\d{2}\/\d{2}\/\d{4})/)).find(Boolean);
   return [nome, agg ? "Ultimo aggiornamento all'atto: " + agg[1] : "Nessun aggiornamento all'atto indicato"];
+}
+
+/** Un pezzo della pagina attorno alla fine dell'articolo, per capire perche' non e' stata riconosciuta. */
+function indizioForma(html) {
+  const s = String(html || '');
+  const i = s.indexOf('articolo precedente', Math.max(0, s.search(/Testo in vigore dal:/)));
+  const j = i >= 0 ? i : s.indexOf('articolo successivo');
+  return j < 0 ? '(nessun pulsante di navigazione)' : s.slice(Math.max(0, j - 160), j + 30).replace(/\s+/g, ' ');
 }
 
 /** Normattiva risponde 200 anche per un atto che non esiste: lo si riconosce dal testo. */
@@ -371,7 +381,7 @@ function classifica(esito) {
 
 module.exports = {
   decodificaEntita, testoDaHtml, articoloNormattiva, numeroArticolo, articoloChiesto, vigoreDal, abrogatoDa, vigenzeDaSegnalare,
-  attoNormattiva, paginaErrore,
+  attoNormattiva, paginaErrore, indizioForma,
   righeConCifre, collegamentiDocumenti, impronta, diffRighe, espressioniMancanti,
   isoValida, aggiungiMesi, occorrenza, valore, scadenzeDovute, classifica
 };
