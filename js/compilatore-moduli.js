@@ -143,14 +143,20 @@
     return Math.min(Math.max(n || 1, 1), gruppo.righe.length);
   }
 
-  /** Valuta la condizione "showIf" di un campo rispetto ai valori del suo passo. */
+  /**
+   * Valuta la condizione "showIf" di un campo rispetto ai valori del suo passo.
+   * Puo' essere una condizione sola o un elenco, e allora devono valere tutte:
+   * il codice fiscale del coniuge serve solo se si chiede l'esenzione E si e'
+   * sposati.
+   */
   function visibile(campo, passo) {
-    const cond = campo.showIf;
-    if (!cond) return true;
-    const valore = leggi(chiave(passo.id, cond.campo));
-    if (cond.vero !== undefined) return Boolean(valore) === cond.vero;
-    if (Array.isArray(cond.in)) return cond.in.includes(valore);
-    return true;
+    if (!campo.showIf) return true;
+    return [].concat(campo.showIf).every((cond) => {
+      const valore = leggi(chiave(passo.id, cond.campo));
+      if (cond.vero !== undefined) return Boolean(valore) === cond.vero;
+      if (Array.isArray(cond.in)) return cond.in.includes(valore);
+      return true;
+    });
   }
 
   function obbligatorio(campo, passo) {

@@ -13,5 +13,6 @@ module.exports = [
   require('./file-non-si-apre.js'),
   require('./regime-forfettario.js'),
   require('./scarti-fattura-elettronica.js'),
-  require('./ravvedimento-operoso.js')
+  require('./ravvedimento-operoso.js'),
+  require('./canone-rai.js')
 ];

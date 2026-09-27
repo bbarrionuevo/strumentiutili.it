@@ -1,0 +1,277 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi della dichiarazione sostitutiva relativa al canone TV (modello e istruzioni pubblicati dall'Agenzia delle Entrate nella pagina Canone TV - Modelli e istruzioni), creati da scripts/prepara-moduli-canone-tv.py. I testi di aiuto sono tratti dalle istruzioni ufficiali.",
+ "tabelle": {},
+ "modelli": {
+  "CANONE": {
+   "codice": "Canone TV",
+   "nome": "Dichiarazione sostitutiva relativa al canone TV",
+   "sottotitolo": "Quadri A, B e C - chi ha un contratto della luce per la casa",
+   "descrizione": "Il modello con cui il titolare di un'utenza elettrica domestica dichiara di non avere il televisore (quadro A), che il canone lo paga un altro componente della famiglia (quadro B) o che una dichiarazione precedente non vale piu' (quadro C).",
+   "pdf": "/assets/pdf/modello-canone-tv-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-canone-tv.pdf",
+   "testata": {
+    "riferimentoNomeFile": "dichiarante.codiceFiscale",
+    "copie": [
+     {
+      "da": "dichiarante.codiceFiscale",
+      "tipo": "cf",
+      "a": [
+       "codice_fiscale_testata"
+      ]
+     }
+    ]
+   },
+   "passi": [
+    {
+     "id": "quadro",
+     "titolo": "Che cosa dichiari",
+     "descrizione": "Il modello ha tre quadri alternativi: se ne compila uno solo. Il compilatore barra da solo anche la casella del quadro nel riquadro «Quadri compilati».",
+     "campi": [
+      {
+       "id": "quadro",
+       "type": "radioX",
+       "label": "Quadro da compilare",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "A",
+         "label": "Quadro A - In casa non c'e' nessun televisore",
+         "help": "E' la cosiddetta disdetta. Vale per un anno: se non compri un televisore va ripresentata ogni anno.",
+         "pdf": "quadro_a"
+        },
+        {
+         "value": "B",
+         "label": "Quadro B - Il canone lo paga gia' un altro componente della famiglia",
+         "help": "Per esempio due persone della stessa famiglia anagrafica con due contratti della luce separati: il canone e' uno solo.",
+         "pdf": "quadro_b"
+        },
+        {
+         "value": "C",
+         "label": "Quadro C - Una dichiarazione che avevo presentato non vale piu'",
+         "help": "Per esempio perche' dopo la dichiarazione di non detenzione hai comprato un televisore.",
+         "pdf": "quadro_c"
+        }
+       ],
+       "help": "Il modello lo presenta solo chi e' titolare di un contratto della luce per uso domestico residenziale, oppure l'erede per le utenze di una persona deceduta."
+      },
+      {
+       "id": "sceltaA",
+       "type": "radioX",
+       "label": "Quadro A: che cosa dichiari",
+       "required": true,
+       "width": "full",
+       "showIf": {
+        "campo": "quadro",
+        "in": [
+         "A"
+        ]
+       },
+       "options": [
+        {
+         "value": "1",
+         "label": "Nessun televisore in nessuna delle case in cui ho un contratto della luce",
+         "help": "Vale per te e per tutti i componenti della tua famiglia anagrafica.",
+         "pdf": "a_nessun_televisore"
+        },
+        {
+         "value": "2",
+         "label": "Nessun televisore oltre a quello per cui ho gia' fatto la denuncia di cessazione per suggellamento",
+         "help": "Solo per chi in passato ha disdetto l'abbonamento chiedendo di sigillare l'apparecchio.",
+         "pdf": "a_oltre_suggellamento"
+        }
+       ],
+       "help": "Per le istruzioni e' televisore qualsiasi apparecchio che riceve il digitale terrestre o il satellite, anche con un decoder esterno. Computer, smartphone e tablet senza sintonizzatore TV non contano."
+      },
+      {
+       "id": "bConferma",
+       "type": "checkX",
+       "pdf": "b_dichiara",
+       "label": "Dichiaro che il canone non va addebitato sulle mie utenze della luce perche' e' dovuto su quella intestata a un altro componente della mia famiglia anagrafica",
+       "required": true,
+       "width": "full",
+       "showIf": {
+        "campo": "quadro",
+        "in": [
+         "B"
+        ]
+       },
+       "help": "La famiglia anagrafica e' quella che risulta all'anagrafe del Comune: persone che vivono insieme, con dimora abituale nello stesso Comune."
+      },
+      {
+       "id": "bCodiceFiscale",
+       "type": "cf",
+       "pdf": "b_codice_fiscale",
+       "label": "Codice fiscale di chi ha il contratto su cui si paga il canone",
+       "required": true,
+       "width": "half",
+       "showIf": {
+        "campo": "quadro",
+        "in": [
+         "B"
+        ]
+       },
+       "help": "Il codice fiscale dell'intestatario dell'utenza elettrica su cui il canone continua a essere addebitato."
+      },
+      {
+       "id": "bDataInizio",
+       "type": "data",
+       "pdf": "b_data_inizio",
+       "label": "Data inizio",
+       "required": true,
+       "width": "half",
+       "showIf": {
+        "campo": "quadro",
+        "in": [
+         "B"
+        ]
+       },
+       "help": "La data da cui fai parte della stessa famiglia anagrafica, come risulta all'anagrafe del Comune. Se e' anteriore al 1 gennaio dell'anno in cui presenti la dichiarazione, puoi indicare il 1 gennaio di quest'anno. Chi dichiara come erede indica la data del decesso. Non puo' essere successiva alla data della firma."
+      },
+      {
+       "id": "cData",
+       "type": "data",
+       "pdf": "c_data",
+       "label": "Data in cui avevi presentato la dichiarazione che non vale piu'",
+       "required": true,
+       "width": "half",
+       "showIf": {
+        "campo": "quadro",
+        "in": [
+         "C"
+        ]
+       },
+       "help": "La data di presentazione della dichiarazione precedente. La revoca ha effetto dal mese in cui la presenti: da li' il canone torna in bolletta."
+      }
+     ]
+    },
+    {
+     "id": "dichiarante",
+     "titolo": "I tuoi dati",
+     "descrizione": "I dati di chi firma la dichiarazione. Se dichiari come erede, qui vanno i tuoi dati; quelli della persona deceduta vanno nel passo successivo.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third",
+       "help": "La sigla di due lettere della provincia di nascita: per Roma, RM."
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half",
+       "help": "Il compilatore lo riporta anche in alto sulla pagina dei quadri, come chiede il modello."
+      }
+     ]
+    },
+    {
+     "id": "erede",
+     "opzionale": true,
+     "titolo": "Se dichiari come erede",
+     "descrizione": "Solo se la dichiarazione riguarda le utenze della luce intestate a una persona deceduta: qui vanno i suoi dati anagrafici e il suo codice fiscale.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "erede_cognome",
+       "type": "testo",
+       "label": "Cognome della persona deceduta",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "erede_nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "erede_data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "erede_comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "erede_provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third"
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "erede_codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale della persona deceduta",
+       "required": true,
+       "width": "half"
+      }
+     ]
+    },
+    {
+     "id": "firma",
+     "titolo": "Data e firma",
+     "descrizione": "Il modello va firmato da chi dichiara. Con la raccomandata si allega la copia di un documento di riconoscimento valido.",
+     "campi": [
+      {
+       "id": "data",
+       "pdf": "data_firma",
+       "type": "data",
+       "label": "Data della firma",
+       "required": true,
+       "width": "half",
+       "help": "Lo spazio della firma resta vuoto nel PDF: firma a penna sulla copia stampata, oppure firma il file digitalmente se lo mandi via PEC."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
