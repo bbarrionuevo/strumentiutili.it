@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v73';
+const CACHE_NAME = 'strumentiutili-v74';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -135,6 +135,12 @@ const APP_SHELL = [
   '/guide/leggere-busta-paga/',
   '/guide/dimissioni-tfr-naspi/',
   '/guide/estratto-conto-contributivo/',
+  '/guide/file-p7m-pec-daticert/',
+  '/guide/firma-digitale-elettronica-differenze/',
+  '/guide/file-non-si-apre/',
+  '/guide/regime-forfettario/',
+  '/guide/fattura-elettronica-scartata/',
+  '/guide/ravvedimento-operoso/',
 
   // Script condivisi e utilità
   '/js/spazio.js',
@@ -224,6 +230,7 @@ const APP_SHELL = [
   '/js/validatore-iban.js',
   '/js/fattura.js',
   '/js/isee.js',
+  '/js/ravvedimento-calcolo.js',
   '/js/ravvedimento.js',
   '/js/assegno-unico.js',
   '/js/ricevuta-occasionale.js',

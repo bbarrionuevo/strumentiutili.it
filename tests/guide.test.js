@@ -16,7 +16,7 @@ const { testoVisibile } = require('./helpers/contenuti.js');
 const leggi = (rel) => fs.readFileSync(path.join(RADICE, rel), 'utf8');
 const DATI = JSON.parse(leggi('data/guide.json')).guide;
 const PAGINE = DATI.map((g) => ({ g, html: leggi(g.percorso.replace(/^\//, '') + 'index.html') }));
-const UFFICIALI = /^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|www\.agenziaentrate\.gov\.it|www\.inps\.it|online\.aci\.it|aci\.gov\.it|www\.istat\.it|www\.finanze\.gov\.it|www\.lavoro\.gov\.it)\//;
+const UFFICIALI = /^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|www\.agenziaentrate\.gov\.it|www\.inps\.it|online\.aci\.it|aci\.gov\.it|www\.istat\.it|www\.finanze\.gov\.it|www\.lavoro\.gov\.it|www\.fatturapa\.gov\.it|www\.agid\.gov\.it|www\.commissariatodips\.it)\//;
 
 function main(html) {
   return html.slice(html.indexOf('<main'), html.indexOf('</main>'));
@@ -31,8 +31,8 @@ test('le guide sono aggiornate (cifre comprese)', () => {
   assert.deepStrictEqual(diversi, [], 'Esegui: node scripts/genera-guide.js');
 });
 
-test('ci sono almeno sei guide, ognuna con la sua pagina', () => {
-  assert.ok(DATI.length >= 6, 'solo ' + DATI.length + ' guide');
+test('ci sono almeno dodici guide, ognuna con la sua pagina', () => {
+  assert.ok(DATI.length >= 12, 'solo ' + DATI.length + ' guide');
   for (const g of DATI) assert.ok(fs.existsSync(path.join(RADICE, g.percorso, 'index.html')), g.percorso);
 });
 
@@ -122,4 +122,17 @@ test('le cifre di esempio sono quelle dei motori', () => {
   assert.match(testo('registrare-contratto-affitto'), /Registro: 9\.600 € × 2% = 192,00 €/);
   assert.match(testo('leggere-busta-paga'), /Netto annuo 22\.145,90 €/);
   assert.match(testo('dimissioni-tfr-naspi'), /= 1\.311,24 € lordi al mese/);
+  assert.match(testo('regime-forfettario'), /Restano 28\.406,24 € l’anno/);
+  assert.match(testo('ravvedimento-operoso'), /8,33/);
+  assert.match(testo('fattura-elettronica-scartata'), /33,33 × 3 = 99,99 €/);
+  assert.match(testo('fattura-elettronica-scartata'), /71,05 € × 22% = 15,63 €/);
+});
+
+test('le guide sui file mostrano quello che dice lo strumento «Che file è?»', () => {
+  // le righe delle tabelle le scrive js/tipo-file.js al momento di generare
+  const testo = (slug) => testoVisibile(leggi('guide/' + slug + '/index.html'));
+  assert.match(testo('file-non-si-apre'), /scansione\.dat .*Documento PDF.* scansione\.pdf/);
+  assert.match(testo('file-non-si-apre'), /IMG_2031 .*Foto HEIC \(iPhone\) IMG_2031\.heic/);
+  assert.match(testo('file-non-si-apre'), /Doppia estensione \(\.pdf\.exe\)/);
+  assert.match(testo('file-p7m-pec-daticert'), /daticert\.xml Ricevuta della PEC \(daticert\.xml\)/);
 });

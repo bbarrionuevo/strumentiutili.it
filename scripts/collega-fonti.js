@@ -67,6 +67,9 @@ const TIPO = '(Legge|D\\.Lgs\\.|D\\.L\\.|D\\.P\\.R\\.|D\\.P\\.C\\.M\\.)';
 const ATTO = new RegExp(TIPO + ' ' + GIORNO + ' ' + MESE + ' (\\d{4}), n\\. (\\d+)((?:,? \\([^)]*\\))?,? art\\. (\\d+)(?:-(bis|ter|quater|quinquies|sexies|septies|octies))?(?![\\d-])(?! della Tariffa))?', 'g');
 const CODICE = new RegExp('(' + Object.keys(CODICI).join('|') + ')(,? art\\. (\\d+)(?:-(bis|ter|quater))?(?![\\d-]))?', 'g');
 const UE = /(Regolamento UE|Direttiva) (\d{4})\/(\d+)(\/UE)?/g;
+// Gli atti dell'Unione anteriori al 2015 si citano con numero/anno:
+// «Regolamento UE n. 910/2014» (eIDAS)
+const UE_NUMERO_ANNO = /Regolamento UE n\. (\d+)\/(\d{4})/g;
 
 function due(n) { return String(n).padStart(2, '0'); }
 
@@ -110,6 +113,7 @@ function collegaVoce(html) {
     urnAtto(tipo, giorno, mese, anno, numero, articolo, suffisso));
   fuori = passo(fuori, CODICE, (tutto, nome, coda, articolo, suffisso) => urnCodice(nome, articolo, suffisso));
   fuori = passo(fuori, UE, (tutto, tipo, anno, numero) => ue(tipo, anno, numero));
+  fuori = passo(fuori, UE_NUMERO_ANNO, (tutto, numero, anno) => ue('Regolamento UE', anno, numero));
   // Nessuna legge riconosciuta ma un modello dell'Agenzia: si collega il
   // nome del modello (il primo schema che corrisponde)
   if (!usati.length && !/<a\b/.test(fuori)) {

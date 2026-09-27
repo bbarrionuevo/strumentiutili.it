@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fattura elettronica scartata: codici di errore SdI — StrumentiUtili.it</title>
+  <meta name="description" content="Cosa vuol dire la ricevuta di scarto del Sistema di Interscambio, come si leggono i codici di errore (00404, 00423, 00421, 00400, 00305…) e come correggere e rimandare la fattura entro cinque giorni con lo stesso numero." />
+  <link rel="canonical" href="https://strumentiutili.it/guide/fattura-elettronica-scartata/" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="manifest" href="/manifest.json">
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Fattura elettronica scartata: codici di errore SdI" />
+  <meta property="og:description" content="Cosa vuol dire la ricevuta di scarto del Sistema di Interscambio, come si leggono i codici di errore (00404, 00423, 00421, 00400, 00305…) e come correggere e rimandare la fattura entro cinque giorni con lo stesso numero." />
+  <meta property="og:url" content="https://strumentiutili.it/guide/fattura-elettronica-scartata/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://strumentiutili.it/guide/fattura-elettronica-scartata/#articolo",
+        "headline": "Fattura elettronica scartata: i codici di errore SdI più comuni e come correggerli",
+        "description": "Cosa vuol dire la ricevuta di scarto del Sistema di Interscambio, come si leggono i codici di errore (00404, 00423, 00421, 00400, 00305…) e come correggere e rimandare la fattura entro cinque giorni con lo stesso numero.",
+        "inLanguage": "it-IT",
+        "datePublished": "2026-09-27",
+        "dateModified": "2026-09-27",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://strumentiutili.it/assets/icon.png"
+          }
+        },
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "mainEntityOfPage": "https://strumentiutili.it/guide/fattura-elettronica-scartata/",
+        "about": [
+          {
+            "@type": "WebApplication",
+            "name": "Generatore XML FatturaPA",
+            "url": "https://strumentiutili.it/fisco-professioni/generatore-xml-fatturapa/"
+          },
+          {
+            "@type": "WebApplication",
+            "name": "Fattura elettronica in PDF",
+            "url": "https://strumentiutili.it/fisco-professioni/fattura-elettronica/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/guide/fattura-elettronica-scartata/#domande",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Una fattura scartata vale come emessa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il file scartato si considera non emesso. Va corretto e rimandato entro cinque giorni dalla notifica di scarto, preferibilmente con lo stesso numero e la stessa data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso rimandarla con lo stesso numero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, ed è la soluzione preferita dall’Agenzia. Il controllo dei duplicati (00404) ignora le fatture scartate, quindi il numero risulta libero. Cambia però il nome del file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sono passati più di cinque giorni: cosa faccio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Emetti una fattura con numero e data nuovi, collegata a quella scartata, oppure con una numerazione di rettifica come «1/R» in un registro sezionale, come indicato dalla circolare 13/E del 2018."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La fattura è stata consegnata ma contiene un errore: posso rimandarla?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: una fattura consegnata è emessa. Si corregge con una nota di credito e, se serve, con una nuova fattura."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa vuol dire «impossibilità di recapito»?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Che i controlli sono passati ma la fattura non si è potuta consegnare. È comunque emessa: il cliente la trova nella sua area riservata del sito dell’Agenzia delle Entrate. Conviene avvisarlo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://strumentiutili.it/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guide",
+        "item": "https://strumentiutili.it/guide/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Fattura elettronica scartata: i codici di errore SdI più comuni e come correggerli",
+        "item": "https://strumentiutili.it/guide/fattura-elettronica-scartata/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl xl:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block lg:hidden xl:block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Lavoro</a>
+          <a href="/identita-burocrazia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Identità</a>
+          <a href="/pdf/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">PDF</a>
+          <a href="/ia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">IA</a>
+          <a href="/utilita-web/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Utilità</a>
+        </nav>
+
+        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </form>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <main id="contenuto" class="container mx-auto px-4 py-8 block">
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/guide/" class="hover:text-indigo-600 hover:underline">Guide</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Fattura elettronica scartata: i codici di errore SdI più comuni e come correggerli</span></li>
+        </ol>
+      </nav>
+  <!-- /su:briciole -->
+
+      <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-10 max-w-3xl mx-auto">
+      <p class="text-sm font-semibold text-indigo-700"><a href="/guide/" class="hover:underline">Guida</a> &middot; Partita IVA e fatture</p>
+      <h1 class="mt-1 text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Fattura elettronica scartata: i codici di errore SdI pi&ugrave; comuni e come correggerli</h1>
+      <p class="mt-3 text-sm text-gray-500">di <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> &middot; aggiornata il <time datetime="2026-09-27">27 settembre 2026</time> &middot; 9 minuti di lettura</p>
+      <p class="mt-5 text-lg text-gray-700 leading-relaxed">Quando il Sistema di Interscambio scarta una fattura elettronica, nella ricevuta c&rsquo;&egrave; un codice di cinque cifre che dice che cosa non va. Questa guida spiega i codici che capitano pi&ugrave; spesso, con esempi di calcolo fatti con le regole ufficiali, e come rimandare la fattura senza perdere la data.</p>
+      <div class="mt-6 rounded-xl bg-indigo-50 border border-indigo-100 p-5">
+        <h2 class="text-base font-bold text-indigo-900">In breve</h2>
+        <ul class="mt-2 list-disc pl-5 space-y-1.5 text-indigo-950">
+          <li>Una fattura scartata non &egrave; emessa: va corretta e rimandata entro cinque giorni dalla notifica di scarto, preferibilmente con lo stesso numero e la stessa data.</li>
+          <li>Gli scarti pi&ugrave; frequenti riguardano i conti (00421, 00422, 00423), la natura IVA (00400, 00445), il numero gi&agrave; usato (00404) e i dati del cliente (00305, 00311).</li>
+          <li>Sui conti lo SdI tollera meno di un centesimo di differenza per riga e per imposta: 33,33 &times; 3 fa 99,99&nbsp;&euro;, non 100&nbsp;&euro;.</li>
+        </ul>
+      </div>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+          <span class="text-sm text-gray-700">Fai il conto con i tuoi dati:</span>
+          <a href="/fisco-professioni/generatore-xml-fatturapa/" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2.5 text-sm">Generatore XML FatturaPA <span aria-hidden="true">&rarr;</span></a>
+          <a href="/fisco-professioni/fattura-elettronica/" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2.5 text-sm">Fattura elettronica in PDF <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+      <h2 id="esiti" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Che cosa succede dopo l&rsquo;invio</h2>
+      <p>La fattura elettronica &egrave; un file XML che passa dal Sistema di Interscambio (SdI) dell&rsquo;Agenzia delle Entrate prima di arrivare al cliente. Lo SdI controlla il file e risponde con una ricevuta. Gli esiti possibili sono tre:</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>Ricevuta di consegna:</strong> la fattura &egrave; arrivata al cliente, al suo codice destinatario o alla sua PEC. &Egrave; emessa.</li>
+        <li><strong>Ricevuta di impossibilit&agrave; di recapito:</strong> i controlli sono passati, ma la fattura non si &egrave; potuta consegnare, per esempio perch&eacute; la casella PEC del cliente &egrave; piena. La fattura &egrave; emessa lo stesso e il cliente la trova nella sua area riservata del sito dell&rsquo;Agenzia; conviene avvisarlo e mandargli una copia.</li>
+        <li><strong>Ricevuta di scarto:</strong> il file non ha superato un controllo. La fattura <em>non &egrave; emessa</em>: per il fisco &egrave; come se non esistesse.</li>
+      </ul>
+      <p>La ricevuta di scarto arriva entro cinque giorni, sullo stesso canale da cui hai mandato il file (il portale Fatture e Corrispettivi, la PEC o il tuo intermediario). Per ogni errore contiene un <strong>codice di cinque cifre</strong> e una descrizione. Il codice &egrave; la parte utile: tutti i controlli sono elencati, con le regole esatte, nel documento ufficiale &laquo;Elenco dei controlli effettuati sul file fattura&raquo;, oggi alla versione 2.0.</p>
+      <h2 id="rimandare" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Come si rimanda una fattura scartata</h2>
+      <p>Secondo la circolare 13/E del 2018 dell&rsquo;Agenzia delle Entrate, la fattura scartata va rimandata <strong>entro cinque giorni dalla notifica di scarto</strong>, preferibilmente <strong>con lo stesso numero e la stessa data</strong> di quella originale. Cos&igrave; la data della fattura resta quella giusta rispetto all&rsquo;operazione.</p>
+      <ol class="list-decimal pl-5 space-y-1.5">
+        <li>Leggi il codice nella ricevuta e correggi il dato nel programma che usi, o rigenera il file.</li>
+        <li>Lascia lo stesso numero e la stessa data. Il controllo dei duplicati confronta la fattura solo con quelle <em>non</em> scartate: il numero della fattura scartata &egrave; di nuovo libero.</li>
+        <li>Cambia il <strong>nome del file</strong>. Lo SdI rifiuta un file con un nome gi&agrave; ricevuto (codice 00002), anche se quel file era stato scartato. Basta cambiare il progressivo finale: da IT01234567890_00001.xml a IT01234567890_00002.xml.</li>
+        <li>Rimanda il file e controlla la nuova ricevuta.</li>
+      </ol>
+      <p>Se non riesci a rispettare i cinque giorni, o il tuo programma non ti lascia riusare numero e data, la circolare ammette due alternative: una fattura con numero e data nuovi, collegata a quella scartata, oppure una numerazione che faccia capire che si tratta di una rettifica, come &laquo;1/R&raquo;, in un registro sezionale. La fattura scartata <strong>non si annulla con una nota di credito</strong>: non essendo mai stata emessa, basta una variazione nella tua contabilit&agrave; interna, senza mandare niente allo SdI.</p>
+      <h2 id="conti" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Gli scarti sui conti: 00423, 00421 e 00422</h2>
+      <p>Sono i pi&ugrave; insidiosi, perch&eacute; a occhio la fattura sembra giusta. Lo SdI rif&agrave; i conti con regole precise e tollera differenze molto piccole: se il tuo programma arrotonda in un altro modo, il file viene scartato.</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-gray-200">
+          <caption class="text-left text-sm font-semibold text-gray-700 pb-2">Le tolleranze dei controlli sui conti</caption>
+          <thead class="bg-gray-50 text-left"><tr><th scope="col" class="p-2.5 font-semibold text-gray-900">Codice</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Che cosa ricalcola lo SdI</th><th scope="col" class="p-2.5 font-semibold text-gray-900">Differenza ammessa</th></tr></thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">00423</th><td class="p-2.5 tabular-nums">Il prezzo totale di ogni riga: prezzo unitario, con sconti e maggiorazioni, per la quantit&agrave;</td><td class="p-2.5 tabular-nums">meno di 1 centesimo</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">00421</th><td class="p-2.5 tabular-nums">L&rsquo;imposta di ogni aliquota nel riepilogo: imponibile &times; aliquota / 100, arrotondata al centesimo</td><td class="p-2.5 tabular-nums">meno di 1 centesimo</td></tr>
+            <tr><th scope="row" class="p-2.5 text-left font-medium text-gray-800">00422</th><td class="p-2.5 tabular-nums">L&rsquo;imponibile di ogni aliquota nel riepilogo: somma dei prezzi totali delle righe, pi&ugrave; l&rsquo;eventuale contributo cassa e arrotondamento</td><td class="p-2.5 tabular-nums">meno di 1 euro</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+        <p class="font-bold text-emerald-900">Esempio: tre ore di consulenza per 100&nbsp;&euro; in tutto (errore 00423)</p>
+        <ol class="mt-2 list-decimal pl-5 space-y-1 text-emerald-950">
+          <li>Il prezzo unitario viene scritto con due decimali: 100 / 3 = 33,33&nbsp;&euro;.</li>
+          <li>Lo SdI calcola 33,33 &times; 3 = 99,99&nbsp;&euro;, ma nel prezzo totale della riga c&rsquo;&egrave; 100,00&nbsp;&euro;.</li>
+          <li>La differenza &egrave; 0,01&nbsp;&euro;: non &egrave; inferiore a un centesimo, quindi il file viene scartato.</li>
+        </ol>
+        <p class="mt-3 font-semibold text-emerald-900">Soluzioni: scrivere il prezzo unitario con pi&ugrave; decimali (il campo ne ammette fino a otto: 33,33333333 &times; 3 d&agrave; una differenza di pochi miliardesimi), oppure indicare quantit&agrave; 1 e prezzo 100,00&nbsp;&euro;.</p>
+      </div>
+      <p>Lo stesso errore capita con gli sconti. Nell&rsquo;XML lo sconto di riga espresso in euro ammette solo due decimali, mentre il prezzo unitario ne ammette otto: se il gestionale calcola lo sconto con pi&ugrave; decimali e poi lo arrotonda, il totale della riga non torna. L&rsquo;Agenzia suggerisce, in questi casi, di indicare lo sconto come una riga a parte, con il prezzo negativo scritto con tutti i decimali necessari. Gli sconti in percentuale, invece, si applicano &laquo;a cascata&raquo;: il secondo sconto si calcola sul prezzo gi&agrave; scontato dal primo.</p>
+      <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+        <p class="font-bold text-emerald-900">Esempio: sette righe da 10,15&nbsp;&euro; con IVA al 22% (errore 00421)</p>
+        <ol class="mt-2 list-decimal pl-5 space-y-1 text-emerald-950">
+          <li>Il programma calcola l&rsquo;IVA riga per riga: 10,15 &times; 22% = 2,233, arrotondata a 2,23&nbsp;&euro;.</li>
+          <li>Poi somma le IVA arrotondate: 2,23 &times; 7 = 15,61&nbsp;&euro;, e scrive questo importo nel riepilogo.</li>
+          <li>Lo SdI invece calcola l&rsquo;imposta sul totale: 71,05&nbsp;&euro; &times; 22% = 15,63&nbsp;&euro;.</li>
+        </ol>
+        <p class="mt-3 font-semibold text-emerald-900">La differenza &egrave; 0,02&nbsp;&euro; e il file viene scartato. L&rsquo;IVA va calcolata una sola volta per ogni aliquota, sul totale imponibile del riepilogo.</p>
+      </div>
+      <p>Quando il conto d&agrave; pi&ugrave; di due decimali si arrotonda al centesimo: per difetto se la terza cifra &egrave; minore di 5, per eccesso se &egrave; 5 o pi&ugrave;. Gli esempi del documento ufficiale: 1.500,2448 diventa 1.500,24 e 1.500,2458 diventa 1.500,25.</p>
+      <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+        <p class="font-bold text-emerald-900">Esempio: avvocato con contributo alla cassa (errore 00422)</p>
+        <ol class="mt-2 list-decimal pl-5 space-y-1 text-emerald-950">
+          <li>Compenso 1.000,00&nbsp;&euro; pi&ugrave; il 4% di contributo integrativo alla cassa forense: 40,00&nbsp;&euro;, soggetto a IVA.</li>
+          <li>Nel riepilogo al 22% l&rsquo;imponibile deve essere 1.000,00&nbsp;&euro; + 40,00&nbsp;&euro; = 1.040,00&nbsp;&euro;, e l&rsquo;imposta 228,80&nbsp;&euro;.</li>
+          <li>Se il riepilogo riporta solo 1.000,00&nbsp;&euro;, la differenza &egrave; di 40,00&nbsp;&euro;, ben oltre l&rsquo;euro di tolleranza.</li>
+        </ol>
+        <p class="mt-3 font-semibold text-emerald-900">Il contributo cassa indicato nei dati della cassa previdenziale fa parte dell&rsquo;imponibile della sua aliquota: se manca nel riepilogo, il file viene scartato con 00422.</p>
+      </div>
+      <h2 id="iva" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Aliquota e natura IVA: 00400, 00401, 00424, 00445</h2>
+      <p>Ogni riga ha un&rsquo;aliquota IVA. Quando l&rsquo;aliquota &egrave; zero serve anche la <strong>natura</strong>, cio&egrave; il codice che spiega perch&eacute; l&rsquo;IVA non c&rsquo;&egrave;.</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>00400</strong>: una riga ha aliquota zero ma manca la natura. Chi &egrave; nel regime forfettario usa N2.2 (operazioni non soggette, altri casi).</li>
+        <li><strong>00401</strong>: il contrario, una riga con l&rsquo;IVA ha anche la natura.</li>
+        <li><strong>00424</strong>: l&rsquo;aliquota va scritta come percentuale, 22.00, non come 0.22.</li>
+        <li><strong>00445</strong>: dal 1&deg; gennaio 2021 non si possono pi&ugrave; usare i codici generici N2, N3 e N6: servono quelli di dettaglio (N2.1, N2.2, N3.1&hellip;, N6.1&hellip;).</li>
+        <li><strong>00419, 00443 e 00444</strong>: righe e riepilogo non corrispondono. Nel riepilogo ci deve essere un blocco per ogni aliquota (e per ogni natura) usata nelle righe, n&eacute; uno di pi&ugrave; n&eacute; uno di meno.</li>
+      </ul>
+      <h2 id="duplicati" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Numero gi&agrave; usato: 00404</h2>
+      <p>Lo SdI scarta una fattura quando ne ha gi&agrave; ricevuta un&rsquo;altra, non scartata, con la stessa partita IVA del fornitore, lo stesso numero e la stessa data nell&rsquo;anno. Conta solo l&rsquo;anno della data: la numerazione pu&ograve; ripartire da 1 ogni anno. Per le note di credito (tipo documento TD04) il controllo guarda anche il tipo: una fattura e una nota di credito possono avere lo stesso numero nello stesso anno, due note di credito no.</p>
+      <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+        <p class="font-bold text-emerald-900">Esempio: tre documenti con il numero 15 nello stesso anno</p>
+        <ol class="mt-2 list-decimal pl-5 space-y-1 text-emerald-950">
+          <li>Fattura n. 15 del 10 marzo: consegnata.</li>
+          <li>Nota di credito (TD04) n. 15 del 20 aprile: accettata, perch&eacute; &egrave; di un altro tipo e una delle due &egrave; una nota di credito.</li>
+          <li>Fattura n. 15 del 3 maggio: scartata con 00404, perch&eacute; esiste gi&agrave; una fattura n. 15 dello stesso anno.</li>
+        </ol>
+        <p class="mt-3 font-semibold text-emerald-900">Se la prima fattura n. 15 fosse stata scartata, il numero sarebbe stato di nuovo libero: &egrave; per questo che la fattura corretta si pu&ograve; rimandare con lo stesso numero.</p>
+      </div>
+      <p>Lo stesso controllo, dentro un unico file con pi&ugrave; fatture (un &laquo;lotto&raquo;), d&agrave; l&rsquo;errore 00409: due fatture con lo stesso numero nello stesso invio. In un lotto basta un errore perch&eacute; venga scartato tutto il file.</p>
+      <h2 id="anagrafica" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">I dati del cliente e i tuoi: 00305, 00306, 00324, 00311</h2>
+      <p>Lo SdI controlla partite IVA e codici fiscali nell&rsquo;anagrafe tributaria. Non basta che siano scritti bene: devono esistere.</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>00305</strong>: la partita IVA del cliente non risulta nell&rsquo;anagrafe tributaria. Quasi sempre &egrave; un errore di battitura; si controlla con il servizio &laquo;Verifica partita IVA&raquo; dell&rsquo;Agenzia.</li>
+        <li><strong>00306</strong>: il codice fiscale del cliente non &egrave; valido. Per un privato consumatore si indica solo il codice fiscale.</li>
+        <li><strong>00324</strong>: partita IVA e codice fiscale del cliente ci sono tutti e due ma non appartengono allo stesso soggetto, per esempio la partita IVA di una societ&agrave; con il codice fiscale personale del suo amministratore.</li>
+        <li><strong>00311 e 00312</strong>: il codice destinatario non esiste o non &egrave; attivo. Se il cliente non te ne ha dato uno, si usa 0000000 (sette zeri), con la sua PEC se la conosci; per i clienti esteri si usa XXXXXXX.</li>
+        <li><strong>La tua partita IVA</strong>: se alla data della fattura risulta cessata, lo SdI scarta il file. Capita a chi ha chiuso una partita IVA, ne ha aperta un&rsquo;altra e usa per sbaglio quella vecchia.</li>
+      </ul>
+      <h2 id="file" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Nome del file, formato e data: 00001, 00002, 00200, 00403</h2>
+      <p>Il nome del file segue una regola fissa: <strong>IT</strong>, il codice fiscale o la partita IVA di chi trasmette il file, un trattino basso e un progressivo di al massimo cinque lettere o cifre. Per esempio IT01234567890_00001.xml, oppure IT01234567890_00001.xml.p7m se il file &egrave; firmato con la firma CAdES. Un nome che non rispetta la regola d&agrave; 00001; un nome gi&agrave; usato d&agrave; 00002.</p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><strong>00200</strong>: il file non rispetta il formato. Un campo obbligatorio vuoto, una data scritta male, un importo con la virgola: nell&rsquo;XML i decimali si scrivono con il punto (1500.25) e le date come 2026-03-10. La descrizione nella ricevuta indica il campo esatto; oltre 50 errori di formato il codice diventa 00201.</li>
+        <li><strong>00403</strong>: la data della fattura &egrave; successiva al giorno in cui lo SdI la riceve. Non si possono mandare fatture datate nel futuro.</li>
+        <li><strong>00425</strong>: il numero della fattura deve contenere almeno una cifra: &laquo;A&raquo; non va bene, &laquo;A1&raquo; s&igrave;.</li>
+        <li><strong>00102</strong>: il file firmato &egrave; stato modificato dopo la firma, oppure la firma non &egrave; valida. Va rigenerato e firmato di nuovo.</li>
+      </ul>
+      <p>Il generatore XML del sito controlla prima dell&rsquo;invio gli errori pi&ugrave; frequenti: l&rsquo;ultima cifra della partita IVA, il formato dell&rsquo;aliquota, la natura sulle righe senza IVA, il riepilogo per aliquota e i numeri gi&agrave; usati con la stessa partita IVA nel tuo browser. Non pu&ograve; sapere se una partita IVA esiste o &egrave; cessata: quello lo verifica solo lo SdI.</p>
+      </div>
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
+      </div>
+      <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+      <h2 id="errori" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Errori comuni</h2>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li>Rimandare il file corretto con lo stesso nome: viene rifiutato con 00002.</li>
+        <li>Fare una nota di credito per &laquo;annullare&raquo; una fattura scartata: non serve, perch&eacute; non &egrave; mai stata emessa.</li>
+        <li>Arrotondare il prezzo unitario a due decimali quando il totale della riga &egrave; una cifra tonda.</li>
+        <li>Calcolare l&rsquo;IVA riga per riga e scrivere nel riepilogo la somma arrotondata.</li>
+        <li>Usare N2 invece di N2.2 sulle fatture del regime forfettario.</li>
+        <li>Lasciar passare pi&ugrave; di cinque giorni dallo scarto senza rimandare la fattura.</li>
+      </ul>
+      <h2 id="domande" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Domande frequenti</h2>
+      <div>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Una fattura scartata vale come emessa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">No. Il file scartato si considera non emesso. Va corretto e rimandato entro cinque giorni dalla notifica di scarto, preferibilmente con lo stesso numero e la stessa data.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso rimandarla con lo stesso numero?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">S&igrave;, ed &egrave; la soluzione preferita dall&rsquo;Agenzia. Il controllo dei duplicati (00404) ignora le fatture scartate, quindi il numero risulta libero. Cambia per&ograve; il nome del file.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Sono passati pi&ugrave; di cinque giorni: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">Emetti una fattura con numero e data nuovi, collegata a quella scartata, oppure con una numerazione di rettifica come &laquo;1/R&raquo; in un registro sezionale, come indicato dalla circolare 13/E del 2018.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La fattura &egrave; stata consegnata ma contiene un errore: posso rimandarla?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">No: una fattura consegnata &egrave; emessa. Si corregge con una nota di credito e, se serve, con una nuova fattura.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa vuol dire &laquo;impossibilit&agrave; di recapito&raquo;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-gray-700">Che i controlli sono passati ma la fattura non si &egrave; potuta consegnare. &Egrave; comunque emessa: il cliente la trova nella sua area riservata del sito dell&rsquo;Agenzia delle Entrate. Conviene avvisarlo.</p>
+        </details>
+      </div>
+      <h2 id="fonti" class="text-2xl font-bold text-gray-900 pt-6 scroll-mt-24">Fonti ufficiali</h2>
+      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-600">
+        <li><a href="https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.4/Elenco-Controlli-versione-2.0.pdf" class="text-indigo-700 underline" target="_blank" rel="noopener">Elenco dei controlli effettuati sul file fattura del Sistema di Interscambio, versione 2.0</a> (31 gennaio 2025): codici di errore, regole e tolleranze.</li>
+        <li><a href="https://www.fatturapa.gov.it/export/documenti/Specifiche-tecniche-relative-al-Sistema-di-Interscambio-versione-1.8.4.pdf" class="text-indigo-700 underline" target="_blank" rel="noopener">Specifiche tecniche relative al Sistema di Interscambio, versione 1.8.4</a>: nome del file, ricevute e notifiche.</li>
+        <li><a href="https://www.agenziaentrate.gov.it/portale/documents/20143/297470/Circolare+n+13+del+02+luglio+2018_Circolare_13_02072018.pdf/da0b0db7-64eb-ac7b-c925-4fdbc776279d" class="text-indigo-700 underline" target="_blank" rel="noopener">Agenzia delle Entrate, circolare n. 13/E del 2 luglio 2018</a>, paragrafo 1.6: come rimandare una fattura scartata.</li>
+        <li><a href="https://www.agenziaentrate.gov.it/portale/controlli-sdi-motivi-di-errore" class="text-indigo-700 underline" target="_blank" rel="noopener">Agenzia delle Entrate, FAQ &laquo;Controlli SdI / Motivi di errore&raquo;</a>: sconti e partita IVA cessata.</li>
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1972-10-26;633~art21" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 ottobre 1972, n. 633, art. 21</a>: contenuto e numerazione della fattura.</li>
+        <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-08-05;127~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 5 agosto 2015, n. 127, art. 1</a>: obbligo della fattura elettronica.</li>
+      </ul>
+      <p class="text-sm text-gray-600">Le cifre degli esempi sono calcolate con gli stessi motori degli strumenti del sito, sulle regole in vigore alla data di aggiornamento. Come le controlliamo: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Questa guida non sostituisce il parere di un professionista.</p>
+      </div>
+      <nav aria-label="Altre guide" class="mt-10 border-t border-gray-100 pt-6">
+        <h2 class="text-lg font-bold text-gray-900">Leggi anche</h2>
+        <ul class="mt-3 space-y-2">
+          <li><a href="/guide/regime-forfettario/" class="font-semibold text-indigo-700 hover:underline">Regime forfettario 2026: requisiti, tasse, contributi ed esempi</a></li>
+          <li><a href="/guide/ravvedimento-operoso/" class="font-semibold text-indigo-700 hover:underline">Ravvedimento operoso 2026: tabelle, interessi ed esempi</a></li>
+        </ul>
+      </nav>
+      </article>
+  </main>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/guide/" class="hover:text-indigo-600 transition-colors">Guide pratiche</a></li>
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/metodo/" class="hover:text-indigo-600 transition-colors">Come verifichiamo i dati</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li><a href="/mappa-del-sito/" class="hover:text-indigo-600 transition-colors">Mappa del sito</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>
