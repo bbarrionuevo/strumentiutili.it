@@ -146,6 +146,22 @@
       "deve_contenere": [
         "Specifiche tecniche relative al Sistema di Interscambio versione 1.8.4"
       ]
+    },
+    {
+      "id": "mimit-carburanti-open-data",
+      "tipo": "pagina",
+      "url": "https://www.mimit.gov.it/it/open-data/elenco-dataset/carburanti-prezzi-praticati-e-anagrafica-degli-impianti",
+      "pagine": [
+        "utilita-web/prezzi-carburanti-oggi/"
+      ],
+      "motori": [
+        "scripts/carburanti/aggiorna.js",
+        "scripts/carburanti/elabora.js"
+      ],
+      "deve_contenere": [
+        "IODL 2.0",
+        "prezzo_alle_8.csv"
+      ]
     }
   ],
   "pagine_modelli": [
@@ -296,8 +312,19 @@
       ]
     }
   ],
-  "norme": [],
-  "dati_vivi": [],
+  "norme": [
+    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2009-07-23;99~art51"
+  ],
+  "dati_vivi": [
+    {
+      "id": "carburanti",
+      "file": "data/vivi/carburanti/riepilogo.json",
+      "campo": "estrazione",
+      "max_giorni": 3,
+      "workflow": "carburanti.yml",
+      "fonte": "https://www.mimit.gov.it/it/open-data/elenco-dataset/carburanti-prezzi-praticati-e-anagrafica-degli-impianti"
+    }
+  ],
   "copertura": {
     "generale": {
       "norme": [
