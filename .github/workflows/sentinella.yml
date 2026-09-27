@@ -1,0 +1,99 @@
+name: Sentinella delle fonti
+
+# Ogni lunedi' confronta modelli, norme e cifre del sito con i siti ufficiali
+# (scripts/sentinella.js) e apre una issue per ogni cambiamento
+# (scripts/sentinella-issue.js): GitHub la notifica al proprietario, e la
+# routine di manutenzione propone la correzione con una pull request.
+# Non scrive mai su main: il modo "aggiorna", che rinnova le copie in
+# fonti/archivio/, salva su un ramo di lavoro, come scarica-modelli.
+on:
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: 'controlla (segnala i cambiamenti) o aggiorna (riscrive fonti/archivio/ sul ramo)'
+        required: false
+        default: 'controlla'
+      ramo:
+        description: 'Solo per aggiorna: ramo di lavoro su cui salvare (non main)'
+        required: false
+        default: ''
+      solo:
+        description: 'Solo per aggiorna: parti dell''id delle fonti da rinnovare, separate da virgole (vuoto = tutte)'
+        required: false
+        default: ''
+
+jobs:
+  controlla:
+    name: Controlla le fonti
+    if: ${{ github.event_name == 'schedule' || inputs.modo != 'aggiorna' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Scarica e confronta
+        run: node scripts/sentinella.js --rapporto rapporto-sentinella.json
+
+      - name: Apri o aggiorna le segnalazioni
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/sentinella-issue.js rapporto-sentinella.json
+
+      - name: Conserva il rapporto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapporto-sentinella
+          path: rapporto-sentinella.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+  aggiorna:
+    name: Rinnova le copie delle fonti
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.modo == 'aggiorna' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RAMO: ${{ inputs.ramo }}
+      SOLO: ${{ inputs.solo }}
+    steps:
+      - name: Controlla il ramo
+        run: |
+          case "$RAMO" in
+            main|'') echo "Usa un ramo di lavoro: le copie devono passare da una pull request." ; exit 1 ;;
+          esac
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ramo }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Riscrivi fonti/archivio
+        run: |
+          if [ -n "$SOLO" ]; then
+            node scripts/sentinella.js --aggiorna --solo "$SOLO" --rapporto /tmp/rapporto.json
+          else
+            node scripts/sentinella.js --aggiorna --rapporto /tmp/rapporto.json
+          fi
+
+      - name: Salva sul ramo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A fonti/archivio
+          git status --short fonti/archivio | head -200
+          if git diff --cached --quiet; then echo "Niente di nuovo da salvare."; exit 0; fi
+          git commit -m "Copie delle fonti ufficiali${SOLO:+ ($SOLO)}"
+          git push origin "HEAD:refs/heads/$RAMO"

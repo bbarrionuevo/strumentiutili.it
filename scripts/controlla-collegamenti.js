@@ -6,10 +6,12 @@
 // rispondevano 404, e nessuno se n'era accorto. Questo script raccoglie tutti
 // i collegamenti esterni delle pagine e li apre uno per uno.
 //
-// Lo esegue ogni mese .github/workflows/controlla-collegamenti.yml (dagli
-// ambienti di sviluppo molti siti pubblici non si raggiungono). Esce con 1 se
-// una pagina non esiste piu' (404 o 410); gli altri problemi (server lento,
+// Ogni settimana la sentinella (scripts/sentinella.js, lanciata da
+// .github/workflows/sentinella.yml) usa l'elenco di collegamenti() e apre una
+// issue per ogni pagina sparita. Lanciato a mano, lo script esce con 1 se una
+// pagina non esiste piu' (404 o 410); gli altri problemi (server lento,
 // protezione anti-bot che risponde 403 o 202) si segnalano senza fallire.
+// Dagli ambienti di sviluppo molti siti pubblici non si raggiungono.
 //
 //   node scripts/controlla-collegamenti.js           controlla
 //   node scripts/controlla-collegamenti.js --elenco  stampa solo gli indirizzi
