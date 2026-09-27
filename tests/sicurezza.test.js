@@ -60,3 +60,19 @@ test('nomi di file e di prodotti entrano nella pagina solo come testo', () => {
     assert.ok(!/\$\{(migliore|peggiore|r)\.nome\}/.test(m[1]), m[1]);
   }
 });
+
+// Il sito si pubblica solo su Vercel. Una copia su GitHub Pages
+// (bbarrionuevo.github.io/strumentiutili.it) era rimasta online: vecchia,
+// con le pagine di collaudo che Vercel esclude e con il codice degli annunci
+// su un dominio non approvato. Il CNAME serviva solo a Pages e, con Pages
+// riattivato da un ramo, reclamerebbe il dominio che oggi risponde da Vercel.
+test('il sito non si pubblica anche su GitHub Pages', () => {
+  assert.ok(!fs.existsSync(path.join(RADICE, 'CNAME')), 'il file CNAME serve solo a GitHub Pages');
+  assert.ok(!fs.existsSync(path.join(RADICE, '.nojekyll')), '.nojekyll serve solo a GitHub Pages');
+  const cartella = path.join(RADICE, '.github', 'workflows');
+  for (const nome of fs.readdirSync(cartella)) {
+    const testo = fs.readFileSync(path.join(cartella, nome), 'utf8');
+    assert.doesNotMatch(testo, /actions\/(deploy-pages|upload-pages-artifact|configure-pages)|peaceiris\/actions-gh-pages|pages:\s*write/,
+      nome + ' pubblica su GitHub Pages');
+  }
+});
