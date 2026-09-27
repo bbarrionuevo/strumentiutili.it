@@ -54,14 +54,144 @@
   }
   </script>
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "UtilitiesApplication",
-    "name": "Hub Identità e Burocrazia",
-    "operatingSystem": "All",
-    "url": "https://strumentiutili.it/identita-burocrazia/",
-    "description": "Suite di strumenti altamente sicuri (Client-Side) per la generazione e validazione di dati sensibili: Eredità, Codice Fiscale, IBAN, Password Crittografiche e Dati Biometrici.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/#pagina",
+        "name": "Identità e burocrazia",
+        "url": "https://strumentiutili.it/identita-burocrazia/",
+        "inLanguage": "it-IT",
+        "description": "Codice fiscale, autocertificazioni, disdette, fototessere, curriculum, password, IBAN e successioni: moduli e controlli per le pratiche personali, nel browser.",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://strumentiutili.it/identita-burocrazia/scadenziario/",
+              "name": "Scadenziario"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://strumentiutili.it/identita-burocrazia/proteggi-documento/",
+              "name": "Proteggere la copia di un documento"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://strumentiutili.it/identita-burocrazia/calcolo-quote-ereditarie/",
+              "name": "Calcolo quote ereditarie"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale/",
+              "name": "Codice fiscale: calcolo e verifica"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/",
+              "name": "Modello AA4/8: Codice Fiscale"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/",
+              "name": "Modello AA5/6: Codice Fiscale Enti"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://strumentiutili.it/identita-burocrazia/validatore-iban/",
+              "name": "Controllo IBAN e BIC"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "url": "https://strumentiutili.it/identita-burocrazia/fototessera/",
+              "name": "Fototessera 35×45 mm"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "url": "https://strumentiutili.it/identita-burocrazia/autocertificazione/",
+              "name": "Autocertificazione"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "url": "https://strumentiutili.it/identita-burocrazia/generatore-password/",
+              "name": "Generatore di password sicure"
+            },
+            {
+              "@type": "ListItem",
+              "position": 11,
+              "url": "https://strumentiutili.it/identita-burocrazia/generatore-cv-ats/",
+              "name": "Curriculum in PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 12,
+              "url": "https://strumentiutili.it/identita-burocrazia/disdetta/",
+              "name": "Lettera di Disdetta"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/#domande",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Il codice fiscale calcolato qui vale per le pratiche?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il codice fiscale ufficiale è quello attribuito dall’Agenzia delle Entrate, che trovi sulla tessera sanitaria. Il calcolo serve a verificarlo o a ricostruirlo: nei rari casi di omocodia l’Agenzia assegna un codice diverso da quello calcolato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati vengono salvati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Codice fiscale, IBAN e password no, mai. Gli altri strumenti che ricordano i valori inseriti lo segnalano con un avviso e li tengono solo su questo dispositivo: li cancelli con il pulsante in fondo alla pagina."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L’autocertificazione deve avere la marca da bollo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: le dichiarazioni sostitutive di certificazione sono esenti dall’imposta di bollo (art. 37 del D.P.R. 445/2000). Si firmano e si consegnano; se le mandi per via telematica serve anche la copia del documento d’identità, oppure l’accesso con SPID o CIE."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come mando la copia della carta d’identità in sicurezza?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con Proteggere la copia di un documento aggiungi una scritta con lo scopo, il destinatario e la data e copri i dati che non servono. Il documento non esce dal tuo dispositivo."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -181,8 +311,8 @@
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo Quote Ereditarie</h3>
-            <p class="text-sm text-gray-600 mb-4">Simulatore successione legittima e testamentaria. Sviluppa la riunione fittizia e ottieni le quote di legge esatte.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo quote ereditarie</h3>
+            <p class="text-sm text-gray-600 mb-4">Le quote dell’eredità fra coniuge, figli, genitori e fratelli secondo il codice civile, con o senza testamento.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -193,8 +323,8 @@
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <span class="inline-block text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold mb-2">🔒 Algoritmo Locale</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Codice Fiscale e Omocodia</h3>
-            <p class="text-sm text-gray-600 mb-4">Genera o decodifica il CF per estrarre data di nascita, sesso e comune. Supporta la risoluzione dell'omocodia.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Codice fiscale: calcolo e verifica</h3>
+            <p class="text-sm text-gray-600 mb-4">Calcola il codice fiscale o leggi quello che hai: data e luogo di nascita, sesso e controllo del carattere finale, anche con l’omocodia.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/codice-fiscale/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -225,8 +355,8 @@
 
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Validatore IBAN (Modulo 97)</h3>
-            <p class="text-sm text-gray-600 mb-4">Verifica la correttezza formale di un IBAN e identifica la banca senza inviare le coordinate in rete.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Controllo IBAN e BIC</h3>
+            <p class="text-sm text-gray-600 mb-4">Controlla che un IBAN sia scritto correttamente e riconosci la banca dai principali codici ABI, senza inviarlo in rete.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/validatore-iban/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -235,8 +365,8 @@
 
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Generatore Fototessera</h3>
-            <p class="text-sm text-gray-600 mb-4">Crea fototessere ICAO (35x45mm) per Carta d'Identità Elettronica, Patente e Passaporto.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Fototessera 35×45 mm</h3>
+            <p class="text-sm text-gray-600 mb-4">Ritaglia la tua foto nel formato per carta d’identità elettronica, patente e passaporto.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/fototessera/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -245,8 +375,8 @@
 
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Generatore Autocertificazione</h3>
-            <p class="text-sm text-gray-600 mb-4">Crea una Dichiarazione Sostitutiva (Art. 46 D.P.R. 445/2000) pronta da stampare e firmare in formato PDF.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Autocertificazione</h3>
+            <p class="text-sm text-gray-600 mb-4">La dichiarazione sostitutiva di certificazione (art. 46 del D.P.R. 445/2000), compilata e pronta da stampare e firmare.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/autocertificazione/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -256,8 +386,8 @@
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
             <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">🔑 Web Crypto API</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Generatore Password Sicure</h3>
-            <p class="text-sm text-gray-600 mb-4">Crea chiavi crittografiche impenetrabili garantendo un'entropia reale basata sull'hardware locale.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Generatore di password sicure</h3>
+            <p class="text-sm text-gray-600 mb-4">Password lunghe e casuali, create con il generatore crittografico del browser: non vengono salvate né inviate.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/generatore-password/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -266,8 +396,8 @@
 
         <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
           <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Generatore CV ATS-Friendly</h3>
-            <p class="text-sm text-gray-600 mb-4">Crea un curriculum monocolonna leggibile da ATS e Intelligenza Artificiale ed esportalo in PDF, senza caricare dati online.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Curriculum in PDF</h3>
+            <p class="text-sm text-gray-600 mb-4">Un curriculum su una colonna, facile da leggere anche per i programmi che selezionano i candidati, da scaricare in PDF.</p>
           </div>
           <div class="mt-auto pt-4 border-t border-gray-50">
             <a href="/identita-burocrazia/generatore-cv-ats/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -315,6 +445,12 @@
             <li>Eredit&agrave;: <a href="/identita-burocrazia/calcolo-quote-ereditarie/" class="text-indigo-700 font-semibold hover:underline">Calcolo delle quote ereditarie</a>.</li>
         </ul>
         <p class="text-sm text-gray-600 leading-relaxed">Per le pratiche ufficiali fa fede sempre il modulo o l&rsquo;indicazione dell&rsquo;ufficio a cui ti rivolgi: qui trovi un aiuto per compilarlo senza errori.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Dati personali: cosa resta sul dispositivo</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Questi strumenti trattano spesso dati delicati: codice fiscale, IBAN, documenti d&rsquo;identit&agrave;, password. Per questo lavorano nel browser e non inviano niente a un server. Codice fiscale, IBAN e password non vengono mai salvati; gli strumenti che ricordano i valori inseriti, per non doverli riscrivere, lo dicono con un avviso e li tengono solo su questo dispositivo.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Prima di mandare un documento d&rsquo;identit&agrave;</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Agenzie immobiliari, datori di lavoro, noleggi e servizi online chiedono spesso la copia della carta d&rsquo;identit&agrave;. Prima di inviarla conviene <a href="/identita-burocrazia/proteggi-documento/" class="text-indigo-700 font-semibold hover:underline">proteggerla</a>: una scritta ripetuta come &laquo;copia per affitto, agenzia Rossi, 27/09/2026&raquo; rende la copia inutile per altri usi, e si possono coprire i dati che non servono. Lo stesso vale per le foto dei documenti: senza i dati nascosti, meglio.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Moduli ufficiali e lettere</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">I modelli AA4/8 e AA5/6 sono quelli dell&rsquo;Agenzia delle Entrate per il codice fiscale delle persone e degli enti: qui si compilano e si scaricano gi&agrave; pronti. L&rsquo;<a href="/identita-burocrazia/autocertificazione/" class="text-indigo-700 font-semibold hover:underline">autocertificazione</a> sostituisce i certificati nei rapporti con gli uffici pubblici ed &egrave; esente dall&rsquo;imposta di bollo; la <a href="/identita-burocrazia/disdetta/" class="text-indigo-700 font-semibold hover:underline">lettera di disdetta</a> raccoglie i dati che servono per chiudere un contratto di luce, gas o telefono. Per ogni pratica fa comunque fede quello che chiede l&rsquo;ufficio a cui ti rivolgi.</p>
       </section>
 
       <!-- Ad Mobile (Solo Mobile) -->
@@ -325,6 +461,27 @@
              data-ad-slot="8859818557"
              data-full-width-responsive="true"></ins>
       </div>
+
+      <section id="domande-categoria" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="domande-categoria-titolo">
+        <h2 id="domande-categoria-titolo" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice fiscale calcolato qui vale per le pratiche?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il codice fiscale ufficiale &egrave; quello attribuito dall&rsquo;Agenzia delle Entrate, che trovi sulla tessera sanitaria. Il calcolo serve a verificarlo o a ricostruirlo: nei rari casi di omocodia l&rsquo;Agenzia assegna un codice diverso da quello calcolato.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I miei dati vengono salvati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Codice fiscale, IBAN e password no, mai. Gli altri strumenti che ricordano i valori inseriti lo segnalano con un avviso e li tengono solo su questo dispositivo: li cancelli con il pulsante in fondo alla pagina.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;autocertificazione deve avere la marca da bollo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: le dichiarazioni sostitutive di certificazione sono esenti dall&rsquo;imposta di bollo (art. 37 del D.P.R. 445/2000). Si firmano e si consegnano; se le mandi per via telematica serve anche la copia del documento d&rsquo;identit&agrave;, oppure l&rsquo;accesso con SPID o CIE.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come mando la copia della carta d&rsquo;identit&agrave; in sicurezza?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con Proteggere la copia di un documento aggiungi una scritta con lo scopo, il destinatario e la data e copri i dati che non servono. Il documento non esce dal tuo dispositivo.</p>
+          </details>
+      </section>
+
 
     </div>
   </div>

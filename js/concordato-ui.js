@@ -26,10 +26,15 @@
     return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n || 0);
   };
 
-  // Accetta sia la virgola sia il punto come separatore decimale.
+  // Accetta sia la virgola sia il punto come separatore decimale. Con la
+  // virgola i punti sono migliaia (40.000,50); senza virgola il punto e' delle
+  // migliaia solo se seguito da gruppi di tre cifre (40.000), altrimenti e'
+  // decimale (26.07): prima «26.07» diventava 2607.
   function numero(el) {
     if (!el) return 0;
-    var g = String(el.value || '').replace(/\./g, '').replace(',', '.').trim();
+    var g = String(el.value || '').replace(/\s/g, '');
+    if (g.indexOf(',') !== -1) g = g.replace(/\./g, '').replace(',', '.');
+    else if (/^\d{1,3}(\.\d{3})+$/.test(g)) g = g.replace(/\./g, '');
     var n = Number(g);
     return Number.isFinite(n) ? n : 0;
   }

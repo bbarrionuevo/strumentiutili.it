@@ -112,6 +112,16 @@ test('le guide si trovano: indice, home, piede, mappa, ricerca, sitemap e offlin
   }
 });
 
+test('ogni categoria porta alle guide che usano i suoi strumenti', () => {
+  const L = require('../scripts/build-layout.js');
+  for (const c of L.CATEGORIE) {
+    const html = leggi(c.slug + '/index.html');
+    const sue = DATI.filter((g) => g.strumenti.some((s) => s.startsWith('/' + c.slug + '/')));
+    for (const g of sue) assert.ok(html.includes('href="' + g.percorso + '"'), c.slug + ' non porta a ' + g.percorso);
+    assert.strictEqual(html.includes('<!-- su:guide-categoria -->'), sue.length > 0, c.slug);
+  }
+});
+
 test('le cifre di esempio sono quelle dei motori', () => {
   // Controlli a campione, calcolati a mano: se il --check passa e questi
   // passano, guida e strumento dicono la stessa cosa.

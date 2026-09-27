@@ -32,29 +32,102 @@
   <link rel="apple-touch-icon" href="/assets/icon.png" />
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Intelligenza Artificiale (Offline)",
-    "url": "https://strumentiutili.it/ia/",
-    "description": "Strumenti IA come traduttore documenti, riassunto testi, OCR e trascrizione audio 100% eseguiti nel browser tramite Edge Computing.",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Brian Barrionuevo",
-      "url": "https://strumentiutili.it/contatti/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "StrumentiUtili.it",
-      "url": "https://strumentiutili.it/"
-    }
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://strumentiutili.it/ia/#pagina",
+        "name": "Intelligenza artificiale locale",
+        "url": "https://strumentiutili.it/ia/",
+        "inLanguage": "it-IT",
+        "description": "Trascrivere audio, tradurre, riassumere, leggere il testo delle foto e fare domande su un documento con modelli di intelligenza artificiale che lavorano sul tuo dispositivo.",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://strumentiutili.it/ia/trascrizione-audio/",
+              "name": "Trascrizione audio (sbobinatore)"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://strumentiutili.it/ia/riassunto-testo/",
+              "name": "Riassunto di testi e documenti"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://strumentiutili.it/ia/traduttore/",
+              "name": "Traduttore di documenti"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://strumentiutili.it/ia/ocr-immagini/",
+              "name": "Estrarre il testo da immagini e PDF"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://strumentiutili.it/ia/assistente-documenti/",
+              "name": "Assistente per documenti"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/ia/#domande",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "I miei file vengono inviati a un servizio di intelligenza artificiale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il modello viene scaricato nel browser e lavora sul tuo dispositivo: audio, documenti e foto non vengono inviati a nessun server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché la prima volta ci mette tanto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché deve scaricare il modello, che può pesare da qualche decina di megabyte a oltre un gigabyte. Le volte successive il modello è già salvato nel browser e non va riscaricato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso fidarmi dei risultati?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sono un buon punto di partenza, ma possono contenere errori, soprattutto con audio rumorosi, termini tecnici o foto poco leggibili. Rileggi sempre il risultato e controlla sul testo originale le parti importanti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Serve un computer potente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aiuta. Sui dispositivi più vecchi l’elaborazione è lenta; l’assistente per documenti, il più pesante, ha bisogno di un computer recente e di un browser aggiornato."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -168,8 +241,8 @@
         
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Trascrizione Audio a Testo (Sbobinatore)</h3>
-            <p class="text-sm text-gray-600 mb-4">Estrai il testo da file audio o registrazioni (MP3, WAV) usando il modello IA Whisper. Privacy assoluta.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Trascrizione audio (sbobinatore)</h3>
+            <p class="text-sm text-gray-600 mb-4">Trasforma in testo registrazioni e vocali (MP3, WAV) con il modello Whisper, che lavora sul tuo dispositivo.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/ia/trascrizione-audio/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -178,8 +251,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Riassunto Testo IA</h3>
-            <p class="text-sm text-gray-600 mb-4">Riassumi lunghi articoli o documenti estraendo i concetti chiave, 100% offline.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Riassunto di testi e documenti</h3>
+            <p class="text-sm text-gray-600 mb-4">Riassumi articoli e documenti lunghi in pochi punti, con un modello che lavora nel browser.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/ia/riassunto-testo/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -188,8 +261,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Traduttore Documenti IA</h3>
-            <p class="text-sm text-gray-600 mb-4">Traduci documenti (.txt, .docx, .pdf) in modo sicuro sfruttando modelli NMT in locale.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Traduttore di documenti</h3>
+            <p class="text-sm text-gray-600 mb-4">Traduci file .txt, .docx e .pdf con un modello di traduzione scaricato una volta nel browser, senza inviare il testo.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/ia/traduttore/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -198,8 +271,8 @@
 
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Estrazione Testo da Immagini (OCR)</h3>
-            <p class="text-sm text-gray-600 mb-4">Riconosci i caratteri all'interno delle foto (ricevute, screenshot) senza caricare file in rete.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Estrarre il testo da immagini e PDF</h3>
+            <p class="text-sm text-gray-600 mb-4">Copia il testo di foto, scansioni, ricevute e screenshot con il riconoscimento dei caratteri (OCR), senza caricare i file in rete.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/ia/ocr-immagini/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -210,8 +283,8 @@
         <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full hover:shadow-md transition">
           <div class="flex-1">
             <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2">✨ Nuovo</span>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Assistente IA Documenti</h3>
-            <p class="text-sm text-gray-600 mb-4">Analizza contratti e documenti legali con un modello linguistico eseguito via WebGPU sul tuo dispositivo, senza inviare file al cloud.</p>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Assistente per documenti</h3>
+            <p class="text-sm text-gray-600 mb-4">Fai domande su un contratto o un documento a un modello linguistico che lavora sul tuo computer; serve un browser recente.</p>
           </div>
           <div class="mt-auto pt-4">
             <a href="/ia/assistente-documenti/" class="inline-block text-center w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -242,11 +315,38 @@
             <li>Foto e scansioni: <a href="/ia/ocr-immagini/" class="text-indigo-700 font-semibold hover:underline">Estrarre il testo (OCR)</a>.</li>
         </ul>
         <p class="text-sm text-gray-600 leading-relaxed">L&rsquo;intelligenza artificiale pu&ograve; sbagliare: rileggi sempre il risultato prima di usarlo.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Come funziona l&rsquo;intelligenza artificiale nel browser</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Di solito i servizi di intelligenza artificiale ricevono il file su un loro server, lo elaborano e rimandano il risultato. Qui succede il contrario: il browser scarica il <strong>modello</strong>, cio&egrave; il programma addestrato, e lo fa lavorare sul tuo telefono o computer. Il tuo file non esce dal dispositivo: viaggia il modello, non il documento.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Il prezzo &egrave; la prima attesa. Il modello va scaricato una volta, e pesa da qualche decina di megabyte per il traduttore a oltre un gigabyte per l&rsquo;assistente: conviene farlo con il Wi-Fi. Poi resta salvato nel browser e le volte successive si parte subito. La velocit&agrave; dipende dal dispositivo: un computer recente trascrive o traduce molto pi&ugrave; in fretta di un telefono di qualche anno fa.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Cosa aspettarsi dai risultati</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">Questi modelli sono bravi ma non infallibili. La <strong>trascrizione</strong> sbaglia pi&ugrave; facilmente con audio rumorosi, persone che parlano insieme e nomi propri. La <strong>traduzione</strong> pu&ograve; rendere male i termini tecnici o giuridici. Il <strong>riassunto</strong> sceglie cosa tenere e pu&ograve; lasciar fuori un dettaglio importante. L&rsquo;<strong>OCR</strong> legge male foto storte, sfocate o scritte a mano. L&rsquo;<strong>assistente</strong> pu&ograve; dare risposte sicure ma sbagliate.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3">La regola &egrave; semplice: usali per orientarti e per risparmiare tempo, poi controlla sul testo originale tutto quello che ti serve davvero, soprattutto se si tratta di un contratto, di una sentenza o di un documento con scadenze.</p>
       </section>
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
       </div>
+
+      <section id="domande-categoria" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="domande-categoria-titolo">
+        <h2 id="domande-categoria-titolo" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I miei file vengono inviati a un servizio di intelligenza artificiale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il modello viene scaricato nel browser e lavora sul tuo dispositivo: audio, documenti e foto non vengono inviati a nessun server.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la prima volta ci mette tanto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; deve scaricare il modello, che pu&ograve; pesare da qualche decina di megabyte a oltre un gigabyte. Le volte successive il modello &egrave; gi&agrave; salvato nel browser e non va riscaricato.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso fidarmi dei risultati?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono un buon punto di partenza, ma possono contenere errori, soprattutto con audio rumorosi, termini tecnici o foto poco leggibili. Rileggi sempre il risultato e controlla sul testo originale le parti importanti.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Serve un computer potente?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Aiuta. Sui dispositivi pi&ugrave; vecchi l&rsquo;elaborazione &egrave; lenta; l&rsquo;assistente per documenti, il pi&ugrave; pesante, ha bisogno di un computer recente e di un browser aggiornato.</p>
+          </details>
+      </section>
+
     </div>
 
   </div>

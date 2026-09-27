@@ -111,7 +111,7 @@
             "name": "I file vengono caricati su un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da CDN al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina."
+              "text": "No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da questo stesso sito al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina."
             }
           }
         ]
@@ -269,7 +269,7 @@
           </li>
           <li class="flex gap-3">
             <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
-            <div><p class="font-semibold text-gray-900">Scarica</p><p class="text-gray-700 mt-0.5">Premi &laquo;Comprimi e scarica&raquo;: vedi di quanto &egrave; sceso il peso e ottieni <code>compressed.pdf</code>.</p></div>
+            <div><p class="font-semibold text-gray-900">Scarica</p><p class="text-gray-700 mt-0.5">Premi &laquo;Comprimi e scarica&raquo;: vedi di quanto &egrave; sceso il peso e ottieni lo stesso nome con <code>-compresso</code> alla fine (per esempio <code>contratto-compresso.pdf</code>). Se il risultato non pesa meno dell&rsquo;originale non viene scaricato niente: il file &egrave; gi&agrave; leggero.</p></div>
           </li>
         </ol>
       </section>
@@ -280,6 +280,35 @@
              data-ad-client="ca-pub-9434300808171957"
              data-ad-slot="8859818557"></ins>
       </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-come">
+        <h2 id="t-come" class="text-xl font-bold text-gray-900 mb-3">Come funziona la compressione</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Ogni pagina viene <strong>ridisegnata come immagine JPEG</strong>, a circa 108 punti per pollice, e rimessa in un PDF con le stesse dimensioni. La qualit&agrave; che scegli, da 0,1 a 1 (0,7 se lasci il campo vuoto), decide quanto viene compressa ogni immagine: pi&ugrave; &egrave; bassa, pi&ugrave; il file &egrave; leggero e meno sono nitidi i dettagli.</p>
+          <p>Per questo funziona molto bene con le <strong>scansioni</strong>, che sono gi&agrave; immagini, e male con i PDF creati da Word o da un gestionale: l&igrave; il testo diventa un&rsquo;immagine e spesso il file pesa pi&ugrave; di prima. In quel caso lo strumento non scarica niente e te lo dice: tieni l&rsquo;originale.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-perso">
+        <h2 id="t-perso" class="text-xl font-bold text-gray-900 mb-3">Che cosa si perde</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Il <strong>testo</strong> non si pu&ograve; pi&ugrave; selezionare, copiare o cercare.</li>
+            <li><strong>Collegamenti, segnalibri e moduli compilabili</strong> spariscono.</li>
+            <li>L&rsquo;eventuale <strong>firma digitale</strong> non vale sul file compresso.</li>
+            <li>Titolo e autore scritti nelle propriet&agrave; del PDF non vengono copiati.</li>
+          </ul>
+          <p>Se ti servono, comprimi solo gli allegati scansionati e lascia com&rsquo;&egrave; il documento principale.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-qualita">
+        <h2 id="t-qualita" class="text-xl font-bold text-gray-900 mb-3">Quale qualit&agrave; scegliere</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Il valore predefinito, <strong>0,7</strong>, va bene per la maggior parte delle scansioni. Per documenti con caratteri piccoli, tabelle o timbri prova 0,8 o 0,9; per ricevute e scontrini spesso basta 0,5.</p>
+          <p>Prima di inviare il file aprilo e controlla che numeri e firme si leggano: se qualcosa &egrave; sfocato, rifai la compressione con una qualit&agrave; pi&ugrave; alta. Se invece pesa ancora troppo, puoi dividerlo in due con <a href="/pdf/dividi-pdf/" class="text-indigo-700 underline">Dividere un PDF</a>.</p>
+        </div>
+      </section>
 
       <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-faq">
         <h2 id="t-faq" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
@@ -301,7 +330,7 @@
           </details>
           <details class="group border-b border-gray-100 py-3">
             <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I file vengono caricati su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da CDN al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina.</p>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da questo stesso sito al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina.</p>
           </details>
       </section>
     </main>

@@ -110,7 +110,7 @@
             "name": "I file vengono caricati su un server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da CDN al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina."
+              "text": "No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da questo stesso sito al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina."
             }
           }
         ]
@@ -267,7 +267,7 @@
           </li>
           <li class="flex gap-3">
             <span class="shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
-            <div><p class="font-semibold text-gray-900">Scarica</p><p class="text-gray-700 mt-0.5">Premi &laquo;Estrai e scarica&raquo;: ottieni <code>documento_diviso.pdf</code> con solo quelle pagine.</p></div>
+            <div><p class="font-semibold text-gray-900">Scarica</p><p class="text-gray-700 mt-0.5">Premi &laquo;Estrai e scarica&raquo;: ottieni un nuovo PDF con solo quelle pagine, con <code>-pagine</code> alla fine del nome (per esempio <code>contratto-pagine.pdf</code>).</p></div>
           </li>
         </ol>
       </section>
@@ -278,6 +278,39 @@
              data-ad-client="ca-pub-9434300808171957"
              data-ad-slot="8859818557"></ins>
       </div>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-scrivere">
+        <h2 id="t-scrivere" class="text-xl font-bold text-gray-900 mb-3">Come si scrivono le pagine</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Scrivi i numeri delle pagine separati da una <strong>virgola</strong>; per un intervallo usa il trattino. Il nuovo PDF segue l&rsquo;ordine in cui le scrivi.</p>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><code>1,3-5,8</code>: pagine 1, 3, 4, 5 e 8.</li>
+            <li><code>3,1</code>: prima la pagina 3, poi la 1.</li>
+            <li><code>5-3</code>: pagine 5, 4 e 3, in quest&rsquo;ordine.</li>
+            <li>Una pagina scritta due volte viene presa una volta sola; i numeri oltre la fine del documento vengono ignorati.</li>
+          </ul>
+          <p>Ogni volta ottieni <strong>un solo PDF</strong>, con <code>-pagine</code> alla fine del nome. Per dividere un documento in pi&ugrave; file ripeti l&rsquo;operazione con intervalli diversi: il file di partenza resta com&rsquo;&egrave;.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-pagine">
+        <h2 id="t-pagine" class="text-xl font-bold text-gray-900 mb-3">Che cosa resta nel nuovo file</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <p>Le pagine scelte vengono copiate cos&igrave; come sono: testo selezionabile, immagini e qualit&agrave; restano identici all&rsquo;originale.</p>
+          <p>Si perdono invece i <strong>segnalibri</strong> (l&rsquo;indice cliccabile a lato), i <strong>moduli compilabili</strong>, che non restano attivi, e l&rsquo;eventuale <strong>firma digitale</strong>, che non vale sul file nuovo. I collegamenti verso siti esterni di solito continuano a funzionare, quelli interni al documento no.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-quando">
+        <h2 id="t-quando" class="text-xl font-bold text-gray-900 mb-3">Quando serve</h2>
+        <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li>Mandare solo le pagine richieste di un fascicolo lungo, per esempio il verbale senza gli allegati.</li>
+            <li>Separare fronte e retro di un documento scansionato in un unico file.</li>
+            <li>Togliere pagine bianche o di troppo prima di inviare un PDF: basta scrivere solo quelle da tenere.</li>
+          </ul>
+        </div>
+      </section>
 
       <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-faq">
         <h2 id="t-faq" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
@@ -299,7 +332,7 @@
           </details>
           <details class="group border-b border-gray-100 py-3">
             <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I file vengono caricati su un server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da CDN al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina.</p>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il browser legge i file e crea il risultato sul tuo dispositivo, in memoria. Dalla rete arrivano solo le librerie che fanno il lavoro (pdf.js, pdf-lib), scaricate da questo stesso sito al primo utilizzo; i tuoi documenti non vengono inviati da nessuna parte e spariscono quando chiudi la pagina.</p>
           </details>
       </section>
     </main>

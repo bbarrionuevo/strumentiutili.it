@@ -240,12 +240,22 @@ ${sue.map((g) => `          <li class="bg-white rounded-xl shadow-sm border bord
       <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Guide pratiche</h1>
       <p class="mt-3 text-gray-700 leading-relaxed max-w-3xl">Spiegazioni passo per passo delle pratiche per cui si usano gli strumenti del sito: quanto si paga, entro quando, con quali moduli e quali errori evitare. Ogni guida ha esempi con i numeri, calcolati con gli stessi motori degli strumenti, e rimanda ai testi ufficiali. Le scrive e le aggiorna <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a>, seguendo il <a href="/metodo/" class="text-indigo-700 underline">metodo di verifica</a> del sito.</p>
 ${blocchi}
+      <section class="mt-10 bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="come-sono-scritte">
+        <h2 id="come-sono-scritte" class="text-xl font-bold text-gray-900">Come sono scritte queste guide</h2>
+        <ul class="mt-3 list-disc pl-5 space-y-2 text-gray-700 leading-relaxed">
+          <li><strong>Le cifre non sono scritte a mano.</strong> Gli esempi (il bollo di un&rsquo;auto da 85 kW, il netto di una busta paga, la sanzione di un ravvedimento) li calcolano gli stessi motori degli strumenti del sito quando la guida viene pubblicata. Se una regola cambia, guida e strumento cambiano insieme.</li>
+          <li><strong>Le fonti sono quelle originali.</strong> Leggi e decreti si leggono su Normattiva, circolari e istruzioni sul sito dell&rsquo;Agenzia delle Entrate, dell&rsquo;INPS o dell&rsquo;AgID. Ogni guida le elenca in fondo, con il collegamento, cos&igrave; puoi controllare da solo.</li>
+          <li><strong>Ogni guida ha una data.</strong> In cima trovi quando &egrave; stata aggiornata l&rsquo;ultima volta: le regole fiscali cambiano ogni anno, e una guida senza data non dice se vale ancora.</li>
+          <li><strong>Gli errori si correggono.</strong> Se trovi un dato sbagliato o superato, <a href="/contatti/" class="text-indigo-700 underline">scrivici</a>: la guida viene corretta e la data aggiornata.</li>
+        </ul>
+        <p class="mt-4 text-sm text-gray-600 leading-relaxed">Le guide spiegano le regole generali e i casi pi&ugrave; comuni. Per una dichiarazione, un contratto o una scadenza importante con una situazione particolare conviene far controllare il proprio caso da un CAF, un commercialista, un consulente del lavoro o un patronato.</p>
+      </section>
       </div>`;
 
   const html = B.pagina({
     percorso: '/guide/',
     titolo: 'Guide pratiche su tasse, casa, lavoro e documenti',
-    descrizione: 'Guide passo per passo su bollo auto, affitto e RLI, IMU, busta paga, dimissioni e INPS: regole, esempi con i numeri, errori comuni e fonti ufficiali.',
+    descrizione: 'Guide passo per passo su bollo, affitto, IMU, busta paga, dimissioni, PEC e firma digitale, forfettario, fatture e ravvedimento: esempi con i numeri e fonti ufficiali.',
     corpo,
     ld: [{
       '@context': 'https://schema.org',
@@ -300,6 +310,43 @@ function conRimando(html, guideDelloStrumento, file) {
     guideDelloStrumento.map((g) => `          <p class="mb-3 text-sm"><a href="${g.percorso}" class="font-semibold text-indigo-700 hover:underline"><span aria-hidden="true">📖</span> Guida: ${g.titoloBreve}</a></p>`).join('\n') +
     '\n          ' + CHIUDI + '\n';
   return html.replace(m[1], m[1] + blocco);
+}
+
+// Nelle pagine di categoria, dopo «Quale strumento ti serve»: le guide che
+// usano almeno uno strumento della categoria. Senza guide, nessun blocco.
+const CAT_APRI = '<!-- su:guide-categoria -->';
+const CAT_CHIUDI = '<!-- /su:guide-categoria -->';
+
+function guideDellaCategoria(slug, tutte) {
+  return tutte.filter((g) => g.strumenti.some((s) => s.href.startsWith('/' + slug + '/')));
+}
+
+function conGuideInCategoria(html, sue, file) {
+  const i = html.indexOf(CAT_APRI);
+  if (i !== -1) {
+    const inizio = html.lastIndexOf('\n', i) + 1;
+    const j = html.indexOf(CAT_CHIUDI, i) + CAT_CHIUDI.length;
+    html = html.slice(0, inizio) + html.slice(j).replace(/^\n/, '');
+  }
+  if (!sue.length) return html;
+  const a = html.indexOf('<section id="guida-categoria"');
+  const fine = a === -1 ? -1 : html.indexOf('</section>', a);
+  if (fine === -1) throw new Error(file + ': manca la sezione «Quale strumento ti serve» dove mettere le guide');
+  const dopo = fine + '</section>'.length;
+  const blocco = `
+      ${CAT_APRI}
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-6" aria-labelledby="guide-categoria-titolo">
+        <h2 id="guide-categoria-titolo" class="text-xl font-bold text-gray-900 mb-3"><span aria-hidden="true">📖</span> Guide su questo tema</h2>
+        <ul class="space-y-4">
+${sue.map((g) => `          <li>
+            <a href="${g.percorso}" class="font-semibold text-indigo-700 hover:underline">${g.titoloBreve}</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">${B.esc(g.descrizione)}</p>
+          </li>`).join('\n')}
+        </ul>
+        <p class="mt-4 text-sm"><a href="/guide/" class="font-semibold text-indigo-700 hover:underline">Tutte le guide <span aria-hidden="true">&rarr;</span></a></p>
+      </section>
+      ${CAT_CHIUDI}`;
+  return html.slice(0, dopo) + blocco + html.slice(dopo);
 }
 
 // In home, subito dopo l'apertura: le guide sono il contenuto da leggere,
@@ -357,6 +404,11 @@ function tuttiIFile() {
     const f = fileDi(href);
     const attuale = file.has(f) ? file.get(f) : fs.readFileSync(f, 'utf8');
     file.set(f, conRimando(attuale, sue, path.relative(RADICE, f)));
+  }
+  for (const c of L.CATEGORIE) {
+    const f = path.join(RADICE, c.slug, 'index.html');
+    const attuale = file.has(f) ? file.get(f) : fs.readFileSync(f, 'utf8');
+    file.set(f, conGuideInCategoria(attuale, guideDellaCategoria(c.slug, tutte), path.relative(RADICE, f)));
   }
   return { file, tutte };
 }

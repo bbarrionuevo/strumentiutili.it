@@ -54,14 +54,132 @@
   }
   </script>
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "BusinessApplication",
-    "name": "Hub Lavoro e Contratti 2026",
-    "operatingSystem": "All",
-    "url": "https://strumentiutili.it/lavoro-contratti/",
-    "description": "Suite di strumenti professionali per il calcolo di stipendio netto, TFR, preavviso dimissioni CCNL, indennità NASpI e ritenute d'acconto. Architettura 100% Client-Side per la conformità GDPR.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://strumentiutili.it/lavoro-contratti/#pagina",
+        "name": "Lavoro e contratti",
+        "url": "https://strumentiutili.it/lavoro-contratti/",
+        "inLanguage": "it-IT",
+        "description": "Stipendio netto, busta paga, TFR, dimissioni e preavviso, NASpI, prestazioni occasionali, ritenuta d’acconto ed estratto conto INPS: calcoli e lettere per chi lavora.",
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://strumentiutili.it/lavoro-contratti/estratto-conto-contributivo/",
+              "name": "Leggi l’estratto conto contributivo"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://strumentiutili.it/lavoro-contratti/stipendio-netto/",
+              "name": "Calcolatore stipendio netto 2026"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://strumentiutili.it/lavoro-contratti/calcolo-tfr/",
+              "name": "Calcolo TFR e liquidazione"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://strumentiutili.it/lavoro-contratti/analizzatore-busta-paga/",
+              "name": "Analizzatore busta paga"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://strumentiutili.it/lavoro-contratti/lettera-dimissioni-preavviso/",
+              "name": "Preavviso e lettera di dimissioni"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://strumentiutili.it/lavoro-contratti/calcolo-naspi/",
+              "name": "Simulatore NASpI 2026"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://strumentiutili.it/lavoro-contratti/ricevuta-prestazione-occasionale/",
+              "name": "Ricevuta per prestazione occasionale"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "url": "https://strumentiutili.it/lavoro-contratti/ritenuta-acconto/",
+              "name": "Calcolo ritenuta d’acconto"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "url": "https://strumentiutili.it/lavoro-contratti/calendario-turni/",
+              "name": "Calendario turni"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "url": "https://strumentiutili.it/lavoro-contratti/giorni-lavorativi/",
+              "name": "Calcolo giorni lavorativi"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/lavoro-contratti/#domande",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "I calcoli valgono per tutti i contratti collettivi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Usano le regole generali di legge e, per il preavviso, le tabelle dei contratti collettivi più diffusi. Il tuo contratto o un accordo aziendale possono prevedere voci diverse: per un conteggio definitivo fai controllare il caso a un consulente del lavoro o a un patronato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Perché il netto calcolato è diverso da quello della busta paga?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Perché la busta paga del mese può contenere voci che il calcolo annuale distribuisce in modo uniforme: addizionali regionali e comunali, conguagli, straordinari, trattenute particolari. Il calcolo dà il netto medio, non quello di un mese preciso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le dimissioni si danno con una lettera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: per i rapporti di lavoro dipendente si presentano con la procedura online del Ministero del Lavoro, da soli con SPID o CIE oppure tramite un patronato o un sindacato. La lettera può accompagnarle, ma da sola non basta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I miei dati restano sul dispositivo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Stipendi, date e file come l’estratto conto vengono letti e calcolati nel browser, senza invio a un server."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -175,8 +293,8 @@
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
               <span class="inline-block text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold mb-2">⚡ Aggiornato 2026</span>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolatore Stipendio Netto</h3>
-              <p class="text-sm text-gray-600 mb-4">Stima il tuo netto mensile e annuale a partire dalla RAL. Include il nuovo Cuneo Fiscale Strutturale e IRPEF 2026.</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolatore stipendio netto 2026</h3>
+              <p class="text-sm text-gray-600 mb-4">Il netto mensile e annuale a partire dalla RAL, con IRPEF, contributi, detrazioni e il taglio del cuneo fiscale 2026.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/stipendio-netto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -186,8 +304,8 @@
           <!-- Calcolo TFR -->
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo TFR Liquidazione</h3>
-              <p class="text-sm text-gray-600 mb-4">Simula la liquidazione (TFR) accantonata, scorpora la rivalutazione ISTAT e calcola la tassazione separata TUIR.</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo TFR e liquidazione</h3>
+              <p class="text-sm text-gray-600 mb-4">Il TFR maturato anno per anno, con la rivalutazione ISTAT e la tassazione separata sulla liquidazione.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/calcolo-tfr/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -198,8 +316,8 @@
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
               <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-bold mb-2">✨ Nuovo</span>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Analizzatore Busta Paga</h3>
-              <p class="text-sm text-gray-600 mb-4">Fotografa o scansiona il cedolino: l'OCR eseguito nel browser estrae lordo, netto, ferie e TFR e li verifica con controlli matematici.</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Analizzatore busta paga</h3>
+              <p class="text-sm text-gray-600 mb-4">Fotografa o scansiona il cedolino: lordo, netto, ferie e TFR vengono letti nel browser e controllati con i conti.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/analizzatore-busta-paga/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -220,8 +338,8 @@
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
               <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Lettera Dimissioni &amp; Preavviso</h3>
-              <p class="text-sm text-gray-600 mb-4">Calcola l'ultimo giorno di lavoro secondo le decorrenze del tuo CCNL e genera la lettera PDF pronta per l'azienda.</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Preavviso e lettera di dimissioni</h3>
+              <p class="text-sm text-gray-600 mb-4">L’ultimo giorno di lavoro secondo il preavviso del tuo contratto collettivo e la lettera in PDF da consegnare all’azienda.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/lettera-dimissioni-preavviso/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -233,7 +351,7 @@
             <div>
               <span class="inline-block text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full font-semibold mb-2">✨ Novità</span>
               <h3 class="text-lg font-bold text-gray-900 mb-2">Simulatore NASpI 2026</h3>
-              <p class="text-sm text-gray-600 mb-4">Calcola la disoccupazione INPS mensile. Calcolo automatico della durata e del decalage (taglio del 3% per Under e Over 55).</p>
+              <p class="text-sm text-gray-600 mb-4">L’indennità di disoccupazione mese per mese, con la durata e la riduzione del 3% al mese prevista dalla legge.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/calcolo-naspi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -253,8 +371,8 @@
           <!-- Ricevuta Prestazione Occasionale -->
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Ricevuta Prestazione Occasionale</h3>
-              <p class="text-sm text-gray-600 mb-4">Emetti la ricevuta con ritenuta d'acconto al 20%. Rileva automaticamente il superamento della soglia dei 5.000€ (INPS).</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Ricevuta per prestazione occasionale</h3>
+              <p class="text-sm text-gray-600 mb-4">La ricevuta con la ritenuta d’acconto del 20% e l’avviso quando superi i 5.000 € l’anno, oltre i quali si pagano i contributi INPS.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/ricevuta-prestazione-occasionale/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -264,8 +382,8 @@
           <!-- Calcolo Ritenuta d'Acconto -->
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo Ritenuta d'Acconto</h3>
-              <p class="text-sm text-gray-600 mb-4">Calcolo semplificato da lordo a netto e da netto a lordo per fatture e compensi autonomi (inclusa Rivalsa INPS).</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo ritenuta d’acconto</h3>
+              <p class="text-sm text-gray-600 mb-4">Da lordo a netto e da netto a lordo per compensi di lavoro autonomo, anche con la rivalsa INPS del 4%.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/ritenuta-acconto/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -296,8 +414,8 @@
           <!-- Giorni Lavorativi -->
           <article class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Giorni Lavorativi tra 2 Date</h3>
-              <p class="text-sm text-gray-600 mb-4">Conteggia i giorni feriali escludendo weekend e le festività italiane fisse o mobili (es. Pasquetta) tramite Algoritmo di Gauss.</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Calcolo giorni lavorativi</h3>
+              <p class="text-sm text-gray-600 mb-4">Quanti giorni lavorativi ci sono fra due date, senza sabati, domeniche e festività nazionali, Pasquetta compresa.</p>
             </div>
             <div class="mt-auto pt-4 border-t border-gray-50">
               <a href="/lavoro-contratti/giorni-lavorativi/" class="inline-block text-center w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm">Apri</a>
@@ -331,11 +449,56 @@
             <li>Lavori a turni: <a href="/lavoro-contratti/calendario-turni/" class="text-indigo-700 font-semibold hover:underline">Calendario turni</a> con ore e notti del mese.</li>
         </ul>
         <p class="text-sm text-gray-600 leading-relaxed">I risultati sono stime basate sulle norme indicate in ogni strumento, con la data dell&rsquo;ultimo controllo. Per una dichiarazione o un pagamento importante fai verificare i numeri da un CAF, un commercialista o un consulente del lavoro. I dati che inserisci restano sul tuo dispositivo.</p>
+        <h3 class="text-base font-bold text-gray-900 mt-6 mb-2">Tre situazioni, passo per passo</h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Una proposta di lavoro con una RAL.</strong> La retribuzione annua lorda comprende anche tredicesima ed eventuale quattordicesima: con lo <a href="/lavoro-contratti/stipendio-netto/" class="text-indigo-700 font-semibold hover:underline">Stipendio netto</a> vedi quanto arriva davvero ogni mese dopo contributi e IRPEF. Quando arriva la prima busta paga, l&rsquo;<a href="/lavoro-contratti/analizzatore-busta-paga/" class="text-indigo-700 font-semibold hover:underline">Analizzatore</a> ti aiuta a leggerla voce per voce.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Vuoi cambiare lavoro.</strong> Il preavviso dipende dal contratto collettivo, dal livello e dall&rsquo;anzianit&agrave;: lo calcoli con <a href="/lavoro-contratti/lettera-dimissioni-preavviso/" class="text-indigo-700 font-semibold hover:underline">Preavviso e lettera di dimissioni</a>. Le dimissioni per&ograve; si presentano con la procedura online del Ministero del Lavoro: la lettera &egrave; un di pi&ugrave;. Con il <a href="/lavoro-contratti/calcolo-tfr/" class="text-indigo-700 font-semibold hover:underline">Calcolo TFR</a> vedi quanto ti spetta alla fine del rapporto.</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-3"><strong>Hai perso il lavoro.</strong> Il <a href="/lavoro-contratti/calcolo-naspi/" class="text-indigo-700 font-semibold hover:underline">Simulatore NASpI</a> stima importo e durata dell&rsquo;indennit&agrave; di disoccupazione dalle settimane di contributi degli ultimi quattro anni. Le settimane le trovi nell&rsquo;<a href="/lavoro-contratti/estratto-conto-contributivo/" class="text-indigo-700 font-semibold hover:underline">estratto conto contributivo</a>, che lo strumento del sito legge per te.</p>
       </section>
+      <!-- su:guide-categoria -->
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-6" aria-labelledby="guide-categoria-titolo">
+        <h2 id="guide-categoria-titolo" class="text-xl font-bold text-gray-900 mb-3"><span aria-hidden="true">📖</span> Guide su questo tema</h2>
+        <ul class="space-y-4">
+          <li>
+            <a href="/guide/leggere-busta-paga/" class="font-semibold text-indigo-700 hover:underline">Come leggere la busta paga voce per voce</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">Guida al cedolino: elementi della retribuzione, competenze, contributi INPS, IRPEF, detrazioni, taglio del cuneo fiscale 2026, addizionali, ratei e TFR, con tre esempi dal lordo al netto.</p>
+          </li>
+          <li>
+            <a href="/guide/dimissioni-tfr-naspi/" class="font-semibold text-indigo-700 hover:underline">Dimissioni: procedura online, preavviso, TFR e NASpI</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">Come dare le dimissioni con la procedura telematica, quanto preavviso serve nei principali contratti, cosa spetta con l’ultima busta paga, come è tassato il TFR e quando si ha la NASpI.</p>
+          </li>
+          <li>
+            <a href="/guide/estratto-conto-contributivo/" class="font-semibold text-indigo-700 hover:underline">Estratto conto contributivo INPS: come leggerlo e trovare i buchi</a>
+            <p class="mt-1 text-sm text-gray-600 leading-relaxed">Come scaricare l’estratto conto contributivo dall’INPS, come si leggono settimane e gestioni, perché un anno vale al massimo 52 settimane, come trovare i buchi e correggerli.</p>
+          </li>
+        </ul>
+        <p class="mt-4 text-sm"><a href="/guide/" class="font-semibold text-indigo-700 hover:underline">Tutte le guide <span aria-hidden="true">&rarr;</span></a></p>
+      </section>
+      <!-- /su:guide-categoria -->
 
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="8859818557" data-full-width-responsive="true"></ins>
       </div>
+
+      <section id="domande-categoria" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mt-8" aria-labelledby="domande-categoria-titolo">
+        <h2 id="domande-categoria-titolo" class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I calcoli valgono per tutti i contratti collettivi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Usano le regole generali di legge e, per il preavviso, le tabelle dei contratti collettivi pi&ugrave; diffusi. Il tuo contratto o un accordo aziendale possono prevedere voci diverse: per un conteggio definitivo fai controllare il caso a un consulente del lavoro o a un patronato.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; il netto calcolato &egrave; diverso da quello della busta paga?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Perch&eacute; la busta paga del mese pu&ograve; contenere voci che il calcolo annuale distribuisce in modo uniforme: addizionali regionali e comunali, conguagli, straordinari, trattenute particolari. Il calcolo d&agrave; il netto medio, non quello di un mese preciso.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Le dimissioni si danno con una lettera?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: per i rapporti di lavoro dipendente si presentano con la procedura online del Ministero del Lavoro, da soli con SPID o CIE oppure tramite un patronato o un sindacato. La lettera pu&ograve; accompagnarle, ma da sola non basta.</p>
+          </details>
+          <details class="group border-b border-gray-100 py-3">
+            <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I miei dati restano sul dispositivo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+            <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. Stipendi, date e file come l&rsquo;estratto conto vengono letti e calcolati nel browser, senza invio a un server.</p>
+          </details>
+      </section>
+
     </div>
   </div>
 

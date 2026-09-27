@@ -12,7 +12,10 @@ if (window.pdfjsLib && !window.pdfjsLib.GlobalWorkerOptions?.workerSrc) {
   const pdfWorker = Comlink.wrap(worker);
 
   function safeNumber(value, fallback = 0) {
-    const num = Number(value);
+    // un campo vuoto vale il predefinito, non zero; si accetta anche la virgola
+    const testo = String(value == null ? '' : value).trim().replace(',', '.');
+    if (testo === '') return fallback;
+    const num = Number(testo);
     return Number.isFinite(num) ? num : fallback;
   }
 
