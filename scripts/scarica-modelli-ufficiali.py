@@ -146,6 +146,48 @@ MODELLI = {
         "documents/20143/293180/Rich_accred-PF+2025.pdf/8c2b7c9e-5763-20bb-756e-aa29832807d6?t=1764935505336",
         "schede/rimborsi/accredito-rimborsi-su-conto-corrente-accrimbcc/modello-e-istruzioni-accrimbcc",
     ),
+
+    # --- Canone TV: dichiarazione sostitutiva (non detenzione, altra utenza) --
+    # Sono i file collegati dalla pagina "Modelli e istruzioni" del canone TV;
+    # un'altra copia piu' vecchia del modello resta sul portale, non va usata.
+    "modello-canone-tv-ufficiale.pdf": (
+        "documents/20143/450880/DS_Canone_TV_Privato_MOD.pdf/82f97e00-3cf0-76ae-1317-afeafa8e0bb6?t=1669375735594",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+    "istruzioni-canone-tv.pdf": (
+        "documents/20143/450880/DS_Canone_TV_Privato_ISTR.pdf/e29f783f-9675-24e0-635b-d6bf5d43ff15?t=1669375756838",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+
+    # --- Canone TV: esenzione per chi ha 75 anni e reddito basso -------------
+    "modello-canone-tv-75-ufficiale.pdf": (
+        "documents/20143/2302621/TV_esenzione_75_mod.pdf/b8298e2b-55df-8f5e-c79a-510745506e9e?t=1742281105241",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+    "istruzioni-canone-tv-75.pdf": (
+        "documents/20143/2302621/TV_esenzione_75_istr.pdf/8b383b38-ed0d-a5fb-fc21-340fb65da25a?t=1742281105240",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+
+    # --- Canone TV: rimborso di quanto pagato in bolletta ---------------------
+    "modello-rimborso-canone-tv-ufficiale.pdf": (
+        "documents/20143/236326/8_Ric_rimb_TV_Energia_mod+%283%29.pdf/5cfa8636-073b-9848-6a2b-fc8efabef2cd?t=1564763954791",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+    "istruzioni-rimborso-canone-tv.pdf": (
+        "documents/20143/236326/9_Ric_RIMB_RAI_istr_Energia.pdf/0caf7191-2173-9ada-a7c9-6bd72de02785?t=1564763991065",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+
+    # --- Canone TV: rimborso per chi aveva diritto all'esenzione over 75 -----
+    "modello-rimborso-canone-tv-75-ufficiale.pdf": (
+        "documents/20143/2302621/TV_rimborso_75_mod.pdf/eb721b54-ebf7-d052-a6d7-d99025753c4f?t=1742281105241",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
+    "istruzioni-rimborso-canone-tv-75.pdf": (
+        "documents/20143/2302621/TV_rimborso_75_istr.pdf/11b4926b-8001-4996-52bc-d3114c202a97?t=1742281105241",
+        "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+    ),
 }
 
 
