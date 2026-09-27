@@ -25,6 +25,21 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
   - `js/compilatore-moduli.js` los rellena en el navegador.
 - `data/fonti-monitorate.json`: fuentes y plazos que vigila la sentinella. Las copias de referencia están en `fonti/archivio/`.
 
+## Toda herramienta nueva entra en el mantenimiento automático
+Si una herramienta depende de algo que puede cambiar (una cifra, una norma, un modelo, un plazo, datos que se descargan), en la misma PR se registra en `data/fonti-monitorate.json`:
+- **datos en `regole-fiscali`**: una entrada en `copertura` para el bloque nuevo, con cómo se vigila:
+  - `schede`: páginas oficiales con `deve_contenere`;
+  - `scadenze`: recordatorios;
+  - `norme`: artículos de Normattiva que la sentinella relee;
+  - `modelli`;
+  - `serie`;
+  - `dati_vivi`.
+- **artículos de ley que la página no enlaza**: en `norme`.
+- **formularios oficiales**: en `MODELLI` de `scripts/scarica-modelli-ufficiali.py`.
+- **datos que un workflow actualiza solo** (precios, tasas del día): en `dati_vivi`, con el archivo, el campo con la fecha y los días máximos. Si el workflow se detiene, la sentinella avisa.
+
+`tests/fonti-monitorate.test.js` falla si un bloque de datos o un PDF oficial no tiene vigilancia.
+
 ## Leer fuentes oficiales
 El sandbox no llega a agenziaentrate.gov.it, normattiva.it, aci.gov.it, inps.it, istat.it ni a la mayoría de los sitios públicos. Se leen con workflows de GitHub, lanzados con `actions_run_trigger` del MCP de GitHub sobre `ref: main`; los registros se leen con `get_job_logs`.
 - **`leggi-fonti.yml`:**

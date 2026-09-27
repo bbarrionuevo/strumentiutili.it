@@ -70,6 +70,11 @@ jobs:
               grep -oiE "<a [^>]*href=[\"'][^\"']+[\"'][^>]*>[^<]{0,200}" documento \
                 | grep -iE 'pdf|tariff|tabell|importi|get_file|/documents/' \
                 | sed -E "s/<a [^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*)/\1  «\2»/I" | sort -u | head -150
+              # tutti i collegamenti con il loro testo: servono per trovare
+              # allegati e documenti che non finiscono in .pdf
+              echo "--- tutti i collegamenti:"
+              tr '\n' ' ' < documento | grep -oiE "<a [^>]*href=[\"'][^\"']+[\"'][^>]*>([^<]|<[^/a][^>]*>|</[^a][^>]*>){0,300}</a>" \
+                | sed -E -e "s/<a [^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*)<\/a>/\1  «\2»/I" -e 's/<[^>]*>//g' | tr -s ' ' | sort -u | head -300
               echo "--- testo della pagina:"
               sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/ /g' documento | tr -s ' \t' | grep -v '^\s*$' | head -c 200000
             fi

@@ -78,6 +78,67 @@ test('scadenze: id unici, date valide, testo e dati collegati', () => {
   }
 });
 
+// Regola del progetto: ogni dato che invecchia deve avere un modo per
+// accorgersi che e' cambiato. Chi aggiunge un blocco a regole-fiscali (o uno
+// strumento nuovo con dati propri) deve dire qui come lo si sorveglia.
+test('ogni blocco delle regole fiscali ha una sorveglianza', () => {
+  const blocchi = Object.keys(regole).filter((k) => k !== 'meta').sort();
+  assert.deepStrictEqual(Object.keys(R.copertura).sort(), blocchi,
+    'aggiungere in data/fonti-monitorate.json, sotto "copertura", come si sorvegliano i blocchi nuovi (e togliere quelli spariti)');
+
+  const { collegamenti } = require('../scripts/controlla-collegamenti.js');
+  const seguite = new Set([...collegamenti().keys()].filter((u) => u.includes('normattiva.it/uri-res/')));
+  (function giro(o) {
+    if (typeof o === 'string' && o.includes('normattiva.it/uri-res/')) seguite.add(o);
+    else if (o && typeof o === 'object') Object.values(o).forEach(giro);
+  })(regole);
+  for (const u of R.norme) seguite.add(u);
+  const urn = (u) => u.split('urn:nir:')[1];
+  const schede = new Set(R.schede.map((s) => s.id));
+  const scadenze = new Set(R.scadenze.map((s) => s.id));
+  const modelli = new Set([...R.pagine_modelli.map((m) => m.id), ...Object.keys(require('../scripts/sentinella.js').modelli())]);
+  const serie = new Set(['tasso-bce', 'interessi-legali', 'istat-foi']);
+  const vivi = new Set(R.dati_vivi.map((d) => d.id));
+
+  for (const [k, c] of Object.entries(R.copertura)) {
+    for (const n of c.norme || []) assert.ok([...seguite].some((u) => urn(u) === n), `${k}: la norma ${n} non e' fra quelle che la sentinella rilegge (aggiungerla a "norme")`);
+    for (const x of c.schede || []) assert.ok(schede.has(x), `${k}: scheda ${x} inesistente`);
+    for (const x of c.scadenze || []) assert.ok(scadenze.has(x), `${k}: scadenza ${x} inesistente`);
+    for (const x of c.modelli || []) assert.ok(modelli.has(x), `${k}: modello ${x} non sorvegliato`);
+    for (const x of c.serie || []) assert.ok(serie.has(x), `${k}: serie ${x} sconosciuta`);
+    for (const x of c.dati_vivi || []) assert.ok(vivi.has(x), `${k}: dati_vivi ${x} inesistente`);
+    // qualcosa che scatta nel tempo (scheda, scadenza, modello, serie, dati vivi)
+    // oppure la sola legge, ma allora si spiega perche' basta
+    const periodico = ['schede', 'scadenze', 'modelli', 'serie', 'dati_vivi'].some((f) => (c[f] || []).length);
+    assert.ok(periodico || ((c.norme || []).length && c.nota && c.nota.length >= 40),
+      `${k}: serve una scheda, una scadenza, un modello, una serie o dati vivi; con le sole norme, una nota che spieghi perche' bastano`);
+  }
+});
+
+test('ogni modello ufficiale in assets/pdf e\' sorvegliato', () => {
+  // un compilatore nuovo parte da un PDF ufficiale: deve stare in MODELLI di
+  // scripts/scarica-modelli-ufficiali.py (o, se l'ha caricato Brian, in pagine_modelli)
+  const inModelli = new Set(Object.keys(require('../scripts/sentinella.js').modelli()));
+  const inPagine = new Set(R.pagine_modelli.flatMap((m) => m.file.map((f) => path.basename(f))));
+  const ufficiali = fs.readdirSync(path.join(RADICE, 'assets', 'pdf')).filter((f) => /-(ufficiale|editabile)\.pdf$|^istruzioni-/.test(f));
+  assert.ok(ufficiali.length >= 20);
+  assert.deepStrictEqual(ufficiali.filter((f) => !inModelli.has(f) && !inPagine.has(f)), [],
+    'aggiungere questi PDF a MODELLI o a pagine_modelli, perche\' la sentinella se ne accorga quando l\'Agenzia li cambia');
+});
+
+test('norme in piu\' e dati vivi: indirizzi e file validi', () => {
+  for (const u of R.norme) assert.match(u, /^https:\/\/www\.normattiva\.it\/uri-res\/N2Ls\?urn:nir:/, u);
+  const ids = new Set();
+  for (const d of R.dati_vivi) {
+    assert.ok(/^[a-z0-9-]+$/.test(d.id) && !ids.has(d.id), 'id non valido o ripetuto: ' + d.id);
+    ids.add(d.id);
+    assert.ok(fs.existsSync(path.join(RADICE, d.file)), `${d.id}: ${d.file} non esiste`);
+    assert.ok(Number.isInteger(d.max_giorni) && d.max_giorni >= 1, d.id + ': max_giorni');
+    assert.ok(typeof d.campo === 'string' && d.campo, d.id + ': campo con la data');
+    if (d.workflow) assert.ok(fs.existsSync(path.join(RADICE, '.github', 'workflows', d.workflow)), `${d.id}: workflow ${d.workflow} inesistente`);
+  }
+});
+
 test('la sentinella gira ogni settimana, non scrive su main e non passa testo esterno alla shell', () => {
   const w = leggi('.github/workflows/sentinella.yml');
   assert.match(w, /schedule:\s*\n\s*- cron: '\d+ \d+ \* \* 1'/);

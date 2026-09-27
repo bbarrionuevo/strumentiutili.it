@@ -279,6 +279,9 @@ async function main() {
     const norme = new Set([...dove.keys()].filter(urn));
     for (const u of indirizziIn(regole)) if (urn(u)) norme.add(u);
     for (const s of registro.scadenze || []) if (s.fonte && urn(s.fonte)) norme.add(s.fonte);
+    // norme da seguire anche se nessuna pagina le collega (per esempio quelle
+    // da cui dipende uno strumento nuovo)
+    for (const u of registro.norme || []) if (urn(u)) norme.add(u);
     let formaIgnota = 0;
     const articoliLetti = [];
     for (const url of [...norme].sort()) {
@@ -432,6 +435,14 @@ async function main() {
 
   // Le scadenze non hanno bisogno della rete: si calcolano sempre
   if (!aggiorna) {
+    const leggiJson = (f) => { try { return JSON.parse(fs.readFileSync(path.join(RADICE, f), 'utf8')); } catch { return null; } };
+    for (const v of C.datiVecchi(registro.dati_vivi, leggiJson, oggi)) {
+      finali.push({ id: `vecchio:${v.id}:${v.quando || 'assente'}`, tipo: 'dato-vecchio', priorita: 'alta',
+        titolo: `Dati non aggiornati: ${v.id}`, url: v.fonte || '', impronta: v.quando || 'assente',
+        corpo: (v.quando ? `L'ultimo aggiornamento di \`${v.file}\` e' del ${v.quando} (${v.giorni} giorni fa, il massimo previsto e' ${v.max_giorni}).`
+          : `\`${v.file}\` manca o non ha la data in \`${v.campo}\`.`) +
+          (v.workflow ? ` Controllare le ultime esecuzioni di \`.github/workflows/${v.workflow}\`: probabilmente la fonte ha cambiato indirizzo o formato.` : '') });
+    }
     for (const s of C.scadenzeDovute(registro, regole, oggi, titoliPagine())) {
       finali.push({ id: s.id, tipo: 'scadenza', priorita: 'alta', titolo: 'Da aggiornare: ' + s.titolo, url: s.fonte || '', impronta: s.dal, dati: s.dati,
         corpo: s.cosa + (s.fonte ? `\n\nFonte da rileggere: ${s.fonte}` : '') + elencoDati(s.dati) });
