@@ -58,6 +58,7 @@ function contesto() {
       rli: require('../js/rli-imposte.js'),
       rliSanzioni: require('../js/rli-sanzioni.js'),
       ravvedimento: require('../js/ravvedimento-calcolo.js'),
+      canone: require('../js/canone-tv.js'),
       forfettario: window.PartitaIvaForfettaria,
       tipoFile: require('../js/tipo-file.js'),
       estratto: require('../js/estratto-contributivo.js'),

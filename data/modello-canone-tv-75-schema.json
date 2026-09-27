@@ -1,0 +1,441 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi dei modelli dell'Agenzia delle Entrate per l'esenzione dal canone TV degli ultrasettantacinquenni e per il relativo rimborso, creati da scripts/prepara-moduli-canone-tv.py. I testi di aiuto sono tratti dalle istruzioni ufficiali dei due modelli.",
+ "tabelle": {},
+ "modelli": {
+  "ESENZIONE75": {
+   "codice": "Esenzione over 75",
+   "nome": "Dichiarazione per l'esenzione dal canone TV (over 75)",
+   "sottotitolo": "Legge 244/2007, art. 1, comma 132",
+   "descrizione": "La dichiarazione sostitutiva con cui chi ha compiuto 75 anni, con reddito proprio e del coniuge non superiore a 8.000 euro, chiede di non pagare il canone TV.",
+   "pdf": "/assets/pdf/modello-canone-tv-75-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-canone-tv-75.pdf",
+   "testata": {
+    "riferimentoNomeFile": "dichiarante.codiceFiscale"
+   },
+   "passi": [
+    {
+     "id": "dichiarante",
+     "titolo": "I tuoi dati",
+     "descrizione": "I dati di chi chiede l'esenzione: la persona che ha compiuto 75 anni.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third",
+       "help": "La sigla di due lettere della provincia di nascita: per Roma, RM."
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half"
+      }
+     ]
+    },
+    {
+     "id": "dichiarazione",
+     "titolo": "La dichiarazione",
+     "descrizione": "Le quattro condizioni stampate nel modello. Tutte devono essere vere: e' una dichiarazione sostitutiva, e dichiarare il falso e' punito dal codice penale (D.P.R. 445/2000, artt. 75 e 76).",
+     "campi": [
+      {
+       "id": "sezione",
+       "type": "radioX",
+       "label": "Che cosa dichiari",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "I",
+         "label": "Sezione I - Chiedo l'esenzione dal canone",
+         "help": "Se i requisiti restano, vale anche per gli anni successivi senza ripresentarla."
+        },
+        {
+         "value": "II",
+         "label": "Sezione II - I requisiti sono venuti meno",
+         "help": "Per esempio il reddito ha superato la soglia o in casa vive un'altra persona con reddito."
+        }
+       ],
+       "help": "Le due sezioni sono alternative: se ne compila una sola."
+      },
+      {
+       "id": "anno",
+       "type": "anno",
+       "pdf": "anno_esenzione",
+       "label": "Anno per cui chiedi l'esenzione",
+       "required": true,
+       "width": "third",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "I"
+        ]
+       },
+       "help": "L'esenzione vale per l'intero anno se compi 75 anni entro il 31 gennaio; se li compi dal 1 febbraio al 31 luglio, vale per il secondo semestre."
+      },
+      {
+       "id": "confermaResidenza",
+       "type": "checkX",
+       "required": true,
+       "width": "full",
+       "label": "a) Ho il televisore solo nell'abitazione in cui ho la residenza",
+       "help": "L'esenzione non spetta se il televisore sta in una casa diversa da quella di residenza.",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "I"
+        ]
+       }
+      },
+      {
+       "id": "statoCivile",
+       "type": "radioX",
+       "label": "b) Stato civile",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "no",
+         "label": "Non sono coniugato/a ne' unito/a civilmente",
+         "pdf": "non_coniugato"
+        },
+        {
+         "value": "si",
+         "label": "Sono coniugato/a o unito/a civilmente",
+         "help": "Nel modello non c'e' una casella da barrare: si scrive il codice fiscale del coniuge."
+        }
+       ],
+       "help": "Per il modello la parola coniuge comprende anche la parte di un'unione civile (legge 76/2016).",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "I"
+        ]
+       }
+      },
+      {
+       "id": "coniugeCf",
+       "type": "cf",
+       "pdf": "coniuge_codice_fiscale",
+       "label": "Codice fiscale del coniuge convivente",
+       "required": true,
+       "width": "half",
+       "showIf": [
+        {
+         "campo": "sezione",
+         "in": [
+          "I"
+         ]
+        },
+        {
+         "campo": "statoCivile",
+         "in": [
+          "si"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "confermaConviventi",
+       "type": "checkX",
+       "required": true,
+       "width": "full",
+       "label": "c) Non vivo con altre persone, oltre al coniuge, che hanno un reddito proprio",
+       "help": "Non contano colf, badanti e altri collaboratori domestici.",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "I"
+        ]
+       }
+      },
+      {
+       "id": "soglia",
+       "type": "radioX",
+       "label": "d) Il reddito mio e del coniuge, nell'anno precedente, non supera",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "8000",
+         "label": "8.000,00 euro",
+         "help": "Per gli anni dal 2018 in poi.",
+         "pdf": "reddito_8000"
+        },
+        {
+         "value": "6713",
+         "label": "6.713,98 euro",
+         "help": "Solo per gli anni fino al 2017.",
+         "pdf": "reddito_6713"
+        }
+       ],
+       "help": "Si somma il reddito dell'anno prima: imponibile della dichiarazione (o della Certificazione Unica), redditi a imposta sostitutiva come gli interessi su conti e titoli di Stato, redditi esteri non tassati in Italia. Non si contano i redditi esenti IRPEF (per esempio pensioni di guerra, rendite INAIL, pensioni di invalidita' civile), il TFR, la casa di abitazione e i redditi a tassazione separata.",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "I"
+        ]
+       }
+      },
+      {
+       "id": "annoVariazione",
+       "type": "anno",
+       "pdf": "anno_variazione",
+       "label": "Anno da cui i requisiti sono venuti meno",
+       "required": true,
+       "width": "third",
+       "showIf": {
+        "campo": "sezione",
+        "in": [
+         "II"
+        ]
+       },
+       "help": "Per esempio, se il reddito del 2025 tuo e del coniuge supera 8.000 euro, indichi 2025. Chi ha la luce intestata si vedra' addebitare le rate nella prima bolletta utile; chi non ce l'ha paga il canone con F24."
+      }
+     ]
+    },
+    {
+     "id": "firma",
+     "titolo": "Data e firma",
+     "descrizione": "Il modello va firmato dal dichiarante. Con la raccomandata si allega la copia di un documento di riconoscimento valido.",
+     "campi": [
+      {
+       "id": "data",
+       "pdf": "data_firma",
+       "type": "data",
+       "label": "Data della firma",
+       "required": true,
+       "width": "half",
+       "help": "Lo spazio della firma resta vuoto nel PDF: firma a penna sulla copia stampata, oppure firma il file digitalmente se lo mandi via PEC."
+      }
+     ]
+    }
+   ]
+  },
+  "RIMBORSO75": {
+   "codice": "Rimborso over 75",
+   "nome": "Richiesta di rimborso del canone TV (over 75)",
+   "sottotitolo": "Per chi ha pagato pur avendo diritto all'esenzione",
+   "descrizione": "La richiesta di rimborso del canone pagato da chi aveva i requisiti per l'esenzione over 75. Contiene anche la dichiarazione sostitutiva dei requisiti.",
+   "pdf": "/assets/pdf/modello-rimborso-canone-tv-75-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-rimborso-canone-tv-75.pdf",
+   "testata": {
+    "riferimentoNomeFile": "richiedente.codiceFiscale"
+   },
+   "passi": [
+    {
+     "id": "richiedente",
+     "titolo": "I tuoi dati",
+     "descrizione": "I dati di chi chiede il rimborso.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third",
+       "help": "La sigla di due lettere della provincia di nascita: per Roma, RM."
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half"
+      }
+     ]
+    },
+    {
+     "id": "rimborso",
+     "titolo": "Quale anno e quanto",
+     "descrizione": "L'anno per cui hai pagato il canone senza doverlo e l'importo pagato.",
+     "campi": [
+      {
+       "id": "anno",
+       "type": "anno",
+       "pdf": "anno",
+       "label": "Anno d'imposta",
+       "required": true,
+       "width": "third",
+       "help": "L'anno del canone di cui chiedi la restituzione. Per ogni anno si presenta una richiesta."
+      },
+      {
+       "id": "importo",
+       "type": "importoEuro",
+       "pdf": "totale",
+       "pdfCentesimi": "totale_cent",
+       "label": "Importo pagato (euro)",
+       "required": true,
+       "width": "third",
+       "help": "La somma del canone pagato per quell'anno, con i centesimi dopo la virgola: la virgola e' gia' stampata sul modulo."
+      }
+     ]
+    },
+    {
+     "id": "dichiarazione",
+     "titolo": "La dichiarazione dei requisiti",
+     "descrizione": "Le condizioni stampate nel modello si riferiscono all'anno per cui chiedi il rimborso. Dichiarare il falso e' punito dal codice penale (D.P.R. 445/2000, artt. 75 e 76).",
+     "campi": [
+      {
+       "id": "confermaResidenza",
+       "type": "checkX",
+       "required": true,
+       "width": "full",
+       "label": "a) Ho il televisore solo nell'abitazione in cui ho la residenza",
+       "help": "L'esenzione non spetta se il televisore sta in una casa diversa da quella di residenza."
+      },
+      {
+       "id": "statoCivile",
+       "type": "radioX",
+       "label": "b) Stato civile",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "no",
+         "label": "Non sono coniugato/a ne' unito/a civilmente",
+         "pdf": "non_coniugato"
+        },
+        {
+         "value": "si",
+         "label": "Sono coniugato/a o unito/a civilmente",
+         "help": "Nel modello non c'e' una casella da barrare: si scrive il codice fiscale del coniuge."
+        }
+       ],
+       "help": "Per il modello la parola coniuge comprende anche la parte di un'unione civile (legge 76/2016)."
+      },
+      {
+       "id": "coniugeCf",
+       "type": "cf",
+       "pdf": "coniuge_codice_fiscale",
+       "label": "Codice fiscale del coniuge convivente",
+       "required": true,
+       "width": "half",
+       "showIf": {
+        "campo": "statoCivile",
+        "in": [
+         "si"
+        ]
+       }
+      },
+      {
+       "id": "confermaConviventi",
+       "type": "checkX",
+       "required": true,
+       "width": "full",
+       "label": "c) Non vivo con altre persone, oltre al coniuge, che hanno un reddito proprio",
+       "help": "Non contano colf, badanti e altri collaboratori domestici."
+      },
+      {
+       "id": "soglia",
+       "type": "radioX",
+       "label": "d) Il reddito mio e del coniuge, nell'anno precedente, non supera",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "8000",
+         "label": "8.000,00 euro",
+         "help": "Per gli anni dal 2018 in poi.",
+         "pdf": "reddito_8000"
+        },
+        {
+         "value": "6713",
+         "label": "6.713,98 euro",
+         "help": "Solo per gli anni fino al 2017.",
+         "pdf": "reddito_6713"
+        }
+       ],
+       "help": "Si somma il reddito dell'anno prima: imponibile della dichiarazione (o della Certificazione Unica), redditi a imposta sostitutiva come gli interessi su conti e titoli di Stato, redditi esteri non tassati in Italia. Non si contano i redditi esenti IRPEF (per esempio pensioni di guerra, rendite INAIL, pensioni di invalidita' civile), il TFR, la casa di abitazione e i redditi a tassazione separata."
+      }
+     ]
+    },
+    {
+     "id": "firma",
+     "titolo": "Data e firma",
+     "descrizione": "La richiesta va firmata da chi chiede il rimborso, con la data. Con la raccomandata si allega la copia di un documento di riconoscimento valido.",
+     "campi": [
+      {
+       "id": "data",
+       "pdf": "data_firma",
+       "type": "data",
+       "label": "Data della firma",
+       "required": true,
+       "width": "half",
+       "help": "Lo spazio della firma resta vuoto nel PDF: firma a penna sulla copia stampata, oppure firma il file digitalmente se lo mandi via PEC."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

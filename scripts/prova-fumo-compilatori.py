@@ -1,6 +1,6 @@
 """Prova di fumo: ogni pagina che usa il motore dei moduli deve avviarsi,
 mostrare i passi e non lanciare errori JavaScript."""
-import sys, threading, http.server, functools, socketserver
+import os, sys, threading, http.server, functools, socketserver
 from playwright.sync_api import sync_playwright
 
 import pathlib
@@ -14,6 +14,9 @@ PAGINE = [
     "/cittadino-tasse/modello-69/",
     "/cittadino-tasse/modello-rap/",
     "/cittadino-tasse/accredito-rimborsi/",
+    "/cittadino-tasse/disdetta-canone-rai/",
+    "/cittadino-tasse/esenzione-canone-rai-over-75/",
+    "/cittadino-tasse/rimborso-canone-rai/",
     "/cittadino-tasse/f24-editabile/f24-ordinario/",
     "/cittadino-tasse/f24-editabile/f24-semplificato/",
     "/cittadino-tasse/f24-editabile/f24-elide/",
@@ -30,7 +33,11 @@ srv = socketserver.TCPServer(("127.0.0.1", PORTA), functools.partial(Silenzioso,
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 
 with sync_playwright() as pw:
-    b = pw.chromium.launch(channel="msedge", headless=True)
+    # PROVA_CHROMIUM indica un eseguibile preciso, se manca Microsoft Edge
+    if os.environ.get("PROVA_CHROMIUM"):
+        b = pw.chromium.launch(executable_path=os.environ["PROVA_CHROMIUM"], headless=True)
+    else:
+        b = pw.chromium.launch(channel="msedge", headless=True)
     ctx = b.new_context(viewport={"width": 1280, "height": 1000})
     for percorso in PAGINE:
         pag = ctx.new_page()

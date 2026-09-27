@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v76';
+const CACHE_NAME = 'strumentiutili-v77';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -35,6 +35,9 @@ const APP_SHELL = [
   '/cittadino-tasse/modello-69/',
   '/cittadino-tasse/modello-rap/',
   '/cittadino-tasse/accredito-rimborsi/',
+  '/cittadino-tasse/disdetta-canone-rai/',
+  '/cittadino-tasse/esenzione-canone-rai-over-75/',
+  '/cittadino-tasse/rimborso-canone-rai/',
   '/cittadino-tasse/imposte-acquisto-casa/',
   '/cittadino-tasse/calcolo-bollo-auto/',
   '/cittadino-tasse/lettore-multa-codice-strada/',
@@ -141,6 +144,7 @@ const APP_SHELL = [
   '/guide/regime-forfettario/',
   '/guide/fattura-elettronica-scartata/',
   '/guide/ravvedimento-operoso/',
+  '/guide/canone-rai/',
 
   // Script condivisi e utilità
   '/js/spazio.js',
@@ -149,6 +153,8 @@ const APP_SHELL = [
   '/js/data-loader.js',
   '/js/esenzione-bollo.js',
   '/js/esenzione-bollo-ui.js',
+  '/js/canone-tv.js',
+  '/js/canone-tv-ui.js',
   '/js/dropzone.js',
   '/js/sfondo-persona.js',
   '/js/error-utils.js',
@@ -288,6 +294,9 @@ const APP_SHELL = [
   '/data/modello-69-schema.json',
   '/data/modello-rap-schema.json',
   '/data/modello-accredito-rimborsi-schema.json',
+  '/data/modello-canone-tv-schema.json',
+  '/data/modello-canone-tv-75-schema.json',
+  '/data/modello-rimborso-canone-tv-schema.json',
   '/data/modello-aa5-6-schema.json',
   '/assets/icon.svg',
   '/assets/icon.png',

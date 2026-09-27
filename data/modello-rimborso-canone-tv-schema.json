@@ -1,0 +1,370 @@
+{
+ "versione": "2026-09",
+ "nota": "Mappatura dei campi della richiesta di rimborso del canone TV pagato mediante addebito nelle fatture per l'energia elettrica (modello e istruzioni dell'Agenzia delle Entrate), creati da scripts/prepara-moduli-canone-tv.py. I testi di aiuto e i codici del motivo sono tratti dalle istruzioni ufficiali.",
+ "tabelle": {},
+ "modelli": {
+  "RIMBORSO": {
+   "codice": "Rimborso canone TV",
+   "nome": "Richiesta di rimborso del canone TV pagato in bolletta",
+   "sottotitolo": "Canone addebitato nelle fatture della luce",
+   "descrizione": "Il modello con cui il titolare del contratto della luce, o l'erede, chiede la restituzione del canone TV addebitato in bolletta ma non dovuto.",
+   "pdf": "/assets/pdf/modello-rimborso-canone-tv-compilabile.pdf",
+   "istruzioni": "/assets/pdf/istruzioni-rimborso-canone-tv.pdf",
+   "testata": {
+    "riferimentoNomeFile": "richiedente.codiceFiscale",
+    "copie": [
+     {
+      "da": "richiedente.codiceFiscale",
+      "tipo": "cf",
+      "a": [
+       "codice_fiscale_testata"
+      ]
+     }
+    ]
+   },
+   "passi": [
+    {
+     "id": "richiedente",
+     "titolo": "I tuoi dati",
+     "descrizione": "I dati di chi chiede il rimborso: il titolare del contratto della luce su cui e' stato addebitato il canone, oppure l'erede.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "required": true,
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third",
+       "help": "La sigla di due lettere della provincia di nascita: per Roma, RM."
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "email",
+       "pdf": "email",
+       "type": "email",
+       "label": "E-mail",
+       "width": "half",
+       "help": "Il modello chiede un indirizzo e-mail di chi presenta la richiesta."
+      }
+     ]
+    },
+    {
+     "id": "erede",
+     "opzionale": true,
+     "titolo": "Se chiedi il rimborso come erede",
+     "descrizione": "Solo se il canone e' stato addebitato sull'utenza della luce di una persona deceduta: qui vanno i suoi dati anagrafici e il suo codice fiscale.",
+     "campi": [
+      {
+       "id": "cognome",
+       "pdf": "erede_cognome",
+       "type": "testo",
+       "label": "Cognome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "nome",
+       "pdf": "erede_nome",
+       "type": "testo",
+       "label": "Nome",
+       "required": true,
+       "width": "half"
+      },
+      {
+       "id": "dataNascita",
+       "pdf": "erede_data_nascita",
+       "type": "data",
+       "label": "Data di nascita",
+       "required": false,
+       "width": "third"
+      },
+      {
+       "id": "comuneNascita",
+       "pdf": "erede_comune_nascita",
+       "type": "testo",
+       "label": "Comune o Stato estero di nascita",
+       "required": false,
+       "width": "third"
+      },
+      {
+       "id": "provinciaNascita",
+       "pdf": "erede_provincia_nascita",
+       "type": "provincia",
+       "label": "Provincia (sigla)",
+       "width": "third",
+       "help": "La sigla di due lettere della provincia di nascita: per Roma, RM.",
+       "required": false
+      },
+      {
+       "id": "codiceFiscale",
+       "pdf": "erede_codice_fiscale",
+       "type": "cf",
+       "label": "Codice fiscale della persona deceduta",
+       "required": true,
+       "width": "half"
+      }
+     ]
+    },
+    {
+     "id": "fatture",
+     "titolo": "Anno e bollette",
+     "descrizione": "L'anno del canone e le bollette in cui e' stato addebitato. Il totale lo calcola il compilatore sommando gli importi delle righe, come chiedono le istruzioni.",
+     "campi": [
+      {
+       "id": "anno",
+       "type": "anno",
+       "pdf": "anno",
+       "label": "Anno d'imposta",
+       "required": true,
+       "width": "third",
+       "help": "L'anno cui si riferisce il canone. Non puo' essere il 2015 o un anno precedente: questo modello vale solo per il canone addebitato in bolletta."
+      },
+      {
+       "id": "totale",
+       "type": "euro",
+       "pdf": "totale",
+       "label": "Totale del rimborso richiesto (euro)",
+       "width": "third",
+       "calcolo": {
+        "somma": [
+         "fatture.riga.importo"
+        ]
+       },
+       "help": "Deve coincidere con la somma degli importi del canone indicati per ciascuna bolletta."
+      }
+     ],
+     "ripetibili": [
+      {
+       "id": "riga",
+       "label": "Bollette con il canone da rimborsare",
+       "help": "Una riga per ogni bolletta. Il POD e il numero della fattura sono scritti sulla bolletta; se il POD e' lo stesso per tutte, basta scriverlo nella prima riga.",
+       "righeMax": 10,
+       "sottocampi": [
+        {
+         "id": "pod",
+         "type": "testo",
+         "label": "Codice POD",
+         "width": "third",
+         "help": "Il codice del punto di prelievo: comincia con IT ed e' riportato in bolletta."
+        },
+        {
+         "id": "fattura",
+         "type": "testo",
+         "label": "Numero della fattura",
+         "width": "third"
+        },
+        {
+         "id": "importo",
+         "type": "euro",
+         "label": "Importo del canone (euro)",
+         "width": "third",
+         "help": "Solo la quota del canone TV addebitata in quella bolletta, non il totale della fattura."
+        }
+       ],
+       "righe": [
+        {
+         "pod": "pod_1",
+         "fattura": "fattura_1",
+         "importo": "importo_1"
+        },
+        {
+         "pod": "pod_2",
+         "fattura": "fattura_2",
+         "importo": "importo_2"
+        },
+        {
+         "pod": "pod_3",
+         "fattura": "fattura_3",
+         "importo": "importo_3"
+        },
+        {
+         "pod": "pod_4",
+         "fattura": "fattura_4",
+         "importo": "importo_4"
+        },
+        {
+         "pod": "pod_5",
+         "fattura": "fattura_5",
+         "importo": "importo_5"
+        },
+        {
+         "pod": "pod_6",
+         "fattura": "fattura_6",
+         "importo": "importo_6"
+        },
+        {
+         "pod": "pod_7",
+         "fattura": "fattura_7",
+         "importo": "importo_7"
+        },
+        {
+         "pod": "pod_8",
+         "fattura": "fattura_8",
+         "importo": "importo_8"
+        },
+        {
+         "pod": "pod_9",
+         "fattura": "fattura_9",
+         "importo": "importo_9"
+        },
+        {
+         "pod": "pod_10",
+         "fattura": "fattura_10",
+         "importo": "importo_10"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "motivo",
+     "titolo": "Il motivo",
+     "descrizione": "Il codice del motivo, dall'elenco delle istruzioni ufficiali. Se scegli il motivo 4 servono anche il codice fiscale del familiare e le date.",
+     "campi": [
+      {
+       "id": "codice",
+       "type": "select",
+       "pdf": "motivo",
+       "label": "Motivo della richiesta",
+       "required": true,
+       "width": "full",
+       "options": [
+        {
+         "value": "1",
+         "label": "1 - Esenzione over 75"
+        },
+        {
+         "value": "2",
+         "label": "2 - Esenzione per convenzioni internazionali"
+        },
+        {
+         "value": "3",
+         "label": "3 - Canone pagato due volte, anche in un altro modo"
+        },
+        {
+         "value": "4",
+         "label": "4 - Canone addebitato su due contratti della stessa famiglia"
+        },
+        {
+         "value": "5",
+         "label": "5 - Avevi presentato la dichiarazione di non detenzione"
+        },
+        {
+         "value": "6",
+         "label": "6 - Altri motivi"
+        }
+       ],
+       "help": "1: Tu o un altro componente della famiglia anagrafica avete i requisiti per l'esenzione degli ultrasettantacinquenni e avete presentato la dichiarazione sostitutiva. 2: Per esempio diplomatici e militari stranieri, con la dichiarazione sostitutiva gia' presentata. 3: Il canone e' stato addebitato in bolletta e pagato anche diversamente, per esempio con la trattenuta sulla pensione. 4: Pagato sulla tua bolletta e anche su quella di un altro componente della famiglia anagrafica. 5: Tu e la tua famiglia anagrafica non avete il televisore e la dichiarazione era stata presentata. 6: Qualsiasi altro caso: spiegalo nella descrizione sintetica."
+      },
+      {
+       "id": "familiareCf",
+       "type": "cf",
+       "pdf": "familiare_codice_fiscale",
+       "label": "Codice fiscale del familiare a cui e' addebitato il canone",
+       "required": true,
+       "width": "half",
+       "showIf": {
+        "campo": "codice",
+        "in": [
+         "4"
+        ]
+       },
+       "help": "Con il motivo 4 questa indicazione vale come dichiarazione sostitutiva (D.P.R. 445/2000, art. 47)."
+      },
+      {
+       "id": "dataInizio",
+       "type": "data",
+       "pdf": "data_inizio",
+       "label": "Data inizio",
+       "required": true,
+       "width": "quarter",
+       "showIf": {
+        "campo": "codice",
+        "in": [
+         "4"
+        ]
+       },
+       "help": "La data da cui fai parte della stessa famiglia anagrafica. Se e' anteriore al 1 gennaio dell'anno in cui presenti la richiesta, puoi indicare il 1 gennaio di quest'anno."
+      },
+      {
+       "id": "dataFine",
+       "type": "data",
+       "pdf": "data_fine",
+       "label": "Data fine",
+       "width": "quarter",
+       "showIf": {
+        "campo": "codice",
+        "in": [
+         "4"
+        ]
+       },
+       "help": "Solo se oggi non fai piu' parte di quella famiglia anagrafica: la data in cui e' finita. Se la situazione continua, lascia vuoto."
+      },
+      {
+       "id": "descrizione",
+       "type": "testo",
+       "pdf": "descrizione",
+       "label": "Descrizione sintetica del motivo",
+       "width": "full",
+       "help": "Facoltativa, ma utile soprattutto con il motivo 6: poche righe su che cosa e' successo e quando."
+      }
+     ]
+    },
+    {
+     "id": "firma",
+     "titolo": "Data e firma",
+     "descrizione": "La richiesta va firmata da chi la presenta, con la data. Con la raccomandata si allega la copia di un documento di riconoscimento valido.",
+     "campi": [
+      {
+       "id": "data",
+       "pdf": "data_firma",
+       "type": "data",
+       "label": "Data della firma",
+       "required": true,
+       "width": "half",
+       "help": "Lo spazio della firma resta vuoto nel PDF: firma a penna sulla copia stampata, oppure firma il file digitalmente se lo mandi via PEC."
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
