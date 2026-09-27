@@ -69,6 +69,58 @@ test('Normattiva: un comma modificato e una nuova data di vigore si vedono nel c
   assert.notStrictEqual(C.impronta(prima.join('\n')), C.impronta(dopo.join('\n')));
 });
 
+test('Normattiva: il primo articolo (senza "articolo precedente") e le stesse parole dentro il testo', () => {
+  // come la pagina vera del D.Lgs. 346/1990 aperta con "~art17": in cima e in
+  // fondo c'e' solo "articolo successivo", e prima dell'articolo le premesse
+  const html = `<a href="javascript:" onclick="showArticle('/x?qId=1')" class="btn"> articolo successivo </a>
+ Testo in vigore dal: <span id="artInizio" class="rosso">&nbsp;1-1-1991</span>
+ <div> IL PRESIDENTE DELLA REPUBBLICA <br> Art. 1 <br> 1. &Egrave; approvato l'unito testo unico, come previsto dall'articolo precedente della legge delega. </div>
+ <a href="javascript:"
+ onclick="showArticle('/x?qId=1')"
+ class="btn">
+  articolo successivo </a>`;
+  const righe = C.articoloNormattiva(html);
+  assert.deepStrictEqual(righe, [
+    'Testo in vigore dal: 1-1-1991',
+    'IL PRESIDENTE DELLA REPUBBLICA',
+    'Art. 1',
+    "1. È approvato l'unito testo unico, come previsto dall'articolo precedente della legge delega."
+  ]);
+  // il collegamento chiedeva l'art. 17 ma la pagina mostra l'art. 1
+  assert.strictEqual(C.articoloChiesto('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1990-10-31;346~art17'), '17');
+  assert.strictEqual(C.numeroArticolo(righe), '1');
+  assert.strictEqual(C.numeroArticolo(['Testo in vigore dal: 29-1-2002', 'Art. 4-bis', '(Tipi di contratto)']), '4bis');
+  assert.strictEqual(C.articoloChiesto('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431~art4bis'), '4bis');
+  assert.strictEqual(C.articoloChiesto('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431'), null);
+  assert.strictEqual(C.classifica({ tipo: 'articolo-sbagliato' }), 'alta');
+});
+
+test('Normattiva: articoli che cambiano in una data futura o sono gia\' abrogati, raggruppati', () => {
+  // testi come quelli letti a settembre 2026: dal 1-1-2027 entrano in vigore i testi unici
+  const art = (urn, righe, pagine = ['cittadino-tasse/aliquote-irpef/']) => ({ url: 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:' + urn, righe, pagine });
+  const articoli = [
+    art('presidente.repubblica:decreto:1986-12-22;917~art11', ['Testo in vigore dal: 1-1-2027', 'Art. 11', '((PROVVEDIMENTO ABROGATO DAL D.LGS. 19 GIUGNO 2026, N. 117 ))']),
+    art('presidente.repubblica:decreto:1986-12-22;917~art13', ['Testo in vigore dal: 1-1-2027', 'Art. 13', '((PROVVEDIMENTO ABROGATO DAL D.LGS. 19 GIUGNO 2026, N. 117 ))']),
+    art('stato:decreto.legislativo:2011-03-14;23~art3', ['Testo in vigore dal: 1-1-2027', 'Art. 3', 'Cedolare secca sugli affitti', '1. testo nuovo']),
+    art('stato:legge:1978-07-27;392~art11', ['Testo in vigore dal: 30-7-1978', 'Art. 11', '(Deposito cauzionale)'])
+  ];
+  assert.strictEqual(C.vigoreDal(articoli[0].righe), '2027-01-01');
+  assert.strictEqual(C.abrogatoDa(articoli[0].righe), 'D.LGS. 19 GIUGNO 2026, N. 117');
+  assert.strictEqual(C.abrogatoDa(articoli[2].righe), null);
+
+  const prima = C.vigenzeDaSegnalare(articoli, '2026-09-27');
+  assert.deepStrictEqual(prima.futuri.map((g) => [g.dal, g.articoli.length]), [['2027-01-01', 3]]);
+  assert.deepStrictEqual(prima.abrogati, []);
+
+  const dopo = C.vigenzeDaSegnalare(articoli, '2027-01-05');
+  assert.deepStrictEqual(dopo.futuri, []);
+  assert.deepStrictEqual(dopo.abrogati.map((g) => [g.da, g.articoli.map((a) => a.url.split('~')[1])]), [['D.LGS. 19 GIUGNO 2026, N. 117', ['art11', 'art13']]]);
+  assert.strictEqual(C.classifica({ tipo: 'versione-futura' }), 'alta');
+  assert.strictEqual(C.classifica({ tipo: 'norma-abrogata' }), 'alta');
+  // il testo unico allegato a un decreto: il numero si legge dall'intestazione
+  assert.strictEqual(C.numeroArticolo(['Testo in vigore dal: 1-1-2027', "(Testo Unico delle disposizioni concernenti l'imposta sulle successioni e donazioni - Art. 17)"]), '17');
+});
+
 test('Normattiva: pagine di altra forma e atti non trovati', () => {
   assert.strictEqual(C.articoloNormattiva('<html><body>Manutenzione in corso</body></html>'), null);
   assert.strictEqual(C.articoloNormattiva(''), null);
