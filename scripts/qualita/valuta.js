@@ -102,6 +102,11 @@ function sezioniGoogle(r) {
   const lette = misure.filter((m) => m.google && m.google.indice);
   const fuori = lette.filter((m) => !m.google.indice.indicizzata);
   const testa = [`- Pagine con un problema che le toglie da Google (noindex, canonical, risposta del server): **${misure.filter((m) => problemi(m).some((p) => p.tipo === 'indice')).length}**`];
+  if (r.reindirizzamenti) {
+    const rotti = r.reindirizzamenti.rotti;
+    testa.push(`- Vecchi indirizzi (redirect di vercel.json) che non arrivano a una pagina: **${rotti.length}** su ${r.reindirizzamenti.controllati}` +
+      (rotti.length ? ' (' + rotti.slice(0, 5).map((x) => `${x.da} → ${x.a}: ${x.stato}`).join('; ') + (rotti.length > 5 ? '; …' : '') + ')' : ''));
+  }
   if (!g || !g.attivo) {
     testa.push('- Search Console non collegata (manca il segreto `GSC_CREDENZIALI`): non si sa quali pagine Google tiene nell\'indice');
     return { testa, corpo: [] };
@@ -208,6 +213,10 @@ function avvisi(r, prima) {
   }
   for (const p of peggioramenti(r.misure, prima && prima.misure)) {
     fuori.push({ id: `peggiora:${p.pagina}:${p.metrica}`, titolo: `Qualità: ${p.pagina} peggiorata (${p.metrica})`, testo: `- ${p.metrica}: da ${p.prima} a ${p.ora}` });
+  }
+  for (const x of (r.reindirizzamenti && r.reindirizzamenti.rotti) || []) {
+    fuori.push({ id: `redirect:${x.da}`, titolo: `Qualità: il vecchio indirizzo ${x.da} non arriva a una pagina`,
+      testo: `- ${x.da} → ${x.a}: ${x.stato === 'ciclo' ? 'reindirizzamento circolare' : 'risposta ' + x.stato}, ${x.passi} passi.\n- Google lo conta fra i «Non trovato (404)» o gli «Errori di reindirizzamento»: va corretto il redirect in vercel.json (un redirect da «/x.html» non scatta: con cleanUrls serve quello da «/x/»).` });
   }
   const uscite = usciteDallIndice(r.misure, prima && prima.misure);
   if (uscite.length) {

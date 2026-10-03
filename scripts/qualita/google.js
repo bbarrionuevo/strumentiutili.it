@@ -11,6 +11,10 @@
 //    pagina lo stato nell'indice di Google e il motivo se e' fuori (API
 //    URL Inspection), e clic e impressioni degli ultimi 28 giorni (API Search
 //    Analytics). Sono API gratuite; la chiave non viene mai stampata.
+// 3. Vecchi indirizzi: ogni redirect di vercel.json si segue passo per passo
+//    sul sito vero. Deve arrivare a una pagina (200) in al massimo 3 passi:
+//    se no Google li conta come «Non trovato (404)» o «Errore di
+//    reindirizzamento» e la pagina perde cio' che aveva guadagnato.
 //
 //   node scripts/qualita/google.js --sito https://strumentiutili.it --misure misure.json
 //   node scripts/qualita/google.js --sito https://strumentiutili.it --solo-registro
@@ -180,6 +184,28 @@ async function controllaGooglebot(sito, pagine) {
   return fuori;
 }
 
+async function controllaReindirizzamenti(sito, sorgenti) {
+  const rotti = [];
+  for (const sorgente of sorgenti) {
+    let url = sito + sorgente, passi = 0, stato = 0;
+    const visti = new Set([url]);
+    for (;;) {
+      const r = await fetch(url, { redirect: 'manual', headers: { 'User-Agent': UA_GOOGLEBOT } }).catch(() => null);
+      stato = r ? r.status : 0;
+      if (r && r.body) await r.body.cancel().catch(() => {});
+      const dove = r && r.headers.get('location');
+      if (!(stato >= 300 && stato < 400 && dove)) break;
+      url = new URL(dove, url).href;
+      passi++;
+      if (visti.has(url) || passi > 10) { stato = 'ciclo'; break; }
+      visti.add(url);
+    }
+    if (stato !== 200 || passi > 3) rotti.push({ da: sorgente, a: url.startsWith(sito) ? url.slice(sito.length) : url, stato, passi });
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  return { controllati: sorgenti.length, rotti };
+}
+
 async function chiama(token, metodo, url, corpo) {
   const r = await fetch(url, {
     method: metodo,
@@ -240,6 +266,10 @@ async function searchConsole(sito, pagine, oggi) {
 
 function riepilogo(r) {
   const righe = [];
+  if (r.reindirizzamenti) {
+    righe.push(`Vecchi indirizzi: ${r.reindirizzamenti.controllati} controllati, ${r.reindirizzamenti.rotti.length} non arrivano a una pagina.`);
+    for (const x of r.reindirizzamenti.rotti) righe.push(`  ${x.da} -> ${x.a} (${x.stato}, ${x.passi} passi)`);
+  }
   const conProblemi = r.misure.filter((m) => m.googlebot && m.googlebot.problemi.length);
   righe.push(`Googlebot: ${r.misure.length} pagine, ${conProblemi.length} con problemi.`);
   for (const m of conProblemi) righe.push(`  ${m.pagina}: ${m.googlebot.problemi.map((p) => p.testo).join('; ')}`);
@@ -270,6 +300,8 @@ async function main() {
     : { data: new Date().toISOString().slice(0, 10), sito, misure: require('./misura.js').pagineDalSitemap().map((pagina) => ({ pagina })) };
   const pagine = r.misure.map((m) => m.pagina);
   const googlebot = await controllaGooglebot(sito, pagine);
+  const vercel = JSON.parse(fs.readFileSync(require('node:path').join(__dirname, '..', '..', 'vercel.json'), 'utf8'));
+  r.reindirizzamenti = await controllaReindirizzamenti(sito, [...new Set((vercel.redirects || []).map((x) => x.source))]);
   const google = process.env.GSC_CREDENZIALI ? await searchConsole(sito, pagine, new Date()) : { attivo: false };
   unisci(r, googlebot, google);
   console.log(riepilogo(r));
