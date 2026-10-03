@@ -45,6 +45,9 @@ const LIBRERIE = [
   { pacchetto: 'sql.js', nome: 'sqljs', file: { 'dist/sql-wasm.js': 'sql-wasm.js', 'dist/sql-wasm.wasm': 'sql-wasm.wasm' }, licenza: 'LICENSE' },
   { pacchetto: 'fflate', nome: 'fflate', file: { 'umd/index.js': 'fflate.umd.js' }, licenza: 'LICENSE' },
   { pacchetto: 'fzstd', nome: 'fzstd', file: { 'umd/index.js': 'fzstd.umd.js' }, licenza: 'LICENSE' },
+  // Foto HEIC dell'iPhone: libheif compilato in WebAssembly (LGPL-3.0, usato
+  // senza modifiche). Il .wasm si scarica solo quando si converte una foto.
+  { pacchetto: 'libheif-js', nome: 'libheif', file: { 'libheif-wasm/libheif.js': 'libheif.js', 'libheif-wasm/libheif.wasm': 'libheif.wasm' }, licenza: 'libheif-wasm/LICENSE' },
   // OpenCV.js per lo scanner (circa 10 MB, WebAssembly incluso nel file):
   // prima arrivava da docs.opencv.org, che riceveva l'IP di chi scansionava.
   { pacchetto: '@techstark/opencv-js', nome: 'opencv', file: { 'dist/opencv.js': 'opencv.js' }, licenza: 'LICENSE' },
