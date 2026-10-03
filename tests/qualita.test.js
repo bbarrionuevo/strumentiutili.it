@@ -170,3 +170,13 @@ test('il workflow passa le chiavi di Google solo come variabili d\'ambiente', ()
   assert.match(wf, /node scripts\/qualita\/google\.js/);
   assert.doesNotMatch(wf, /echo .*GSC_CREDENZIALI/);
 });
+
+test('rapporto: i vecchi indirizzi che non arrivano a una pagina diventano avvisi', () => {
+  const r = { data: '2026-10-11', sito: 'https://strumentiutili.it', crux: {}, cruxAttivo: false, misure: [BUONA],
+    reindirizzamenti: { controllati: 142, rotti: [{ da: '/firma.html', a: '/firma/', stato: 404, passi: 1 }] } };
+  assert.match(V.corpoRapporto(r, null), /non arrivano a una pagina: \*\*1\*\* su 142 \(\/firma\.html → \/firma\/: 404\)/);
+  const a = V.avvisi(r, null);
+  assert.deepStrictEqual(a.map((x) => x.id), ['redirect:/firma.html']);
+  assert.match(a[0].testo, /cleanUrls/);
+  assert.match(V.corpoRapporto({ ...r, reindirizzamenti: { controllati: 142, rotti: [] } }, null), /non arrivano a una pagina: \*\*0\*\* su 142$/m);
+});

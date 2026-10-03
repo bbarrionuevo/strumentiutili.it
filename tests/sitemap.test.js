@@ -116,6 +116,47 @@ test('i vecchi indirizzi delle pagine per regione, professione e contratto hanno
   }
 });
 
+// Come instrada Vercel (vercel.json: cleanUrls e trailingSlash): prima toglie
+// «.html» e aggiunge la barra finale, poi applica i redirect. Per questo un
+// redirect da «/vecchia.html» non scatta mai: serve quello da «/vecchia/».
+// Google segnalava 49 indirizzi «Non trovato (404)»: alcuni erano proprio questi.
+function instrada(percorso, redirect) {
+  const passi = [];
+  let p = percorso;
+  for (let i = 0; i < 10; i++) {
+    const [via, query] = p.split('?');
+    let dopo = null;
+    if (via.endsWith('.html')) dopo = via.slice(0, -5).replace(/\/index$/, '') + '/';
+    else if (!via.endsWith('/') && !path.extname(via)) dopo = via + '/';
+    else if (redirect.has(via)) dopo = redirect.get(via);
+    if (!dopo) {
+      const pagina = fs.existsSync(path.join(L.RADICE, via, 'index.html')) || fs.existsSync(path.join(L.RADICE, via.replace(/\/$/, '') + '.html'));
+      return { finale: via + (query ? '?' + query : ''), stato: pagina ? 200 : 404, passi };
+    }
+    passi.push(dopo);
+    p = dopo.includes('?') || !query ? dopo : dopo + '?' + query;
+  }
+  return { finale: p, stato: 'ciclo', passi };
+}
+
+test('ogni vecchio indirizzo arriva a una pagina vera, in pochi passi (come instrada Vercel)', () => {
+  const vercel = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'vercel.json'), 'utf8'));
+  assert.strictEqual(vercel.cleanUrls, true);
+  assert.strictEqual(vercel.trailingSlash, true);
+  const redirect = new Map(vercel.redirects.map((r) => [r.source, r.destination]));
+  const rotti = [];
+  for (const sorgente of redirect.keys()) {
+    for (const variante of new Set([sorgente, sorgente.replace(/\/$/, '')])) {
+      if (!variante) continue;
+      const r = instrada(variante, redirect);
+      if (r.stato !== 200 || r.passi.length > 3) rotti.push(`${variante} → ${r.passi.join(' → ')} (${r.stato}, ${r.passi.length} passi)`);
+    }
+  }
+  assert.deepStrictEqual(rotti, []);
+  // il caso che si era rotto: la pagina .html della prima versione del sito
+  assert.deepStrictEqual(instrada('/partita-iva.html', redirect), { finale: '/fisco-professioni/partita-iva/', stato: 200, passi: ['/partita-iva/', '/fisco-professioni/partita-iva/'] });
+});
+
 test('il riconoscimento del noindex', () => {
   assert.strictEqual(S.noindex('<meta name="robots" content="noindex, follow" />'), true);
   assert.strictEqual(S.noindex("<meta content='noindex' name='robots'>"), true);
