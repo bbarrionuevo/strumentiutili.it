@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <!-- su:teste -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- /su:teste -->
+
+  <!-- Google AdSense (La CMP nativa e il Consent Mode si caricano in automatico tramite questo script) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9434300808171957"
+     crossorigin="anonymous"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tassi soglia usura in vigore e verifica del tasso di prestiti e mutui — StrumentiUtili.it</title>
+  <meta name="description" content="I tassi soglia dell'usura del trimestre in corso e di quelli passati, presi dai decreti del Ministero dell'Economia e aggiornati da soli: controlla se il tasso del tuo prestito, mutuo, fido o carta supera la soglia." />
+  <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/" />
+  <meta property="og:locale" content="it_IT" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+  <meta property="og:site_name" content="StrumentiUtili.it" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tassi soglia usura e verifica del tasso — StrumentiUtili.it" />
+  <meta property="og:description" content="Le soglie dell'usura di ogni trimestre dai decreti del MEF e il controllo del tasso di prestiti, mutui, fidi e carte, tutto nel browser." />
+  <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/" />
+  <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <style>
+    .reactive-input:focus-within {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+  </style>
+
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/#app",
+        "name": "Tassi soglia usura e verifica del tasso",
+        "operatingSystem": "Qualsiasi (browser web)",
+        "applicationCategory": "FinanceApplication",
+        "url": "https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/",
+        "description": "Tassi effettivi globali medi e tassi soglia dell'usura di ogni trimestre, letti dai decreti del Ministero dell'Economia e delle Finanze e aggiornati in automatico; confronto del tasso di un finanziamento con la soglia del trimestre in cui è stato firmato e calcolo del tasso annuo a partire dalla rata.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "browserRequirements": "Richiede JavaScript.",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "isBasedOn": {
+          "@type": "WebPage",
+          "name": "Rilevazione trimestrale tassi soglia",
+          "url": "https://www.dt.mef.gov.it/it/attivita_istituzionali/sistema_bancario_finanziario/anti_usura/categorie_creditizie/",
+          "publisher": {
+            "@type": "GovernmentOrganization",
+            "name": "Ministero dell'Economia e delle Finanze, Dipartimento del Tesoro"
+          }
+        },
+        "featureList": [
+          "Tassi soglia del trimestre in vigore per tutte le 24 voci del decreto",
+          "Archivio dei trimestri precedenti",
+          "Verifica del tasso con la soglia del trimestre della firma",
+          "Calcolo del tasso annuo dalla rata, dal numero di rate e dalle spese iniziali",
+          "Aggiornamento automatico a ogni nuovo decreto trimestrale"
+        ],
+        "author": {
+          "@type": "Person",
+          "name": "Brian Barrionuevo",
+          "url": "https://strumentiutili.it/contatti/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "StrumentiUtili.it",
+          "url": "https://strumentiutili.it/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://strumentiutili.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cittadino & Tasse",
+            "item": "https://strumentiutili.it/cittadino-tasse/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Tassi soglia usura e verifica del tasso",
+            "item": "https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/cittadino-tasse/verifica-tasso-usura/#faq",
+        "inLanguage": "it-IT",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Che cos'è il tasso soglia dell'usura?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È il limite oltre il quale gli interessi sono sempre usurari. Si parte dal tasso effettivo globale medio (TEGM) che il Ministero dell'Economia rileva ogni trimestre per ciascuna categoria di finanziamento: lo si aumenta di un quarto e si aggiungono 4 punti percentuali, ma la soglia non può superare il tasso medio di più di 8 punti (legge 108/1996, articolo 2, comma 4)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Conta la soglia di oggi o quella del giorno della firma?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quella del trimestre in cui gli interessi sono stati promessi o pattuiti, cioè di solito quello della firma del contratto, indipendentemente dal momento in cui si pagano (decreto-legge 394/2000, articolo 1). Per questo lo strumento chiede la data del contratto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quale tasso del contratto devo confrontare con la soglia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non il solo tasso nominale. La soglia comprende commissioni, remunerazioni e spese legate al credito, escluse imposte e tasse. Per prestiti personali e finalizzati, mutui, leasing, cessione del quinto e carte di credito la rilevazione usa un indicatore analogo al TAEG; per fidi, scoperti, credito revolving, anticipi e factoring i tassi sono calcolati sull'utilizzo effettivo. Il calcolo esatto segue le Istruzioni della Banca d'Italia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gli interessi di mora sono compresi nella soglia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "I tassi medi del decreto non comprendono gli interessi di mora previsti per i ritardi di pagamento. Il decreto riporta a parte, a fini conoscitivi, di quanti punti in media i tassi di mora pattuiti superano quelli ordinari secondo una rilevazione statistica della Banca d'Italia: è un dato informativo, non una seconda soglia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cosa succede se il tasso supera la soglia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per il mutuo il codice civile (articolo 1815, secondo comma) dice che, se sono convenuti interessi usurari, la clausola è nulla e non sono dovuti interessi. Prima di muoverti fai rifare il calcolo secondo le Istruzioni della Banca d'Italia da un professionista o da un'associazione dei consumatori: il risultato di questo strumento è un primo controllo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ogni quanto cambiano i tassi soglia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ogni trimestre. Verso la fine di ogni trimestre il Ministero dell'Economia firma il decreto con i tassi medi rilevati dalla Banca d'Italia, che valgono per i tre mesi successivi. Questa pagina controlla ogni giorno il sito del Ministero e aggiunge da sola il decreto nuovo dopo averne verificato la tabella."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-28 block">
+  <!-- su:salta -->
+  <a href="#contenuto" class="su-salta">Salta al contenuto</a>
+  <!-- /su:salta -->
+
+  <!-- su:testata -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+
+      <div class="flex items-center gap-3">
+
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="StrumentiUtili.it, vai alla home">
+          <span class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold shadow-sm" aria-hidden="true">SU</span>
+          <span class="hidden sm:block">
+            <span class="block text-xl xl:text-2xl font-semibold tracking-tight text-gray-900">StrumentiUtili.it</span>
+            <span class="block lg:hidden xl:block text-xs text-gray-500">Strumenti gratuiti, i tuoi dati restano a te</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm mx-auto" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="whitespace-nowrap text-indigo-600 font-semibold" aria-current="page">Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Lavoro</a>
+          <a href="/identita-burocrazia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Identità</a>
+          <a href="/pdf/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">PDF</a>
+          <a href="/ia/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">IA</a>
+          <a href="/utilita-web/" class="whitespace-nowrap text-gray-600 hover:text-indigo-600 font-medium">Utilità</a>
+        </nav>
+
+        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">
+          <label for="search" class="sr-only">Cerca uno strumento</label>
+          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"
+                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />
+          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden
+               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>
+        </form>
+
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Apri il menu delle categorie"
+                class="lg:hidden shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg data-menu-icona="apri" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+          <svg data-menu-icona="chiudi" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+
+      </div>
+
+      <nav id="menu-mobile" hidden class="lg:hidden mt-3 pt-3 pb-1 border-t border-gray-100 grid gap-1" aria-label="Categorie">
+          <a href="/fisco-professioni/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">💼</span>Fisco &amp; Professioni</a>
+          <a href="/cittadino-tasse/" class="flex items-center gap-3 px-3 py-3 rounded-lg bg-indigo-50 text-indigo-700 font-semibold" aria-current="page"><span aria-hidden="true">🏛️</span>Cittadino &amp; Tasse</a>
+          <a href="/lavoro-contratti/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤝</span>Lavoro &amp; Contratti</a>
+          <a href="/identita-burocrazia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🪪</span>Identità &amp; Burocrazia</a>
+          <a href="/pdf/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">📄</span>PDF &amp; Scanner</a>
+          <a href="/ia/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🤖</span>IA Locale</a>
+          <a href="/utilita-web/" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"><span aria-hidden="true">🛠️</span>Utilità &amp; Web</a>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /su:testata -->
+
+  <div class="container mx-auto px-4 py-8 max-w-7xl flex flex-col lg:grid lg:grid-cols-12 gap-8 min-h-screen">
+
+    <main id="contenuto" class="w-full lg:col-span-8 lg:col-start-1 block min-w-0">
+
+      <!-- su:briciole -->
+      <nav aria-label="Percorso" class="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-indigo-600 hover:underline">Home</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 hover:underline">Cittadino &amp; Tasse</a></li>
+        <li aria-hidden="true" class="text-gray-300">/</li>
+        <li><span class="text-gray-700 font-medium" aria-current="page">Tassi soglia usura e verifica del tasso</span></li>
+        </ol>
+        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="/cittadino-tasse/verifica-tasso-usura/" data-titolo="Tassi soglia usura e verifica del tasso" class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+      </nav>
+  <!-- /su:briciole -->
+
+      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-3">
+          <span aria-hidden="true">🏦</span> Prestiti e mutui
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Tassi soglia usura e verifica del tasso</h1>
+        <p class="text-gray-600 mt-2 text-sm leading-relaxed">Le soglie oltre le quali gli interessi sono usurari cambiano ogni trimestre con un decreto del Ministero dell'Economia e delle Finanze. Qui trovi quelle in vigore e quelle dei trimestri passati, prese direttamente dai decreti, e puoi controllare il tasso di un prestito, di un mutuo, di un fido o di una carta con la soglia del trimestre in cui hai firmato.</p>
+        <p class="mt-4 flex items-start gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg shadow-sm">
+          <span aria-hidden="true">🔒</span> <span>Importi e tassi che inserisci restano in questa pagina: il confronto avviene nel browser, niente viene inviato né salvato.</span>
+        </p>
+      </section>
+
+      <section id="us-app" class="space-y-5">
+
+        <section aria-labelledby="us-tabella-titolo" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 id="us-tabella-titolo" class="text-base font-bold text-indigo-900">1. I tassi soglia del trimestre</h2>
+          <div class="mt-4 max-w-md">
+            <label for="us-trimestre" class="block text-xs font-bold text-gray-700 mb-1">Trimestre</label>
+            <select id="us-trimestre" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold text-gray-800 outline-none cursor-pointer"></select>
+          </div>
+          <p id="us-periodo" class="text-sm font-bold text-gray-900 mt-4" aria-live="polite">Carico i tassi…</p>
+          <p class="text-xs text-gray-600 mt-1">Dal <a id="us-decreto" href="https://www.dt.mef.gov.it/it/attivita_istituzionali/sistema_bancario_finanziario/anti_usura/categorie_creditizie/" class="text-indigo-700 underline" rel="noopener" target="_blank">decreto del Ministero dell'Economia</a>. <span id="us-rilevazione"></span></p>
+          <div class="overflow-x-auto mt-4 -mx-2 px-2">
+            <table class="w-full text-sm min-w-[30rem]">
+              <caption class="sr-only">Tassi medi e tassi soglia per categoria di operazione e classe d'importo</caption>
+              <thead>
+                <tr class="text-xs text-gray-500">
+                  <th scope="col" class="py-1.5 pr-3 text-left font-bold">Categoria di operazione</th>
+                  <th scope="col" class="py-1.5 pr-3 text-left font-bold">Classe d'importo o tipo</th>
+                  <th scope="col" class="py-1.5 pr-3 text-right font-bold">Tasso medio (TEGM)</th>
+                  <th scope="col" class="py-1.5 text-right font-bold">Tasso soglia</th>
+                </tr>
+              </thead>
+              <tbody id="us-tabella"></tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-gray-500 mt-3">Tassi su base annua. Soglia = tasso medio aumentato di un quarto più 4 punti, ma mai più di 8 punti sopra il tasso medio (legge 108/1996, art. 2, comma 4).</p>
+          <p id="us-mora" class="text-[11px] text-gray-500 mt-2"></p>
+        </section>
+
+        <form id="us-verifica" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-5" aria-labelledby="us-verifica-titolo" onsubmit="return false">
+          <h2 id="us-verifica-titolo" class="text-base font-bold text-indigo-900">2. Verifica il tasso del tuo finanziamento</h2>
+
+          <div>
+            <label for="us-categoria" class="block text-xs font-bold text-gray-700 mb-1">Tipo di finanziamento</label>
+            <select id="us-categoria" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold text-gray-800 outline-none cursor-pointer">
+              <option value="">Scegli il tipo di finanziamento</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div id="us-importo-box" hidden>
+              <label for="us-importo" class="block text-xs font-bold text-gray-700 mb-1">Importo del finanziamento (euro)</label>
+              <input type="text" inputmode="decimal" id="us-importo" placeholder="10.000" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-lg font-bold text-gray-800 outline-none transition" />
+              <p class="text-[11px] text-gray-500 mt-1">Serve a trovare la classe d'importo del decreto: per un fido è l'importo accordato.</p>
+            </div>
+            <div id="us-tipo-box" hidden>
+              <label for="us-tipo" class="block text-xs font-bold text-gray-700 mb-1">Tasso del contratto</label>
+              <select id="us-tipo" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold text-gray-800 outline-none cursor-pointer"></select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="us-data" class="block text-xs font-bold text-gray-700 mb-1">Data della firma del contratto</label>
+              <input type="date" id="us-data" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-base font-bold text-gray-800 outline-none transition" />
+            </div>
+            <div>
+              <label for="us-tasso" class="block text-xs font-bold text-gray-700 mb-1">Tasso annuo del contratto (%)</label>
+              <input type="text" inputmode="decimal" id="us-tasso" placeholder="9,5" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-lg font-bold text-gray-800 outline-none transition" />
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-500 -mt-2">Per prestiti, mutui, leasing, cessione del quinto e carte di credito usa il TAEG scritto nel contratto, non il TAN: comprende anche commissioni e spese. Se non lo conosci, calcolalo qui sotto dalla rata.</p>
+
+          <div id="us-esito-box" class="rounded-lg border border-gray-200 bg-gray-50 p-4 mt-4">
+            <div id="us-esito" role="status" aria-live="polite" class="text-sm text-gray-800">Scegli il tipo di finanziamento.</div>
+          </div>
+
+          <details class="rounded-lg border border-gray-200 group">
+            <summary class="font-bold text-sm text-indigo-800 cursor-pointer p-4 flex justify-between items-center select-none">
+              <span>Non conosci il tasso? Calcolalo dalla rata</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <div class="p-4 pt-0 space-y-4">
+              <p class="text-xs text-gray-600 leading-relaxed">Per un finanziamento a rate costanti: indica quanto hai ricevuto, la rata e il numero di rate. Le spese iniziali (istruttoria, commissioni trattenute all'erogazione) abbassano la somma che ricevi davvero e quindi alzano il tasso.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="us-finanziato" class="block text-xs font-bold text-gray-700 mb-1">Importo finanziato (euro)</label>
+                  <input type="text" inputmode="decimal" id="us-finanziato" placeholder="10.000" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-base font-bold text-gray-800 outline-none transition" />
+                </div>
+                <div>
+                  <label for="us-rata" class="block text-xs font-bold text-gray-700 mb-1">Importo della rata (euro)</label>
+                  <input type="text" inputmode="decimal" id="us-rata" placeholder="212,47" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-base font-bold text-gray-800 outline-none transition" />
+                </div>
+                <div>
+                  <label for="us-numero-rate" class="block text-xs font-bold text-gray-700 mb-1">Numero di rate</label>
+                  <input type="text" inputmode="numeric" id="us-numero-rate" placeholder="60" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-base font-bold text-gray-800 outline-none transition" />
+                </div>
+                <div>
+                  <label for="us-frequenza" class="block text-xs font-bold text-gray-700 mb-1">Ogni quanto si paga la rata</label>
+                  <select id="us-frequenza" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold text-gray-800 outline-none cursor-pointer">
+                    <option value="12">Ogni mese</option>
+                    <option value="4">Ogni tre mesi</option>
+                    <option value="2">Ogni sei mesi</option>
+                    <option value="1">Ogni anno</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="us-spese" class="block text-xs font-bold text-gray-700 mb-1">Spese iniziali (euro, facoltative)</label>
+                  <input type="text" inputmode="decimal" id="us-spese" placeholder="0" autocomplete="off" class="reactive-input w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-base font-bold text-gray-800 outline-none transition" />
+                </div>
+                <div class="flex items-end">
+                  <button type="button" id="us-calcola" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-lg transition shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Calcola il tasso</button>
+                </div>
+              </div>
+              <p id="us-rata-esito" class="text-sm font-bold text-gray-900" aria-live="polite"></p>
+              <p class="text-[11px] text-gray-500">È il tasso annuo che fa tornare le rate con la somma ricevuta al netto delle spese. Il calcolo ufficiale segue le Istruzioni della Banca d'Italia e può comprendere voci che qui non ci sono, come assicurazioni o spese periodiche.</p>
+            </div>
+          </details>
+        </form>
+
+        <section aria-labelledby="us-storico-titolo" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-base font-bold text-indigo-900">3. La soglia trimestre per trimestre</h2>
+          <p id="us-storico-titolo" class="text-sm text-gray-700 mt-1">Scegli un tipo di finanziamento per vedere come è cambiata la sua soglia.</p>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm" aria-describedby="us-storico-titolo">
+              <thead>
+                <tr class="text-xs text-gray-500">
+                  <th scope="col" class="py-1.5 pr-3 text-left font-bold">Trimestre di applicazione</th>
+                  <th scope="col" class="py-1.5 pr-3 text-right font-bold">Tasso medio</th>
+                  <th scope="col" class="py-1.5 text-right font-bold">Soglia</th>
+                </tr>
+              </thead>
+              <tbody id="us-storico"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+    </main>
+
+    <aside class="w-full lg:col-span-4 lg:col-start-9 lg:row-span-2 block">
+      <div class="sticky-sidebar space-y-6">
+        <nav aria-label="Strumenti collegati" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Strumenti collegati</h2>
+          <ul class="space-y-3 text-sm font-bold text-gray-600">
+            <li><a href="/fisco-professioni/calcolo-rata-mutuo/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏦</span> Simulatore Rata Mutuo</a></li>
+            <li><a href="/utilita-web/budget-planner/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">💰</span> Budget Planner 50/30/20</a></li>
+            <li><a href="/utilita-web/interessi-composti/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">📈</span> Interessi Composti</a></li>
+          </ul>
+          <details class="group mt-3 pt-3 border-t border-gray-100">
+            <summary class="text-xs font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer flex justify-between items-center select-none">
+              <span>Altri strumenti in questa categoria</span>
+              <span class="transition-transform group-open:rotate-180 text-[10px]" aria-hidden="true">▼</span>
+            </summary>
+            <ul class="space-y-3 text-sm font-bold text-gray-600 mt-3 pt-1">
+              <li><a href="/cittadino-tasse/imposte-acquisto-casa/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🔑</span> Imposte sull'acquisto della casa</a></li>
+              <li><a href="/cittadino-tasse/calcolo-imu/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏡</span> Calcolatore IMU</a></li>
+              <li><a href="/cittadino-tasse/contratto-affitto-canone-concordato/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">🏠</span> Contratto di affitto</a></li>
+              <li><a href="/cittadino-tasse/analizzatore-bolletta/" class="hover:text-indigo-600 transition flex items-center gap-2"><span aria-hidden="true">⚡</span> Analizzatore Bolletta</a></li>
+            </ul>
+          </details>
+          <a href="/cittadino-tasse/" class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-500 hover:text-indigo-600 transition"><span>Tutti gli strumenti Cittadino &amp; Tasse</span><span aria-hidden="true">→</span></a>
+        </nav>
+        <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center" data-su-pos="laterale">
+        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle" style="display:block;width:100%;min-width:0;" data-ad-client="ca-pub-9434300808171957" data-ad-slot="6912312067" data-full-width-responsive="true"></ins>
+      </div>
+      </div>
+    </aside>
+
+    <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
+
+      <!-- Scheda di affidabilità -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">🔄 Soglie aggiornate in automatico a ogni decreto</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">👤 Chi lo cura</p>
+            <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con banche, finanziarie, mediatori o studi legali. Ogni decreto nuovo passa un controllo automatico prima di essere pubblicato: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">🔒 I tuoi dati</p>
+            <p class="text-emerald-900 leading-relaxed">Importi, rate e tassi che inserisci servono solo al calcolo in questa pagina: non vengono salvati e nessun dato viene inviato a server (GDPR, artt. 5 e 25). La pagina scarica soltanto la tabella pubblica dei tassi.</p>
+          </div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">📚 Fonti</p>
+            <p class="text-gray-600 leading-relaxed">Ministero dell'Economia e delle Finanze, Dipartimento del Tesoro, <a href="https://www.dt.mef.gov.it/it/attivita_istituzionali/sistema_bancario_finanziario/anti_usura/categorie_creditizie/" class="text-indigo-700 underline" rel="noopener" target="_blank">«Rilevazione trimestrale tassi soglia»</a> (decreti trimestrali e nota metodologica); <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1996-03-07;108~art2" class="text-indigo-700 underline" rel="noopener" target="_blank">art. 2 della legge 108/1996</a>; <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2000-12-29;394~art1" class="text-indigo-700 underline" rel="noopener" target="_blank">art. 1 del decreto-legge 394/2000</a>; <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262:2~art1815" class="text-indigo-700 underline" rel="noopener" target="_blank">art. 1815 del codice civile</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="seo-block" class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Tassi soglia dell'usura: come si calcolano e come controllare il tuo contratto</h2>
+        <p class="text-sm text-gray-700 leading-relaxed mb-6">Un finanziamento non può costare quanto vuole chi lo concede: la legge fissa per ogni tipo di operazione un tasso massimo, chiamato tasso soglia, oltre il quale gli interessi sono usurari. Le soglie non sono scritte una volta per tutte, ma cambiano ogni tre mesi seguendo i tassi praticati sul mercato. Questa pagina le prende dai decreti ufficiali, le tiene in archivio trimestre per trimestre e ti aiuta a fare un primo controllo sul tuo prestito, mutuo, fido o carta. Qui sotto trovi come nascono i numeri della tabella, quale tasso del contratto confrontare e che cosa fare se il risultato non ti convince.</p>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4" open>
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">🏛️</span> Da dove vengono le soglie</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>L'articolo 2 della legge 7 marzo 1996, n. 108 affida al Ministero dell'Economia e delle Finanze, sentita la Banca d'Italia, il compito di rilevare ogni trimestre il tasso effettivo globale medio (TEGM) praticato da banche e intermediari finanziari. È un tasso su base annua che comprende commissioni, remunerazioni a qualsiasi titolo e spese, escluse soltanto imposte e tasse. Non esiste un tasso medio unico: le operazioni sono divise in categorie omogenee, come i mutui con ipoteca, il credito personale, la cessione del quinto o le aperture di credito in conto corrente, e molte categorie sono divise a loro volta per classe d'importo o fra tasso fisso e variabile.</p>
+            <p>Ogni decreto indica due periodi: quello in cui la Banca d'Italia ha rilevato i tassi medi e quello, successivo, in cui le soglie si applicano. La tabella allegata al decreto va affissa in modo visibile in ogni sede o filiale di banche e intermediari aperta al pubblico, e sul sito del Dipartimento del Tesoro si trovano i decreti divisi per anno.</p>
+            <p>Il limite si ottiene dal tasso medio della categoria in cui rientra il finanziamento: lo si aumenta di un quarto e si aggiunge un margine di 4 punti percentuali, ma la differenza fra la soglia e il tasso medio non può superare 8 punti (articolo 2, comma 4, della legge 108/1996). Per esempio, un tasso medio del 4% diventa 4 + 1 + 4 = 9%; un tasso medio del 20% darebbe 20 + 5 + 4 = 29%, cioè 9 punti in più, e quindi la soglia si ferma al 28%. La tabella qui sopra riporta per ogni voce il tasso medio del decreto e la soglia che ne deriva.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">📅</span> Quale trimestre conta: quello della firma</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il decreto-legge 29 dicembre 2000, n. 394 ha chiarito che sono usurari gli interessi che superano il limite stabilito dalla legge nel momento in cui sono promessi o comunque convenuti, a qualunque titolo, indipendentemente dal momento del loro pagamento. In pratica, per un prestito o un mutuo si guarda la soglia del trimestre in cui il contratto è stato firmato, non quella di oggi: se i tassi di mercato sono scesi dopo la firma, un contratto regolare non diventa usurario per questo.</p>
+            <p>Per questo lo strumento ti chiede la data della firma e cerca da solo il trimestre giusto. Se la data è anteriore al primo trimestre in archivio, la pagina te lo dice: in quel caso la soglia va cercata nel decreto di quel trimestre, sul sito del Ministero.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">🔎</span> Quale tasso del contratto confrontare</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Il tasso da confrontare con la soglia non è il tasso nominale (TAN), che misura solo gli interessi, ma il costo complessivo del credito. La nota metodologica allegata ai decreti spiega che per il credito personale, il credito finalizzato, il leasing, i mutui con garanzia ipotecaria, la cessione del quinto dello stipendio e della pensione, le carte di credito e gli altri finanziamenti si usa un indicatore del costo del credito analogo al TAEG previsto dalle norme europee sul credito ai consumatori. Per questi contratti il TAEG scritto nel contratto è il dato più vicino a quello della tabella.</p>
+            <p>Per le aperture di credito in conto corrente, gli scoperti senza affidamento, il credito revolving, gli anticipi su crediti e il factoring, i cui tassi vengono rivisti di continuo, la rilevazione considera invece tutti i rapporti in essere nel trimestre, con il costo calcolato sull'utilizzo effettivo. Secondo la nota metodologica, con le Istruzioni della Banca d'Italia del 2016 oneri come la commissione di istruttoria veloce entrano nel calcolo su base annua, moltiplicando per 4 l'onere del trimestre. Il mancato rientro da un fido scaduto o revocato rientra fra gli scoperti senza affidamento.</p>
+            <p>Il decreto chiede a banche e intermediari di verificare il rispetto del limite con i criteri delle Istruzioni della Banca d'Italia per la rilevazione dei tassi medi. Un confronto fatto in casa, anche con questo strumento, è quindi un primo controllo: se il tasso del tuo contratto è vicino alla soglia o la supera, il calcolo va rifatto seguendo quelle istruzioni.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">⏰</span> Interessi di mora</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>I tassi medi del decreto non comprendono gli interessi di mora, cioè quelli previsti dal contratto per i casi di ritardato pagamento. Il decreto riporta però, a fini conoscitivi, i risultati dell'ultima rilevazione statistica condotta dalla Banca d'Italia d'intesa con il Ministero su un campione di banche e intermediari: di quanti punti percentuali, in media, i tassi di mora pattuiti superano i tassi ordinari per i mutui ipotecari di durata superiore a cinque anni, per il leasing e per gli altri prestiti. Sotto la tabella trovi quei valori, così come li riporta il decreto del trimestre scelto.</p>
+            <p>Sono medie di mercato, non soglie: la pagina non le usa per dire se una mora è usuraria. Se il tuo contratto prevede interessi di mora molto alti, parlane con un professionista.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">⚖️</span> Se il tasso supera la soglia</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Secondo il Ministero, i tassi soglia rappresentano il limite oltre il quale gli interessi sono definibili come usurari (articolo 644, comma 3, del codice penale e articolo 2 della legge 108/1996). Sul piano civile, l'articolo 1815 del codice civile stabilisce per il mutuo che, se sono convenuti interessi usurari, la clausola è nulla e non sono dovuti interessi.</p>
+            <p>Prima di contestare, raccogli il contratto, il piano di rimborso e gli estratti conto, e chiedi alla banca o alla finanziaria il dettaglio delle voci di costo del finanziamento. Poi fai rifare il calcolo da un professionista o da un'associazione dei consumatori, che sapranno anche dirti come procedere. Se il risultato di questo strumento è «vicino alla soglia», non significa che il tasso sia usurario: significa che vale la pena controllare con più attenzione.</p>
+          </div>
+        </details>
+
+        <details class="bg-indigo-50/50 rounded-xl border border-indigo-100 group mb-4">
+          <summary class="font-bold text-indigo-900 cursor-pointer p-5 flex justify-between items-center select-none hover:bg-indigo-50 transition-colors rounded-xl">
+            <span class="text-lg flex items-center gap-2"><span aria-hidden="true">🔄</span> Come si aggiorna questa pagina</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180" aria-hidden="true">▼</span>
+          </summary>
+          <div class="p-5 border-t border-indigo-100 space-y-4 bg-white rounded-b-xl text-sm text-gray-700 leading-relaxed">
+            <p>Ogni giorno un controllo automatico apre la pagina «Rilevazione trimestrale tassi soglia» del Dipartimento del Tesoro e, quando trova un decreto nuovo, lo scarica e ne legge la tabella. Prima di pubblicarla verifica che ci siano tutte le voci previste, con le stesse classi d'importo, che le date formino un trimestre e che ogni soglia corrisponda al tasso medio secondo la formula della legge. Se anche un solo numero non torna, non pubblica niente: online restano i trimestri già verificati e parte una segnalazione.</p>
+            <p>I trimestri vecchi restano in archivio, perché per un contratto firmato anni fa conta la soglia di allora. Il link sopra la tabella porta sempre al decreto originale da cui vengono i numeri.</p>
+          </div>
+        </details>
+
+        <div class="mt-8">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Domande frequenti</h2>
+          <div class="space-y-3">
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Che cos'è il tasso soglia dell'usura?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">È il limite oltre il quale gli interessi sono sempre usurari. Si parte dal tasso effettivo globale medio (TEGM) che il Ministero dell'Economia rileva ogni trimestre per ciascuna categoria di finanziamento: lo si aumenta di un quarto e si aggiungono 4 punti percentuali, ma la soglia non può superare il tasso medio di più di 8 punti (legge 108/1996, articolo 2, comma 4).</p>
+        </details>
+
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Conta la soglia di oggi o quella del giorno della firma?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">Quella del trimestre in cui gli interessi sono stati promessi o pattuiti, cioè di solito quello della firma del contratto, indipendentemente dal momento in cui si pagano (decreto-legge 394/2000, articolo 1). Per questo lo strumento chiede la data del contratto.</p>
+        </details>
+
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Quale tasso del contratto devo confrontare con la soglia?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">Non il solo tasso nominale. La soglia comprende commissioni, remunerazioni e spese legate al credito, escluse imposte e tasse. Per prestiti personali e finalizzati, mutui, leasing, cessione del quinto e carte di credito la rilevazione usa un indicatore analogo al TAEG; per fidi, scoperti, credito revolving, anticipi e factoring i tassi sono calcolati sull'utilizzo effettivo. Il calcolo esatto segue le Istruzioni della Banca d'Italia.</p>
+        </details>
+
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Gli interessi di mora sono compresi nella soglia?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">I tassi medi del decreto non comprendono gli interessi di mora previsti per i ritardi di pagamento. Il decreto riporta a parte, a fini conoscitivi, di quanti punti in media i tassi di mora pattuiti superano quelli ordinari secondo una rilevazione statistica della Banca d'Italia: è un dato informativo, non una seconda soglia.</p>
+        </details>
+
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Che cosa succede se il tasso supera la soglia?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">Per il mutuo il codice civile (articolo 1815, secondo comma) dice che, se sono convenuti interessi usurari, la clausola è nulla e non sono dovuti interessi. Prima di muoverti fai rifare il calcolo secondo le Istruzioni della Banca d'Italia da un professionista o da un'associazione dei consumatori: il risultato di questo strumento è un primo controllo.</p>
+        </details>
+
+        <details class="bg-gray-50 p-4 rounded-xl border border-gray-200 group">
+          <summary class="font-bold text-gray-900 cursor-pointer flex justify-between items-center select-none gap-3">
+            <span>Ogni quanto cambiano i tassi soglia?</span>
+            <span class="text-indigo-600 transition-transform group-open:rotate-180 shrink-0" aria-hidden="true">▼</span>
+          </summary>
+          <p class="text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-200">Ogni trimestre. Verso la fine di ogni trimestre il Ministero dell'Economia firma il decreto con i tassi medi rilevati dalla Banca d'Italia, che valgono per i tre mesi successivi. Questa pagina controlla ogni giorno il sito del Ministero e aggiunge da sola il decreto nuovo dopo averne verificato la tabella.</p>
+        </details>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Ad Mobile (Solo Mobile) -->
+      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
+        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
+             style="display:block;width:100%;min-width:0;"
+             data-ad-client="ca-pub-9434300808171957"
+             data-ad-slot="8859818557"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- su:piede -->
+  <footer class="bg-white border-t mt-12 w-full block">
+    <div class="container mx-auto px-4 py-8 w-full block">
+
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="sm:col-span-2 lg:col-span-1">
+          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>
+          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>
+        </div>
+
+        <nav aria-label="Categorie del sito">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Categorie</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/fisco-professioni/" class="hover:text-indigo-600 transition-colors">Fisco &amp; Professioni</a></li>
+            <li><a href="/cittadino-tasse/" class="hover:text-indigo-600 transition-colors">Cittadino &amp; Tasse</a></li>
+            <li><a href="/lavoro-contratti/" class="hover:text-indigo-600 transition-colors">Lavoro &amp; Contratti</a></li>
+            <li><a href="/identita-burocrazia/" class="hover:text-indigo-600 transition-colors">Identità &amp; Burocrazia</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Altre categorie">
+          <h2 class="sr-only">Altre categorie</h2>
+          <ul class="mt-3 lg:mt-8 space-y-2 text-sm text-gray-600">
+            <li><a href="/pdf/" class="hover:text-indigo-600 transition-colors">PDF &amp; Scanner</a></li>
+            <li><a href="/ia/" class="hover:text-indigo-600 transition-colors">IA Locale</a></li>
+            <li><a href="/utilita-web/" class="hover:text-indigo-600 transition-colors">Utilità &amp; Web</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informazioni">
+          <h2 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Informazioni</h2>
+          <ul class="mt-3 space-y-2 text-sm text-gray-600">
+            <li><a href="/guide/" class="hover:text-indigo-600 transition-colors">Guide pratiche</a></li>
+            <li><a href="/contatti/" class="hover:text-indigo-600 transition-colors">Chi siamo / Contatti</a></li>
+            <li><a href="/metodo/" class="hover:text-indigo-600 transition-colors">Come verifichiamo i dati</a></li>
+            <li><a href="/politica-sulla-privacy/" class="hover:text-indigo-600 transition-colors">Privacy</a></li>
+            <li><a href="/avviso-legale/" class="hover:text-indigo-600 transition-colors">Avviso legale</a></li>
+            <li><a href="/mappa-del-sito/" class="hover:text-indigo-600 transition-colors">Mappa del sito</a></li>
+            <li hidden id="riapri-consenso-voce">
+              <button type="button" id="riapri-consenso"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Gestisci il consenso ai cookie</button>
+            </li>
+            <li hidden id="su-cancella-voce">
+              <button type="button" id="su-cancella-dati"
+                      class="hover:text-indigo-600 transition-colors text-left underline-offset-2 hover:underline">Cancella i dati salvati su questo dispositivo</button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- /su:piede -->
+
+  <script defer src="/js/error-utils.js"></script>
+  <script defer src="/js/formato-numeri.js"></script>
+  <script defer src="/js/usura.js"></script>
+  <script defer src="/js/usura-ui.js"></script>
+
+  <script defer src="/js/pubblicita.js"></script>
+  <script defer src="/js/spazio.js"></script>
+  <script defer src="/js/layout.js"></script>
+</body>
+</html>

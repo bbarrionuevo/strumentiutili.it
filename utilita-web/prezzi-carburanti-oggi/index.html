@@ -244,7 +244,7 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Prezzi carburanti oggi</span></li>
         </ol>
-        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/prezzi-carburanti-oggi/" data-titolo="Prezzi carburanti oggi" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="/utilita-web/prezzi-carburanti-oggi/" data-titolo="Prezzi carburanti oggi" class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
 
@@ -261,8 +261,14 @@
 
       <section aria-labelledby="cb-medie-titolo" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <h2 id="cb-medie-titolo" class="text-lg font-bold text-gray-900">Prezzi medi in Italia oggi</h2>
-        <p id="cb-aggiornato" class="text-xs text-gray-500 mt-1">Carico i prezzi…</p>
-        <div id="cb-medie" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4"></div>
+        <p id="cb-aggiornato" class="text-xs leading-4 text-gray-500 mt-1 min-h-8">Carico i prezzi…</p>
+        <!-- Riquadri segnaposto della stessa altezza di quelli veri: quando arrivano i prezzi la pagina non salta -->
+        <div id="cb-medie" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4"><p class="text-xs text-gray-500 font-bold uppercase">Benzina self</p><p class="mt-1 text-gray-900"><span class="text-2xl font-extrabold tabular-nums">—</span></p><p class="text-[11px] leading-4 text-gray-500 mt-1 min-h-8"></p></div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4"><p class="text-xs text-gray-500 font-bold uppercase">Gasolio self</p><p class="mt-1 text-gray-900"><span class="text-2xl font-extrabold tabular-nums">—</span></p><p class="text-[11px] leading-4 text-gray-500 mt-1 min-h-8"></p></div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4"><p class="text-xs text-gray-500 font-bold uppercase">GPL servito</p><p class="mt-1 text-gray-900"><span class="text-2xl font-extrabold tabular-nums">—</span></p><p class="text-[11px] leading-4 text-gray-500 mt-1 min-h-8"></p></div>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4"><p class="text-xs text-gray-500 font-bold uppercase">Metano servito</p><p class="mt-1 text-gray-900"><span class="text-2xl font-extrabold tabular-nums">—</span></p><p class="text-[11px] leading-4 text-gray-500 mt-1 min-h-8"></p></div>
+        </div>
         <p class="text-[11px] text-gray-500 mt-3">Benzina e gasolio al self service, GPL e metano al servito, come si vendono di solito. Nelle medie non entrano le aree di servizio autostradali.</p>
       </section>
 

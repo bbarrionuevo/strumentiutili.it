@@ -110,7 +110,7 @@
         if (dato) valore.appendChild(el('span', 'text-xs font-bold text-gray-500 ml-1 whitespace-nowrap', '€/' + (C.UNITA[carb] === 'kg' ? 'kg' : 'l')));
         tile.appendChild(valore);
         const v = storico && C.variazione(storico.serie, carb, 7);
-        const nota = el('p', 'text-[11px] text-gray-500 mt-1');
+        const nota = el('p', 'text-[11px] leading-4 text-gray-500 mt-1 min-h-8'); // due righe sempre: altezza fissa
         if (v) {
           const segno = v.differenza > 0 ? '▲ +' : v.differenza < 0 ? '▼ −' : '= ';
           nota.textContent = `${segno}${N.numero(Math.abs(v.differenza), 3)} € rispetto al ${dataEstesa(v.da)}`;

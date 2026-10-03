@@ -350,11 +350,14 @@ function briciole(ctx) {
   }).join('\n');
 
   // Sulle pagine degli strumenti, accanto al percorso, la stella per fissarli
-  // in "Il tuo spazio". Parte nascosta: la mostra js/layout.js solo se il
+  // in "Il tuo spazio". Parte invisibile: la mostra js/layout.js solo se il
   // browser permette di salvare, altrimenti sarebbe un bottone che non fa nulla.
+  // Invisibile (visibility) e non nascosta (hidden): il suo posto c'e' gia'
+  // dal primo disegno, cosi' quando compare la pagina non salta (sul telefono
+  // va a capo sotto il percorso e spingeva giu' tutto di quasi 40 px: CLS).
   const stella = ctx.tipo === 'strumento'
-    ? '        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="' + esc(ctx.url) + '" data-titolo="' + esc(testoSemplice(ctx.titolo)) + '"' +
-      ' class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition">' +
+    ? '        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="' + esc(ctx.url) + '" data-titolo="' + esc(testoSemplice(ctx.titolo)) + '"' +
+      ' class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition">' +
       '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>'
     : null;
 

@@ -262,7 +262,7 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Calcolatore Stipendio Netto 2026</span></li>
         </ol>
-        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/lavoro-contratti/stipendio-netto/" data-titolo="Calcolatore Stipendio Netto 2026" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="/lavoro-contratti/stipendio-netto/" data-titolo="Calcolatore Stipendio Netto 2026" class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
 
@@ -404,6 +404,47 @@
           </div>
         </section>
       </div>
+
+      <!-- Due viste interattive sul risultato: stesso motore, nessuna cifra nuova.
+           Lo spazio e' gia' riservato (altezze fisse): il calcolo non fa saltare la pagina. -->
+      <section aria-labelledby="sn-dove-titolo" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6">
+        <h2 id="sn-dove-titolo" class="text-lg font-bold text-gray-900">Dove finisce il tuo lordo</h2>
+        <p id="sn-dove-frase" class="text-sm text-gray-700 mt-1 min-h-10">Premi «Calcola Netto»: qui vedi quanto di ogni 100 euro lordi resta a te e quanto va a contributi e imposte.</p>
+        <div class="mt-4 h-8 w-full rounded-lg overflow-hidden flex bg-gray-100" role="img" id="sn-barra" aria-label="Ripartizione della RAL non ancora calcolata">
+          <div data-sn-quota="resta" class="h-full bg-emerald-500 transition-all duration-500" style="width:0%"></div>
+          <div data-sn-quota="inps" class="h-full bg-sky-500 transition-all duration-500 border-l-2 border-white" style="width:0%"></div>
+          <div data-sn-quota="irpef" class="h-full bg-rose-500 transition-all duration-500 border-l-2 border-white" style="width:0%"></div>
+          <div data-sn-quota="addizionali" class="h-full bg-amber-400 transition-all duration-500 border-l-2 border-white" style="width:0%"></div>
+        </div>
+        <ul class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+          <li class="rounded-lg border border-gray-100 p-3"><span class="inline-block w-3 h-3 rounded-sm bg-emerald-500 align-middle mr-1" aria-hidden="true"></span><span class="font-bold text-gray-800">Resta a te</span><span id="sn-v-resta" class="block tabular-nums text-gray-900 font-bold mt-1">—</span><span id="sn-p-resta" class="block tabular-nums text-xs text-gray-500">&nbsp;</span></li>
+          <li class="rounded-lg border border-gray-100 p-3"><span class="inline-block w-3 h-3 rounded-sm bg-sky-500 align-middle mr-1" aria-hidden="true"></span><span class="font-bold text-gray-800">Contributi INPS</span><span id="sn-v-inps" class="block tabular-nums text-gray-900 font-bold mt-1">—</span><span id="sn-p-inps" class="block tabular-nums text-xs text-gray-500">&nbsp;</span></li>
+          <li class="rounded-lg border border-gray-100 p-3"><span class="inline-block w-3 h-3 rounded-sm bg-rose-500 align-middle mr-1" aria-hidden="true"></span><span class="font-bold text-gray-800">IRPEF netta</span><span id="sn-v-irpef" class="block tabular-nums text-gray-900 font-bold mt-1">—</span><span id="sn-p-irpef" class="block tabular-nums text-xs text-gray-500">&nbsp;</span></li>
+          <li class="rounded-lg border border-gray-100 p-3"><span class="inline-block w-3 h-3 rounded-sm bg-amber-400 align-middle mr-1" aria-hidden="true"></span><span class="font-bold text-gray-800">Addizionali</span><span id="sn-v-addizionali" class="block tabular-nums text-gray-900 font-bold mt-1">—</span><span id="sn-p-addizionali" class="block tabular-nums text-xs text-gray-500">&nbsp;</span></li>
+        </ul>
+        <p id="sn-aiuti" class="text-xs text-gray-600 mt-3 min-h-8"></p>
+
+        <div class="mt-6 pt-5 border-t border-gray-100">
+          <h3 class="text-base font-bold text-gray-900">E se ti aumentano lo stipendio?</h3>
+          <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+            <div>
+              <label for="sn-aumento" class="block text-xs font-bold text-gray-700 mb-1">Aumento della RAL (euro lordi all'anno)</label>
+              <select id="sn-aumento" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-bold text-gray-800 outline-none cursor-pointer">
+                <option value="500">+ 500 €</option>
+                <option value="1000" selected>+ 1.000 €</option>
+                <option value="2000">+ 2.000 €</option>
+                <option value="3000">+ 3.000 €</option>
+                <option value="5000">+ 5.000 €</option>
+                <option value="10000">+ 10.000 €</option>
+              </select>
+            </div>
+            <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4 min-h-[5.5rem]">
+              <p id="sn-aumento-esito" class="text-sm font-bold text-emerald-900" aria-live="polite">Calcola prima il netto con la tua RAL.</p>
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-500 mt-2">Il calcolo viene rifatto da capo con la RAL aumentata: cambiano scaglione IRPEF, detrazioni e cuneo fiscale, per questo di un euro lordo in più non resta sempre la stessa parte.</p>
+        </div>
+      </section>
     </main>
 
     <!-- COLONNA DESTRA: Sticky Sidebar (Ad Desktop) -->

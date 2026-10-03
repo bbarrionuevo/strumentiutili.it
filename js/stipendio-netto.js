@@ -239,6 +239,56 @@
       const el = document.getElementById(id);
       if (el) el.textContent = '—';
     });
+    ultimoCalcolo = null;
+    document.querySelectorAll('[data-sn-quota]').forEach(function (b) { b.style.width = '0%'; });
+    ['resta', 'inps', 'irpef', 'addizionali'].forEach(function (k) {
+      const el = document.getElementById('sn-v-' + k);
+      if (el) el.textContent = '—';
+      const quota = document.getElementById('sn-p-' + k);
+      if (quota) quota.textContent = '\u00a0';
+    });
+    const aiuti = document.getElementById('sn-aiuti');
+    if (aiuti) aiuti.textContent = '';
+    disegnaAumento();
+  }
+
+  // ------------------------------------------------ viste interattive
+  let ultimoCalcolo = null;
+  const ETICHETTE_QUOTA = { resta: 'resta a te', inps: 'contributi INPS', irpef: 'IRPEF netta', addizionali: 'addizionali' };
+
+  function disegnaRipartizione(r) {
+    const p = ripartizione(r);
+    const parti = ['resta', 'inps', 'irpef', 'addizionali'];
+    parti.forEach(function (k) {
+      const barra = document.querySelector('[data-sn-quota="' + k + '"]');
+      if (barra) barra.style.width = Math.max(0, p.quote[k]) + '%';
+      const valore = document.getElementById('sn-v-' + k);
+      if (valore) valore.textContent = formatEuro(p[k]);
+      const quota = document.getElementById('sn-p-' + k);
+      if (quota) quota.textContent = p.quote[k].toLocaleString('it-IT') + '% della RAL';
+    });
+    const barra = document.getElementById('sn-barra');
+    if (barra) barra.setAttribute('aria-label', parti.map(function (k) { return ETICHETTE_QUOTA[k] + ' ' + p.quote[k].toLocaleString('it-IT') + '%'; }).join(', '));
+    const frase = document.getElementById('sn-dove-frase');
+    if (frase) frase.textContent = 'Di ogni 100 euro lordi ' + p.quote.resta.toLocaleString('it-IT') + ' restano a te; ' +
+      p.quote.inps.toLocaleString('it-IT') + ' vanno all\'INPS, ' + p.quote.irpef.toLocaleString('it-IT') + ' all\'IRPEF e ' +
+      p.quote.addizionali.toLocaleString('it-IT') + ' alle addizionali di Regione e Comune.';
+    const aiuti = document.getElementById('sn-aiuti');
+    if (aiuti) aiuti.textContent = p.aiuti > 0
+      ? 'In più arrivano in busta ' + formatEuro(p.aiuti) + ' all\'anno tra bonus del cuneo fiscale e trattamento integrativo: per questo il netto annuale è ' + formatEuro(r.nettoAnnuo) + '.'
+      : '';
+  }
+
+  function disegnaAumento() {
+    const esito = document.getElementById('sn-aumento-esito');
+    const scelta = document.getElementById('sn-aumento');
+    if (!esito || !scelta || !ultimoCalcolo) return;
+    const delta = safeNumber(scelta.value, 0);
+    const c = ultimoCalcolo;
+    const a = aumento(c.ral, delta, c.mensilita, c.regole, c.opzioni);
+    if (!a) { esito.textContent = 'Calcola prima il netto con la tua RAL.'; return; }
+    esito.textContent = 'Con ' + formatEuro(delta) + ' lordi in più all\'anno il netto sale di ' + formatEuro(a.nettoInPiu) +
+      ' (circa ' + formatEuro(a.mensileInPiu) + ' al mese): di ogni euro lordo in più ti restano ' + a.centesimiPerEuro + ' centesimi.';
   }
 
   function bind() {
@@ -247,6 +297,9 @@
     const calcBtn = document.getElementById('calcola');
     const resetBtn = document.getElementById('reset');
     if (!calcBtn) return;
+
+    const sceltaAumento = document.getElementById('sn-aumento');
+    if (sceltaAumento) sceltaAumento.addEventListener('change', disegnaAumento);
 
     calcBtn.addEventListener('click', async function () {
       
@@ -278,11 +331,16 @@
         return;
       }
 
-      renderSalaryResult(calculateSalary(ral, mensilita, regole, {
+      const opzioni = {
         regionalRate: regionalRate,
         comunalRate: comunalRate,
         applyDetrazione: applyDetrazione
-      }));
+      };
+      const risultato = calculateSalary(ral, mensilita, regole, opzioni);
+      renderSalaryResult(risultato);
+      ultimoCalcolo = { ral: ral, mensilita: mensilita, regole: regole, opzioni: opzioni };
+      disegnaRipartizione(risultato);
+      disegnaAumento();
     });
 
     if (resetBtn) {
@@ -306,9 +364,37 @@
     }
   }
 
+  // Dove finisce la RAL: contributi INPS, IRPEF netta, addizionali e quello
+  // che resta al lavoratore. Bonus cuneo e trattamento integrativo arrivano in
+  // busta in piu' (aiuti): il netto e' resta + aiuti. Quote in % della RAL.
+  function ripartizione(r) {
+    const resta = round2(r.ral - r.inps - r.irpefNetta - r.addizionali);
+    const aiuti = round2(r.nettoAnnuo - resta);
+    const quota = (x) => (r.ral > 0 ? Math.round(x / r.ral * 1000) / 10 : 0);
+    const quote = { inps: quota(r.inps), irpef: quota(r.irpefNetta), addizionali: quota(r.addizionali) };
+    quote.resta = Math.round((100 - quote.inps - quote.irpef - quote.addizionali) * 10) / 10;
+    return { inps: r.inps, irpef: r.irpefNetta, addizionali: r.addizionali, resta, aiuti, quote };
+  }
+
+  // E se la RAL aumenta di 'delta'? Si rifa' il calcolo intero (scaglioni,
+  // detrazioni e cuneo cambiano con il reddito) e si confrontano i due netti.
+  function aumento(ral, delta, mensilita, regole, opzioni) {
+    if (!(delta > 0) || !(ral > 0)) return null;
+    const prima = calculateSalary(ral, mensilita, regole, opzioni);
+    const dopo = calculateSalary(ral + delta, mensilita, regole, opzioni);
+    const nettoInPiu = round2(dopo.nettoAnnuo - prima.nettoAnnuo);
+    return {
+      nettoInPiu,
+      mensileInPiu: round2(dopo.nettoMensile - prima.nettoMensile),
+      centesimiPerEuro: Math.round(nettoInPiu / delta * 100)
+    };
+  }
+
   // L'API globale esposta viene mantenuta per retrocompatibilità
   window.StipendioNetto = {
-    calculateSalary: calculateSalary
+    calculateSalary: calculateSalary,
+    ripartizione: ripartizione,
+    aumento: aumento
   };
 
   bind();

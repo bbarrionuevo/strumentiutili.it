@@ -274,6 +274,26 @@
     $('bp-euro-' + chiave).textContent = euro(totale);
   }
 
+  // Chart.js pesa circa 200 KB: scaricarlo e compilarlo all'apertura della
+  // pagina bloccava il telefono per quasi 400 ms (misurato con la CPU
+  // rallentata 4 volte). Ora si chiede solo quando il grafico sta per entrare
+  // nello schermo, o al primo calcolo.
+  const CHART_JS = '/vendor/chartjs@4.4.1/chart.umd.js';
+  let chartInArrivo = null;
+  function caricaChart() {
+    if (typeof window.Chart !== 'undefined') return Promise.resolve(true);
+    if (!chartInArrivo) {
+      chartInArrivo = new Promise((pronta) => {
+        const s = document.createElement('script');
+        s.src = CHART_JS;
+        s.onload = () => pronta(typeof window.Chart !== 'undefined');
+        s.onerror = () => pronta(false);
+        document.head.appendChild(s);
+      });
+    }
+    return chartInArrivo;
+  }
+
   function aggiornaGrafico(a) {
     const valoreCentro = $('bp-centro-valore');
     const etichettaCentro = $('bp-centro-etichetta');
@@ -292,8 +312,15 @@
     }
 
     if (typeof window.Chart === 'undefined') {
-      $('bp-grafico').classList.add('hidden');
-      $('bp-grafico-fallback').classList.remove('hidden');
+      // La libreria arriva solo quando serve (vedi caricaChart): finche' non ci
+      // sono importi la ciambella vuota la disegna il CSS (anello grigio), nel
+      // suo riquadro quadrato che ha gia' la sua altezza.
+      if (vuoto) return;
+      caricaChart().then((pronta) => {
+        if (pronta) { if (ultimoStato) aggiornaGrafico(ultimoStato.analisi); return; }
+        $('bp-grafico').classList.add('hidden');
+        $('bp-grafico-fallback').classList.remove('hidden');
+      });
       return;
     }
 
@@ -301,6 +328,7 @@
     const colori = vuoto ? ['#f3f4f6', '#f3f4f6', '#f3f4f6', '#f3f4f6'] : COLORI_GRAFICO;
 
     if (!grafico) {
+      $('bp-grafico').parentElement.classList.remove('bp-ciambella-vuota');
       const riduciMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       grafico = new window.Chart($('bp-grafico'), {
         type: 'doughnut',
@@ -400,6 +428,20 @@
 
     // storage-helper.js ha già ripristinato gli importi salvati
     render();
+
+    // Il grafico vuoto entra nello schermo: si scarica la libreria, cosi' al
+    // primo importo la ciambella si colora subito.
+    const riquadro = $('bp-grafico').parentElement;
+    if ('IntersectionObserver' in window) {
+      const osserva = new IntersectionObserver((voci) => {
+        if (!voci.some((v) => v.isIntersecting)) return;
+        osserva.disconnect();
+        caricaChart();
+      });
+      osserva.observe(riquadro);
+    } else {
+      caricaChart();
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);
