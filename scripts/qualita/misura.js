@@ -48,9 +48,16 @@ async function misuraPagina(browser, sito, pagina) {
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
   let byte = 0, richieste = 0;
   cdp.on('Network.loadingFinished', (e) => { byte += e.encodedDataLength; richieste++; });
-  const erroriJs = [];
-  p.on('pageerror', (e) => erroriJs.push(String(e.message).slice(0, 160)));
   const origine = new URL(sito).origin;
+  // Gli errori dei nostri script contano; quelli di script di terzi (annunci,
+  // consenso, statistiche) si annotano a parte: non li possiamo correggere.
+  const erroriJs = [], erroriTerzi = [];
+  p.on('pageerror', (e) => {
+    const messaggio = String(e.message).slice(0, 160);
+    const fonte = (String(e.stack || '').match(/https?:\/\/[^\s)]+/) || [''])[0];
+    if (!fonte || fonte.startsWith(origine)) erroriJs.push(messaggio + (fonte ? ' (' + fonte.slice(origine.length).replace(/:\d+:\d+$/, '') + ')' : ''));
+    else erroriTerzi.push(new URL(fonte).host + ': ' + messaggio);
+  });
   const rotti = [];
   p.on('response', (r) => {
     const u = r.url();
@@ -62,7 +69,7 @@ async function misuraPagina(browser, sito, pagina) {
     fuori.stato = risposta ? risposta.status() : null;
     await p.waitForTimeout(4000); // il tempo per annunci e caricamenti tardivi: i loro salti contano
     const m = await p.evaluate(() => window.__su);
-    Object.assign(fuori, { lcp: Math.round(m.lcp), cls: Math.round(m.cls * 1000) / 1000, tbt: Math.round(m.tbt), kb: Math.round(byte / 1024), richieste, erroriJs, rotti });
+    Object.assign(fuori, { lcp: Math.round(m.lcp), cls: Math.round(m.cls * 1000) / 1000, tbt: Math.round(m.tbt), kb: Math.round(byte / 1024), richieste, erroriJs, erroriTerzi, rotti });
   } catch (e) {
     fuori.errore = String(e.message).split('\n')[0].slice(0, 160);
   }

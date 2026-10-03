@@ -37,6 +37,14 @@ test('Chrome UX Report: percentili letti, nessun dato = null', () => {
   assert.strictEqual(V.daCrux(null), null);
 });
 
+test('gli errori degli script di terzi si contano a parte e non diventano avvisi', () => {
+  const r = { data: '2026-10-04', sito: 'https://strumentiutili.it', crux: {}, cruxAttivo: false,
+    misure: [{ ...BUONA, erroriTerzi: ['fundingchoicesmessages.google.com: W'] }, { ...BUONA, pagina: '/b/', erroriTerzi: ['fundingchoicesmessages.google.com: W'] }] };
+  assert.deepStrictEqual(V.problemi(r.misure[0]), []);
+  assert.deepStrictEqual(V.avvisi(r, null), []);
+  assert.match(V.corpoRapporto(r, null), /errori di script di terzi .*: \*\*2\*\* \(fundingchoicesmessages\.google\.com: W ×2\)/);
+});
+
 test('rapporto: i dati grezzi tornano indietro per il confronto della settimana dopo', () => {
   const r = { data: '2026-10-04', sito: 'https://strumentiutili.it', misure: [BUONA, { ...BUONA, pagina: '/b/', cls: 0.3 }], crux: {}, cruxAttivo: false };
   const corpo = V.corpoRapporto(r, null);

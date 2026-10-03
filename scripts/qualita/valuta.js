@@ -78,6 +78,14 @@ function classifica(misure) {
     .sort((a, b) => b.problemi.length - a.problemi.length || (b.tbt || 0) - (a.tbt || 0));
 }
 
+/** I messaggi di terzi piu' frequenti, per capire da dove vengono. */
+function terzi(misure) {
+  const conta = new Map();
+  for (const m of misure || []) for (const e of new Set(m.erroriTerzi || [])) conta.set(e, (conta.get(e) || 0) + 1);
+  const primi = [...conta.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
+  return primi.length ? ' (' + primi.map(([e, n]) => `${e} ×${n}`).join('; ') + ')' : '';
+}
+
 const numero = (x, dec) => (Number.isFinite(x) ? x.toLocaleString('it-IT', { maximumFractionDigits: dec || 0 }) : '—');
 
 /** Il testo della issue fissata con l'ultimo controllo. I dati grezzi stanno in fondo, per il confronto della settimana dopo. */
@@ -91,6 +99,7 @@ function corpoRapporto(r, prima) {
     `Controllo del ${r.data} su ${r.misure.length} pagine di ${r.sito}: telefono a 390 px, CPU rallentata 4 volte, rete mobile, annunci e consenso veri.`,
     '',
     `- Pagine con problemi: **${conProblemi.length}**`,
+    `- Pagine con errori di script di terzi (annunci, consenso: non dipendono da noi): **${(r.misure || []).filter((m) => (m.erroriTerzi || []).length).length}**${terzi(r.misure)}`,
     `- Peggiorate rispetto al controllo precedente: **${pegg.length}**`,
     r.cruxAttivo
       ? `- Pagine con dati di utenti reali (Chrome UX Report): **${conDatiReali.length}** (le altre hanno ancora troppo poco traffico)`
