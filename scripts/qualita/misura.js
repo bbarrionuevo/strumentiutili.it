@@ -51,11 +51,12 @@ async function misuraPagina(browser, sito, pagina) {
   const origine = new URL(sito).origin;
   // Gli errori dei nostri script contano; quelli di script di terzi (annunci,
   // consenso, statistiche) si annotano a parte: non li possiamo correggere.
-  const erroriJs = [], erroriTerzi = [];
+  const erroriJs = [], erroriTerzi = [], senzaFonte = [];
   p.on('pageerror', (e) => {
     const messaggio = String(e.message).slice(0, 160);
     const fonte = (String(e.stack || '').match(/https?:\/\/[^\s)]+/) || [''])[0];
-    if (!fonte || fonte.startsWith(origine)) erroriJs.push(messaggio + (fonte ? ' (' + fonte.slice(origine.length).replace(/:\d+:\d+$/, '') + ')' : ''));
+    if (!fonte) senzaFonte.push(messaggio);
+    else if (fonte.startsWith(origine)) erroriJs.push(messaggio + ' (' + fonte.slice(origine.length).replace(/:\d+:\d+$/, '') + ')');
     else erroriTerzi.push(new URL(fonte).host + ': ' + messaggio);
   });
   const rotti = [];
@@ -74,7 +75,31 @@ async function misuraPagina(browser, sito, pagina) {
     fuori.errore = String(e.message).split('\n')[0].slice(0, 160);
   }
   await ctx.close();
+  // Errori senza file d'origine (per esempio una promessa rifiutata con una
+  // stringa): si ricarica la pagina senza nessuno script esterno. Se spariscono
+  // erano di terzi (annunci, consenso); se restano sono nostri.
+  if (!fuori.errore && senzaFonte.length) {
+    const restano = await erroriSenzaEsterni(browser, origine, pagina);
+    for (const msg of senzaFonte) {
+      if (restano.includes(msg)) fuori.erroriJs.push(msg);
+      else fuori.erroriTerzi.push('script esterni (spariscono bloccandoli): ' + msg);
+    }
+  }
   return fuori;
+}
+
+async function erroriSenzaEsterni(browser, origine, pagina) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, serviceWorkers: 'block', locale: 'it-IT' });
+  await ctx.route((url) => !url.href.startsWith(origine), (r) => r.abort());
+  const p = await ctx.newPage();
+  const visti = [];
+  p.on('pageerror', (e) => visti.push(String(e.message).slice(0, 160)));
+  try {
+    await p.goto(origine + pagina, { waitUntil: 'load', timeout: 60000 });
+    await p.waitForTimeout(2500);
+  } catch (e) { /* conta solo cio' che si e' visto */ }
+  await ctx.close();
+  return visti;
 }
 
 async function datiReali(sito, pagine) {
