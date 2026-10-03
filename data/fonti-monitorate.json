@@ -164,6 +164,24 @@
       ]
     },
     {
+      "id": "mef-tassi-soglia-usura",
+      "tipo": "pagina",
+      "url": "https://www.dt.mef.gov.it/it/attivita_istituzionali/sistema_bancario_finanziario/anti_usura/categorie_creditizie/",
+      "pagine": [
+        "cittadino-tasse/verifica-tasso-usura/"
+      ],
+      "motori": [
+        "scripts/usura/aggiorna.js",
+        "scripts/usura/elabora.js",
+        "js/usura.js"
+      ],
+      "deve_contenere": [
+        "Rilevazione trimestrale tassi soglia",
+        "Decreti di rilevazione tassi trimestrali",
+        "definibili come usurari"
+      ]
+    },
+    {
       "id": "dm-2017-allegato-a",
       "tipo": "pdf",
       "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=17A0185800100010110001&dgu=2017-03-15&art.dataPubblicazioneGazzetta=2017-03-15&art.codiceRedazionale=17A01858&art.num=1&art.tiposerie=SG",
@@ -362,7 +380,10 @@
     "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431~art4",
     "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431~art4bis",
     "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431~art5",
-    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1978-07-27;392~art11"
+    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1978-07-27;392~art11",
+    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1996-03-07;108~art2",
+    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2000-12-29;394~art1",
+    "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262:2~art1815"
   ],
   "dati_vivi": [
     {
@@ -372,6 +393,14 @@
       "max_giorni": 3,
       "workflow": "carburanti.yml",
       "fonte": "https://www.mimit.gov.it/it/open-data/elenco-dataset/carburanti-prezzi-praticati-e-anagrafica-degli-impianti"
+    },
+    {
+      "id": "usura",
+      "file": "data/vivi/usura/soglie.json",
+      "campo": "vigente_dal",
+      "max_giorni": 100,
+      "workflow": "usura.yml",
+      "fonte": "https://www.dt.mef.gov.it/it/attivita_istituzionali/sistema_bancario_finanziario/anti_usura/categorie_creditizie/"
     }
   ],
   "copertura": {

@@ -1,0 +1,69 @@
+name: Tassi soglia usura (decreti trimestrali del MEF)
+
+# Ogni giorno controlla la pagina «Rilevazione trimestrale tassi soglia» del
+# Dipartimento del Tesoro e, quando esce il decreto del trimestre nuovo, lo
+# legge, lo controlla (scripts/usura/elabora.js: 24 tassi, classi d'importo,
+# soglie coerenti con l'art. 2 della legge 108/1996) e salva su main SOLO
+# data/vivi/usura/. E' la stessa eccezione dei prezzi dei carburanti: dati
+# ufficiali che cambiano da soli e si controllano da soli. Il codice e le
+# pagine passano sempre da una pull request. Se qualcosa non torna non si
+# pubblica niente e, se il trimestre nuovo non arriva, la sentinella avvisa.
+on:
+  schedule:
+    - cron: '23 7 * * *'
+  workflow_dispatch:
+    inputs:
+      storico:
+        description: 'Cerca anche i trimestri passati (nomi abituali dei file)'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: usura
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    name: Leggi, controlla e pubblica
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Strumenti per leggere i PDF
+        run: sudo apt-get install -y -qq poppler-utils > /dev/null
+
+      - name: Leggi i decreti del MEF
+        env:
+          STORICO: ${{ inputs.storico }}
+        run: |
+          if [ "$STORICO" = "true" ]; then node scripts/usura/aggiorna.js --storico; else node scripts/usura/aggiorna.js; fi
+
+      - name: Test sui dati appena scritti
+        run: node --test tests/usura.test.js tests/fonti-monitorate.test.js
+
+      - name: Salva su main (solo data/vivi/usura)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/vivi/usura
+          if git diff --cached --quiet; then echo "Nessun trimestre nuovo."; exit 0; fi
+          if git diff --cached --name-only | grep -v '^data/vivi/usura/'; then
+            echo "File fuori da data/vivi/usura: non si pubblica."; exit 1
+          fi
+          VIGENTE=$(node -p "require('./data/vivi/usura/soglie.json').vigente_dal")
+          git commit -q -m "Tassi soglia usura dal $VIGENTE (decreto MEF)"
+          for tentativo in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 15
+          done
+          exit 1
