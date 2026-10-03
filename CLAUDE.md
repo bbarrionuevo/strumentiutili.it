@@ -43,6 +43,19 @@ Si una herramienta depende de algo que puede cambiar (una cifra, una norma, un m
 
 `tests/fonti-monitorate.test.js` falla si un bloque de datos o un PDF oficial no tiene vigilancia.
 
+## El sitio se mantiene y mejora solo, semana a semana
+- **Domingo:** `metriche.yml` mide todas las páginas del sitio publicado con Playwright (telefono, CPU 4×, red móvil, anuncios reales).
+  - Actualiza la issue fijada «Qualità del sito (misure settimanali)».
+  - Abre una issue `qualita` por cada problema grave: página rota, CLS, errores JS, empeoramientos.
+  - Con el secreto `PSI_KEY` (clave gratuita de Google, Chrome UX Report API) suma datos de usuarios reales.
+  - Solo escribe issues, nunca en el repositorio.
+- **Lunes:** la sentinella y la rutina «Correttore» (skill `aggiorna-fonti`) mantienen correcto lo que ya existe.
+- **Miércoles:** la rutina «Laboratorio» (skill `laboratorio`) hace tres cosas:
+  - corrige lo que midió el domingo;
+  - construye **como máximo una** herramienta nueva, solo si pasa los filtros de demanda, originalidad, ley vigente hoy y el próximo 1/1, ejemplo oficial con test escrito antes que el código, y mantenimiento automático;
+  - una vez por mes, propone podar las herramientas sin uso.
+- Las ideas, con su puntaje y los motivos de descarte, están en `.claude/laboratorio/idee.md`.
+
 ## Leer fuentes oficiales
 El sandbox no llega a agenziaentrate.gov.it, normattiva.it, aci.gov.it, inps.it, istat.it ni a la mayoría de los sitios públicos. Se leen con workflows de GitHub, lanzados con `actions_run_trigger` del MCP de GitHub sobre `ref: main`; los registros se leen con `get_job_logs`.
 - **`leggi-fonti.yml`:**

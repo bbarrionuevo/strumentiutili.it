@@ -1,0 +1,59 @@
+name: Qualità del sito (misure settimanali)
+
+# Ogni domenica sera misura tutte le pagine del sitemap sul sito pubblicato,
+# con un browser vero: telefono a 390 px, CPU rallentata 4 volte, rete mobile,
+# annunci e consenso veri. Scrive solo issue (mai nel repository):
+# - la issue fissata «Qualità del sito (misure settimanali)» con il rapporto;
+# - una issue «qualita» + «priorita:alta» per ogni problema grave nuovo.
+# Il mercoledi' il laboratorio settimanale (.claude/skills/laboratorio/) parte
+# da qui per scegliere cosa migliorare. Con il segreto PSI_KEY (chiave gratuita
+# delle API di Google con «Chrome UX Report API» attiva) si aggiungono i dati
+# degli utenti reali e il segnale di quali pagine hanno traffico.
+on:
+  schedule:
+    - cron: '17 20 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: metriche
+  cancel-in-progress: false
+
+jobs:
+  misura:
+    name: Misura le pagine
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Browser per le misure
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1 > /dev/null
+          npx playwright install --with-deps chromium > /dev/null
+
+      - name: Misura
+        env:
+          PSI_KEY: ${{ secrets.PSI_KEY }}
+        run: node scripts/qualita/misura.js --sito https://strumentiutili.it --uscita misure.json
+
+      - name: Aggiorna le issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/qualita/rapporto-issue.js misure.json
+
+      - name: Conserva le misure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: misure
+          path: misure.json
+          if-no-files-found: ignore
+          retention-days: 90
