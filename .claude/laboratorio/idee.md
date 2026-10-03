@@ -3,13 +3,7 @@
 Lo usa la skill `laboratorio`: cada idea con su puntaje (Demanda, Originalidad, Fuente, Factibilidad, Mantenimiento, de 0 a 3) y el motivo. Se construye solo si suma ≥ 12 sin ningún 0. Más reciente arriba.
 
 ## En curso
-- **Convertidor de fotos HEIC del iPhone a JPG, en lote** (tecnológica) — D3 · O3 · F3 · Fa3 · M2 = 14
-  - **Demanda:** las fotos del iPhone son HEIC y Windows, Chrome y muchos portales públicos no las aceptan.
-  - **Hoy en el sitio:** `utilita-web/convertitore-immagini/` solo las abre con Safari.
-  - **Originalidad:** decenas de fotos convertidas en paralelo en el dispositivo, sin subirlas; la ubicación GPS no se copia.
-  - **Factibilidad:** `libheif-js` 1.23.2 (LGPL-3.0, wasm de 1,4 MB) decodifica en el navegador. Probado el 03/10/2026: 640×480 en 51 ms en Node.
-  - **Pruebas:** archivos HEIC de prueba generados con `pillow-heif`.
-  - **Mantenimiento:** solo la versión de la librería (vendor). Fuente: no es un tema legal.
+- (nada)
 
 ## En espera (con la condición para retomarlas)
 - **Impuesto de sucesión en autoliquidación** (burocrática) — D3 · O3 · F1 · Fa3 · M2 = 12, pero **descartada por ahora**:
@@ -40,5 +34,10 @@ Lo usa la skill `laboratorio`: cada idea con su puntaje (Demanda, Originalidad, 
 - **Quitar el fondo de fotos** (tecnológica): solo con un modelo de licencia comercial compatible; descartar los modelos «non-commercial».
 
 ## Hechas
+- **Convertir HEIC a JPG** (`utilita-web/convertire-heic-jpg/`, 03/10/2026) — D3 · O3 · F3 · Fa3 · M2 = 14.
+  - `libheif-js` 1.23.2 en `vendor/` (LGPL-3.0, wasm), un Web Worker por procesador libre (hasta 4), OffscreenCanvas, ZIP con fflate.
+  - Probado en Playwright: 3 fotos de 12 MP más archivos de prueba en 1,1 s (computadora) y 2,3 s (móvil emulado).
+  - Detecta los archivos que no son HEIC por la cabecera; JPG, PNG o WebP; reducción del lado largo.
+  - Tests con HEIC reales generados con `pillow-heif` (colores decodificados verificados).
 - **Tassi soglia usura** (PR #39, 03/10/2026): datos que se actualizan solos cada trimestre.
 - **Vistas interactivas del sueldo neto** (PR #39).
