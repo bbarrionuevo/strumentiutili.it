@@ -11,8 +11,9 @@
 //    pagina lo stato nell'indice di Google e il motivo se e' fuori (API
 //    URL Inspection), e clic e impressioni degli ultimi 28 giorni (API Search
 //    Analytics). Sono API gratuite; la chiave non viene mai stampata.
-// 3. Vecchi indirizzi: ogni redirect di vercel.json si segue passo per passo
-//    sul sito vero. Deve arrivare a una pagina (200) in al massimo 3 passi:
+// 3. Vecchi indirizzi: ogni redirect di vercel.json, ogni indirizzo che Google
+//    conosceva (data/indirizzi-noti-google.json) e, con Search Console, ogni
+//    pagina che ha ancora impressioni, seguiti passo per passo sul sito vero. Deve arrivare a una pagina (200) in al massimo 3 passi:
 //    se no Google li conta come «Non trovato (404)» o «Errore di
 //    reindirizzamento» e la pagina perde cio' che aveva guadagnato.
 //
@@ -249,6 +250,7 @@ async function searchConsole(sito, pagine, oggi) {
     const perPagina = daAnalytics(righe, sito);
     fuori.totale = Object.values(perPagina).reduce((t, x) => ({ clic: t.clic + x.clic, impressioni: t.impressioni + x.impressioni }), { clic: 0, impressioni: 0 });
     for (const p of pagine) fuori.pagine[p] = { clic: 0, impressioni: 0, posizione: null, ...(perPagina[p] || {}) };
+    fuori.conImpressioni = Object.keys(perPagina);
   } catch (e) { fuori.errore = 'clic e impressioni non letti: ' + e.message; }
 
   for (const p of pagine) {
@@ -301,8 +303,13 @@ async function main() {
   const pagine = r.misure.map((m) => m.pagina);
   const googlebot = await controllaGooglebot(sito, pagine);
   const vercel = JSON.parse(fs.readFileSync(require('node:path').join(__dirname, '..', '..', 'vercel.json'), 'utf8'));
-  r.reindirizzamenti = await controllaReindirizzamenti(sito, [...new Set((vercel.redirects || []).map((x) => x.source))]);
   const google = process.env.GSC_CREDENZIALI ? await searchConsole(sito, pagine, new Date()) : { attivo: false };
+  // i vecchi indirizzi: i redirect di vercel.json, quelli che Google conosceva
+  // (data/indirizzi-noti-google.json) e quelli che hanno ancora impressioni
+  const noti = JSON.parse(fs.readFileSync(require('node:path').join(__dirname, '..', '..', 'data', 'indirizzi-noti-google.json'), 'utf8')).indirizzi;
+  const inSitemap = new Set(pagine);
+  const vecchi = [...(vercel.redirects || []).map((x) => x.source), ...noti, ...(google.conImpressioni || [])].filter((p) => !inSitemap.has(p));
+  r.reindirizzamenti = await controllaReindirizzamenti(sito, [...new Set(vecchi)]);
   unisci(r, googlebot, google);
   console.log(riepilogo(r));
   if (!soloRegistro) fs.writeFileSync(file, JSON.stringify(r, null, 1));
