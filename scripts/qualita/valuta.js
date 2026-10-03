@@ -104,7 +104,7 @@ function sezioniGoogle(r) {
   const testa = [`- Pagine con un problema che le toglie da Google (noindex, canonical, risposta del server): **${misure.filter((m) => problemi(m).some((p) => p.tipo === 'indice')).length}**`];
   if (r.reindirizzamenti) {
     const rotti = r.reindirizzamenti.rotti;
-    testa.push(`- Vecchi indirizzi (redirect di vercel.json) che non arrivano a una pagina: **${rotti.length}** su ${r.reindirizzamenti.controllati}` +
+    testa.push(`- Vecchi indirizzi (redirect e indirizzi noti a Google) che non arrivano a una pagina: **${rotti.length}** su ${r.reindirizzamenti.controllati}` +
       (rotti.length ? ' (' + rotti.slice(0, 5).map((x) => `${x.da} → ${x.a}: ${x.stato}`).join('; ') + (rotti.length > 5 ? '; …' : '') + ')' : ''));
   }
   if (!g || !g.attivo) {

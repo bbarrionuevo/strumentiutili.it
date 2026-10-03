@@ -6,6 +6,10 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
 - **100 % client-side.** Nada de servidores, bases de datos ni API de pago: todo el cálculo ocurre en el navegador. GitHub Actions solo sirve para mantener el repositorio (leer fuentes, controles), nunca para el sitio.
 - **Ninguna cifra, plazo, dirección o código sin haberlo leído en el documento oficial.** Si no se puede leer, no se escribe: la página dice que falta o el cambio espera.
 - **Consentimiento de cookies:** Google AdSense exige el cartel de aceptar o rechazar, y ya lo configuró Brian en Google. No tocar la carga de los anuncios ni el consentimiento sin necesidad.
+- **Direcciones:** una página publicada no cambia de dirección ni se borra sin una redirección 301 en `vercel.json`, en la misma PR.
+  - Con `cleanUrls`, la redirección va desde la forma con barra (`/vieja/`), no desde `/vieja.html`.
+  - `data/indirizzi-noti-google.json` lista las direcciones que Google conoce y solo se le agregan. `tests/sitemap.test.js` comprueba que todas lleguen a una página real.
+  - Entre el 21 y el 25/9 una mudanza de carpetas, con direcciones en 404 durante días, se llevó casi todas las visitas de Google.
 - **Privacidad:** no publicar el email de Brian. Los campos con código fiscal o IBAN no se guardan en el navegador (regex `SENSIBILE` en `js/storage-helper.js`).
 - **Nada llega a `main` sin una pull request con CI y Vercel en verde.**
   - Única excepción: los datos vivos (`data/vivi/<nombre>/`) que un workflow actualiza solo, como los precios de los carburantes.

@@ -157,6 +157,19 @@ test('ogni vecchio indirizzo arriva a una pagina vera, in pochi passi (come inst
   assert.deepStrictEqual(instrada('/partita-iva.html', redirect), { finale: '/fisco-professioni/partita-iva/', stato: 200, passi: ['/partita-iva/', '/fisco-professioni/partita-iva/'] });
 });
 
+test('gli indirizzi che Google conosce arrivano tutti a una pagina vera', () => {
+  // Fra il 21 e il 25/9 le pagine si sono spostate di cartella; alcuni vecchi
+  // indirizzi hanno risposto 404 per giorni e Google ha tolto quasi tutto
+  // dai risultati. Questo elenco viene da Search Console: non deve rompersi più.
+  const vercel = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'vercel.json'), 'utf8'));
+  const redirect = new Map(vercel.redirects.map((r) => [r.source, r.destination]));
+  const noti = JSON.parse(fs.readFileSync(path.join(L.RADICE, 'data', 'indirizzi-noti-google.json'), 'utf8')).indirizzi;
+  assert.ok(noti.length > 150, 'elenco troppo corto: ' + noti.length);
+  const rotti = noti.map((u) => [u, instrada(decodeURI(u), redirect)]).filter(([, r]) => r.stato !== 200 || r.passi.length > 3)
+    .map(([u, r]) => `${u} → ${r.finale} (${r.stato}, ${r.passi.length} passi)`);
+  assert.deepStrictEqual(rotti, []);
+});
+
 test('il riconoscimento del noindex', () => {
   assert.strictEqual(S.noindex('<meta name="robots" content="noindex, follow" />'), true);
   assert.strictEqual(S.noindex("<meta content='noindex' name='robots'>"), true);
