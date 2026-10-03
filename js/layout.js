@@ -275,7 +275,8 @@
       };
       stella.addEventListener('click', function () { S.alterna(percorso, titolo); aggiornaStella(); });
       aggiornaStella();
-      stella.hidden = false;
+      stella.hidden = false; // pagine generate prima che il posto fosse riservato
+      stella.classList.remove('invisible');
     }
 
     var voce = document.getElementById('su-cancella-voce');

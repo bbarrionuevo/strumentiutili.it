@@ -41,6 +41,8 @@
     .bp-tono-giallo { background: #fffbeb; color: #92400e; border-color: #fde68a; }
     .bp-tono-verde { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
     .bp-tono-blu { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+    /* Ciambella vuota disegnata dal CSS finche' Chart.js non serve (si scarica solo quando il grafico entra nello schermo) */
+    .bp-ciambella-vuota { background: radial-gradient(closest-side, transparent 66%, #f3f4f6 67%, #f3f4f6 97%, transparent 98%); }
     .bp-barra { position: relative; height: 8px; background: #f3f4f6; border-radius: 9999px; overflow: visible; }
     .bp-barra-riempimento { height: 100%; border-radius: 9999px; transition: width .5s ease, background-color .3s ease; }
     .bp-barra-obiettivo { position: absolute; top: -3px; width: 2px; height: 14px; background: #111827; border-radius: 1px; }
@@ -273,7 +275,7 @@
         <li aria-hidden="true" class="text-gray-300">/</li>
         <li><span class="text-gray-700 font-medium" aria-current="page">Budget Planner Intelligente 50/30/20</span></li>
         </ol>
-        <button type="button" id="su-fissa" hidden aria-pressed="false" data-percorso="/utilita-web/budget-planner/" data-titolo="Budget Planner Intelligente 50/30/20" class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
+        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="/utilita-web/budget-planner/" data-titolo="Budget Planner Intelligente 50/30/20" class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition"><span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>
       </nav>
   <!-- /su:briciole -->
       </div>
@@ -328,7 +330,7 @@
             <div class="xl:sticky xl:top-24 space-y-4">
               <div class="border border-gray-200 rounded-xl p-5">
                 <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Salute finanziaria</h2>
-                <div class="relative mx-auto w-full max-w-[260px] aspect-square">
+                <div class="relative mx-auto w-full max-w-[260px] aspect-square bp-ciambella-vuota">
                   <canvas id="bp-grafico" role="img" aria-label="Grafico a ciambella della ripartizione del reddito tra necessità, desideri e risparmi"></canvas>
                   <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
                     <span id="bp-centro-valore" class="text-3xl font-extrabold text-gray-900">--</span>
@@ -704,7 +706,6 @@
   <!-- /su:piede -->
 
   <!-- LIBRERIE ESTERNE -->
-  <script defer src="/vendor/chartjs@4.4.1/chart.umd.js"></script>
 
   <!-- SCRIPT LOGICO -->
   <script defer src="/js/storage-helper.js"></script>

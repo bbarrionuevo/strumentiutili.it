@@ -117,3 +117,30 @@ test('meno giorni lavorati non aumentano il netto', () => {
   const meta = calculateSalary(30000, 13, regole, { workedDays: 180 });
   assert.ok(meta.nettoAnnuo <= pieno.nettoAnnuo);
 });
+
+// --- Le due viste interattive della pagina (stesso motore, nessuna cifra nuova)
+const { ripartizione, aumento } = window.StipendioNetto;
+
+test('ripartizione: INPS, IRPEF, addizionali e quota che resta sommano alla RAL', () => {
+  for (const caso of CASI) {
+    const r = calculateSalary(caso.ral, caso.mensilita, regole, {});
+    const p = ripartizione(r);
+    const somma = Math.round((p.inps + p.irpef + p.addizionali + p.resta) * 100) / 100;
+    assert.strictEqual(somma, r.ral, `RAL ${caso.ral}`);
+    // bonus e trattamento integrativo si aggiungono a parte: il netto e' resta + aiuti
+    assert.strictEqual(Math.round((p.resta + p.aiuti) * 100) / 100, r.nettoAnnuo, `netto ${caso.ral}`);
+    const quote = p.quote;
+    assert.strictEqual(Math.round((quote.inps + quote.irpef + quote.addizionali + quote.resta) * 10) / 10, 100);
+  }
+});
+
+test('aumento: quanto resta di ogni euro lordo in piu, rifacendo il calcolo', () => {
+  const prima = calculateSalary(30000, 13, regole, {});
+  const dopo = calculateSalary(32000, 13, regole, {});
+  const a = aumento(30000, 2000, 13, regole, {});
+  assert.strictEqual(a.nettoInPiu, Math.round((dopo.nettoAnnuo - prima.nettoAnnuo) * 100) / 100);
+  assert.strictEqual(a.mensileInPiu, Math.round((dopo.nettoMensile - prima.nettoMensile) * 100) / 100);
+  assert.strictEqual(a.centesimiPerEuro, Math.round(a.nettoInPiu / 2000 * 100));
+  assert.ok(a.centesimiPerEuro > 0 && a.centesimiPerEuro < 100);
+  assert.strictEqual(aumento(30000, 0, 13, regole, {}), null);
+});

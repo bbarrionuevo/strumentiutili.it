@@ -8,6 +8,19 @@ function oggiInItalia() {
 (() => {
   'use strict';
 
+  // Le librerie pesanti si scaricano solo quando servono (stesso schema di
+  // js/contratto-locazione-ui.js).
+  function caricaLibreria(src, globale) {
+    if (window[globale]) return Promise.resolve(window[globale]);
+    return new Promise((ok, ko) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = () => (window[globale] ? ok(window[globale]) : ko(new Error('Libreria non disponibile.')));
+      s.onerror = () => ko(new Error('Libreria non raggiungibile.'));
+      document.head.appendChild(s);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", async () => {
     
     // Nodi DOM
@@ -356,8 +369,13 @@ function oggiInItalia() {
          return;
       }
 
-      if (typeof PDFLib === 'undefined' || typeof window.fontkit === 'undefined') {
-        alert("Libreria PDF-lib o fontkit non caricate. Riprova tra un istante.");
+      // pdf-lib e fontkit (circa 1,3 MB insieme) si scaricano solo qui, al
+      // momento di creare il riepilogo PDF
+      try {
+        await caricaLibreria('/vendor/pdf-lib@1.17.1/pdf-lib.min.js', 'PDFLib');
+        await caricaLibreria('/vendor/fontkit@1.1.1/fontkit.umd.min.js', 'fontkit');
+      } catch (e) {
+        alert("Non riesco a caricare il generatore di PDF: controlla la connessione e riprova.");
         return;
       }
 

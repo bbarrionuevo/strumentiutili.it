@@ -967,9 +967,27 @@
     return { testi, spunte };
   }
 
+  // pdf-lib (circa 520 KB) si scarica solo quando si genera il PDF: aprire la
+  // pagina e compilare i campi non lo richiede.
+  const PDF_LIB = '/vendor/pdf-lib@1.17.1/pdf-lib.min.js';
+  let pdfLibInArrivo = null;
+  function caricaPdfLib() {
+    if (typeof PDFLib !== 'undefined') return Promise.resolve(true);
+    if (!pdfLibInArrivo) {
+      pdfLibInArrivo = new Promise((pronta) => {
+        const s = document.createElement('script');
+        s.src = PDF_LIB;
+        s.onload = () => pronta(typeof PDFLib !== 'undefined');
+        s.onerror = () => { pdfLibInArrivo = null; pronta(false); };
+        document.head.appendChild(s);
+      });
+    }
+    return pdfLibInArrivo;
+  }
+
   async function generaPdf() {
-    if (typeof PDFLib === 'undefined') {
-      avviso('La libreria PDF non è ancora stata caricata. Attendi qualche istante e riprova.', 'errore');
+    if (!(await caricaPdfLib())) {
+      avviso('Non riesco a caricare il generatore di PDF: controlla la connessione e riprova.', 'errore');
       return;
     }
 
