@@ -20,7 +20,9 @@ Una vez por semana: primero calidad, después (si vale la pena) una herramienta 
 1. Leé la issue fijada «Qualità del sito (misure settimanali)», la escribe `metriche.yml` el domingo, y las issues abiertas con la etiqueta `qualita`.
    - Si `metriche.yml` no corrió o falló, miralo con `get_job_logs` y arreglalo.
    - Si tiene datos de usuarios reales (Chrome UX Report), mandan sobre los de laboratorio.
+   - La parte de Google (`scripts/qualita/google.js`) dice qué ve Googlebot en cada página y, con Search Console conectada (`GSC_CREDENZIALI`), cuántas páginas están en el índice, por qué las otras no, y clics e impresiones de cada una. Para mirarlo sin esperar al domingo: `metriche.yml` con `modo=google` y el registro con `get_job_logs`.
 2. Elegí **como máximo dos** mejoras, en este orden:
+   0. lo que saca páginas de Google (avisos con «Google:», `noindex`, canonical, respuestas del servidor): va antes que todo;
    1. páginas rotas, errores JS, recursos que faltan;
    2. CLS > 0, sobre todo cerca de los anuncios (los banners de AdSense no pueden mover la página);
    3. empeoramientos;
@@ -34,6 +36,10 @@ Una vez por semana: primero calidad, después (si vale la pena) una herramienta 
    - Una mejora que no se puede medir, o que empeora otra cosa, no entra.
 4. Probá lo que tocaste de punta a punta con Playwright (390 y 1280 px). Por ejemplo, si cambia la carga de una librería, que el PDF se siga generando.
 5. Cerrá con `Closes #N` las issues `qualita` resueltas.
+6. **Si Google deja afuera la mitad de las páginas o más** sin causa técnica («scansionata/rilevata ma non indicizzata»), es Google que no las considera útiles. Mientras sea así:
+   - **no hay herramienta nueva**: más páginas empeoran el problema. Saltá el paso 2 y decilo en el resumen;
+   - la mejora de la semana es para las páginas fuera del índice que más importan (las que tienen impresiones o un plazo cercano): texto propio que responda la búsqueda mejor que los demás, ejemplos con números oficiales, nada de párrafos genéricos repetidos entre páginas, enlaces desde las páginas que sí están en el índice;
+   - si dos páginas responden a la misma búsqueda, proponé a Brian unirlas (issue `serve-brian`), con un 301 de la que se va.
 
 ## 2. Una herramienta nueva (como máximo una por semana)
 Alterná: una semana burocrática (fiscal, laboral, académica, trámites italianos), la siguiente tecnológica (procesamiento local pesado de imágenes, audio, video o documentos). Las ideas viven en `.claude/laboratorio/idee.md`.
@@ -46,7 +52,7 @@ Alterná: una semana burocrática (fiscal, laboral, académica, trámites italia
 
    | Eje | 3 | 0 |
    |---|---|---|
-   | Demanda | plazo o necesidad concreta, búsquedas frecuentes, pedida por una página con tráfico | «estaría bueno» |
+   | Demanda | plazo o necesidad concreta, búsquedas frecuentes (las impresiones de Search Console de las páginas vecinas cuentan), pedida por una página con tráfico | «estaría bueno» |
    | Originalidad | algo que los otros sitios no hacen: modelo oficial rellenable, datos que se actualizan solos, procesamiento local que sorprende | ya está en todos lados |
    | Fuente | documento oficial con **ejemplo numérico**, ley vigente hoy **y el próximo 1 de enero** | sin fuente oficial legible |
    | Factibilidad | 100 % en el navegador, librerías con licencia compatible, probable en Playwright | requiere servidor o códecs que no podemos probar |
@@ -75,7 +81,8 @@ Alterná: una semana burocrática (fiscal, laboral, académica, trámites italia
 
 ## 3. Poda (el primer miércoles de cada mes)
 No queremos mil herramientas que nadie usa.
-- Con datos de usuarios reales (`PSI_KEY` activa), mirá qué páginas de herramientas siguen **sin datos de Chrome UX Report** después de 6 meses publicadas. Lo mismo para las que no tienen ninguna otra señal de uso ni razón estacional.
+- Con Search Console conectada, mirá las herramientas con **cero impresiones en 28 días** después de 3 meses publicadas, y sin razón estacional (un plazo que todavía no llegó).
+- Con datos de usuarios reales (`PSI_KEY` activa), las que siguen **sin datos de Chrome UX Report** después de 6 meses.
 - Para cada una proponé, en **una sola** issue con `serve-brian`:
   - mejorarla (más útil, mejor título, paso siguiente);
   - fusionarla con otra;
