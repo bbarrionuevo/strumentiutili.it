@@ -237,3 +237,25 @@ test('Rapporto: le ricerche che la ricerca del sito non capisce, scritte in modo
   const vuoto = { ...r, google: { ...r.google, ricerche: { ricerche: 300, nonCapite: [], diverse: [] } } };
   assert.ok(!V.corpoRapporto(vuoto, null).includes('### Ricerche da Google'));
 });
+
+test('contenuti del nucleo: frasi ripetute fra pagine e punteggio', () => {
+  const K = require('../scripts/qualita/contenuti.js');
+  const comune = 'Il calcolo avviene interamente nel browser e nessun dato viene inviato a un server.';
+  const pagine = [
+    { testo: comune + ' Il modello F24 ELIDE serve per pagare l\'imposta di registro del contratto di affitto.' },
+    { testo: comune + ' Il modello F23 serve per pagare le imposte sugli atti giudiziari e le sanzioni.' },
+    { testo: comune + ' Breve.' }
+  ];
+  const conta = K.contaFrasi(pagine);
+  const ripetuta = K.frasi(comune)[0];
+  assert.strictEqual(conta.get(ripetuta), 3);
+  // le frasi corte (etichette) non contano
+  assert.deepStrictEqual(K.frasi('Codice fiscale. Nome.'), []);
+  const html = '<html><body><main><p>' + pagine[0].testo + ' Esempio: canone annuo.</p><table></table></main></body></html>';
+  const m = K.misura(html, conta);
+  assert.strictEqual(m.inSerie, 1);
+  assert.strictEqual(m.tabelle, 1);
+  assert.strictEqual(m.esempi, 1);
+  assert.ok(K.punteggio(m) < K.punteggio(Object.assign({}, m, { parole: 1500, esempi: 5, faq: 5, fonti: 5, immagini: 1, quotaInSerie: 0 })));
+  assert.strictEqual(K.NUCLEO.length, 25);
+});

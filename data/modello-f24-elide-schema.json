@@ -1,6 +1,6 @@
 {
- "versione": "2026-09",
- "nota": "Mappatura dei campi del modello F24 Elide creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-elide.pdf.",
+ "versione": "2026-10",
+ "nota": "Mappatura dei campi del modello F24 Elide creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-elide.pdf e, per gli affitti, dalla risoluzione dell'Agenzia delle Entrate n. 14/E del 24 gennaio 2014.",
  "tabelle": {
   "sesso": [
    {
@@ -140,7 +140,7 @@
        "type": "cfOpiva",
        "label": "Codice fiscale del coobbligato, erede, genitore, tutore o curatore",
        "width": "half",
-       "help": "Da compilare insieme al codice identificativo, quando il versamento è effettuato da un soggetto diverso dal contribuente. Chi paga per conto altrui deve anche firmare il modello."
+       "help": "Da compilare insieme al codice identificativo, quando il versamento è effettuato da un soggetto diverso dal contribuente: chi paga per conto altrui deve anche firmare il modello. Per l'imposta di registro di un affitto qui va il codice fiscale dell'altra parte del contratto (o di una delle altre parti), con il codice identificativo 63."
       },
       {
        "id": "codiceIdentificativo",
@@ -148,7 +148,7 @@
        "type": "testo",
        "label": "Codice identificativo",
        "width": "quarter",
-       "help": "Dalla tabella «codici identificativi» dell'Agenzia delle Entrate: per esempio 02 per genitore o tutore, 03 per curatore fallimentare, 07 per erede."
+       "help": "Dalla tabella «codici identificativi» dell'Agenzia delle Entrate: per esempio 02 per genitore o tutore, 03 per curatore fallimentare, 07 per erede. Per i contratti di affitto 63, «controparte» (risoluzione 14/E del 2014)."
       }
      ]
     },
@@ -163,7 +163,7 @@
        "type": "testo",
        "label": "Codice ufficio",
        "width": "quarter",
-       "help": "Il codice dell'ufficio destinatario del pagamento, o dell'ufficio che ha emesso l'atto. Si compila solo se la tipologia di versamento lo richiede."
+       "help": "Il codice dell'ufficio destinatario del pagamento, o dell'ufficio che ha emesso l'atto. Si compila solo se la tipologia di versamento lo richiede: per l'imposta di registro di un affitto resta vuoto, salvo quando paghi un avviso di liquidazione."
       },
       {
        "id": "codiceAtto",
@@ -171,7 +171,7 @@
        "type": "testo",
        "label": "Codice atto",
        "width": "half",
-       "help": "Il codice dell'atto a cui si riferisce il pagamento."
+       "help": "Il codice dell'atto a cui si riferisce il pagamento. Per l'imposta di registro di un affitto resta vuoto, salvo quando paghi un avviso di liquidazione: allora si copia dal modello allegato all'avviso."
       }
      ],
      "ripetibili": [
@@ -186,28 +186,28 @@
          "type": "testo",
          "label": "Tipo",
          "width": "quarter",
-         "help": "La tipologia di versamento, dalla «tabella dei tipi di versamento con elementi identificativi» dell'Agenzia delle Entrate. Per l'IVA sull'immatricolazione di veicoli UE indica il tipo di veicolo: A per autoveicolo, M per motoveicolo, R per rimorchio."
+         "help": "La tipologia di versamento, dalla «tabella dei tipi di versamento con elementi identificativi» dell'Agenzia delle Entrate. Per l'imposta di registro sugli affitti è F. Per l'IVA sull'immatricolazione di veicoli UE indica il tipo di veicolo: A per autoveicolo, M per motoveicolo, R per rimorchio."
         },
         {
          "id": "elementi",
          "type": "testo",
          "label": "Elementi identificativi",
          "width": "half",
-         "help": "Il dato che identifica l'operazione, fino a 17 caratteri. Per l'immatricolazione di veicoli è il numero di telaio. Per gli altri versamenti è indicato nella risoluzione che ha istituito il codice tributo."
+         "help": "Il dato che identifica l'operazione, fino a 17 caratteri. Per l'immatricolazione di veicoli è il numero di telaio. Per gli affitti: vuoto alla prima registrazione; per annualità, proroghe, cessioni e risoluzioni il codice del contratto di 17 caratteri della ricevuta di registrazione, o in mancanza il codice di 16 caratteri composto con gli estremi di registrazione (vedi il riquadro più in basso nella pagina)."
         },
         {
          "id": "codice",
          "type": "testo",
          "label": "Codice",
          "width": "quarter",
-         "help": "Il codice tributo del versamento, reperibile sul sito dell'Agenzia delle Entrate."
+         "help": "Il codice tributo del versamento. Per gli affitti: 1500 prima registrazione, 1501 annualità successive, 1502 cessione, 1503 risoluzione, 1504 proroga, 1505 bollo; per il ravvedimento 1507 e 1508 (prima registrazione) o 1509 e 1510 (annualità e adempimenti successivi)."
         },
         {
          "id": "anno",
          "type": "anno",
          "label": "Anno di riferimento",
          "width": "quarter",
-         "help": "L'anno cui si riferisce il versamento, in quattro cifre."
+         "help": "L'anno cui si riferisce il versamento, in quattro cifre. Per gli affitti: alla prima registrazione l'anno della firma (o della decorrenza, se precedente); per annualità, proroghe, cessioni e risoluzioni l'anno in cui scade il pagamento."
         },
         {
          "id": "debito",

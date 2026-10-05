@@ -54,7 +54,9 @@ module.exports = function (ctx) {
       ['1502', 'Cessione del contratto'],
       ['1503', 'Risoluzione anticipata (' + euro(P.impostaRegistroMinima, 0) + ' fissi)'],
       ['1504', 'Proroga'],
-      ['1507 e 1509', 'Sanzione e interessi del ravvedimento']
+      ['1505', 'Imposta di bollo'],
+      ['1507 e 1508', 'Sanzione e interessi del ravvedimento per la prima registrazione tardiva'],
+      ['1509 e 1510', 'Sanzione e interessi del ravvedimento per annualit&agrave;, proroghe, cessioni e risoluzioni pagate in ritardo']
     ]),
 
     h.h2('cedolare', 'La cedolare secca'),
@@ -92,7 +94,7 @@ module.exports = function (ctx) {
     titoloBreve: 'Registrare un contratto d’affitto: RLI, costi e sanzioni',
     descrizione: 'Come e entro quando registrare un contratto d’affitto con il modello RLI: imposta di registro, bollo, cedolare secca, codici tributo e sanzioni per il ritardo, con esempi.',
     pubblicata: '2026-09-26',
-    aggiornata: '2026-09-26',
+    aggiornata: '2026-10-05',
     introduzione: 'Un contratto d&rsquo;affitto non registrato espone proprietario e inquilino a sanzioni e lascia il contratto senza valore. Questa guida spiega chi deve registrarlo, entro quando, quanto costa con e senza cedolare secca e quanto si paga se ci si accorge tardi di non averlo fatto.',
     riassunto: [
       'Si registra entro ' + P.giorniScadenzaRegistrazione + ' giorni dalla stipula (o dalla decorrenza, se prima) con il modello RLI.',
@@ -126,6 +128,7 @@ module.exports = function (ctx) {
       'Legge 27 luglio 1978, n. 392, art. 8: spese di registrazione divise fra le parti.',
       'Legge 30 dicembre 2004, n. 311, art. 1, comma 346: nullit&agrave; dei contratti non registrati.',
       'D.Lgs. 14 giugno 2024, n. 87: nuove sanzioni dal 1&deg; settembre 2024.',
+      'Agenzia delle Entrate, <a href="https://www.agenziaentrate.gov.it/portale/documents/20143/303964/Risoluzione+14E+del+24+gennaio+2014_ris+14Ex.pdf/737db8f6-8f07-d409-3c35-217fcf7f7a21" class="text-indigo-700 underline" target="_blank" rel="noopener">risoluzione n. 14/E del 24 gennaio 2014</a>: codici tributo per le locazioni nel modello F24 ELIDE.',
       'D.Lgs. 18 dicembre 1997, n. 472, art. 13: ravvedimento operoso.',
       'Dal 1&deg; gennaio 2027 il ravvedimento &egrave; regolato dal testo unico delle sanzioni tributarie, <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art14" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 5 novembre 2024, n. 173, allegato, art. 14</a>, con le stesse riduzioni.',
       'Modello RLI e istruzioni, Agenzia delle Entrate.'
