@@ -341,13 +341,16 @@ function briciole(ctx) {
   if (ctx.tipo === 'home') return null;
 
   const catena = catenaBriciole(ctx);
+  // Sul telefono l'ultima voce (la pagina stessa, che il titolo subito sotto
+  // ripete) non si mostra: il percorso sta su una riga sola invece di tre.
+  const corta = catena.length > 2 ? ' class="hidden sm:block"' : '';
   const voci = catena.map((v, i) => {
     const ultimo = i === catena.length - 1;
     const dentro = ultimo
       ? '<span class="text-gray-700 font-medium" aria-current="page">' + esc(v.nome) + '</span>'
       : '<a href="' + v.href + '" class="hover:text-indigo-600 hover:underline">' + esc(v.nome) + '</a>';
-    const sep = ultimo ? '' : '\n        <li aria-hidden="true" class="text-gray-300">/</li>';
-    return '        <li>' + dentro + '</li>' + sep;
+    const sep = ultimo ? '' : '\n        <li aria-hidden="true" class="' + (i === catena.length - 2 && corta ? 'hidden sm:block ' : '') + 'text-gray-300">/</li>';
+    return '        <li' + (ultimo ? corta : '') + '>' + dentro + '</li>' + sep;
   }).join('\n');
 
   // Sulle pagine degli strumenti, accanto al percorso, la stella per fissarli
@@ -359,7 +362,7 @@ function briciole(ctx) {
   const stella = ctx.tipo === 'strumento'
     ? '        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="' + esc(ctx.url) + '" data-titolo="' + esc(testoSemplice(ctx.titolo)) + '"' +
       ' class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition">' +
-      '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>'
+      '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo class="hidden sm:inline">Salva tra i preferiti</span><span data-stella-corto class="sm:hidden">Preferiti</span></button>'
     : null;
 
   return [

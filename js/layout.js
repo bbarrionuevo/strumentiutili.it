@@ -308,11 +308,13 @@
       S.registraVisita(percorso, titolo);
       var segno = stella.querySelector('[data-stella]');
       var testo = stella.querySelector('[data-stella-testo]');
+      var corto = stella.querySelector('[data-stella-corto]');   // la scritta breve del telefono
       var aggiornaStella = function () {
         var fissato = S.eFissato(percorso);
         stella.setAttribute('aria-pressed', fissato ? 'true' : 'false');
         if (segno) segno.textContent = fissato ? '★' : '☆';
         if (testo) testo.textContent = fissato ? 'Tra i preferiti' : 'Salva tra i preferiti';
+        if (corto) corto.textContent = fissato ? 'Nei preferiti' : 'Preferiti';
         stella.classList.toggle('text-amber-700', fissato);
         stella.classList.toggle('border-amber-300', fissato);
         stella.classList.toggle('bg-amber-50', fissato);
