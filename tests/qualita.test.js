@@ -180,3 +180,15 @@ test('rapporto: i vecchi indirizzi che non arrivano a una pagina diventano avvis
   assert.match(a[0].testo, /cleanUrls/);
   assert.match(V.corpoRapporto({ ...r, reindirizzamenti: { controllati: 142, rotti: [] } }, null), /non arrivano a una pagina: \*\*0\*\* su 142$/m);
 });
+
+test('Search Console: la sitemap, quando Google l\'ha letta e quanti indirizzi contiene', () => {
+  const risposta = { sitemap: [{ path: 'https://strumentiutili.it/sitemap.xml', lastSubmitted: '2026-10-05T10:00:00.000Z', lastDownloaded: '2026-09-20T03:11:00.000Z', isPending: false, warnings: '0', errors: '0', contents: [{ type: 'web', submitted: '127', indexed: '0' }] }] };
+  assert.deepStrictEqual(G.daSitemap(risposta), [{ percorso: 'https://strumentiutili.it/sitemap.xml', inviata: '2026-10-05', letta: '2026-09-20', inAttesa: false, errori: 0, avvisi: 0, indirizzi: 127 }]);
+  assert.deepStrictEqual(G.daSitemap({}), []);
+  const r = { data: '2026-10-11', sito: 'https://strumentiutili.it', crux: {}, cruxAttivo: false, misure: [BUONA],
+    google: { attivo: true, proprieta: 'sc-domain:strumentiutili.it', sitemap: G.daSitemap(risposta) } };
+  assert.match(V.corpoRapporto(r, null), /Sitemap https:\/\/strumentiutili\.it\/sitemap\.xml: inviata il 2026-10-05, letta da Google il 2026-09-20, 127 indirizzi/);
+  assert.match(V.corpoRapporto({ ...r, google: { ...r.google, sitemap: [] } }, null), /Sitemap: \*\*nessuna\*\* inviata/);
+  const stati = G.contaStati([{ google: { indice: { indicizzata: true } } }, { google: { indice: { indicizzata: false, stato: 'L\'URL è sconosciuto a Google' } } }, { google: { indice: { indicizzata: false, stato: 'L\'URL è sconosciuto a Google' } } }, {}]);
+  assert.deepStrictEqual(stati, [['L\'URL è sconosciuto a Google', 2], ['nell\'indice', 1]]);
+});
