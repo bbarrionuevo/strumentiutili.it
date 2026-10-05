@@ -48,6 +48,7 @@
       .replace(/[’'`]/g, ' ')
       .replace(/(\d)([a-z])/g, '$1 $2')        // f24elide -> f24 elide
       .replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\bf (2[34])\b/g, 'f$1')            // f 23, f-24 -> f23, f24
       .trim();
   }
 
