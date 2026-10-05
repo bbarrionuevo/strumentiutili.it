@@ -192,3 +192,48 @@ test('Search Console: la sitemap, quando Google l\'ha letta e quanti indirizzi c
   const stati = G.contaStati([{ google: { indice: { indicizzata: true } } }, { google: { indice: { indicizzata: false, stato: 'L\'URL è sconosciuto a Google' } } }, { google: { indice: { indicizzata: false, stato: 'L\'URL è sconosciuto a Google' } } }, {}]);
   assert.deepStrictEqual(stati, [['L\'URL è sconosciuto a Google', 2], ['nell\'indice', 1]]);
 });
+
+test('Search Console: le ricerche vere passate alla ricerca del sito', () => {
+  const sito = 'https://strumentiutili.it';
+  const riga = (q, p, imp, clic) => ({ keys: [q, sito + p], impressions: imp, clicks: clic || 0 });
+  const risposta = { rows: [
+    riga('f24 elide compilabile', '/cittadino-tasse/f24-editabile/f24-elide/', 90, 3),
+    riga('f24 elide compilabile', '/cittadino-tasse/f24-editabile/f24-ordinario/', 5),
+    riga('parola sconosciuta', '/a/', 40),
+    riga('modulo strano', '/b/#sezione', 30),
+    riga('modulo strano', '/b/', 2),
+    riga('vecchio indirizzo', '/burocrazia/vecchia/', 20)
+  ] };
+  // una ricerca finta: capisce tutto tranne «parola sconosciuta», e per «modulo strano» propone altro
+  const cerca = (q) => ({ 'f24 elide compilabile': ['/cittadino-tasse/f24-editabile/f24-elide/'], 'modulo strano': ['/c/', '/d/?regione=x', '/e/'], 'vecchio indirizzo': ['/c/'] }[q] || []);
+  const pagine = new Set(['/cittadino-tasse/f24-editabile/f24-elide/', '/a/', '/b/', '/c/']);
+  const r = G.confrontaRicerche(risposta, sito, cerca, pagine);
+  assert.strictEqual(r.ricerche, 4);
+  assert.deepStrictEqual(r.nonCapite, [{ ricerca: 'parola sconosciuta', clic: 0, impressioni: 40 }]);
+  // le ancore #… sono la stessa pagina; un vecchio indirizzo fuori dal sitemap non conta come «diversa»
+  assert.deepStrictEqual(r.diverse, [{ ricerca: 'modulo strano', clic: 0, impressioni: 32, google: '/b/', sito: '/c/' }]);
+  assert.deepStrictEqual(G.confrontaRicerche({}, sito, cerca, pagine), { ricerche: 0, nonCapite: [], diverse: [] });
+});
+
+test('Search Console: la ricerca del sito usata nel controllo e\' quella vera (js/assistente.js)', () => {
+  const cerca = G.ricercaDelSito();
+  assert.strictEqual(cerca('f24 elide compilabile')[0], '/cittadino-tasse/f24-editabile/f24-elide/');
+  assert.deepStrictEqual(cerca('ricetta della carbonara'), []);
+});
+
+test('Rapporto: le ricerche che la ricerca del sito non capisce, scritte in modo sicuro', () => {
+  const r = { data: '2026-10-11', sito: 'https://strumentiutili.it', crux: {}, cruxAttivo: false, misure: [BUONA],
+    google: { attivo: true, proprieta: 'sc-domain:strumentiutili.it', ricerche: {
+      ricerche: 300,
+      nonCapite: [{ ricerca: 'a|b @utente <img src=x>', clic: 0, impressioni: 12 }],
+      diverse: [{ ricerca: 'modulo strano', clic: 0, impressioni: 9, google: '/b/', sito: '/c/' }] } } };
+  const corpo = V.corpoRapporto(r, null);
+  assert.match(corpo, /non capisce: \*\*1\*\* su 300; con un'altra pagina davanti: \*\*1\*\*/);
+  assert.match(corpo, /### Ricerche da Google e ricerca del sito/);
+  // nel blocco di codice: niente menzione, niente HTML, la barra non spezza la tabella
+  assert.ok(corpo.includes('| `a\\|b @utente <img src=x>` | 12 |'), corpo);
+  assert.ok(corpo.includes('| `modulo strano` | 9 | /b/ | /c/ |'));
+  // senza ricerche da segnalare la sezione non c'e'
+  const vuoto = { ...r, google: { ...r.google, ricerche: { ricerche: 300, nonCapite: [], diverse: [] } } };
+  assert.ok(!V.corpoRapporto(vuoto, null).includes('### Ricerche da Google'));
+});

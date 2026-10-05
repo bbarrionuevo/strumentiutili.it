@@ -16,6 +16,12 @@
 //    pagina che ha ancora impressioni, seguiti passo per passo sul sito vero. Deve arrivare a una pagina (200) in al massimo 3 passi:
 //    se no Google li conta come «Non trovato (404)» o «Errore di
 //    reindirizzamento» e la pagina perde cio' che aveva guadagnato.
+// 4. Ricerche vere (con Search Console): le parole con cui Google ha mostrato
+//    il sito negli ultimi 28 giorni passano dalla ricerca del sito
+//    (js/assistente.js). Quelle che non trovano niente, o per cui Google
+//    mostra una pagina che la ricerca del sito non mette fra le prime tre,
+//    vanno nel rapporto: il laboratorio aggiunge le parole che mancano in
+//    data/sinonimi.json.
 //
 //   node scripts/qualita/google.js --sito https://strumentiutili.it --misure misure.json
 //   node scripts/qualita/google.js --sito https://strumentiutili.it --solo-registro
@@ -139,6 +145,55 @@ function daAnalytics(risposta, sito) {
   return fuori;
 }
 
+/**
+ * Le ricerche vere di Search Console (searchAnalytics con dimensions
+ * ['query', 'page']) passate alla ricerca del sito. cerca(testo) da' i
+ * percorsi dei primi risultati; pagine e' l'insieme delle pagine del sitemap.
+ * - nonCapite: la ricerca del sito non trova niente;
+ * - diverse: Google mostra soprattutto una pagina del sito (ancora nel
+ *   sitemap) che la ricerca del sito non mette fra i primi tre risultati.
+ * Dalle piu' viste alle meno viste.
+ */
+function confrontaRicerche(risposta, sito, cerca, pagine) {
+  const origine = new URL(sito).origin;
+  const perRicerca = new Map();
+  for (const r of (risposta && risposta.rows) || []) {
+    const [ricerca, url] = r.keys || [];
+    if (!ricerca) continue;
+    const x = perRicerca.get(ricerca) || { ricerca, clic: 0, impressioni: 0, pagine: new Map() };
+    x.clic += r.clicks || 0;
+    x.impressioni += r.impressions || 0;
+    const u = senzaBarra(url);
+    if (u.startsWith(origine)) {
+      const p = u.slice(origine.length) || '/';
+      x.pagine.set(p, (x.pagine.get(p) || 0) + (r.impressions || 0));
+    }
+    perRicerca.set(ricerca, x);
+  }
+  const nonCapite = [];
+  const diverse = [];
+  for (const x of perRicerca.values()) {
+    const trovati = cerca(x.ricerca).map((p) => String(p).split('?')[0]);
+    if (!trovati.length) { nonCapite.push({ ricerca: x.ricerca, clic: x.clic, impressioni: x.impressioni }); continue; }
+    const paginaGoogle = [...x.pagine.entries()].sort((a, b) => b[1] - a[1]).map(([p]) => p)[0];
+    if (paginaGoogle && pagine.has(paginaGoogle) && !trovati.slice(0, 3).includes(paginaGoogle)) {
+      diverse.push({ ricerca: x.ricerca, clic: x.clic, impressioni: x.impressioni, google: paginaGoogle, sito: trovati[0] });
+    }
+  }
+  const ordina = (a, b) => b.impressioni - a.impressioni || a.ricerca.localeCompare(b.ricerca);
+  return { ricerche: perRicerca.size, nonCapite: nonCapite.sort(ordina), diverse: diverse.sort(ordina) };
+}
+
+/** La ricerca del sito, la stessa delle pagine: js/assistente.js con l'indice e il vocabolario. */
+function ricercaDelSito() {
+  const path = require('node:path');
+  const radice = path.join(__dirname, '..', '..');
+  const leggi = (f) => JSON.parse(fs.readFileSync(path.join(radice, f), 'utf8'));
+  const A = require(path.join(radice, 'js', 'assistente.js'));
+  const motore = A.prepara(leggi('data/strumenti.json').strumenti, leggi('data/sinonimi.json'));
+  return (testo) => A.cerca(motore, testo, 3).map((x) => x.percorso);
+}
+
 function base64url(dato) {
   return Buffer.from(dato).toString('base64').replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
@@ -190,7 +245,7 @@ function unisci(r, googlebot, google) {
     if (googlebot[m.pagina]) m.googlebot = googlebot[m.pagina];
     if (google && google.pagine && google.pagine[m.pagina]) m.google = google.pagine[m.pagina];
   }
-  if (google) r.google = { attivo: google.attivo, proprieta: google.proprieta || null, errore: google.errore || null, dal: google.dal || null, al: google.al || null, totale: google.totale || null, sitemap: google.sitemap || null };
+  if (google) r.google = { attivo: google.attivo, proprieta: google.proprieta || null, errore: google.errore || null, dal: google.dal || null, al: google.al || null, totale: google.totale || null, sitemap: google.sitemap || null, ricerche: google.ricerche || null };
   return r;
 }
 
@@ -288,6 +343,11 @@ async function searchConsole(sito, pagine, oggi) {
     for (const p of pagine) fuori.pagine[p] = { clic: 0, impressioni: 0, posizione: null, ...(perPagina[p] || {}) };
     fuori.conImpressioni = Object.keys(perPagina);
   } catch (e) { fuori.errore = 'clic e impressioni non letti: ' + e.message; }
+  try {
+    const righe = await chiama(token, 'POST', `${API}/webmasters/v3/sites/${encodeURIComponent(proprieta)}/searchAnalytics/query`,
+      { startDate: fuori.dal, endDate: fuori.al, dimensions: ['query', 'page'], rowLimit: 5000 });
+    fuori.ricerche = confrontaRicerche(righe, sito, ricercaDelSito(), new Set(pagine));
+  } catch (e) { fuori.ricerche = null; }
 
   for (const p of pagine) {
     try {
@@ -319,6 +379,12 @@ function riepilogo(r) {
     if (r.google.totale) righe.push(`  ${r.google.dal} - ${r.google.al}: ${r.google.totale.clic} clic, ${r.google.totale.impressioni} impressioni.`);
     for (const x of r.google.sitemap || []) righe.push(`  Sitemap ${x.percorso}: inviata ${x.inviata || '?'}, letta da Google ${x.letta || 'mai'}${x.inAttesa ? ' (in attesa)' : ''}, ${x.indirizzi === null ? '?' : x.indirizzi} indirizzi, ${x.errori} errori, ${x.avvisi} avvisi.`);
     if (r.google.sitemap && !r.google.sitemap.length) righe.push('  Nessuna sitemap inviata a Search Console.');
+    const q = r.google.ricerche;
+    if (q) {
+      righe.push(`  Ricerche vere: ${q.ricerche}; la ricerca del sito non ne capisce ${q.nonCapite.length}, per ${q.diverse.length} propone un'altra pagina.`);
+      for (const x of q.nonCapite.slice(0, 15)) righe.push(`    non capita: «${x.ricerca}» (${x.impressioni} impressioni)`);
+      for (const x of q.diverse.slice(0, 10)) righe.push(`    diversa: «${x.ricerca}» (${x.impressioni}) Google ${x.google}, sito ${x.sito}`);
+    }
     righe.push('  Per stato: ' + contaStati(r.misure).map(([k, n]) => `${k} ${n}`).join('; ') + '.');
     righe.push('  Nell\'indice: ' + lette.filter((x) => x.google.indice.indicizzata).map((x) => x.pagina).join(', '));
     for (const m of lette.filter((x) => !x.google.indice.indicizzata)) {
@@ -356,4 +422,4 @@ async function main() {
 }
 
 if (require.main === module) main().catch((e) => { console.error(e.message); process.exit(1); });
-module.exports = { UA_GOOGLEBOT, leggiTesta, vistaGooglebot, sceltaProprieta, statoIndice, causaTecnica, daAnalytics, daSitemap, contaStati, asserzione, unisci, riepilogo };
+module.exports = { UA_GOOGLEBOT, leggiTesta, vistaGooglebot, sceltaProprieta, statoIndice, causaTecnica, daAnalytics, confrontaRicerche, ricercaDelSito, daSitemap, contaStati, asserzione, unisci, riepilogo };

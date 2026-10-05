@@ -120,6 +120,8 @@ function sezioniGoogle(r) {
   }
   if (g.sitemap && !g.sitemap.length) testa.push('- Sitemap: **nessuna** inviata a Search Console');
   if (g.errore) testa.push(`- Search Console: ${g.errore}`);
+  const q = g.ricerche;
+  if (q) testa.push(`- Ricerche vere da Google che la ricerca del sito non capisce: **${q.nonCapite.length}** su ${q.ricerche}; con un'altra pagina davanti: **${q.diverse.length}**`);
   const corpo = [];
   if (fuori.length) {
     const motivi = new Map();
@@ -143,7 +145,32 @@ function sezioniGoogle(r) {
       corpo.push('');
     }
   }
+  if (q && (q.nonCapite.length || q.diverse.length)) {
+    corpo.push('### Ricerche da Google e ricerca del sito', '',
+      `Le ${q.ricerche} ricerche con cui Google ha mostrato il sito, passate alla ricerca del sito (\`js/assistente.js\`). ` +
+      'Il laboratorio aggiunge le parole che mancano in `data/sinonimi.json` (sinonimi o parole chiave dello strumento giusto), con un test in `tests/assistente.test.js`.', '');
+    if (q.nonCapite.length) {
+      corpo.push('Non trovano niente:', '', '| Ricerca | Impressioni |', '|---|---|');
+      for (const x of q.nonCapite.slice(0, 25)) corpo.push(`| ${ricerca(x.ricerca)} | ${x.impressioni} |`);
+      corpo.push('');
+    }
+    if (q.diverse.length) {
+      corpo.push('Google mostra una pagina che la ricerca del sito non mette fra le prime tre:', '',
+        '| Ricerca | Impressioni | Pagina di Google | Primo risultato del sito |', '|---|---|---|---|');
+      for (const x of q.diverse.slice(0, 15)) corpo.push(`| ${ricerca(x.ricerca)} | ${x.impressioni} | ${x.google} | ${x.sito} |`);
+      corpo.push('');
+    }
+  }
   return { testa, corpo };
+}
+
+/**
+ * Una ricerca scritta da altri dentro una tabella della issue: in un blocco
+ * di codice (niente menzioni @, niente HTML), senza accenti gravi e con la
+ * barra verticale protetta, che altrimenti spezzerebbe la tabella.
+ */
+function ricerca(testo) {
+  return '`' + String(testo).replace(/[`\r\n]/g, ' ').replace(/\|/g, '\\|').slice(0, 120) + '`';
 }
 
 const numero = (x, dec) => (Number.isFinite(x) ? x.toLocaleString('it-IT', { maximumFractionDigits: dec || 0 }) : '—');

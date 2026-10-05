@@ -77,6 +77,9 @@ const DOMANDE = [
   ['calcolo napsi', '/lavoro-contratti/calcolo-naspi/'],
   ['calcolo suoerbollo', '/cittadino-tasse/calcolo-bollo-auto/'],
   ['f24 elide edittabile', '/cittadino-tasse/f24-editabile/f24-elide/'],
+  // F23 e F24 scritti staccati (ricerca vera di Search Console, 5/10)
+  ['f 23', '/cittadino-tasse/f24-editabile/f23-editabile/'],
+  ['modello f-24 elide', '/cittadino-tasse/f24-editabile/f24-elide/'],
   // sinonimi presi dalle ricerche vere
   ['autodichiarazione fac simile', '/identita-burocrazia/autocertificazione/'],
   ['calcola retribuzione', '/lavoro-contratti/stipendio-netto/']
