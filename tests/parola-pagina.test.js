@@ -37,11 +37,13 @@ test('script in ordine: elenchi e motore prima dell interfaccia', () => {
 
 test('nessun annuncio nel gioco, nelle statistiche o nelle regole', () => {
   const inizio = HTML.indexOf('<div id="pa-app"');
-  const fine = HTML.indexOf('su-ad--contenuto');
+  const fine = HTML.indexOf('</main>');
   assert.ok(inizio > 0 && fine > inizio);
   const gioco = HTML.slice(inizio, fine);
   assert.ok(gioco.includes('pa-griglia') && gioco.includes('pa-tastiera') && gioco.includes('pa-archivio') && gioco.includes('t-regole'));
   assert.ok(!/adsbygoogle/.test(gioco));
+  // pagina fuori tema e noindex: nessun riquadro in tutta la pagina (tests/indicizzazione.test.js)
+  assert.ok(!HTML.includes('class="su-ad '));
 });
 
 test('la partita non esce dal browser e le parole entrano solo come testo', () => {
@@ -64,13 +66,14 @@ test('crediti e numeri della guida coerenti con gli elenchi', () => {
   for (const f of ['parole-soluzioni.js', 'parole-valide.js']) assert.ok(/CC BY-SA 4\.0|wordfreq/.test(leggi('js', f)), f);
 });
 
-test('registrata: precache, indice, sitemap, categoria, home e privacy', () => {
+test('registrata: precache, indice, categoria, home e privacy (fuori dal sitemap)', () => {
   const sw = leggi('sw.js');
   for (const u of ['/utilita-web/parola-del-giorno/', '/js/giornaliero.js', '/js/parole-soluzioni.js', '/js/parole-valide.js', '/js/parola.js', '/js/parola-ui.js']) {
     assert.ok(sw.includes("'" + u + "'"), u);
   }
   assert.ok(leggi('data', 'strumenti.json').includes('/utilita-web/parola-del-giorno/'));
-  assert.ok(leggi('sitemap.xml').includes('/utilita-web/parola-del-giorno/'));
+  // fuori dal tema del sito: niente Google (tests/indicizzazione.test.js)
+  assert.ok(!leggi('sitemap.xml').includes('/utilita-web/parola-del-giorno/'));
   assert.ok(leggi('utilita-web', 'index.html').includes('href="/utilita-web/parola-del-giorno/"'));
   assert.ok(leggi('index.html').includes('href="/utilita-web/parola-del-giorno/"'));
   assert.ok(leggi('utilita-web', 'sudoku-del-giorno', 'index.html').includes('href="/utilita-web/parola-del-giorno/"'));

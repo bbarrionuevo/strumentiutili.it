@@ -10,6 +10,7 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
   - Con `cleanUrls`, la redirección va desde la forma con barra (`/vieja/`), no desde `/vieja.html`.
   - `data/indirizzi-noti-google.json` lista las direcciones que Google conoce y solo se le agregan. `tests/sitemap.test.js` comprueba que todas lleguen a una página real.
   - Entre el 21 y el 25/9 una mudanza de carpetas, con direcciones en 404 durante días, se llevó casi todas las visitas de Google.
+- **Páginas fuera de tema** (juegos, música, salud, santo del día): `noindex, follow`, fuera de la sitemap y sin espacios publicitarios, pero siguen en línea y en el buscador del sitio. La lista está en `tests/indicizzazione.test.js`; una herramienta nueva fuera del tema fiscal, laboral o de documentos entra ahí.
 - **Privacidad:** no publicar el email de Brian. Los campos con código fiscal o IBAN no se guardan en el navegador (regex `SENSIBILE` en `js/storage-helper.js`).
 - **Nada llega a `main` sin una pull request con CI y Vercel en verde.**
   - Única excepción: los datos vivos (`data/vivi/<nombre>/`) que un workflow actualiza solo, como los precios de los carburantes.

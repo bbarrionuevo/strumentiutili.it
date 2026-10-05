@@ -24,12 +24,6 @@ const FAQ = [
   { d: 'Alba e tramonto sono precisi?', r: 'Sono calcolati con l’algoritmo della NOAA, lo stesso degli almanacchi, con uno scarto di circa un minuto. Puoi scegliere il capoluogo di regione più vicino o usare la tua posizione, che resta sul dispositivo.' }
 ];
 
-const AD_CONTENUTO = `      <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full block" data-su-pos="contenuto">
-        <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"
-             style="display:block;width:100%;min-width:0;"
-             data-ad-client="${CLIENT}"
-             data-ad-slot="8859818557"></ins>
-      </div>`;
 
 function pagina() {
   const ld = {
@@ -67,6 +61,8 @@ function pagina() {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${esc(TITOLO)} — StrumentiUtili.it</title>
   <meta name="description" content="${esc(DESCRIZIONE)}" />
+  <!-- Fuori dal tema del sito (fisco, lavoro, documenti): resta per chi la usa, ma non va nei risultati di Google. -->
+  <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="${URL_PAGINA}" />
 
   <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
@@ -185,7 +181,6 @@ ${temi}
         </dl>
       </section>
 
-${AD_CONTENUTO}
 
       <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-8" aria-labelledby="t-calendario">
         <h2 id="t-calendario" class="text-xl font-bold text-gray-900 mb-1">Il calendario dei santi</h2>
@@ -212,12 +207,6 @@ ${faq}
         </ul>
       </nav>
 
-      <div class="su-ad su-ad--laterale ad-slot-desktop w-full text-center mt-6" data-su-pos="laterale">
-        <ins data-su-pos="laterale" data-ad-format="vertical" class="adsbygoogle"
-             style="display:block;width:100%;min-width:0;"
-             data-ad-client="${CLIENT}"
-             data-ad-slot="6912312067"></ins>
-      </div>
     </aside>
 
   </div>

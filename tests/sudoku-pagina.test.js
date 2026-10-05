@@ -30,8 +30,8 @@ test('nessun annuncio fra la griglia e i suoi comandi', () => {
   const gioco = HTML.slice(HTML.indexOf('<section id="gioco"'), HTML.indexOf('</section>', HTML.indexOf('<section id="gioco"')));
   assert.ok(gioco.includes('sdk-griglia') && gioco.includes('sdk-tastierino'));
   assert.ok(!/su-ad|adsbygoogle/.test(gioco), 'annuncio dentro la sezione del gioco');
-  // il primo annuncio del contenuto viene dopo la sezione della serie
-  assert.ok(HTML.indexOf('su-ad--contenuto') > HTML.indexOf('id="sdk-archivio"'));
+  // pagina fuori tema e noindex: nessun riquadro in tutta la pagina (tests/indicizzazione.test.js)
+  assert.ok(!HTML.includes('class="su-ad '));
 });
 
 test('funziona offline: pagina e script nel precache', () => {
