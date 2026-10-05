@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v85';
+const CACHE_NAME = 'strumentiutili-v87';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -149,6 +149,7 @@ const APP_SHELL = [
   // Script condivisi e utilità
   '/js/spazio.js',
   '/js/layout.js',
+  '/js/assistente.js',
   '/js/mappa.js',
   '/js/data-loader.js',
   '/js/esenzione-bollo.js',
@@ -291,6 +292,7 @@ const APP_SHELL = [
   // di runtime alla prima visita di quelle pagine.
   '/data/regole-fiscali-2026.json',
   '/data/strumenti.json',
+  '/data/sinonimi.json',
   '/data/santi.json',
   '/data/modelli-piva-schema.json',
   '/data/modello-rli-schema.json',

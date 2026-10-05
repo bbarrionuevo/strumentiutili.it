@@ -228,10 +228,11 @@ function intestazione(ctx) {
     '',
     // Senza JavaScript, Invio porta alla mappa del sito (con la parola cercata).
     '        <form action="/mappa-del-sito/" method="get" role="search" class="relative flex-1 lg:flex-none lg:w-40 xl:w-44 min-w-0">',
-    '          <label for="search" class="sr-only">Cerca uno strumento</label>',
-    '          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cerca strumenti…"',
+    '          <label for="search" class="sr-only">Scrivi cosa devi fare o il nome di uno strumento</label>',
+    // 16px sul telefono: con un testo piu' piccolo Safari ingrandisce la pagina quando si tocca il campo
+    '          <input id="search" name="q" type="search" autocomplete="off" placeholder="Cosa devi fare?" enterkeyhint="search"',
     '                 role="combobox" aria-expanded="false" aria-controls="risultati-menu" aria-autocomplete="list"',
-    '                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />',
+    '                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-base lg:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 focus:bg-white transition" />',
     '          <div id="risultati-menu" role="listbox" aria-label="Risultati della ricerca" hidden',
     '               class="fixed inset-x-3 top-16 sm:absolute sm:inset-x-0 sm:top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50"></div>',
     '        </form>',
@@ -340,13 +341,16 @@ function briciole(ctx) {
   if (ctx.tipo === 'home') return null;
 
   const catena = catenaBriciole(ctx);
+  // Sul telefono l'ultima voce (la pagina stessa, che il titolo subito sotto
+  // ripete) non si mostra: il percorso sta su una riga sola invece di tre.
+  const corta = catena.length > 2 ? ' class="hidden sm:block"' : '';
   const voci = catena.map((v, i) => {
     const ultimo = i === catena.length - 1;
     const dentro = ultimo
       ? '<span class="text-gray-700 font-medium" aria-current="page">' + esc(v.nome) + '</span>'
       : '<a href="' + v.href + '" class="hover:text-indigo-600 hover:underline">' + esc(v.nome) + '</a>';
-    const sep = ultimo ? '' : '\n        <li aria-hidden="true" class="text-gray-300">/</li>';
-    return '        <li>' + dentro + '</li>' + sep;
+    const sep = ultimo ? '' : '\n        <li aria-hidden="true" class="' + (i === catena.length - 2 && corta ? 'hidden sm:block ' : '') + 'text-gray-300">/</li>';
+    return '        <li' + (ultimo ? corta : '') + '>' + dentro + '</li>' + sep;
   }).join('\n');
 
   // Sulle pagine degli strumenti, accanto al percorso, la stella per fissarli
@@ -358,7 +362,7 @@ function briciole(ctx) {
   const stella = ctx.tipo === 'strumento'
     ? '        <button type="button" id="su-fissa" aria-pressed="false" data-percorso="' + esc(ctx.url) + '" data-titolo="' + esc(testoSemplice(ctx.titolo)) + '"' +
       ' class="invisible inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-700 border border-gray-200 hover:border-indigo-300 bg-white rounded-full px-3 py-1 transition">' +
-      '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo>Salva tra i preferiti</span></button>'
+      '<span data-stella aria-hidden="true">&#9734;</span><span data-stella-testo class="hidden sm:inline">Salva tra i preferiti</span><span data-stella-corto class="sm:hidden">Preferiti</span></button>'
     : null;
 
   return [

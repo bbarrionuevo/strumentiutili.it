@@ -1,5 +1,6 @@
 // js/layout.js — Comportamento comune a tutte le pagine: registrazione del
-// service worker, menu delle categorie su telefono e ricerca fra gli strumenti.
+// service worker, menu delle categorie su telefono e ricerca fra gli strumenti
+// (che capisce le frasi grazie a js/assistente.js).
 //
 // Prima il menu esisteva solo da 1024px in su e la ricerca solo in home.
 (function () {
@@ -92,51 +93,87 @@
 
   // ------------------------------------------------------------ ricerca
 
-  function avviaRicerca() {
-    var campo = document.getElementById('search');
-    var tendina = document.getElementById('risultati-menu');
+  // L'indice degli strumenti e il motore che capisce le frasi
+  // (js/assistente.js, con il vocabolario di data/sinonimi.json) si caricano
+  // al primo uso, una volta sola per pagina. Se il motore non arriva si torna
+  // alla ricerca semplice: tutte le parole nel titolo o nella descrizione.
+  var ricercaPronta = null;
+
+  function caricaScript(src) {
+    return new Promise(function (ok, ko) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = ok;
+      s.onerror = ko;
+      document.head.appendChild(s);
+    });
+  }
+
+  function preparaRicerca() {
+    if (ricercaPronta) return ricercaPronta;
+    var json = function (u, vuoto) {
+      return fetch(u).then(function (r) { return r.ok ? r.json() : vuoto; }).catch(function () { return vuoto; });
+    };
+    ricercaPronta = Promise.all([
+      json('/data/strumenti.json', { strumenti: [] }),
+      json('/data/sinonimi.json', null),
+      window.Assistente ? Promise.resolve() : caricaScript('/js/assistente.js').catch(function () {})
+    ]).then(function (r) {
+      var indice = r[0].strumenti || [];
+      var motore = null;
+      if (window.Assistente && r[1]) {
+        try { motore = window.Assistente.prepara(indice, r[1]); } catch (e) { motore = null; }
+      }
+      return { indice: indice, motore: motore };
+    });
+    return ricercaPronta;
+  }
+
+  function senzaAccenti(t) {
+    return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  // La ricerca semplice di prima, di riserva: tutte le parole devono
+  // comparire, il titolo pesa piu' della descrizione, le varianti dopo.
+  function punteggio(voce, parole) {
+    var titolo = senzaAccenti(voce.titolo);
+    var testo = titolo + ' ' + senzaAccenti(voce.descrizione) + ' ' + senzaAccenti(voce.percorso);
+    var p = 0;
+    for (var i = 0; i < parole.length; i++) {
+      if (testo.indexOf(parole[i]) === -1) return -1;
+      if (titolo.indexOf(parole[i]) === 0) p += 3;
+      else if (titolo.indexOf(parole[i]) !== -1) p += 2;
+      else p += 1;
+    }
+    if (voce.variante) p -= 1;
+    return p;
+  }
+
+  function risultati(testo) {
+    return preparaRicerca().then(function (dati) {
+      if (!senzaAccenti(testo).trim()) return [];
+      if (dati.motore) {
+        return window.Assistente.cerca(dati.motore, testo, 12).map(function (x) { return x.voce; });
+      }
+      var parole = senzaAccenti(testo).split(/\s+/).filter(Boolean);
+      return dati.indice
+        .map(function (v) { return { v: v, p: punteggio(v, parole) }; })
+        .filter(function (x) { return x.p >= 0; })
+        .sort(function (a, b) { return b.p - a.p || a.v.titolo.localeCompare(b.v.titolo); })
+        .map(function (x) { return x.v; });
+    });
+  }
+
+  function esc(t) {
+    return String(t == null ? '' : t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Una casella di ricerca con la sua tendina dei risultati (quella in alto
+  // in tutte le pagine e quella grande della home)
+  function avviaRicerca(campo, tendina, prefisso) {
     if (!campo || !tendina) return;
-
-    var indice = null;
-    var caricamento = null;
     var evidenziato = -1;
-
-    function caricaIndice() {
-      if (indice) return Promise.resolve(indice);
-      if (!caricamento) {
-        caricamento = fetch('/data/strumenti.json')
-          .then(function (r) { return r.ok ? r.json() : { strumenti: [] }; })
-          .then(function (d) { indice = d.strumenti || []; return indice; })
-          .catch(function () { indice = []; return indice; });
-      }
-      return caricamento;
-    }
-
-    function senzaAccenti(t) {
-      return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    }
-
-    // Stesso punteggio della vecchia ricerca in home: tutte le parole devono
-    // comparire, il titolo pesa piu' della descrizione e le varianti pSEO
-    // vengono dopo l'originale.
-    function punteggio(voce, parole) {
-      var titolo = senzaAccenti(voce.titolo);
-      var testo = titolo + ' ' + senzaAccenti(voce.descrizione) + ' ' + senzaAccenti(voce.percorso);
-      var p = 0;
-      for (var i = 0; i < parole.length; i++) {
-        if (testo.indexOf(parole[i]) === -1) return -1;
-        if (titolo.indexOf(parole[i]) === 0) p += 3;
-        else if (titolo.indexOf(parole[i]) !== -1) p += 2;
-        else p += 1;
-      }
-      if (voce.variante) p -= 1;
-      return p;
-    }
-
-    function esc(t) {
-      return String(t == null ? '' : t)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
 
     function apri(aperto) {
       tendina.hidden = !aperto;
@@ -161,46 +198,35 @@
 
     function disegna(trovati, testo) {
       if (!trovati.length) {
-        tendina.innerHTML = '<p class="px-4 py-3 text-sm text-gray-600">Nessuno strumento per &laquo;' +
-          esc(testo) + '&raquo;. Prova con una parola sola: bollo, IVA, dimissioni, fototessera.</p>';
+        tendina.innerHTML = '<p class="px-4 py-3 text-sm text-gray-600">Non ho trovato uno strumento per &laquo;' +
+          esc(testo) + '&raquo;. Prova a dirlo con altre parole (per esempio &laquo;pagare il bollo&raquo; o ' +
+          '&laquo;unire due PDF&raquo;) oppure guarda la <a class="text-indigo-700 underline" href="/mappa-del-sito/">mappa di tutti gli strumenti</a>.</p>';
         apri(true);
         return;
       }
 
-      var righe = trovati.slice(0, 12).map(function (v, i) {
+      var righe = trovati.slice(0, 8).map(function (v, i) {
         var etichetta = v.variante
           ? esc(v.variante.genere) + ': ' + esc(v.variante.etichetta)
-          : esc(v.nomeCategoria);
-        return '<a id="risultato-' + i + '" role="option" href="' + esc(v.percorso) + '" ' +
+          : (/^\/guide\//.test(v.percorso) ? 'Guida' : esc(v.nomeCategoria));
+        return '<a id="' + prefisso + '-' + i + '" role="option" href="' + esc(v.percorso) + '" ' +
           'class="block px-4 py-3 border-b border-gray-100 last:border-0 hover:bg-indigo-50 focus:bg-indigo-50 focus:outline-none">' +
           '<span class="block text-xs font-semibold uppercase tracking-wide text-indigo-600">' + etichetta + '</span>' +
           '<span class="block text-sm font-medium text-gray-900 mt-0.5">' + esc(v.titolo) + '</span>' +
+          (i === 0 && v.descrizione ? '<span class="block text-xs text-gray-600 mt-1">' + esc(v.descrizione) + '</span>' : '') +
           '</a>';
       }).join('');
 
-      var coda = trovati.length > 12
-        ? '<p class="px-4 py-2 text-xs text-gray-500 bg-gray-50">e altri ' + (trovati.length - 12) + ' risultati: aggiungi una parola per restringere.</p>'
-        : '';
-
-      tendina.innerHTML = righe + coda;
+      tendina.innerHTML = righe;
       apri(true);
-    }
-
-    function risultati(testo) {
-      var parole = senzaAccenti(testo).split(/\s+/).filter(Boolean);
-      return caricaIndice().then(function (voci) {
-        if (!parole.length) return [];
-        return voci
-          .map(function (v) { return { v: v, p: punteggio(v, parole) }; })
-          .filter(function (x) { return x.p >= 0; })
-          .sort(function (a, b) { return b.p - a.p || a.v.titolo.localeCompare(b.v.titolo); })
-          .map(function (x) { return x.v; });
-      });
     }
 
     function cerca(testo) {
       if (!senzaAccenti(testo).trim()) { apri(false); return; }
-      risultati(testo).then(function (trovati) { disegna(trovati, testo); });
+      risultati(testo).then(function (trovati) {
+        if (campo.value.trim() !== testo) return;   // nel frattempo si e' scritto altro
+        disegna(trovati, testo);
+      });
     }
 
     var attesa = null;
@@ -215,7 +241,7 @@
       if (e.key === 'Escape') { apri(false); return; }
       if (e.key === 'Enter') {
         // Invio: la voce scelta con le frecce o, se non se n'e' scelta
-        // nessuna, il primo risultato. Prima Invio da solo non faceva niente.
+        // nessuna, il primo risultato.
         var testo = campo.value.trim();
         e.preventDefault();
         if (!testo) return;
@@ -234,6 +260,7 @@
     });
 
     campo.addEventListener('focus', function () {
+      preparaRicerca();   // si comincia a caricare mentre si scrive
       if (campo.value.trim()) cerca(campo.value.trim());
     });
 
@@ -241,6 +268,23 @@
       if (tendina.hidden) return;
       if (tendina.contains(e.target) || campo.contains(e.target)) return;
       apri(false);
+    });
+
+    return { cerca: cerca };
+  }
+
+  // Gli esempi sotto la ricerca della home: senza JavaScript sono link allo
+  // strumento, con JavaScript scrivono la frase nella casella e mostrano i
+  // risultati, per far vedere che si puo' scrivere come si parla.
+  function avviaEsempi(campo, ricerca) {
+    if (!campo || !ricerca) return;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-esempio]'), function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        campo.value = a.getAttribute('data-esempio');
+        campo.focus();
+        ricerca.cerca(campo.value.trim());
+      });
     });
   }
 
@@ -264,11 +308,13 @@
       S.registraVisita(percorso, titolo);
       var segno = stella.querySelector('[data-stella]');
       var testo = stella.querySelector('[data-stella-testo]');
+      var corto = stella.querySelector('[data-stella-corto]');   // la scritta breve del telefono
       var aggiornaStella = function () {
         var fissato = S.eFissato(percorso);
         stella.setAttribute('aria-pressed', fissato ? 'true' : 'false');
         if (segno) segno.textContent = fissato ? '★' : '☆';
         if (testo) testo.textContent = fissato ? 'Tra i preferiti' : 'Salva tra i preferiti';
+        if (corto) corto.textContent = fissato ? 'Nei preferiti' : 'Preferiti';
         stella.classList.toggle('text-amber-700', fissato);
         stella.classList.toggle('border-amber-300', fissato);
         stella.classList.toggle('bg-amber-50', fissato);
@@ -330,7 +376,9 @@
 
   function avvia() {
     avviaMenu();
-    avviaRicerca();
+    avviaRicerca(document.getElementById('search'), document.getElementById('risultati-menu'), 'risultato');
+    var campoHome = document.getElementById('cerca-home');
+    avviaEsempi(campoHome, avviaRicerca(campoHome, document.getElementById('risultati-home'), 'risultato-home'));
     avviaRevocaConsenso();
     avviaSpazio();
   }
