@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo stipendio netto (widget) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcolatore dello stipendio netto da inserire nel tuo sito: dalla RAL al netto in busta paga, con contributi INPS, IRPEF e addizionali." />
+  <!-- Widget da mettere dentro un iframe su altri siti: non e' una pagina da cercare su Google. -->
+  <meta name="robots" content="noindex, follow" />
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root { --testo: #111827; --tenue: #4b5563; --bordo: #d1d5db; --accento: #4f46e5; --fondo: #ffffff; --riquadro: #f9fafb; --verde: #047857; }
+    @media (prefers-color-scheme: dark) { :root { --testo: #f3f4f6; --tenue: #9ca3af; --bordo: #374151; --accento: #818cf8; --fondo: #111827; --riquadro: #1f2937; --verde: #34d399; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--testo); background: var(--fondo); }
+    h1 { font-size: 1.15rem; margin: 0 0 12px; }
+    .campi { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+    .campi .intero { grid-column: 1 / -1; }
+    label { display: block; font-size: .8rem; font-weight: 600; color: var(--tenue); margin-bottom: 4px; }
+    input, select { width: 100%; font: inherit; color: var(--testo); background: var(--fondo); border: 1px solid var(--bordo); border-radius: 8px; padding: 9px 10px; min-height: 44px; }
+    input:focus, select:focus { outline: 2px solid var(--accento); outline-offset: 1px; }
+    .esito { margin-top: 14px; background: var(--riquadro); border: 1px solid var(--bordo); border-radius: 10px; padding: 12px 14px; }
+    .grande { font-size: 1.9rem; font-weight: 800; color: var(--verde); line-height: 1.15; }
+    .righe { margin: 10px 0 0; padding: 0; list-style: none; font-size: .9rem; }
+    .righe li { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border-top: 1px dashed var(--bordo); }
+    .righe li:first-child { border-top: 0; }
+    .nota { font-size: .78rem; color: var(--tenue); margin: 8px 0 0; }
+    .firma { margin-top: 12px; font-size: .8rem; color: var(--tenue); }
+    .firma a { color: var(--accento); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <form data-widget="stipendio" novalidate>
+    <h1>Quanto prendo netto in busta paga?</h1>
+    <div class="campi">
+      <div>
+        <label for="w-ral">RAL (lordo annuo, &euro;)</label>
+        <input id="w-ral" name="ral" type="number" inputmode="decimal" min="0" step="100" value="30000" />
+      </div>
+      <div>
+        <label for="w-mensilita">Mensilit&agrave;</label>
+        <select id="w-mensilita" name="mensilita">
+          <option value="12">12</option>
+          <option value="13" selected>13</option>
+          <option value="14">14</option>
+        </select>
+      </div>
+    </div>
+    <div class="esito" aria-live="polite">
+      <div class="nota" style="margin:0">Netto al mese</div>
+      <div class="grande" data-esito="mensile">—</div>
+      <ul class="righe">
+        <li><span>Netto all&rsquo;anno</span><strong data-esito="annuo">—</strong></li>
+        <li><span>Contributi INPS</span><span data-esito="inps">—</span></li>
+        <li><span>IRPEF netta</span><span data-esito="irpef">—</span></li>
+        <li><span>Addizionali (medie)</span><span data-esito="addizionali">—</span></li>
+      </ul>
+      <p class="nota" data-esito="errore"></p>
+    </div>
+    <p class="nota">Lavoratore dipendente per tutto l&rsquo;anno, contributi INPS ordinari, addizionali regionale e comunale medie. È una stima, non una busta paga.</p>
+    <p class="firma">Calcolo di <a href="https://strumentiutili.it/lavoro-contratti/stipendio-netto/" target="_blank" rel="noopener">StrumentiUtili.it</a> &middot; i dati restano nel tuo browser</p>
+  </form>
+  <script src="/js/data-loader.js"></script>
+  <script src="/js/irpef.js"></script>
+  <script src="/js/stipendio-netto.js"></script>
+  <script src="/js/widget.js"></script>
+</body>
+</html>

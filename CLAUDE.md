@@ -31,6 +31,7 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
   - `scripts/prepara-*.py` crea los campos → `assets/pdf/*-compilabile.pdf`;
   - `data/modello*-schema.json` describe los campos;
   - `js/compilatore-moduli.js` los rellena en el navegador.
+- Widgets para otros sitios: `widget/<nombre>/` con `js/widget.js` y los mismos motores de la herramienta. Están fuera del layout, sin anuncios y con `noindex`. El código para insertar está en la página de la herramienta (`tests/widget.test.js`).
 - `data/fonti-monitorate.json`: fuentes y plazos que vigila la sentinella. Las copias de referencia están en `fonti/archivio/`.
 
 ## Toda herramienta nueva entra en el mantenimiento automático

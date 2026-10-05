@@ -288,6 +288,24 @@
     });
   }
 
+  // ------------------------------------------------------------- copia
+
+  // Pulsanti «Copia il codice»: data-copia="id del campo da copiare"
+  function avviaCopia() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-copia]'), function (b) {
+      b.addEventListener('click', function () {
+        var campo = document.getElementById(b.getAttribute('data-copia'));
+        var esito = b.parentElement && b.parentElement.querySelector('[data-copia-esito]');
+        var scrivi = function (t) { if (esito) esito.textContent = t; };
+        if (!campo) return;
+        var copia = navigator.clipboard && navigator.clipboard.writeText
+          ? navigator.clipboard.writeText(campo.value) : Promise.reject(new Error('niente appunti'));
+        copia.then(function () { scrivi('Codice copiato: incollalo nella tua pagina.'); })
+          .catch(function () { campo.focus(); campo.select(); scrivi('Il testo è selezionato: copialo con Ctrl+C (o tieni premuto sul telefono).'); });
+      });
+    });
+  }
+
   // -------------------------------------------------------- il tuo spazio
 
   // Recenti, preferiti e cancellazione (la logica e' in js/spazio.js). Tutto
@@ -380,6 +398,7 @@
     var campoHome = document.getElementById('cerca-home');
     avviaEsempi(campoHome, avviaRicerca(campoHome, document.getElementById('risultati-home'), 'risultato-home'));
     avviaRevocaConsenso();
+    avviaCopia();
     avviaSpazio();
   }
 
