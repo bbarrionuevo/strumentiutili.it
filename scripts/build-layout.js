@@ -260,6 +260,8 @@ function intestazione(ctx) {
 
 // Il piede non ha piu' annunci: stava subito dopo quello del contenuto, due
 // riquadri di fila. `bloccoPubblicitario` resta per compatibilita' e si ignora.
+const CAFFE = 'https://buymeacoffee.com/strumentiutili.it';
+
 function piede(bloccoPubblicitario) {
   const vociCategoria = (c) =>
     '            <li><a href="/' + c.slug + '/" class="hover:text-indigo-600 transition-colors">' +
@@ -282,6 +284,13 @@ function piede(bloccoPubblicitario) {
     '        <div class="sm:col-span-2 lg:col-span-1">',
     '          <h2 class="font-semibold text-gray-800 text-lg">StrumentiUtili.it</h2>',
     '          <p class="text-sm text-gray-600 mt-2">Strumenti gratuiti per tasse, lavoro, documenti e PDF. I calcoli avvengono nel browser: i tuoi dati restano sul tuo dispositivo.</p>',
+    // Donazioni: un semplice link alla pagina di Buy Me a Coffee di Brian
+    // (verificata il 5/10/2026). Niente script ne' cookie di terzi: non si
+    // carica nulla finche' non si clicca. js/compilatore-moduli.js riusa questo
+    // link dopo lo scaricamento di un modello.
+    '          <a href="' + CAFFE + '" target="_blank" rel="noopener" data-caffe',
+    '             class="mt-4 inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-900 hover:bg-amber-100 transition">&#9749; Offrimi un caff&egrave;</a>',
+    '          <p class="mt-2 text-xs text-gray-500">Il sito &egrave; gratuito e senza registrazione: se ti &egrave; stato utile, puoi sostenerlo.</p>',
     '        </div>',
     '',
     '        <nav aria-label="Categorie del sito">',

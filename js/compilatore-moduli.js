@@ -1073,12 +1073,33 @@
       scarica(byte, nomeFile);
 
       avviso(`Fatto: ${nomeFile} è stato scaricato. Controlla i dati, stampa il modello e firmalo a penna prima di presentarlo.`, 'ok');
+      offriCaffe();
     } catch (errore) {
       console.error(errore);
       avviso('Non è stato possibile generare il modello. Ricarica la pagina e riprova.', 'errore');
     } finally {
       if (bottone) { bottone.disabled = false; bottone.textContent = 'Genera e scarica il modello compilato'; }
     }
+  }
+
+  // Dopo il modello scaricato, una riga per chi vuole sostenere il sito: lo
+  // stesso link del piede (data-caffe), solo se c'e'. Nessuno script di terzi.
+  function offriCaffe() {
+    const link = document.querySelector('footer a[data-caffe]');
+    if (!link || !riquadroStato || riquadroStato.querySelector('[data-caffe-grazie]')) return;
+    const riga = document.createElement('p');
+    riga.setAttribute('data-caffe-grazie', '');
+    riga.style.marginTop = '.5rem';
+    riga.append('Ti abbiamo fatto risparmiare tempo? ');
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = 'Offrimi un caffè ☕';
+    a.style.fontWeight = '700';
+    a.style.textDecoration = 'underline';
+    riga.appendChild(a);
+    riquadroStato.appendChild(riga);
   }
 
   function scarica(byte, nomeFile) {
