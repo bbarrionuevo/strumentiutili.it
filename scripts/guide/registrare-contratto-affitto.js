@@ -127,6 +127,7 @@ module.exports = function (ctx) {
       'Legge 30 dicembre 2004, n. 311, art. 1, comma 346: nullit&agrave; dei contratti non registrati.',
       'D.Lgs. 14 giugno 2024, n. 87: nuove sanzioni dal 1&deg; settembre 2024.',
       'D.Lgs. 18 dicembre 1997, n. 472, art. 13: ravvedimento operoso.',
+      'Dal 1&deg; gennaio 2027 il ravvedimento &egrave; regolato dal testo unico delle sanzioni tributarie, <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art14" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 5 novembre 2024, n. 173, allegato, art. 14</a>, con le stesse riduzioni.',
       'Modello RLI e istruzioni, Agenzia delle Entrate.'
     ]
   };

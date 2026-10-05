@@ -270,7 +270,7 @@
     campoPeriodo.addEventListener('change', calcola);
 
     $('usa-indicativo').addEventListener('click', () => {
-      const prezzo = datiMercato && datiMercato.prezzo_indicativo_kwh ? datiMercato.prezzo_indicativo_kwh : 0.22;
+      const prezzo = datiMercato && datiMercato.prezzo_indicativo_kwh ? datiMercato.prezzo_indicativo_kwh : 0.25;
       campoCosto.value = window.SuNumeri.numero(prezzo, 2);
       notaPrezzo.textContent = datiMercato
         ? `Valore indicativo: ${datiMercato.nota_calcolo} Fonte: ${datiMercato.fonte}.`
