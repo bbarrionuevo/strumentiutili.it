@@ -66,12 +66,13 @@ test('pagina pubblicata: coerente con i dati e registrata', { skip: !ESISTE }, (
   }
 });
 
-test('pagina pubblicata: indice, sitemap, home, categoria, fonti e privacy', { skip: !ESISTE }, () => {
+test('pagina pubblicata: indice, home, categoria, fonti e privacy (fuori dal sitemap)', { skip: !ESISTE }, () => {
   const leggi = (...p) => fs.readFileSync(path.join(RADICE, ...p), 'utf8');
   const u = '/utilita-web/santo-del-giorno/';
   assert.ok(leggi('sw.js').includes("'/data/santi.json'"), 'i dati servono anche offline');
   assert.ok(leggi('data', 'strumenti.json').includes(u));
-  assert.ok(leggi('sitemap.xml').includes(u));
+  // fuori dal tema del sito: niente Google (tests/indicizzazione.test.js)
+  assert.ok(!leggi('sitemap.xml').includes(u));
   assert.ok(leggi('index.html').includes('href="' + u + '"'));
   assert.ok(leggi('utilita-web', 'index.html').includes('href="' + u + '"'));
   const html = fs.readFileSync(PAGINA, 'utf8');

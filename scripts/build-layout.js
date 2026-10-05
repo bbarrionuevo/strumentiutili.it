@@ -21,9 +21,11 @@ const SITO = 'https://strumentiutili.it';
 // Cartelle della vecchia struttura, servite solo dai redirect 301.
 const LEGACY = ['burocrazia', 'lavoro', 'finanza', 'media'];
 const ESCLUSI = new Set(['fototessera.html']);
+// widget/: i calcolatori da mettere dentro un iframe su altri siti (js/widget.js),
+// senza intestazione, piede, menu ne' annunci: il layout del sito non li tocca.
 const SALTA_CARTELLE = [
   '.git', 'node_modules', 'tests', '.github', 'scripts',
-  'assets', 'data', 'src', 'css', 'js', '_prova_volti'
+  'assets', 'data', 'src', 'css', 'js', '_prova_volti', 'widget'
 ];
 
 const CATEGORIE = [

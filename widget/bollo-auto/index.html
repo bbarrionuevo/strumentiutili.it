@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo bollo auto e superbollo (widget) — StrumentiUtili.it</title>
+  <meta name="description" content="Calcolatore del bollo auto e del superbollo da inserire nel tuo sito: kW, classe Euro, Regione e anno di costruzione." />
+  <!-- Widget da mettere dentro un iframe su altri siti: non e' una pagina da cercare su Google. -->
+  <meta name="robots" content="noindex, follow" />
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root { --testo: #111827; --tenue: #4b5563; --bordo: #d1d5db; --accento: #4f46e5; --fondo: #ffffff; --riquadro: #f9fafb; --verde: #047857; }
+    @media (prefers-color-scheme: dark) { :root { --testo: #f3f4f6; --tenue: #9ca3af; --bordo: #374151; --accento: #818cf8; --fondo: #111827; --riquadro: #1f2937; --verde: #34d399; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--testo); background: var(--fondo); }
+    h1 { font-size: 1.15rem; margin: 0 0 12px; }
+    .campi { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+    .campi .intero { grid-column: 1 / -1; }
+    label { display: block; font-size: .8rem; font-weight: 600; color: var(--tenue); margin-bottom: 4px; }
+    input, select { width: 100%; font: inherit; color: var(--testo); background: var(--fondo); border: 1px solid var(--bordo); border-radius: 8px; padding: 9px 10px; min-height: 44px; }
+    input:focus, select:focus { outline: 2px solid var(--accento); outline-offset: 1px; }
+    .esito { margin-top: 14px; background: var(--riquadro); border: 1px solid var(--bordo); border-radius: 10px; padding: 12px 14px; }
+    .grande { font-size: 1.9rem; font-weight: 800; color: var(--verde); line-height: 1.15; }
+    .righe { margin: 10px 0 0; padding: 0; list-style: none; font-size: .9rem; }
+    .righe li { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border-top: 1px dashed var(--bordo); }
+    .righe li:first-child { border-top: 0; }
+    .nota { font-size: .78rem; color: var(--tenue); margin: 8px 0 0; }
+    .firma { margin-top: 12px; font-size: .8rem; color: var(--tenue); }
+    .firma a { color: var(--accento); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <form data-widget="bollo" novalidate>
+    <h1>Quanto costa il bollo della mia auto?</h1>
+    <div class="campi">
+      <div>
+        <label for="w-kw">Potenza (kW)</label>
+        <input id="w-kw" name="kw" type="number" inputmode="numeric" min="1" step="1" value="85" />
+      </div>
+      <div>
+        <label for="w-anno">Anno di costruzione</label>
+        <input id="w-anno" name="anno" type="number" inputmode="numeric" min="1950" step="1" value="2020" />
+      </div>
+      <div>
+        <label for="w-classe">Classe ambientale</label>
+        <select id="w-classe" name="classe">
+          <option value="euro_4_5_6">Euro 4, 5 o 6</option>
+          <option value="euro_3">Euro 3</option>
+          <option value="euro_2">Euro 2</option>
+          <option value="euro_1">Euro 1</option>
+          <option value="euro_0">Euro 0</option>
+        </select>
+      </div>
+      <div>
+        <label for="w-regione">Regione di residenza</label>
+        <select id="w-regione" name="regione">
+          <option value="" selected>Scegli la Regione</option>
+          <option value="abruzzo">Abruzzo</option>
+          <option value="basilicata">Basilicata</option>
+          <option value="calabria">Calabria</option>
+          <option value="campania">Campania</option>
+          <option value="emilia_romagna">Emilia-Romagna</option>
+          <option value="friuli">Friuli-Venezia Giulia</option>
+          <option value="lazio">Lazio</option>
+          <option value="liguria">Liguria</option>
+          <option value="lombardia">Lombardia</option>
+          <option value="marche">Marche</option>
+          <option value="molise">Molise</option>
+          <option value="piemonte">Piemonte</option>
+          <option value="puglia">Puglia</option>
+          <option value="sardegna">Sardegna</option>
+          <option value="sicilia">Sicilia</option>
+          <option value="toscana">Toscana</option>
+          <option value="trentino">Trentino (Provincia di Trento)</option>
+          <option value="bolzano">Alto Adige (Provincia di Bolzano)</option>
+          <option value="umbria">Umbria</option>
+          <option value="valle_aosta">Valle d&#39;Aosta</option>
+          <option value="veneto">Veneto</option>
+        </select>
+      </div>
+    </div>
+    <div class="esito" aria-live="polite">
+      <div class="nota" style="margin:0">Da pagare in un anno</div>
+      <div class="grande" data-esito="totale">—</div>
+      <ul class="righe">
+        <li><span>Bollo regionale</span><span data-esito="bollo">—</span></li>
+        <li><span>Superbollo</span><span data-esito="superbollo">—</span></li>
+      </ul>
+      <p class="nota" data-esito="origine"></p>
+      <p class="nota" data-esito="errore"></p>
+    </div>
+    <p class="nota">Auto di un privato, senza esenzioni né agevolazioni regionali. Per l&rsquo;importo da pagare fa fede l&rsquo;avviso della Regione.</p>
+    <p class="firma">Calcolo di <a href="https://strumentiutili.it/cittadino-tasse/calcolo-bollo-auto/" target="_blank" rel="noopener">StrumentiUtili.it</a> &middot; i dati restano nel tuo browser</p>
+  </form>
+  <script src="/js/data-loader.js"></script>
+  <script src="/js/bollo-calcolo.js"></script>
+  <script src="/js/widget.js"></script>
+</body>
+</html>
