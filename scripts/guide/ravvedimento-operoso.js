@@ -117,6 +117,7 @@ module.exports = function (ctx) {
     fonti: [
       'D.Lgs. 18 dicembre 1997, n. 472, art. 13: ravvedimento operoso.',
       'D.Lgs. 18 dicembre 1997, n. 471, art. 13: sanzione per omesso o tardivo versamento.',
+      'Dal 1&deg; gennaio 2027 le stesse regole passano al testo unico delle sanzioni tributarie: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art14" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 5 novembre 2024, n. 173, allegato, art. 14</a> (ravvedimento) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art38" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 38</a> (omesso o tardivo versamento), con le stesse riduzioni.',
       'D.Lgs. 14 giugno 2024, n. 87: nuove misure delle sanzioni dal 1&deg; settembre 2024.',
       'D.Lgs. 18 dicembre 1997, n. 462, art. 2: sanzioni ridotte a un terzo dopo la comunicazione di irregolarit&agrave;.',
       'Codice civile, art. 1284: saggio degli interessi legali.',
