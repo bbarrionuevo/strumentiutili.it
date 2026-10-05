@@ -67,6 +67,7 @@ function caricaScript(percorsi) {
     console,
     Intl,
     URL,
+    URLSearchParams,
     TextEncoder,
     TextDecoder,
     setTimeout,
