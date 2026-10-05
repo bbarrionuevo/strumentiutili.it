@@ -151,13 +151,46 @@ function asserzione(credenziali, adesso) {
   return testa + '.' + corpo + '.' + base64url(firma);
 }
 
+/**
+ * Le sitemap inviate a Search Console (risposta di sites/{sito}/sitemaps):
+ * quando sono state inviate, quando Google le ha lette l'ultima volta e
+ * quanti indirizzi contengono. Se Google non legge la sitemap da settimane,
+ * le pagine nuove restano «sconosciute».
+ */
+function daSitemap(risposta) {
+  const giorno = (x) => (x ? String(x).slice(0, 10) : null);
+  return ((risposta && risposta.sitemap) || []).map((x) => {
+    const web = (x.contents || []).find((c) => c.type === 'web');
+    return {
+      percorso: x.path,
+      inviata: giorno(x.lastSubmitted),
+      letta: giorno(x.lastDownloaded),
+      inAttesa: !!x.isPending,
+      errori: Number(x.errors || 0),
+      avvisi: Number(x.warnings || 0),
+      indirizzi: web && web.submitted !== undefined ? Number(web.submitted) : null
+    };
+  });
+}
+
+/** Quante pagine per stato nell'indice (per il riepilogo). */
+function contaStati(misure) {
+  const conta = new Map();
+  for (const m of misure || []) {
+    if (!m.google || !m.google.indice) continue;
+    const k = m.google.indice.indicizzata ? 'nell\'indice' : (m.google.indice.stato || '?');
+    conta.set(k, (conta.get(k) || 0) + 1);
+  }
+  return [...conta.entries()].sort((a, b) => b[1] - a[1]);
+}
+
 /** Aggiunge le viste di Google alle misure: m.googlebot e m.google per pagina, r.google per il sito. */
 function unisci(r, googlebot, google) {
   for (const m of r.misure) {
     if (googlebot[m.pagina]) m.googlebot = googlebot[m.pagina];
     if (google && google.pagine && google.pagine[m.pagina]) m.google = google.pagine[m.pagina];
   }
-  if (google) r.google = { attivo: google.attivo, proprieta: google.proprieta || null, errore: google.errore || null, dal: google.dal || null, al: google.al || null, totale: google.totale || null };
+  if (google) r.google = { attivo: google.attivo, proprieta: google.proprieta || null, errore: google.errore || null, dal: google.dal || null, al: google.al || null, totale: google.totale || null, sitemap: google.sitemap || null };
   return r;
 }
 
@@ -245,6 +278,9 @@ async function searchConsole(sito, pagine, oggi) {
   const giorno = (d) => d.toISOString().slice(0, 10);
   const fuori = { attivo: true, proprieta, dal: giorno(inizio), al: giorno(fine), pagine: {} };
   try {
+    fuori.sitemap = daSitemap(await chiama(token, 'GET', `${API}/webmasters/v3/sites/${encodeURIComponent(proprieta)}/sitemaps`));
+  } catch (e) { fuori.sitemap = null; }
+  try {
     const righe = await chiama(token, 'POST', `${API}/webmasters/v3/sites/${encodeURIComponent(proprieta)}/searchAnalytics/query`,
       { startDate: fuori.dal, endDate: fuori.al, dimensions: ['page'], rowLimit: 1000 });
     const perPagina = daAnalytics(righe, sito);
@@ -281,8 +317,12 @@ function riepilogo(r) {
     const lette = r.misure.filter((m) => m.google && m.google.indice);
     righe.push(`Search Console (${r.google.proprieta || '?'}): ${lette.filter((m) => m.google.indice.indicizzata).length} pagine nell'indice su ${lette.length} controllate.`);
     if (r.google.totale) righe.push(`  ${r.google.dal} - ${r.google.al}: ${r.google.totale.clic} clic, ${r.google.totale.impressioni} impressioni.`);
+    for (const x of r.google.sitemap || []) righe.push(`  Sitemap ${x.percorso}: inviata ${x.inviata || '?'}, letta da Google ${x.letta || 'mai'}${x.inAttesa ? ' (in attesa)' : ''}, ${x.indirizzi === null ? '?' : x.indirizzi} indirizzi, ${x.errori} errori, ${x.avvisi} avvisi.`);
+    if (r.google.sitemap && !r.google.sitemap.length) righe.push('  Nessuna sitemap inviata a Search Console.');
+    righe.push('  Per stato: ' + contaStati(r.misure).map(([k, n]) => `${k} ${n}`).join('; ') + '.');
+    righe.push('  Nell\'indice: ' + lette.filter((x) => x.google.indice.indicizzata).map((x) => x.pagina).join(', '));
     for (const m of lette.filter((x) => !x.google.indice.indicizzata)) {
-      righe.push(`  ${m.pagina}: ${m.google.indice.stato || '?'}${m.google.indice.causa ? ' — ' + m.google.indice.causa : ''}`);
+      righe.push(`  ${m.pagina}: ${m.google.indice.stato || '?'}${m.google.indice.causa ? ' — ' + m.google.indice.causa : ''} (ultima visita di Google: ${m.google.indice.ultimaScansione || 'mai'})`);
     }
   }
   return righe.join('\n');
@@ -316,4 +356,4 @@ async function main() {
 }
 
 if (require.main === module) main().catch((e) => { console.error(e.message); process.exit(1); });
-module.exports = { UA_GOOGLEBOT, leggiTesta, vistaGooglebot, sceltaProprieta, statoIndice, causaTecnica, daAnalytics, asserzione, unisci, riepilogo };
+module.exports = { UA_GOOGLEBOT, leggiTesta, vistaGooglebot, sceltaProprieta, statoIndice, causaTecnica, daAnalytics, daSitemap, contaStati, asserzione, unisci, riepilogo };

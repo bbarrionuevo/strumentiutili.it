@@ -115,6 +115,10 @@ function sezioniGoogle(r) {
     testa.push(`- Pagine nell'indice di Google: **${lette.length - fuori.length} su ${lette.length}**` +
       (g.totale ? `; da Google dal ${g.dal} al ${g.al}: **${g.totale.clic}** clic e **${g.totale.impressioni}** impressioni` : ''));
   }
+  for (const x of g.sitemap || []) {
+    testa.push(`- Sitemap ${x.percorso}: inviata il ${x.inviata || '?'}, letta da Google ${x.letta ? 'il ' + x.letta : 'mai'}${x.indirizzi === null ? '' : `, ${x.indirizzi} indirizzi`}${x.errori ? `, **${x.errori} errori**` : ''}`);
+  }
+  if (g.sitemap && !g.sitemap.length) testa.push('- Sitemap: **nessuna** inviata a Search Console');
   if (g.errore) testa.push(`- Search Console: ${g.errore}`);
   const corpo = [];
   if (fuori.length) {
