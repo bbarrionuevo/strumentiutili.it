@@ -9,7 +9,7 @@
   const $ = (id) => document.getElementById(id);
 
   // Valori di ripiego usati se il file delle regole non è disponibile
-  const PREZZI_PREDEFINITI = { casa: 0.22, ac: 0.63, dc: 0.74, hpc: 0.85 };
+  const PREZZI_PREDEFINITI = { casa: 0.25, ac: 0.63, dc: 0.74, hpc: 0.85 };
   const PERDITE_PREDEFINITE = 10;
 
   const DESCRIZIONI = {
