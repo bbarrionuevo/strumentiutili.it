@@ -41,6 +41,14 @@ Una vez por semana: primero calidad, después (si vale la pena) una herramienta 
    - **no hay herramienta nueva**: más páginas empeoran el problema. Saltá el paso 2 y decilo en el resumen;
    - la mejora de la semana es para las páginas fuera del índice que más importan (las que tienen impresiones o un plazo cercano): texto propio que responda la búsqueda mejor que los demás, ejemplos con números oficiales, nada de párrafos genéricos repetidos entre páginas, enlaces desde las páginas que sí están en el índice;
    - si dos páginas responden a la misma búsqueda, proponé a Brian unirlas (issue `serve-brian`), con un 301 de la que se va.
+7. **El buscador del sitio aprende de Google** (todas las semanas, además de las dos mejoras). La issue del domingo trae «Ricerche da Google e ricerca del sito»: las búsquedas reales con las que Google mostró el sitio que el buscador (`js/assistente.js`) no entiende, y las que manda a una página distinta de la que muestra Google.
+   - Para cada búsqueda con impresiones, buscá la página que de verdad responde (abrila, no adivines):
+     - si existe, agregá en `data/sinonimi.json` el sinónimo (la expresión de la búsqueda → palabras que ya están en el título de esa página) o una palabra clave en `chiavi` de esa herramienta;
+     - si no hay ninguna página que responda, anotala en `.claude/laboratorio/idee.md` como demanda.
+   - Si Google muestra X y el buscador propone Y, fijate cuál responde mejor. A veces el buscador tiene razón y no se toca nada; otras veces a X le faltan palabras clave.
+   - Cada palabra nueva lleva su pregunta en `DOMANDE` de `tests/assistente.test.js`, y la prueba de las 1000 búsquedas tiene que seguir pasando.
+   - Solo palabras: nunca cifras ni reglas en `sinonimi.json`.
+   - Va en la PR del laboratorio, con la lista de búsquedas en la descripción.
 
 ## 2. Una herramienta nueva (como máximo una por semana)
 Alterná: una semana burocrática (fiscal, laboral, académica, trámites italianos), la siguiente tecnológica (procesamiento local pesado de imágenes, audio, video o documentos). Las ideas viven en `.claude/laboratorio/idee.md`.

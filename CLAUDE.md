@@ -52,11 +52,15 @@ Si una herramienta depende de algo que puede cambiar (una cifra, una norma, un m
   - Actualiza la issue fijada «Qualità del sito (misure settimanali)».
   - Abre una issue `qualita` por cada problema grave: página rota, CLS, errores JS, empeoramientos.
   - Con el secreto `PSI_KEY` (clave gratuita de Google, Chrome UX Report API) suma datos de usuarios reales.
-  - `scripts/qualita/google.js` mira cada página como Googlebot (noindex, canonical, respuestas). Con el secreto `GSC_CREDENZIALI` (clave JSON de una cuenta de servicio agregada como usuario en Search Console) suma el estado de cada página en el índice de Google, el motivo si está afuera, y clics e impresiones. Control rápido: `metriche.yml` con `modo=google`.
+  - `scripts/qualita/google.js` mira cada página como Googlebot (noindex, canonical, respuestas). Con el secreto `GSC_CREDENZIALI` (clave JSON de una cuenta de servicio agregada como usuario en Search Console) suma:
+    - el estado de cada página en el índice de Google y el motivo si está afuera;
+    - clics e impresiones;
+    - las búsquedas reales que el buscador del sitio (`js/assistente.js`) no entiende.
+  - Control rápido: `metriche.yml` con `modo=google`.
   - Solo escribe issues, nunca en el repositorio.
 - **Lunes:** la sentinella y la rutina «Correttore» (skill `aggiorna-fonti`) mantienen correcto lo que ya existe.
 - **Miércoles:** la rutina «Laboratorio» (skill `laboratorio`) hace tres cosas:
-  - corrige lo que midió el domingo;
+  - corrige lo que midió el domingo y le enseña al buscador las búsquedas que no entendió (`data/sinonimi.json`);
   - construye **como máximo una** herramienta nueva, solo si pasa los filtros de demanda, originalidad, ley vigente hoy y el próximo 1/1, ejemplo oficial con test escrito antes que el código, y mantenimiento automático;
   - una vez por mes, propone podar las herramientas sin uso.
 - Las ideas, con su puntaje y los motivos de descarte, están en `.claude/laboratorio/idee.md`.
