@@ -99,6 +99,7 @@ test('ogni blocco delle regole fiscali ha una sorveglianza', () => {
   const modelli = new Set([...R.pagine_modelli.map((m) => m.id), ...Object.keys(require('../scripts/sentinella.js').modelli())]);
   const serie = new Set(['tasso-bce', 'interessi-legali', 'istat-foi']);
   const vivi = new Set(R.dati_vivi.map((d) => d.id));
+  const blocchiNormattiva = new Set((R.blocchi_normattiva || []).map((b) => b.id));
 
   for (const [k, c] of Object.entries(R.copertura)) {
     for (const n of c.norme || []) assert.ok([...seguite].some((u) => urn(u) === n), `${k}: la norma ${n} non e' fra quelle che la sentinella rilegge (aggiungerla a "norme")`);
@@ -107,9 +108,10 @@ test('ogni blocco delle regole fiscali ha una sorveglianza', () => {
     for (const x of c.modelli || []) assert.ok(modelli.has(x), `${k}: modello ${x} non sorvegliato`);
     for (const x of c.serie || []) assert.ok(serie.has(x), `${k}: serie ${x} sconosciuta`);
     for (const x of c.dati_vivi || []) assert.ok(vivi.has(x), `${k}: dati_vivi ${x} inesistente`);
+    for (const x of c.blocchi || []) assert.ok(blocchiNormattiva.has(x), `${k}: blocco ${x} inesistente`);
     // qualcosa che scatta nel tempo (scheda, scadenza, modello, serie, dati vivi)
     // oppure la sola legge, ma allora si spiega perche' basta
-    const periodico = ['schede', 'scadenze', 'modelli', 'serie', 'dati_vivi'].some((f) => (c[f] || []).length);
+    const periodico = ['schede', 'scadenze', 'modelli', 'serie', 'dati_vivi', 'blocchi'].some((f) => (c[f] || []).length);
     assert.ok(periodico || ((c.norme || []).length && c.nota && c.nota.length >= 40),
       `${k}: serve una scheda, una scadenza, un modello, una serie o dati vivi; con le sole norme, una nota che spieghi perche' bastano`);
   }
@@ -124,6 +126,21 @@ test('ogni modello ufficiale in assets/pdf e\' sorvegliato', () => {
   assert.ok(ufficiali.length >= 20);
   assert.deepStrictEqual(ufficiali.filter((f) => !inModelli.has(f) && !inPagine.has(f)), [],
     'aggiungere questi PDF a MODELLI o a pagine_modelli, perche\' la sentinella se ne accorga quando l\'Agenzia li cambia');
+});
+
+// I commi oltre il centesimo degli articoli lunghi: la sentinella li legge nel
+// blocco giusto (scripts/sentinella/controlli.js, indirizzoBlocco)
+test('blocchi di Normattiva: articolo, commi dello stesso blocco, pagine e dati che esistono', () => {
+  const ids = new Set();
+  for (const b of R.blocchi_normattiva || []) {
+    assert.ok(/^[a-z0-9-]+$/.test(b.id) && !ids.has(b.id), 'id non valido o ripetuto: ' + b.id);
+    ids.add(b.id);
+    assert.match(b.articolo, /^https:\/\/www\.normattiva\.it\/uri-res\/N2Ls\?urn:nir:[^!]*~art\d+[a-z]*$/, b.id);
+    assert.ok(Number.isInteger(b.da) && Number.isInteger(b.a) && b.da >= 1 && b.da <= b.a, b.id + ': commi da..a non validi');
+    assert.strictEqual(Math.floor((b.da - 1) / 100), Math.floor((b.a - 1) / 100), b.id + ': i commi devono stare nello stesso blocco di cento');
+    for (const p of b.pagine || []) assert.ok(fs.existsSync(path.join(RADICE, p, 'index.html')), b.id + ': pagina inesistente ' + p);
+    for (const k of b.dati || []) assert.ok(Object.prototype.hasOwnProperty.call(regole, k.split('.')[0]), b.id + ': dato inesistente ' + k);
+  }
 });
 
 test('norme in piu\' e dati vivi: indirizzi e file validi', () => {
