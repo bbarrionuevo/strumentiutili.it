@@ -59,7 +59,10 @@ jobs:
           for u in $INDIRIZZI; do
             case "$u" in https://*) ;; *) echo "Salto $u (solo https)"; continue ;; esac
             echo "=== INIZIO $u"
-            if ! curl -sSL --max-time 90 -A "Mozilla/5.0 (StrumentiUtili.it verifica fonti)" -o documento "$u"; then
+            # i cookie restano fra un indirizzo e l'altro: Normattiva divide gli
+            # articoli lunghissimi in blocchi (art.progressivo) che si caricano
+            # solo nella sessione aperta dalla pagina dell'articolo
+            if ! curl -sSL --max-time 90 -c cookie.txt -b cookie.txt -A "Mozilla/5.0 (StrumentiUtili.it verifica fonti)" -o documento "$u"; then
               echo "ERRORE: download non riuscito"; echo "=== FINE $u"; continue
             fi
             # con «cerca» si stampano solo le righe che corrispondono, cercate
