@@ -108,7 +108,7 @@
         "@type": "HowTo",
         "@id": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#howto",
         "name": "Come compilare il modello F23",
-        "description": "Procedura per compilare un modello F23 per contributo unificato o imposta di registro su atti giudiziari.",
+        "description": "Procedura per compilare un modello F23, per esempio per pagare l'imposta di registro su un atto giudiziario dopo un avviso di liquidazione.",
         "inLanguage": "it-IT",
         "totalTime": "PT5M",
         "tool": [
@@ -121,23 +121,30 @@
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Indica i soggetti",
-            "text": "Inserisci codice fiscale e nominativo del Soggetto 1 e, se richiesto, del Soggetto 2.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#f23-cf-1"
+            "name": "Indica chi paga e l'altra parte",
+            "text": "Nel campo 4 i dati di chi versa (per gli atti giudiziari l'attore), nel campo 5 l'altra parte se richiesta (il convenuto).",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#campi-4-5"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Aggiungi le righe dei tributi",
-            "text": "Per ogni tributo indica codice, descrizione e importo, fino a quattro righe.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#container-f23-righe"
+            "name": "Copia i dati dell'atto",
+            "text": "Codice ufficio, causale ed estremi dell'atto, come li riporta l'avviso o l'atto ricevuto.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#come-si-compila"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Controlla il totale",
-            "text": "Verifica il totale e riporta sul modello codice ufficio, causale ed estremi dell'atto.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#tot-saldo"
+            "name": "Aggiungi i tributi",
+            "text": "Una riga per ogni codice tributo, con l'importo in due decimali; gli interessi si sommano al tributo.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#codici"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Controlla il totale e scarica il PDF",
+            "text": "Verifica l'importo complessivo e scarica il modello ufficiale compilato.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f23-editabile/#mp-app"
           }
         ]
       },
@@ -151,7 +158,31 @@
             "name": "Posso usare l’F23 per l’imposta di registro dell’affitto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No: dal 2014 l’imposta di registro sulle locazioni si paga con l’F24 ELIDE. Con l’F23 il pagamento non viene abbinato al contratto."
+              "text": "No: dal 1° gennaio 2015 l’imposta di registro sulle locazioni si paga esclusivamente con l’F24 ELIDE. Con l’F23 il pagamento non viene abbinato al contratto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il contributo unificato si paga con l’F23?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per le cause davanti al giudice ordinario no: dal 1° gennaio 2023 si paga tramite pagoPA, e un pagamento fatto in altro modo non libera la parte dai suoi obblighi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Devo compilare io i campi colorati del modello?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, se paghi da solo (autoliquidazione o pagamento spontaneo): i campi retinati sono riservati all’ufficio. Se invece hai ricevuto un modello già compilato e devi rifarlo, ricopia anche quelli."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove si paga l’F23?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Presso qualsiasi agente della riscossione, banca o ufficio postale, anche lontano dal tuo domicilio fiscale o dall’ufficio che ha chiesto il pagamento."
             }
           },
           {
@@ -393,7 +424,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Codici e importi di riferimento aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Codici e regole verificati sulle fonti ufficiali a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -406,7 +437,7 @@
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
             <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e di prassi</p>
-            <p class="text-gray-600 leading-relaxed">D.Lgs. 237/1997 (modello F23), D.P.R. 131/1986 e relativa Tariffa (imposta di registro sugli atti giudiziari), D.P.R. 115/2002 art. 13 (contributo unificato), tabelle dei codici tributo F23 dell'Agenzia delle Entrate.</p>
+            <p class="text-gray-600 leading-relaxed">Istruzioni ufficiali del modello F23 (tabelle dei codici A, B, C e D), D.P.R. 131/1986 e relativa Tariffa (imposta di registro sugli atti giudiziari), D.L. 104/2013 art. 26, D.P.R. 115/2002 artt. 13 e 192 (contributo unificato e pagamento con pagoPA), comunicato dell'Agenzia delle Entrate del 3 gennaio 2014 (locazioni con l'F24 ELIDE).</p>
           </div>
         </div>
       </section>
@@ -414,25 +445,112 @@
       <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
         <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Quando si usa ancora il modello F23 e come si compila</h2>
         <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
-          <p>L&rsquo;F23 &egrave; il vecchio modello di pagamento rimasto in uso per alcuni versamenti non passati all&rsquo;F24, soprattutto legati alla giustizia civile: imposta di registro su sentenze e decreti, contributo unificato, alcune sanzioni. Di solito &egrave; l&rsquo;avviso o l&rsquo;ufficio che ti chiede di usarlo e ti indica i codici. Non ammette la compensazione di crediti.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">I campi che contano</h3>
+          <p>L&rsquo;F23 &egrave; il modello per pagare &laquo;tasse, imposte, sanzioni pecuniarie e somme dovute a seguito di contravvenzioni, verbali-ingiunzioni&raquo;, come dicono le sue avvertenze. Oggi lo si usa soprattutto quando lo chiede un ufficio: per esempio con l&rsquo;avviso di liquidazione dell&rsquo;imposta di registro su una sentenza, che arriva insieme al modello gi&agrave; compilato. Non ammette la compensazione di crediti, e gli interessi non hanno una riga propria: si sommano al tributo a cui si riferiscono.</p>
+          <p>Si paga presso qualsiasi agente della riscossione, banca o ufficio postale, indipendentemente dal domicilio fiscale di chi versa e dalla sede dell&rsquo;ufficio che ha chiesto il pagamento.</p>
+
+          <div id="f23-o-elide" class="rounded-xl border border-amber-200 bg-amber-50 p-4 sm:p-5">
+            <h3 class="text-base font-bold text-gray-900">F23 o F24 ELIDE? E il contributo unificato?</h3>
+            <ul class="mt-2 list-disc pl-5 space-y-1.5">
+              <li><strong>Affitti</strong>: dal 1&deg; gennaio 2015 l&rsquo;imposta di registro sui contratti di locazione si paga esclusivamente con l&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a>, come ha annunciato l&rsquo;Agenzia delle Entrate con il comunicato del 3 gennaio 2014. Le istruzioni dell&rsquo;F23 riportano ancora i vecchi codici delle locazioni (per esempio 112T e 115T), ma per gli affitti non si usano pi&ugrave;.</li>
+              <li><strong>Contributo unificato</strong>: per le cause davanti al giudice ordinario, dal 1&deg; gennaio 2023 si paga tramite pagoPA (art. 192 del D.P.R. 115/2002). Un pagamento fatto in altro modo, per esempio con l&rsquo;F23 e il codice 941T, non libera la parte dai suoi obblighi.</li>
+            </ul>
+          </div>
+
+          <h3 id="chi-compila" class="text-lg font-bold text-gray-900 pt-3">Chi lo compila</h3>
+          <p>Se il modello te lo manda l&rsquo;ufficio insieme all&rsquo;atto, &egrave; gi&agrave; precompilato: completa solo i dati mancanti, prendendoli dall&rsquo;atto. Lo compili tu da solo soltanto per un&rsquo;autoliquidazione o un pagamento spontaneo, e in quel caso i campi retinati (quelli con il fondo colorato riservati all&rsquo;ufficio) restano vuoti. Se il modello precompilato si rovina, sul nuovo vanno ricopiati anche i dati dei campi retinati. Gli errori di trascrizione impediscono di abbinare il pagamento all&rsquo;atto e possono portare a nuove richieste delle stesse somme.</p>
+
+          <h3 id="campi-4-5" class="text-lg font-bold text-gray-900 pt-3">Chi va nei campi 4 e 5</h3>
+          <p>Il campo 4 va sempre compilato, e chi versa deve firmare il modello. Le avvertenze dicono chi indicare a seconda del pagamento:</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Dati anagrafici da indicare nei campi 4 e 5 del modello F23</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Tipo di atto o pagamento</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Campo 4</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Campo 5</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Atti giudiziari</td><td class="px-2 sm:px-3 py-2 align-top">Attore</td><td class="px-2 sm:px-3 py-2 align-top">Convenuto (se conosciuto)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Atti pubblici o scritture private autenticate</td><td class="px-2 sm:px-3 py-2 align-top">Ufficiale rogante (notaio)</td><td class="px-2 sm:px-3 py-2 align-top">&ndash;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Altri atti privati</td><td class="px-2 sm:px-3 py-2 align-top">Richiedente</td><td class="px-2 sm:px-3 py-2 align-top">Altra parte</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Formalit&agrave; ipotecarie</td><td class="px-2 sm:px-3 py-2 align-top">Pubblico ufficiale o autorit&agrave; emittente</td><td class="px-2 sm:px-3 py-2 align-top">Richiedente, se diverso</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Dichiarazioni di successione</td><td class="px-2 sm:px-3 py-2 align-top">Erede che paga</td><td class="px-2 sm:px-3 py-2 align-top">Defunto</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Pagamenti del garante</td><td class="px-2 sm:px-3 py-2 align-top">Debitore principale</td><td class="px-2 sm:px-3 py-2 align-top">Garante</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Altri casi</td><td class="px-2 sm:px-3 py-2 align-top">Chi deve pagare</td><td class="px-2 sm:px-3 py-2 align-top">Eventuale rappresentante</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="come-si-compila" class="text-lg font-bold text-gray-900 pt-3">Gli altri campi, uno per uno</h3>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li><strong>Soggetto 1 e Soggetto 2</strong>: chi paga e l&rsquo;altra parte (per esempio la controparte di una causa). Se l&rsquo;avviso li indica, copiali entrambi.</li>
-            <li><strong>Codice ufficio</strong>: identifica l&rsquo;ufficio che riceve il pagamento (un ufficio dell&rsquo;Agenzia o un tribunale). Un codice sbagliato manda i soldi all&rsquo;ufficio sbagliato.</li>
-            <li><strong>Codice tributo</strong>: ha una tabella propria, diversa da quella dell&rsquo;F24 (per esempio 109T per l&rsquo;imposta di registro su atti giudiziari, 941T per il contributo unificato).</li>
-            <li><strong>Estremi dell&rsquo;atto</strong>: anno e numero, se paghi in seguito a un avviso.</li>
+            <li><strong>Campi 1 e 2</strong>: la provincia dell&rsquo;agente della riscossione a cui paghi direttamente, oppure la banca o la posta (con l&rsquo;agenzia o l&rsquo;ufficio) a cui dai la delega.</li>
+            <li><strong>Campo 3</strong>: spazio dell&rsquo;ufficio che chiede il pagamento.</li>
+            <li><strong>Campo 6, codice ufficio</strong>: obbligatorio. &Egrave; il codice dell&rsquo;ufficio o dell&rsquo;ente a cui va il versamento; il &laquo;subcodice&raquo; &egrave; riservato all&rsquo;ufficio. In caso di ravvedimento &egrave; il codice dell&rsquo;ufficio competente a rilevare la violazione.</li>
+            <li><strong>Campo 7, codice territoriale</strong>: lo compilano uffici giudiziari e forze di polizia, con il codice del comune in cui hanno sede (H501 per Roma).</li>
+            <li><strong>Campo 8, contenzioso</strong>: solo per atti in pendenza di giudizio, con i codici della tabella A delle istruzioni (per esempio 4 per la Corte d&rsquo;appello, 6 per la conciliazione giudiziale).</li>
+            <li><strong>Campo 9, causale</strong>: solo per i pagamenti della tabella B, per esempio <strong>RG</strong> per la registrazione di atti giudiziari, <strong>RP</strong> per gli atti pubblici o privati, <strong>SZ</strong> per le sanzioni in materia di imposte dirette e indirette.</li>
+            <li><strong>Campo 10, estremi dell&rsquo;atto</strong>: per gli atti pubblici l&rsquo;anno di stipula e il primo numero di repertorio; per il ravvedimento l&rsquo;anno della violazione; per la definizione agevolata delle sanzioni gli estremi dell&rsquo;atto notificato.</li>
+            <li><strong>Campo 11, codice tributo</strong>: lo stesso codice non pu&ograve; comparire due volte, quindi gli importi con lo stesso codice si sommano su una riga.</li>
+            <li><strong>Campo 12</strong>: descrizione riservata all&rsquo;ufficio.</li>
+            <li><strong>Campo 13, importo</strong>: sempre con due decimali, anche quando sono zero (52 euro si scrivono 52,00); con pi&ugrave; decimali si arrotonda al centesimo: 52,752 diventa 52,75, 52,755 e 52,758 diventano 52,76.</li>
+            <li><strong>Campo 14, codice destinatario</strong>: solo in casi particolari, per esempio la sigla della provincia del PRA per l&rsquo;imposta sull&rsquo;RC auto.</li>
           </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
-          <p><strong>Contributo unificato per un decreto ingiuntivo da 12.000 &euro;.</strong> Per lo scaglione da 5.200 a 26.000 &euro; il contributo ordinario &egrave; di 237 &euro;; nel procedimento monitorio &egrave; dimezzato: 118,50 &euro; con il codice 941T.</p>
-          <p><strong>Imposta di registro su una sentenza di condanna.</strong> Una societ&agrave; &egrave; condannata a pagare 20.000 &euro; per una fornitura non soggetta a IVA: l&rsquo;imposta &egrave; il 3%, cio&egrave; 600 &euro; (codice 109T), con un minimo di 200 &euro;.</p>
-          <p><strong>Credito fatturato con IVA.</strong> Se il decreto riguarda una fattura con IVA, non si paga il 3% ma l&rsquo;imposta fissa di 200 &euro;. Se l&rsquo;avviso applica il 3% a un credito con IVA, conviene chiedere la correzione all&rsquo;ufficio indicato nell&rsquo;avviso prima di pagare.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Dove si paga</h3>
-          <p>In banca, alla posta o presso l&rsquo;agente della riscossione, oppure con l&rsquo;home banking se la tua banca offre il servizio F23. Il contributo unificato si pu&ograve; pagare anche con pagoPA.</p>
+
+          <h3 id="codici" class="text-lg font-bold text-gray-900 pt-3">I codici tributo pi&ugrave; usati</h3>
+          <p>Dalla tabella C delle istruzioni ufficiali; l&rsquo;elenco completo &egrave; disponibile presso banche, uffici postali e agenti della riscossione.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <caption class="sr-only">Codici tributo del modello F23 tratti dalla tabella C delle istruzioni</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Descrizione ufficiale</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">109T</td><td class="px-3 py-2 align-top">Imposta registro per atti, contratti verbali e denunce</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">671T</td><td class="px-3 py-2 align-top">Sanzione pecuniaria imposta di registro</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">649T</td><td class="px-3 py-2 align-top">Imposta ipotecaria</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">737T</td><td class="px-3 py-2 align-top">Imposta catastale</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">778T</td><td class="px-3 py-2 align-top">Tassa ipotecaria</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">005T</td><td class="px-3 py-2 align-top">Imposta sulle donazioni</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">729T</td><td class="px-3 py-2 align-top">Tassa istruzione superiore (laurea e abilitazione professionale)</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">675T</td><td class="px-3 py-2 align-top">Sanzione pecuniaria imposta di bollo</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">741T</td><td class="px-3 py-2 align-top">Sanzioni amministrative e multe inflitte dalle autorit&agrave; giudiziarie e amministrative</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">941T</td><td class="px-3 py-2 align-top">Contributo unificato di iscrizione al ruolo nei procedimenti giurisdizionali (per il giudice ordinario si paga con pagoPA)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <figure class="my-6">
+            <img src="/assets/esempi/f23-registro-sentenza.webp" width="1100" height="1160" loading="lazy" decoding="async"
+                 alt="Modello F23 compilato con dati inventati: attore Mario Rossi, convenuta Laura Bianchi, causale RG, codice tributo 109T, importo 600,00 euro"
+                 class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+            <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Il primo esempio qui sotto sul modello ufficiale, compilato con questa pagina (dati inventati). Codice ufficio ed estremi dell&rsquo;atto, nella realt&agrave;, si copiano dall&rsquo;avviso dell&rsquo;ufficio.</figcaption>
+          </figure>
+
+          <h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
+          <p><strong>1. Imposta di registro su una sentenza di condanna.</strong> Una sentenza condanna a pagare 20.000 &euro; per una fornitura non soggetta a IVA. Per gli atti giudiziari l&rsquo;imposta la calcola l&rsquo;ufficio, che manda l&rsquo;avviso di liquidazione: per le condanne al pagamento di somme &egrave; il 3%, cio&egrave; 600 &euro; (sopra il minimo di 200 &euro;), con il codice <strong>109T</strong> e la causale <strong>RG</strong>. Nel campo 4 va l&rsquo;attore, nel campo 5 il convenuto.</p>
+          <p><strong>2. Condanna per una fattura con IVA.</strong> Se la sentenza o il decreto riguardano corrispettivi soggetti a IVA, per quella parte non si applica il 3%: si paga l&rsquo;imposta in misura fissa, 200 &euro;. Se l&rsquo;avviso applica il 3% a un credito con IVA, conviene chiedere la correzione all&rsquo;ufficio indicato nell&rsquo;avviso prima di pagare.</p>
+          <p><strong>3. Contributo unificato per un decreto ingiuntivo da 12.000 &euro;.</strong> Per le cause da 5.200 a 26.000 &euro; il contributo &egrave; di 237 &euro;; per il procedimento d&rsquo;ingiunzione &egrave; ridotto alla met&agrave;, cio&egrave; 118,50 &euro;. Davanti al giudice ordinario si paga con pagoPA, non con l&rsquo;F23.</p>
+
+          <h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Usare l&rsquo;F23 per l&rsquo;affitto</strong>: dal 2015 serve l&rsquo;F24 ELIDE.</li>
+            <li><strong>Pagare il contributo unificato con l&rsquo;F23</strong> in una causa davanti al giudice ordinario: dal 2023 si paga con pagoPA.</li>
+            <li><strong>Ripetere lo stesso codice tributo su due righe</strong>: gli importi con lo stesso codice si sommano.</li>
+            <li><strong>Mettere gli interessi su una riga a parte</strong>: si sommano al tributo a cui si riferiscono.</li>
+            <li><strong>Lasciare vuoto il campo 4 o non firmare</strong>: il campo 4 &egrave; obbligatorio e chi versa deve firmare.</li>
+            <li><strong>Ricopiare male codice ufficio o estremi dell&rsquo;atto</strong> da un avviso: il pagamento non viene abbinato e la somma pu&ograve; essere chiesta di nuovo.</li>
+          </ul>
         </div>
         <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usare l&rsquo;F23 per l&rsquo;imposta di registro dell&rsquo;affitto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: dal 2014 l&rsquo;imposta di registro sulle locazioni si paga con l&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a>. Con l&rsquo;F23 il pagamento non viene abbinato al contratto.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: dal 1&deg; gennaio 2015 l&rsquo;imposta di registro sulle locazioni si paga esclusivamente con l&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a>. Con l&rsquo;F23 il pagamento non viene abbinato al contratto.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il contributo unificato si paga con l&rsquo;F23?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per le cause davanti al giudice ordinario no: dal 1&deg; gennaio 2023 si paga tramite pagoPA, e un pagamento fatto in altro modo non libera la parte dai suoi obblighi.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Devo compilare io i campi colorati del modello?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se paghi da solo (autoliquidazione o pagamento spontaneo): i campi retinati sono riservati all&rsquo;ufficio. Se invece hai ricevuto un modello gi&agrave; compilato e devi rifarlo, ricopia anche quelli.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove si paga l&rsquo;F23?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Presso qualsiasi agente della riscossione, banca o ufficio postale, anche lontano dal tuo domicilio fiscale o dall&rsquo;ufficio che ha chiesto il pagamento.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho sbagliato il codice ufficio: cosa faccio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
@@ -444,12 +562,12 @@
         </details>
         <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
         <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131</a> (Testo unico dell&rsquo;imposta di registro), art. 8 della Tariffa, parte I: atti giudiziari.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2002-05-30;115~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 30 maggio 2002, n. 115, art. 13</a>: contributo unificato.</li>
-          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f23/modello+f23" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F23</a> e tabella dei codici.</li>
+          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f23/modello+f23" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F23 e istruzioni</a> (campi 1-14, tabelle A, B, C e D).</li>
+          <li>Agenzia delle Entrate, <a href="https://www.agenziaentrate.gov.it/portale/documents/20143/314467/CS+03012014+F24+Elide_001_Com.+st.+F24+registro+locazioni+03.01.14.pdf/754c3c4c-b749-016b-fc59-a2ad79c9691a" class="text-indigo-700 underline" target="_blank" rel="noopener">comunicato stampa del 3 gennaio 2014</a>: dal 1&deg; gennaio 2015 i versamenti per le locazioni solo con l&rsquo;F24 ELIDE.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131:1~art8" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131, Tariffa parte I, art. 8</a> (atti giudiziari: 3% per le condanne al pagamento di somme, nota II per i corrispettivi soggetti a IVA) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131~art41" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 41</a> (liquidazione e imposta minima); <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2013-09-12;104~art26" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 12 settembre 2013, n. 104, art. 26</a>: imposta di registro in misura fissa di 200 &euro; dal 2014.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2002-05-30;115~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 30 maggio 2002, n. 115, art. 13</a> (importi del contributo unificato) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2002-05-30;115~art192" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 192</a> (pagamento tramite pagoPA).</li>
         </ul>
       </section>
-
       <!-- Pubblicità Extra per Dispositivi Mobili -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"

@@ -1031,7 +1031,11 @@
           // misura diversa in ogni riquadro: vedi il commento sopra
           // fissaCorpoDelCampo.
           fissaCorpoDelCampo(campo);
-          campo.setText(max && valore.length > max ? valore.slice(0, max) : valore);
+          // Nelle caselline da due cifre (giorno, mese, codici a due cifre)
+          // una cifra sola va preceduta da uno zero: 6 diventa 06. Senza,
+          // finirebbe nella prima casellina e la data si leggerebbe male.
+          const scritto = max === 2 && /^\d$/.test(valore) ? '0' + valore : valore;
+          campo.setText(max && scritto.length > max ? scritto.slice(0, max) : scritto);
           return;
         } catch (e) { /* non e' una casella di testo: si prova col menu */ }
         // Alcuni modelli gia' compilabili dell'Agenzia (per esempio l'AA4/8)
