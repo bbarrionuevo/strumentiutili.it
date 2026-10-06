@@ -7,6 +7,7 @@ finiti dentro il modulo: e' l'unico modo per accorgersi se una modifica allo
 schema o al motore ha rotto la compilazione.
 
 Uso:  python scripts/prova-moduli-versamento.py
+      PROVA_CHROMIUM=/percorso/chromium per un Chromium preciso (senza: Edge)
 """
 import sys, os, pathlib, tempfile, threading, http.server, functools, socketserver
 
@@ -137,10 +138,48 @@ def prova_ordinario(ctx, errori):
         "erario_2_tributo": "6099", "erario_2_credito": "300", "erario_2_credito_cent": "25",
         "erario_totale_a": "1250", "erario_totale_a_cent": "50",
         "erario_totale_b": "300", "erario_totale_b_cent": "25",
-        "erario_saldo": "950", "erario_saldo_cent": "25",
+        "erario_saldo": "950", "erario_saldo_cent": "25", "erario_segno": "+",
         "saldo_finale": "950", "saldo_finale_cent": "25",
         "firma": "MARIO ROSSI", "iban": "60X0542811101000000123456",
-    }, vuoti=("inps_1_debito", "imu_1_tributo", "inail_totale_i"))
+    }, vuoti=("inps_1_debito", "imu_1_tributo", "inail_totale_i", "inps_totale_c", "inps_segno"))
+    pag.close()
+
+
+def prova_ordinario_compensazione(ctx, errori):
+    """Un credito IRPEF usato per l'IMU: la sezione Erario ha solo il credito,
+    quindi come negli esempi ufficiali il totale A resta vuoto e il saldo di
+    sezione prende il segno «-»; il modello chiude a zero."""
+    pag = apri(ctx, "/cittadino-tasse/f24-editabile/f24-ordinario/", errori)
+    # la prova precedente ha lasciato i suoi dati nel browser: si riparte da zero
+    pag.click("#mp-azzera")
+    pag.wait_for_selector('[data-campo="F24.contribuente.cf"]', timeout=8000)
+    riempi = scrittore(pag, "F24")
+    riempi("contribuente.cf", "RSSMRA85T10A562S")
+    riempi("contribuente.cognome", "ROSSI")
+    pag.click('[data-nav="avanti"]')
+    pag.wait_for_selector('[data-campo="F24.erario.riga.0.tributo"]', timeout=8000)
+    riempi("erario.riga.0.tributo", "4001")
+    riempi("erario.riga.0.rateazione", "0101")
+    riempi("erario.riga.0.anno", "2025")
+    riempi("erario.riga.0.credito", "413,00")
+    voci = pag.locator("#mp-passi .mp-passo-voce")
+    titoli = voci.all_inner_texts()
+    voci.nth([i for i, t in enumerate(titoli) if "IMU" in t][0]).click()
+    pag.wait_for_timeout(300)
+    pag.check('[data-attiva="imu"]')
+    pag.wait_for_timeout(300)
+    riempi("imu.riga.0.ente", "H501")
+    riempi("imu.riga.0.tributo", "3918")
+    riempi("imu.riga.0.anno", "2026")
+    riempi("imu.riga.0.debito", "413,00")
+    ultimo_passo(pag)
+    campi = scarica(pag)
+    controlla("F24 ordinario con compensazione", campi, {
+        "erario_1_credito": "413", "erario_totale_b": "413",
+        "erario_saldo": "413", "erario_saldo_cent": "00", "erario_segno": "-",
+        "imu_1_ente": "H501", "imu_totale_g": "413", "imu_saldo": "413", "imu_segno": "+",
+        "saldo_finale": "0", "saldo_finale_cent": "00",
+    }, vuoti=("erario_totale_a", "erario_totale_a_cent", "imu_totale_h", "inps_totale_c", "regioni_segno"))
     pag.close()
 
 
@@ -365,9 +404,15 @@ def main():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     errori = []
     with sync_playwright() as pw:
-        b = pw.chromium.launch(channel="msedge", headless=True)
+        # PROVA_CHROMIUM=/percorso/chromium per un Chromium preciso (senza: Edge)
+        if os.environ.get("PROVA_CHROMIUM"):
+            b = pw.chromium.launch(executable_path=os.environ["PROVA_CHROMIUM"], headless=True)
+        else:
+            b = pw.chromium.launch(channel="msedge", headless=True)
         ctx = b.new_context(accept_downloads=True, viewport={"width": 1280, "height": 1100})
-        for nome, prova in (("ORDINARIO", prova_ordinario), ("ELIDE", prova_elide),
+        for nome, prova in (("ORDINARIO", prova_ordinario),
+                            ("ORDINARIO CON COMPENSAZIONE", prova_ordinario_compensazione),
+                            ("ELIDE", prova_elide),
                             ("SEMPLIFICATO", prova_semplificato), ("ACCISE", prova_accise),
                             ("F23", prova_f23)):
             print(f"\n================= {nome} =================")

@@ -89,6 +89,49 @@ ESEMPI = {
         "salto": "Sezioni Erario, INPS, Regioni e IMU: vuote",
         "larghezza": 1100,
     },
+    # Un credito IRPEF (codice 4001, come nell'esempio ufficiale «importo a
+    # credito») usato per l'acconto IMU di un immobile a Roma (codice 3918,
+    # come nell'esempio ufficiale: H501, acconto, un immobile): il modello
+    # chiude a zero. Contribuente e importi sono inventati
+    "f24-ordinario-compensazione": {
+        "pagina": "/cittadino-tasse/f24-editabile/f24-ordinario/",
+        "modello": "F24",
+        "passi": [
+            {"campi": {
+                "contribuente.cf": "RSSMRA85T10H501O",
+                "contribuente.cognome": "ROSSI",
+                "contribuente.nome": "MARIO",
+                "contribuente.nascitaGiorno": "10",
+                "contribuente.nascitaMese": "12",
+                "contribuente.nascitaAnno": "1985",
+                "contribuente.sesso": "M",
+                "contribuente.comuneNascita": "ROMA",
+                "contribuente.provinciaNascita": "RM",
+                "contribuente.domicilioComune": "ROMA",
+                "contribuente.domicilioProvincia": "RM",
+                "contribuente.domicilioVia": "VIA DI ESEMPIO 1",
+            }},
+            {"passo": "Erario", "campi": {
+                "erario.riga.0.tributo": "4001",
+                "erario.riga.0.rateazione": "0101",
+                "erario.riga.0.anno": "2025",
+                "erario.riga.0.credito": "413,00",
+            }},
+            {"passo": "IMU", "attiva": "imu", "campi": {
+                "imu.riga.0.ente": "H501",
+                "imu.riga.0.acconto": "X",
+                "imu.riga.0.numImmobili": "1",
+                "imu.riga.0.tributo": "3918",
+                "imu.riga.0.anno": "2026",
+                "imu.riga.0.debito": "413,00",
+            }},
+        ],
+        "firma": "MARIO ROSSI",
+        # contribuente ed Erario, la sezione IMU, la firma con il saldo finale
+        "ritaglio": [(0.0, 0.0, 1.0, 0.385), (0.0, 0.584, 1.0, 0.685), (0.0, 0.828, 1.0, 0.868)],
+        "salto": ["Sezioni INPS e Regioni: vuote", "Sezione altri enti previdenziali e assicurativi: vuota"],
+        "larghezza": 1100,
+    },
     # Registro su una sentenza (3% di 20.000 euro, codice 109T, causale RG):
     # attore e convenuto, ufficio ed estremi dell'atto sono inventati
     "f23-registro-sentenza": {
@@ -145,7 +188,10 @@ class Silenzioso(http.server.SimpleHTTPRequestHandler):
 def scrivi(pag, modello, chiave, valore):
     sel = f'[data-campo="{modello}.{chiave}"]'
     pag.wait_for_selector(sel, timeout=8000)
-    if pag.eval_on_selector(sel, "e => e.tagName") == "SELECT":
+    if pag.eval_on_selector(sel, "e => e.type") == "checkbox":
+        # le caselle da barrare (acconto, saldo...): «X» le spunta
+        pag.set_checked(sel, bool(valore))
+    elif pag.eval_on_selector(sel, "e => e.tagName") == "SELECT":
         pag.select_option(sel, valore)
     else:
         pag.fill(sel, valore)
@@ -220,7 +266,8 @@ def disegna(ctx, pdf, larghezza):
 
 def ritaglia(img, ritaglio, salto):
     """Il ritaglio della facciata; con piu' ritagli, uno sotto l'altro, separati
-    da una fascia grigia che dice cosa e' stato tolto."""
+    da una fascia grigia che dice cosa e' stato tolto (un testo per ogni fascia,
+    oppure lo stesso per tutte)."""
     w, h = img.size
     pezzi = [img.crop((round(l * w), round(a * h), round(r * w), round(g * h))).convert("RGB")
              for l, a, r, g in (ritaglio if isinstance(ritaglio, list) else [ritaglio])]
@@ -234,9 +281,10 @@ def ritaglia(img, ritaglio, salto):
     y = 0
     for i, p in enumerate(pezzi):
         if i:
+            testo = salto[i - 1] if isinstance(salto, list) else salto
             d.rectangle((0, y, tela.size[0], y + fascia - 1), fill="#e5e7eb")
-            l, a, r, g = d.textbbox((0, 0), salto, font=font)
-            d.text(((tela.size[0] - (r - l)) // 2 - l, y + (fascia - (g - a)) // 2 - a), salto, fill="#4b5563", font=font)
+            l, a, r, g = d.textbbox((0, 0), testo, font=font)
+            d.text(((tela.size[0] - (r - l)) // 2 - l, y + (fascia - (g - a)) // 2 - a), testo, fill="#4b5563", font=font)
             y += fascia
         tela.paste(p, (0, y))
         y += p.size[1]

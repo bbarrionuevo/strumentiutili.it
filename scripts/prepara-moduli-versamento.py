@@ -169,9 +169,12 @@ _TOTALI_ORDINARIO = [
     ("regioni", 349.9, "e", "f"), ("imu", 265.9, "g", "h"),
     ("inail", 193.9, "i", "l"), ("altri_enti", 145.9, "m", "n"),
 ]
+# Fra il secondo totale e il saldo c'e' la casellina del segno, sotto la
+# scritta «+/–»: «-» quando i crediti della sezione superano i debiti.
 TOTALI_ORDINARIO = [
     (sez, y, [importo(f"totale_{primo}", 322.2, 401.3),
               importo(f"totale_{secondo}", 408.6, 487.7),
+              pettine("segno", 487.7, 495.2, 1),
               importo("saldo", 495.2, 574.1)])
     for sez, y, primo, secondo in _TOTALI_ORDINARIO
 ]
@@ -412,6 +415,7 @@ _TOTALI_ACCISE = [
 TOTALI_ACCISE = [
     (sez, y, [importo(f"totale_{primo}", 322.3, 401.3),
               importo(f"totale_{secondo}", 408.7, 487.7),
+              pettine("segno", 487.7, 495.0, 1),
               importo("saldo", 495.0, 574.2)])
     for sez, y, primo, secondo in _TOTALI_ACCISE
 ] + [

@@ -1,6 +1,6 @@
 {
- "versione": "2026-09",
- "nota": "Mappatura dei campi del modello F24 ordinario creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-ordinario.pdf.",
+ "versione": "2026-10",
+ "nota": "Mappatura dei campi del modello F24 ordinario creati da scripts/prepara-moduli-versamento.py. I testi di aiuto vengono dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-ordinario.pdf e dagli esempi di compilazione della ricerca codici tributo dell'Agenzia delle Entrate (4001, 1840, 6099, 3800).",
  "tabelle": {
   "sesso": [
    {
@@ -17,7 +17,7 @@
   "F24": {
    "codice": "F24 ordinario",
    "nome": "Modello F24 ordinario",
-   "sottotitolo": "Modello di versamento unificato",
+   "sottotitolo": "Modello di pagamento unificato",
    "descrizione": "Versamento unificato di imposte, contributi e tributi locali, con compensazione dei crediti.",
    "pdf": "/assets/pdf/modello-f24-ordinario-compilabile.pdf",
    "istruzioni": "/assets/pdf/istruzioni-f24-ordinario.pdf",
@@ -208,14 +208,14 @@
          "type": "testo",
          "label": "Codice tributo",
          "width": "quarter",
-         "help": "Il codice che identifica l'imposta da versare, per esempio 4001 per il saldo IRPEF o 6099 per l'IVA. Lo trovi nella tabella dei codici tributo dell'Agenzia delle Entrate o nella comunicazione che ti ha richiesto il pagamento. Un codice sbagliato manda il versamento a un tributo diverso da quello dovuto."
+         "help": "Il codice che identifica l'imposta, per esempio 4001 per il saldo IRPEF, 4033 per il primo acconto, 1840 per il primo acconto della cedolare secca o 6099 per l'IVA della dichiarazione annuale. Lo trovi nella ricerca dei codici tributo dell'Agenzia delle Entrate o nella comunicazione che ti chiede il pagamento. Un codice sbagliato manda il versamento a un tributo diverso da quello dovuto."
         },
         {
          "id": "rateazione",
          "type": "testo",
          "label": "Rateazione / regione / prov. / mese rif.",
          "width": "quarter",
-         "help": "Campo a uso multiplo. Per i versamenti rateizzati indica rata e numero totale di rate nel formato NNRR (per esempio 0106 per la prima di sei rate). Per le ritenute indica il mese di riferimento su quattro cifre: novembre è 0011. Per IRAP e addizionali regionali indica il codice dell'ente territoriale destinatario."
+         "help": "Campo a uso multiplo. In unica soluzione scrivi 0101. A rate, quattro cifre: la rata che paghi e il numero totale di rate (0106 è la prima di sei, 0206 la seconda). Per i versamenti periodici, il mese di riferimento: per le ritenute di novembre 0011. Per IRAP e addizionali pagate con un avviso o un atto nella sezione Erario, il codice dell'ente destinatario."
         },
         {
          "id": "anno",
@@ -236,7 +236,7 @@
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -384,7 +384,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "erario_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "erario_segno"
       }
      ]
     },
@@ -412,7 +413,7 @@
          "type": "testo",
          "label": "Causale contributo",
          "width": "quarter",
-         "help": "La sigla della causale, per esempio CF per i contributi fissi di artigiani e commercianti, CXX per la gestione separata, DM10 per i dipendenti."
+         "help": "La sigla della causale contributo, come la indica l'INPS nel modello di pagamento o nelle istruzioni per il tuo tipo di contributo."
         },
         {
          "id": "matricola",
@@ -447,7 +448,7 @@
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -561,7 +562,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "inps_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "inps_segno"
       }
      ],
      "opzionale": true
@@ -583,7 +585,7 @@
          "type": "testo",
          "label": "Codice regione",
          "width": "quarter",
-         "help": "Il codice della regione destinataria del versamento, dalla tabella dei codici regione dell'Agenzia delle Entrate (per esempio 12 per il Lazio, 03 per la Lombardia)."
+         "help": "Il codice della regione destinataria, dalla tabella dei codici regione dell'Agenzia delle Entrate: per esempio 08 per il Lazio, come nell'esempio ufficiale del codice 3800."
         },
         {
          "id": "tributo",
@@ -597,7 +599,7 @@
          "type": "testo",
          "label": "Rateazione / mese rif.",
          "width": "quarter",
-         "help": "Rata e numero totale di rate nel formato NNRR, oppure il mese di riferimento."
+         "help": "In unica soluzione 0101; a rate, la rata che paghi e il numero totale di rate (0106 è la prima di sei); per i versamenti periodici, il mese di riferimento."
         },
         {
          "id": "anno",
@@ -617,7 +619,7 @@
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -727,7 +729,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "regioni_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "regioni_segno"
       }
      ],
      "opzionale": true
@@ -756,19 +759,21 @@
          "type": "testo",
          "label": "Codice tributo",
          "width": "quarter",
-         "help": "Per esempio 3918 per l'IMU su altri fabbricati, 3912 per l'abitazione principale."
+         "help": "Per esempio 3918 per l'IMU sugli altri fabbricati, 3912 per l'abitazione principale, 3914 per i terreni, 3916 per le aree fabbricabili, 3944 per la TARI."
         },
         {
          "id": "rateazione",
          "type": "testo",
          "label": "Rateazione / mese rif.",
-         "width": "quarter"
+         "width": "quarter",
+         "help": "Per l'IMU si compila solo se lo prevedono istruzioni dell'Amministrazione finanziaria. Per la TARI, la rata e il numero di rate: 0102 per la prima di due, 0101 in unica soluzione."
         },
         {
          "id": "anno",
          "type": "anno",
          "label": "Anno di riferimento",
-         "width": "quarter"
+         "width": "quarter",
+         "help": "L'anno d'imposta, in quattro cifre. Se barri «Ravv.», l'anno in cui l'imposta andava versata."
         },
         {
          "id": "ravv",
@@ -782,7 +787,7 @@
          "type": "checkX",
          "label": "Immob. variati",
          "width": "quarter",
-         "help": "Barra se nel corso dell'anno sono variati gli immobili posseduti."
+         "help": "Barra se per uno o più immobili ci sono state variazioni che richiedono la dichiarazione di variazione."
         },
         {
          "id": "acconto",
@@ -803,21 +808,21 @@
          "type": "numero",
          "label": "Numero immobili",
          "width": "quarter",
-         "help": "Quanti immobili sono compresi in questa riga."
+         "help": "Quanti immobili comprende la riga, al massimo tre cifre."
         },
         {
          "id": "debito",
          "type": "importoEuro",
          "label": "Importo a debito versato (euro)",
          "width": "quarter",
-         "help": "L'importo che versi per questo tributo. Gli importi vanno sempre indicati con le due cifre decimali, anche quando sono zero: scrivi 1250,00 e non 1250."
+         "help": "L'importo che versi, sempre con i due decimali. Per l'IMU scrivi l'importo già arrotondato all'euro, per difetto fino a 49 centesimi e per eccesso oltre: 412,60 diventa 413,00."
         },
         {
          "id": "credito",
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -964,7 +969,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "imu_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "imu_segno"
       }
      ],
      "opzionale": true
@@ -1013,7 +1019,7 @@
          "type": "testo",
          "label": "Causale",
          "width": "quarter",
-         "help": "Per esempio P per il premio di autoliquidazione."
+         "help": "La causale indicata dall'INAIL per il versamento."
         },
         {
          "id": "debito",
@@ -1027,7 +1033,7 @@
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -1126,7 +1132,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "inail_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "inail_segno"
       }
      ],
      "opzionale": true
@@ -1191,7 +1198,7 @@
          "type": "importoEuro",
          "label": "Importo a credito compensato (euro)",
          "width": "quarter",
-         "help": "Il credito che porti in compensazione su questo tributo. Il credito compensato non può superare l'importo del debito che stai compensando."
+         "help": "Il credito che usi in compensazione, sulla riga con il codice e l'anno da cui nasce. In tutto i crediti non possono superare i debiti: il saldo finale del modello non può mai essere negativo."
         }
        ],
        "righe": [
@@ -1277,7 +1284,8 @@
        },
        "type": "importoEuro",
        "pdfCentesimi": "altri_enti_saldo_cent",
-       "width": "third"
+       "width": "third",
+       "pdfSegno": "altri_enti_segno"
       }
      ],
      "opzionale": true
@@ -1318,7 +1326,7 @@
          }
         ]
        },
-       "help": "Calcolato come somma di tutti i debiti meno somma di tutti i crediti compensati. Se il risultato è zero il modello va comunque presentato, ma solo per via telematica."
+       "help": "La somma di tutti i debiti meno i crediti compensati, e non può essere negativa. Se è zero il modello va presentato lo stesso, solo con i servizi telematici dell'Agenzia delle Entrate; lo stesso vale per ogni modello con un credito compensato, anche se resta qualcosa da pagare."
       },
       {
        "id": "firma",

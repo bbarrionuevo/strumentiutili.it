@@ -65,7 +65,7 @@ test('i collegamenti alle fonti hanno la forma giusta e si aprono a parte', () =
       const href = a[1].replace(/&amp;/g, '&');
       if (!/rel="noopener"/.test(a[2])) sbagliati.push(p.percorso + ': senza rel=noopener ' + href);
       if (href.includes('normattiva.it') && !URN.test(href)) sbagliati.push(p.percorso + ': URN ' + href);
-      if (!/^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|www1?\.agenziaentrate\.gov\.it)\//.test(href)) sbagliati.push(p.percorso + ': fonte non ufficiale ' + href);
+      if (!/^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|(www1?|assistenza)\.agenziaentrate\.gov\.it|www\.comune\.[a-z-]+(\.[a-z]{2})?\.it)\//.test(href)) sbagliati.push(p.percorso + ': fonte non ufficiale ' + href);
     }
   }
   assert.deepStrictEqual(sbagliati, []);
