@@ -87,6 +87,8 @@ test('Normattiva: dal blocco solo i commi chiesti, con le loro lettere', () => {
   // un comma citato fra le righe non interrompe quello in corso
   const citato = C.commiDelBlocco(['745. La base imponibile:', '2. testo citato di un\'altra legge', 'a) 160 per i fabbricati', '784. Fuori'], 738, 783);
   assert.deepStrictEqual(citato, ['745. La base imponibile:', '2. testo citato di un\'altra legge', 'a) 160 per i fabbricati']);
+  // un comma abrogato ha il numero da solo sulla riga: conta come inizio del comma
+  assert.deepStrictEqual(C.commiDelBlocco(['783. Ultimo', '784.', '((COMMA ABROGATO))'], 738, 783), ['783. Ultimo']);
   assert.strictEqual(C.commiDelBlocco(['701. Altro'], 738, 783), null);
 });
 

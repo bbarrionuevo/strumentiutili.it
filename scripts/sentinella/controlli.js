@@ -111,7 +111,8 @@ function commiDelBlocco(righe, da, a) {
   const fuori = [];
   let comma = null;
   for (const r of righe || []) {
-    const m = String(r).match(/^(\d+)(?:-[a-z]+)?\.\s/);
+    // il numero puo' stare da solo sulla riga: «168.» e sotto «((COMMA ABROGATO ...))»
+    const m = String(r).match(/^(\d+)(?:-[a-z]+)?\.(?:\s|$)/);
     const n = m ? Number(m[1]) : NaN;
     if (n >= primo && n < primo + 100 && (comma === null || n >= comma)) comma = n;
     if (comma !== null && comma >= da && comma <= a) fuori.push(r);
