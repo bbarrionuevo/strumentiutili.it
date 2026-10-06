@@ -93,3 +93,18 @@ test('la pagina dell\'F24 ordinario ha campo per campo, codici, rate, compensazi
   assert.match(ord, /50\.000 &euro;/);
   assert.match(ord, /src="\/assets\/esempi\/f24-ordinario-compensazione\.webp"/);
 });
+
+// Dal 1° gennaio 2027 gli articoli citati (artt. 17 e 20 D.Lgs. 241/1997,
+// art. 34 L. 388/2000, art. 37 D.L. 223/2006...) sono abrogati dal D.Lgs.
+// 33/2025: lo dice il testo multivigente di Normattiva salvato dalla
+// sentinella. Finche' la pagina non e' riscritta, deve avvisarlo, e la
+// sentinella ha il promemoria per farlo in tempo.
+test('le pagine F24 avvisano del cambio di norme del 2027', () => {
+  const R = JSON.parse(leggi('data/fonti-monitorate.json'));
+  assert.ok(R.scadenze.some((s) => s.id === 'versamenti-2027-dlgs-33-2025'));
+  const oggi = new Date().toISOString().slice(0, 10);
+  if (oggi >= '2027-01-01') return; // dal 2027 l'avviso va tolto insieme alla riscrittura
+  for (const p of ['cittadino-tasse/f24-editabile/f24-ordinario/', 'cittadino-tasse/f24-editabile/']) {
+    assert.match(C.testoVisibile(leggi(p + 'index.html')), /1° gennaio 2027[\s\S]{0,200}D\.Lgs\. 33\/2025/i, p);
+  }
+});
