@@ -38,10 +38,12 @@ test('gruppo D: 0,76% allo Stato (3925), il resto al Comune (3930)', () => {
   assert.strictEqual(r.baseImponibile, 273000);           // 4.000 × 1,05 × 65
   assert.strictEqual(r.impostaAnnua, 2894);
   // JSON: gli oggetti vengono da un altro contesto vm, con altri prototipi
-  assert.deepStrictEqual(JSON.parse(JSON.stringify(r.ripartizione)), [
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(r.ripartizione.map(({ codice, ente, importo }) => ({ codice, ente, importo })))), [
     { codice: '3925', ente: 'Stato', importo: 2075 },
     { codice: '3930', ente: 'Comune', importo: 819 }
   ]);
+  // le quote prima dell'arrotondamento servono a dividere acconto e saldo
+  assert.ok(Math.abs(r.ripartizione[0].lordo - 2074.8) < 1e-9);       // 273.000 × 7,6‰
 });
 
 test('terreni e negozi', () => {

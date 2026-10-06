@@ -104,7 +104,7 @@ test('le pagine F24 avvisano del cambio di norme del 2027', () => {
   assert.ok(R.scadenze.some((s) => s.id === 'versamenti-2027-dlgs-33-2025'));
   const oggi = new Date().toISOString().slice(0, 10);
   if (oggi >= '2027-01-01') return; // dal 2027 l'avviso va tolto insieme alla riscrittura
-  for (const p of ['cittadino-tasse/f24-editabile/f24-ordinario/', 'cittadino-tasse/f24-editabile/']) {
+  for (const p of ['cittadino-tasse/f24-editabile/f24-ordinario/', 'cittadino-tasse/f24-editabile/', 'cittadino-tasse/f24-editabile/f24-semplificato/']) {
     assert.match(C.testoVisibile(leggi(p + 'index.html')), /1° gennaio 2027[\s\S]{0,200}D\.Lgs\. 33\/2025/i, p);
   }
 });

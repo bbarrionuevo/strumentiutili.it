@@ -305,7 +305,8 @@
       "tipo": "pagina",
       "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneRegioni.php?CT=3800",
       "pagine": [
-        "cittadino-tasse/f24-editabile/f24-ordinario/"
+        "cittadino-tasse/f24-editabile/f24-ordinario/",
+        "cittadino-tasse/f24-editabile/f24-semplificato/"
       ],
       "motori": [
         "data/modello-f24-ordinario-schema.json",
@@ -320,14 +321,29 @@
       "tipo": "pagina",
       "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneEntiLocali.php?CT=3918&Ord=1421",
       "pagine": [
-        "cittadino-tasse/f24-editabile/f24-ordinario/"
+        "cittadino-tasse/f24-editabile/f24-ordinario/",
+        "cittadino-tasse/f24-editabile/f24-semplificato/"
       ],
       "motori": [
         "scripts/genera-esempi-moduli.py"
       ],
       "deve_contenere": [
         "IMU - IMPOSTA MUNICIPALE PROPRIA PER GLI ALTRI FABBRICATI - COMUNE",
-        "H501"
+        "H501",
+        "detrazione abitazione principale"
+      ]
+    },
+    {
+      "id": "codice-tributo-3844-addizionale-comunale-saldo",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneEntiLocali.php?CT=3844&Ord=1360",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-semplificato/",
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "deve_contenere": [
+        "AUTOTASSAZIONE - SALDO",
+        "0106"
       ]
     },
     {
@@ -335,11 +351,14 @@
       "tipo": "pagina",
       "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/Ricorrenti.php",
       "pagine": [
-        "cittadino-tasse/f24-editabile/f24-ordinario/"
+        "cittadino-tasse/f24-editabile/f24-ordinario/",
+        "cittadino-tasse/f24-editabile/f24-semplificato/"
       ],
       "deve_contenere": [
         "IRPEF saldo",
-        "IMU - imposta municipale propria per gli altri fabbricati - comune"
+        "IMU - imposta municipale propria per gli altri fabbricati - comune",
+        "IMU - imposta municipale propria su abitazione principale e relative pertinenze",
+        "Tari-tassa sui rifiuti"
       ]
     },
     {
@@ -527,6 +546,27 @@
       "titolo": "F24: dal 2027 versamenti, rate e compensazioni passano al D.Lgs. 33/2025",
       "cosa": "Dal 1° gennaio 2027 il D.Lgs. 33/2025 abroga gli artt. 17 e 20 del D.Lgs. 241/1997, l'art. 34 della L. 388/2000, l'art. 31 c. 1 del D.L. 78/2010, l'art. 37 cc. 49 e 49-quinquies del D.L. 223/2006 e l'art. 11 c. 2 del D.L. 66/2014; il D.Lgs. 173/2024 abroga l'art. 13 del D.Lgs. 471/1997. Leggere i nuovi articoli e riscrivere rate, compensazione, canali di pagamento e sanzioni nelle pagine F24 (ordinario, indice, semplificato, accise, ELIDE) e nei loro schemi prima del 1° gennaio, poi togliere l'avviso «Dal 1° gennaio 2027 cambiano le norme».",
       "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-03-24;33"
+    },
+    {
+      "id": "imu-dichiarazione-decreto-mef",
+      "dal": "2027-03-01",
+      "titolo": "Dichiarazione IMU: il decreto del MEF del comma 768-bis",
+      "cosa": "Il comma 768-bis della L. 160/2019, scritto dal D.Lgs. 147/2026, vuole la dichiarazione IMU solo in via telematica secondo un decreto del Ministero dell'economia; fino al decreto si usa il modello del D.M. 29 luglio 2022. Controllare se il decreto e' uscito e aggiornare le pagine dell'IMU (F24 semplificato, calcolatore IMU, guida IMU).",
+      "dati": [
+        "imu"
+      ],
+      "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-07;147~art26"
+    },
+    {
+      "id": "imu-commi-738-783",
+      "dal": "2027-01-04",
+      "ripeti": "anno",
+      "titolo": "IMU: rileggere i commi 738-783 della L. 160/2019",
+      "cosa": "Su Normattiva l'art. 1 della L. 160/2019 e' diviso in blocchi di cento commi e la sentinella archivia solo il primo (commi 1-100). I commi dell'IMU stanno nel blocco 701-800: rileggerli con leggi-fonti (pagina dell'articolo e poi caricaArticolo con art.progressivo=8 nella stessa esecuzione, con la lettura «cerca») e controllare coefficienti, riduzioni, detrazione, scadenze e dichiarazione nelle pagine dell'IMU.",
+      "dati": [
+        "imu"
+      ],
+      "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1"
     }
   ],
   "norme": [
@@ -616,10 +656,14 @@
     },
     "imu": {
       "norme": [
-        "stato:legge:2019-12-27;160~art1"
+        "stato:legge:2019-12-27;160~art1",
+        "stato:decreto.legislativo:2026-08-07;147~art26",
+        "stato:legge:2006-12-27;296~art1"
       ],
       "scadenze": [
-        "legge-di-bilancio"
+        "legge-di-bilancio",
+        "imu-commi-738-783",
+        "imu-dichiarazione-decreto-mef"
       ]
     },
     "parcellaAvvocato": {
