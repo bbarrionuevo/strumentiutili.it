@@ -132,6 +132,49 @@ ESEMPI = {
         "salto": ["Sezioni INPS e Regioni: vuote", "Sezione altri enti previdenziali e assicurativi: vuota"],
         "larghezza": 1100,
     },
+    # Acconto IMU di una seconda casa a Roma (A/2, rendita 750, 10,6 per mille:
+    # 1.336 euro l'anno, acconto 668) e prima di due rate della TARI, sulla
+    # stessa facciata del semplificato
+    "f24-semplificato-imu-tari": {
+        "pagina": "/cittadino-tasse/f24-editabile/f24-semplificato/",
+        "modello": "SEMPLIFICATO",
+        "passi": [
+            {"campi": {
+                "contribuente.cf": "RSSMRA85T10H501O",
+                "contribuente.cognome": "ROSSI",
+                "contribuente.nome": "MARIO",
+                "contribuente.nascitaGiorno": "10",
+                "contribuente.nascitaMese": "12",
+                "contribuente.nascitaAnno": "1985",
+                "contribuente.sesso": "M",
+                "contribuente.comuneNascita": "ROMA",
+                "contribuente.provinciaNascita": "RM",
+            }},
+            {"passo": "Motivo del pagamento", "campi": {
+                "pagamento.riga.0.sezione": "EL",
+                "pagamento.riga.0.tributo": "3918",
+                "pagamento.riga.0.ente": "H501",
+                "pagamento.riga.0.acconto": "X",
+                "pagamento.riga.0.numImmobili": "1",
+                "pagamento.riga.0.anno": "2026",
+                "pagamento.riga.0.debito": "668,00",
+            }},
+            {"passo": "Motivo del pagamento", "aggiungi": "pagamento|riga", "campi": {
+                "pagamento.riga.1.sezione": "EL",
+                "pagamento.riga.1.tributo": "3944",
+                "pagamento.riga.1.ente": "H501",
+                "pagamento.riga.1.numImmobili": "1",
+                "pagamento.riga.1.rateazione": "0102",
+                "pagamento.riga.1.anno": "2026",
+                "pagamento.riga.1.debito": "210,00",
+            }},
+        ],
+        "firma": "MARIO ROSSI",
+        # contribuente, righe e saldo finale: gli estremi del versamento li
+        # compila la banca
+        "ritaglio": (0.0, 0.0, 1.0, 0.418),
+        "larghezza": 1100,
+    },
     # Registro su una sentenza (3% di 20.000 euro, codice 109T, causale RG):
     # attore e convenuto, ufficio ed estremi dell'atto sono inventati
     "f23-registro-sentenza": {
@@ -219,6 +262,10 @@ def compila(ctx, esempio):
         if passo.get("attiva"):
             pag.check(f'[data-attiva="{passo["attiva"]}"]')
             pag.wait_for_timeout(400)
+        if passo.get("aggiungi"):
+            # una riga in piu' nel gruppo ripetibile («passo|gruppo»)
+            pag.click(f'[data-aggiungi="{passo["aggiungi"]}"]')
+            pag.wait_for_timeout(300)
         for chiave, valore in passo["campi"].items():
             scrivi(pag, m, chiave, valore)
     voci = pag.locator("#mp-passi .mp-passo-voce")

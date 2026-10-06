@@ -234,16 +234,22 @@ def prova_semplificato(ctx, errori):
     pag = apri(ctx, "/cittadino-tasse/f24-editabile/f24-semplificato/", errori)
     riempi = scrittore(pag, "SEMPLIFICATO")
 
-    # il ponte dal calcolatore dell'IMU deve compilare la prima riga
+    # il ponte dal calcolatore dell'IMU deve compilare la prima riga: tutto a
+    # giugno, quindi «Acc.» e «Saldo» barrate, con il codice del Comune
     pag.fill("#imu-rendita", "450.50")
     pag.select_option("#imu-categoria", "A/2")
     pag.fill("#imu-aliquota", "10.6")
+    pag.select_option("#imu-rata", "unica")
+    pag.fill("#imu-ente", "h501")
     pag.click("#btn-auto-imu")
     pag.wait_for_timeout(700)
     dal_ponte = {c: pag.input_value(f'[data-campo="SEMPLIFICATO.pagamento.riga.0.{c}"]')
-                 for c in ("sezione", "tributo", "anno", "debito")}
-    print("  riga scritta dal calcolatore IMU:", dal_ponte)
-    if dal_ponte["sezione"] != "EL" or dal_ponte["tributo"] != "3918" or not dal_ponte["debito"]:
+                 for c in ("sezione", "tributo", "ente", "anno", "numImmobili", "debito")}
+    spunte = {c: pag.is_checked(f'[data-campo="SEMPLIFICATO.pagamento.riga.0.{c}"]') for c in ("acconto", "saldo")}
+    print("  riga scritta dal calcolatore IMU:", dal_ponte, spunte)
+    # 450,50 x 1,05 x 160 x 10,6 per mille = 802,23 -> 802,00
+    if (dal_ponte["sezione"] != "EL" or dal_ponte["tributo"] != "3918" or dal_ponte["ente"] != "H501"
+            or dal_ponte["numImmobili"] != "1" or dal_ponte["debito"] != "802,00" or not all(spunte.values())):
         print("  NO il ponte dal calcolatore IMU non ha compilato la riga")
         esito = 1
 
@@ -265,6 +271,19 @@ def prova_semplificato(ctx, errori):
         print("  NO il riepilogo laterale non corrisponde")
         esito = 1
 
+    # gruppo D: due righe, 3925 allo Stato e 3930 al Comune (prima finiva un
+    # testo nel codice tributo)
+    pag.fill("#imu-rendita", "10000")
+    pag.select_option("#imu-categoria", "D/5")
+    pag.click("#btn-auto-imu")
+    pag.wait_for_timeout(700)
+    righe_d = [(pag.input_value(f'[data-campo="SEMPLIFICATO.pagamento.riga.{i}.tributo"]'),
+                pag.input_value(f'[data-campo="SEMPLIFICATO.pagamento.riga.{i}.debito"]')) for i in (2, 3)]
+    print("  righe del gruppo D:", righe_d)
+    if righe_d != [("3925", "6384,00"), ("3930", "2520,00")]:
+        print("  NO il gruppo D non ha le due righe 3925 e 3930")
+        esito = 1
+
     pag.locator("#mp-passi .mp-passo-voce").nth(0).click()
     pag.wait_for_timeout(250)
     riempi("contribuente.cf", "RSSMRA85T10A562S")
@@ -278,14 +297,16 @@ def prova_semplificato(ctx, errori):
     campi = scarica(pag)
     controlla("F24 semplificato", campi, {
         "cf_contribuente": "RSSMRA85T10A562S", "cognome_denominazione": "ROSSI",
-        "riga_1_sezione": "EL", "riga_1_tributo": "3918",
-        "riga_1_debito": dal_ponte["debito"].split(",")[0],
+        "riga_1_sezione": "EL", "riga_1_tributo": "3918", "riga_1_ente": "H501",
+        "riga_1_acconto": "X", "riga_1_saldo": "X", "riga_1_num_immobili": "1",
+        "riga_1_debito": "802", "riga_1_debito_cent": "00",
         "riga_2_sezione": "EL", "riga_2_tributo": "3944", "riga_2_ente": "H501",
         "riga_2_anno": "2026", "riga_2_saldo": "X",
         "riga_2_debito": "120", "riga_2_debito_cent": "40",
         "riga_2_credito": "20", "riga_2_credito_cent": "40",
+        "riga_3_tributo": "3925", "riga_3_debito": "6384", "riga_4_tributo": "3930", "riga_4_debito": "2520",
         "firma": "MARIO ROSSI", "iban": "60X0542811101000000123456",
-    }, vuoti=("riga_3_tributo", "riga_10_debito"))
+    }, vuoti=("riga_5_tributo", "riga_10_debito"))
     pag.close()
 
 

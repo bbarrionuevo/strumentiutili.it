@@ -23,13 +23,19 @@
       canoneConcordatoImposta: 0.75
     },
     codiciTributo: {
+      ABITAZIONE_PRINCIPALE: '3912',
       TERRENO: '3914',
       FABBRICATO_D: '3925',
       FABBRICATO_D_COMUNE: '3930',
       ALTRI_FABBRICATI: '3918'
     },
-    aliquotaStatoD: 7.6
+    aliquotaStatoD: 7.6,
+    detrazioneAbitazionePrincipale: 200
   };
+
+  // Le pertinenze dell'abitazione principale: una per categoria (L. 160/2019,
+  // art. 1, comma 741, lettera b).
+  const PERTINENZE = ['C/2', 'C/6', 'C/7'];
 
   function safeNum(val) {
     const n = parseFloat(val);
@@ -56,6 +62,24 @@
     const mesi = Math.min(12, Math.max(1, safeNum(data.mesi) || 12));
     const categoria = (data.categoria || 'A').toUpperCase().trim();
 
+    // L'abitazione principale e le sue pertinenze non pagano, salvo le
+    // categorie A/1, A/8 e A/9 (comma 740): per queste codice 3912 e
+    // detrazione di 200 euro l'anno, rapportata ai mesi (comma 749).
+    const pertinenza = PERTINENZE.includes(categoria);
+    const abitazione = categoria.charAt(0) === 'A' && categoria !== 'A/10';
+    const principale = !!data.isAbitazionePrincipale && (abitazione || pertinenza);
+    const principaleTassata = principale &&
+      (CATEGORIE_LUSSO.includes(categoria) || (pertinenza && !!data.abitazioneDiLusso));
+    if (principale && !principaleTassata) {
+      return {
+        esente: true,
+        motivo: 'abitazione principale',
+        renditaRivalutata: rendita * configImu.rivalutazioneRendita.fabbricati,
+        baseImponibile: 0, impostaLorda: 0, detrazione: 0, impostaNetta: 0,
+        impostaAnnua: 0, acconto: 0, saldo: 0, codiceTributo: '', ripartizione: null
+      };
+    }
+
     let baseImponibile = 0;
 
     if (categoria === 'TERRENO') {
@@ -79,19 +103,35 @@
       impostaLorda = impostaLorda * configImu.riduzioni.canoneConcordatoImposta;
     }
 
-    const impostaAnnua = Math.round(impostaLorda);
+    // la detrazione si toglie fino a concorrenza dell'imposta; chi la divide
+    // con altri comproprietari che ci abitano indica la propria parte
+    let detrazione = 0;
+    if (principaleTassata) {
+      const annua = data.detrazione === undefined || data.detrazione === null || data.detrazione === ''
+        ? (CATEGORIE_LUSSO.includes(categoria) ? (configImu.detrazioneAbitazionePrincipale || 200) : 0)
+        : safeNum(data.detrazione);
+      detrazione = Math.min(impostaLorda, Math.max(0, annua) * mesi / 12);
+    }
+    const impostaNetta = impostaLorda - detrazione;
+
+    // I tributi locali si pagano arrotondati all'euro (L. 296/2006, art. 1,
+    // comma 166)
+    const impostaAnnua = Math.round(impostaNetta);
 
     // Gruppo D (tranne D/10, rurali): lo 0,76% va allo Stato con il 3925, la
     // parte in piu' fino all'aliquota del Comune con il 3930.
     let ripartizione = null;
     if (categoria.charAt(0) === 'D' && categoria !== 'D10' && categoria !== 'D/10') {
       const statoPerMille = Math.min(aliquota, configImu.aliquotaStatoD || 7.6);
-      const stato = aliquota > 0 ? Math.round(impostaLorda * statoPerMille / aliquota) : 0;
+      const statoLordo = aliquota > 0 ? impostaNetta * statoPerMille / aliquota : 0;
+      const stato = Math.round(statoLordo);
       const codici = configImu.codiciTributo || {};
-      ripartizione = [{ codice: codici.FABBRICATO_D || '3925', ente: 'Stato', importo: stato }];
-      if (impostaAnnua - stato > 0) ripartizione.push({ codice: codici.FABBRICATO_D_COMUNE || '3930', ente: 'Comune', importo: impostaAnnua - stato });
+      ripartizione = [{ codice: codici.FABBRICATO_D || '3925', ente: 'Stato', importo: stato, lordo: statoLordo }];
+      if (impostaAnnua - stato > 0) ripartizione.push({ codice: codici.FABBRICATO_D_COMUNE || '3930', ente: 'Comune', importo: impostaAnnua - stato, lordo: impostaNetta - statoLordo });
     }
-    const acconto = Math.round(impostaLorda / 2);
+    // acconto e saldo a meta': vale quando il possesso e l'aliquota non
+    // cambiano nell'anno (comma 762)
+    const acconto = Math.round(impostaNetta / 2);
     const saldo = impostaAnnua - acconto;
 
     return {
@@ -100,12 +140,14 @@
         : (rendita * configImu.rivalutazioneRendita.fabbricati),
       baseImponibile: baseImponibile,
       impostaLorda: impostaLorda,
+      detrazione: detrazione,
+      impostaNetta: impostaNetta,
       impostaAnnua: impostaAnnua,
       acconto: acconto,
       saldo: saldo,
       codiceTributo: ripartizione && ripartizione.length > 1
         ? ripartizione.map((r) => r.codice + ' (' + r.ente + ', ' + r.importo + ' €)').join(' + ')
-        : mapCodiceTributo(categoria, configImu.codiciTributo),
+        : (principaleTassata ? (configImu.codiciTributo.ABITAZIONE_PRINCIPALE || '3912') : mapCodiceTributo(categoria, configImu.codiciTributo)),
       ripartizione: ripartizione
     };
   }

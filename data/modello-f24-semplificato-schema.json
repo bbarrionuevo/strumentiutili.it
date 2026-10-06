@@ -1,6 +1,6 @@
 {
  "versione": "2026-10",
- "nota": "Mappatura dei campi del modello F24 Semplificato creati da scripts/prepara-moduli-versamento.py. I testi di aiuto sono tratti dalle avvertenze ufficiali in assets/pdf/istruzioni-f24-semplificato.pdf.",
+ "nota": "Mappatura dei campi del modello F24 Semplificato creati da scripts/prepara-moduli-versamento.py. I testi di aiuto vengono dalle avvertenze ufficiali (assets/pdf/istruzioni-f24-semplificato.pdf), dagli esempi di compilazione dei codici 3918, 3844 e 3800 dell'Agenzia delle Entrate e dalle norme lette su Normattiva a ottobre 2026: L. 160/2019, art. 1, commi 749 e 762 (IMU); L. 296/2006, art. 1, comma 166 (arrotondamento dei tributi locali); L. 388/2000, art. 34 (limite dei crediti).",
  "tabelle": {
   "sesso": [
    {
@@ -214,7 +214,7 @@
          "type": "testo",
          "label": "Codice ente",
          "width": "quarter",
-         "help": "Per i tributi locali è il codice catastale del Comune in cui si trovano gli immobili: quattro caratteri, per esempio H501 per Roma. Per i tributi erariali resta vuoto."
+         "help": "Per IMU e TARI il codice catastale del Comune in cui si trovano gli immobili: quattro caratteri, per esempio H501 per Roma, come nell'esempio ufficiale del codice 3918. Per i tributi regionali il codice della regione: l'esempio ufficiale del codice 3800 usa 08 per il Lazio."
         },
         {
          "id": "ravv",
@@ -228,21 +228,21 @@
          "type": "checkX",
          "label": "Immobili variati",
          "width": "quarter",
-         "help": "Da barrare se per uno o più immobili sono intervenute variazioni che richiedono la presentazione della dichiarazione."
+         "help": "Da barrare se per uno o più immobili sono intervenute variazioni che richiedono la presentazione della dichiarazione. Nell'esempio ufficiale del codice 3918 si barra quando, rispetto all'anno precedente, è cambiato il numero degli immobili per cui si paga."
         },
         {
          "id": "acconto",
          "type": "checkX",
          "label": "Acconto",
          "width": "quarter",
-         "help": "Da barrare se il pagamento riguarda l'acconto (per l'IMU, la rata di giugno)."
+         "help": "Da barrare se il pagamento riguarda l'acconto (per l'IMU, la rata del 16 giugno)."
         },
         {
          "id": "saldo",
          "type": "checkX",
          "label": "Saldo",
          "width": "quarter",
-         "help": "Da barrare se il pagamento riguarda il saldo (per l'IMU, la rata di dicembre). Se paghi acconto e saldo in un'unica soluzione barra entrambe le caselle."
+         "help": "Da barrare se il pagamento riguarda il saldo (per l'IMU, la rata del 16 dicembre). Se paghi acconto e saldo in un'unica soluzione, entro il 16 giugno, barra entrambe le caselle."
         },
         {
          "id": "numImmobili",
@@ -256,7 +256,7 @@
          "type": "testo",
          "label": "Rateazione / mese rif.",
          "width": "quarter",
-         "help": "Se paghi in un'unica soluzione scrivi 0101. Se paghi a rate indica la rata che stai versando e il numero di rate scelte: 0206 vuol dire seconda rata di sei."
+         "help": "Se paghi saldo o acconto in un'unica soluzione scrivi 0101; a rate, la rata che versi e il numero di rate scelte: 0206 vuol dire seconda rata di sei. Per l'IMU resta vuota, salvo istruzioni dell'Amministrazione finanziaria; per la TARI scrivi la rata, 0102 per la prima di due."
         },
         {
          "id": "anno",
@@ -270,14 +270,14 @@
          "type": "importoEuro",
          "label": "Detrazione (euro)",
          "width": "quarter",
-         "help": "Solo per IMU, TARI e imposta di scopo: la detrazione a cui hai diritto. L'importo a debito va indicato già al netto della detrazione."
+         "help": "Solo per IMU, TARI e imposta di scopo: la detrazione a cui hai diritto. Per l'abitazione principale A/1, A/8 o A/9 sono 200 euro l'anno, rapportati ai mesi (L. 160/2019, art. 1, comma 749). L'importo a debito va indicato già al netto della detrazione."
         },
         {
          "id": "debito",
          "type": "importoEuro",
          "label": "Importo a debito versato (euro)",
          "width": "quarter",
-         "help": "Sempre con due cifre decimali, anche quando sono zero: 52 euro si scrive 52,00. Con più decimali si arrotonda la seconda cifra: 52,752 diventa 52,75; 52,755 e 52,758 diventano 52,76."
+         "help": "Sempre con due cifre decimali, anche quando sono zero: 52 euro si scrive 52,00. Con più decimali si arrotonda la seconda cifra: 52,752 diventa 52,75; 52,755 e 52,758 diventano 52,76. IMU e TARI, come gli altri tributi locali, si pagano arrotondate all'euro (L. 296/2006, art. 1, comma 166): 169,18 diventa 169,00."
         },
         {
          "id": "credito",
