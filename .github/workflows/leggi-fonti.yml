@@ -16,6 +16,10 @@ on:
         description: 'testo (stampa il documento) o stato (solo codice HTTP, indirizzo finale e titolo: per controllare i collegamenti)'
         required: false
         default: 'testo'
+      cerca:
+        description: 'Facoltativo, per il modo testo: espressione regolare (grep -E). Si stampano solo le righe del documento che la contengono, cercate in tutto il testo. Serve per le leggi lunghissime, per esempio i commi 738-783 della L. 160/2019: ^\s*7(3[89]|[4-7][0-9]|8[0-3])\.'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -27,6 +31,7 @@ jobs:
     env:
       INDIRIZZI: ${{ inputs.indirizzi }}
       MODO: ${{ inputs.modo }}
+      CERCA: ${{ inputs.cerca }}
     steps:
       # Un collegamento vale se risponde 200 e se la pagina finale e' quella
       # giusta: Normattiva, per un URN che non esiste, risponde 200 con una
@@ -57,7 +62,18 @@ jobs:
             if ! curl -sSL --max-time 90 -A "Mozilla/5.0 (StrumentiUtili.it verifica fonti)" -o documento "$u"; then
               echo "ERRORE: download non riuscito"; echo "=== FINE $u"; continue
             fi
-            if head -c 5 documento | grep -q '%PDF'; then
+            # con «cerca» si stampano solo le righe che corrispondono, cercate
+            # in tutto il documento: il taglio a 200-400 mila caratteri non
+            # arriva ai commi in fondo alle leggi lunghe
+            if [ -n "$CERCA" ]; then
+              if head -c 5 documento | grep -q '%PDF'; then
+                pdftotext -layout documento - > testo.txt
+              else
+                sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/ /g' documento | tr -s ' \t' | grep -v '^\s*$' > testo.txt
+              fi
+              echo "--- righe che corrispondono a: $CERCA"
+              grep -E -- "$CERCA" testo.txt | head -c 400000 || echo "NESSUNA RIGA TROVATA"
+            elif head -c 5 documento | grep -q '%PDF'; then
               pdftotext -layout documento - | head -c 400000
             else
               # prima i collegamenti ai documenti (tariffari, delibere), che

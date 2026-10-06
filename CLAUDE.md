@@ -73,7 +73,8 @@ El sandbox no llega a agenziaentrate.gov.it, normattiva.it, aci.gov.it, inps.it,
   - entradas: `indirizzi` (URL https separadas por espacios) y `modo` (`testo`, o `stato` para el código HTTP y el título);
   - imprime el texto en el registro del job y no escribe nada;
   - usar pocas URL por ejecución: los registros de más de ~5000 líneas se cortan.
-  - Normattiva acepta `!vig=AAAA-MM-GG` para el texto vigente en una fecha.
+  - Normattiva acepta `!vig=AAAA-MM-GG` para el texto vigente en una fecha. Sin `!vig` muestra el texto más nuevo, que puede ser uno futuro (la sentinella guarda ese).
+  - `cerca` (opcional, expresión regular de `grep -E`): imprime solo las líneas que coinciden, buscadas en todo el documento. Sirve para las leyes con un art. 1 enorme (L. 160/2019, L. 296/2006, L. 147/2013), donde el texto completo se corta antes de llegar a los commi del final. En Normattiva cada comma es una línea: `^\s*7(4[5-9])\.` trae los commi 745-749.
 - **`scarica-modelli.yml`:**
   - entradas: `ramo` (nunca `main`) y `nomi` (claves de `MODELLI`);
   - descarga los PDF y los commitea en la rama; después, `git pull`.
