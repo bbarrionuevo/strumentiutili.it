@@ -140,6 +140,49 @@ function scarica(url) {
   return cache.get(url);
 }
 
+/**
+ * La pagina di un articolo e poi un suo blocco di commi, nella stessa
+ * sessione: Normattiva da' i blocchi (/atto/caricaArticolo) solo a chi ha
+ * aperto l'articolo, e il cookie arriva anche nei rinvii, che quindi si
+ * seguono a mano. `prossimo(html)` ricava dalla pagina l'indirizzo del blocco.
+ */
+function conSessione(url, prossimo) {
+  return inCoda(url, async () => {
+    const cookie = new Map();
+    const vai = async (u) => {
+      let indirizzo = u;
+      for (let i = 0; i < 6; i++) {
+        const ctrl = new AbortController();
+        const tempo = setTimeout(() => ctrl.abort(), 90000);
+        try {
+          const intestazioni = { 'User-Agent': AGENTE };
+          if (cookie.size) intestazioni.Cookie = [...cookie].map(([k, v]) => k + '=' + v).join('; ');
+          const r = await fetch(indirizzo, { redirect: 'manual', signal: ctrl.signal, headers: intestazioni });
+          for (const c of (r.headers.getSetCookie ? r.headers.getSetCookie() : [])) {
+            const coppia = c.split(';')[0];
+            const j = coppia.indexOf('=');
+            if (j > 0) cookie.set(coppia.slice(0, j).trim(), coppia.slice(j + 1).trim());
+          }
+          const dove = r.headers.get('location');
+          if (r.status >= 300 && r.status < 400 && dove) { indirizzo = new URL(dove, indirizzo).href; continue; }
+          return { stato: r.status, finale: indirizzo, corpo: Buffer.from(await r.arrayBuffer()) };
+        } catch (e) {
+          return { stato: 0, errore: e.name === 'AbortError' ? 'tempo scaduto' : e.message, corpo: Buffer.alloc(0) };
+        } finally {
+          clearTimeout(tempo);
+        }
+      }
+      return { stato: 0, errore: 'troppi rinvii', corpo: Buffer.alloc(0) };
+    };
+    const articolo = await vai(url);
+    if (articolo.stato !== 200) return { articolo, blocco: null, indirizzo: null };
+    const indirizzo = prossimo(articolo.corpo.toString('utf8'));
+    if (!indirizzo) return { articolo, blocco: null, indirizzo: null };
+    await attesa(1000);
+    return { articolo, blocco: await vai(indirizzo), indirizzo };
+  });
+}
+
 const sparita = (r) => r.stato === 404 || r.stato === 410;
 const guasta = (r) => !sparita(r) && (r.stato < 200 || r.stato >= 300);
 
@@ -323,6 +366,40 @@ async function main() {
           url, impronta: C.impronta(righe.join('\n')), pagine,
           corpo: (articolo ? 'Il testo vigente dell\'articolo su Normattiva e\' cambiato:' : 'Normattiva segnala un aggiornamento dell\'atto (gli articoli citati dal sito si controllano a parte):') +
             `\n\n${blocco(diff)}` + elencoPagine(pagine) });
+      })());
+    }
+
+    // 3b. Commi oltre il centesimo degli articoli divisi in blocchi (l'art. 1
+    // delle leggi di bilancio): la pagina dell'articolo mostra solo i primi
+    // cento, gli altri si leggono nel blocco, nella stessa sessione
+    for (const b of registro.blocchi_normattiva || []) {
+      lavori.push((async () => {
+        const rel = 'normattiva/' + fileNormattiva(b.articolo).replace(/\.txt$/, `-commi-${b.da}-${b.a}.txt`);
+        seguite.add(rel);
+        const pagine = b.pagine || pagineDi(b.articolo);
+        const { articolo, blocco: pagina, indirizzo } = await conSessione(b.articolo, (html) => C.indirizzoBlocco(html, b.da));
+        tentativi++;
+        const letta = pagina || articolo;
+        if (!pagina || guasta(pagina)) {
+          falliti++;
+          conta('normattiva-blocchi', 'errori');
+          errori.push(`normattiva-blocchi: ${pagina ? (pagina.stato || pagina.errore) : (articolo.stato === 200 ? 'nessun pulsante dei blocchi' : (articolo.stato || articolo.errore))} ${b.id}`);
+          return;
+        }
+        const righe = C.commiDelBlocco(C.articoloNormattiva(letta.corpo.toString('utf8')), b.da, b.a);
+        if (!righe) {
+          conta('normattiva-blocchi', 'errori');
+          errori.push(`normattiva-blocchi: commi ${b.da}-${b.a} non trovati ${indirizzo}\n      ${C.indizioForma(letta.corpo.toString('utf8'))}`);
+          return;
+        }
+        const id = 'norma:' + rel;
+        const diff = confronta('normattiva-blocchi', rel, righe, id);
+        if (!diff) return;
+        esito({ id, tipo: 'articolo-cambiato', titolo: `Commi ${b.da}-${b.a} cambiati: ${b.articolo.split('?')[1] || b.articolo}`,
+          url: b.articolo, impronta: C.impronta(righe.join('\n')), dati: b.dati, pagine,
+          corpo: `Il testo dei commi ${b.da}-${b.a} su Normattiva e' cambiato (letto nel blocco ${indirizzo}):\n\n${blocco(diff)}` +
+            '\n\nPer rileggerli: leggi-fonti con la pagina dell\'articolo e poi l\'indirizzo del blocco nella stessa esecuzione, con «cerca».' +
+            elencoDati(b.dati) + elencoPagine(pagine) });
       })());
     }
 

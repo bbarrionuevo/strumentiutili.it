@@ -3,6 +3,9 @@
 /* Le librerie di terzi in vendor/ non contengono classi del sito: senza
    questa esclusione Tailwind ne ricava utility inesistenti (.table, .ring...). */
 @source not "../vendor";
+/* Le pagine copiate dai siti ufficiali per i test (per esempio Normattiva)
+   hanno classi loro: non devono finire nel CSS del sito. */
+@source not "../tests/fixtures";
 /* Le classi che esistono solo nell'HTML scritto da questi script. */
 @source "../js/calendario-vista.js";
 @source "../js/sudoku-ui.js";

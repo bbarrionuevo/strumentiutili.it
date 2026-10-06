@@ -44,6 +44,7 @@ Si una herramienta depende de algo que puede cambiar (una cifra, una norma, un m
   - `serie`;
   - `dati_vivi`.
 - **artículos de ley que la página no enlaza**: en `norme`.
+- **commi más allá del 100** de un artículo que Normattiva divide en bloques (el art. 1 de las leyes de presupuesto, L. 160/2019, L. 296/2006): en `blocchi_normattiva`, con el artículo, `da` y `a` (del mismo bloque de cien). La sentinella abre el artículo, pide el bloque en la misma sesión y archiva solo esos commi.
 - **formularios oficiales**: en `MODELLI` de `scripts/scarica-modelli-ufficiali.py`.
 - **datos que un workflow actualiza solo** (precios, tasas del día): en `dati_vivi`, con el archivo, el campo con la fecha y los días máximos. Si el workflow se detiene, la sentinella avisa.
 
@@ -74,7 +75,8 @@ El sandbox no llega a agenziaentrate.gov.it, normattiva.it, aci.gov.it, inps.it,
   - imprime el texto en el registro del job y no escribe nada;
   - usar pocas URL por ejecución: los registros de más de ~5000 líneas se cortan.
   - Normattiva acepta `!vig=AAAA-MM-GG` para el texto vigente en una fecha. Sin `!vig` muestra el texto más nuevo, que puede ser uno futuro (la sentinella guarda ese).
-  - `cerca` (opcional, expresión regular de `grep -E`): imprime solo las líneas que coinciden, buscadas en todo el documento. Sirve para las leyes con un art. 1 enorme (L. 160/2019, L. 296/2006, L. 147/2013), donde el texto completo se corta antes de llegar a los commi del final. En Normattiva cada comma es una línea: `^\s*7(4[5-9])\.` trae los commi 745-749.
+  - `modo=html` imprime el código de la página tal cual (todo, o las líneas que coinciden con `cerca`): sirve para escribir o arreglar los lectores de la sentinella.
+  - `cerca` (opcional, expresión regular de `grep -E`): imprime solo las líneas que coinciden, buscadas en todo el documento. Sirve para las leyes con un art. 1 enorme (L. 160/2019, L. 296/2006, L. 147/2013), donde el texto completo se corta antes de llegar a los commi del final. En Normattiva cada comma es una línea: `^\s*7(4[5-9])\.` trae los commi 745-749. Esos artículos se dividen en bloques de cien commi y la página muestra solo el primero: para los demás, en la misma ejecución, primero la página del artículo y después `https://www.normattiva.it/atto/caricaArticolo?…&art.progressivo=N` (el enlace del botón «articolo successivo», con N = bloque: 8 para los commi 701-800). Las cookies pasan de una dirección a la otra.
 - **`scarica-modelli.yml`:**
   - entradas: `ramo` (nunca `main`) y `nomi` (claves de `MODELLI`);
   - descarga los PDF y los commitea en la rama; después, `git pull`.

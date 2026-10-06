@@ -1,5 +1,5 @@
 {
-  "_nota": "Fonti che la sentinella (scripts/sentinella.js) controlla ogni settimana, oltre a quelle che ricava da sola: i modelli di scripts/scarica-modelli-ufficiali.py, gli articoli di Normattiva collegati dalle pagine e gli indirizzi scritti in data/regole-fiscali-2026.json. In deve_contenere vanno solo espressioni lette davvero nel documento ufficiale. Le scadenze sono promemoria: dicono quando ricontrollare un dato, non il suo valore. La copertura dice, per ogni blocco di data/regole-fiscali-2026.json, come la sentinella se ne accorge quando cambia: ogni nuovo dato che invecchia va registrato qui (lo impone tests/fonti-monitorate.test.js). I dati_vivi sono i file aggiornati da soli da un workflow: la sentinella avvisa se smettono di aggiornarsi.",
+  "_nota": "Fonti che la sentinella (scripts/sentinella.js) controlla ogni settimana, oltre a quelle che ricava da sola: i modelli di scripts/scarica-modelli-ufficiali.py, gli articoli di Normattiva collegati dalle pagine e gli indirizzi scritti in data/regole-fiscali-2026.json. In deve_contenere vanno solo espressioni lette davvero nel documento ufficiale. Le scadenze sono promemoria: dicono quando ricontrollare un dato, non il suo valore. La copertura dice, per ogni blocco di data/regole-fiscali-2026.json, come la sentinella se ne accorge quando cambia: ogni nuovo dato che invecchia va registrato qui (lo impone tests/fonti-monitorate.test.js). I dati_vivi sono i file aggiornati da soli da un workflow: la sentinella avvisa se smettono di aggiornarsi. I blocchi_normattiva sono i commi oltre il centesimo degli articoli che Normattiva divide in blocchi di cento (l'art. 1 delle leggi di bilancio): la pagina dell'articolo mostra solo i primi cento, e la sentinella legge il blocco giusto nella stessa sessione e ne archivia solo i commi da..a.",
   "schede": [
     {
       "id": "canone-tv-come-si-paga",
@@ -544,7 +544,7 @@
       "id": "versamenti-2027-dlgs-33-2025",
       "dal": "2026-11-16",
       "titolo": "F24: dal 2027 versamenti, rate e compensazioni passano al D.Lgs. 33/2025",
-      "cosa": "Dal 1° gennaio 2027 il D.Lgs. 33/2025 abroga gli artt. 17 e 20 del D.Lgs. 241/1997, l'art. 34 della L. 388/2000, l'art. 31 c. 1 del D.L. 78/2010, l'art. 37 cc. 49 e 49-quinquies del D.L. 223/2006 e l'art. 11 c. 2 del D.L. 66/2014; il D.Lgs. 173/2024 abroga l'art. 13 del D.Lgs. 471/1997. Leggere i nuovi articoli e riscrivere rate, compensazione, canali di pagamento e sanzioni nelle pagine F24 (ordinario, indice, semplificato, accise, ELIDE) e nei loro schemi prima del 1° gennaio, poi togliere l'avviso «Dal 1° gennaio 2027 cambiano le norme».",
+      "cosa": "Dal 1° gennaio 2027 il D.Lgs. 33/2025 abroga gli artt. 17 e 20 del D.Lgs. 241/1997, l'art. 34 della L. 388/2000, l'art. 31 c. 1 del D.L. 78/2010, l'art. 37 cc. 49 e 49-quinquies del D.L. 223/2006 e l'art. 11 c. 2 del D.L. 66/2014; il D.Lgs. 173/2024 abroga l'art. 13 del D.Lgs. 471/1997. Leggere i nuovi articoli e riscrivere rate, compensazione, canali di pagamento e sanzioni nelle pagine F24 (ordinario, indice, semplificato, accise, ELIDE) e nei loro schemi prima del 1° gennaio, poi togliere l'avviso «Dal 1° gennaio 2027 cambiano le norme». Nel testo piu' recente di Normattiva anche il comma 168 dell'art. 1 della L. 296/2006 (importi minimi dei tributi locali, citato da F24 semplificato, calcolatore IMU e guida IMU) risulta abrogato dal D.Lgs. 33/2025, come modificato dal D.Lgs. 192/2025 e dal D.L. 200/2025: verificare la data e la norma che lo sostituisce, e aggiornare quelle pagine.",
       "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-03-24;33"
     },
     {
@@ -556,17 +556,6 @@
         "imu"
       ],
       "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-07;147~art26"
-    },
-    {
-      "id": "imu-commi-738-783",
-      "dal": "2027-01-04",
-      "ripeti": "anno",
-      "titolo": "IMU: rileggere i commi 738-783 della L. 160/2019",
-      "cosa": "Su Normattiva l'art. 1 della L. 160/2019 e' diviso in blocchi di cento commi e la sentinella archivia solo il primo (commi 1-100). I commi dell'IMU stanno nel blocco 701-800: rileggerli con leggi-fonti (pagina dell'articolo e poi caricaArticolo con art.progressivo=8 nella stessa esecuzione, con la lettura «cerca») e controllare coefficienti, riduzioni, detrazione, scadenze e dichiarazione nelle pagine dell'IMU.",
-      "dati": [
-        "imu"
-      ],
-      "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1"
     }
   ],
   "norme": [
@@ -662,8 +651,11 @@
       ],
       "scadenze": [
         "legge-di-bilancio",
-        "imu-commi-738-783",
         "imu-dichiarazione-decreto-mef"
+      ],
+      "blocchi": [
+        "imu-l160-2019-commi-738-783",
+        "tributi-locali-l296-2006-commi-161-169"
       ]
     },
     "parcellaAvvocato": {
@@ -895,5 +887,36 @@
         "legge-di-bilancio"
       ]
     }
-  }
+  },
+  "blocchi_normattiva": [
+    {
+      "id": "imu-l160-2019-commi-738-783",
+      "articolo": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1",
+      "da": 738,
+      "a": 783,
+      "dati": [
+        "imu"
+      ],
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-semplificato/",
+        "cittadino-tasse/calcolo-imu/",
+        "guide/imu-2026/"
+      ]
+    },
+    {
+      "id": "tributi-locali-l296-2006-commi-161-169",
+      "articolo": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1",
+      "da": 161,
+      "a": 169,
+      "dati": [
+        "imu"
+      ],
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-semplificato/",
+        "cittadino-tasse/f24-editabile/f24-ordinario/",
+        "cittadino-tasse/calcolo-imu/",
+        "guide/imu-2026/"
+      ]
+    }
+  ]
 }

@@ -13,7 +13,7 @@ on:
         description: 'Indirizzi https dei documenti, separati da spazi'
         required: true
       modo:
-        description: 'testo (stampa il documento) o stato (solo codice HTTP, indirizzo finale e titolo: per controllare i collegamenti)'
+        description: 'testo (stampa il documento), html (il codice HTML cosi'' com''e'': serve per scrivere i lettori della sentinella) o stato (solo codice HTTP, indirizzo finale e titolo: per controllare i collegamenti)'
         required: false
         default: 'testo'
       cerca:
@@ -68,7 +68,12 @@ jobs:
             # con «cerca» si stampano solo le righe che corrispondono, cercate
             # in tutto il documento: il taglio a 200-400 mila caratteri non
             # arriva ai commi in fondo alle leggi lunghe
-            if [ -n "$CERCA" ]; then
+            # in modo html si stampa il codice della pagina, tutto o solo le
+            # righe che corrispondono a «cerca»
+            if [ "$MODO" = "html" ]; then
+              if [ -n "$CERCA" ]; then grep -E -- "$CERCA" documento | head -c 400000 || echo "NESSUNA RIGA TROVATA"
+              else head -c 400000 documento; fi
+            elif [ -n "$CERCA" ]; then
               if head -c 5 documento | grep -q '%PDF'; then
                 pdftotext -layout documento - > testo.txt
               else

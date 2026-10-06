@@ -84,6 +84,43 @@ function articoloNormattiva(html) {
 }
 
 /**
+ * Su Normattiva gli articoli lunghissimi (l'art. 1 delle leggi di bilancio)
+ * sono divisi in blocchi di cento commi e la pagina dell'articolo mostra solo
+ * il primo. Gli altri blocchi si chiedono a /atto/caricaArticolo con
+ * art.progressivo, nella stessa sessione (cookie) della pagina: l'indirizzo
+ * si ricava dal pulsante «articolo successivo» della pagina, cambiando il
+ * progressivo con quello del blocco che contiene il comma `da` (1 per i
+ * commi 1-100, 8 per i commi 701-800). Null se la pagina non ha il pulsante.
+ */
+function indirizzoBlocco(html, da) {
+  const m = String(html || '').match(/showArticle\('(\/atto\/caricaArticolo\?[^']*?art\.progressivo=)\d+([^']*)'\)/);
+  if (!m || !(Number(da) >= 1)) return null;
+  const progressivo = Math.floor((Number(da) - 1) / 100) + 1;
+  return 'https://www.normattiva.it' + (m[1] + progressivo + m[2]).replace(/ /g, '%20');
+}
+
+/**
+ * Le righe dei soli commi da..a di un blocco letto con articoloNormattiva,
+ * con le loro lettere e i periodi che vanno a capo. Un comma comincia con il
+ * suo numero ("745. ", "768-bis. "); si accettano solo numeri del blocco e in
+ * ordine crescente, cosi' un comma citato fra virgolette ("« 2. ...") non
+ * viene preso per l'inizio di un altro. Null se non c'e' nessuno dei commi.
+ */
+function commiDelBlocco(righe, da, a) {
+  const primo = Math.floor((Number(da) - 1) / 100) * 100 + 1;
+  const fuori = [];
+  let comma = null;
+  for (const r of righe || []) {
+    // il numero puo' stare da solo sulla riga: «168.» e sotto «((COMMA ABROGATO ...))»
+    const m = String(r).match(/^(\d+)(?:-[a-z]+)?\.(?:\s|$)/);
+    const n = m ? Number(m[1]) : NaN;
+    if (n >= primo && n < primo + 100 && (comma === null || n >= comma)) comma = n;
+    if (comma !== null && comma >= da && comma <= a) fuori.push(r);
+  }
+  return fuori.length ? fuori : null;
+}
+
+/**
  * Il numero dell'articolo mostrato ("Art. 4-bis" -> "4bis") e quello chiesto
  * nell'indirizzo ("~art4bis" -> "4bis"). Se non coincidono, il collegamento
  * porta all'articolo sbagliato: succede con i testi unici allegati a un
@@ -401,7 +438,7 @@ function classifica(esito) {
 }
 
 module.exports = {
-  decodificaEntita, testoDaHtml, articoloNormattiva, numeroArticolo, articoloChiesto, vigoreDal, abrogatoDa, vigenzeDaSegnalare,
+  decodificaEntita, testoDaHtml, articoloNormattiva, indirizzoBlocco, commiDelBlocco, numeroArticolo, articoloChiesto, vigoreDal, abrogatoDa, vigenzeDaSegnalare,
   attoNormattiva, paginaErrore, indizioForma,
   righeConCifre, collegamentiDocumenti, impronta, diffRighe, espressioniMancanti,
   isoValida, aggiungiMesi, occorrenza, valore, scadenzeDovute, datiVecchi, classifica

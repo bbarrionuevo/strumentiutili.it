@@ -57,6 +57,41 @@ test('Normattiva: il testo dell\'articolo, senza menu ne\' codici di sessione', 
   assert.deepStrictEqual(C.articoloNormattiva(articolo({ aggiornato: true })), righe);
 });
 
+// L'art. 1 della L. 160/2019 su Normattiva e' diviso in blocchi di cento
+// commi: il fixture e' il blocco «commi 701-800» come lo restituisce
+// /atto/caricaArticolo, accorciato
+const BLOCCO = fs.readFileSync(path.join(RADICE, 'tests', 'fixtures', 'normattiva', 'blocco-l160-2019-commi-701-800.html'), 'utf8');
+
+test('Normattiva: l\'indirizzo del blocco che contiene un comma', () => {
+  const u = C.indirizzoBlocco(BLOCCO, 738);
+  assert.ok(u.startsWith('https://www.normattiva.it/atto/caricaArticolo?'), u);
+  assert.match(u, /art\.codiceRedazionale=19G00165/);
+  assert.match(u, /art\.progressivo=8&/);
+  assert.match(u, /2019-12-30%2000:00:00\.0/);
+  assert.doesNotMatch(u, / /);
+  assert.match(C.indirizzoBlocco(BLOCCO, 161), /art\.progressivo=2&/);
+  assert.match(C.indirizzoBlocco(BLOCCO, 100), /art\.progressivo=1&/);
+  assert.strictEqual(C.indirizzoBlocco('<html>nessun pulsante</html>', 738), null);
+  assert.strictEqual(C.indirizzoBlocco(BLOCCO, 0), null);
+});
+
+test('Normattiva: dal blocco solo i commi chiesti, con le loro lettere', () => {
+  const righe = C.commiDelBlocco(C.articoloNormattiva(BLOCCO), 738, 783);
+  const numeri = righe.map((r) => (r.match(/^(\d+(?:-[a-z]+)?)\. /) || [])[1]).filter(Boolean);
+  assert.deepStrictEqual(numeri, ['738', '745', '768', '768-bis', '769', '770', '783']);
+  // le lettere del comma 745 (i coefficienti) restano attaccate al loro comma
+  assert.ok(righe.some((r) => /^a\) 160 per i fabbricati/.test(r)));
+  assert.ok(righe.some((r) => /^f\) 55 per i fabbricati/.test(r)));
+  assert.ok(!righe.some((r) => /^(737|784)\. /.test(r)));
+  assert.ok(!righe.some((r) => /^(Testo in vigore|descrizione|progressivo)/.test(r)));
+  // un comma citato fra le righe non interrompe quello in corso
+  const citato = C.commiDelBlocco(['745. La base imponibile:', '2. testo citato di un\'altra legge', 'a) 160 per i fabbricati', '784. Fuori'], 738, 783);
+  assert.deepStrictEqual(citato, ['745. La base imponibile:', '2. testo citato di un\'altra legge', 'a) 160 per i fabbricati']);
+  // un comma abrogato ha il numero da solo sulla riga: conta come inizio del comma
+  assert.deepStrictEqual(C.commiDelBlocco(['783. Ultimo', '784.', '((COMMA ABROGATO))'], 738, 783), ['783. Ultimo']);
+  assert.strictEqual(C.commiDelBlocco(['701. Altro'], 738, 783), null);
+});
+
 test('Normattiva: un comma modificato e una nuova data di vigore si vedono nel confronto', () => {
   const prima = C.articoloNormattiva(articolo());
   const dopo = C.articoloNormattiva(articolo({ vigore: '1-1-2027', comma2: "2. L'imposta di bollo e' dovuta in misura fissa." }));
