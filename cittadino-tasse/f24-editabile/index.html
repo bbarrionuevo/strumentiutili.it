@@ -156,7 +156,7 @@
             "name": "Ho sbagliato codice tributo o anno: devo pagare di nuovo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il pagamento resta valido: si chiede la correzione della delega all’Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarità per il tributo che risulta non pagato."
+              "text": "No. Per i tributi dell’Agenzia delle Entrate si chiede la correzione con il servizio CIVIS «Richiesta modifica delega F24», per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS, altri enti previdenziali e IMU e tributi locali: per quelle bisogna rivolgersi all’ente che riceve il versamento. Conviene farlo subito, prima che arrivi una comunicazione di irregolarità."
             }
           },
           {
@@ -164,7 +164,15 @@
             "name": "Posso usare l’F23 per l’imposta di registro dell’affitto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Dal 2014 l’imposta di registro sulle locazioni, con sanzioni e interessi del ravvedimento, si paga con l’F24 ELIDE, indicando il codice identificativo del contratto."
+              "text": "No. Dal 1° gennaio 2015 l’imposta di registro sulle locazioni, con sanzioni e interessi del ravvedimento, si paga solo con l’F24 ELIDE, indicando il codice identificativo del contratto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso usare un credito in compensazione con l’F24 ELIDE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Le avvertenze dell’F24 ELIDE lo prevedono per i pagamenti in cui non è ammessa la compensazione con crediti: il modello ha solo la colonna degli importi a debito. Se vuoi usare un credito per altri tributi, serve l’F24 ordinario o il semplificato."
             }
           },
           {
@@ -349,7 +357,7 @@
             <span class="inline-block text-xs px-2.5 py-1 bg-rose-50 text-rose-700 rounded-full font-bold mb-3">Sanzioni &amp; Giudiziario</span>
             <h2 class="text-xl font-bold text-gray-900 mb-2">Modello F23</h2>
             <p class="text-sm text-gray-600 leading-relaxed">
-              Utilizzato per il pagamento di sanzioni amministrative, contenziosi, imposta di registro su atti giudiziari e contributo unificato.
+              Utilizzato per alcuni pagamenti rimasti fuori dall&rsquo;F24, come l&rsquo;imposta di registro su atti giudiziari e alcune sanzioni, di solito su richiesta di un ufficio.
             </p>
           </div>
           <div class="mt-6">
@@ -382,7 +390,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di versamento e compensazione aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Modelli, canali e compensazioni verificati sulle fonti a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -395,7 +403,7 @@
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
             <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e di prassi</p>
-            <p class="text-gray-600 leading-relaxed">D.Lgs. 241/1997 (versamento unitario e compensazione), D.L. 66/2014 art. 11 e D.L. 193/2016 (canali di presentazione dell'F24), L. 213/2023 e L. 199/2025 (divieto di compensazione con ruoli scaduti), D.Lgs. 87/2024 (sanzioni), specifiche dei modelli e risoluzioni dell'Agenzia delle Entrate sui codici tributo.</p>
+            <p class="text-gray-600 leading-relaxed">Avvertenze ufficiali dei cinque modelli; D.Lgs. 241/1997 art. 17 (versamento unitario e compensazione); D.L. 66/2014 art. 11, come modificato dalla L. 213/2023, e D.L. 223/2006 art. 37 (canali di pagamento e limiti alle compensazioni); comunicato dell'Agenzia delle Entrate del 3 gennaio 2014 sull'F24 ELIDE per le locazioni; ricerca dei codici tributo dell'Agenzia delle Entrate.</p>
           </div>
         </div>
       </section>
@@ -406,14 +414,15 @@
           <p>I modelli di pagamento delle tasse sono cinque, e usare quello sbagliato &egrave; l&rsquo;errore pi&ugrave; comune: il versamento arriva, ma l&rsquo;ufficio non riesce ad abbinarlo al tributo o al contratto e lo tratta come non pagato. Questa pagina ti aiuta a scegliere il modello giusto; ogni modello ha poi la sua pagina con il compilatore.</p>
           <h3 class="text-lg font-bold text-gray-900 pt-3">Quale modello per quale pagamento</h3>
           <div class="overflow-x-auto rounded-lg border border-gray-200">
-            <table class="min-w-full text-sm">
-              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Modello</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Quando si usa</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Crediti compensabili</th></tr></thead>
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Quale modello di pagamento usare: quando, con quali sezioni e se ammette crediti in compensazione</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Modello</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando si usa</th><th scope="col" class="hidden sm:table-cell px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Sezioni</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Crediti compensabili</th></tr></thead>
               <tbody>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="text-indigo-700 underline">F24 ordinario</a></td><td class="px-3 py-2 align-top">Il modello generale: IRPEF, IVA, cedolare secca, contributi INPS, IMU e tributi locali. &Egrave; quello che usano i titolari di partita IVA.</td><td class="px-3 py-2 align-top">S&igrave;</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="text-indigo-700 underline">F24 semplificato</a></td><td class="px-3 py-2 align-top">Una sola pagina per IMU, TARI, addizionali e tributi erariali di chi non ha contributi da versare.</td><td class="px-3 py-2 align-top">S&igrave;</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a></td><td class="px-3 py-2 align-top">Imposta di registro sugli affitti (prima registrazione, annualit&agrave;, proroghe, risoluzioni) e i pagamenti che chiedono un codice identificativo.</td><td class="px-3 py-2 align-top">No</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="text-indigo-700 underline">F24 accise</a></td><td class="px-3 py-2 align-top">Accise su energia elettrica, gas e prodotti soggetti a Dogane e Monopoli: riguarda soprattutto le imprese.</td><td class="px-3 py-2 align-top">S&igrave;</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="text-indigo-700 underline">F23</a></td><td class="px-3 py-2 align-top">Pagamenti rimasti fuori dall&rsquo;F24, soprattutto legati agli atti giudiziari, quando l&rsquo;avviso che ricevi lo indica.</td><td class="px-3 py-2 align-top">No</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="text-indigo-700 underline">F24 ordinario</a></td><td class="px-2 sm:px-3 py-2 align-top">Il modello generale: IRPEF, IVA, cedolare secca, IRAP, contributi INPS, IMU e tributi locali. &Egrave; quello che usano i titolari di partita IVA.</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Erario, INPS, Regioni, IMU e altri tributi locali, INAIL e altri enti</td><td class="px-2 sm:px-3 py-2 align-top">S&igrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="text-indigo-700 underline">F24 semplificato</a></td><td class="px-2 sm:px-3 py-2 align-top">Imposte erariali, regionali e locali (IMU, TARI) su una sola facciata, per chi non ha contributi da versare.</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Una tabella unica: in ogni riga ER, RG o EL dice a chi va il pagamento</td><td class="px-2 sm:px-3 py-2 align-top">S&igrave;</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a></td><td class="px-2 sm:px-3 py-2 align-top">Imposta di registro sugli affitti (prima registrazione, annualit&agrave;, proroghe, risoluzioni) e i pagamenti che chiedono elementi identificativi.</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Erario, con tipo ed elementi identificativi in ogni riga</td><td class="px-2 sm:px-3 py-2 align-top">No</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="text-indigo-700 underline">F24 accise</a></td><td class="px-2 sm:px-3 py-2 align-top">Accise su energia elettrica, gas e prodotti soggetti a Dogane e Monopoli: riguarda soprattutto le imprese.</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Quelle dell&rsquo;ordinario senza INAIL e altri enti, pi&ugrave; la sezione accise</td><td class="px-2 sm:px-3 py-2 align-top">S&igrave;, ma non nella sezione accise</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="text-indigo-700 underline">F23</a></td><td class="px-2 sm:px-3 py-2 align-top">Pagamenti rimasti fuori dall&rsquo;F24, soprattutto legati agli atti giudiziari, quando l&rsquo;avviso che ricevi lo indica.</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Una tabella di codici tributo, con l&rsquo;ufficio e gli estremi dell&rsquo;atto</td><td class="px-2 sm:px-3 py-2 align-top">No</td></tr>
               </tbody>
             </table>
           </div>
@@ -422,9 +431,10 @@
           <ul class="list-disc pl-5 space-y-1.5">
             <li><strong>Senza partita IVA e senza crediti da compensare</strong>: puoi pagare dove vuoi, per qualsiasi importo: in banca, alla posta, agli sportelli dell&rsquo;agente della riscossione, con l&rsquo;home banking o con i servizi online dell&rsquo;Agenzia delle Entrate.</li>
             <li><strong>Con la partita IVA</strong>: sempre per via telematica (home banking, servizi dell&rsquo;Agenzia o intermediario). Il modello cartaceo allo sportello non &egrave; ammesso.</li>
-            <li><strong>Se nel modello c&rsquo;&egrave; un credito compensato</strong>, anche piccolo e anche se resta qualcosa da pagare: solo con i servizi telematici dell&rsquo;Agenzia delle Entrate (F24 web o online, Fisconline, Entratel), direttamente o tramite un CAF o un commercialista. Dal 1&deg; luglio 2024 l&rsquo;home banking non accetta pi&ugrave; questi modelli.</li>
-            <li><strong>Se il modello chiude a zero</strong> perch&eacute; i crediti coprono tutti i debiti: solo con i servizi dell&rsquo;Agenzia delle Entrate. Allo sportello non c&rsquo;&egrave; niente da addebitare.</li>
+            <li><strong>Se nel modello c&rsquo;&egrave; un credito compensato</strong>, anche piccolo e anche se resta qualcosa da pagare: dal 1&deg; luglio 2024 solo con i servizi telematici dell&rsquo;Agenzia delle Entrate, direttamente o tramite un CAF o un commercialista. L&rsquo;home banking non va pi&ugrave; bene.</li>
+            <li><strong>Se il modello chiude a zero</strong> perch&eacute; i crediti coprono tutti i debiti: vale la stessa regola, solo i servizi telematici dell&rsquo;Agenzia delle Entrate.</li>
           </ul>
+          <p>Per usare un credito ci sono anche dei limiti: 2 milioni di euro l&rsquo;anno, il visto di conformit&agrave; per i crediti IVA oltre 5.000 &euro; e il blocco delle compensazioni con cartelle scadute. Li trovi spiegati, con le norme, nella pagina dell&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-ordinario/#compensazione" class="text-indigo-700 underline">F24 ordinario</a>. Sono le regole in vigore nel 2026: dal 1&deg; gennaio 2027 le norme che le contengono sono abrogate dal D.Lgs. 33/2025, e le pagine verranno aggiornate con i nuovi testi.</p>
           <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa il compilatore</h3>
           <ol class="list-decimal pl-5 space-y-1.5">
             <li>Scegli il modello qui sopra e inserisci i dati di chi paga: il codice fiscale &egrave; l&rsquo;unico dato davvero indispensabile, perch&eacute; collega il versamento alla tua posizione.</li>
@@ -433,6 +443,28 @@
           </ol>
           <h3 class="text-lg font-bold text-gray-900 pt-3">Esempio: IMU e TARI della seconda casa</h3>
           <p>Una lavoratrice dipendente deve versare l&rsquo;acconto IMU di 193 &euro; su un appartamento ereditato (codice tributo 3918, con il codice catastale del Comune) e una rata TARI di 124 &euro; (codice 3944). Non ha crediti da compensare, quindi usa l&rsquo;F24 semplificato: totale 317 &euro;, pagabile anche allo sportello della banca o della posta.</p>
+          <h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Cinque esempi: quale modello e quale codice</h3>
+          <p>Gli esempi riprendono i casi spiegati nella pagina di ogni modello, con i codici dell&rsquo;elenco ufficiale dell&rsquo;Agenzia delle Entrate. Gli importi e gli altri campi li trovi l&igrave;, riga per riga.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Cinque esempi di pagamento con il modello da usare, il codice tributo e dove si paga</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Caso</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Modello</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice tributo</th><th scope="col" class="hidden sm:table-cell px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Dove si paga</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Saldo e primo acconto IRPEF, pagati in parte con un credito IVA</td><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="text-indigo-700 underline">F24 ordinario</a></td><td class="px-2 sm:px-3 py-2 align-top">4001 e 4033; il credito con 6099</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Solo con i servizi telematici dell&rsquo;Agenzia delle Entrate, perch&eacute; c&rsquo;&egrave; una compensazione</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Acconto IMU e una rata TARI della seconda casa, senza crediti</td><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="text-indigo-700 underline">F24 semplificato</a> (o ordinario)</td><td class="px-2 sm:px-3 py-2 align-top">3918 e 3944</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Banca, posta, agente della riscossione o online</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Imposta di registro per l&rsquo;annualit&agrave; successiva di un affitto</td><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a></td><td class="px-2 sm:px-3 py-2 align-top">1501</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Banca, posta, agente della riscossione o online; con la partita IVA solo online</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Accisa sul gas naturale fatturato da un venditore</td><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f24-accise/" class="text-indigo-700 underline">F24 accise</a></td><td class="px-2 sm:px-3 py-2 align-top">2814, con l&rsquo;ente D</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Online: chi paga le accise ha quasi sempre la partita IVA</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top">Imposta di registro su una sentenza, su richiesta dell&rsquo;ufficio</td><td class="px-2 sm:px-3 py-2 align-top"><a href="/cittadino-tasse/f24-editabile/f23-editabile/" class="text-indigo-700 underline">F23</a></td><td class="px-2 sm:px-3 py-2 align-top">109T</td><td class="hidden sm:table-cell px-2 sm:px-3 py-2 align-top">Agente della riscossione, banca o ufficio postale</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Nel primo esempio il credito IVA copre solo una parte del dovuto: il resto si paga con lo stesso modello, ma anche se resta qualcosa da versare serve un servizio telematico dell&rsquo;Agenzia. Per l&rsquo;IMU invece, senza crediti, va bene qualsiasi sportello: per questo il semplificato &egrave; il modello pi&ugrave; comodo per chi paga solo tributi del Comune.</p>
+          <figure class="my-6">
+            <img src="/assets/esempi/f24-ordinario-compensazione.webp" width="1100" height="891" loading="lazy" decoding="async"
+                 alt="Esempio di modello F24 ordinario compilato: un credito IRPEF di 413,00 euro nella sezione Erario usato per l'acconto IMU di 413,00 euro di un immobile a Roma, con saldo finale 0,00"
+                 class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+            <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Un F24 ordinario con un credito compensato, compilato con il compilatore di questo sito (dati inventati): il modello chiude a zero e va presentato solo con i servizi telematici dell&rsquo;Agenzia delle Entrate. L&rsquo;esempio &egrave; spiegato nella pagina dell&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-ordinario/#esempi" class="text-indigo-700 underline">F24 ordinario</a>.</figcaption>
+          </figure>
         </div>
         <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
         <details class="group border-b border-gray-100 py-3">
@@ -441,11 +473,15 @@
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho sbagliato codice tributo o anno: devo pagare di nuovo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il pagamento resta valido: si chiede la correzione della delega all&rsquo;Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarit&agrave; per il tributo che risulta non pagato.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Per i tributi dell&rsquo;Agenzia delle Entrate si chiede la correzione con il servizio CIVIS &laquo;Richiesta modifica delega F24&raquo;, per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS, altri enti previdenziali e IMU e tributi locali: per quelle bisogna rivolgersi all&rsquo;ente che riceve il versamento. Conviene farlo subito, prima che arrivi una comunicazione di irregolarit&agrave;.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usare l&rsquo;F23 per l&rsquo;imposta di registro dell&rsquo;affitto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Dal 2014 l&rsquo;imposta di registro sulle locazioni, con sanzioni e interessi del ravvedimento, si paga con l&rsquo;F24 ELIDE, indicando il codice identificativo del contratto.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Dal 1&deg; gennaio 2015 l&rsquo;imposta di registro sulle locazioni, con sanzioni e interessi del ravvedimento, si paga solo con l&rsquo;F24 ELIDE, indicando il codice identificativo del contratto.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso usare un credito in compensazione con l&rsquo;F24 ELIDE?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Le avvertenze dell&rsquo;F24 ELIDE lo prevedono per i pagamenti in cui non &egrave; ammessa la compensazione con crediti: il modello ha solo la colonna degli importi a debito. Se vuoi usare un credito per altri tributi, serve l&rsquo;F24 ordinario o il semplificato.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF che scarico &egrave; valido per pagare?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
@@ -458,8 +494,9 @@
         <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
         <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
           <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-07-09;241~art17" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 9 luglio 1997, n. 241, art. 17</a> e seguenti: versamento unitario e compensazione.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2014-04-24;66~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 24 aprile 2014, n. 66, art. 11</a>: canali di presentazione dei modelli F24 con compensazioni e a saldo zero.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2023-12-30;213" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 30 dicembre 2023, n. 213</a>: presentazione solo telematica dei modelli con compensazioni dal 1&deg; luglio 2024.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2014-04-24;66~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 24 aprile 2014, n. 66, art. 11</a>: modelli con compensazioni, anche a saldo zero, solo con i servizi telematici dell&rsquo;Agenzia delle Entrate dal 1&deg; luglio 2024, come stabilito dalla <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2023-12-30;213" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 30 dicembre 2023, n. 213</a>.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2006-07-04;223~art37" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 4 luglio 2006, n. 223, art. 37</a>: pagamento telematico per chi ha la partita IVA e limiti alle compensazioni.</li>
+          <li>Agenzia delle Entrate, assistenza CIVIS: <a href="https://assistenza.agenziaentrate.gov.it/portale/richiesta-modifica-delega-f24" class="text-indigo-700 underline" target="_blank" rel="noopener">Richiesta modifica delega F24</a>.</li>
           <li>Agenzia delle Entrate: modelli F24, F24 semplificato, <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24-elementi-identificativi-f24elide/modello-e-istruzioni-f24elide" class="text-indigo-700 underline" target="_blank" rel="noopener">F24 ELIDE</a>, F24 accise e F23 con le relative istruzioni.</li>
         </ul>
       </section>

@@ -75,7 +75,7 @@
         "operatingSystem": "Qualsiasi (browser web)",
         "applicationCategory": "FinanceApplication",
         "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/",
-        "description": "Compilatore online del modello F24 Ordinario con sezioni Erario, INPS e IMU, calcolo di debiti, crediti e saldo e generazione del PDF interamente nel browser.",
+        "description": "Compilatore online del modello F24 ordinario (modello di pagamento unificato): sezioni Erario, INPS, Regioni, IMU e altri enti, totali con segno e saldo calcolati come negli esempi dell'Agenzia delle Entrate e PDF ufficiale generato nel browser.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -88,8 +88,8 @@
         "isAccessibleForFree": true,
         "featureList": [
           "Validazione del codice fiscale del contribuente",
-          "Righe dinamiche per le sezioni Erario, INPS e IMU e tributi locali",
-          "Totali di debiti, crediti e saldo con arrotondamento dei tributi locali",
+          "Righe per le sezioni Erario, INPS, Regioni, IMU e tributi locali, INAIL e altri enti",
+          "Totali di sezione, segno e saldo calcolati come negli esempi ufficiali",
           "Avvisi per saldo negativo, saldo zero e compensazioni",
           "Generazione locale del PDF senza invio di dati a server"
         ],
@@ -129,21 +129,21 @@
             "@type": "HowToStep",
             "position": 2,
             "name": "Compila la sezione Erario",
-            "text": "Aggiungi una riga per ogni codice tributo con anno di riferimento, importo a debito o credito.",
+            "text": "Aggiungi una riga per ogni codice tributo con rateazione (0101 in unica soluzione), anno di riferimento e importo a debito o a credito, sempre con due decimali.",
             "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#container-ord-erario"
           },
           {
             "@type": "HowToStep",
             "position": 3,
             "name": "Aggiungi contributi e tributi locali",
-            "text": "Compila le righe INPS con sede, causale e matricola e le righe IMU con codice catastale del Comune.",
+            "text": "Compila le righe INPS con sede, causale e matricola indicate dall'INPS e le righe IMU con il codice catastale del Comune, le caselle di acconto o saldo e il numero degli immobili.",
             "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#container-ord-imu"
           },
           {
             "@type": "HowToStep",
             "position": 4,
             "name": "Controlla il saldo e genera il PDF",
-            "text": "Verifica totali e avvisi nel riepilogo, quindi genera il PDF del modello.",
+            "text": "Verifica totali, segno e saldo: il saldo finale non può essere negativo. Se c'è un credito compensato, il modello si presenta solo con i servizi telematici dell'Agenzia delle Entrate.",
             "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-ordinario/#tot-saldo"
           }
         ]
@@ -155,10 +155,42 @@
         "mainEntity": [
           {
             "@type": "Question",
+            "name": "Dove trovo il modello F24 in bianco?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sul sito dell’Agenzia delle Entrate, nella pagina «Modello e istruzioni F24», insieme alle avvertenze per la compilazione. Con questa pagina compili lo stesso modello a schermo e scarichi il PDF già compilato, in tutte e tre le copie."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "F24 ordinario e modello di pagamento unificato sono la stessa cosa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Sul modulo il titolo è «Modello di pagamento unificato»: con un solo foglio si pagano imposte, contributi e tributi locali e si possono compensare i crediti. Il semplificato, l’ELIDE e l’accise sono varianti per casi particolari."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Posso pagare l’F24 ordinario in banca?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, se non hai la partita IVA e il modello non contiene crediti compensati: allo sportello di banca e posta si paga qualsiasi importo. Con la partita IVA serve sempre un canale telematico; con un credito compensato solo i servizi dell’Agenzia delle Entrate."
+              "text": "Sì, se non hai la partita IVA e nel modello non ci sono crediti compensati: allo sportello di banca e posta si paga qualsiasi importo. Con la partita IVA serve un canale telematico; con un credito compensato, anche se resta qualcosa da pagare, solo i servizi telematici dell’Agenzia delle Entrate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Fino a quando posso rateizzare saldo e acconto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il pagamento a rate deve finire entro il 16 dicembre dell’anno in cui presenti la dichiarazione, e ogni rata si paga entro il 16 del mese. È la regola in vigore dal saldo dell’anno d’imposta 2023: le avvertenze del modello dicono ancora novembre. Dalla seconda rata si aggiungono gli interessi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanti crediti posso compensare in un anno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Al massimo 2 milioni di euro, dal 2022. I crediti di IVA, imposte sui redditi, imposte sostitutive e IRAP sopra i 5.000 € si usano dal decimo giorno dopo la dichiarazione, e per il credito IVA oltre 5.000 € serve il visto di conformità."
             }
           },
           {
@@ -166,7 +198,7 @@
             "name": "Cosa succede se uso un credito che non mi spetta?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Se il credito esiste ma non potevi usarlo (per esempio oltre i limiti annui) la sanzione è del 25% dell’importo compensato. Se il credito è inesistente la sanzione sale al 70% e, oltre certe soglie, ci sono conseguenze penali. In entrambi i casi il ravvedimento operoso riduce la sanzione."
+              "text": "Se il credito esiste ma non potevi usarlo, la sanzione è del 25% del credito compensato; se il credito è inesistente, del 70%. Sono le misure per le violazioni commesse dal 1° settembre 2024."
             }
           },
           {
@@ -174,15 +206,15 @@
             "name": "Ho sbagliato codice tributo o anno: devo pagare di nuovo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il pagamento resta valido: si chiede la correzione della delega all’Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarità per il tributo che risulta non pagato."
+              "text": "No. Per i tributi dell’Agenzia delle Entrate chiedi la correzione con il servizio CIVIS «Richiesta modifica delega F24», per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS, altri enti previdenziali e IMU e tributi locali: per quelle bisogna rivolgersi all’ente che riceve il versamento."
             }
           },
           {
             "@type": "Question",
-            "name": "Perché nella sezione IMU non ci sono i centesimi?",
+            "name": "Come scrivo l’IMU nell’F24 ordinario?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le istruzioni del modello chiedono di arrotondare all’euro gli importi della sezione IMU e tributi locali. Il compilatore lo fa da solo; nelle sezioni Erario e INPS invece si scrivono i centesimi."
+              "text": "Una riga per ogni Comune, con il suo codice catastale, il codice tributo (3918 per gli altri fabbricati), la casella dell’acconto o del saldo e il numero degli immobili. L’IMU dovuta si arrotonda all’euro, per difetto fino a 49 centesimi, ma nel modello si scrive con i due decimali: 413,00."
             }
           },
           {
@@ -190,7 +222,7 @@
             "name": "Il PDF è il modello ufficiale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì: è il modello F24 dell’Agenzia delle Entrate compilato con i tuoi dati, da stampare o da usare come traccia per l’home banking. Controlla codici, anno e importi prima di pagare."
+              "text": "Sì: è il modello F24 dell’Agenzia delle Entrate compilato con i tuoi dati, da stampare o da usare come traccia per i servizi online. Controlla codici, anno e importi prima di pagare."
             }
           }
         ]
@@ -421,7 +453,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di compilazione e compensazione aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di compilazione, rate e compensazione verificate sulle fonti a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -434,7 +466,7 @@
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
             <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e di prassi</p>
-            <p class="text-gray-600 leading-relaxed">D.Lgs. 241/1997 artt. 17 e seguenti, D.L. 78/2010 art. 31, L. 244/2007 art. 1 c. 53, L. 213/2023 e L. 199/2025 (compensazioni e ruoli scaduti), D.Lgs. 87/2024 (sanzioni), istruzioni ministeriali al modello F24 e tabelle dei codici tributo dell'Agenzia delle Entrate.</p>
+            <p class="text-gray-600 leading-relaxed">Avvertenze del modello F24 ed esempi di compilazione dei codici tributo dell'Agenzia delle Entrate; D.Lgs. 241/1997 artt. 17 e 20 (versamento unitario, compensazione e rate); D.L. 66/2014 art. 11 e D.L. 223/2006 art. 37 (canali di pagamento e blocco delle compensazioni); D.L. 78/2010 art. 31 e D.L. 78/2009 art. 10 (ruoli scaduti e visto di conformità); L. 388/2000 art. 34 (limite annuo dei crediti); D.Lgs. 471/1997 art. 13 (sanzioni).</p>
           </div>
         </div>
       </section>
@@ -442,62 +474,202 @@
       <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
         <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come compilare il modello F24 ordinario</h2>
         <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
-          <p>L&rsquo;F24 ordinario &egrave; il modello generale per pagare imposte, contributi e tributi locali: IRPEF e addizionali, IVA, cedolare secca, contributi INPS, IMU. &Egrave; anche l&rsquo;unico, insieme al semplificato, in cui puoi usare un credito d&rsquo;imposta per pagare altri tributi (la compensazione).</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Le sezioni del modello</h3>
+          <p>L&rsquo;F24 ordinario &egrave; il modello generale per pagare imposte, contributi e tributi locali: IRPEF e addizionali, IVA, cedolare secca, IRAP, contributi INPS, IMU e TARI. Sul modulo il titolo &egrave; &laquo;Modello di pagamento unificato&raquo;, perch&eacute; con un solo foglio si paga a enti diversi e si possono usare i crediti per pagare altri tributi (la compensazione). Se paghi solo IMU, TARI o tributi erariali senza contributi va bene anche il <a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="text-indigo-700 underline">semplificato</a>; per l&rsquo;imposta di registro sugli affitti serve l&rsquo;<a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">F24 ELIDE</a>.</p>
+
+          <p class="rounded-lg bg-amber-50 border border-amber-200 p-3 text-amber-900"><strong>Dal 1&deg; gennaio 2027 cambiano le norme.</strong> Le regole di questa pagina sono quelle in vigore nel 2026. Dal 2027 gli articoli che le contengono sono abrogati dal D.Lgs. 33/2025 (e, per le sanzioni, dal D.Lgs. 173/2024): la pagina verr&agrave; aggiornata con i nuovi testi prima di quella data.</p>
+
+          <h3 id="sezioni" class="text-lg font-bold text-gray-900 pt-3">Le sezioni del modello</h3>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li><strong>Erario</strong>: IRPEF, IVA, imposte sostitutive, cedolare secca, ritenute. Gli importi si scrivono con i centesimi.</li>
-            <li><strong>INPS</strong>: contributi di artigiani, commercianti, gestione separata e lavoratori domestici, con la causale indicata dall&rsquo;INPS.</li>
-            <li><strong>Regioni</strong>: addizionale regionale all&rsquo;IRPEF e IRAP.</li>
-            <li><strong>IMU e altri tributi locali</strong>: IMU, TARI, addizionale comunale. Qui gli importi si arrotondano all&rsquo;euro: per difetto fino a 49 centesimi, per eccesso da 50 in su.</li>
-            <li><strong>Altri enti</strong>: INAIL e casse previdenziali che usano l&rsquo;F24.</li>
+            <li><strong>Erario</strong>: imposte sui redditi, IVA, imposte sostitutive come la cedolare secca, ritenute, interessi e sanzioni.</li>
+            <li><strong>INPS</strong>: contributi, con codice sede, causale, matricola e periodo come li indica l&rsquo;INPS nel modello di pagamento.</li>
+            <li><strong>Regioni</strong>: IRAP e addizionale regionale all&rsquo;IRPEF, con il codice della regione (il Lazio &egrave; 08).</li>
+            <li><strong>IMU e altri tributi locali</strong>: IMU, TARI e addizionale comunale all&rsquo;IRPEF, con il codice catastale del Comune.</li>
+            <li><strong>Altri enti previdenziali e assicurativi</strong>: INAIL e gli altri enti che usano l&rsquo;F24.</li>
           </ul>
-          <p>Ogni riga porta il codice tributo, l&rsquo;anno di riferimento e l&rsquo;importo a debito o a credito. Il saldo finale &egrave; la somma dei debiti meno i crediti, e non pu&ograve; essere negativo: se hai pi&ugrave; crediti che debiti, ne usi solo quanto basta e il resto rimane disponibile per i pagamenti successivi.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">I crediti: quando puoi usarli</h3>
+          <p>Ogni sezione ha il totale dei debiti, quello dei crediti, il segno e il saldo. Il saldo finale &egrave; la somma dei saldi di sezione e non pu&ograve; mai essere negativo.</p>
+
+          <h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Campo per campo</h3>
+          <p>Le regole sono quelle delle avvertenze ufficiali del modello e degli esempi di compilazione dell&rsquo;Agenzia delle Entrate:</p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Codice fiscale e dati anagrafici</strong>: le avvertenze chiedono di scriverli &laquo;con particolare attenzione&raquo;, insieme al domicilio fiscale, perch&eacute; &egrave; il codice fiscale a collegare il pagamento alla tua posizione. La casella dell&rsquo;anno d&rsquo;imposta non coincidente con l&rsquo;anno solare si barra solo se il tuo periodo d&rsquo;imposta non va da gennaio a dicembre: in quel caso nell&rsquo;anno di riferimento va il primo dei due anni.</li>
+            <li><strong>Coobbligato, erede, genitore, tutore o curatore</strong>: il codice fiscale di chi paga per conto del contribuente, con il codice identificativo della tabella dell&rsquo;Agenzia: 02 genitore o tutore, 03 curatore fallimentare, 07 erede. Chi paga per un altro firma il modello.</li>
+            <li><strong>Codice tributo</strong> (nella sezione INPS, causale contributo): quello del tributo che paghi. I pi&ugrave; usati sono nella tabella qui sotto.</li>
+            <li><strong>Rateazione/regione/prov./mese rif.</strong>: 0101 se paghi saldo o acconto in un&rsquo;unica soluzione; a rate, il numero della rata e quello delle rate scelte (0107 &egrave; la prima di sette); per i versamenti periodici il mese, per esempio 0011 per le ritenute di novembre. Per gli interessi delle rate, codice 1668, resta vuoto.</li>
+            <li><strong>Anno di riferimento</strong>: l&rsquo;anno d&rsquo;imposta, in quattro cifre. Per un credito, l&rsquo;anno a cui si riferisce il credito.</li>
+            <li><strong>Importi</strong>: sempre con due decimali, anche quando sono zero: 52 euro si scrivono 52,00. Con pi&ugrave; decimali si arrotonda la seconda cifra: 52,752 diventa 52,75, 52,755 diventa 52,76.</li>
+            <li><strong>Codice ufficio e codice atto</strong>: vuoti nei pagamenti normali. Si compilano quando paghi un avviso di accertamento, un atto di contestazione o di irrogazione delle sanzioni, un accertamento con adesione o una conciliazione. In quel caso anche IRAP e addizionali vanno nella sezione Erario, con il codice dell&rsquo;ente; imposta e interessi si pagano insieme con il codice del tributo, le sanzioni a parte con il loro codice, e serve un modello per ogni atto. Con il ravvedimento il codice ufficio non va mai compilato.</li>
+            <li><strong>Sezione IMU</strong>: in ogni riga il codice catastale del Comune, quattro caratteri (H501 per Roma); &laquo;Ravv.&raquo; se paghi con il ravvedimento, e allora l&rsquo;anno &egrave; quello in cui l&rsquo;imposta andava versata; &laquo;Immob. variati&raquo; se ci sono variazioni che richiedono la dichiarazione; &laquo;Acc.&raquo; per l&rsquo;acconto e &laquo;Saldo&raquo; per il saldo, tutte e due se paghi in un&rsquo;unica soluzione; il numero degli immobili, al massimo tre cifre. Per l&rsquo;IMU la rateazione si compila solo se lo prevedono istruzioni dell&rsquo;Amministrazione finanziaria; per la TARI si scrive la rata (0102 &egrave; la prima di due). Con la detrazione per l&rsquo;abitazione principale l&rsquo;importo va al netto e la detrazione nella sua casella. L&rsquo;identificativo operazione solo se il Comune lo chiede.</li>
+            <li><strong>Totali, segno e saldo</strong>: per ogni sezione il totale dei debiti, quello dei crediti, il segno (&laquo;&minus;&raquo; se i crediti sono di pi&ugrave;) e il saldo. Negli esempi dell&rsquo;Agenzia un totale senza importi resta vuoto. Il compilatore li calcola e li scrive da solo.</li>
+          </ol>
+
+          <figure class="my-6">
+            <img src="/assets/esempi/f24-ordinario-compensazione.webp" width="1100" height="891" loading="lazy" decoding="async"
+                 alt="Modello F24 ordinario compilato: nella sezione Erario un credito IRPEF 2025 di 413,00 euro con codice 4001 e saldo con segno meno; nella sezione IMU l'acconto 2026 di 413,00 euro con codice 3918 per un immobile a Roma; saldo finale 0,00"
+                 class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+            <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Un credito IRPEF usato per l&rsquo;acconto IMU, sul modello compilato con questa pagina (contribuente e importi inventati): il saldo dell&rsquo;Erario ha il segno &laquo;&minus;&raquo;, il totale dei debiti dell&rsquo;Erario resta vuoto e il modello chiude a zero.</figcaption>
+          </figure>
+
+          <h3 id="codici" class="text-lg font-bold text-gray-900 pt-3">I codici tributo pi&ugrave; usati</h3>
+          <p>Dalla ricerca dei codici tributo dell&rsquo;Agenzia delle Entrate, con la sezione del modello in cui vanno:</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Codici tributo più usati nel modello F24 ordinario e sezione in cui si indicano</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa si paga</th><th scope="col" class="px-2 sm:px-3 py-2 text-left font-semibold text-gray-900">Sezione</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">4001</td><td class="px-2 sm:px-3 py-2 align-top">IRPEF, saldo</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">4033</td><td class="px-2 sm:px-3 py-2 align-top">IRPEF, acconto prima rata</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">4034</td><td class="px-2 sm:px-3 py-2 align-top">IRPEF, acconto seconda rata o in unica soluzione</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">1840</td><td class="px-2 sm:px-3 py-2 align-top">Cedolare secca, acconto prima rata</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">6099</td><td class="px-2 sm:px-3 py-2 align-top">IVA della dichiarazione annuale</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">1668</td><td class="px-2 sm:px-3 py-2 align-top">Interessi delle rate</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">1989</td><td class="px-2 sm:px-3 py-2 align-top">Interessi del ravvedimento sull&rsquo;IRPEF</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">8901</td><td class="px-2 sm:px-3 py-2 align-top">Sanzione sull&rsquo;IRPEF</td><td class="px-2 sm:px-3 py-2 align-top">Erario</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3800</td><td class="px-2 sm:px-3 py-2 align-top">IRAP, saldo</td><td class="px-2 sm:px-3 py-2 align-top">Regioni</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3801</td><td class="px-2 sm:px-3 py-2 align-top">Addizionale regionale all&rsquo;IRPEF</td><td class="px-2 sm:px-3 py-2 align-top">Regioni</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3843 / 3844</td><td class="px-2 sm:px-3 py-2 align-top">Addizionale comunale all&rsquo;IRPEF, acconto / saldo</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3912</td><td class="px-2 sm:px-3 py-2 align-top">IMU, abitazione principale e pertinenze</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3914 / 3916</td><td class="px-2 sm:px-3 py-2 align-top">IMU, terreni / aree fabbricabili (Comune)</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3918</td><td class="px-2 sm:px-3 py-2 align-top">IMU, altri fabbricati (Comune)</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3925</td><td class="px-2 sm:px-3 py-2 align-top">IMU, immobili del gruppo catastale D (Stato)</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-2 sm:px-3 py-2 align-top font-mono font-semibold">3944</td><td class="px-2 sm:px-3 py-2 align-top">TARI</td><td class="px-2 sm:px-3 py-2 align-top">IMU e tributi locali</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Se hai ricevuto un avviso, una comunicazione o un F24 gi&agrave; preparato, usa i codici che trovi l&igrave;: sono quelli giusti per quel debito.</p>
+
+          <h3 id="rate" class="text-lg font-bold text-gray-900 pt-3">Pagare saldo e acconti a rate</h3>
+          <p>Le imposte e i contributi dovuti a saldo e in acconto con la dichiarazione si possono dividere in rate mensili di pari importo (articolo 20 del D.Lgs. 241/1997):</p>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li>Per usare in compensazione pi&ugrave; di 5.000 &euro; l&rsquo;anno di crediti IVA, IRPEF o IRES serve il visto di conformit&agrave; sulla dichiarazione da cui nasce il credito, apposto da un commercialista o da un CAF.</li>
-            <li>Se hai cartelle scadute e non rateizzate oltre le soglie di legge, la compensazione &egrave; bloccata: dal 2026 il blocco totale scatta sopra i 50.000 &euro; di carichi affidati alla riscossione. Le cartelle in rateazione regolare o sospese non contano.</li>
-            <li>Un modello con un credito compensato si presenta solo con i servizi telematici dell&rsquo;Agenzia delle Entrate, anche se resta qualcosa da pagare.</li>
+            <li>la prima rata si paga alla scadenza del saldo o dell&rsquo;acconto, le altre <strong>entro il 16 di ogni mese</strong>;</li>
+            <li>il pagamento a rate deve finire <strong>entro il 16 dicembre</strong> dell&rsquo;anno in cui presenti la dichiarazione. &Egrave; la regola introdotta dal D.Lgs. 1/2024 a partire dal saldo dell&rsquo;anno d&rsquo;imposta 2023: le avvertenze del modello, scritte prima, dicono ancora &laquo;entro il mese di novembre&raquo;;</li>
+            <li>non serve rateizzare tutto: puoi dividere l&rsquo;IRPEF e pagare l&rsquo;IRAP in un&rsquo;unica soluzione, o rateizzare l&rsquo;acconto e pagare subito il saldo;</li>
+            <li>dalla seconda rata si aggiungono gli interessi, su una riga a parte: codice 1668 nella sezione Erario, 3805 per i tributi regionali, 3857 per l&rsquo;addizionale comunale. Le avvertenze danno la formula C &times; i &times; t / 36.000, dove C &egrave; l&rsquo;importo rateizzato, i il tasso e t i giorni fra una scadenza e l&rsquo;altra.</li>
           </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Dove si paga</h3>
+          <p><strong>L&rsquo;esempio dell&rsquo;Agenzia delle Entrate.</strong> 6.000,00 &euro; di saldo IRPEF 2025 divisi in sette rate: la prima &egrave; di 857,14 &euro;.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Prima rata del saldo IRPEF nell&rsquo;esempio ufficiale del codice 4001</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Rateazione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-right font-semibold text-gray-900">Debito</th></tr></thead>
+              <tbody class="font-mono">
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">4001</td><td class="px-1.5 sm:px-3 py-2">0107</td><td class="px-1.5 sm:px-3 py-2">2025</td><td class="px-1.5 sm:px-3 py-2 text-right">857,14</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Il mese dopo la riga diventa 4001, 0207, 2025, 857,14, e sotto si aggiunge la riga 1668 con gli interessi della rata.</p>
+
+          <h3 id="compensazione" class="text-lg font-bold text-gray-900 pt-3">Usare un credito: la compensazione</h3>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li><strong>Senza partita IVA e senza crediti da compensare</strong>: puoi pagare dove vuoi, per qualsiasi importo: in banca, alla posta, agli sportelli dell&rsquo;agente della riscossione, con l&rsquo;home banking o con i servizi online dell&rsquo;Agenzia delle Entrate.</li>
-            <li><strong>Con la partita IVA</strong>: sempre per via telematica (home banking, servizi dell&rsquo;Agenzia o intermediario). Il modello cartaceo allo sportello non &egrave; ammesso.</li>
-            <li><strong>Se nel modello c&rsquo;&egrave; un credito compensato</strong>, anche piccolo e anche se resta qualcosa da pagare: solo con i servizi telematici dell&rsquo;Agenzia delle Entrate (F24 web o online, Fisconline, Entratel), direttamente o tramite un CAF o un commercialista. Dal 1&deg; luglio 2024 l&rsquo;home banking non accetta pi&ugrave; questi modelli.</li>
-            <li><strong>Se il modello chiude a zero</strong> perch&eacute; i crediti coprono tutti i debiti: solo con i servizi dell&rsquo;Agenzia delle Entrate. Allo sportello non c&rsquo;&egrave; niente da addebitare.</li>
+            <li>Il credito si scrive nella colonna &laquo;importi a credito compensati&raquo;, sulla riga con il codice da cui nasce e l&rsquo;anno a cui si riferisce. Nell&rsquo;esempio ufficiale del codice 4001 un credito IRPEF di 6.000,00 &euro; ha rateazione 0101 e l&rsquo;anno del credito.</li>
+            <li>Se ne usa al massimo quanto serve ad azzerare i debiti: il saldo finale non pu&ograve; essere negativo, e se compili una sola sezione nemmeno il suo saldo. Il credito che avanza resta per i pagamenti successivi.</li>
+            <li>Il modello va presentato anche quando chiude a zero.</li>
+            <li>I crediti di IVA, imposte sui redditi e addizionali, imposte sostitutive e IRAP superiori a 5.000 &euro; l&rsquo;anno si possono compensare dal decimo giorno dopo la presentazione della dichiarazione da cui nascono (articolo 17 del D.Lgs. 241/1997).</li>
+            <li>Per compensare pi&ugrave; di 5.000 &euro; l&rsquo;anno di credito IVA serve il visto di conformit&agrave; sulla dichiarazione o sull&rsquo;istanza da cui nasce (articolo 10 del D.L. 78/2009).</li>
+            <li>In un anno si possono compensare al massimo 2 milioni di euro di crediti, il limite in vigore dal 2022 (articolo 34 della L. 388/2000). Le avvertenze del modello riportano ancora il vecchio limite di 516.456,90 &euro;.</li>
+            <li>Con cartelle per imposte erariali scadute di pi&ugrave; di 1.500 &euro;, i crediti erariali non si possono compensare fino a quell&rsquo;importo (articolo 31 del D.L. 78/2010).</li>
+            <li>Dal 1&deg; gennaio 2026, con pi&ugrave; di 50.000 &euro; di cartelle e carichi dell&rsquo;Agenzia delle Entrate scaduti e non sospesi, la compensazione &egrave; esclusa del tutto, salvo i crediti di contributi e premi; prima la soglia era di 100.000 &euro;. Le somme in un piano di rateazione non decaduto non contano (articolo 37, comma 49-quinquies, del D.L. 223/2006).</li>
           </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Tre esempi</h3>
-          <p><strong>Professionista a fine giugno.</strong> Un ingegnere iscritto alla gestione separata versa il saldo IRPEF 2025 (codice 4001, 1.240,50 &euro;), il primo acconto 2026 (codice 4033, 1.096,00 &euro;) e il saldo dei contributi (causale PXX, 2.180,00 &euro;): totale 4.516,50 &euro;. Ha la partita IVA, quindi paga per via telematica; saldo e primo acconto si possono anche dividere in rate fino a novembre, con gli interessi.</p>
-          <p><strong>Credito IRPEF usato per l&rsquo;IMU.</strong> Una pensionata ha un credito IRPEF di 850 &euro; e deve 412,60 &euro; di acconto IMU sulla seconda casa (codice 3918, arrotondato a 413 &euro;). Usa solo 413 &euro; del credito: il modello chiude a zero e va presentato con Fisconline o tramite un CAF. I 437 &euro; restanti li user&agrave; in un F24 successivo.</p>
-          <p><strong>IMU su due Comuni.</strong> Un proprietario versa 620,00 &euro; di acconto della cedolare secca (codice 1840) e l&rsquo;IMU di due appartamenti in Comuni diversi (234 e 102 &euro;, codice 3918): totale 956 &euro;. Ogni riga IMU ha il codice catastale del proprio Comune; sommarle su una riga sola darebbe tutto a un Comune e l&rsquo;altro vedrebbe l&rsquo;imposta non pagata.</p>
+
+          <h3 id="dove-si-paga" class="text-lg font-bold text-gray-900 pt-3">Dove e come si paga</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Senza partita IVA e senza crediti da compensare</strong>: dove vuoi, per qualsiasi importo: in banca, alla posta, agli sportelli dell&rsquo;agente della riscossione, con l&rsquo;home banking o con i servizi online dell&rsquo;Agenzia delle Entrate. Allo sportello si paga in contanti, con carta PagoBANCOMAT, Postamat o Postepay, o con un assegno pari al saldo; se l&rsquo;assegno &egrave; scoperto, il versamento si considera omesso.</li>
+            <li><strong>Con la partita IVA</strong>: sempre per via telematica, anche tramite un intermediario (articolo 37, comma 49, del D.L. 223/2006).</li>
+            <li><strong>Se nel modello c&rsquo;&egrave; un credito compensato</strong>, anche piccolo e anche se resta qualcosa da pagare: dal 1&deg; luglio 2024 solo con i servizi telematici dell&rsquo;Agenzia delle Entrate, direttamente o tramite un CAF o un commercialista (articolo 11 del D.L. 66/2014). L&rsquo;home banking non va pi&ugrave; bene.</li>
+            <li><strong>Se il modello chiude a zero</strong> perch&eacute; i crediti coprono tutti i debiti vale la stessa regola: solo i servizi telematici dell&rsquo;Agenzia.</li>
+          </ul>
+
+          <h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Tre esempi</h3>
+          <p><strong>1. Saldo IRPEF a rate.</strong> &Egrave; l&rsquo;esempio dell&rsquo;Agenzia visto sopra: 6.000,00 &euro; in sette rate da 857,14 &euro;, con il codice 4001 e la rateazione che sale di un numero ogni mese (0107, 0207&hellip; 0707), pi&ugrave; gli interessi con il codice 1668 dalla seconda rata.</p>
+          <p><strong>2. Credito IRPEF usato per l&rsquo;IMU.</strong> Mario ha un credito IRPEF di 850 &euro; dalla dichiarazione dei redditi per il 2025 e deve 412,60 &euro; di acconto IMU 2026 su un appartamento a Roma. L&rsquo;IMU si arrotonda all&rsquo;euro, quindi 413,00 &euro;. Usa solo 413,00 &euro; del credito: il modello chiude a zero e va presentato con i servizi telematici dell&rsquo;Agenzia delle Entrate o tramite un CAF. I 437 &euro; che restano li user&agrave; in un F24 successivo. &Egrave; il modello dell&rsquo;immagine qui sopra:</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Righe dell&rsquo;esempio con il credito IRPEF usato per l&rsquo;IMU</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Sezione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Altri campi</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-right font-semibold text-gray-900">Debito</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-right font-semibold text-gray-900">Credito</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">Erario</td><td class="px-1.5 sm:px-3 py-2 font-mono">4001</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2">rateazione 0101</td><td class="px-1.5 sm:px-3 py-2 font-mono">2025</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono"></td><td class="px-1.5 sm:px-3 py-2 text-right font-mono">413,00</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">IMU</td><td class="px-1.5 sm:px-3 py-2 font-mono">3918</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2">H501, Acc., 1 immobile</td><td class="px-1.5 sm:px-3 py-2 font-mono">2026</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono">413,00</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Saldo dell&rsquo;Erario: &minus;413,00; saldo dell&rsquo;IMU: +413,00; saldo finale: 0,00.</p>
+          <p><strong>3. IMU in due Comuni e cedolare secca.</strong> Una proprietaria senza partita IVA versa 620,00 &euro; di primo acconto della cedolare secca e l&rsquo;acconto IMU di due appartamenti in due Comuni diversi, 234,00 e 102,00 &euro;. Ogni Comune ha la sua riga con il suo codice catastale: sommarle su una riga sola darebbe tutto a un Comune, e l&rsquo;altro vedrebbe l&rsquo;imposta non pagata. Totale 956,00 &euro;: senza crediti pu&ograve; pagare anche in banca o alla posta.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Righe dell&rsquo;esempio con l&rsquo;IMU in due Comuni e la cedolare secca</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Sezione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Altri campi</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Anno</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-right font-semibold text-gray-900">Debito</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">Erario</td><td class="px-1.5 sm:px-3 py-2 font-mono">1840</td><td class="px-1.5 sm:px-3 py-2">rateazione 0101</td><td class="px-1.5 sm:px-3 py-2 font-mono">2026</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono">620,00</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">IMU</td><td class="px-1.5 sm:px-3 py-2 font-mono">3918</td><td class="px-1.5 sm:px-3 py-2">codice del primo Comune, Acc.</td><td class="px-1.5 sm:px-3 py-2 font-mono">2026</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono">234,00</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">IMU</td><td class="px-1.5 sm:px-3 py-2 font-mono">3918</td><td class="px-1.5 sm:px-3 py-2">codice del secondo Comune, Acc.</td><td class="px-1.5 sm:px-3 py-2 font-mono">2026</td><td class="px-1.5 sm:px-3 py-2 text-right font-mono">102,00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Fermare le rate a novembre</strong> seguendo le avvertenze: oggi l&rsquo;ultima rata pu&ograve; scadere il 16 dicembre.</li>
+            <li><strong>Dimenticare gli interessi</strong> dalla seconda rata, con il loro codice su una riga a parte.</li>
+            <li><strong>Lasciare un saldo negativo</strong>: il credito si usa solo fino ad azzerare i debiti.</li>
+            <li><strong>Mettere su una riga l&rsquo;IMU di due Comuni</strong>: ogni Comune vuole la sua riga.</li>
+            <li><strong>Sbagliare il codice della regione</strong>: va preso dalla tabella dell&rsquo;Agenzia; il Lazio, per esempio, &egrave; 08.</li>
+            <li><strong>Compilare il codice ufficio</strong> pagando con il ravvedimento.</li>
+            <li><strong>Pagare con l&rsquo;home banking un modello con un credito</strong>: servono i servizi telematici dell&rsquo;Agenzia.</li>
+            <li><strong>Scrivere gli importi senza decimali</strong>: 1250 invece di 1250,00.</li>
+          </ul>
+          <p>Le avvertenze lo ricordano: gli errori di compilazione possono portare a richieste di pagamento di somme gi&agrave; versate.</p>
+
+          <h3 id="correzioni" class="text-lg font-bold text-gray-900 pt-3">Se hai sbagliato codice o anno</h3>
+          <p>Il pagamento non si ripete. Per i tributi gestiti dall&rsquo;Agenzia delle Entrate si chiede la correzione con il servizio CIVIS &laquo;Richiesta modifica delega F24&raquo;, per gli F24 presentati negli ultimi tre anni. Il servizio non vale per le sezioni INPS, altri enti previdenziali e assicurativi, IMU e altri tributi locali: per quei versamenti bisogna rivolgersi all&rsquo;ente che li riceve. Per l&rsquo;addizionale comunale si pu&ograve; correggere il periodo, e il codice solo con un altro codice dell&rsquo;addizionale comunale.</p>
         </div>
         <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
         <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove trovo il modello F24 in bianco?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sul sito dell&rsquo;Agenzia delle Entrate, nella pagina &laquo;Modello e istruzioni F24&raquo;, insieme alle avvertenze per la compilazione. Con questa pagina compili lo stesso modello a schermo e scarichi il PDF gi&agrave; compilato, in tutte e tre le copie.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">F24 ordinario e modello di pagamento unificato sono la stessa cosa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. Sul modulo il titolo &egrave; &laquo;Modello di pagamento unificato&raquo;: con un solo foglio si pagano imposte, contributi e tributi locali e si possono compensare i crediti. Il semplificato, l&rsquo;ELIDE e l&rsquo;accise sono varianti per casi particolari.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso pagare l&rsquo;F24 ordinario in banca?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se non hai la partita IVA e il modello non contiene crediti compensati: allo sportello di banca e posta si paga qualsiasi importo. Con la partita IVA serve sempre un canale telematico; con un credito compensato solo i servizi dell&rsquo;Agenzia delle Entrate.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se non hai la partita IVA e nel modello non ci sono crediti compensati: allo sportello di banca e posta si paga qualsiasi importo. Con la partita IVA serve un canale telematico; con un credito compensato, anche se resta qualcosa da pagare, solo i servizi telematici dell&rsquo;Agenzia delle Entrate.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Fino a quando posso rateizzare saldo e acconto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il pagamento a rate deve finire entro il 16 dicembre dell&rsquo;anno in cui presenti la dichiarazione, e ogni rata si paga entro il 16 del mese. È la regola in vigore dal saldo dell&rsquo;anno d&rsquo;imposta 2023: le avvertenze del modello dicono ancora novembre. Dalla seconda rata si aggiungono gli interessi.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanti crediti posso compensare in un anno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Al massimo 2 milioni di euro, dal 2022. I crediti di IVA, imposte sui redditi, imposte sostitutive e IRAP sopra i 5.000 &euro; si usano dal decimo giorno dopo la dichiarazione, e per il credito IVA oltre 5.000 &euro; serve il visto di conformit&agrave;.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa succede se uso un credito che non mi spetta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Se il credito esiste ma non potevi usarlo (per esempio oltre i limiti annui) la sanzione &egrave; del 25% dell&rsquo;importo compensato. Se il credito &egrave; inesistente la sanzione sale al 70% e, oltre certe soglie, ci sono conseguenze penali. In entrambi i casi il ravvedimento operoso riduce la sanzione.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Se il credito esiste ma non potevi usarlo, la sanzione &egrave; del 25% del credito compensato; se il credito &egrave; inesistente, del 70%. Sono le misure per le violazioni commesse dal 1&deg; settembre 2024.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho sbagliato codice tributo o anno: devo pagare di nuovo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il pagamento resta valido: si chiede la correzione della delega all&rsquo;Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarit&agrave; per il tributo che risulta non pagato.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Per i tributi dell&rsquo;Agenzia delle Entrate chiedi la correzione con il servizio CIVIS &laquo;Richiesta modifica delega F24&raquo;, per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS, altri enti previdenziali e IMU e tributi locali: per quelle bisogna rivolgersi all&rsquo;ente che riceve il versamento.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; nella sezione IMU non ci sono i centesimi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le istruzioni del modello chiedono di arrotondare all&rsquo;euro gli importi della sezione IMU e tributi locali. Il compilatore lo fa da solo; nelle sezioni Erario e INPS invece si scrivono i centesimi.</p>
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come scrivo l&rsquo;IMU nell&rsquo;F24 ordinario?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Una riga per ogni Comune, con il suo codice catastale, il codice tributo (3918 per gli altri fabbricati), la casella dell&rsquo;acconto o del saldo e il numero degli immobili. L&rsquo;IMU dovuta si arrotonda all&rsquo;euro, per difetto fino a 49 centesimi, ma nel modello si scrive con i due decimali: 413,00.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il PDF &egrave; il modello ufficiale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: &egrave; il modello F24 dell&rsquo;Agenzia delle Entrate compilato con i tuoi dati, da stampare o da usare come traccia per l&rsquo;home banking. Controlla codici, anno e importi prima di pagare.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: &egrave; il modello F24 dell&rsquo;Agenzia delle Entrate compilato con i tuoi dati, da stampare o da usare come traccia per i servizi online. Controlla codici, anno e importi prima di pagare.</p>
         </details>
         <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
         <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-07-09;241~art17" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 9 luglio 1997, n. 241, art. 17</a>: versamento unitario e compensazione.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2014-04-24;66~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 24 aprile 2014, n. 66, art. 11</a>, e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2023-12-30;213" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 30 dicembre 2023, n. 213</a>: canali telematici per i modelli con compensazioni.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2010-05-31;78~art31" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 31 maggio 2010, n. 78, art. 31</a>, e Legge di Bilancio 2026: divieto di compensazione con cartelle scadute oltre soglia.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-06-14;87" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 14 giugno 2024, n. 87</a>: sanzioni per crediti non spettanti e inesistenti.</li>
-          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24/modello-e-istruzioni-f24" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F24 e istruzioni</a> per la compilazione.</li>
+          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24/modello-e-istruzioni-f24" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F24 e istruzioni</a>, con le avvertenze per la compilazione.</li>
+          <li>Agenzia delle Entrate, ricerca dei codici tributo: <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/Ricorrenti.php" class="text-indigo-700 underline" target="_blank" rel="noopener">codici più ricorrenti</a> ed esempi di compilazione dei codici <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=4001" class="text-indigo-700 underline" target="_blank" rel="noopener">4001</a>, <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=1840" class="text-indigo-700 underline" target="_blank" rel="noopener">1840</a>, <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=6099" class="text-indigo-700 underline" target="_blank" rel="noopener">6099</a>, <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneRegioni.php?CT=3800" class="text-indigo-700 underline" target="_blank" rel="noopener">3800</a>, <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneEntiLocali.php?CT=3918&amp;Ord=1421" class="text-indigo-700 underline" target="_blank" rel="noopener">3918</a>, <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneEntiLocali.php?CT=3844&amp;Ord=1360" class="text-indigo-700 underline" target="_blank" rel="noopener">3844</a> e <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=1668&amp;Ord=0779" class="text-indigo-700 underline" target="_blank" rel="noopener">1668</a>.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-07-09;241~art17" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 9 luglio 1997, n. 241, art. 17</a> (versamento unitario e compensazione) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-07-09;241~art20" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 20</a> (pagamenti rateali).</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2014-04-24;66~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 24 aprile 2014, n. 66, art. 11</a>: modelli con compensazioni solo con i servizi telematici dell&rsquo;Agenzia, dal 1&deg; luglio 2024.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2006-07-04;223~art37" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 4 luglio 2006, n. 223, art. 37</a>, commi 49 e 49-quinquies: pagamento telematico con la partita IVA e blocco delle compensazioni oltre i 50.000 &euro; di carichi scaduti.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2010-05-31;78~art31" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 31 maggio 2010, n. 78, art. 31</a>: crediti erariali e ruoli scaduti oltre 1.500 &euro;.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2009-07-01;78~art10" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 1 luglio 2009, n. 78, art. 10</a>: visto di conformit&agrave; per i crediti IVA oltre 5.000 &euro;.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2000-12-23;388~art34" class="text-indigo-700 underline" target="_blank" rel="noopener">L. 23 dicembre 2000, n. 388, art. 34</a>: limite annuo dei crediti compensabili.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-12-18;471~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 18 dicembre 1997, n. 471, art. 13</a>: sanzioni per crediti non spettanti e inesistenti.</li>
+          <li>Agenzia delle Entrate, assistenza CIVIS: <a href="https://assistenza.agenziaentrate.gov.it/portale/richiesta-modifica-delega-f24" class="text-indigo-700 underline" target="_blank" rel="noopener">Richiesta modifica delega F24</a>.</li>
+          <li>Comune di Firenze, <a href="https://www.comune.firenze.it/system/files/2025-06/quando_e_come_pagare_limu.pdf" class="text-indigo-700 underline" target="_blank" rel="noopener">quando e come pagare l&rsquo;IMU</a>: un esempio delle istruzioni comunali sull&rsquo;arrotondamento all&rsquo;euro.</li>
         </ul>
       </section>
 

@@ -25,6 +25,7 @@ function nomiCitati(modello) {
   const campo = (c) => {
     aggiungi(c.pdf);
     aggiungi(c.pdfCentesimi);
+    aggiungi(c.pdfSegno);
     (Array.isArray(c.options) ? c.options : []).forEach((o) => aggiungi(o.pdf));
     (c.campi || []).forEach(campo);
   };

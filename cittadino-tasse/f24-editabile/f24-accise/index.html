@@ -108,7 +108,7 @@
         "@type": "HowTo",
         "@id": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#howto",
         "name": "Come compilare il modello F24 Accise",
-        "description": "Procedura per compilare un F24 Accise con acconti mensili, conguagli e versamenti ai Monopoli.",
+        "description": "Procedura per compilare la sezione accise del modello F24 accise secondo le avvertenze e l'esempio ufficiale dell'Agenzia delle Entrate.",
         "inLanguage": "it-IT",
         "totalTime": "PT5M",
         "tool": [
@@ -121,23 +121,23 @@
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Inserisci il soggetto obbligato",
-            "text": "Indica codice fiscale e denominazione dell'impresa tenuta al pagamento.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#f24-cf"
+            "name": "Inserisci il contribuente",
+            "text": "Indica codice fiscale e dati di chi paga.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#mp-app"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Aggiungi una riga per ogni versamento",
-            "text": "Per ciascun impianto e tipo di versamento indica ente, provincia, codice tributo e importo.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#container-accise-righe"
+            "name": "Compila la sezione accise",
+            "text": "Per ogni versamento: ente (D per le Dogane), provincia di immissione in consumo, codice tributo, codice ditta di nove caratteri senza IT00. Mese e anno di riferimento restano vuoti.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#come-si-compila"
           },
           {
             "@type": "HowToStep",
             "position": 3,
             "name": "Controlla il saldo",
-            "text": "Verifica totali e avvisi nel riepilogo e genera il PDF per l'invio telematico.",
-            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#tot-saldo"
+            "text": "Verifica il totale della sezione e il saldo finale, poi scarica il modello compilato.",
+            "url": "https://strumentiutili.it/cittadino-tasse/f24-editabile/f24-accise/#mp-app"
           }
         ]
       },
@@ -156,6 +156,38 @@
           },
           {
             "@type": "Question",
+            "name": "Qual è il codice tributo dell’accisa sull’energia elettrica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il 2806. Per l’accisa sul gas naturale per combustione il codice è il 2814, per i prodotti energetici il 2804. Si scrivono nella sezione accise con l’ente D."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Cosa scrivo in mese e anno di riferimento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per le accise niente: le avvertenze del modello dicono che il mese e l’anno di riferimento non devono essere indicati, e l’esempio ufficiale li lascia vuoti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che cos’è il codice ditta da scrivere come codice identificativo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "È il codice che identifica la tua posizione per le accise: nove caratteri alfanumerici. Si scrive senza le lettere «IT00», se compaiono. Per i versamenti ai Monopoli al suo posto va il codice concessione, quando richiesto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Entro quando si paga l’accisa sul gas naturale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dal 2026, chi fattura gas ai consumatori finali versa una rata ogni mese, entro la fine del mese, pari all’accisa sul gas fatturato nel mese precedente. Poi presenta una dichiarazione semestrale, entro la fine di settembre e di marzo, e nello stesso mese versa l’eventuale conguaglio."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Posso pagarlo con l’home banking?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -167,7 +199,7 @@
             "name": "Ho sbagliato codice tributo o anno: devo pagare di nuovo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Il pagamento resta valido: si chiede la correzione della delega all’Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarità per il tributo che risulta non pagato."
+              "text": "No. Per i tributi gestiti dall’Agenzia delle Entrate si chiede la correzione con il servizio CIVIS «Richiesta modifica delega F24», per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS e IMU e tributi locali, né per i tributi che l’Agenzia delle Entrate non gestisce, come le accise: per quelli bisogna rivolgersi all’ente che riceve il versamento."
             }
           }
         ]
@@ -393,7 +425,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Regole di versamento e compensazione aggiornate a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Codici e regole verificati sulle fonti ufficiali a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -406,7 +438,7 @@
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
             <p class="font-bold text-gray-900 mb-1">📚 Fonti normative e di prassi</p>
-            <p class="text-gray-600 leading-relaxed">D.Lgs. 504/1995 (Testo unico delle accise), D.Lgs. 241/1997 e D.L. 223/2006 art. 37 (versamento unificato), L. 244/2007 art. 1 c. 53, L. 213/2023 e L. 199/2025 (compensazioni), D.Lgs. 87/2024 (sanzioni), specifiche del modello F24 Accise e tabelle dei codici dell'Agenzia delle Dogane e dei Monopoli.</p>
+            <p class="text-gray-600 leading-relaxed">D.Lgs. 504/1995 (Testo unico delle accise), come modificato dal D.Lgs. 43/2025, D.Lgs. 241/1997 e D.L. 223/2006 art. 37 (versamento unificato), L. 244/2007 art. 1 c. 53, L. 213/2023 e L. 199/2025 (compensazioni), D.Lgs. 87/2024 (sanzioni), avvertenze del modello F24 Accise, risoluzione n. 22 del 14 febbraio 2001 ed elenco dei codici tributo dell'Agenzia delle Entrate.</p>
           </div>
         </div>
       </section>
@@ -414,24 +446,83 @@
       <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
         <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come compilare il modello F24 accise</h2>
         <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
-          <p>L&rsquo;F24 accise &egrave; il modello per le imposte gestite dall&rsquo;Agenzia delle Dogane e dei Monopoli: accise su energia elettrica e gas naturale, prodotti energetici, alcolici, tabacchi e giochi. Lo usano soprattutto le imprese, che versano acconti mensili e il conguaglio annuale. Oltre alla sezione accise ha le sezioni dell&rsquo;F24 ordinario, quindi si possono compensare i crediti.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">I campi della sezione accise</h3>
+          <p>L&rsquo;F24 accise &egrave; il modello per pagare le accise di competenza dell&rsquo;Agenzia delle Dogane e i versamenti dei Monopoli di Stato: accise su energia elettrica, gas naturale, prodotti energetici, alcole e birra. Lo usano soprattutto le imprese che forniscono energia o gas ai consumatori finali e i depositi. Oltre alla sezione &laquo;Accise/Monopoli e altri versamenti non ammessi in compensazione&raquo; ha le stesse sezioni dell&rsquo;F24 ordinario (Erario, INPS, Regioni, IMU e altri tributi locali), quindi nello stesso modello si possono pagare anche imposte e contributi.</p>
+
+          <h3 id="codici" class="text-lg font-bold text-gray-900 pt-3">I codici tributo delle accise</h3>
+          <p>Sono quelli dell&rsquo;elenco ufficiale dell&rsquo;Agenzia delle Entrate, da indicare nella sezione accise con l&rsquo;ente D (Dogane):</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm">
+              <caption class="sr-only">Codici tributo delle accise per il modello F24 accise</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Denominazione ufficiale</th></tr></thead>
+              <tbody>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2806</td><td class="px-3 py-2 align-top">Accisa sull&rsquo;energia elettrica</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2814</td><td class="px-3 py-2 align-top">Accisa sul gas naturale per combustione</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2804</td><td class="px-3 py-2 align-top">Accisa sui prodotti energetici, loro derivati e prodotti analoghi</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2805</td><td class="px-3 py-2 align-top">Accisa gas petroliferi liquefatti</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2802</td><td class="px-3 py-2 align-top">Accisa sull&rsquo;alcole</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2803</td><td class="px-3 py-2 align-top">Accisa birra</td></tr>
+                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top font-mono font-semibold">2813</td><td class="px-3 py-2 align-top">Diritti di licenza sulle accise e imposte di consumo</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Attenzione all&rsquo;energia elettrica e al gas: il codice dell&rsquo;elettricit&agrave; &egrave; il 2806, quello del gas naturale per combustione il 2814. Scambiarli manda il pagamento su un&rsquo;accisa diversa da quella dovuta.</p>
+
+          <h3 id="come-si-compila" class="text-lg font-bold text-gray-900 pt-3">La sezione accise, campo per campo</h3>
+          <p>Le regole sono quelle delle avvertenze ufficiali del modello e dell&rsquo;esempio di compilazione dell&rsquo;Agenzia delle Entrate:</p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><strong>Ente</strong>: la lettera dell&rsquo;ente che riceve il versamento. <strong>D</strong> &egrave; l&rsquo;Agenzia delle Dogane, per le accise; <strong>M</strong> l&rsquo;Amministrazione autonoma dei Monopoli di Stato. Nella riga vanno solo codici tributo di quell&rsquo;ente.</li>
+            <li><strong>Prov.</strong>: per le accise, la sigla della provincia in cui avviene l&rsquo;immissione in consumo.</li>
+            <li><strong>Codice tributo</strong>: quello dell&rsquo;accisa che stai pagando, dalla tabella sopra.</li>
+            <li><strong>Codice identificativo</strong>: per le accise &egrave; il <strong>codice ditta</strong>, nove caratteri alfanumerici, senza le lettere &laquo;IT00&raquo; quando ci sono. Per i versamenti dei Monopoli &egrave; il codice concessione, se richiesto.</li>
+            <li><strong>Rateazione</strong>: solo per i pagamenti rateali ammessi, con quattro cifre: le prime due per la rata, le altre due per il numero totale di rate. 0120 &egrave; la prima di venti rate, 0220 la seconda.</li>
+            <li><strong>Mese e anno di riferimento</strong>: per il versamento delle accise <strong>non vanno indicati</strong>. Lo dicono sia le avvertenze sia l&rsquo;esempio ufficiale.</li>
+            <li><strong>Importi a debito versati</strong>: sempre con due decimali, anche quando sono zero (52 euro si scrivono 52,00). La sezione ha solo la colonna dei debiti.</li>
+            <li><strong>Codice ufficio e codice atto</strong>: vuoti nei pagamenti normali. Si compilano per pagare un avviso di accertamento, un atto di contestazione o irrogazione di sanzioni, un accertamento con adesione o una conciliazione, se l&rsquo;ufficio che ha emesso l&rsquo;atto lo richiede. Per pi&ugrave; atti servono pi&ugrave; modelli.</li>
+          </ol>
+
+          <figure class="my-6">
+            <img src="/assets/esempi/f24-accise-gas.webp" width="1100" height="716" loading="lazy" decoding="async"
+                 alt="Sezione accise del modello F24 accise compilata con l'esempio dell'Agenzia delle Entrate: ente D, provincia RM, codice tributo 2814, codice identificativo RMY00240W, importo 6.000,00 euro"
+                 class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+            <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">L&rsquo;esempio ufficiale dell&rsquo;Agenzia delle Entrate per il codice 2814, sul modello compilato con questa pagina (contribuente inventato). Rateazione, mese, anno, codice ufficio e codice atto restano vuoti.</figcaption>
+          </figure>
+
+          <h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">L&rsquo;esempio ufficiale: accisa sul gas naturale</h3>
+          <p>Nella sua pagina dei codici tributo, l&rsquo;Agenzia delle Entrate mostra come si compila il codice 2814 con dati &laquo;solo a titolo esemplificativo&raquo;: 6.000,00 &euro; di accisa sul gas naturale, provincia di Roma, codice ditta RMY00240W. La riga &egrave; questa, e il totale della sezione (O) e il saldo sono 6.000,00 &euro;.</p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-xs sm:text-sm">
+              <caption class="sr-only">Riga della sezione accise nell&rsquo;esempio ufficiale del codice 2814</caption>
+              <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Ente</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Prov.</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900"><span class="sm:hidden">Identif.</span><span class="hidden sm:inline">Codice identificativo</span></th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Mese/anno</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-right font-semibold text-gray-900">Importo</th></tr></thead>
+              <tbody class="font-mono">
+                <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2">D</td><td class="px-1.5 sm:px-3 py-2">RM</td><td class="px-1.5 sm:px-3 py-2">2814</td><td class="px-1.5 sm:px-3 py-2">RMY00240W</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 font-sans">vuoti</td><td class="px-1.5 sm:px-3 py-2 text-right">6.000,00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Per l&rsquo;energia elettrica l&rsquo;esempio ufficiale &egrave; identico, con il codice 2806 al posto del 2814.</p>
+
+          <h3 id="scadenze-gas" class="text-lg font-bold text-gray-900 pt-3">Quando si paga l&rsquo;accisa sul gas naturale dal 2026</h3>
+          <p>Dal 1&deg; gennaio 2026, con la riforma delle accise (D.Lgs. 43/2025), l&rsquo;articolo 26-ter del Testo unico delle accise prevede per chi fattura il gas ai consumatori finali:</p>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li><strong>Ente</strong>: la lettera dell&rsquo;ente che riceve il pagamento, indicata nelle istruzioni (per esempio D per le Dogane, M per i Monopoli).</li>
-            <li><strong>Provincia</strong>: la sigla della provincia dell&rsquo;impianto o del deposito (TO, MI, NA...).</li>
-            <li><strong>Codice identificativo</strong>: quello assegnato dall&rsquo;ente all&rsquo;impianto o alla licenza.</li>
-            <li><strong>Codice tributo, mese e anno di riferimento</strong>: per esempio 2814 per l&rsquo;accisa sull&rsquo;energia elettrica, con il mese a cui si riferisce la rata.</li>
+            <li><strong>rate di acconto mensili</strong>, da versare <strong>entro la fine del mese</strong>: ogni rata &egrave; l&rsquo;accisa sul gas indicato nelle bollette o nelle fatture del mese solare precedente;</li>
+            <li>una <strong>dichiarazione semestrale</strong>, solo telematica, da presentare entro la fine di settembre (per il semestre gennaio-giugno) e di marzo (per luglio-dicembre);</li>
+            <li>il <strong>conguaglio</strong>, se c&rsquo;&egrave;, entro la fine del mese in cui si presenta la dichiarazione; le somme versate in pi&ugrave; si scalano dai versamenti successivi o si chiedono a rimborso.</li>
           </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Crediti e canali di pagamento</h3>
-          <p>Il saldo &egrave; la somma dei debiti meno i crediti compensati, e non pu&ograve; essere negativo. Chi paga le accise ha quasi sempre la partita IVA, quindi paga per via telematica; se nel modello c&rsquo;&egrave; un credito compensato, anche piccolo, il modello va presentato solo con i servizi telematici dell&rsquo;Agenzia delle Entrate (Entratel o F24 web), non con l&rsquo;home banking.</p>
-          <p>I limiti ai crediti sono gli stessi dell&rsquo;F24 ordinario: visto di conformit&agrave; oltre 5.000 &euro; l&rsquo;anno di crediti IVA o IRES, e blocco delle compensazioni con cartelle scadute oltre le soglie di legge (50.000 &euro; dal 2026).</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempio: rata di marzo con il conguaglio</h3>
-          <p>Un venditore di gas naturale ha pagato nel 2025 un&rsquo;accisa di 96.000 &euro;, quindi nel 2026 versa acconti mensili di 8.000 &euro; entro il 16 di ogni mese. La dichiarazione dei consumi 2025 determina un&rsquo;imposta di 99.600 &euro;: la differenza di 3.600 &euro; si versa entro il 16 marzo, nello stesso modello, su una riga a parte.</p>
+          <p><strong>Esempio.</strong> Un venditore di gas emette a maggio 2026 fatture con 6.000 &euro; di accisa: la rata si versa entro il 30 giugno 2026, con il codice 2814. La dichiarazione del semestre gennaio-giugno 2026 va presentata entro il 30 settembre 2026, e nello stesso mese si versa l&rsquo;eventuale conguaglio.</p>
+          <p>Le regole cambiano da un prodotto all&rsquo;altro: per l&rsquo;energia elettrica e gli altri prodotti valgono gli articoli del Testo unico delle accise che li riguardano.</p>
+
+          <h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
           <ul class="list-disc pl-5 space-y-1.5">
-            <li>Riga 1: acconto mensile, 96.000 / 12 = 8.000,00 &euro;</li>
-            <li>Riga 2: conguaglio 2025, 99.600 &minus; 96.000 = 3.600,00 &euro;</li>
-            <li>Totale da versare: 11.600,00 &euro;</li>
+            <li><strong>Usare il 2814 per l&rsquo;energia elettrica</strong>: il 2814 &egrave; il gas naturale per combustione, l&rsquo;elettricit&agrave; &egrave; il 2806.</li>
+            <li><strong>Compilare mese e anno di riferimento</strong> per le accise: vanno lasciati vuoti.</li>
+            <li><strong>Scrivere il codice ditta con &laquo;IT00&raquo;</strong>: il codice identificativo ha nove caratteri, senza quel prefisso.</li>
+            <li><strong>Indicare la provincia della sede legale</strong> invece di quella in cui avviene l&rsquo;immissione in consumo.</li>
+            <li><strong>Mettere nella stessa riga un codice di un altro ente</strong>: con l&rsquo;ente D vanno solo codici delle Dogane.</li>
+            <li><strong>Seguire le vecchie scadenze del gas</strong>: dal 2026 le rate si versano entro la fine del mese e si basano sulle fatture del mese prima.</li>
           </ul>
+          <p>Le avvertenze lo ricordano: gli errori di compilazione possono portare a richieste di pagamento di somme gi&agrave; versate.</p>
+
+          <h3 id="come-si-paga" class="text-lg font-bold text-gray-900 pt-3">Crediti e canali di pagamento</h3>
+          <p>Il saldo finale &egrave; la somma dei debiti meno gli eventuali crediti compensati nelle altre sezioni, e non pu&ograve; mai essere negativo; il modello va presentato anche quando chiude a zero. Chi ha la partita IVA, come quasi tutti quelli che pagano le accise, deve pagare per via telematica. I limiti ai crediti e i canali ammessi quando nel modello c&rsquo;&egrave; una compensazione sono gli stessi dell&rsquo;F24 ordinario: li trovi spiegati nella pagina del <a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="text-indigo-700 underline">modello F24 ordinario</a>.</p>
         </div>
         <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
         <details class="group border-b border-gray-100 py-3">
@@ -439,21 +530,37 @@
           <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le imprese e gli operatori che pagano imposte gestite dall&rsquo;Agenzia delle Dogane e dei Monopoli: venditori di energia elettrica e gas, depositi di prodotti energetici, produttori di alcolici, concessionari di giochi. Un privato non lo usa quasi mai.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Qual &egrave; il codice tributo dell&rsquo;accisa sull&rsquo;energia elettrica?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il 2806. Per l&rsquo;accisa sul gas naturale per combustione il codice &egrave; il 2814, per i prodotti energetici il 2804. Si scrivono nella sezione accise con l&rsquo;ente D.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa scrivo in mese e anno di riferimento?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per le accise niente: le avvertenze del modello dicono che il mese e l&rsquo;anno di riferimento non devono essere indicati, e l&rsquo;esempio ufficiale li lascia vuoti.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che cos&rsquo;&egrave; il codice ditta da scrivere come codice identificativo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">&Egrave; il codice che identifica la tua posizione per le accise: nove caratteri alfanumerici. Si scrive senza le lettere &laquo;IT00&raquo;, se compaiono. Per i versamenti ai Monopoli al suo posto va il codice concessione, quando richiesto.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando si paga l&rsquo;accisa sul gas naturale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dal 2026, chi fattura gas ai consumatori finali versa una rata ogni mese, entro la fine del mese, pari all&rsquo;accisa sul gas fatturato nel mese precedente. Poi presenta una dichiarazione semestrale, entro la fine di settembre e di marzo, e nello stesso mese versa l&rsquo;eventuale conguaglio.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso pagarlo con l&rsquo;home banking?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
           <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se non contiene crediti compensati. Con un credito compensato, anche se resta qualcosa da pagare, serve un servizio telematico dell&rsquo;Agenzia delle Entrate.</p>
         </details>
         <details class="group border-b border-gray-100 py-3">
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho sbagliato codice tributo o anno: devo pagare di nuovo?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il pagamento resta valido: si chiede la correzione della delega all&rsquo;Agenzia delle Entrate, con il servizio online CIVIS o in un ufficio. Conviene farlo subito, prima che arrivi una comunicazione di irregolarit&agrave; per il tributo che risulta non pagato.</p>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Per i tributi gestiti dall&rsquo;Agenzia delle Entrate si chiede la correzione con il servizio CIVIS &laquo;Richiesta modifica delega F24&raquo;, per gli F24 degli ultimi tre anni. Il servizio non vale per le sezioni INPS e IMU e tributi locali, n&eacute; per i tributi che l&rsquo;Agenzia delle Entrate non gestisce, come le accise: per quelli bisogna rivolgersi all&rsquo;ente che riceve il versamento.</p>
         </details>
         <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
         <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1995-10-26;504" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 26 ottobre 1995, n. 504</a> (Testo unico delle accise).</li>
+          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24+accise/modello+f24+accise+2012" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F24 accise e avvertenze per la compilazione</a> (sezione accise: ente, provincia, codice ditta, mese e anno da non indicare).</li>
+          <li>Agenzia delle Entrate, ricerca dei codici tributo: esempi di compilazione dei codici <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneAccise.php?CT=2806&amp;Ord=1200&amp;Q1=&amp;Q3=&amp;Q2=&amp;Q4=Tutte" class="text-indigo-700 underline" target="_blank" rel="noopener">2806</a> e <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneAccise.php?CT=2814&amp;Ord=1208&amp;Q1=&amp;Q3=&amp;Q2=&amp;Q4=Tutte" class="text-indigo-700 underline" target="_blank" rel="noopener">2814</a> (risoluzione n. 22 del 14 febbraio 2001).</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1995-10-26;504~art26ter" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 26 ottobre 1995, n. 504, art. 26-ter</a> (Testo unico delle accise): dichiarazione semestrale, rate mensili e conguaglio del gas naturale, in vigore dal 1&deg; gennaio 2026 con il <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-03-28;43" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 28 marzo 2025, n. 43</a>.</li>
           <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-07-09;241" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 9 luglio 1997, n. 241</a>: versamento unitario e compensazione.</li>
-          <li>Agenzia delle Entrate e Agenzia delle Dogane e dei Monopoli: <a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/f24+accise/modello+f24+accise+2012" class="text-indigo-700 underline" target="_blank" rel="noopener">modello F24 accise</a> e codici tributo.</li>
         </ul>
       </section>
-
       <!-- Pubblicità Extra per Dispositivi Mobili -->
       <div class="su-ad su-ad--contenuto mt-8 text-center rounded-xl w-full" data-su-pos="contenuto">
         <ins data-su-pos="contenuto" data-ad-format="rectangle" class="adsbygoogle"

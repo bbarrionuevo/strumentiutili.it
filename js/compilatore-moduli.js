@@ -815,6 +815,23 @@
     return null;
   }
 
+  /** Vero se almeno una delle colonne usate dal calcolo ha un importo scritto. */
+  function calcoloHaValori(regola, modello) {
+    if (!regola) return false;
+    if (regola.somma) {
+      return regola.somma.some((riferimento) => {
+        const [passoId, gruppoId, sottoId] = riferimento.split('.');
+        const passo = modello.passi.find((p) => p.id === passoId);
+        if (!passo || !passoAttivo(passo)) return false;
+        const gruppo = (passo.ripetibili || []).find((g) => g.id === gruppoId);
+        if (!gruppo) return false;
+        return gruppo.righe.some((_, i) => spezzaImporto(leggi(chiaveRiga(passoId, gruppoId, i, sottoId))));
+      });
+    }
+    if (regola.differenza) return regola.differenza.some((r) => calcoloHaValori(r, modello));
+    return false;
+  }
+
   /** Percorre lo schema e raccoglie che cosa scrivere nel PDF. */
   function raccogli() {
     const modello = modelloCorrente();
@@ -928,6 +945,9 @@
         if (!campo.calcolo || !campo.pdf) return;
         const importo = valutaCalcolo(campo.calcolo, modello);
         if (importo === null) return;
+        // Come negli esempi ufficiali dell'Agenzia: un totale senza importi
+        // (il totale dei crediti quando non ce ne sono) resta vuoto.
+        if (!calcoloHaValori(campo.calcolo, modello)) return;
         if (campo.type === 'euro') {
           testi.set(campo.pdf, unisciImporto(importo.toFixed(2)));
           segnaQuadro(passo, campo);
@@ -936,6 +956,9 @@
         const parti = spezzaImporto(importo.toFixed(2));
         testi.set(campo.pdf, parti.euro);
         if (campo.pdfCentesimi) testi.set(campo.pdfCentesimi, parti.centesimi);
+        // Il saldo di sezione si scrive senza segno: il segno va nella sua
+        // casella «+/–», «-» quando i crediti superano i debiti.
+        if (campo.pdfSegno) testi.set(campo.pdfSegno, importo < 0 ? '-' : '+');
         segnaQuadro(passo, campo);
       });
     });
@@ -1031,7 +1054,11 @@
           // misura diversa in ogni riquadro: vedi il commento sopra
           // fissaCorpoDelCampo.
           fissaCorpoDelCampo(campo);
-          campo.setText(max && valore.length > max ? valore.slice(0, max) : valore);
+          // Nelle caselline da due cifre (giorno, mese, codici a due cifre)
+          // una cifra sola va preceduta da uno zero: 6 diventa 06. Senza,
+          // finirebbe nella prima casellina e la data si leggerebbe male.
+          const scritto = max === 2 && /^\d$/.test(valore) ? '0' + valore : valore;
+          campo.setText(max && scritto.length > max ? scritto.slice(0, max) : scritto);
           return;
         } catch (e) { /* non e' una casella di testo: si prova col menu */ }
         // Alcuni modelli gia' compilabili dell'Agenzia (per esempio l'AA4/8)

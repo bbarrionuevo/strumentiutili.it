@@ -233,6 +233,137 @@
         "js/codice-contratto.js",
         "data/modello-f24-elide-schema.json"
       ]
+    },
+    {
+      "id": "codice-tributo-2806-accisa-energia-elettrica",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneAccise.php?CT=2806&Ord=1200&Q1=&Q3=&Q2=&Q4=Tutte",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-accise/"
+      ],
+      "motori": [
+        "data/modello-f24-accise-schema.json"
+      ],
+      "deve_contenere": [
+        "ACCISA SULL'ENERGIA ELETTRICA",
+        "NON COMPILARE"
+      ]
+    },
+    {
+      "id": "codice-tributo-2814-accisa-gas-naturale",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneAccise.php?CT=2814&Ord=1208&Q1=&Q3=&Q2=&Q4=Tutte",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-accise/"
+      ],
+      "motori": [
+        "data/modello-f24-accise-schema.json",
+        "scripts/genera-esempi-moduli.py"
+      ],
+      "deve_contenere": [
+        "ACCISA SUL GAS NATURALE PER COMBUSTIONE",
+        "RMY00240W",
+        "NON COMPILARE"
+      ]
+    },
+    {
+      "id": "comunicato-f24-elide-locazioni-2014",
+      "tipo": "pdf",
+      "url": "https://www.agenziaentrate.gov.it/portale/documents/20143/314467/CS+03012014+F24+Elide_001_Com.+st.+F24+registro+locazioni+03.01.14.pdf/754c3c4c-b749-016b-fc59-a2ad79c9691a",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f23-editabile/"
+      ]
+    },
+    {
+      "id": "codice-tributo-4001-irpef-saldo",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=4001",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "motori": [
+        "data/modello-f24-ordinario-schema.json"
+      ],
+      "deve_contenere": [
+        "IRPEF SALDO",
+        "857,14"
+      ]
+    },
+    {
+      "id": "codice-tributo-1840-cedolare-acconto",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneErario.php?CT=1840",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "deve_contenere": [
+        "ACCONTO PRIMA RATA"
+      ]
+    },
+    {
+      "id": "codice-tributo-3800-irap-saldo",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneRegioni.php?CT=3800",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "motori": [
+        "data/modello-f24-ordinario-schema.json",
+        "data/modello-f24-accise-schema.json"
+      ],
+      "deve_contenere": [
+        "08 - Lazio"
+      ]
+    },
+    {
+      "id": "codice-tributo-3918-imu-altri-fabbricati",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/SezioneEntiLocali.php?CT=3918&Ord=1421",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "motori": [
+        "scripts/genera-esempi-moduli.py"
+      ],
+      "deve_contenere": [
+        "IMU - IMPOSTA MUNICIPALE PROPRIA PER GLI ALTRI FABBRICATI - COMUNE",
+        "H501"
+      ]
+    },
+    {
+      "id": "codici-tributo-piu-ricorrenti",
+      "tipo": "pagina",
+      "url": "https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/Ricorrenti.php",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ],
+      "deve_contenere": [
+        "IRPEF saldo",
+        "IMU - imposta municipale propria per gli altri fabbricati - comune"
+      ]
+    },
+    {
+      "id": "civis-richiesta-modifica-delega-f24",
+      "tipo": "pagina",
+      "url": "https://assistenza.agenziaentrate.gov.it/portale/richiesta-modifica-delega-f24",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/",
+        "cittadino-tasse/f24-editabile/",
+        "cittadino-tasse/f24-editabile/f24-semplificato/",
+        "cittadino-tasse/f24-editabile/f24-elide/",
+        "cittadino-tasse/f24-editabile/f24-accise/"
+      ],
+      "deve_contenere": [
+        "i tributi della sezione IMU e altri enti locali"
+      ]
+    },
+    {
+      "id": "comune-firenze-imu-arrotondamento",
+      "tipo": "pdf",
+      "url": "https://www.comune.firenze.it/system/files/2025-06/quando_e_come_pagare_limu.pdf",
+      "pagine": [
+        "cittadino-tasse/f24-editabile/f24-ordinario/"
+      ]
     }
   ],
   "pagine_modelli": [
@@ -389,6 +520,13 @@
       "titolo": "Contratti di locazione: c'è un decreto che sostituisce il D.M. 16 gennaio 2017?",
       "cosa": "L'art. 4 della legge 431/1998 prevede che il Ministero convochi ogni tre anni le organizzazioni della proprietà e degli inquilini per una nuova convenzione nazionale, recepita con decreto. Cercare in Gazzetta Ufficiale un decreto successivo sui criteri per gli accordi territoriali e sui tipi di contratto: se c'è, rileggere gli allegati e aggiornare data/contratti-tipo-dm-2017.json (scripts/contratti/), i test e la pagina del contratto.",
       "fonte": "https://www.gazzettaufficiale.it/eli/id/2017/03/15/17A01858/sg"
+    },
+    {
+      "id": "versamenti-2027-dlgs-33-2025",
+      "dal": "2026-11-16",
+      "titolo": "F24: dal 2027 versamenti, rate e compensazioni passano al D.Lgs. 33/2025",
+      "cosa": "Dal 1° gennaio 2027 il D.Lgs. 33/2025 abroga gli artt. 17 e 20 del D.Lgs. 241/1997, l'art. 34 della L. 388/2000, l'art. 31 c. 1 del D.L. 78/2010, l'art. 37 cc. 49 e 49-quinquies del D.L. 223/2006 e l'art. 11 c. 2 del D.L. 66/2014; il D.Lgs. 173/2024 abroga l'art. 13 del D.Lgs. 471/1997. Leggere i nuovi articoli e riscrivere rate, compensazione, canali di pagamento e sanzioni nelle pagine F24 (ordinario, indice, semplificato, accise, ELIDE) e nei loro schemi prima del 1° gennaio, poi togliere l'avviso «Dal 1° gennaio 2027 cambiano le norme».",
+      "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2025-03-24;33"
     }
   ],
   "norme": [
