@@ -69,7 +69,6 @@
       },
       {
         "@type": "WebApplication",
-        "name": "Compilatore dei modelli per l'esenzione dal canone TV degli over 75 e per il rimborso",
         "url": "https://strumentiutili.it/cittadino-tasse/esenzione-canone-rai-over-75/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Qualsiasi browser moderno",
@@ -79,14 +78,16 @@
           "price": "0",
           "priceCurrency": "EUR"
         },
-        "description": "Verifica da quando spetta l'esenzione dal canone TV a chi ha 75 anni e compila nel browser il modello ufficiale dell'Agenzia delle Entrate, o quello per il rimborso se hai già pagato.",
+        "name": "Compilatore dei modelli per l'esenzione dal canone TV degli over 75 e per il rimborso",
+        "description": "Verifica da quando spetta l'esenzione dal canone Rai a chi ha 75 anni e compila nel browser la dichiarazione ufficiale o la richiesta di rimborso dell'Agenzia delle Entrate.",
         "featureList": [
-          "Verifica del periodo di esenzione dalla data di nascita",
-          "Dichiarazione sostitutiva di esenzione e richiesta di rimborso",
-          "Compilazione dei PDF originali dell'Agenzia delle Entrate",
+          "Calcolo del periodo di esenzione dalla data di nascita",
+          "I quattro requisiti confermati uno per uno, con la soglia di reddito corretta per l'anno",
+          "Quali redditi contano nella soglia di 8.000 euro, con cinque esempi",
+          "Dichiarazione per l'esenzione e richiesta di rimborso compilate sui PDF ufficiali",
           "Elaborazione interamente nel browser, senza server"
         ],
-        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni",
         "author": {
           "@type": "Person",
           "name": "Brian Barrionuevo",
@@ -103,50 +104,66 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Chi ha diritto all’esenzione dal canone Rai over 75?",
+            "name": "Entro quando si presenta la dichiarazione per l’esenzione over 75?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Chi ha compiuto 75 anni, ha un reddito proprio e del coniuge non superiore a 8.000 euro nell’anno precedente, non vive con altre persone con reddito proprio (esclusi colf, badanti e collaboratori domestici) e ha il televisore solo nella casa di residenza."
+              "text": "Non c’è un termine: l’esenzione spetta in base ai requisiti, indipendentemente da quando presenti la dichiarazione. Chi ha il canone in bolletta e la presenta in corso d’anno trova però alcune rate già addebitate: può pagare la bolletta senza la quota del canone o chiedere il rimborso."
             }
           },
           {
             "@type": "Question",
-            "name": "Da quando vale l’esenzione?",
+            "name": "L’esenzione va chiesta ogni anno?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Per tutto l’anno se i 75 anni si compiono entro il 31 gennaio; solo per il secondo semestre se si compiono dal 1° febbraio al 31 luglio."
+              "text": "No. Se i requisiti restano, la dichiarazione vale anche per gli anni successivi. Se uno viene meno, si presenta la Sezione II dello stesso modello."
             }
           },
           {
             "@type": "Question",
-            "name": "La dichiarazione va ripresentata ogni anno?",
+            "name": "Quale reddito conta, quello di quest’anno?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Se i requisiti restano, l’esenzione continua negli anni successivi senza nuove dichiarazioni. Se vengono meno, si presenta la sezione II dello stesso modello."
+              "text": "No, quello dell’anno precedente: per l’esenzione del 2027 si guarda il reddito del 2026, tuo e del coniuge sommati."
             }
           },
           {
             "@type": "Question",
-            "name": "Ho pagato il canone ma avevo diritto all’esenzione: posso riaverlo?",
+            "name": "La badante che vive con me fa perdere l’esenzione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì, con il modello di rimborso per gli ultrasettantacinquenni, che contiene anche la dichiarazione dei requisiti. Se il canone è stato pagato in bolletta, dopo aver presentato la dichiarazione si può usare anche il modello di rimborso generale con il motivo 1."
+              "text": "No. Le istruzioni escludono dal conto collaboratori domestici, colf e badanti: conta solo che non vivano con te altre persone con reddito, a parte il coniuge."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si spedisce la dichiarazione?",
+            "name": "Vivo con mio figlio che lavora: ho diritto all’esenzione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Con raccomandata senza busta all’Ufficio Canone TV di Torino, allegando la copia di un documento d’identità; oppure via PEC, firmata digitalmente, a cp22.canonetv@postacertificata.rai.it; oppure consegnandola a un ufficio territoriale dell’Agenzia delle Entrate."
+              "text": "No. Uno dei requisiti è non convivere con persone diverse dal coniuge che abbiano un reddito proprio."
             }
           },
           {
             "@type": "Question",
-            "name": "Nel reddito si conta anche la casa in cui abito?",
+            "name": "La pensione di invalidità civile conta nel reddito?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Sono esclusi il reddito dell’abitazione principale e delle pertinenze, i redditi esenti IRPEF come le pensioni di guerra, le rendite INAIL e le pensioni di invalidità civile, il TFR e i redditi a tassazione separata."
+              "text": "No. I redditi esenti da IRPEF, come le pensioni di invalidità civile, le pensioni di guerra e le rendite INAIL, non entrano nella soglia di 8.000 euro."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso mandare la dichiarazione per PEC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, a cp22.canonetv@postacertificata.rai.it, ma il modello deve essere firmato digitalmente da chi chiede l’esenzione. In alternativa si spedisce per raccomandata senza busta o si consegna a un ufficio dell’Agenzia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho già pagato il canone: come lo riavrò?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con la richiesta di rimborso per gli ultrasettantacinquenni, che contiene anche la dichiarazione dei requisiti, oppure, dopo aver presentato la dichiarazione, con il modello di rimborso del canone in bolletta indicando il motivo 1."
             }
           }
         ]
@@ -238,10 +255,11 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Esenzione dal canone Rai per chi ha 75 anni</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Chi ha compiuto <strong>75 anni</strong> e ha un reddito basso non paga il canone TV. Non &egrave;
-          automatico: bisogna presentare una dichiarazione sostitutiva all&rsquo;Agenzia delle Entrate. Qui
-          controlli da quando ti spetta, compili il <strong>modello ufficiale</strong> e, se hai gi&agrave;
-          pagato, anche la richiesta di <strong>rimborso</strong>.
+          Chi ha compiuto <strong>75 anni</strong>, ha un reddito basso e non vive con altre persone che guadagnano
+          non paga il canone TV. L&rsquo;esenzione per&ograve; non arriva da sola: va chiesta all&rsquo;Agenzia delle Entrate
+          con una dichiarazione sostitutiva, che poi vale anche per gli anni successivi. Qui controlli da quando ti
+          spetta, compili il <strong>modello ufficiale</strong> e, se hai gi&agrave; pagato, anche la richiesta di
+          <strong>rimborso</strong>.
         </p>
         <p class="mt-3 text-xs font-semibold text-emerald-700">&#128274; Privacy garantita: i tuoi dati non vengono inviati a nessun server.</p>
       </section>
@@ -318,22 +336,24 @@
       <div class="sticky-sidebar space-y-6">
         <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Come si presenta</h2>
-            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">3 VIE</span>
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">I requisiti in breve</h2>
+            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">TUTTI E 4</span>
           </div>
           <dl class="space-y-3 text-xs leading-relaxed">
-            <div><dt class="font-bold text-indigo-300">Raccomandata senza busta</dt>
-              <dd class="text-gray-300">All&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento d&rsquo;identit&agrave; valido. Fa fede il timbro postale.</dd></div>
-            <div><dt class="font-bold text-indigo-300">PEC</dt>
-              <dd class="text-gray-300">A cp22.canonetv@postacertificata.rai.it, con il modello firmato digitalmente da chi chiede l&rsquo;esenzione.</dd></div>
-            <div><dt class="font-bold text-indigo-300">Allo sportello</dt>
-              <dd class="text-gray-300">Consegnandola a un qualsiasi ufficio territoriale dell&rsquo;Agenzia delle Entrate.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Et&agrave;</dt>
+              <dd class="text-gray-300">75 anni entro il 31 gennaio per tutto l&rsquo;anno, entro il 31 luglio per luglio-dicembre.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Reddito</dt>
+              <dd class="text-gray-300">Tuo e del coniuge, nell&rsquo;anno precedente, non oltre 8.000 euro in tutto.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Conviventi</dt>
+              <dd class="text-gray-300">Nessuno con un reddito proprio, a parte il coniuge, colf, badanti e collaboratori domestici.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Televisore</dt>
+              <dd class="text-gray-300">Solo nella casa in cui hai la residenza.</dd></div>
           </dl>
           <div class="pt-3 border-t border-gray-800 space-y-2">
             <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span aria-hidden="true">&#128196;</span> Vai al compilatore
             </a>
-            <p class="text-[10px] text-gray-400 text-center leading-tight">I PDF scaricati sono i modelli ufficiali dell&rsquo;Agenzia delle Entrate e restano modificabili.</p>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">Si spedisce in plico raccomandato senza busta: Ufficio Canone TV, Casella postale 22, 10121 Torino.</p>
           </div>
         </div>
 
@@ -367,7 +387,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Modello e istruzioni controllati a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Requisiti e modelli verificati a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -375,134 +395,143 @@
             <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con l&rsquo;Agenzia delle Entrate, la Rai o altri enti. Il modulo e le spiegazioni vengono dai documenti ufficiali indicati in questa pagina: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
-            <p class="font-bold text-gray-900 mb-1">&#128196; Il modulo</p>
-            <p class="text-gray-600 leading-relaxed">Sono i due PDF ufficiali della <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a> del canone TV: la dichiarazione per l&rsquo;esenzione e la richiesta di rimborso per gli ultrasettantacinquenni. Le caselle sono state ricostruite misurando i riquadri e verificate una a una. Le spiegazioni vengono dalle istruzioni dei due modelli.</p>
+            <p class="font-bold text-gray-900 mb-1">&#128196; I due modelli</p>
+            <p class="text-gray-600 leading-relaxed">Sono i PDF ufficiali dell&rsquo;Agenzia per gli ultrasettantacinquenni: la dichiarazione per l&rsquo;esenzione e la richiesta di rimborso, dalla <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a>. Le caselle sono state ricostruite misurando i riquadri. Requisiti, redditi da contare e tempi della bolletta vengono dalle istruzioni dei due modelli e dalla pagina dell&rsquo;Agenzia sugli over 75.</p>
           </div>
           <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
             <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
-            <p class="text-emerald-900 leading-relaxed">Nome, date e codici fiscali <strong>non escono dal dispositivo</strong>: il PDF si crea nel browser. I codici fiscali non vengono nemmeno salvati in memoria locale; il resto resta finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
+            <p class="text-emerald-900 leading-relaxed">Data di nascita, codici fiscali e redditi <strong>restano sul tuo dispositivo</strong>: il PDF si crea nel browser e i codici fiscali non vengono salvati. Gli altri campi restano in memoria locale finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
           </div>
         </div>
       </section>
 
-      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6 su-seo-expansion" aria-labelledby="guida-titolo">
-        <h2 id="guida-titolo" class="text-xl font-bold text-gray-900">Come funziona l&rsquo;esenzione per gli over 75</h2>
-        <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>L&rsquo;esenzione &egrave; prevista dal 2008 dall&rsquo;articolo 1, comma 132, della legge 244/2007. La soglia di reddito &egrave; stata portata da 6.713,98 a 8.000 euro per il 2018 e il 2019 e resa stabile a 8.000 euro dal 2020 dalla legge 160/2019. Il canone ordinario &egrave; di 90 euro l&rsquo;anno: &egrave; la cifra che l&rsquo;esenzione fa risparmiare ogni anno.</p>
-            <p>Non basta l&rsquo;et&agrave;: le condizioni sono quattro e devono valere tutte insieme. Il modello le elenca con le lettere da a) a d), e il compilatore te le fa confermare una per una.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come funziona l&rsquo;esenzione per gli over 75</h2>
+        <div class="text-sm text-gray-700 leading-relaxed space-y-3">
+<p>L&rsquo;esenzione esiste dal 2008: l&rsquo;ha introdotta la legge finanziaria di quell&rsquo;anno (legge 244/2007, art. 1, comma 132). La soglia di reddito, prima di 6.713,98 euro, &egrave; stata portata a 8.000 euro per il 2018 e il 2019 da due decreti del Ministero dell&rsquo;economia (16 febbraio 2018 e 24 ottobre 2019) e resa stabile dal 2020 dalla legge di bilancio, che ha riscritto il comma 132 (legge 160/2019, art. 1, comma 355). Chi ne ha diritto non paga nulla dei 90 euro annui del canone.</p>
+<p>Bastano l&rsquo;et&agrave; e il reddito? No: i requisiti sono quattro e devono valere tutti insieme. Il modello li fa dichiarare con le lettere da a) a d), e il compilatore te li fa confermare uno per uno.</p>
+<h3 id="requisiti" class="text-lg font-bold text-gray-900 pt-3">I quattro requisiti</h3>
+<ol class="list-decimal pl-5 space-y-1.5">
+  <li><strong>L&rsquo;et&agrave;</strong>: 75 anni compiuti entro la scadenza di pagamento del canone, che per le istruzioni &egrave; il 31 gennaio o il 31 luglio. Da qui le due possibilit&agrave;: tutto l&rsquo;anno o il solo secondo semestre.</li>
+  <li><strong>Il televisore solo nella casa di residenza</strong>: l&rsquo;esenzione vale esclusivamente per l&rsquo;apparecchio che si trova nel luogo in cui hai la residenza. Se un televisore sta in un&rsquo;altra casa, non spetta.</li>
+  <li><strong>Nessun convivente con reddito</strong>: in casa non vivono altre persone, oltre al coniuge o alla persona unita civilmente, che abbiano un reddito proprio. Colf, badanti e collaboratori domestici non contano.</li>
+  <li><strong>Il reddito</strong>: quello tuo e del coniuge (o della persona unita civilmente), sommati, nell&rsquo;anno prima di quello dell&rsquo;esenzione, non supera 8.000 euro.</li>
+</ol>
+<h3 id="decorrenza" class="text-lg font-bold text-gray-900 pt-3">Da quando spetta</h3>
+<p>Conta il giorno in cui si compiono 75 anni. Il riquadro in cima alla pagina fa il conto con la tua data di nascita; ecco le regole applicate al 2027:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Da quando spetta l&rsquo;esenzione, secondo il giorno in cui si compiono 75 anni</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">75 anni compiuti</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Esenzione</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">dal 1&deg; agosto 2026 al 31 gennaio 2027</td><td class="px-1.5 sm:px-3 py-2 align-top">tutto il 2027</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">dal 1&deg; febbraio al 31 luglio 2027</td><td class="px-1.5 sm:px-3 py-2 align-top">luglio-dicembre 2027</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">dal 1&deg; agosto 2027 al 31 gennaio 2028</td><td class="px-1.5 sm:px-3 py-2 align-top">tutto il 2028</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Gli esempi delle istruzioni ufficiali: chi ha compiuto 75 anni il 10 dicembre 2019 o il 10 gennaio 2020 aveva l&rsquo;esenzione per tutto il 2020; chi li ha compiuti il 10 febbraio 2020, per il secondo semestre 2020. Non c&rsquo;&egrave; invece una scadenza per presentare la dichiarazione: l&rsquo;esenzione dipende dai requisiti, non dalla data in cui la chiedi.</p>
+<h3 id="reddito" class="text-lg font-bold text-gray-900 pt-3">Il reddito che conta</h3>
+<p>Si somma il reddito tuo e quello del coniuge dell&rsquo;anno precedente: per l&rsquo;esenzione del 2027 conta il 2026. Le istruzioni dicono che cosa entra nel conto e che cosa no:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Quali redditi entrano nella soglia di 8.000 euro, secondo le istruzioni del modello</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Si conta</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Non si conta</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Il reddito imponibile della dichiarazione dei redditi o, per chi non la presenta, quello della Certificazione Unica</td><td class="px-1.5 sm:px-3 py-2 align-top">I redditi esenti da IRPEF, come le pensioni di guerra, le rendite INAIL e le pensioni di invalidit&agrave; civile</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">I redditi con imposta sostitutiva o ritenuta d&rsquo;imposta: interessi di conti e depositi postali, BOT, CCT e altri titoli di Stato, proventi di quote di investimento</td><td class="px-1.5 sm:px-3 py-2 align-top">Il TFR e le sue anticipazioni</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Gli stipendi di enti e organismi internazionali, rappresentanze diplomatiche, Santa Sede ed enti centrali della Chiesa cattolica</td><td class="px-1.5 sm:px-3 py-2 align-top">Il reddito della casa di abitazione principale e delle pertinenze</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">I redditi esteri non tassati in Italia</td><td class="px-1.5 sm:px-3 py-2 align-top">I redditi a tassazione separata</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Esempio 1: sotto la soglia.</strong> Una vedova di 77 anni vive sola con una badante. Nel 2026 la sua pensione ha un imponibile di 7.400 euro e il libretto postale le ha reso 150 euro di interessi: 7.550 euro in tutto. Ha diritto all&rsquo;esenzione per il 2027, perch&eacute; la badante convivente non conta.</p>
+<p><strong>Esempio 2: la somma con il coniuge.</strong> Lei ha 76 anni e una pensione imponibile di 5.900 euro, il marito 2.300 euro: insieme fanno 8.200 euro. La soglia &egrave; superata di 200 euro e l&rsquo;esenzione non spetta, anche se ciascuno dei due da solo starebbe sotto.</p>
+<p><strong>Esempio 3: i redditi esenti.</strong> Lui ha 80 anni, una pensione imponibile di 6.000 euro e una pensione di guerra; la moglie non ha redditi. La pensione di guerra &egrave; esente da IRPEF e non si conta: il reddito utile &egrave; di 6.000 euro e l&rsquo;esenzione spetta.</p>
+<p><strong>Esempio 4: un figlio in casa.</strong> Un pensionato di 78 anni con 6.500 euro di pensione vive con il figlio, che lavora. Il reddito sarebbe sotto la soglia, ma in casa c&rsquo;&egrave; un convivente con reddito proprio diverso dal coniuge: l&rsquo;esenzione non spetta.</p>
+<p><strong>Esempio 5: la casa al mare.</strong> Una coppia di 75 e 79 anni ha la residenza a Roma e un televisore anche nella casa al mare. Non pu&ograve; dichiarare di avere solo il televisore della casa di residenza (lettera a del modello), quindi l&rsquo;esenzione non spetta.</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Campo per campo</h3>
+<ol class="list-decimal pl-5 space-y-1.5">
+  <li><strong>Dati generali</strong>: cognome, nome, data e luogo di nascita e codice fiscale di chi chiede l&rsquo;esenzione.</li>
+  <li><strong>Sezione I</strong>: l&rsquo;anno per cui chiedi l&rsquo;esenzione, poi le quattro dichiarazioni. Alla lettera b) si barra &laquo;non coniugato&raquo;, oppure si scrive il codice fiscale del coniuge (o della persona unita civilmente) convivente: per le coppie non c&rsquo;&egrave; una casella. Alla lettera d) si barra una sola soglia, 8.000,00 euro per gli anni dal 2018 in poi.</li>
+  <li><strong>Sezione II</strong>: in alternativa alla prima, solo se i requisiti sono venuti meno; si indica l&rsquo;anno da cui non valgono pi&ugrave;.</li>
+  <li><strong>Firma</strong>: data e firma. Se spedisci per posta, la copia di un documento di riconoscimento valido.</li>
+</ol>
+<figure class="my-6">
+  <img src="/assets/esempi/canone-tv-over-75.webp" width="1100" height="972" loading="lazy" decoding="async"
+       alt="Dichiarazione per l’esenzione dal canone TV degli ultrasettantacinquenni compilata: Anna Verdi, nata il 20 gennaio 1952, chiede l’esenzione per il 2027, indica il codice fiscale del coniuge convivente e barra la soglia di 8.000 euro"
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Una dichiarazione compilata con questa pagina (persone inventate): 75 anni il 20 gennaio 2027, quindi esenzione per tutto il 2027; coniugata, con il codice fiscale del marito alla lettera b) e la casella degli 8.000 euro alla lettera d).</figcaption>
+</figure>
+<h3 id="bolletta" class="text-lg font-bold text-gray-900 pt-3">Quando si ferma l&rsquo;addebito in bolletta</h3>
+<p>Per chi paga il canone nella bolletta della luce l&rsquo;Agenzia indica i tempi di lavorazione: se la dichiarazione arriva entro il 15 del mese, l&rsquo;addebito si ferma di norma dalla rata del mese successivo; se arriva nella seconda met&agrave; del mese, dalla rata del secondo mese successivo.</p>
+<p><strong>Esempio 6: i tempi della bolletta.</strong> La dichiarazione inviata il 10 aprile ferma il canone, di norma, dalla rata di maggio; quella inviata il 20 aprile, dalla rata di giugno. Nel frattempo puoi pagare la bolletta in modo parziale, togliendo le rate di canone che non devi.</p>
+<h3 id="rimborso" class="text-lg font-bold text-gray-900 pt-3">Se hai gi&agrave; pagato</h3>
+<p>Chi presenta la dichiarazione a anno iniziato trova di solito alcune rate gi&agrave; addebitate. Le risposte ufficiali indicano due strade: presentare la dichiarazione e pagare le bollette senza la quota del canone, oppure, se le bollette sono gi&agrave; pagate, chiedere il rimborso con il modello per gli ultrasettantacinquenni, che contiene anche la dichiarazione dei requisiti. In alternativa, dopo la dichiarazione, si pu&ograve; usare la richiesta di rimborso del canone in bolletta con il motivo 1. Su questa pagina compili il modello per gli over 75 (secondo pulsante del compilatore); l&rsquo;altro lo trovi nella pagina sul <a href="/cittadino-tasse/rimborso-canone-rai/" class="text-indigo-700 underline">rimborso del canone Rai</a>.</p>
+<h3 id="come-si-invia" class="text-lg font-bold text-gray-900 pt-3">Come si presenta</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>In plico raccomandato senza busta</strong> all&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento di riconoscimento valido. Vale la data del timbro postale.</li>
+  <li><strong>Per PEC</strong> a cp22.canonetv@postacertificata.rai.it, con il modello <strong>firmato digitalmente</strong> da chi chiede l&rsquo;esenzione: per questo modello le istruzioni non prevedono la firma a penna scansionata.</li>
+  <li><strong>A mano</strong>, consegnandola a un ufficio territoriale dell&rsquo;Agenzia delle Entrate: chi non ha la firma digitale e preferisce non spedire pu&ograve; andare allo sportello.</li>
+</ul>
+<p>Una volta presentata, la dichiarazione vale anche per gli anni seguenti, finch&eacute; i requisiti restano: non va ripetuta ogni anno.</p>
+<h3 id="variazione" class="text-lg font-bold text-gray-900 pt-3">Se i requisiti vengono meno</h3>
+<p>Quando un requisito si perde &ndash; il reddito supera la soglia o in casa arriva un convivente con reddito &ndash; va presentata la Sezione II dello stesso modello, con l&rsquo;anno in cui i requisiti sono venuti meno. L&rsquo;esempio delle istruzioni: se il reddito del 2019, proprio e del coniuge, supera gli 8.000 euro, si indica il 2019. Chi ha la luce intestata si vede addebitare le rate gi&agrave; scadute nella prima bolletta utile; chi non ce l&rsquo;ha paga il canone con il modello F24.</p>
+<p>Usare l&rsquo;esenzione senza averne diritto costa caro: oltre al canone e agli interessi di mora si paga una sanzione amministrativa da 500 a 2.000 euro per ogni anno (legge 244/2007, art. 1, comma 132, nel testo in vigore dal 2020), e la dichiarazione falsa ha conseguenze penali (D.P.R. 445/2000, artt. 75 e 76).</p>
+<h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Guardare il reddito dell&rsquo;anno in corso</strong>: per l&rsquo;esenzione del 2027 conta quello del 2026.</li>
+  <li><strong>Dimenticare il reddito del coniuge</strong>: la soglia di 8.000 euro vale per i due redditi insieme.</li>
+  <li><strong>Contare redditi che non entrano</strong>, come la pensione di invalidit&agrave; civile o la rendita della casa in cui abiti, e rinunciare a un&rsquo;esenzione che spetterebbe.</li>
+  <li><strong>Pensare che la badante faccia perdere l&rsquo;esenzione</strong>: colf, badanti e collaboratori domestici conviventi non contano.</li>
+  <li><strong>Mandare per PEC un modello firmato a penna</strong>: per questa dichiarazione serve la firma digitale.</li>
+  <li><strong>Non presentare la Sezione II</strong> quando i requisiti vengono meno: si rischiano le sanzioni.</li>
+</ul>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 2027</h3>
+<p>Dal 1&deg; gennaio 2027 la regola del comma 132 passa, con le stesse parole, nell&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art54ter" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 54-ter del testo unico dei tributi erariali minori</a> (D.Lgs. 174/2024, che si applica da quella data). Il modello e le istruzioni dell&rsquo;Agenzia citano ancora la legge 244/2007: li ricontrolliamo quando saranno aggiornati.</p>
         </div>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>I quattro requisiti</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <ul class="list-disc list-inside space-y-2">
-              <li><strong>Et&agrave;</strong>: 75 anni compiuti entro il 31 gennaio per avere l&rsquo;esenzione per tutto l&rsquo;anno, oppure dal 1&deg; febbraio al 31 luglio per il solo secondo semestre.</li>
-              <li><strong>Televisore</strong>: solo nella casa di residenza. Se il televisore sta in una casa diversa, l&rsquo;esenzione non spetta.</li>
-              <li><strong>Conviventi</strong>: in casa non vivono altre persone, oltre al coniuge o alla persona unita civilmente, con un reddito proprio. Colf, badanti e collaboratori domestici non contano.</li>
-              <li><strong>Reddito</strong>: il reddito tuo e del coniuge, sommati, nell&rsquo;anno precedente non supera 8.000 euro.</li>
-            </ul>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si calcola il reddito</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Si somma il reddito dell&rsquo;anno prima di quello per cui chiedi l&rsquo;esenzione, tuo e del coniuge. Nel conto entrano:</p>
-            <ul class="list-disc list-inside space-y-2">
-              <li>il reddito imponibile della dichiarazione dei redditi, oppure quello della Certificazione Unica per chi non presenta la dichiarazione;</li>
-              <li>i redditi a imposta sostitutiva o a ritenuta d&rsquo;imposta, come gli interessi di conti, libretti, BOT, CCT e altri titoli di Stato e i proventi dei fondi;</li>
-              <li>le retribuzioni pagate da organismi internazionali, rappresentanze diplomatiche, Santa Sede ed enti collegati;</li>
-              <li>i redditi esteri non tassati in Italia.</li>
-            </ul>
-            <p>Restano fuori i redditi esenti IRPEF (per esempio pensioni di guerra, rendite INAIL, pensioni di invalidit&agrave; civile), il TFR e i suoi anticipi, il reddito della casa di abitazione e delle pertinenze e i redditi a tassazione separata.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Quando smette di arrivare in bolletta</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Per chi paga in bolletta, l&rsquo;Agenzia indica che una dichiarazione inviata entro il 15 del mese interrompe di norma l&rsquo;addebito dalla rata del mese successivo; se inviata nella seconda met&agrave; del mese, dalla rata del secondo mese successivo. Nel frattempo si pu&ograve; pagare la bolletta in modo parziale, togliendo le rate del canone non dovute. Le rate gi&agrave; pagate senza doverle si chiedono indietro con il rimborso.</p>
-            <p>La dichiarazione non va ripetuta ogni anno: se i requisiti restano, l&rsquo;esenzione continua. Se vengono meno &ndash; il reddito supera la soglia o in casa arriva una persona con reddito &ndash; si presenta la <strong>sezione II</strong> dello stesso modello, indicando l&rsquo;anno. Da quel momento chi ha la luce intestata si vede addebitare le rate nella prima bolletta utile; chi non ce l&rsquo;ha paga il canone con il modello F24.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Il rimborso di quanto pagato</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Chi ha pagato il canone in un anno in cui aveva gi&agrave; i requisiti pu&ograve; chiederlo indietro con il <strong>modello di rimborso per gli ultrasettantacinquenni</strong>: si indicano l&rsquo;anno, l&rsquo;importo pagato e si dichiarano i requisiti riferiti a quell&rsquo;anno. Per gli anni fino al 2017 la soglia da barrare &egrave; quella di 6.713,98 euro.</p>
-            <p>Se il canone &egrave; stato addebitato in bolletta, in alternativa, dopo aver presentato la dichiarazione dei requisiti, si pu&ograve; usare il modello di rimborso generale con il <strong>motivo 1</strong>, che si pu&ograve; inviare anche online: lo trovi nella pagina sul <a href="/cittadino-tasse/rimborso-canone-rai/" class="text-indigo-600 hover:underline">rimborso del canone Rai</a>.</p>
-          </div>
-        </details>
-
-        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
-        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2007-12-24;244~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 24 dicembre 2007, n. 244, art. 1</a>, comma 132: esenzione per chi ha 75 anni.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2019, n. 160, art. 1</a>, comma 355: soglia di reddito di 8.000 euro dal 2020.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445</a>, artt. 46, 47, 75 e 76: dichiarazioni sostitutive.</li>
-          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda sugli ultrasettantacinquenni con reddito basso</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modelli e istruzioni per l&rsquo;esenzione e il rimborso</a>.</li>
-        </ul>
-      </section>
-
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Chi ha diritto all&rsquo;esenzione dal canone Rai over 75?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Chi ha compiuto 75 anni, ha un reddito proprio e del coniuge non superiore a 8.000 euro nell&rsquo;anno precedente, non vive con altre persone con reddito proprio (esclusi colf, badanti e collaboratori domestici) e ha il televisore solo nella casa di residenza.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Da quando vale l&rsquo;esenzione?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per tutto l&rsquo;anno se i 75 anni si compiono entro il 31 gennaio; solo per il secondo semestre se si compiono dal 1&deg; febbraio al 31 luglio.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>La dichiarazione va ripresentata ogni anno?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Se i requisiti restano, l&rsquo;esenzione continua negli anni successivi senza nuove dichiarazioni. Se vengono meno, si presenta la sezione II dello stesso modello.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Ho pagato il canone ma avevo diritto all&rsquo;esenzione: posso riaverlo?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, con il modello di rimborso per gli ultrasettantacinquenni, che contiene anche la dichiarazione dei requisiti. Se il canone &egrave; stato pagato in bolletta, dopo aver presentato la dichiarazione si pu&ograve; usare anche il modello di rimborso generale con il motivo 1.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si spedisce la dichiarazione?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con raccomandata senza busta all&rsquo;Ufficio Canone TV di Torino, allegando la copia di un documento d&rsquo;identit&agrave;; oppure via PEC, firmata digitalmente, a cp22.canonetv@postacertificata.rai.it; oppure consegnandola a un ufficio territoriale dell&rsquo;Agenzia delle Entrate.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Nel reddito si conta anche la casa in cui abito?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Sono esclusi il reddito dell&rsquo;abitazione principale e delle pertinenze, i redditi esenti IRPEF come le pensioni di guerra, le rendite INAIL e le pensioni di invalidit&agrave; civile, il TFR e i redditi a tassazione separata.</p>
-        </details>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando si presenta la dichiarazione per l&rsquo;esenzione over 75?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Non c&rsquo;&egrave; un termine: l&rsquo;esenzione spetta in base ai requisiti, indipendentemente da quando presenti la dichiarazione. Chi ha il canone in bolletta e la presenta in corso d&rsquo;anno trova per&ograve; alcune rate gi&agrave; addebitate: pu&ograve; pagare la bolletta senza la quota del canone o chiedere il rimborso.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;esenzione va chiesta ogni anno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Se i requisiti restano, la dichiarazione vale anche per gli anni successivi. Se uno viene meno, si presenta la Sezione II dello stesso modello.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quale reddito conta, quello di quest&rsquo;anno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, quello dell&rsquo;anno precedente: per l&rsquo;esenzione del 2027 si guarda il reddito del 2026, tuo e del coniuge sommati.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La badante che vive con me fa perdere l&rsquo;esenzione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Le istruzioni escludono dal conto collaboratori domestici, colf e badanti: conta solo che non vivano con te altre persone con reddito, a parte il coniuge.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Vivo con mio figlio che lavora: ho diritto all&rsquo;esenzione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Uno dei requisiti &egrave; non convivere con persone diverse dal coniuge che abbiano un reddito proprio.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La pensione di invalidit&agrave; civile conta nel reddito?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. I redditi esenti da IRPEF, come le pensioni di invalidit&agrave; civile, le pensioni di guerra e le rendite INAIL, non entrano nella soglia di 8.000 euro.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso mandare la dichiarazione per PEC?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, a cp22.canonetv@postacertificata.rai.it, ma il modello deve essere firmato digitalmente da chi chiede l&rsquo;esenzione. In alternativa si spedisce per raccomandata senza busta o si consegna a un ufficio dell&rsquo;Agenzia.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho gi&agrave; pagato il canone: come lo riavr&ograve;?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con la richiesta di rimborso per gli ultrasettantacinquenni, che contiene anche la dichiarazione dei requisiti, oppure, dopo aver presentato la dichiarazione, con il modello di rimborso del canone in bolletta indicando il motivo 1.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2007-12-24;244~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 24 dicembre 2007, n. 244, art. 1</a>, comma 132: l&rsquo;esenzione per chi ha 75 anni, fino al 31 dicembre 2026.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2019, n. 160, art. 1</a>, comma 355: soglia stabile di 8.000 euro dal 2020 e sanzione per l&rsquo;abuso.</li>
+  <li>Dal 1&deg; gennaio 2027: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art54ter" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 174/2024, allegato, art. 54-ter</a>, testo unico dei tributi erariali minori.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445</a>: dichiarazioni sostitutive (artt. 46 e 47) e dichiarazioni false (artt. 75 e 76).</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni" class="text-indigo-700 underline" target="_blank" rel="noopener">Ultrasettantacinquenni con reddito basso</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modelli e istruzioni del canone TV</a>.</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/faq-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">risposte alle domande pi&ugrave; frequenti</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/richiesta-di-rimborso-del-canone-tv-bolletta" class="text-indigo-700 underline" target="_blank" rel="noopener">rimborso del canone TV addebitato in bolletta</a>.</li>
+</ul>
       </section>
 
       <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->

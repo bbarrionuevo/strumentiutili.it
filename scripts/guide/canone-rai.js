@@ -29,24 +29,23 @@ module.exports = function (ctx) {
     h.p('Per famiglia si intende la <strong>famiglia anagrafica</strong>: le persone legate da matrimonio, unione civile, parentela, affinit&agrave;, adozione, tutela o da vincoli affettivi, che vivono insieme e hanno la dimora abituale nello stesso Comune. &Egrave; quella che risulta allo stato di famiglia.'),
 
     h.h2('chi-non-paga', 'Chi pu&ograve; non pagarlo'),
-    h.p('La presunzione si supera con una dichiarazione. Le situazioni pi&ugrave; comuni sono quattro, ognuna con il suo modulo:'),
+    h.p('La presunzione si supera con una dichiarazione. Le situazioni pi&ugrave; comuni sono tre, ognuna con il suo modulo:'),
     h.tabella('Le situazioni in cui il canone non &egrave; dovuto', ['Situazione', 'Che cosa si presenta', 'Quanto dura'], [
       ['In casa non c&rsquo;&egrave; nessun televisore', 'Dichiarazione sostitutiva, quadro A', 'Un anno: va ripresentata ogni anno'],
       ['Il canone lo paga gi&agrave; un altro componente della famiglia', 'Dichiarazione sostitutiva, quadro B', 'Finch&eacute; la situazione resta'],
-      ['75 anni compiuti e reddito fino a ' + euro(O.soglia_reddito, 0), 'Dichiarazione per l&rsquo;esenzione over 75', 'Finch&eacute; i requisiti restano'],
-      ['Diplomatici e militari stranieri', 'Dichiarazione per le convenzioni internazionali', 'Secondo la convenzione']
+      ['75 anni compiuti e reddito fino a ' + euro(O.soglia_reddito, 0), 'Dichiarazione per l&rsquo;esenzione over 75', 'Finch&eacute; i requisiti restano']
     ]),
     h.p('Contano come televisori gli apparecchi che ricevono il digitale terrestre o il satellite, anche con un decoder esterno. <strong>Computer, smartphone e tablet</strong> senza sintonizzatore TV non contano, e le radio in un&rsquo;abitazione privata non pagano il canone. Chi ha solo questi apparecchi pu&ograve; presentare il quadro A.'),
 
     h.h2('disdetta', 'La disdetta: il quadro A e le sue date'),
     h.p('Il quadro A della dichiarazione sostitutiva &egrave; quello che tutti chiamano disdetta: dichiari che in nessuna delle case in cui hai un contratto della luce c&rsquo;&egrave; un televisore, n&eacute; tuo n&eacute; dei tuoi familiari. Vale per un anno, e quale anno dipende da quando la presenti.'),
     h.tabella('Per quale periodo vale il quadro A, secondo la data di presentazione', ['Presentato il', 'Vale per'], invii),
-    h.p('La regola &egrave; semplice: dal 1&deg; luglio al 31 dicembre vale per tutto l&rsquo;anno successivo; entro il 31 gennaio vale per tutto l&rsquo;anno in corso; dal 1&deg; febbraio al 30 giugno vale solo per il secondo semestre. Quando il 31 gennaio cade nel fine settimana il termine slitta: per il 2026 l&rsquo;Agenzia ha indicato come ultimo giorno il 2 febbraio.'),
+    h.p('La regola &egrave; semplice: dal 1&deg; luglio al 31 dicembre vale per tutto l&rsquo;anno successivo; entro il 31 gennaio vale per tutto l&rsquo;anno in corso; dal 1&deg; febbraio al 30 giugno vale solo per il secondo semestre. Quando il 31 gennaio cade di sabato o di domenica il termine passa al primo giorno lavorativo, come per tutti gli adempimenti fiscali (D.L. 70/2011, art. 7, comma 2, lettera h): per il 2026 l&rsquo;Agenzia ha indicato come ultimo giorno il 2 febbraio, e per il 2027, con il 31 gennaio di domenica, l&rsquo;ultimo giorno &egrave; luned&igrave; 1&deg; febbraio.'),
     h.p('Chi attiva un nuovo contratto della luce, senza averne altri quell&rsquo;anno, ha tempo fino alla fine del mese successivo all&rsquo;attivazione per non pagare nulla da subito. La disdetta per suggellamento dell&rsquo;apparecchio, che si faceva un tempo, non &egrave; pi&ugrave; prevista.'),
     h.esempio('rate gi&agrave; pagate prima della disdetta', [
       'Il canone annuo di ' + euro(T.importo_annuo, 0) + ' &egrave; diviso in ' + T.rate_in_bolletta + ' rate da ' + euro(rata) + '.',
       'Una famiglia senza televisore presenta il quadro A il 15 marzo: vale solo per luglio-dicembre.',
-      'Le cinque rate da gennaio a maggio erano dovute, perch&eacute; la dichiarazione &egrave; arrivata dopo il 31 gennaio.'
+      'Il canone del primo semestre resta dovuto, perch&eacute; la dichiarazione &egrave; arrivata dopo il termine di gennaio.'
     ], 'Per non pagare nulla l&rsquo;anno dopo, la dichiarazione va ripresentata dal 1&deg; luglio al 31 gennaio.'),
 
     h.h2('familiare', 'Due contratti della luce nella stessa famiglia: il quadro B'),
@@ -86,7 +85,7 @@ module.exports = function (ctx) {
     titoloBreve: 'Canone Rai: disdetta, esenzione over 75 e rimborso',
     descrizione: 'Quanto costa il canone TV e come smettere di pagarlo quando non è dovuto: la disdetta per chi non ha il televisore, il canone pagato da un familiare, l’esenzione per chi ha 75 anni, il rimborso delle rate in bolletta. Con le date e gli esempi.',
     pubblicata: '2026-09-27',
-    aggiornata: '2026-09-27',
+    aggiornata: '2026-10-06',
     introduzione: 'Il canone Rai arriva nella bolletta della luce anche a chi il televisore non ce l&rsquo;ha, a chi lo paga gi&agrave; attraverso un familiare o a chi, compiuti 75 anni, ne sarebbe esente. In tutti questi casi si pu&ograve; smettere di pagarlo, ma bisogna presentare il modulo giusto nei tempi giusti. Questa guida spiega quale, entro quando e come riavere le rate pagate senza doverle.',
     riassunto: [
       'Il canone costa ' + euro(T.importo_annuo, 0) + ' l&rsquo;anno, in ' + T.rate_in_bolletta + ' rate ' + T.mesi_rate + ' nella bolletta della luce.',
@@ -100,22 +99,23 @@ module.exports = function (ctx) {
     ],
     corpo,
     errori: [
-      'Presentare la disdetta a febbraio pensando che valga per tutto l&rsquo;anno: copre solo luglio-dicembre.',
+      'Presentare la disdetta dopo il termine di gennaio (nel 2027, dopo luned&igrave; 1&deg; febbraio) pensando che valga per tutto l&rsquo;anno: copre solo luglio-dicembre.',
       'Non ripetere il quadro A l&rsquo;anno dopo: la dichiarazione di non detenzione vale un anno solo.',
       'Usare il quadro A quando il televisore c&rsquo;&egrave; ma il canone lo paga un familiare: il quadro giusto &egrave; il B.',
       'Dimenticare la copia del documento d&rsquo;identit&agrave; nella raccomandata.',
-      'Chiedere il rimborso senza presentare anche la dichiarazione: le rate future continuano ad arrivare.',
+      'Chiedere il rimborso con i motivi 1 o 5 senza aver presentato la dichiarazione su cui si basano: senza dichiarazione anche le rate future continuano ad arrivare.',
       'Nel rimborso, indicare il totale della bolletta invece della sola quota del canone.'
     ],
     faq: [
       { d: 'Il canone Rai si paga anche se guardo solo lo smartphone?', r: 'No, se in casa non c&rsquo;&egrave; un apparecchio con sintonizzatore per il digitale terrestre o il satellite. Computer, smartphone e tablet senza sintonizzatore non sono televisori: si pu&ograve; presentare il quadro A.' },
-      { d: 'Entro quando si presenta la disdetta per il 2027?', r: 'Dal 1&deg; luglio 2026 al 31 gennaio 2027 per non pagare nulla del 2027. Dal 1&deg; febbraio al 30 giugno 2027 vale solo per il secondo semestre.' },
+      { d: 'Entro quando si presenta la disdetta per il 2027?', r: 'Dal 1&deg; luglio 2026 a luned&igrave; 1&deg; febbraio 2027 per non pagare nulla del 2027: il 31 gennaio &egrave; domenica e il termine passa al primo giorno lavorativo. Dal 2 febbraio al 30 giugno 2027 vale solo per il secondo semestre.' },
       { d: 'Ho due case: pago due canoni?', r: 'No. Il canone si paga una volta sola per famiglia anagrafica, anche con pi&ugrave; contratti della luce. Se l&rsquo;addebito arriva su due utenze della stessa famiglia si presenta il quadro B.' },
       { d: 'L&rsquo;esenzione over 75 va rinnovata ogni anno?', r: 'No. Se i requisiti restano, la dichiarazione vale anche per gli anni successivi. Se vengono meno si presenta la sezione II dello stesso modello.' },
-      { d: 'Quanto tempo ho per chiedere il rimborso?', r: 'Il modello non indica un termine: per ogni anno si presenta una richiesta, a partire dal 2016, primo anno del canone in bolletta.' }
+      { d: 'Quanto tempo ho per chiedere il rimborso?', r: 'Le istruzioni del modello non indicano un termine: per ogni anno si presenta una richiesta, a partire dal 2016, primo anno del canone in bolletta.' }
     ],
     fonti: [
-      'Legge 28 dicembre 2015, n. 208, art. 1, commi 152-159: canone in bolletta e presunzione di detenzione.',
+      'Legge 28 dicembre 2015, n. 208, art. 1, commi 152-159: canone in bolletta e presunzione di detenzione, fino al 31 dicembre 2026; dal 2027 le stesse regole sono nel testo unico dei tributi erariali minori, ' + a('https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art51', 'D.Lgs. 174/2024, allegato, artt. 51-55 e 54-ter') + '.',
+      'D.L. 13 maggio 2011, n. 70, art. 7: le scadenze fiscali che cadono di sabato o in un giorno festivo passano al primo giorno lavorativo.',
       'Legge 24 dicembre 2007, n. 244, art. 1, comma 132: esenzione per chi ha 75 anni; Legge 27 dicembre 2019, n. 160, art. 1, comma 355: soglia di 8.000 euro.',
       'Agenzia delle Entrate: ' + a(AE + 'schede/agevolazioni/canone-tv/come-si-paga-canone-tv', 'Canone TV, come si paga') + ' e ' + a(AE + 'schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv', 'dichiarazione sostitutiva') + '.',
       'Agenzia delle Entrate: ' + a(AE + 'aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni', 'ultrasettantacinquenni con reddito basso') + ' e ' + a(AE + 'schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv', 'modelli e istruzioni') + '.'

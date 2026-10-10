@@ -35,7 +35,8 @@
       ],
       "deve_contenere": [
         "entro il 31 gennaio dell'anno di riferimento",
-        "entro il 30 giugno dell'anno di riferimento"
+        "entro il 30 giugno dell'anno di riferimento",
+        "2 febbraio 2026"
       ]
     },
     {
@@ -53,7 +54,54 @@
         "js/canone-tv.js"
       ],
       "deve_contenere": [
-        "8.000 euro"
+        "8.000 euro",
+        "entro il 15 del mese"
+      ]
+    },
+    {
+      "id": "canone-tv-esempi-di-compilazione",
+      "tipo": "pagina",
+      "url": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv/esempi-di-compilazione-tv",
+      "pagine": [
+        "cittadino-tasse/disdetta-canone-rai/",
+        "guide/canone-rai/"
+      ],
+      "deve_contenere": [
+        "compilando il Quadro B del modello",
+        "non va indicato il codice fiscale dell'inquilino"
+      ]
+    },
+    {
+      "id": "canone-tv-faq",
+      "tipo": "pagina",
+      "url": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/faq-canone-tv",
+      "pagine": [
+        "cittadino-tasse/disdetta-canone-rai/",
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "cittadino-tasse/rimborso-canone-rai/",
+        "guide/canone-rai/"
+      ],
+      "motori": [
+        "js/canone-tv.js"
+      ],
+      "deve_contenere": [
+        "entro la fine del mese successivo alla data di attivazione della fornitura stessa",
+        "quota energia elettrica",
+        "non c'è alcun termine per presentare la dichiarazione sostitutiva"
+      ]
+    },
+    {
+      "id": "canone-tv-rimborso-bolletta",
+      "tipo": "pagina",
+      "url": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/richiesta-di-rimborso-del-canone-tv-bolletta",
+      "pagine": [
+        "cittadino-tasse/rimborso-canone-rai/",
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "guide/canone-rai/"
+      ],
+      "deve_contenere": [
+        "entro 45 giorni dalla ricezione",
+        "codice 4"
       ]
     },
     {
@@ -471,6 +519,16 @@
       ]
     },
     {
+      "id": "canone-tv-testo-unico-2027",
+      "dal": "2027-01-02",
+      "titolo": "Canone TV: dal 2027 le regole sono nel testo unico dei tributi erariali minori",
+      "cosa": "Dal 1° gennaio 2027 si applica il testo unico dei tributi erariali minori (D.Lgs. 174/2024, allegato, art. 100): i commi 152-159 della L. 208/2015 e il primo periodo del comma 132 della L. 244/2007 sono abrogati e le stesse regole sono negli artt. 51-55 e 54-ter. Controllare se l'Agenzia ha aggiornato modelli, istruzioni e schede del canone TV (oggi citano la L. 244/2007 e la L. 208/2015), poi nelle pagine disdetta, esenzione over 75, rimborso e nella guida togliere «fino al 31 dicembre 2026» e citare il testo unico come norma in vigore. Verificare anche le date del quadro A per il 2027 nella scheda «Dichiarazione sostitutiva».",
+      "dati": [
+        "canone_tv"
+      ],
+      "fonte": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art100"
+    },
+    {
       "id": "importi-inps",
       "dal": "2027-02-01",
       "ripeti": "anno",
@@ -878,13 +936,28 @@
       "schede": [
         "canone-tv-come-si-paga",
         "canone-tv-dichiarazione-sostitutiva",
-        "canone-tv-over-75"
+        "canone-tv-over-75",
+        "canone-tv-esempi-di-compilazione",
+        "canone-tv-faq",
+        "canone-tv-rimborso-bolletta"
       ],
       "norme": [
-        "stato:legge:2015-12-28;208~art1"
+        "stato:legge:2015-12-28;208~art1",
+        "stato:decreto.legislativo:2024-11-05;174:1~art51",
+        "stato:decreto.legislativo:2024-11-05;174:1~art52",
+        "stato:decreto.legislativo:2024-11-05;174:1~art53",
+        "stato:decreto.legislativo:2024-11-05;174:1~art54ter",
+        "stato:decreto.legislativo:2024-11-05;174:1~art55",
+        "stato:decreto.legislativo:2024-11-05;174:1~art100"
       ],
       "scadenze": [
-        "legge-di-bilancio"
+        "legge-di-bilancio",
+        "canone-tv-testo-unico-2027"
+      ],
+      "blocchi": [
+        "canone-tv-l208-2015-commi-152-160",
+        "canone-tv-over-75-l244-2007-comma-132",
+        "canone-tv-over-75-l160-2019-comma-355"
       ]
     }
   },
@@ -916,6 +989,46 @@
         "cittadino-tasse/f24-editabile/f24-ordinario/",
         "cittadino-tasse/calcolo-imu/",
         "guide/imu-2026/"
+      ]
+    },
+    {
+      "id": "canone-tv-l208-2015-commi-152-160",
+      "articolo": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2015-12-28;208~art1",
+      "da": 152,
+      "a": 160,
+      "dati": [
+        "canone_tv"
+      ],
+      "pagine": [
+        "cittadino-tasse/disdetta-canone-rai/",
+        "cittadino-tasse/rimborso-canone-rai/",
+        "guide/canone-rai/"
+      ]
+    },
+    {
+      "id": "canone-tv-over-75-l244-2007-comma-132",
+      "articolo": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2007-12-24;244~art1",
+      "da": 132,
+      "a": 132,
+      "dati": [
+        "canone_tv"
+      ],
+      "pagine": [
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "guide/canone-rai/"
+      ]
+    },
+    {
+      "id": "canone-tv-over-75-l160-2019-comma-355",
+      "articolo": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1",
+      "da": 355,
+      "a": 355,
+      "dati": [
+        "canone_tv"
+      ],
+      "pagine": [
+        "cittadino-tasse/esenzione-canone-rai-over-75/",
+        "guide/canone-rai/"
       ]
     }
   ]

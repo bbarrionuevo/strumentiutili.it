@@ -220,6 +220,112 @@ ESEMPI = {
         "etichetta_y": 0.102,
         "larghezza": 1100,
     },
+    # L'esempio 4 della scheda «Esempi di compilazione» dell'Agenzia delle
+    # Entrate: i coniugi hanno la residenza nella casa A, la luce della casa B
+    # e' intestata alla moglie e il canone si paga sulla bolletta del marito.
+    # La moglie compila il quadro B con il codice fiscale del marito; la data
+    # inizio e' il 1° gennaio dell'anno di presentazione, come consentono le
+    # istruzioni quando la famiglia esiste da prima. Le persone sono inventate.
+    # I dati stanno sulla seconda e sulla terza facciata (la prima e'
+    # l'informativa sulla privacy).
+    "canone-tv-quadro-b": {
+        "pagina": "/cittadino-tasse/disdetta-canone-rai/",
+        "modello": "CANONE",
+        "passi": [
+            {"passo": "Che cosa dichiari", "campi": {
+                "quadro.quadro": "B",
+                "quadro.bConferma": True,
+                "quadro.bCodiceFiscale": "RSSMRA58T10H501L",
+                "quadro.bDataInizio": "2026-01-01",
+            }},
+            {"passo": "I tuoi dati", "campi": {
+                "dichiarante.cognome": "BIANCHI",
+                "dichiarante.nome": "LAURA",
+                "dichiarante.dataNascita": "1960-06-15",
+                "dichiarante.comuneNascita": "MILANO",
+                "dichiarante.provinciaNascita": "MI",
+                "dichiarante.codiceFiscale": "BNCLRA60H55F205G",
+            }},
+            {"passo": "Data e firma", "campi": {"firma.data": "2026-10-20"}},
+        ],
+        "ritaglio": [(2, 0.0, 0.165, 1.0, 0.405), (2, 0.0, 0.645, 1.0, 0.695), (3, 0.0, 0.255, 1.0, 0.405)],
+        "salto": ["Erede e intermediario: vuoti", "Seconda facciata del modello: quadro A vuoto"],
+        "etichetta_y": 0.2,
+        "larghezza": 1100,
+    },
+    # Dichiarazione per l'esenzione di chi compie 75 anni il 20 gennaio 2027:
+    # spetta per tutto il 2027 (istruzioni: 75 anni entro il 31 gennaio).
+    # Coniugata, con il codice fiscale del marito convivente e la soglia di
+    # 8.000 euro. Le persone sono inventate.
+    "canone-tv-over-75": {
+        "pagina": "/cittadino-tasse/esenzione-canone-rai-over-75/",
+        "modello": "ESENZIONE75",
+        "passi": [
+            {"passo": "I tuoi dati", "campi": {
+                "dichiarante.cognome": "VERDI",
+                "dichiarante.nome": "ANNA",
+                "dichiarante.dataNascita": "1952-01-20",
+                "dichiarante.comuneNascita": "ROMA",
+                "dichiarante.provinciaNascita": "RM",
+                "dichiarante.codiceFiscale": "VRDNNA52A60H501G",
+            }},
+            {"passo": "La dichiarazione", "campi": {
+                "dichiarazione.sezione": "I",
+                "dichiarazione.anno": "2027",
+                "dichiarazione.confermaResidenza": True,
+                "dichiarazione.statoCivile": "si",
+                "dichiarazione.coniugeCf": "GLLPLA50C03H501Q",
+                "dichiarazione.confermaConviventi": True,
+                "dichiarazione.soglia": "8000",
+            }},
+            {"passo": "Data e firma", "campi": {"firma.data": "2026-12-10"}},
+        ],
+        "ritaglio": (2, 0.0, 0.165, 1.0, 0.79),
+        "etichetta_y": 0.2,
+        "larghezza": 1100,
+    },
+    # Rimborso con il motivo 4 (canone addebitato su due contratti della
+    # stessa famiglia): il marito chiede indietro le quote del canone delle
+    # sue tre bollette 2026 e indica il codice fiscale della moglie, sulla cui
+    # bolletta il canone resta. Senza data fine la richiesta vale anche come
+    # quadro B (scheda «Rimborso del canone TV addebitato in bolletta»).
+    # Persone, POD, fatture e importi sono inventati.
+    "rimborso-canone-tv-motivo-4": {
+        "pagina": "/cittadino-tasse/rimborso-canone-rai/",
+        "modello": "RIMBORSO",
+        "passi": [
+            {"passo": "I tuoi dati", "campi": {
+                "richiedente.cognome": "ROSSI",
+                "richiedente.nome": "MARIO",
+                "richiedente.dataNascita": "1958-12-10",
+                "richiedente.comuneNascita": "ROMA",
+                "richiedente.provinciaNascita": "RM",
+                "richiedente.codiceFiscale": "RSSMRA58T10H501L",
+                "richiedente.email": "mario.rossi@example.com",
+            }},
+            {"passo": "Anno e bollette", "aggiungi": ["fatture|riga", "fatture|riga"], "campi": {
+                "fatture.anno": "2026",
+                "fatture.riga.0.pod": "IT001E12345678",
+                "fatture.riga.0.fattura": "2026-000312",
+                "fatture.riga.0.importo": "18,00",
+                "fatture.riga.1.fattura": "2026-000845",
+                "fatture.riga.1.importo": "18,00",
+                "fatture.riga.2.fattura": "2026-001377",
+                "fatture.riga.2.importo": "18,00",
+            }},
+            {"passo": "Il motivo", "campi": {
+                "motivo.codice": "4",
+                "motivo.familiareCf": "BNCLRA60H55F205G",
+                "motivo.dataInizio": "2026-01-01",
+            }},
+            {"passo": "Data e firma", "campi": {"firma.data": "2026-10-20"}},
+        ],
+        "ritaglio": [(3, 0.0, 0.065, 1.0, 0.215), (3, 0.0, 0.425, 1.0, 0.56)],
+        "salto": "Righe 4-10 della tabella: vuote",
+        # il timbro nella fascia grigia, a destra della scritta
+        "etichetta_y": 0.219,
+        "larghezza": 1100,
+    },
 }
 
 
@@ -231,7 +337,10 @@ class Silenzioso(http.server.SimpleHTTPRequestHandler):
 def scrivi(pag, modello, chiave, valore):
     sel = f'[data-campo="{modello}.{chiave}"]'
     pag.wait_for_selector(sel, timeout=8000)
-    if pag.eval_on_selector(sel, "e => e.type") == "checkbox":
+    if pag.eval_on_selector(sel, "e => e.type") == "radio":
+        # le scelte fra piu' voci (quadro, sezione, motivo): si spunta quella col valore
+        pag.check(f'{sel}[value="{valore}"]')
+    elif pag.eval_on_selector(sel, "e => e.type") == "checkbox":
         # le caselle da barrare (acconto, saldo...): «X» le spunta
         pag.set_checked(sel, bool(valore))
     elif pag.eval_on_selector(sel, "e => e.tagName") == "SELECT":
@@ -262,9 +371,10 @@ def compila(ctx, esempio):
         if passo.get("attiva"):
             pag.check(f'[data-attiva="{passo["attiva"]}"]')
             pag.wait_for_timeout(400)
-        if passo.get("aggiungi"):
+        aggiunte = passo.get("aggiungi") or []
+        for gruppo in [aggiunte] if isinstance(aggiunte, str) else aggiunte:
             # una riga in piu' nel gruppo ripetibile («passo|gruppo»)
-            pag.click(f'[data-aggiungi="{passo["aggiungi"]}"]')
+            pag.click(f'[data-aggiungi="{gruppo}"]')
             pag.wait_for_timeout(300)
         for chiave, valore in passo["campi"].items():
             scrivi(pag, m, chiave, valore)
@@ -283,17 +393,18 @@ def compila(ctx, esempio):
     return pdf
 
 
-def disegna(ctx, pdf, larghezza):
-    """La prima facciata del PDF come PNG, disegnata da pdf.js nel browser."""
+def disegna(ctx, pdf, larghezza, facciata=1):
+    """Una facciata del PDF (la prima, se non si dice) come PNG, disegnata da
+    pdf.js nel browser."""
     pag = ctx.new_page()
     pag.goto(f"http://127.0.0.1:{PORTA}/robots.txt")
     pag.add_script_tag(url="/vendor/pdfjs@3.11.174/pdf.min.js")
     dati = pag.evaluate(
-        """async ([b64, larghezza]) => {
+        """async ([b64, larghezza, facciata]) => {
           pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs@3.11.174/pdf.worker.min.js';
           const byte = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
           const doc = await pdfjsLib.getDocument({ data: byte }).promise;
-          const p = await doc.getPage(1);
+          const p = await doc.getPage(facciata);
           const base = p.getViewport({ scale: 1 });
           const vista = p.getViewport({ scale: larghezza / base.width });
           const tela = document.createElement('canvas');
@@ -305,19 +416,29 @@ def disegna(ctx, pdf, larghezza):
           await p.render({ canvasContext: c, viewport: vista, annotationMode: pdfjsLib.AnnotationMode.ENABLE }).promise;
           return tela.toDataURL('image/png');
         }""",
-        [base64.b64encode(pdf).decode(), larghezza],
+        [base64.b64encode(pdf).decode(), larghezza, facciata],
     )
     pag.close()
     return Image.open(io.BytesIO(base64.b64decode(dati.split(",", 1)[1])))
 
 
-def ritaglia(img, ritaglio, salto):
+def facciate(ritaglio):
+    """Le facciate che servono: un ritaglio di cinque numeri comincia con la
+    facciata (1 = la prima); con quattro numeri e' la prima."""
+    return sorted({r[0] if len(r) == 5 else 1 for r in (ritaglio if isinstance(ritaglio, list) else [ritaglio])})
+
+
+def ritaglia(immagini, ritaglio, salto):
     """Il ritaglio della facciata; con piu' ritagli, uno sotto l'altro, separati
     da una fascia grigia che dice cosa e' stato tolto (un testo per ogni fascia,
-    oppure lo stesso per tutte)."""
-    w, h = img.size
-    pezzi = [img.crop((round(l * w), round(a * h), round(r * w), round(g * h))).convert("RGB")
-             for l, a, r, g in (ritaglio if isinstance(ritaglio, list) else [ritaglio])]
+    oppure lo stesso per tutte). «immagini»: facciata -> immagine."""
+    pezzi = []
+    for r in (ritaglio if isinstance(ritaglio, list) else [ritaglio]):
+        img = immagini[r[0] if len(r) == 5 else 1]
+        w, h = img.size
+        l, a, d, g = r[-4:]
+        pezzi.append(img.crop((round(l * w), round(a * h), round(d * w), round(g * h))).convert("RGB"))
+    w = pezzi[0].size[0]
     if len(pezzi) == 1:
         return pezzi[0]
     fascia = max(28, w // 30)
@@ -368,8 +489,8 @@ def main(nomi):
             for nome in nomi:
                 esempio = ESEMPI[nome]
                 pdf = compila(ctx, esempio)
-                img = disegna(ctx, pdf, esempio["larghezza"])
-                img = ritaglia(img, esempio["ritaglio"], esempio.get("salto", ""))
+                immagini = {f: disegna(ctx, pdf, esempio["larghezza"], f) for f in facciate(esempio["ritaglio"])}
+                img = ritaglia(immagini, esempio["ritaglio"], esempio.get("salto", ""))
                 etichetta(img, esempio.get("etichetta_y"))
                 dest = USCITA / f"{nome}.webp"
                 img.save(dest, "WEBP", quality=82, method=6)

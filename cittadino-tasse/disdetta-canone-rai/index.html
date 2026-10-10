@@ -69,7 +69,6 @@
       },
       {
         "@type": "WebApplication",
-        "name": "Compilatore della dichiarazione sostitutiva relativa al canone TV",
         "url": "https://strumentiutili.it/cittadino-tasse/disdetta-canone-rai/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Qualsiasi browser moderno",
@@ -79,10 +78,12 @@
           "price": "0",
           "priceCurrency": "EUR"
         },
+        "name": "Compilatore della dichiarazione sostitutiva relativa al canone TV",
         "description": "Compila nel browser il modello ufficiale dell'Agenzia delle Entrate per non pagare il canone TV in bolletta: quadro A (niente televisore), quadro B (paga un familiare) e quadro C. PDF pronto da firmare.",
         "featureList": [
           "Quadri A, B e C con le spiegazioni delle istruzioni ufficiali",
-          "Calcolo del periodo coperto in base alla data di presentazione",
+          "Periodo coperto calcolato dalla data di presentazione, con i termini che cadono nel fine settimana",
+          "Dieci esempi ufficiali dell'Agenzia delle Entrate e un modello compilato di esempio",
           "Compilazione del PDF originale dell'Agenzia delle Entrate",
           "Elaborazione interamente nel browser, senza server"
         ],
@@ -103,18 +104,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Quanto costa il canone Rai?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Il canone di abbonamento alla televisione per uso privato è di 90 euro l’anno. Chi ha un contratto della luce per la casa di residenza lo paga in bolletta, in dieci rate mensili da gennaio a ottobre."
-            }
-          },
-          {
-            "@type": "Question",
             "name": "Entro quando va presentata la disdetta per non pagare il 2027?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La dichiarazione di non detenzione presentata dal 1° luglio 2026 al 31 gennaio 2027 vale per tutto il 2027. Se arriva dal 1° febbraio al 30 giugno 2027 vale solo per il secondo semestre."
+              "text": "Dal 1° luglio 2026 a lunedì 1° febbraio 2027: il 31 gennaio 2027 è domenica e il termine passa al primo giorno lavorativo (D.L. 70/2011, art. 7). Se la invii dal 2 febbraio al 30 giugno 2027 vale solo per luglio-dicembre."
             }
           },
           {
@@ -122,7 +115,7 @@
             "name": "Se ho solo computer, tablet e smartphone devo pagare?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, se non hanno un sintonizzatore per il digitale terrestre o il satellite: per le istruzioni ufficiali non sono apparecchi televisivi. Puoi quindi presentare il quadro A."
+              "text": "No, se non hanno un sintonizzatore per il digitale terrestre o il satellite: per le istruzioni ufficiali non sono apparecchi televisivi. Puoi presentare il quadro A."
             }
           },
           {
@@ -130,7 +123,31 @@
             "name": "La disdetta vale per sempre?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. La dichiarazione di non detenzione del quadro A vale un anno e va presentata di nuovo ogni anno in cui non hai il televisore. Il quadro B invece non va ripresentato."
+              "text": "No. Il quadro A vale un anno e va ripresentato per ogni anno senza televisore, anche da chi in passato aveva disdetto con il suggellamento. Il quadro B invece resta valido finché la situazione non cambia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho due case con la luce intestata a me: pago due canoni?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il canone è dovuto una volta per famiglia anagrafica: chi ha più contratti residenziali riceve l’addebito su una sola utenza, senza presentare nulla. Se i contratti sono intestati a due familiari diversi, uno dei due presenta il quadro B."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sono in affitto e la luce è intestata al proprietario: posso fare la disdetta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, perché la dichiarazione la presenta solo il titolare del contratto della luce. Se hai un televisore paghi il canone con il modello F24, a meno che la tua famiglia anagrafica lo paghi già, per esempio perché hai la residenza dai genitori."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il titolare del contratto è morto: che cosa fa l’erede?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Se in casa non ci sono televisori, l’erede presenta il quadro A con i dati della persona deceduta. Se il canone si paga già sulla luce di un erede, va il quadro B con quel codice fiscale e la data del decesso come data inizio. Se il televisore c’è e nessuno degli eredi paga già il canone, fino alla voltura del contratto l’addebito resta su quella bolletta."
             }
           },
           {
@@ -139,6 +156,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Sì, all’indirizzo cp22.canonetv@postacertificata.rai.it, con il modello firmato digitalmente oppure firmato a penna e scansionato insieme a un documento d’identità."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ho comprato un televisore dopo la disdetta: che cosa devo fare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Presenta subito una nuova dichiarazione con il quadro C, indicando la data di quella precedente: il canone torna in bolletta dal mese in cui la presenti."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto costa il canone Rai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il canone di abbonamento alla televisione per uso privato è di 90 euro l’anno. Chi ha un contratto della luce per la casa di residenza lo paga in bolletta, in dieci rate mensili da gennaio a ottobre."
             }
           },
           {
@@ -238,18 +271,19 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Disdetta del canone Rai: la dichiarazione sostitutiva</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Il canone Rai si paga nella bolletta della luce perch&eacute; la legge presume che chi ha un
-          contratto elettrico nella casa di residenza abbia anche un televisore. Se il televisore non
-          c&rsquo;&egrave;, o se il canone lo paga gi&agrave; un familiare, lo dichiari con questo modulo
-          dell&rsquo;Agenzia delle Entrate: la cosiddetta <strong>disdetta</strong>. Qui lo compili passo per
-          passo e scarichi il <strong>PDF ufficiale</strong> gi&agrave; riempito, pronto da firmare.
+          Il canone Rai arriva nella bolletta della luce perch&eacute; la legge presume che chi ha un contratto
+          elettrico nella casa di residenza abbia anche un televisore. Se il televisore non c&rsquo;&egrave;, o se il
+          canone lo paga gi&agrave; un familiare, lo dichiari con la dichiarazione sostitutiva dell&rsquo;Agenzia delle
+          Entrate: &egrave; quella che tutti chiamano <strong>disdetta</strong>. Qui la compili passo per passo e scarichi il
+          <strong>PDF ufficiale</strong> gi&agrave; riempito. Per non pagare niente del 2027 c&rsquo;&egrave; tempo fino a
+          <strong>luned&igrave; 1&deg; febbraio 2027</strong>.
         </p>
         <p class="mt-3 text-xs font-semibold text-emerald-700">&#128274; Privacy garantita: i tuoi dati non vengono inviati a nessun server.</p>
       </section>
 
       <section data-canone="non-detenzione" class="mb-6 rounded-xl border border-indigo-100 bg-indigo-50/60 p-5" aria-labelledby="quando-vale-titolo">
         <h2 id="quando-vale-titolo" class="text-sm font-bold text-indigo-900">Per quale periodo vale, se la presenti in una certa data</h2>
-        <p class="mt-1 text-xs text-indigo-800 leading-relaxed">Vale per il quadro A, la dichiarazione di non detenzione. La data &egrave; quella dell&rsquo;invio online, del timbro postale della raccomandata o della PEC.</p>
+        <p class="mt-1 text-xs text-indigo-800 leading-relaxed">Vale per il quadro A, la dichiarazione di non detenzione. La data &egrave; quella della ricevuta dell&rsquo;invio online o del timbro postale della raccomandata.</p>
         <div class="mt-3 flex flex-wrap items-end gap-3">
           <div>
             <label for="canone-data-invio" class="block text-xs font-semibold text-indigo-900 mb-1">Data di presentazione</label>
@@ -315,22 +349,22 @@
       <div class="sticky-sidebar space-y-6">
         <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Come si presenta</h2>
-            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">3 VIE</span>
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Le date per il 2027</h2>
+            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">QUADRO A</span>
           </div>
           <dl class="space-y-3 text-xs leading-relaxed">
-            <div><dt class="font-bold text-indigo-300">Raccomandata senza busta</dt>
-              <dd class="text-gray-300">All&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento d&rsquo;identit&agrave; valido. Fa fede il timbro postale.</dd></div>
-            <div><dt class="font-bold text-indigo-300">PEC</dt>
-              <dd class="text-gray-300">A cp22.canonetv@postacertificata.rai.it, con firma digitale oppure firma a penna scansionata e documento d&rsquo;identit&agrave;.</dd></div>
-            <div><dt class="font-bold text-indigo-300">Online</dt>
-              <dd class="text-gray-300">Dal servizio web dell&rsquo;Agenzia, con SPID, CIE o CNS, o tramite un intermediario abilitato.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Fino a luned&igrave; 1&deg; febbraio 2027</dt>
+              <dd class="text-gray-300">Vale per tutto il 2027. Il 31 gennaio &egrave; domenica e il termine passa al primo giorno lavorativo.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Dal 2 febbraio al 30 giugno 2027</dt>
+              <dd class="text-gray-300">Vale solo per luglio-dicembre 2027: il canone del primo semestre resta dovuto.</dd></div>
+            <div><dt class="font-bold text-indigo-300">Dal 1&deg; luglio 2027</dt>
+              <dd class="text-gray-300">Vale per il 2028. La non detenzione dura un anno: senza una nuova dichiarazione il canone torna in bolletta.</dd></div>
           </dl>
           <div class="pt-3 border-t border-gray-800 space-y-2">
             <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span aria-hidden="true">&#128196;</span> Vai al compilatore
             </a>
-            <p class="text-[10px] text-gray-400 text-center leading-tight">Il PDF scaricato &egrave; il modello ufficiale dell&rsquo;Agenzia delle Entrate e resta modificabile.</p>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">Per posta: raccomandata senza busta all&rsquo;Ufficio Canone TV, Casella postale 22, 10121 Torino.</p>
           </div>
         </div>
 
@@ -364,7 +398,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Modello e istruzioni controllati a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Fonti verificate a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -372,152 +406,176 @@
             <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con l&rsquo;Agenzia delle Entrate, la Rai o altri enti. Il modulo e le spiegazioni vengono dai documenti ufficiali indicati in questa pagina: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
-            <p class="font-bold text-gray-900 mb-1">&#128196; Il modulo</p>
-            <p class="text-gray-600 leading-relaxed">&Egrave; il PDF ufficiale della <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a> del canone TV. Il file non ha campi compilabili: le caselle sono state ricostruite misurando i riquadri del disegno e verificate riempiendole una a una. Le spiegazioni vengono dalle istruzioni dello stesso modello.</p>
+            <p class="font-bold text-gray-900 mb-1">&#128196; Il modulo e le regole</p>
+            <p class="text-gray-600 leading-relaxed">&Egrave; il PDF ufficiale della <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a> del canone TV, senza campi compilabili: le caselle sono state ricostruite misurando i riquadri e verificate una a una. Date, quadri ed esempi vengono da istruzioni, schede e risposte ufficiali; le norme citate le rilegge ogni settimana un controllo automatico.</p>
           </div>
           <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
             <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
-            <p class="text-emerald-900 leading-relaxed">Nome, date e codici fiscali <strong>non escono dal dispositivo</strong>: il PDF si crea nel browser. I codici fiscali non vengono nemmeno salvati in memoria locale; il resto resta finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
+            <p class="text-emerald-900 leading-relaxed">Nome, date e codici fiscali della dichiarazione <strong>non escono dal dispositivo</strong>: il PDF si crea nel browser. I codici fiscali non si salvano nemmeno in memoria locale; il resto resta finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
           </div>
         </div>
       </section>
 
-      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6 su-seo-expansion" aria-labelledby="guida-titolo">
-        <h2 id="guida-titolo" class="text-xl font-bold text-gray-900">Come funziona la disdetta del canone Rai</h2>
-        <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Dal 2016 il canone TV si paga nella bolletta della luce: chi ha un contratto elettrico per uso domestico nella casa in cui ha la residenza si vede addebitare <strong>90 euro l&rsquo;anno</strong>, in dieci rate mensili da gennaio a ottobre. Il canone si paga una volta sola per famiglia anagrafica, cio&egrave; per le persone che vivono insieme e risultano nello stesso stato di famiglia al Comune.</p>
-            <p>Chi il televisore non ce l&rsquo;ha non deve pagare, ma deve dirlo: l&rsquo;addebito &egrave; automatico e si ferma solo con la <strong>dichiarazione sostitutiva</strong>. &Egrave; un&rsquo;autocertificazione: dichiarare il falso comporta la decadenza dal beneficio e le sanzioni penali previste dagli articoli 75 e 76 del D.P.R. 445/2000.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come funziona la disdetta del canone Rai</h2>
+        <div class="text-sm text-gray-700 leading-relaxed space-y-3">
+<p>Il canone di abbonamento alla televisione per uso privato costa <strong>90 euro l&rsquo;anno</strong> e si paga una volta sola per famiglia anagrafica, qualunque sia il numero di case e di televisori. Dal 2016 chi ha un contratto della luce per uso domestico residenziale lo trova nelle fatture elettriche, in dieci rate mensili da gennaio a ottobre: lo ha stabilito la legge di stabilit&agrave; 2016 (legge 208/2015, art. 1, commi 152-159), che fa presumere un televisore nella casa in cui si ha la residenza anagrafica.</p>
+<p>Per superare quella presunzione serve una dichiarazione sostitutiva, cio&egrave; un&rsquo;autocertificazione all&rsquo;Agenzia delle Entrate. Se &egrave; falsa fa perdere il beneficio ed &egrave; punita penalmente (D.P.R. 445/2000, artt. 75 e 76). La presenta solo chi &egrave; titolare del contratto della luce, oppure il suo erede: chi vive in affitto con la luce intestata al proprietario non pu&ograve; usarla.</p>
+<h3 id="quale-quadro" class="text-lg font-bold text-gray-900 pt-3">Quale quadro compilare</h3>
+<p>Il modello ha tre quadri alternativi: se ne compila uno solo e lo si segna nel riquadro &laquo;Quadri compilati&raquo; (qui lo fa il compilatore). La tabella riassume le istruzioni ufficiali e le risposte alle domande frequenti dell&rsquo;Agenzia.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">I quadri della dichiarazione sostitutiva: quando si usano, da quando valgono e se vanno ripetuti</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quadro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando si usa</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Effetto</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Da ripetere?</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">A, prima voce</td><td class="px-1.5 sm:px-3 py-2 align-top">Nessun televisore, di nessun componente della famiglia, in nessuna delle case in cui sei titolare del contratto della luce</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Secondo la data di invio</td><td class="px-1.5 sm:px-3 py-2 align-top">S&igrave;, ogni anno</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">A, seconda voce</td><td class="px-1.5 sm:px-3 py-2 align-top">Avevi disdetto l&rsquo;abbonamento con il suggellamento e non hai altri televisori</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Secondo la data di invio</td><td class="px-1.5 sm:px-3 py-2 align-top">S&igrave;, ogni anno</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Il canone si paga sulla bolletta di un altro componente della famiglia anagrafica</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Dal semestre in cui nasce la situazione</td><td class="px-1.5 sm:px-3 py-2 align-top">No, finch&eacute; resta uguale</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">C</td><td class="px-1.5 sm:px-3 py-2 align-top">Una dichiarazione precedente non vale pi&ugrave;, per esempio perch&eacute; hai comprato un televisore</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Il canone torna dal mese di invio</td><td class="px-1.5 sm:px-3 py-2 align-top">&mdash;</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Per famiglia anagrafica si intendono le persone legate da matrimonio, unione civile, parentela, affinit&agrave;, adozione, tutela o vincoli affettivi, che vivono insieme e hanno la dimora abituale nello stesso Comune (D.P.R. 223/1989, art. 4). Conta quella che risulta all&rsquo;anagrafe del Comune.</p>
+<h3 id="televisore" class="text-lg font-bold text-gray-900 pt-3">Che cosa conta come televisore</h3>
+<p>Le istruzioni riprendono la nota del Ministero dello Sviluppo Economico del 20 aprile 2016: &egrave; un apparecchio televisivo quello capace di ricevere, decodificare e mostrare il segnale digitale terrestre o satellitare, da solo oppure tramite un decoder o un sintonizzatore esterno.</p>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Computer, smartphone e tablet</strong> non sono televisori se non hanno il sintonizzatore per il digitale terrestre o il satellite: chi ha solo questi pu&ograve; presentare il quadro A.</li>
+  <li><strong>Un monitor senza sintonizzatore</strong> non lo &egrave; neppure; lo diventa se lo colleghi a un decoder, perch&eacute; la definizione comprende la ricezione tramite apparecchi esterni.</li>
+  <li><strong>Le radio</strong> non pagano il canone, purch&eacute; stiano in un&rsquo;abitazione privata (legge 449/1997, art. 24, comma 14).</li>
+  <li><strong>Un bed and breakfast</strong> che paga gi&agrave; il canone speciale per il televisore visto anche dagli ospiti pu&ograve; presentare il quadro A per la bolletta di casa: lo dice una delle risposte ufficiali.</li>
+</ul>
+<h3 id="date" class="text-lg font-bold text-gray-900 pt-3">Le date: per quale periodo vale</h3>
+<p>Per il quadro A conta la data di presentazione: quella della ricevuta, se la invii online, o quella del timbro postale, se la spedisci per raccomandata. Con le date del prossimo anno:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Per quale periodo vale la dichiarazione, secondo la data di invio</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa invii</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Per quale periodo</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A</td><td class="px-1.5 sm:px-3 py-2 align-top">dal 1&deg; luglio 2026 a luned&igrave; 1&deg; febbraio 2027</td><td class="px-1.5 sm:px-3 py-2 align-top">tutto il 2027</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A</td><td class="px-1.5 sm:px-3 py-2 align-top">dal 2 febbraio al 30 giugno 2027</td><td class="px-1.5 sm:px-3 py-2 align-top">luglio-dicembre 2027</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A</td><td class="px-1.5 sm:px-3 py-2 align-top">dal 1&deg; luglio 2027 a luned&igrave; 31 gennaio 2028</td><td class="px-1.5 sm:px-3 py-2 align-top">tutto il 2028</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A, primo contratto della luce</td><td class="px-1.5 sm:px-3 py-2 align-top">entro la fine del mese dopo l&rsquo;attivazione</td><td class="px-1.5 sm:px-3 py-2 align-top">dalla data di attivazione</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro B</td><td class="px-1.5 sm:px-3 py-2 align-top">in qualsiasi momento</td><td class="px-1.5 sm:px-3 py-2 align-top">secondo la data da cui la situazione esiste</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro C</td><td class="px-1.5 sm:px-3 py-2 align-top">appena la situazione cambia</td><td class="px-1.5 sm:px-3 py-2 align-top">canone di nuovo dovuto dal mese di invio</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>La regola delle istruzioni &egrave; &laquo;dal 1&deg; luglio dell&rsquo;anno precedente al 31 gennaio&raquo;. Quando il 31 gennaio cade di sabato o di domenica, il termine passa al primo giorno lavorativo successivo, come per tutti gli adempimenti fiscali (D.L. 70/2011, art. 7, comma 2, lettera h): per il 2026 la scheda dell&rsquo;Agenzia indicava infatti &laquo;dal 1&deg; luglio 2025 al 2 febbraio 2026&raquo;. Nel 2027 il 31 gennaio &egrave; domenica, quindi l&rsquo;ultimo giorno utile &egrave; luned&igrave; 1&deg; febbraio. Il riquadro in cima alla pagina fa il conto con la data che scegli.</p>
+<p>Chi attiva per la prima volta un contratto della luce, senza averne gi&agrave; un altro residenziale in quell&rsquo;anno, non paga nulla dalla data di attivazione se presenta il quadro A entro la fine del mese successivo. Dopo quella scadenza valgono le date normali.</p>
+<p>Il quadro B ha effetto per semestri: se la situazione c&rsquo;&egrave; dal 1&deg; gennaio dell&rsquo;anno in cui lo presenti, il canone non &egrave; dovuto dal primo semestre; se nasce dal 2 gennaio al 1&deg; luglio, dal secondo; se nasce dopo il 1&deg; luglio, dall&rsquo;anno successivo. Se fate parte della stessa famiglia da prima del 1&deg; gennaio, come data inizio puoi scrivere per convenzione il 1&deg; gennaio dell&rsquo;anno di presentazione. La data inizio non pu&ograve; essere successiva a quella della firma.</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Campo per campo</h3>
+<ol class="list-decimal pl-5 space-y-1.5">
+  <li><strong>Dati del dichiarante</strong>: cognome, nome, data e luogo di nascita e codice fiscale di chi firma, cio&egrave; il titolare del contratto della luce.</li>
+  <li><strong>In qualit&agrave; di erede di</strong>: solo se dichiari per le utenze di una persona deceduta, con i suoi dati e il suo codice fiscale.</li>
+  <li><strong>Impegno alla presentazione telematica</strong>: lo compila e lo firma solo l&rsquo;intermediario che trasmette la dichiarazione per te (codice fiscale e data dell&rsquo;impegno). Se la spedisci tu, resta vuoto.</li>
+  <li><strong>Quadri compilati</strong>: una sola casella, A, B o C.</li>
+  <li><strong>Firma</strong>: data e firma di chi dichiara. Per posta si allega la copia di un documento d&rsquo;identit&agrave; valido.</li>
+  <li><strong>Quadro A</strong>: una delle due voci, &laquo;nessun televisore&raquo; oppure &laquo;nessun televisore oltre a quello sigillato&raquo;.</li>
+  <li><strong>Quadro B</strong>: il codice fiscale di chi ha il contratto su cui il canone si paga e la data inizio.</li>
+  <li><strong>Quadro C</strong>: la data in cui avevi presentato la dichiarazione che non vale pi&ugrave;.</li>
+</ol>
+<figure class="my-6">
+  <img src="/assets/esempi/canone-tv-quadro-b.webp" width="1100" height="755" loading="lazy" decoding="async"
+       alt="Dichiarazione sostitutiva del canone TV compilata con il quadro B: la dichiarante Laura Bianchi indica il codice fiscale del marito, sulla cui bolletta si paga il canone, e come data inizio il 1° gennaio 2026"
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">L&rsquo;esempio 4 delle schede dell&rsquo;Agenzia, compilato con questa pagina (persone inventate): la moglie ha la luce intestata nella seconda casa e dichiara con il quadro B che il canone si paga sulla bolletta del marito.</figcaption>
+</figure>
+<h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Gli esempi dell&rsquo;Agenzia delle Entrate</h3>
+<p>La scheda &laquo;Esempi di compilazione&raquo; risolve i casi pi&ugrave; comuni. Eccone dieci, con la risposta ufficiale in breve:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Chi presenta la dichiarazione e con quale quadro, negli esempi dell&rsquo;Agenzia delle Entrate</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Situazione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa si presenta</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Coniugi con pi&ugrave; contratti residenziali intestati allo stesso coniuge, televisore solo in alcune case</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: l&rsquo;addebito arriva su una sola utenza</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Coniugi, luce intestata al marito, nessun televisore in casa</td><td class="px-1.5 sm:px-3 py-2 align-top">Il marito, quadro A</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Luce intestata al marito, vecchio abbonamento TV intestato alla moglie</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: il canone passa sulla bolletta del marito</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Residenza nella casa A con la luce del marito; casa B con la luce della moglie; televisori in tutte e due</td><td class="px-1.5 sm:px-3 py-2 align-top">La moglie, quadro B con il codice fiscale del marito</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Coniugi con residenze diverse, ognuno con la sua luce e i suoi televisori</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: sono due famiglie anagrafiche e pagano due canoni</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Casa data in affitto con la luce intestata alla moglie</td><td class="px-1.5 sm:px-3 py-2 align-top">La moglie, quadro B; mai il codice fiscale dell&rsquo;inquilino</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Inquilino con la luce intestata al proprietario e un televisore</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;inquilino non pu&ograve; presentarla: paga con il modello F24</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Titolare della luce deceduto, nessun televisore</td><td class="px-1.5 sm:px-3 py-2 align-top">Il coniuge erede, quadro A con i dati del defunto</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Televisore comprato dopo una dichiarazione di non detenzione</td><td class="px-1.5 sm:px-3 py-2 align-top">Quadro C con la data della dichiarazione precedente</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Residente all&rsquo;estero con casa in Italia, luce non residenziale e televisore</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: paga con il modello F24</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Esempio: le date di un quadro A tardivo.</strong> Una famiglia senza televisore invia il quadro A il 15 marzo 2027. Vale solo per luglio-dicembre 2027: il canone del primo semestre resta dovuto. Per il 2028 serve una nuova dichiarazione, da inviare dal 1&deg; luglio 2027 al 31 gennaio 2028.</p>
+<p><strong>Esempio: il primo contratto della luce.</strong> Una ragazza va a vivere da sola e attiva il contratto il 10 marzo 2027, senza averne avuti altri quell&rsquo;anno; il televisore non ce l&rsquo;ha. Se invia il quadro A entro il 30 aprile 2027, non paga il canone dal 10 marzo. Se lo invia a maggio, vale solo per il secondo semestre.</p>
+<p><strong>Esempio: due contratti in famiglia.</strong> &Egrave; il caso dell&rsquo;immagine: i coniugi hanno la residenza nella casa A, dove la luce &egrave; del marito; la moglie ha la luce intestata nella casa B. Lei presenta il quadro B con il codice fiscale del marito. Sono sposati da anni, quindi come data inizio scrive il 1&deg; gennaio dell&rsquo;anno in cui presenta la dichiarazione: il canone resta solo sulla bolletta del marito.</p>
+<p><strong>Esempio: l&rsquo;erede che ha gi&agrave; la sua luce.</strong> Muore il padre, che viveva da solo con la luce intestata e un televisore. La figlia erede abita altrove con il marito, titolare di un contratto residenziale su cui il canone si paga gi&agrave;. Per fermare l&rsquo;addebito sulla bolletta del padre la figlia presenta il quadro B come erede, con il codice fiscale del marito e, come data inizio, la data del decesso.</p>
+<h3 id="come-si-invia" class="text-lg font-bold text-gray-900 pt-3">Come si invia</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Online</strong>, dal servizio web dell&rsquo;area riservata del sito dell&rsquo;Agenzia, con SPID, CIE o CNS, oppure con le credenziali Entratel o Fisconline: la data &egrave; quella della ricevuta telematica.</li>
+  <li><strong>Tramite un intermediario abilitato</strong>, come un CAF o un commercialista, che compila il riquadro dell&rsquo;impegno.</li>
+  <li><strong>Per raccomandata senza busta</strong> (il foglio piegato e chiuso, con l&rsquo;indirizzo sopra) all&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento d&rsquo;identit&agrave; valido. Fa fede il timbro postale. Le istruzioni la prevedono quando non &egrave; possibile la trasmissione online.</li>
+  <li><strong>Per PEC</strong> a cp22.canonetv@postacertificata.rai.it, con il modello firmato digitalmente oppure firmato a penna e scansionato insieme alla copia di un documento d&rsquo;identit&agrave; (Codice dell&rsquo;amministrazione digitale, art. 65). La risposta ufficiale sulla PEC cita solo la firma digitale: se puoi, usa quella.</li>
+</ul>
+<h3 id="dopo" class="text-lg font-bold text-gray-900 pt-3">Dopo l&rsquo;invio</h3>
+<p>Presentata correttamente, la dichiarazione interrompe l&rsquo;addebito dalla prima rata utile dopo che l&rsquo;Agenzia l&rsquo;ha ricevuta, tenendo conto della data da cui vale. Le rate arrivate nel frattempo e non dovute si chiedono indietro con il modello di rimborso, che trovi compilabile nella pagina sul <a href="/cittadino-tasse/rimborso-canone-rai/" class="text-indigo-700 underline">rimborso del canone Rai</a>.</p>
+<p>Se pensi che una bolletta contenga una rata non dovuta puoi pagare solo la quota della luce, con il pagamento parziale previsto dalla tua compagnia elettrica e la causale &laquo;quota energia elettrica&raquo;. Senza causale, la somma pagata va prima alla fornitura elettrica.</p>
+<h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Inviare il quadro A dopo il termine di gennaio</strong> pensando che copra tutto l&rsquo;anno: copre solo luglio-dicembre.</li>
+  <li><strong>Non ripeterlo</strong> l&rsquo;anno dopo: senza una nuova dichiarazione la presunzione torna e il canone riparte in bolletta.</li>
+  <li><strong>Usare il quadro A</strong> quando il televisore c&rsquo;&egrave; ma il canone lo paga un familiare: serve il quadro B.</li>
+  <li><strong>Scrivere nel quadro B il codice fiscale sbagliato</strong>: va quello di chi ha il contratto su cui il canone si paga, non il proprio n&eacute; quello dell&rsquo;inquilino.</li>
+  <li><strong>Spedire la raccomandata senza documento</strong>: la copia di un documento valido &egrave; obbligatoria.</li>
+  <li><strong>Contare sulla vecchia disdetta per suggellamento</strong>: dal 2016 non si pu&ograve; pi&ugrave; chiedere e chi l&rsquo;aveva fatta presenta ogni anno la seconda voce del quadro A.</li>
+</ul>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 2027 cambia la legge, non il modello</h3>
+<p>Dal 1&deg; gennaio 2027 i commi 152-159 della legge 208/2015 sono abrogati e le stesse regole passano nel testo unico dei tributi erariali minori, che si applica da quella data (<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art100" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 174/2024, allegato, art. 100</a>): la presunzione e la dichiarazione all&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art51" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 51</a>, i 90 euro all&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art52" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 52</a>, le dieci rate in bolletta all&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art53" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 53</a> e la fine del suggellamento all&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art55" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 55</a>. Le date e i quadri spiegati qui vengono dal modello e dal provvedimento dell&rsquo;Agenzia: li ricontrolliamo quando l&rsquo;Agenzia aggiorna la modulistica.</p>
         </div>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Quale quadro compilare</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Il modello ha tre quadri alternativi. Se ne compila uno solo, e si barra la casella corrispondente nel riquadro &laquo;Quadri compilati&raquo; (qui lo fa il compilatore).</p>
-            <ul class="list-disc list-inside space-y-2">
-              <li><strong>Quadro A &ndash; non detenzione</strong>: in nessuna delle case in cui hai un contratto della luce c&rsquo;&egrave; un televisore, n&eacute; tuo n&eacute; di un altro componente della famiglia. C&rsquo;&egrave; anche una seconda voce per chi in passato ha disdetto l&rsquo;abbonamento con il suggellamento dell&rsquo;apparecchio: oggi il suggellamento non &egrave; pi&ugrave; previsto come modo di disdire.</li>
-              <li><strong>Quadro B &ndash; altra utenza</strong>: in famiglia ci sono due contratti della luce e il canone si paga gi&agrave; su quello dell&rsquo;altro componente. Serve il suo codice fiscale e la data da cui fate parte della stessa famiglia anagrafica.</li>
-              <li><strong>Quadro C &ndash; variazione</strong>: una dichiarazione presentata prima non vale pi&ugrave;, per esempio perch&eacute; hai comprato un televisore. Si indica la data della dichiarazione precedente.</li>
-            </ul>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Che cosa conta come televisore</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Le istruzioni riprendono la nota del Ministero dello Sviluppo Economico del 20 aprile 2016: &egrave; televisore un apparecchio capace di ricevere, decodificare e mostrare il segnale digitale terrestre o satellitare, da solo o con un decoder o un sintonizzatore esterno.</p>
-            <p>Non contano quindi <strong>computer, smartphone e tablet</strong> senza sintonizzatore TV. Un monitor collegato solo a una console o a un lettore, senza sintonizzatore, non &egrave; un televisore; se per&ograve; in casa c&rsquo;&egrave; un decoder che lo rende capace di ricevere i canali, lo diventa. Le radio non pagano il canone, se stanno in un&rsquo;abitazione privata.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Le date: per quale periodo vale</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Per il <strong>quadro A</strong> conta la data di presentazione:</p>
-            <ul class="list-disc list-inside space-y-2">
-              <li>dal <strong>1&deg; luglio</strong> al <strong>31 dicembre</strong>: vale per tutto l&rsquo;anno successivo;</li>
-              <li>dal <strong>1&deg; gennaio</strong> al <strong>31 gennaio</strong>: vale per tutto l&rsquo;anno in corso;</li>
-              <li>dal <strong>1&deg; febbraio</strong> al <strong>30 giugno</strong>: vale solo per il secondo semestre, da luglio a dicembre.</li>
-            </ul>
-            <p>Quando il 31 gennaio cade di sabato o di domenica il termine slitta: per il 2026 l&rsquo;Agenzia ha indicato come ultimo giorno il 2 febbraio. Il riquadro in cima alla pagina fa il conto con la data che scegli.</p>
-            <p>Chi attiva un nuovo contratto della luce e non ne aveva altri quell&rsquo;anno presenta la dichiarazione entro la fine del mese successivo all&rsquo;attivazione: cos&igrave; vale dalla data di attivazione.</p>
-            <p>Il <strong>quadro B</strong> si presenta in qualsiasi momento e non va ripetuto: se la situazione c&rsquo;&egrave; dal 1&deg; gennaio vale dal primo semestre, se nasce tra il 2 gennaio e il 1&deg; luglio dal secondo, se nasce dopo il 1&deg; luglio dall&rsquo;anno successivo. Il <strong>quadro C</strong> ha effetto dal mese in cui lo presenti.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si spedisce e che cosa succede dopo</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Senza credenziali, la via pi&ugrave; semplice &egrave; la <strong>raccomandata senza busta</strong> (il foglio piegato e chiuso, con l&rsquo;indirizzo scritto sopra) all&rsquo;indirizzo Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino. Si allega la copia di un documento di riconoscimento valido e fa fede la data del timbro postale. Conviene stampare il modello fronte-retro; la prima pagina con l&rsquo;informativa sulla privacy non &egrave; necessario spedirla.</p>
-            <p>Con la <strong>PEC</strong> si scrive a cp22.canonetv@postacertificata.rai.it allegando il PDF firmato digitalmente, oppure firmato a penna e scansionato insieme al documento d&rsquo;identit&agrave;.</p>
-            <p>Presentata correttamente, la dichiarazione interrompe l&rsquo;addebito dalla prima rata utile dopo che &egrave; stata ricevuta. Se nel frattempo in bolletta sono arrivate rate non dovute, si chiede il rimborso con il modello apposito: lo trovi compilabile nella pagina sul <a href="/cittadino-tasse/rimborso-canone-rai/" class="text-indigo-600 hover:underline">rimborso del canone Rai</a>.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Gli errori che fanno pagare lo stesso</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <ul class="list-disc list-inside space-y-2">
-              <li>Presentare il quadro A dopo il 31 gennaio pensando che valga per tutto l&rsquo;anno: copre solo luglio-dicembre.</li>
-              <li>Non ripresentarlo l&rsquo;anno dopo: la non detenzione vale un anno solo.</li>
-              <li>Dimenticare la copia del documento d&rsquo;identit&agrave; nella raccomandata.</li>
-              <li>Usare il quadro A quando in casa il televisore c&rsquo;&egrave; ma il canone lo paga un familiare: in quel caso il quadro giusto &egrave; il B.</li>
-              <li>Scrivere nel quadro B il proprio codice fiscale invece di quello del familiare su cui resta il canone.</li>
-            </ul>
-          </div>
-        </details>
-
-        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
-        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2015-12-28;208~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 28 dicembre 2015, n. 208, art. 1</a>, commi 152-159: canone in bolletta e presunzione di detenzione.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445</a>, artt. 47, 75 e 76: dichiarazioni sostitutive e dichiarazioni false.</li>
-          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modello e istruzioni della dichiarazione sostitutiva</a>, <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda Dichiarazione sostitutiva</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/come-si-paga-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda Come si paga</a>.</li>
-        </ul>
-      </section>
-
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Quanto costa il canone Rai?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il canone di abbonamento alla televisione per uso privato &egrave; di 90 euro l&rsquo;anno. Chi ha un contratto della luce per la casa di residenza lo paga in bolletta, in dieci rate mensili da gennaio a ottobre.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Entro quando va presentata la disdetta per non pagare il 2027?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">La dichiarazione di non detenzione presentata dal 1&deg; luglio 2026 al 31 gennaio 2027 vale per tutto il 2027. Se arriva dal 1&deg; febbraio al 30 giugno 2027 vale solo per il secondo semestre.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Se ho solo computer, tablet e smartphone devo pagare?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se non hanno un sintonizzatore per il digitale terrestre o il satellite: per le istruzioni ufficiali non sono apparecchi televisivi. Puoi quindi presentare il quadro A.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>La disdetta vale per sempre?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. La dichiarazione di non detenzione del quadro A vale un anno e va presentata di nuovo ogni anno in cui non hai il televisore. Il quadro B invece non va ripresentato.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Posso mandarla via PEC?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, all&rsquo;indirizzo cp22.canonetv@postacertificata.rai.it, con il modello firmato digitalmente oppure firmato a penna e scansionato insieme a un documento d&rsquo;identit&agrave;.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Nel PDF scaricato resta tutto modificabile?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. I campi non vengono &laquo;appiattiti&raquo;: puoi riaprire il file, correggere un dato e poi stamparlo o firmarlo digitalmente.</p>
-        </details>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando va presentata la disdetta per non pagare il 2027?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dal 1&deg; luglio 2026 a luned&igrave; 1&deg; febbraio 2027: il 31 gennaio 2027 &egrave; domenica e il termine passa al primo giorno lavorativo (D.L. 70/2011, art. 7). Se la invii dal 2 febbraio al 30 giugno 2027 vale solo per luglio-dicembre.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se ho solo computer, tablet e smartphone devo pagare?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se non hanno un sintonizzatore per il digitale terrestre o il satellite: per le istruzioni ufficiali non sono apparecchi televisivi. Puoi presentare il quadro A.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">La disdetta vale per sempre?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il quadro A vale un anno e va ripresentato per ogni anno senza televisore, anche da chi in passato aveva disdetto con il suggellamento. Il quadro B invece resta valido finch&eacute; la situazione non cambia.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho due case con la luce intestata a me: pago due canoni?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il canone &egrave; dovuto una volta per famiglia anagrafica: chi ha pi&ugrave; contratti residenziali riceve l&rsquo;addebito su una sola utenza, senza presentare nulla. Se i contratti sono intestati a due familiari diversi, uno dei due presenta il quadro B.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Sono in affitto e la luce &egrave; intestata al proprietario: posso fare la disdetta?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, perch&eacute; la dichiarazione la presenta solo il titolare del contratto della luce. Se hai un televisore paghi il canone con il modello F24, a meno che la tua famiglia anagrafica lo paghi gi&agrave;, per esempio perch&eacute; hai la residenza dai genitori.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il titolare del contratto &egrave; morto: che cosa fa l&rsquo;erede?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Se in casa non ci sono televisori, l&rsquo;erede presenta il quadro A con i dati della persona deceduta. Se il canone si paga gi&agrave; sulla luce di un erede, va il quadro B con quel codice fiscale e la data del decesso come data inizio. Se il televisore c&rsquo;&egrave; e nessuno degli eredi paga gi&agrave; il canone, fino alla voltura del contratto l&rsquo;addebito resta su quella bolletta.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso mandarla via PEC?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, all&rsquo;indirizzo cp22.canonetv@postacertificata.rai.it, con il modello firmato digitalmente oppure firmato a penna e scansionato insieme a un documento d&rsquo;identit&agrave;.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ho comprato un televisore dopo la disdetta: che cosa devo fare?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Presenta subito una nuova dichiarazione con il quadro C, indicando la data di quella precedente: il canone torna in bolletta dal mese in cui la presenti.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto costa il canone Rai?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il canone di abbonamento alla televisione per uso privato &egrave; di 90 euro l&rsquo;anno. Chi ha un contratto della luce per la casa di residenza lo paga in bolletta, in dieci rate mensili da gennaio a ottobre.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Nel PDF scaricato resta tutto modificabile?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. I campi non vengono &laquo;appiattiti&raquo;: puoi riaprire il file, correggere un dato e poi stamparlo o firmarlo digitalmente.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2015-12-28;208~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 28 dicembre 2015, n. 208, art. 1</a>, commi 152-159: canone in bolletta e presunzione di detenzione, fino al 31 dicembre 2026.</li>
+  <li>Testo unico dei tributi erariali minori, dal 1&deg; gennaio 2027: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art51" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 174/2024, allegato, artt. 51-55</a>.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2011-05-13;70~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">D.L. 13 maggio 2011, n. 70, art. 7</a>: le scadenze fiscali che cadono di sabato o in un giorno festivo passano al primo giorno lavorativo.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445</a>: dichiarazioni sostitutive e dichiarazioni false (artt. 47, 75 e 76).</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modello e istruzioni della dichiarazione sostitutiva</a>, <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda Dichiarazione sostitutiva</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/dichiarazione-sostitutiva-canone-tv/esempi-di-compilazione-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">esempi di compilazione</a>.</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/faq-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">risposte alle domande pi&ugrave; frequenti sul canone TV</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/come-si-paga-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda Come si paga</a>.</li>
+</ul>
       </section>
 
       <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->

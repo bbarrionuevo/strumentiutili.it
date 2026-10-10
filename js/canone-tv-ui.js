@@ -43,7 +43,7 @@
       if (r.periodo === 'secondo') {
         scrivi(esito, [
           `Presentata il ${quando}, vale solo per il `, { forte: `secondo semestre ${r.anno}` },
-          ' (luglio-dicembre): le rate da gennaio a giugno restano dovute. Per non pagare nulla del ',
+          ' (luglio-dicembre): il canone del primo semestre resta dovuto. Per non pagare nulla del ',
           `${r.anno + 1}, ripresentala dal 1 luglio ${r.anno}.`,
         ]);
         return;
@@ -53,8 +53,10 @@
       if (r.termine === legale) {
         pezzi.push(`Per coprire l'intero anno l'ultimo giorno utile è il ${leggibile(legale)}.`);
       } else {
+        // D.L. 70/2011, art. 7, comma 2, lettera h: le scadenze fiscali che cadono
+        // di sabato o in un giorno festivo passano al primo giorno lavorativo
         pezzi.push(`Il termine per l'intero anno è il 31 gennaio ${r.anno}, che cade nel fine settimana: `,
-          `come per il 2026, dovrebbe slittare al ${leggibile(r.termine)}. Meglio non aspettare l'ultimo giorno.`);
+          `passa quindi al primo giorno lavorativo, ${leggibile(r.termine)}, come per il 2026. Meglio non aspettare l'ultimo giorno.`);
       }
       scrivi(esito, pezzi);
     };
