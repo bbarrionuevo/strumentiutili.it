@@ -53,8 +53,8 @@ test('RLI: l\'esempio del terreno e quello del minimo tornano col motore', () =>
   const R = JSON.parse(leggi('data/regole-fiscali-2026.json')).rli_parametri;
   assert.strictEqual(I.calcola({ canone: 42000, tipo: 'T1' }, R).registro, 210);    // FAQ dell'Agenzia, 7 × 6.000
   assert.strictEqual(I.calcola({ canone: 3000, tipo: 'L1' }, R).registro, 67);
-  assert.strictEqual(I.calcola({ canone: 7200, tipo: 'L2', pagine: 4, copie: 2 }, R).registro, 100.8);
+  assert.strictEqual(I.calcola({ canone: 7500, tipo: 'L2', pagine: 4, copie: 2 }, R).registro, 105);
   const t = C.testoVisibile(leggi(RLI));
   assert.match(t, /0,50% di 42\.000 = 210 €/);
-  assert.match(t, /7\.200 × 70% × 2% = 100,80 €/);
+  assert.match(t, /7\.500 × 70% × 2% = 105 €/);
 });

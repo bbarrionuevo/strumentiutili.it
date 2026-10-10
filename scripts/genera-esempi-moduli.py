@@ -422,6 +422,81 @@ ESEMPI = {
         "etichetta_y": 0.17,
         "larghezza": 1100,
     },
+    # Comodato scritto di un appartamento dal padre al figlio, che ci va a
+    # vivere: e' il caso della riduzione IMU del 50% (L. 160/2019, c. 747,
+    # lett. c), che vale solo se il contratto e' registrato. A tempo
+    # indeterminato, firmato il 20 ottobre 2026, un foglio in due copie.
+    # Persone, codici fiscali e dati catastali sono inventati.
+    "rap-comodato-figlio": {
+        "pagina": "/cittadino-tasse/modello-rap/",
+        "modello": "RAP",
+        "passi": [
+            {"passo": "Dati generali", "campi": {
+                "atto.cfTestata": "RSSMRA58T10H501L",
+                "atto.moduloN": "001",
+                "atto.ufficioTerritoriale": "GENOVA",
+                "atto.tipologiaAtto": "1",
+                "atto.dataAtto": "2026-10-20",
+                "atto.nFogli": "1",
+                "atto.nCopie": "2",
+            }},
+            {"passo": "Chi chiede", "campi": {
+                "richiedente.cognome": "ROSSI",
+                "richiedente.nome": "MARIO",
+                "richiedente.cf": "RSSMRA58T10H501L",
+                "richiedente.firma": "MARIO ROSSI",
+            }},
+            {"passo": "Le parti", "campi": {
+                "soggetti.dante.0.cf": "RSSMRA58T10H501L",
+                "soggetti.dante.0.cognome": "ROSSI",
+                "soggetti.dante.0.nome": "MARIO",
+                "soggetti.dante.0.dataNascita": "1958-12-10",
+                "soggetti.dante.0.sesso": "M",
+                "soggetti.dante.0.comuneNascita": "ROMA",
+                "soggetti.dante.0.provincia": "RM",
+                "soggetti.avente.0.cf": "RSSLCU90C15D969J",
+                "soggetti.avente.0.cognome": "ROSSI",
+                "soggetti.avente.0.nome": "LUCA",
+                "soggetti.avente.0.dataNascita": "1990-03-15",
+                "soggetti.avente.0.sesso": "M",
+                "soggetti.avente.0.comuneNascita": "GENOVA",
+                "soggetti.avente.0.provincia": "GE",
+            }},
+            {"passo": "Contratto di comodato", "attiva": "comodato", "campi": {
+                "comodato.tempoIndeterminato": True,
+                "comodato.durataDal": "2026-11-01",
+                "comodato.tipo": "2",
+                "comodato.immobile": True,
+                "comodato.descrizione": "APPARTAMENTO A USO ABITATIVO",
+                "comodato.immobile.0.codiceComune": "D969",
+                "comodato.immobile.0.tu": "U",
+                "comodato.immobile.0.foglio": "12",
+                "comodato.immobile.0.particella": "345",
+                "comodato.immobile.0.subalterno": "7",
+                "comodato.immobile.0.comune": "GENOVA",
+                "comodato.immobile.0.provincia": "GE",
+                "comodato.immobile.0.tipologia": "VIA",
+                "comodato.immobile.0.indirizzo": "DI ESEMPIO",
+                "comodato.immobile.0.civico": "1",
+            }},
+        ],
+        # la prima facciata e' l'informativa sulla privacy; il quadro del
+        # comodato e degli immobili sta sulla quarta
+        "ritaglio": [
+            (2, 0.0, 0.0, 1.0, 0.418),     # dati generali e richiedente
+            (3, 0.0, 0.085, 1.0, 0.232),   # il comodante, dante causa
+            (3, 0.0, 0.49, 1.0, 0.618),    # il figlio, avente causa
+            (4, 0.0, 0.085, 1.0, 0.408),   # quadro del comodato e immobile
+        ],
+        "salto": [
+            "Rappresentante legale, invio telematico e imposte: vuoti",
+            "Altri danti causa: righe vuote",
+            "Altri aventi causa: righe vuote",
+        ],
+        # il timbro fra il titolo e i dati generali
+        "etichetta_y": 0.178,
+        "larghezza": 1100,
+    },
 }
 
 
