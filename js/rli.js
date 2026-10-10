@@ -55,7 +55,9 @@ function oggiInItalia() {
       };
       
       loadState();
+      aggiornaTipo();
       calculateTaxes();
+      registraGuidaCanone();
 
     } catch (error) {
       console.error("Impossibile caricare regole-fiscali-2026.json", error);
@@ -109,6 +111,53 @@ function oggiInItalia() {
         calculateTaxes();
       });
     });
+
+    // Per i codici T (terreni) nel modello va il corrispettivo dell'intera
+    // durata, non il canone annuo (istruzioni RLI, «Importo del canone»); la
+    // cedolare secca vale solo per le abitazioni senza IVA (L1 e L2).
+    // (gli elementi si cercano dentro la funzione: si chiama gia' nel blocco
+    // di caricamento qui sopra, prima che il codice arrivi a queste righe)
+    function terreno() { return /^T/.test(inputTipo.value); }
+    function aggiornaTipo() {
+      const etichettaCanone = document.querySelector('label[for="rli-canone"]');
+      const notaTipo = document.getElementById('rli-nota-tipo');
+      if (etichettaCanone) {
+        etichettaCanone.textContent = terreno() ? 'Corrispettivo per tutta la durata (€) *' : 'Canone annuo (€) *';
+      }
+      const abitazione = inputTipo.value === 'L1' || inputTipo.value === 'L2';
+      if (!abitazione && checkCedolare.checked) {
+        checkCedolare.checked = false;
+        toggleCedolareVisibilty();
+      }
+      checkCedolare.disabled = !abitazione;
+      if (notaTipo) {
+        const fisse = (regole && regole.rli.codiciImpostaFissa) || {};
+        const testi = [];
+        if (terreno()) testi.push('Per i terreni si indica il corrispettivo pattuito per tutta la durata del contratto e l\u2019imposta si paga in una volta sola.');
+        if (Object.prototype.hasOwnProperty.call(fisse, inputTipo.value)) testi.push('Per questo codice il registro è un importo fisso, qualunque sia il canone.');
+        if (!abitazione) testi.push('La cedolare secca non è possibile: vale solo per le abitazioni (codici L1 e L2).');
+        notaTipo.textContent = testi.join(' ');
+        notaTipo.hidden = testi.length === 0;
+      }
+    }
+    inputTipo.addEventListener('change', () => { aggiornaTipo(); calculateTaxes(); });
+
+    // L'esempio sotto il campo del canone, con lo stesso motore del riepilogo
+    function registraGuidaCanone() {
+      window.SuGuidaLive = window.SuGuidaLive || {};
+      window.SuGuidaLive['guida-rli-canone'] = (campo) => {
+        const canone = parseFloat(campo.value);
+        if (!(canone > 0) || !regole) return '';
+        if (checkCedolare.checked) return 'Con la cedolare secca non si paga registro sul canone di ' + money(canone) + ': l\u2019imposta sostitutiva si versa con la dichiarazione dei redditi.';
+        const r = window.RliImposte.calcola({ canone: canone, tipo: inputTipo.value, pagine: inputPagine.value, copie: inputCopie.value }, regole.rli);
+        // la divisione a meta' e' della legge 392/1978 (art. 8), sugli immobili urbani
+        const meta = terreno() ? '.' : ', di norma diviso a metà fra proprietario e inquilino.';
+        if (r.fissa) return 'Registro: ' + money(r.registro) + ' in misura fissa per il codice ' + inputTipo.value + meta;
+        const teorica = r.base * regole.rli.codiciContratto[inputTipo.value].aliquota;
+        return 'Registro ' + (terreno() ? 'per tutta la durata' : 'per la prima annualità') + ': ' + money(r.registro) +
+          (r.minimoApplicato ? ' (minimo di ' + money(regole.rli.impostaRegistroMinima) + ', il calcolo darebbe ' + money(teorica) + ')' : '') + meta;
+      };
+    }
 
     function toggleCedolareVisibilty() {
       if (checkCedolare.checked) {
@@ -421,7 +470,7 @@ function oggiInItalia() {
         y -= 20;
         page.drawText(`Data Stipula: ${inputDataStipula.value.split('-').reverse().join('/')}`, { x: 50, y, size: 11, font: fontNormal });
         y -= 20;
-        page.drawText(`Canone Annuo: € ${inputCanone.value}`, { x: 50, y, size: 11, font: fontNormal });
+        page.drawText(`${terreno() ? 'Corrispettivo per tutta la durata' : 'Canone annuo'}: € ${inputCanone.value}`, { x: 50, y, size: 11, font: fontNormal });
         y -= 20;
         page.drawText(`Opzione Cedolare Secca: ${checkCedolare.checked ? 'SI' : 'NO'}`, { x: 50, y, size: 11, font: fontBold });
 
@@ -519,6 +568,7 @@ function oggiInItalia() {
         inputDataStipula.dispatchEvent(new Event('input', { bubbles: true }));
 
         toggleCedolareVisibilty();
+        aggiornaTipo();
         calculateTaxes();
         
         alert("Prospetto PDF/A generato con successo.\n\nPer garantire la tua privacy, i Codici Fiscali e gli importi sono stati cancellati dalla memoria locale.");

@@ -332,24 +332,38 @@
                 <button type="button" data-guida-toggle="guida-rli-tipo" aria-expanded="false" aria-controls="guida-rli-tipo" aria-label="Guida al campo Tipologia di contratto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
               </div>
               <select data-guida="guida-rli-tipo" aria-describedby="guida-rli-tipo" id="rli-tipo-contratto" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 su-save-state">
-                <option value="L1">L1 - Locazione abitativa standard (4+4)</option>
-                <option value="L2">L2 - Locazione abitativa agevolata (3+2)</option>
-                <option value="S1">S1 - Locazione immobile uso diverso (Commerciale)</option>
-                <option value="T2">T2 - Affitto fondi rustici</option>
+                <optgroup label="Abitazioni">
+                  <option value="L1">L1 - Abitazione: canone libero, transitorio, studenti, concordato fuori dai comuni ad alta tensione abitativa (2%)</option>
+                  <option value="L2">L2 - Abitazione a canone concordato o per studenti in un comune ad alta tensione abitativa (2% sul 70%)</option>
+                  <option value="L3">L3 - Abitazione con contratto soggetto a IVA (67 € fissi)</option>
+                  <option value="L4">L4 - Leasing di un&rsquo;abitazione (200 € fissi)</option>
+                </optgroup>
+                <optgroup label="Negozi, uffici e altri immobili">
+                  <option value="S1">S1 - Immobile a uso diverso dall&rsquo;abitativo (2%)</option>
+                  <option value="S2">S2 - Immobile strumentale con locatore soggetto a IVA (1%)</option>
+                  <option value="S3">S3 - Leasing di un immobile a uso diverso (200 € fissi)</option>
+                </optgroup>
+                <optgroup label="Terreni">
+                  <option value="T1">T1 - Fondo rustico (0,50%)</option>
+                  <option value="T2">T2 - Fondo rustico agevolato (67 € fissi)</option>
+                  <option value="T3">T3 - Terreni e aree non edificabili, cave e torbiere (2%)</option>
+                  <option value="T4">T4 - Terreni per parcheggio con contratto soggetto a IVA (67 € fissi)</option>
+                </optgroup>
               </select>
+              <p id="rli-nota-tipo" hidden class="mt-2 text-xs text-amber-800 leading-relaxed" role="status"></p>
               <div id="guida-rli-tipo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Come scegliere:</strong> L1 per l'abitazione affittata a canone libero, L2 per il canone concordato secondo l'accordo territoriale (inclusi transitori e studenti universitari concordati), S1 per negozi, uffici e altri immobili a uso diverso, T2 per l'affitto di terreni agricoli.</p>
-                <p><strong class="text-indigo-900">Effetto sull'imposta:</strong> con L2 la base del registro scende al 70% del canone; con T2 l'aliquota è dello 0,5% invece del 2%. Per S1 non è possibile optare per la cedolare secca.</p>
+                <p><strong class="text-indigo-900">Come scegliere:</strong> sono gli undici codici della tabella delle istruzioni del modello RLI. Nel codice L1 rientrano i contratti a canone libero 4+4, quelli a canone concordato 3+2, i transitori fino a 18 mesi, quelli per studenti universitari e quelli fino a 30 giorni. Il codice L2 vale per il canone concordato 3+2 e per i contratti per studenti quando l&rsquo;abitazione &egrave; in un comune ad alta tensione abitativa, e per gli altri contratti con le agevolazioni dell&rsquo;art. 8 della legge 431/1998.</p>
+                <p><strong class="text-indigo-900">Effetto sull'imposta:</strong> con L2 il registro si calcola sul 70% del canone; S2 paga l&rsquo;1%, T1 lo 0,50%; L3, L4, S3, T2 e T4 pagano un importo fisso. La cedolare secca &egrave; possibile solo con L1 e L2.</p>
               </div>
             </div>
             <div>
               <div class="flex items-center gap-2 mb-1">
-                <label for="rli-canone" class="text-xs font-bold text-gray-700">Canone Annuo (€) *</label>
+                <label for="rli-canone" class="text-xs font-bold text-gray-700">Canone annuo (€) *</label>
                 <button type="button" data-guida-toggle="guida-rli-canone" aria-expanded="false" aria-controls="guida-rli-canone" aria-label="Guida al campo Canone annuo" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
               </div>
               <input data-guida="guida-rli-canone" aria-describedby="guida-rli-canone" type="number" id="rli-canone" step="0.01" min="1" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" placeholder="Es. 12000" />
               <div id="guida-rli-canone" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Cosa indicare:</strong> il canone pattuito per il primo anno, senza spese condominiali. Se il contratto prevede canoni crescenti negli anni, seleziona il caso particolare 1 e compila i canoni delle singole annualità.</p>
+                <p><strong class="text-indigo-900">Cosa indicare:</strong> il canone annuo pattuito, senza spese condominiali; per un contratto che dura meno di un anno, l&rsquo;importo dell&rsquo;intera durata. Se ci sono pi&ugrave; proprietari si indica il canone intero, non la propria quota. Per i terreni (codici T) va il corrispettivo di tutta la durata. Se il contratto prevede canoni diversi negli anni, seleziona il caso particolare 1 e compila i canoni delle singole annualit&agrave;.</p>
                 <p data-guida-live hidden class="font-bold text-indigo-900"></p>
               </div>
             </div>
@@ -467,17 +481,17 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <div class="flex items-center gap-2 mb-1">
-                <label for="rli-pagine" class="text-xs font-bold text-gray-700">Numero Pagine (1 marca ogni 4 facciate)</label>
+                <label for="rli-pagine" class="text-xs font-bold text-gray-700">Facciate scritte del contratto</label>
                 <button type="button" data-guida-toggle="guida-rli-bollo" aria-expanded="false" aria-controls="guida-rli-bollo" aria-label="Guida al campo Imposta di bollo sul contratto" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
               </div>
               <input data-guida="guida-rli-bollo" aria-describedby="guida-rli-bollo" type="number" id="rli-pagine" value="4" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" />
               <div id="guida-rli-bollo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
-                <p><strong class="text-indigo-900">Come si calcola:</strong> una marca da 16 € ogni quattro facciate scritte, o ogni cento righe, per ciascuna copia registrata. Con la registrazione telematica tramite RLI web si considera di norma una sola copia, con i servizi di sportello le copie depositate.</p>
-                <p><strong class="text-indigo-900">Esempio:</strong> un contratto di 6 facciate registrato in due copie richiede 2 × 2 × 16 = 64 €. Con la cedolare secca il bollo non è dovuto.</p>
+                <p><strong class="text-indigo-900">Come si calcola:</strong> 16 € per ogni foglio, cio&egrave; ogni quattro facciate scritte e comunque ogni cento righe, per ciascuna copia. Nel modello RLI non si scrivono le facciate ma i fogli: il riepilogo li conta per te (6 facciate = 2 fogli). Se una facciata supera le cento righe, conta un foglio in pi&ugrave;.</p>
+                <p><strong class="text-indigo-900">Esempio:</strong> un contratto di 6 facciate firmato in due copie: 2 fogli &times; 2 copie &times; 16 = 64 &euro;. Con la cedolare secca il bollo non &egrave; dovuto.</p>
               </div>
             </div>
             <div>
-              <label class="block text-xs font-bold text-gray-700 mb-1" for="rli-copie">Copie Registrate (Min. 1)</label>
+              <label class="block text-xs font-bold text-gray-700 mb-1" for="rli-copie">Copie firmate del contratto (almeno 1)</label>
               <input type="number" id="rli-copie" value="2" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-right su-save-state" />
             </div>
           </div>
@@ -801,19 +815,7 @@
   <script defer src="/js/rli.js"></script>
   <script defer src="/js/compilatore-moduli.js"></script>
 
-  <script id="su-guida-live">
-window.SuGuidaLive = window.SuGuidaLive || {};
-    window.SuGuidaLive['guida-rli-canone'] = function (campo) {
-      var canone = parseFloat(campo.value);
-      if (!(canone > 0)) return '';
-      var tipo = document.getElementById('rli-tipo-contratto').value;
-      var euro = function (n) { return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n); };
-      if (document.getElementById('rli-cedolare-secca').checked) return 'Con la cedolare secca non si paga registro sul canone di ' + euro(canone) + ': l\'imposta sostitutiva si versa con la dichiarazione dei redditi.';
-      var teorica = tipo === 'T2' ? canone * 0.005 : canone * (tipo === 'L2' ? 0.7 : 1) * 0.02;
-      var dovuta = Math.max(67, teorica);
-      return 'Registro per la prima annualità: ' + euro(dovuta) + (dovuta > teorica ? ' (minimo di 67 €, il calcolo darebbe ' + euro(teorica) + ')' : '') + ', di norma diviso a metà con l\'inquilino.';
-    };
-  </script>
+
   
   <!-- Travaso dei dati dal simulatore delle imposte al modello RLI -->
   <script>
@@ -852,7 +854,8 @@ window.SuGuidaLive = window.SuGuidaLive || {};
           'contratto.importoCanone': soloCifre(valore('rli-canone').split(/[.,]/)[0]),
           'contratto.casiParticolari': valore('rli-casi-particolari'),
           'registrazione.dataStipula': valore('rli-data-stipula'),
-          'registrazione.nPagine': valore('rli-pagine'),
+          // nel modello va il numero di FOGLI (quattro facciate l'uno), non di pagine
+          'registrazione.nPagine': (parseInt(valore('rli-pagine'), 10) > 0) ? String(Math.ceil(parseInt(valore('rli-pagine'), 10) / 4)) : '',
           'registrazione.nCopie': valore('rli-copie'),
           'locatori.locatore.0.cf': valore('rli-cf-locatore').toUpperCase(),
           'locatori.locatore.0.numero': '1',

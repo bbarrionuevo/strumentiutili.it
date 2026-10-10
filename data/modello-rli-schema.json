@@ -540,9 +540,9 @@
               "id": "nPagine",
               "pdf": "n_pagine",
               "type": "numero",
-              "label": "N. pagine del contratto",
+              "label": "N. fogli del contratto",
               "width": "quarter",
-              "help": "Il numero di pagine di cui è composto il contratto stipulato fra le parti. Il foglio è composto da quattro facciate, la pagina da una facciata; il foglio non può contenere più di cento linee. Serve per calcolare l'imposta di bollo."
+              "help": "Il numero di fogli di cui è composto il contratto, non di pagine: il foglio è composto da quattro facciate e non può contenere più di cento righe. Un contratto di 6 facciate sono 2 fogli; uno di 4 facciate con 101 righe, anche. Serve per calcolare l'imposta di bollo, 16 euro per foglio e per copia."
             },
             {
               "id": "nCopie",
@@ -559,7 +559,7 @@
               "label": "Data di stipula",
               "required": true,
               "width": "half",
-              "help": "Il giorno in cui il contratto è stato firmato. La registrazione va effettuata entro 30 giorni da questa data."
+              "help": "Il giorno in cui il contratto è stato firmato. La registrazione va effettuata entro 30 giorni da questa data o dalla decorrenza del contratto, se anteriore."
             },
             {
               "id": "allegatiScritturePrivate",
@@ -1279,7 +1279,7 @@
                 },
                 {
                   "id": "renditaCatastale",
-                  "type": "importo",
+                  "type": "euro",
                   "label": "Rendita catastale (euro)",
                   "width": "third",
                   "help": "La rendita indicata nel documento catastale. Se l'immobile è in via di accatastamento indica quella proposta o presunta. Per gli immobili al catasto terreni indica il reddito dominicale."
@@ -1430,7 +1430,7 @@
                 },
                 {
                   "id": "possesso",
-                  "type": "importo",
+                  "type": "percentuale",
                   "label": "% possesso",
                   "width": "quarter",
                   "help": "La quota di possesso di quel locatore su quell'immobile, in percentuale."
