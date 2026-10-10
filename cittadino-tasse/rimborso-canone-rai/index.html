@@ -69,7 +69,6 @@
       },
       {
         "@type": "WebApplication",
-        "name": "Compilatore della richiesta di rimborso del canone TV addebitato in bolletta",
         "url": "https://strumentiutili.it/cittadino-tasse/rimborso-canone-rai/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Qualsiasi browser moderno",
@@ -79,14 +78,16 @@
           "price": "0",
           "priceCurrency": "EUR"
         },
-        "description": "Compila nel browser il modello dell'Agenzia delle Entrate per riavere il canone TV addebitato in bolletta e non dovuto: POD, fatture, motivo e totale calcolato. PDF ufficiale pronto da inviare.",
+        "name": "Compilatore della richiesta di rimborso del canone TV addebitato in bolletta",
+        "description": "Compila nel browser la richiesta ufficiale dell'Agenzia delle Entrate per riavere il canone TV pagato in bolletta senza doverlo: bollette, totale calcolato e motivo.",
         "featureList": [
-          "Fino a dieci bollette con POD, numero e importo",
-          "Totale calcolato come chiedono le istruzioni",
-          "I sei motivi di rimborso spiegati",
-          "Compilazione del PDF originale dell'Agenzia delle Entrate, nel browser"
+          "Fino a dieci bollette con POD, numero di fattura e quota del canone",
+          "Totale calcolato come somma delle righe, come chiedono le istruzioni",
+          "I sei motivi ufficiali, con i dati aggiuntivi del motivo 4",
+          "Compilazione del PDF originale dell'Agenzia delle Entrate",
+          "Elaborazione interamente nel browser, senza server"
         ],
-        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
+        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/richiesta-di-rimborso-del-canone-tv-bolletta",
         "author": {
           "@type": "Person",
           "name": "Brian Barrionuevo",
@@ -103,50 +104,66 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Chi può chiedere il rimborso del canone Rai?",
+            "name": "Entro quando si può chiedere il rimborso del canone Rai?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il titolare del contratto della luce su cui è stato addebitato il canone non dovuto, oppure l’erede se il contratto era intestato a una persona deceduta."
+              "text": "Le istruzioni del modello non indicano un termine. Si presenta una richiesta per ogni anno, dal 2016 in poi: il 2015 e gli anni precedenti non sono ammessi, perché il canone in bolletta è partito nel 2016."
             }
           },
           {
             "@type": "Question",
-            "name": "Per quali anni si può chiedere?",
+            "name": "Dove trovo il codice POD e il numero della fattura?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Questo modello vale solo per il canone addebitato nelle bollette della luce, quindi dal 2016 in poi: le istruzioni escludono il 2015 e gli anni precedenti."
+              "text": "Sono scritti nella bolletta della luce. Il POD è il codice del punto di prelievo: se è lo stesso per tutte le bollette, nel modello basta indicarlo nella prima riga."
             }
           },
           {
             "@type": "Question",
-            "name": "Dove trovo il POD e il numero della fattura?",
+            "name": "Quanto tempo ci vuole per avere i soldi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sono scritti sulla bolletta. Il POD è il codice del punto di prelievo della luce; se è lo stesso per tutte le bollette basta indicarlo nella prima riga."
+              "text": "Il rimborso lo pagano le imprese elettriche, di solito sulla prima fattura utile oppure in un altro modo entro 45 giorni da quando ricevono i dati dall’Agenzia. Se non va a buon fine, paga direttamente l’Agenzia delle Entrate."
             }
           },
           {
             "@type": "Question",
-            "name": "Quale motivo devo indicare?",
+            "name": "Posso inviare la richiesta di rimborso per PEC?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Uno dei sei codici delle istruzioni: 1 esenzione over 75, 2 convenzioni internazionali, 3 canone pagato anche in un altro modo, 4 canone addebitato anche a un altro componente della famiglia, 5 dichiarazione di non detenzione presentata, 6 altri motivi."
+              "text": "Per questo modello le istruzioni indicano l’invio online, tramite intermediario o per raccomandata con il documento d’identità, non la PEC. La PEC con firma digitale è prevista invece per il rimborso degli ultrasettantacinquenni."
             }
           },
           {
             "@type": "Question",
-            "name": "Come si invia la richiesta?",
+            "name": "Il rimborso ferma anche le rate future?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Online con l’applicazione web dell’Agenzia delle Entrate, tramite un intermediario abilitato, oppure con raccomandata all’Ufficio Canone TV di Torino allegando la copia di un documento d’identità."
+              "text": "Da solo no. Con il motivo 4 e la data fine vuota la richiesta vale anche come quadro B; con i motivi 1, 2 e 5 la dichiarazione che ferma gli addebiti deve essere già stata presentata."
             }
           },
           {
             "@type": "Question",
-            "name": "Il totale lo devo calcolare io?",
+            "name": "Posso pagare la bolletta senza la quota del canone?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No: il compilatore somma gli importi del canone delle singole bollette, perché le istruzioni chiedono che il totale coincida con quella somma."
+              "text": "Sì, se ritieni l’addebito non corretto: paghi solo la quota energia con il pagamento parziale previsto dalla tua compagnia elettrica, indicando nella causale a che cosa si riferisce il pagamento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il canone pagato con il modello F24 si rimborsa con questo modello?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Questo modello vale solo per il canone addebitato nelle fatture per l’energia elettrica."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L’erede può chiedere il rimborso?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì, per le utenze intestate alla persona deceduta: compila la sezione «in qualità di erede di» con i suoi dati e il suo codice fiscale."
             }
           }
         ]
@@ -238,11 +255,11 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Rimborso del canone Rai pagato in bolletta</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Se il canone TV ti &egrave; stato addebitato nella bolletta della luce ma non lo dovevi &mdash;
-          perch&eacute; non hai il televisore, perch&eacute; lo paga gi&agrave; un familiare, perch&eacute; hai
-          diritto all&rsquo;esenzione &mdash; puoi chiederlo indietro con questo modello dell&rsquo;Agenzia delle
-          Entrate. Qui lo compili bolletta per bolletta, con il <strong>totale calcolato</strong>, e scarichi il
-          <strong>PDF ufficiale</strong>.
+          Se il canone TV ti &egrave; stato addebitato nella bolletta della luce ma non lo dovevi &mdash; perch&eacute; non hai
+          il televisore, perch&eacute; lo paga gi&agrave; un familiare, perch&eacute; l&rsquo;hai pagato due volte o hai diritto
+          all&rsquo;esenzione &mdash; lo chiedi indietro con questo modello dell&rsquo;Agenzia delle Entrate. Qui lo compili
+          bolletta per bolletta, con il <strong>totale calcolato</strong>, e scarichi il <strong>PDF ufficiale</strong>.
+          Il rimborso arriva di norma come accredito su una bolletta successiva.
         </p>
         <p class="mt-3 text-xs font-semibold text-emerald-700">&#128274; Privacy garantita: i tuoi dati non vengono inviati a nessun server.</p>
       </section>
@@ -303,20 +320,22 @@
       <div class="sticky-sidebar space-y-6">
         <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Come si presenta</h2>
-            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">2 VIE</span>
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-gray-400">I sei motivi del modello</h2>
+            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">CODICI</span>
           </div>
-          <dl class="space-y-3 text-xs leading-relaxed">
-            <div><dt class="font-bold text-indigo-300">Online</dt>
-              <dd class="text-gray-300">Con l&rsquo;applicazione web dell&rsquo;Agenzia delle Entrate e le credenziali Fisconline o Entratel, oppure tramite un intermediario abilitato.</dd></div>
-            <div><dt class="font-bold text-indigo-300">Raccomandata</dt>
-              <dd class="text-gray-300">All&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento d&rsquo;identit&agrave; valido. Fa fede il timbro postale.</dd></div>
+          <dl class="space-y-2 text-xs leading-relaxed">
+            <div><dt class="inline font-bold text-indigo-300">1</dt> <dd class="inline text-gray-300">Esenzione per chi ha 75 anni</dd></div>
+            <div><dt class="inline font-bold text-indigo-300">2</dt> <dd class="inline text-gray-300">Esenzione per convenzioni internazionali</dd></div>
+            <div><dt class="inline font-bold text-indigo-300">3</dt> <dd class="inline text-gray-300">Pagato in bolletta e anche in un altro modo</dd></div>
+            <div><dt class="inline font-bold text-indigo-300">4</dt> <dd class="inline text-gray-300">Addebitato anche sulla luce di un familiare</dd></div>
+            <div><dt class="inline font-bold text-indigo-300">5</dt> <dd class="inline text-gray-300">Avevi dichiarato di non avere il televisore</dd></div>
+            <div><dt class="inline font-bold text-indigo-300">6</dt> <dd class="inline text-gray-300">Altri motivi, da descrivere</dd></div>
           </dl>
           <div class="pt-3 border-t border-gray-800 space-y-2">
             <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span aria-hidden="true">&#128196;</span> Vai al compilatore
             </a>
-            <p class="text-[10px] text-gray-400 text-center leading-tight">Il PDF scaricato &egrave; il modello ufficiale dell&rsquo;Agenzia delle Entrate e resta modificabile.</p>
+            <p class="text-[10px] text-gray-400 text-center leading-tight">Per posta: raccomandata con il documento d&rsquo;identit&agrave; a Ufficio Canone TV, Casella postale 22, 10121 Torino.</p>
           </div>
         </div>
 
@@ -350,7 +369,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Modello e istruzioni controllati a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Modello e istruzioni verificati a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -358,145 +377,149 @@
             <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con l&rsquo;Agenzia delle Entrate, la Rai o altri enti. Il modulo e le spiegazioni vengono dai documenti ufficiali indicati in questa pagina: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
-            <p class="font-bold text-gray-900 mb-1">&#128196; Il modulo</p>
-            <p class="text-gray-600 leading-relaxed">&Egrave; il PDF ufficiale della <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a> del canone TV, approvato con il provvedimento del 2 agosto 2016. Le 52 caselle sono state ricostruite misurando i riquadri e verificate una a una. I sei motivi e le regole sul totale vengono dalle istruzioni del modello.</p>
+            <p class="font-bold text-gray-900 mb-1">&#128196; Il modello di rimborso</p>
+            <p class="text-gray-600 leading-relaxed">&Egrave; il PDF ufficiale della <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">pagina Modelli e istruzioni</a> del canone TV, con le dieci righe per le bollette. Le caselle sono state ricostruite misurando i riquadri e il totale si calcola sommando le righe, come chiedono le istruzioni. I sei motivi e i tempi del rimborso vengono dalle istruzioni e dalla scheda dell&rsquo;Agenzia sul rimborso in bolletta.</p>
           </div>
           <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
             <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
-            <p class="text-emerald-900 leading-relaxed">Nome, date e codici fiscali <strong>non escono dal dispositivo</strong>: il PDF si crea nel browser. I codici fiscali non vengono nemmeno salvati in memoria locale; il resto resta finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
+            <p class="text-emerald-900 leading-relaxed">Codici fiscali, POD e numeri delle fatture <strong>non lasciano il dispositivo</strong>: il PDF si crea nel browser. I codici fiscali non vengono salvati; gli altri dati restano in memoria locale finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
           </div>
         </div>
       </section>
 
-      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6 su-seo-expansion" aria-labelledby="guida-titolo">
-        <h2 id="guida-titolo" class="text-xl font-bold text-gray-900">Come si chiede il rimborso del canone Rai</h2>
-        <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Il canone TV costa 90 euro l&rsquo;anno e arriva nelle bollette della luce in dieci rate da gennaio a ottobre. Se &egrave; stato addebitato senza che fosse dovuto, la restituzione si chiede con il modello &laquo;Richiesta di rimborso del canone di abbonamento alla televisione per uso privato pagato mediante addebito nelle fatture per energia elettrica&raquo;.</p>
-            <p>Il modello serve <strong>solo</strong> per il canone pagato in bolletta. Lo presenta il titolare del contratto della luce oppure, se il contratto era intestato a una persona deceduta, l&rsquo;erede.</p>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Come funziona il rimborso del canone in bolletta</h2>
+        <div class="text-sm text-gray-700 leading-relaxed space-y-3">
+<p>Il modello di questa pagina serve a una cosa sola: riavere il canone <strong>addebitato nelle fatture della luce</strong> e pagato senza doverlo. Lo pu&ograve; presentare il titolare del contratto elettrico o, per le utenze di una persona deceduta, un suo erede. Vale per gli anni dal 2016, quando il canone &egrave; entrato in bolletta: il 2015 e gli anni prima non si possono indicare.</p>
+<p>Il rimborso restituisce quanto gi&agrave; pagato, ma da solo non ferma gli addebiti futuri: a quello serve la dichiarazione sostitutiva (la <a href="/cittadino-tasse/disdetta-canone-rai/" class="text-indigo-700 underline">disdetta</a>) o, per chi ha 75 anni, la <a href="/cittadino-tasse/esenzione-canone-rai-over-75/" class="text-indigo-700 underline">dichiarazione per l&rsquo;esenzione</a>. L&rsquo;eccezione &egrave; il motivo 4, che spieghiamo sotto.</p>
+<h3 id="quale-modello" class="text-lg font-bold text-gray-900 pt-3">Quale modello usare</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Quale modello di rimborso usare, secondo la situazione</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Situazione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Modello</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Come si invia</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Canone addebitato in bolletta e non dovuto, per uno dei sei motivi</td><td class="px-1.5 sm:px-3 py-2 align-top">Richiesta di rimborso del canone pagato nelle fatture elettriche (questa pagina)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Online, tramite intermediario o per raccomandata con il documento</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Hai 75 anni, i requisiti per l&rsquo;esenzione e il canone l&rsquo;hai pagato</td><td class="px-1.5 sm:px-3 py-2 align-top">Rimborso per gli ultrasettantacinquenni, che contiene la dichiarazione dei requisiti; oppure questo modello con il motivo 1, dopo la dichiarazione</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Raccomandata senza busta, PEC con firma digitale o ufficio dell&rsquo;Agenzia</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Canone pagato con il modello F24</td><td class="px-1.5 sm:px-3 py-2 align-top">Non questo: il modello vale solo per il canone addebitato in bolletta</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">&mdash;</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Il modello per gli ultrasettantacinquenni si compila nella pagina dell&rsquo;<a href="/cittadino-tasse/esenzione-canone-rai-over-75/" class="text-indigo-700 underline">esenzione over 75</a>, con il pulsante &laquo;Ho gi&agrave; pagato: chiedo il rimborso&raquo;.</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Campo per campo</h3>
+<ol class="list-decimal pl-5 space-y-1.5">
+  <li><strong>Dati del dichiarante</strong>: cognome, nome, data e luogo di nascita, codice fiscale e indirizzo e-mail di chi chiede il rimborso.</li>
+  <li><strong>Richiesta in qualit&agrave; di erede di</strong>: solo per il rimborso sulle utenze di una persona deceduta, con i suoi dati e il suo codice fiscale.</li>
+  <li><strong>Impegno alla presentazione telematica</strong>: lo compila e lo firma solo l&rsquo;intermediario che trasmette la richiesta.</li>
+  <li><strong>Anno d&rsquo;imposta</strong>: l&rsquo;anno del canone di cui chiedi il rimborso, dal 2016 in poi. Per anni diversi servono richieste diverse.</li>
+  <li><strong>Le bollette</strong>: per ognuna il codice POD (il punto di prelievo, scritto in bolletta), il numero della fattura e l&rsquo;importo del canone addebitato in quella fattura, non il totale della bolletta. Se il POD &egrave; lo stesso per tutte, basta scriverlo nella prima riga.</li>
+  <li><strong>Totale</strong>: deve coincidere con la somma degli importi delle righe. Il compilatore lo calcola da s&eacute;.</li>
+  <li><strong>Motivo</strong>: un codice da 1 a 6. Con il 4 servono anche il codice fiscale del familiare e le date; con il 6 una descrizione sintetica.</li>
+  <li><strong>Firma</strong>: data e firma di chi chiede il rimborso.</li>
+</ol>
+<figure class="my-6">
+  <img src="/assets/esempi/rimborso-canone-tv-motivo-4.webp" width="1100" height="480" loading="lazy" decoding="async"
+       alt="Richiesta di rimborso del canone TV compilata: anno 2026, tre bollette con lo stesso codice POD e 18,00 euro di canone ciascuna, totale 54,00 euro, motivo 4 con il codice fiscale della moglie e data inizio 1° gennaio 2026, data fine vuota"
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Il primo esempio qui sotto, compilato con questa pagina (persone, POD e fatture inventati): il POD &egrave; scritto solo nella prima riga e la data fine resta vuota, cos&igrave; la richiesta vale anche come quadro B.</figcaption>
+</figure>
+<h3 id="motivi" class="text-lg font-bold text-gray-900 pt-3">I sei motivi e che cosa serve</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">I codici del motivo della richiesta di rimborso, secondo le istruzioni ufficiali</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando si usa</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa serve</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">1</td><td class="px-1.5 sm:px-3 py-2 align-top">Tu o un altro componente della famiglia anagrafica avete i requisiti dell&rsquo;esenzione per chi ha 75 anni</td><td class="px-1.5 sm:px-3 py-2 align-top">Aver presentato la dichiarazione per l&rsquo;esenzione</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">2</td><td class="px-1.5 sm:px-3 py-2 align-top">Tu o un familiare siete esenti per convenzioni internazionali, per esempio diplomatici e militari stranieri</td><td class="px-1.5 sm:px-3 py-2 align-top">Aver presentato la dichiarazione sostitutiva</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">3</td><td class="px-1.5 sm:px-3 py-2 align-top">Il canone &egrave; stato addebitato in bolletta e pagato anche in un altro modo, per esempio con la trattenuta sulla pensione</td><td class="px-1.5 sm:px-3 py-2 align-top">&mdash;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">4</td><td class="px-1.5 sm:px-3 py-2 align-top">Il canone &egrave; stato addebitato in bolletta a te e anche sulla luce di un altro componente della stessa famiglia anagrafica</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale del familiare, data inizio e, solo se non siete pi&ugrave; una famiglia, data fine</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">5</td><td class="px-1.5 sm:px-3 py-2 align-top">Avevi presentato la dichiarazione di non detenzione, per te e la tua famiglia anagrafica</td><td class="px-1.5 sm:px-3 py-2 align-top">Aver presentato il quadro A</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">6</td><td class="px-1.5 sm:px-3 py-2 align-top">Qualsiasi altro motivo</td><td class="px-1.5 sm:px-3 py-2 align-top">Una descrizione sintetica nello spazio del modello</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Il motivo 4 vale anche per il futuro.</strong> Il codice fiscale del familiare indicato con il motivo 4 &egrave; una dichiarazione sostitutiva (D.P.R. 445/2000, art. 47). Se la data fine resta vuota, perch&eacute; fate ancora parte della stessa famiglia, la richiesta produce gli effetti del quadro B: il canone non va pi&ugrave; addebitato sulle tue utenze, perch&eacute; si paga su quella del familiare. La data fine si scrive solo se, quando presenti la richiesta, non fai pi&ugrave; parte della sua famiglia anagrafica. Come data inizio, se fate parte della stessa famiglia da prima del 1&deg; gennaio dell&rsquo;anno di presentazione, puoi indicare per convenzione quel 1&deg; gennaio.</p>
+<h3 id="come-arriva" class="text-lg font-bold text-gray-900 pt-3">Come arriva il rimborso</h3>
+<p>Il rimborso lo pagano le imprese elettriche, di solito con un accredito sulla prima fattura utile, oppure in un altro modo che garantisca il pagamento entro 45 giorni da quando ricevono dall&rsquo;Agenzia i dati necessari. Se il rimborso attraverso la compagnia elettrica non va a buon fine, lo paga direttamente l&rsquo;Agenzia delle Entrate.</p>
+<p>Nell&rsquo;attesa, chi ritiene non corretto l&rsquo;addebito in una nuova bolletta pu&ograve; pagare solo la quota della luce, con il pagamento parziale della propria compagnia e la causale &laquo;quota energia elettrica&raquo;: senza causale, quanto pagato va prima alla fornitura.</p>
+<h3 id="come-si-invia" class="text-lg font-bold text-gray-900 pt-3">Come si invia</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Online</strong>, dall&rsquo;applicazione web del sito dell&rsquo;Agenzia delle Entrate. Le istruzioni del modello citano le credenziali Entratel e Fisconline; vale la data della ricevuta telematica.</li>
+  <li><strong>Tramite un intermediario abilitato</strong> (per esempio un CAF), delegato da te, con la stessa applicazione.</li>
+  <li><strong>Per raccomandata</strong>, quando l&rsquo;invio online non &egrave; possibile, all&rsquo;Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, con la copia di un documento di riconoscimento valido. Vale la data del timbro postale.</li>
+</ul>
+<p>Per questo modello le istruzioni non prevedono la PEC. La PEC, con firma digitale, &egrave; prevista invece per il rimborso degli ultrasettantacinquenni.</p>
+<h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Cinque esempi</h3>
+<p><strong>Esempio 1: canone addebitato due volte nella stessa famiglia (motivo 4).</strong> Marito e moglie hanno la residenza nella stessa casa e due contratti della luce, uno a testa: nel 2026 il canone arriva su entrambe le bollette. Il marito chiede indietro le quote addebitate a lui, indicando il codice fiscale della moglie, sulla cui bolletta il canone resta. Nell&rsquo;esempio ogni sua bolletta bimestrale porta due rate di canone, 18,00 euro:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Le righe del modello nel primo esempio: tre bollette con lo stesso POD</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Bolletta</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">POD</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Fattura</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Canone</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">gennaio-febbraio</td><td class="px-1.5 sm:px-3 py-2 align-top">IT001E12345678</td><td class="px-1.5 sm:px-3 py-2 align-top">2026-000312</td><td class="px-1.5 sm:px-3 py-2 align-top">18,00</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">marzo-aprile</td><td class="px-1.5 sm:px-3 py-2 align-top">(come sopra)</td><td class="px-1.5 sm:px-3 py-2 align-top">2026-000845</td><td class="px-1.5 sm:px-3 py-2 align-top">18,00</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">maggio-giugno</td><td class="px-1.5 sm:px-3 py-2 align-top">(come sopra)</td><td class="px-1.5 sm:px-3 py-2 align-top">2026-001377</td><td class="px-1.5 sm:px-3 py-2 align-top">18,00</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top"><strong>Totale</strong></td><td class="px-1.5 sm:px-3 py-2 align-top"></td><td class="px-1.5 sm:px-3 py-2 align-top"></td><td class="px-1.5 sm:px-3 py-2 align-top"><strong>54,00</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Data inizio: il 1&deg; gennaio 2026, perch&eacute; sono sposati da anni. Data fine: vuota. Cos&igrave; la richiesta vale anche come quadro B e il canone smette di arrivare sulla bolletta del marito: &egrave; il modello dell&rsquo;immagine qui sopra.</p>
+<p><strong>Esempio 2: la disdetta arrivata tardi in bolletta (motivo 5).</strong> Una famiglia senza televisore invia il quadro A il 25 gennaio 2027, in tempo per tutto il 2027. La dichiarazione per&ograve; ferma l&rsquo;addebito dalla prima rata utile dopo che l&rsquo;Agenzia l&rsquo;ha ricevuta, e la bolletta di febbraio contiene gi&agrave; la rata di gennaio. Quella rata si chiede indietro con il motivo 5.</p>
+<p><strong>Esempio 3: canone trattenuto anche sulla pensione (motivo 3).</strong> Un pensionato con una pensione fino a 18.000 euro ha chiesto all&rsquo;ente pensionistico, entro il 15 novembre, di pagare il canone dell&rsquo;anno dopo con la trattenuta sulla pensione. Se il canone gli arriva anche nella bolletta della luce, le rate pagate in bolletta si chiedono indietro con il motivo 3.</p>
+<p><strong>Esempio 4: l&rsquo;esenzione chiesta in primavera (motivo 1).</strong> Una signora compie 75 anni il 20 gennaio 2027 e ha tutti i requisiti, ma presenta la dichiarazione per l&rsquo;esenzione il 20 marzo. Spedita nella seconda met&agrave; del mese, ferma l&rsquo;addebito di norma dalla rata di maggio: le rate da gennaio ad aprile, pagate in bolletta, le chiede indietro con il motivo 1 o con il modello di rimborso per gli over 75.</p>
+<p><strong>Esempio 5: l&rsquo;erede.</strong> Muore la madre, che viveva da sola senza televisore; il figlio erede presenta il quadro A per la sua utenza, ma alcune rate sono gi&agrave; state addebitate. Chiede il rimborso compilando la sezione &laquo;in qualit&agrave; di erede di&raquo; con i dati della madre e il motivo 5.</p>
+<h3 id="errori" class="text-lg font-bold text-gray-900 pt-3">Errori frequenti</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Scrivere il totale della bolletta</strong> invece della sola quota del canone addebitata in quella fattura.</li>
+  <li><strong>Un totale diverso dalla somma delle righe</strong>: le istruzioni chiedono che coincidano.</li>
+  <li><strong>Chiedere il rimborso del 2015</strong> o di anni precedenti: il modello vale solo per il canone in bolletta, dal 2016.</li>
+  <li><strong>Usare i motivi 1, 2 o 5 senza aver presentato la dichiarazione</strong> su cui si basano.</li>
+  <li><strong>Compilare la data fine con il motivo 4</strong> quando siete ancora la stessa famiglia: la richiesta non vale pi&ugrave; come quadro B e il canone continua ad arrivare.</li>
+  <li><strong>Spedire la raccomandata senza documento</strong> o mandare questo modello per PEC.</li>
+</ul>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 2027</h3>
+<p>Il canone in bolletta &egrave; previsto oggi dalla legge 208/2015 (art. 1, commi 152-159); dal 1&deg; gennaio 2027 la stessa regola, dieci rate addebitate nelle fatture elettriche, &egrave; all&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art53" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 53 del testo unico dei tributi erariali minori</a> (D.Lgs. 174/2024). Modello, motivi e modalit&agrave; di rimborso vengono dal provvedimento dell&rsquo;Agenzia: li ricontrolliamo se cambiano.</p>
         </div>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>I sei motivi, spiegati</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <ul class="list-disc list-inside space-y-2">
-              <li><strong>1</strong> &ndash; tu o un altro componente della famiglia anagrafica avete i requisiti dell&rsquo;esenzione per chi ha 75 anni e avete presentato la dichiarazione sostitutiva;</li>
-              <li><strong>2</strong> &ndash; esenzione per convenzioni internazionali, per esempio diplomatici e militari stranieri, con la dichiarazione gi&agrave; presentata;</li>
-              <li><strong>3</strong> &ndash; il canone &egrave; stato addebitato in bolletta e pagato anche in un altro modo, per esempio con la trattenuta sulla pensione;</li>
-              <li><strong>4</strong> &ndash; il canone &egrave; stato addebitato sulla tua bolletta e anche su quella di un altro componente della stessa famiglia anagrafica;</li>
-              <li><strong>5</strong> &ndash; avevi presentato la dichiarazione di non detenzione del televisore, per te e per la tua famiglia;</li>
-              <li><strong>6</strong> &ndash; qualsiasi altro motivo, da spiegare nella descrizione sintetica.</li>
-            </ul>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Il motivo 4: due contratti nella stessa famiglia</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Con il motivo 4 servono il <strong>codice fiscale del familiare</strong> su cui il canone deve restare e la <strong>data inizio</strong>, cio&egrave; il giorno da cui fate parte della stessa famiglia anagrafica. Se &egrave; anteriore al 1&deg; gennaio dell&rsquo;anno in cui presenti la richiesta, puoi indicare il 1&deg; gennaio di quell&rsquo;anno.</p>
-            <p>La <strong>data fine</strong> si compila solo se, quando presenti la richiesta, non fai pi&ugrave; parte di quella famiglia. Se la data fine resta vuota, la richiesta vale anche come dichiarazione sostitutiva per il futuro: il canone non ti sar&agrave; pi&ugrave; addebitato, come con il quadro B della dichiarazione.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Le bollette e il totale</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Per ogni bolletta con il canone da rimborsare si indicano il <strong>POD</strong> (il codice del punto di prelievo, stampato in bolletta), il <strong>numero della fattura</strong> e l&rsquo;<strong>importo del canone</strong> addebitato in quella fattura: solo la quota del canone, non il totale della bolletta. Se il POD &egrave; lo stesso per tutte, basta scriverlo nella prima riga.</p>
-            <p>Il modulo ha dieci righe. Il <strong>totale</strong> deve coincidere con la somma degli importi delle righe: qui lo calcola il compilatore e lo scrive nella casella in alto. Va indicato anche l&rsquo;anno d&rsquo;imposta: una richiesta per ogni anno.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si invia</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>La via ordinaria &egrave; l&rsquo;<strong>applicazione web</strong> sul sito dell&rsquo;Agenzia delle Entrate, con le credenziali Fisconline o Entratel, oppure un <strong>intermediario abilitato</strong> che la trasmette per te. La richiesta risulta presentata nella data della ricevuta telematica.</p>
-            <p>Quando la trasmissione online non &egrave; possibile, si spedisce con <strong>raccomandata</strong> all&rsquo;indirizzo Agenzia delle Entrate &ndash; Direzione Provinciale 1 di Torino &ndash; Ufficio Canone TV &ndash; Casella postale 22 &ndash; 10121 Torino, allegando la copia di un documento di riconoscimento valido. Fa fede la data del timbro postale.</p>
-          </div>
-        </details>
-
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Gli errori pi&ugrave; comuni</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <ul class="list-disc list-inside space-y-2">
-              <li>Scrivere nella colonna dell&rsquo;importo il totale della bolletta invece della sola quota del canone.</li>
-              <li>Indicare un totale diverso dalla somma delle righe.</li>
-              <li>Mettere nello stesso modello bollette di anni diversi: serve una richiesta per ogni anno.</li>
-              <li>Chiedere il rimborso senza aver presentato, quando serve, la dichiarazione sostitutiva o quella per l&rsquo;esenzione: gli addebiti continuano.</li>
-            </ul>
-          </div>
-        </details>
-
-        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
-        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2015-12-28;208~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 28 dicembre 2015, n. 208, art. 1</a>, commi 152-159: canone addebitato nelle fatture della luce.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art47" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445, art. 47</a>: la dichiarazione sostitutiva del motivo 4.</li>
-          <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modello e istruzioni per il rimborso del canone addebitato in bolletta</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/come-si-paga-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda Come si paga</a>.</li>
-        </ul>
-      </section>
-
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Chi pu&ograve; chiedere il rimborso del canone Rai?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il titolare del contratto della luce su cui &egrave; stato addebitato il canone non dovuto, oppure l&rsquo;erede se il contratto era intestato a una persona deceduta.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Per quali anni si pu&ograve; chiedere?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Questo modello vale solo per il canone addebitato nelle bollette della luce, quindi dal 2016 in poi: le istruzioni escludono il 2015 e gli anni precedenti.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Dove trovo il POD e il numero della fattura?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono scritti sulla bolletta. Il POD &egrave; il codice del punto di prelievo della luce; se &egrave; lo stesso per tutte le bollette basta indicarlo nella prima riga.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Quale motivo devo indicare?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Uno dei sei codici delle istruzioni: 1 esenzione over 75, 2 convenzioni internazionali, 3 canone pagato anche in un altro modo, 4 canone addebitato anche a un altro componente della famiglia, 5 dichiarazione di non detenzione presentata, 6 altri motivi.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si invia la richiesta?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Online con l&rsquo;applicazione web dell&rsquo;Agenzia delle Entrate, tramite un intermediario abilitato, oppure con raccomandata all&rsquo;Ufficio Canone TV di Torino allegando la copia di un documento d&rsquo;identit&agrave;.</p>
-        </details>
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Il totale lo devo calcolare io?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: il compilatore somma gli importi del canone delle singole bollette, perch&eacute; le istruzioni chiedono che il totale coincida con quella somma.</p>
-        </details>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando si pu&ograve; chiedere il rimborso del canone Rai?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le istruzioni del modello non indicano un termine. Si presenta una richiesta per ogni anno, dal 2016 in poi: il 2015 e gli anni precedenti non sono ammessi, perch&eacute; il canone in bolletta &egrave; partito nel 2016.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove trovo il codice POD e il numero della fattura?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sono scritti nella bolletta della luce. Il POD &egrave; il codice del punto di prelievo: se &egrave; lo stesso per tutte le bollette, nel modello basta indicarlo nella prima riga.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto tempo ci vuole per avere i soldi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il rimborso lo pagano le imprese elettriche, di solito sulla prima fattura utile oppure in un altro modo entro 45 giorni da quando ricevono i dati dall&rsquo;Agenzia. Se non va a buon fine, paga direttamente l&rsquo;Agenzia delle Entrate.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso inviare la richiesta di rimborso per PEC?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per questo modello le istruzioni indicano l&rsquo;invio online, tramite intermediario o per raccomandata con il documento d&rsquo;identit&agrave;, non la PEC. La PEC con firma digitale &egrave; prevista invece per il rimborso degli ultrasettantacinquenni.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il rimborso ferma anche le rate future?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Da solo no. Con il motivo 4 e la data fine vuota la richiesta vale anche come quadro B; con i motivi 1, 2 e 5 la dichiarazione che ferma gli addebiti deve essere gi&agrave; stata presentata.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso pagare la bolletta senza la quota del canone?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, se ritieni l&rsquo;addebito non corretto: paghi solo la quota energia con il pagamento parziale previsto dalla tua compagnia elettrica, indicando nella causale a che cosa si riferisce il pagamento.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il canone pagato con il modello F24 si rimborsa con questo modello?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Questo modello vale solo per il canone addebitato nelle fatture per l&rsquo;energia elettrica.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;erede pu&ograve; chiedere il rimborso?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, per le utenze intestate alla persona deceduta: compila la sezione &laquo;in qualit&agrave; di erede di&raquo; con i suoi dati e il suo codice fiscale.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2015-12-28;208~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 28 dicembre 2015, n. 208, art. 1</a>, commi 152-159: il canone addebitato nelle fatture elettriche, fino al 31 dicembre 2026.</li>
+  <li>Dal 1&deg; gennaio 2027: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;174:1~art53" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 174/2024, allegato, art. 53</a>, testo unico dei tributi erariali minori.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art47" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 28 dicembre 2000, n. 445, art. 47</a>: il motivo 4 vale come dichiarazione sostitutiva.</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/richiesta-di-rimborso-del-canone-tv-bolletta" class="text-indigo-700 underline" target="_blank" rel="noopener">Rimborso del canone TV addebitato in bolletta</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">modelli e istruzioni del canone TV</a>.</li>
+  <li>Agenzia delle Entrate: <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/faq-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">risposte alle domande pi&ugrave; frequenti</a>, <a href="https://www.agenziaentrate.gov.it/portale/schede/agevolazioni/canone-tv/come-si-paga-canone-tv" class="text-indigo-700 underline" target="_blank" rel="noopener">Come si paga</a> e <a href="https://www.agenziaentrate.gov.it/portale/aree-tematiche/canone-tv/casi-di-esonero/ultrasettantacinquenni" class="text-indigo-700 underline" target="_blank" rel="noopener">Ultrasettantacinquenni con reddito basso</a>.</li>
+</ul>
       </section>
 
       <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->

@@ -28,8 +28,11 @@
 
   /**
    * Il 31 gennaio dell'anno, spostato al lunedi' se cade di sabato o di
-   * domenica. Per il 2026 l'Agenzia ha indicato proprio cosi' il termine:
-   * "dal 1 luglio 2025 al 2 febbraio 2026" (il 31 gennaio era un sabato).
+   * domenica: gli adempimenti fiscali che scadono il sabato o in un giorno
+   * festivo passano al primo giorno lavorativo successivo (D.L. 70/2011,
+   * art. 7, comma 2, lettera h). Per il 2026 la scheda dell'Agenzia indicava
+   * proprio cosi' il termine: "dal 1 luglio 2025 al 2 febbraio 2026" (il 31
+   * gennaio era un sabato).
    */
   function termineGennaio(anno) {
     const giorno = new Date(Date.UTC(anno, 0, 31)).getUTCDay();

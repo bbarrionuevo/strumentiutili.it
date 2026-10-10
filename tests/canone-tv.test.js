@@ -79,3 +79,90 @@ test('le cifre del canone vengono dalla scheda dell’Agenzia e le pagine le usa
     assert.match(html, /cp22\.canonetv@postacertificata\.rai\.it|Casella postale 22/, p + ': manca il recapito ufficiale');
   }
 });
+
+// --- Correzioni dopo la rilettura delle fonti (ottobre 2026) ----------------
+//
+// Fonti: istruzioni dei quattro modelli; schede dell'Agenzia «Dichiarazione
+// sostitutiva», «Esempi di compilazione», «Risposte alle domande più
+// frequenti», «Rimborso del canone TV addebitato in bolletta» e
+// «Ultrasettantacinquenni»; D.L. 70/2011, art. 7, comma 2, lettera h
+// (scadenze fiscali di sabato o festive al primo giorno lavorativo);
+// D.Lgs. 174/2024, testo unico dei tributi erariali minori (allegato, artt.
+// 51-55, 54-ter e 100: si applica dal 1° gennaio 2027).
+const H = require('./helpers/contenuti.js');
+const fsC = require('node:fs');
+const pathC = require('node:path');
+const PAGINE_CANONE = ['disdetta-canone-rai', 'esenzione-canone-rai-over-75', 'rimborso-canone-rai'];
+const htmlCanone = (p) => fsC.readFileSync(pathC.join(H.RADICE, 'cittadino-tasse', p, 'index.html'), 'utf8');
+const guidaCanone = () => fsC.readFileSync(pathC.join(H.RADICE, 'guide', 'canone-rai', 'index.html'), 'utf8');
+
+test('2027: il 31 gennaio e\' domenica, il termine per tutto l\'anno e\' lunedi\' 1 febbraio', () => {
+  for (const html of [htmlCanone('disdetta-canone-rai'), guidaCanone()]) {
+    const testo = H.testoVisibile(html);
+    // prima le pagine dicevano «dal 1° febbraio al 30 giugno 2027 vale solo per il secondo semestre»
+    assert.doesNotMatch(testo, /dal 1° febbraio al 30 giugno 2027/i);
+    assert.match(testo, /1° febbraio 2027/);
+    assert.match(testo, /dal 2 febbraio al 30 giugno 2027/i);
+    // la regola del fine settimana ha la sua fonte
+    assert.match(testo, /D\.L\. 70\/2011, art\. 7/);
+  }
+  // la domanda frequente della disdetta, anche nei dati strutturati
+  const faq = H.domandeFaq(htmlCanone('disdetta-canone-rai'));
+  assert.ok(faq.some((d) => /2027/.test(d)), faq.join(' | '));
+  assert.match(htmlCanone('disdetta-canone-rai'), /"text": "Dal 1° luglio 2026 a lunedì 1° febbraio 2027/);
+});
+
+test('niente affermazioni senza fonte nelle pagine del canone e nella guida', () => {
+  for (const html of [...PAGINE_CANONE.map(htmlCanone), guidaCanone()]) {
+    const testo = H.testoVisibile(html);
+    // non e' nelle istruzioni: la stampa fronte-retro e l'informativa da non spedire
+    assert.doesNotMatch(testo, /fronte-retro/);
+    // non si sa quali rate corrispondano al primo semestre
+    assert.doesNotMatch(testo, /cinque rate da gennaio a maggio|rate da gennaio a giugno restano dovute/);
+    // la durata dell'esenzione per convenzioni internazionali non e' scritta da nessuna parte
+    assert.doesNotMatch(testo, /Secondo la convenzione/);
+  }
+  const ui = fsC.readFileSync(pathC.join(H.RADICE, 'js', 'canone-tv-ui.js'), 'utf8');
+  assert.doesNotMatch(ui, /dovrebbe slittare|rate da gennaio a giugno/);
+});
+
+test('PEC: il rimborso in bolletta non la prevede, gli over 75 solo con firma digitale', () => {
+  const rimborso = H.testoVisibile(htmlCanone('rimborso-canone-rai'));
+  assert.match(rimborso, /non prevedono la PEC/);
+  assert.doesNotMatch(rimborso, /cp22\.canonetv@postacertificata\.rai\.it/);
+  const over75 = H.testoVisibile(htmlCanone('esenzione-canone-rai-over-75'));
+  assert.match(over75, /firmato digitalmente/);
+  assert.match(over75, /non prevedono la firma a penna scansionata/);
+});
+
+test('il testo unico del 2027 si cita con l\'allegato del D.Lgs. 174/2024', () => {
+  for (const p of H.tutteLePagine()) {
+    // «;174~art51» porterebbe all'articolo del decreto, non al testo unico allegato
+    assert.doesNotMatch(p.html, /decreto\.legislativo:2024-11-05;174~art/, p.percorso);
+  }
+  const disdetta = htmlCanone('disdetta-canone-rai');
+  for (const art of ['51', '52', '53', '55', '100']) {
+    assert.match(disdetta, new RegExp('2024-11-05;174:1~art' + art + '"'), 'art. ' + art);
+  }
+  assert.match(htmlCanone('esenzione-canone-rai-over-75'), /2024-11-05;174:1~art54ter"/);
+  assert.match(htmlCanone('rimborso-canone-rai'), /2024-11-05;174:1~art53"/);
+});
+
+test('le tre pagine hanno guida campo per campo, esempi, errori e il modello compilato', () => {
+  const immagini = {
+    'disdetta-canone-rai': 'canone-tv-quadro-b',
+    'esenzione-canone-rai-over-75': 'canone-tv-over-75',
+    'rimborso-canone-rai': 'rimborso-canone-tv-motivo-4'
+  };
+  for (const p of PAGINE_CANONE) {
+    const html = htmlCanone(p);
+    for (const id of ['campo-per-campo', 'esempi', 'errori', 'come-si-invia', 'dal-2027']) {
+      // nella pagina degli over 75 gli esempi stanno nella sezione sul reddito
+      if (id === 'esempi' && p === 'esenzione-canone-rai-over-75') continue;
+      assert.ok(html.includes('id="' + id + '"'), p + ': manca #' + id);
+    }
+    assert.match(html, new RegExp('src="/assets/esempi/' + immagini[p] + '\\.webp"'), p);
+    assert.ok((html.match(/<table\b/g) || []).length >= 2, p + ': servono almeno due tabelle');
+    assert.ok(H.domandeFaq(html).length >= 8, p + ': poche domande frequenti');
+  }
+});
