@@ -13,12 +13,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Modello RLI: compilalo online e calcola imposta di registro e cedolare secca — StrumentiUtili.it</title>
-  <meta name="description" content="Genera il Modello RLI per la registrazione, proroga o risoluzione dei contratti di affitto. Calcolo automatico Imposta di Registro e Cedolare Secca." />
+  <meta name="description" content="Compila il modello RLI ufficiale e calcola registro e bollo per tutti gli 11 codici (L1, L2, S1, T1...), con esempi, cedolare secca, proroghe, risoluzioni e sanzioni per il ritardo." />
   <link rel="canonical" href="https://strumentiutili.it/cittadino-tasse/modello-rli/" />
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Modello RLI: compilalo online e calcola imposta di registro e cedolare secca" />
-  <meta property="og:description" content="Genera il Modello RLI per la registrazione, proroga o risoluzione dei contratti di affitto. Calcolo automatico Imposta di Registro e Cedolare Secca." />
+  <meta property="og:description" content="Compila il modello RLI ufficiale e calcola registro e bollo per tutti gli 11 codici (L1, L2, S1, T1...), con esempi, cedolare secca, proroghe, risoluzioni e sanzioni per il ritardo." />
   <meta property="og:url" content="https://strumentiutili.it/cittadino-tasse/modello-rli/" />
   <meta property="og:locale" content="it_IT" />
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png" />
@@ -40,27 +40,30 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Simulatore Modello RLI 2026",
-        "operatingSystem": "Qualsiasi (browser web)",
-        "applicationCategory": "FinanceApplication",
+        "@id": "https://strumentiutili.it/cittadino-tasse/modello-rli/#app",
+        "name": "Modello RLI: calcolo di registro e bollo e compilazione del modello ufficiale",
         "url": "https://strumentiutili.it/cittadino-tasse/modello-rli/",
         "image": "https://strumentiutili.it/assets/og-image.png",
-        "description": "Calcolo di imposta di registro, bollo e sanzioni stimate per la registrazione di un contratto di locazione con il modello RLI, con verifica dei codici fiscali e opzione per la cedolare secca.",
+        "description": "Calcolo dell'imposta di registro e di bollo per gli undici codici del modello RLI, con le sanzioni per il ritardo, e compilazione del modello ufficiale dell'Agenzia delle Entrate per registrazione, cedolare secca e adempimenti successivi.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Qualsiasi browser moderno",
+        "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
+        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "EUR"
         },
-        "browserRequirements": "Richiede JavaScript. Funziona anche offline dopo la prima visita.",
-        "@id": "https://strumentiutili.it/cittadino-tasse/modello-rli/#app",
-        "inLanguage": "it-IT",
-        "isAccessibleForFree": true,
         "featureList": [
-          "Imposta di registro per contratti L1, L2, S1 e T2 con minimo di 67 euro",
-          "Imposta di bollo per facciate e copie",
+          "Imposta di registro per gli undici codici del modello (L1-L4, S1-S3, T1-T4), con il minimo di 67 euro e le imposte fisse",
+          "Imposta di bollo per fogli e copie",
+          "Sanzioni e ravvedimento per la registrazione tardiva",
           "Opzione per la cedolare secca",
-          "Validazione dei codici fiscali con gestione dell'omocodia",
-          "Prospetto PDF generato nel browser senza invio di dati a server"
+          "Modello RLI ufficiale compilato in PDF, senza inviare dati a un server"
+        ],
+        "isBasedOn": [
+          "https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/registrazione-di-un-nuovo-contratto/modello_istruzioni-regime-ordinario"
         ],
         "author": {
           "@type": "Person",
@@ -113,29 +116,29 @@
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Scegli la tipologia di contratto",
-            "text": "Seleziona L1, L2, S1 o T2 secondo il tipo di locazione.",
+            "name": "Scegli il codice del contratto",
+            "text": "Scegli uno degli undici codici del modello RLI: L1 per la maggior parte delle abitazioni, L2 per il canone concordato in un comune ad alta tensione abitativa, S per gli altri immobili, T per i terreni.",
             "url": "https://strumentiutili.it/cittadino-tasse/modello-rli/#rli-tipo-contratto"
           },
           {
             "@type": "HowToStep",
             "position": 2,
             "name": "Inserisci canone e data",
-            "text": "Indica il canone annuo e la data più remota fra stipula e decorrenza.",
+            "text": "Indica il canone annuo (per i terreni il corrispettivo di tutta la durata) e la data più remota fra firma e decorrenza.",
             "url": "https://strumentiutili.it/cittadino-tasse/modello-rli/#rli-canone"
           },
           {
             "@type": "HowToStep",
             "position": 3,
             "name": "Decidi sulla cedolare secca",
-            "text": "Attiva l'opzione se ne hai i requisiti: registro e bollo si azzerano.",
+            "text": "Per le abitazioni (L1 e L2) attiva l'opzione se ne hai i requisiti: registro e bollo si azzerano.",
             "url": "https://strumentiutili.it/cittadino-tasse/modello-rli/#rli-cedolare-secca"
           },
           {
             "@type": "HowToStep",
             "position": 4,
             "name": "Indica facciate e copie",
-            "text": "In regime ordinario inserisci il numero di facciate e di copie per il calcolo del bollo.",
+            "text": "In regime ordinario inserisci le facciate scritte e le copie firmate: il bollo è di 16 euro per foglio di quattro facciate e per copia.",
             "url": "https://strumentiutili.it/cittadino-tasse/modello-rli/#rli-pagine"
           },
           {
@@ -154,10 +157,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Con la cedolare secca devo presentare lo stesso il modello RLI?",
+            "name": "Con la cedolare secca devo registrare lo stesso il contratto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì: è proprio con il modello RLI che si sceglie la cedolare secca. La cedolare evita di pagare registro e bollo, non la registrazione."
+              "text": "Sì. La cedolare sostituisce IRPEF, addizionali, registro e bollo, ma il contratto va registrato comunque: l’opzione si esercita proprio nel quadro D del modello RLI, alla registrazione o in un’annualità successiva."
             }
           },
           {
@@ -165,7 +168,23 @@
             "name": "Chi deve registrare il contratto?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "L’obbligo è di entrambe le parti: di solito se ne occupa il proprietario o l’agenzia immobiliare. All’inquilino conviene controllare che sia fatto, perché senza registrazione non può avere le detrazioni per l’affitto."
+              "text": "Le parti, proprietario e inquilino, e l’agente immobiliare per i contratti conclusi con la sua mediazione. Basta la firma di uno dei locatori o dei conduttori, ma per l’imposta rispondono in solido tutti e due; le spese di registrazione si dividono a metà."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Entro quando va registrato il contratto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Entro 30 giorni dalla firma o dalla decorrenza, se è anteriore. Firmato il 20 marzo con decorrenza 1° aprile: entro il 19 aprile. Firmato il 10 aprile con decorrenza 1° aprile: entro il 1° maggio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Un affitto di 20 giorni va registrato?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, se è un’abitazione e con lo stesso inquilino non si superano 30 giorni complessivi nell’anno: si registra solo in caso d’uso. La cedolare secca si può applicare anche ai contratti che non vanno registrati."
             }
           },
           {
@@ -173,15 +192,15 @@
             "name": "Cosa faccio se il contratto finisce prima?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Comunichi la risoluzione con il modello RLI entro 30 giorni. In regime ordinario si paga un’imposta fissa di 67 €; con la cedolare secca la comunicazione è gratuita."
+              "text": "Comunichi la risoluzione con il modello RLI entro 30 giorni. Per un contratto di più anni su un immobile urbano, senza corrispettivo, si pagano 67 € fissi; con la cedolare secca niente, se tutti i locatori l’avevano scelta. Se avevi pagato il registro per tutta la durata, ti spetta il rimborso delle annualità successive."
             }
           },
           {
             "@type": "Question",
-            "name": "Il contratto ha una decorrenza passata: da quando contano i 30 giorni?",
+            "name": "Come si paga il registro degli anni successivi?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dalla data più vecchia fra firma e decorrenza. Se registri oggi un contratto iniziato mesi fa sei già in ritardo e devi pagare anche le sanzioni."
+              "text": "Entro 30 giorni dall’inizio di ogni annualità: il 2% del canone di quell’anno, con gli aumenti ISTAT, anche se è meno di 67 €. Si paga con l’addebito sul conto dei servizi online (codice 1) oppure con l’F24 ELIDE."
             }
           },
           {
@@ -189,7 +208,7 @@
             "name": "Come si gestisce la proroga?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Va comunicata con il modello RLI entro 30 giorni dalla scadenza. In regime ordinario si paga il registro della nuova annualità; con la cedolare secca la comunicazione serve a confermare la scelta."
+              "text": "Si comunica con il modello RLI entro 30 giorni dalla scadenza e si paga il registro della proroga, tutto insieme o anno per anno. Con la cedolare secca non si paga nulla, ma l’opzione va confermata nella stessa comunicazione."
             }
           },
           {
@@ -197,15 +216,23 @@
             "name": "Se l’immobile ha più proprietari?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Si indicano tutti. Ognuno può scegliere per la sua quota se usare la cedolare secca o il regime ordinario."
+              "text": "Si indicano tutti nel quadro B e il canone si scrive per intero. Nel quadro D ognuno sceglie per sé: chi non opta per la cedolare paga il registro sulla sua quota di canone, e il bollo sul contratto resta dovuto."
             }
           },
           {
             "@type": "Question",
-            "name": "Dove vanno a finire i dati che inserisco?",
+            "name": "Perché la registrazione online è stata scartata?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Da nessuna parte: calcoli e PDF si fanno sul tuo dispositivo. Codici fiscali e IBAN non vengono salvati nemmeno nel browser."
+              "text": "Subito dopo l’invio l’Agenzia controlla i dati, e le sue FAQ richiamano l’attenzione soprattutto sui dati catastali del quadro C. Copiali dalla visura catastale, che il proprietario consulta gratis con i servizi online: La mia scrivania, Servizi ipotecari e catastali."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ridurre il canone costa qualcosa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. L’atto con cui le parti riducono soltanto il canone di un contratto in corso è esente da registro e bollo; si può comunicare con il modello RLI, codice 8, per pagare meno registro e meno imposte sul reddito."
             }
           }
         ]
@@ -299,7 +326,7 @@
         <span class="inline-block text-xs px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full mb-3">⚡ Privacy Totale - Calcolo nel Browser</span>
         <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-2">Modello RLI e Calcolo Imposta di Registro</h1>
         <p class="text-sm text-gray-600 mt-2 leading-relaxed">
-          Compila i campi per calcolare l'Imposta di Registro, l'Imposta di Bollo o eventuali sanzioni per Ravvedimento Operoso. Genera il Modello RLI per contratti di locazione (opzione Cedolare Secca inclusa).
+          Calcola imposta di registro e bollo per tutti gli undici codici del modello RLI, con le sanzioni se sei in ritardo, e compila il modello ufficiale dell&rsquo;Agenzia delle Entrate: prima registrazione, cedolare secca, proroghe e risoluzioni. Sotto, la guida con esempi, tabelle e fonti.
         </p>
       </div>
 
@@ -353,7 +380,7 @@
               <p id="rli-nota-tipo" hidden class="mt-2 text-xs text-amber-800 leading-relaxed" role="status"></p>
               <div id="guida-rli-tipo" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                 <p><strong class="text-indigo-900">Come scegliere:</strong> sono gli undici codici della tabella delle istruzioni del modello RLI. Nel codice L1 rientrano i contratti a canone libero 4+4, quelli a canone concordato 3+2, i transitori fino a 18 mesi, quelli per studenti universitari e quelli fino a 30 giorni. Il codice L2 vale per il canone concordato 3+2 e per i contratti per studenti quando l&rsquo;abitazione &egrave; in un comune ad alta tensione abitativa, e per gli altri contratti con le agevolazioni dell&rsquo;art. 8 della legge 431/1998.</p>
-                <p><strong class="text-indigo-900">Effetto sull'imposta:</strong> con L2 il registro si calcola sul 70% del canone; S2 paga l&rsquo;1%, T1 lo 0,50%; L3, L4, S3, T2 e T4 pagano un importo fisso. La cedolare secca &egrave; possibile solo con L1 e L2.</p>
+                <p><strong class="text-indigo-900">Effetto sull'imposta:</strong> con L2 (canone concordato in un comune ad alta tensione abitativa) il registro si calcola sul 70% del canone; S2 paga l&rsquo;1%, T1 lo 0,50%; L3, L4, S3, T2 e T4 pagano un importo fisso. La cedolare secca &egrave; possibile solo con L1 e L2.</p>
               </div>
             </div>
             <div>
@@ -573,7 +600,7 @@
             <span class="text-sm font-bold text-white uppercase block mt-1">Totale da Versare</span>
             <span id="out-totale" class="text-2xl font-extrabold text-emerald-400 font-mono tracking-tight">€ 0,00</span>
           </div>
-          <p class="text-[10px] text-gray-500 leading-tight">Il minimo di legge per l'imposta di registro è di 67,00 euro.</p>
+          <p class="text-[10px] text-gray-500 leading-tight">Registro: minimo 67 &euro; per la prima annualit&agrave;; importo fisso per i codici L3, L4, S3, T2 e T4.</p>
 
           <div class="pt-4 mt-2">
             <button id="btn-generate-rli" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
@@ -637,21 +664,21 @@
       <!-- Scheda di affidabilità -->
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Imposte e adempimenti RLI aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Regole verificate a <time datetime="2026-10">ottobre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
-            <p class="font-bold text-gray-900 mb-1">👤 Chi lo cura</p>
-            <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con enti pubblici o aziende. Le regole si controllano sulle fonti indicate in questa pagina e si aggiornano quando cambiano: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
-          </div>
-          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
-            <p class="font-bold text-emerald-900 mb-1">🔒 I tuoi dati</p>
-            <p class="text-emerald-900 leading-relaxed">Nessun dato fiscale o personale viene salvato su server o inviato a terzi: il calcolo avviene al 100% nella memoria del tuo dispositivo (GDPR, artt. 5 e 25).</p>
+            <p class="font-bold text-gray-900 mb-1">&#128100; Chi lo cura</p>
+            <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente senza legami con l&rsquo;Agenzia delle Entrate o altri enti. Le cifre vengono dai documenti ufficiali indicati in questa pagina: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
-            <p class="font-bold text-gray-900 mb-1">📚 Fonti normative</p>
-            <p class="text-gray-600 leading-relaxed">D.P.R. 131/1986 e Tariffa parte I art. 5 (registrazione delle locazioni), D.P.R. 642/1972 (imposta di bollo), D.Lgs. 23/2011 art. 3 (cedolare secca), L. 431/1998 (contratti abitativi e canone concordato), istruzioni al modello RLI dell'Agenzia delle Entrate.</p>
+            <p class="font-bold text-gray-900 mb-1">&#128196; Il modello</p>
+            <p class="text-gray-600 leading-relaxed">Il compilatore riempie il modello RLI pubblicato dall&rsquo;Agenzia delle Entrate con le istruzioni del 20 ottobre 2025. Imposte e codici seguono la tabella delle istruzioni e la Tariffa del D.P.R. 131/1986 letta su Normattiva; un controllo automatico settimanale avvisa se cambiano.</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
+            <p class="text-emerald-900 leading-relaxed">Calcoli e PDF si fanno sul tuo dispositivo: nulla viene inviato a un server. Codici fiscali e IBAN non vengono salvati nemmeno nel browser.</p>
           </div>
         </div>
       </section>
@@ -659,81 +686,193 @@
       <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8" aria-labelledby="guida-titolo">
         <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Registrare un contratto di affitto con il modello RLI</h2>
         <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
-          <p>Ogni contratto di affitto che dura pi&ugrave; di 30 giorni nell&rsquo;anno va registrato all&rsquo;Agenzia delle Entrate con il modello RLI, entro 30 giorni dalla firma o dalla decorrenza, se viene prima. Lo strumento calcola quanto pagare e prepara il modello compilato in PDF.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Come si usa</h3>
-          <ol class="list-decimal pl-5 space-y-1.5">
-            <li>Scegli il tipo di contratto e scrivi il canone annuo e la data della firma.</li>
-            <li>Indica se scegli la cedolare secca.</li>
-            <li>In regime ordinario indica pagine e copie: servono per l&rsquo;imposta di bollo.</li>
-            <li>Compila i dati di proprietari, inquilini e immobili e scarica il PDF.</li>
-          </ol>
-          <p>Lo strumento controlla il formato dei codici fiscali, anche quelli con omocodia, e l&rsquo;ordine degli immobili: una pertinenza (cantina, box) deve venire dopo l&rsquo;immobile principale, altrimenti l&rsquo;invio viene scartato. La trasmissione e il pagamento restano a te, con i servizi online dell&rsquo;Agenzia o allo sportello.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Cedolare secca o regime ordinario</h3>
-          <ul class="list-disc pl-5 space-y-1.5">
-            <li><strong>Cedolare secca:</strong> solo per le case (categorie da A/1 a A/11, escluso A/10). Il proprietario paga il 21% del canone, o il 10% con il canone concordato, e non si pagano n&eacute; imposta di registro n&eacute; bollo. Prima va comunicato all&rsquo;inquilino, per iscritto, che si rinuncia all&rsquo;aggiornamento ISTAT del canone.</li>
-            <li><strong>Regime ordinario:</strong> il canone entra nel reddito IRPEF del proprietario e si pagano registro e bollo. Il registro si divide a met&agrave; fra proprietario e inquilino.</li>
-          </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Quanto si paga in regime ordinario</h3>
-          <div class="overflow-x-auto rounded-lg border border-gray-200">
-            <table class="min-w-full text-sm">
-              <thead class="bg-gray-50"><tr><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Contratto</th><th scope="col" class="px-3 py-2 text-left font-semibold text-gray-900">Imposta di registro</th></tr></thead>
-              <tbody>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">L1</td><td class="px-3 py-2 align-top">Casa a canone libero</td><td class="px-3 py-2 align-top">2% del canone annuo</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">L2</td><td class="px-3 py-2 align-top">Casa a canone concordato</td><td class="px-3 py-2 align-top">2% sul 70% del canone</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">S1</td><td class="px-3 py-2 align-top">Immobile a uso diverso</td><td class="px-3 py-2 align-top">2% del canone annuo</td></tr>
-                <tr class="border-t border-gray-100"><td class="px-3 py-2 align-top">T2</td><td class="px-3 py-2 align-top">Fondo rustico</td><td class="px-3 py-2 align-top">0,5% del canone annuo</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <ul class="list-disc pl-5 space-y-1.5">
-            <li>Per il primo anno il registro non pu&ograve; essere inferiore a 67 &euro;; per gli anni successivi si paga il 2% esatto, entro 30 giorni dall&rsquo;inizio di ogni annualit&agrave;.</li>
-            <li>Bollo: 16 &euro; ogni 4 pagine (o 100 righe) per ogni copia.</li>
-            <li>Per gli immobili strumentali affittati da imprese con partita IVA valgono aliquote diverse, che lo strumento non gestisce.</li>
-          </ul>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Esempi</h3>
-          <p><strong>Bilocale a canone libero, 9.600 &euro; l&rsquo;anno, 8 pagine, 2 copie.</strong> Registro 9.600 &times; 2% = 192 &euro;; bollo 2 &times; 2 &times; 16 = 64 &euro;. Totale alla registrazione 256 &euro;, poi 192 &euro; ogni anno.</p>
-          <p><strong>Lo stesso contratto con la cedolare secca.</strong> Alla registrazione non si paga nulla; il proprietario verser&agrave; 2.016 &euro; (21%) con la dichiarazione dei redditi. L&rsquo;inquilino risparmia la sua met&agrave; del registro, 96 &euro;.</p>
-          <p><strong>Canone concordato per studenti, 7.200 &euro; l&rsquo;anno, 4 pagine, 2 copie.</strong> Registro 7.200 &times; 70% &times; 2% = 100,80 &euro;; bollo 32 &euro;; totale 132,80 &euro;. Il numero di inquilini non cambia l&rsquo;imposta.</p>
-          <h3 class="text-lg font-bold text-gray-900 pt-3">Se sei in ritardo</h3>
-          <p>Oltre i 30 giorni si paga una sanzione: il 45% dell&rsquo;imposta di registro (minimo 150 &euro;) se il ritardo non supera 30 giorni, il 120% (minimo 250 &euro;) oltre. Mettendoti in regola da solo con il ravvedimento operoso si riduce a 1/10 entro 30 giorni, 1/9 entro 90, 1/8 entro un anno e 1/7 dopo; in pi&ugrave; si pagano gli interessi legali sull&rsquo;imposta. Per i contratti di pi&ugrave; anni con pagamento annuale conta l&rsquo;imposta della prima annualit&agrave;. Con la cedolare secca la sanzione si calcola sull&rsquo;imposta di registro che si sarebbe pagata: lo strumento mostra il minimo. Sono le regole per i ritardi dal 1&deg; settembre 2024; l&rsquo;importo esatto lo calcola RLI web al momento dell&rsquo;invio.</p>
-          <p>Anche dopo la registrazione vanno comunicati con il modello RLI, entro 30 giorni, proroghe, cessioni, subentri e chiusura anticipata del contratto.</p>
+<p>Il modello RLI serve per registrare all&rsquo;Agenzia delle Entrate i contratti di locazione e di affitto di immobili e, dopo, per comunicare annualit&agrave;, proroghe, cessioni, risoluzioni e subentri; con lo stesso modello si sceglie o si revoca la cedolare secca. Qui sopra calcoli registro e bollo per tutti gli undici codici del modello e compili il modello ufficiale; sotto trovi le regole, con le cifre delle istruzioni e delle schede dell&rsquo;Agenzia.</p>
+<h3 id="chi-quando" class="text-lg font-bold text-gray-900 pt-3">Chi registra e entro quando</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Tutti i contratti</strong> di locazione e di affitto di immobili vanno registrati, compresi quelli dei fondi rustici e quelli stipulati da soggetti IVA, qualunque sia il canone. Fa eccezione la locazione di un&rsquo;abitazione che non supera 30 giorni complessivi nell&rsquo;anno con lo stesso inquilino: si registra solo in caso d&rsquo;uso.</li>
+  <li><strong>Il termine:</strong> 30 giorni dalla firma, oppure dalla decorrenza del contratto se &egrave; anteriore. Un contratto firmato il 20 marzo con decorrenza 1&deg; aprile si registra entro il 19 aprile; uno firmato il 10 aprile con decorrenza 1&deg; aprile, entro il 1&deg; maggio. Per un contratto verbale i 30 giorni partono dall&rsquo;inizio della locazione.</li>
+  <li><strong>Chi:</strong> l&rsquo;obbligo &egrave; delle parti, proprietario e inquilino, e dell&rsquo;agente immobiliare per i contratti conclusi con la sua mediazione. Basta che firmi uno dei locatori o dei conduttori, ma per l&rsquo;imposta rispondono in solido tutti e due; per legge le spese di registrazione si dividono a met&agrave;.</li>
+  <li><strong>Come:</strong> con i servizi online dell&rsquo;Agenzia (obbligatori per gli agenti immobiliari e per chi possiede almeno 10 immobili), allo sportello di un ufficio con il modello RLI su appuntamento, oppure tramite un intermediario o un delegato. Qualunque ufficio va bene: quello scelto seguir&agrave; il contratto anche negli adempimenti successivi.</li>
+  <li><strong>L&rsquo;attestato energetico:</strong> il contratto deve contenere la clausola con cui l&rsquo;inquilino dichiara di aver ricevuto le informazioni e l&rsquo;APE; la copia dell&rsquo;APE si allega, tranne che per la locazione di una singola unit&agrave; immobiliare.</li>
+</ul>
+<h3 id="quanto-si-paga" class="text-lg font-bold text-gray-900 pt-3">Quanto si paga: registro e bollo</h3>
+<p>Il codice del contratto decide l&rsquo;imposta di registro. La tabella &egrave; quella delle istruzioni del modello; il simulatore qui sopra la applica a tutti gli undici codici.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">I codici della tipologia di contratto e l'imposta di registro</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Contratto</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Registro</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">L1</td><td class="px-1.5 sm:px-3 py-2 align-top">Abitazione: canone libero 4+4, canone concordato 3+2, transitorio fino a 18 mesi, studenti universitari, contratti fino a 30 giorni</td><td class="px-1.5 sm:px-3 py-2 align-top">2% del canone annuo</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">L2</td><td class="px-1.5 sm:px-3 py-2 align-top">Abitazione con le agevolazioni dell&rsquo;art. 8 della legge 431/1998: canone concordato 3+2 e studenti, in un comune ad alta tensione abitativa</td><td class="px-1.5 sm:px-3 py-2 align-top">2% sul 70% del canone</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">L3</td><td class="px-1.5 sm:px-3 py-2 align-top">Abitazione con contratto soggetto a IVA</td><td class="px-1.5 sm:px-3 py-2 align-top">67 &euro; fissi</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">L4</td><td class="px-1.5 sm:px-3 py-2 align-top">Leasing di un&rsquo;abitazione</td><td class="px-1.5 sm:px-3 py-2 align-top">200 &euro; fissi</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">S1</td><td class="px-1.5 sm:px-3 py-2 align-top">Immobile a uso diverso dall&rsquo;abitativo (negozio, ufficio, magazzino)</td><td class="px-1.5 sm:px-3 py-2 align-top">2% del canone annuo</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">S2</td><td class="px-1.5 sm:px-3 py-2 align-top">Immobile strumentale con locatore soggetto a IVA</td><td class="px-1.5 sm:px-3 py-2 align-top">1% del canone annuo</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">S3</td><td class="px-1.5 sm:px-3 py-2 align-top">Leasing di un immobile a uso diverso</td><td class="px-1.5 sm:px-3 py-2 align-top">200 &euro; fissi</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T1</td><td class="px-1.5 sm:px-3 py-2 align-top">Fondo rustico</td><td class="px-1.5 sm:px-3 py-2 align-top">0,50% del corrispettivo di tutta la durata</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T2</td><td class="px-1.5 sm:px-3 py-2 align-top">Fondo rustico agevolato</td><td class="px-1.5 sm:px-3 py-2 align-top">67 &euro; fissi</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T3</td><td class="px-1.5 sm:px-3 py-2 align-top">Terreni e aree non edificabili, cave e torbiere</td><td class="px-1.5 sm:px-3 py-2 align-top">2% del corrispettivo di tutta la durata</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T4</td><td class="px-1.5 sm:px-3 py-2 align-top">Terreni destinati a parcheggio, con contratto soggetto a IVA</td><td class="px-1.5 sm:px-3 py-2 align-top">67 &euro; fissi</td></tr>
+    </tbody>
+  </table>
+</div>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Il minimo:</strong> per la prima annualit&agrave; il registro non pu&ograve; essere inferiore a 67 &euro;. Pagando anno per anno, le annualit&agrave; successive possono costare anche meno.</li>
+  <li><strong>Il canone concordato (L2):</strong> la base scende al 70% solo se l&rsquo;abitazione &egrave; in un comune ad alta tensione abitativa; altrimenti lo stesso contratto va con il codice L1 e paga il 2% pieno.</li>
+  <li><strong>Contratti di pi&ugrave; anni:</strong> si pu&ograve; pagare subito l&rsquo;imposta di tutta la durata, con uno sconto pari alla met&agrave; del tasso di interesse legale per il numero delle annualit&agrave;, oppure anno per anno, sul canone di ciascun anno con gli aumenti ISTAT. Se il contratto finisce prima e avevi pagato tutto, ti spetta il rimborso delle annualit&agrave; successive. Per i terreni (codici T) si paga sempre in una volta.</li>
+  <li><strong>Il bollo:</strong> 16 &euro; per ogni copia, ogni quattro facciate scritte e comunque ogni cento righe; si paga anche sugli allegati. Nel modello si indicano i fogli e le copie, non le pagine.</li>
+  <li><strong>Il deposito cauzionale</strong> versato dall&rsquo;inquilino non paga registro; se lo versa un terzo, si paga lo 0,50%.</li>
+  <li><strong>Ridurre il canone</strong> di un contratto in corso non costa nulla: l&rsquo;atto che riduce soltanto il canone &egrave; esente da registro e bollo.</li>
+</ul>
+<h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Esempi con i numeri</h3>
+<p><strong>Esempio 1 &mdash; Bilocale a canone libero (L1).</strong> Canone di 9.600 &euro; l&rsquo;anno, contratto di 8 facciate firmato in due copie. Registro: 9.600 &times; 2% = 192 &euro;. Bollo: 8 facciate sono 2 fogli, per 2 copie: 2 &times; 2 &times; 16 = 64 &euro;. Alla registrazione si versano 256 &euro;, poi 192 &euro; all&rsquo;inizio di ogni annualit&agrave; (di pi&ugrave; se il canone si aggiorna con l&rsquo;ISTAT), divisi a met&agrave; fra proprietario e inquilino.</p>
+<p><strong>Esempio 2 &mdash; Lo stesso contratto con la cedolare secca.</strong> Alla registrazione non si paga nulla e il bollo non &egrave; dovuto. Il proprietario verser&agrave; il 21% del canone, 2.016 &euro; l&rsquo;anno, con la dichiarazione dei redditi, e rinuncia per tutta la durata dell&rsquo;opzione agli aumenti del canone, anche ISTAT.</p>
+<p><strong>Esempio 3 &mdash; Canone concordato in un comune ad alta tensione abitativa (L2).</strong> Canone di 7.200 &euro; l&rsquo;anno, 4 facciate, due copie. Registro: 7.200 &times; 70% &times; 2% = 100,80 &euro;; bollo 2 &times; 16 = 32 &euro;; totale 132,80 &euro;. Con la cedolare secca l&rsquo;aliquota scende al 10%: 720 &euro; l&rsquo;anno.</p>
+<p><strong>Esempio 4 &mdash; Il minimo.</strong> Una stanza affittata a 250 &euro; al mese, 3.000 &euro; l&rsquo;anno: il 2% sarebbe 60 &euro;, ma per la prima annualit&agrave; se ne pagano 67. Dal secondo anno, pagando anno per anno, bastano 60 &euro;.</p>
+<p><strong>Esempio 5 &mdash; Un terreno agricolo (T1).</strong> &Egrave; l&rsquo;esempio delle FAQ dell&rsquo;Agenzia: affitto per 7 anni a 6.000 &euro; l&rsquo;anno. Nel modello si indica il corrispettivo di tutta la durata, 42.000 &euro;, e si barra &laquo;pagamento intera durata&raquo;. Registro: 0,50% di 42.000 = 210 &euro;, una volta sola.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Gli esempi in breve</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Contratto</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Registro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Bollo</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Alla registrazione</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Bilocale a canone libero, 9.600 &euro; l&rsquo;anno, 8 facciate, 2 copie</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">L1</td><td class="px-1.5 sm:px-3 py-2 align-top">192,00 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">64,00 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">256,00 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Lo stesso con la cedolare secca</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">L1</td><td class="px-1.5 sm:px-3 py-2 align-top">&mdash;</td><td class="px-1.5 sm:px-3 py-2 align-top">&mdash;</td><td class="px-1.5 sm:px-3 py-2 align-top">0 &euro; (cedolare 2.016 &euro; l&rsquo;anno con il 730 o il Redditi)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Canone concordato in un comune ad alta tensione abitativa, 7.200 &euro; l&rsquo;anno, 4 facciate, 2 copie</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">L2</td><td class="px-1.5 sm:px-3 py-2 align-top">100,80 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">32,00 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">132,80 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Stanza a 3.000 &euro; l&rsquo;anno, 4 facciate, 2 copie</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">L1</td><td class="px-1.5 sm:px-3 py-2 align-top">67,00 &euro; (il 2% sarebbe 60 &euro;)</td><td class="px-1.5 sm:px-3 py-2 align-top">32,00 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">99,00 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Terreno agricolo per 7 anni a 6.000 &euro; l&rsquo;anno</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">T1</td><td class="px-1.5 sm:px-3 py-2 align-top">210,00 &euro; (0,50% di 42.000 &euro;)</td><td class="px-1.5 sm:px-3 py-2 align-top">secondo fogli e copie</td><td class="px-1.5 sm:px-3 py-2 align-top">registro pagato una volta sola</td></tr>
+    </tbody>
+  </table>
+</div>
+<h3 id="cedolare" class="text-lg font-bold text-gray-900 pt-3">Cedolare secca: quando si pu&ograve; scegliere</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Che cosa sostituisce:</strong> l&rsquo;IRPEF e le addizionali sul canone, e le imposte di registro e di bollo sul contratto, sulle proroghe e sulla risoluzione. Non sostituisce il registro dovuto per la cessione del contratto.</li>
+  <li><strong>Le aliquote:</strong> 21% del canone annuo; 10% per i contratti a canone concordato su abitazioni nei comuni con carenza di abitazioni (Bari, Bologna, Catania, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, i comuni confinanti e gli altri capoluoghi di provincia) e negli altri comuni ad alta tensione abitativa individuati dal CIPE.</li>
+  <li><strong>Chi pu&ograve; sceglierla:</strong> il proprietario o l&rsquo;usufruttuario persona fisica che non affitta nell&rsquo;esercizio di impresa o professione, per abitazioni di categoria da A/1 a A/11 (escluso l&rsquo;A/10, uffici) e relative pertinenze. Non vale se l&rsquo;inquilino affitta nell&rsquo;esercizio della sua impresa o professione, e di norma non vale per le sublocazioni.</li>
+  <li><strong>La lettera all&rsquo;inquilino:</strong> prima di scegliere la cedolare il proprietario comunica all&rsquo;inquilino, con raccomandata, che rinuncia ad aggiornare il canone; senza, l&rsquo;opzione non ha effetto. La raccomandata non serve se la rinuncia &egrave; gi&agrave; scritta nel contratto.</li>
+  <li><strong>Pi&ugrave; proprietari:</strong> ognuno sceglie per s&eacute;. Chi resta nel regime ordinario paga il registro sulla sua quota di canone, e il bollo sul contratto resta dovuto.</li>
+  <li><strong>Quando:</strong> alla registrazione, oppure in un&rsquo;annualit&agrave; successiva o alla proroga, entro il termine per pagare il registro di quell&rsquo;anno. Le imposte di registro e di bollo gi&agrave; pagate non si rimborsano. L&rsquo;opzione si pu&ograve; revocare in ogni annualit&agrave; successiva, pagando il registro da quell&rsquo;anno.</li>
+</ul>
+<p>Per confrontare quanto pagheresti nei due regimi c&rsquo;&egrave; <a href="/cittadino-tasse/imposta-registro-locazioni/" class="text-indigo-700 underline">il calcolo cedolare secca o registro</a>.</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Il modello quadro per quadro</h3>
+<p>Il compilatore qui sopra segue lo stesso ordine e per ogni casella mostra la spiegazione delle istruzioni ufficiali. In breve:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Che cosa si scrive in ogni quadro del modello RLI</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quadro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa si scrive</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Attenzione</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">A &mdash; Dati generali</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice del contratto, le date di inizio e fine, il canone annuo (per un contratto sotto l&rsquo;anno l&rsquo;importo di tutta la durata; per gli affitti di terreni, codici T, il corrispettivo di tutta la durata)</td><td class="px-1.5 sm:px-3 py-2 align-top">Con pi&ugrave; proprietari il canone si scrive per intero. &laquo;Pagamento intera durata&raquo; va sempre barrata con i codici T. Con un &laquo;caso particolare&raquo; (canoni diversi, sublocazione) il contratto va allegato.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sezione I &mdash; Registrazione</td><td class="px-1.5 sm:px-3 py-2 align-top">Ufficio territoriale, numero di fogli e di copie, data di stipula, allegati soggetti a bollo</td><td class="px-1.5 sm:px-3 py-2 align-top">Un foglio &egrave; di quattro facciate e al massimo cento righe: 6 facciate sono 2 fogli. Allo sportello servono due originali, oppure un originale e una fotocopia.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sezione II &mdash; Adempimenti successivi</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice dell&rsquo;adempimento (da 1 a 8) e gli estremi o il codice identificativo del contratto</td><td class="px-1.5 sm:px-3 py-2 align-top">Alla prima registrazione resta vuota.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sezione III &mdash; Richiedente</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi presenta il modello: parte del contratto (1), mediatore (2) o parte subentrata non ancora comunicata (3)</td><td class="px-1.5 sm:px-3 py-2 align-top">La richiesta va firmata, a pena di nullit&agrave;, dal locatore, dal conduttore o dal mediatore. Per un minore firma il genitore, con il codice carica 2.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">B &mdash; Soggetti</td><td class="px-1.5 sm:px-3 py-2 align-top">Locatori e conduttori, con codice fiscale, nome e dati di nascita</td><td class="px-1.5 sm:px-3 py-2 align-top">La &laquo;tipologia conduttore&raquo; &egrave; obbligatoria: di norma il codice 3. Chi &egrave; nato all&rsquo;estero indica lo Stato e la sigla EE.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">C &mdash; Immobili</td><td class="px-1.5 sm:px-3 py-2 align-top">I dati della visura catastale: codice del comune, foglio, particella, subalterno, categoria, rendita, indirizzo</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;immobile principale va prima delle pertinenze. Con dati catastali sbagliati la registrazione online viene scartata: copiali dalla visura.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D &mdash; Cedolare secca</td><td class="px-1.5 sm:px-3 py-2 align-top">Una riga per ogni locatore e immobile: quota di possesso e scelta &laquo;s&igrave;&raquo; o &laquo;no&raquo;</td><td class="px-1.5 sm:px-3 py-2 align-top">Ogni locatore che sceglie (o revoca) la cedolare firma nella &laquo;dichiarazione dei locatori&raquo;.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">E &mdash; Canoni diversi</td><td class="px-1.5 sm:px-3 py-2 align-top">I canoni dalla seconda alla nona annualit&agrave;</td><td class="px-1.5 sm:px-3 py-2 align-top">Solo con il caso particolare 1 o 3.</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="my-6">
+  <img src="/assets/esempi/rli-cedolare-l1.webp" width="1100" height="1787" loading="lazy" decoding="async"
+       alt="Il modello RLI compilato con il compilatore di questa pagina: contratto L1 dal 1° novembre 2026 al 31 ottobre 2030, canone di 9.600 euro, 2 fogli e 2 copie, firmato il 20 ottobre 2026; locatore Mario Rossi, conduttrice Laura Bianchi; appartamento a Genova, codice comune D969, categoria A3, rendita 650,74 euro; quadro D con la cedolare secca al 100%."
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Un contratto 4+4 registrato con la cedolare secca, compilato qui sopra e scaricato: quadro A (codice L1, durata, canone), sezione I (fogli, copie, data), il richiedente, le parti nel quadro B, i dati catastali nel quadro C (il codice D969 di Genova &egrave; quello dell&rsquo;esempio delle FAQ dell&rsquo;Agenzia) e la scelta della cedolare nel quadro D. Persone, dati catastali e importi sono inventati.</figcaption>
+</figure>
+<h3 id="adempimenti" class="text-lg font-bold text-gray-900 pt-3">Dopo la registrazione: annualit&agrave;, proroghe, cessioni e risoluzioni</h3>
+<p>Proroghe, cessioni e risoluzioni si comunicano all&rsquo;ufficio dove il contratto &egrave; registrato, con lo stesso modello RLI (sezione II) o con i servizi online, entro 30 giorni; nello stesso termine si paga il registro delle annualit&agrave; successive.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Gli adempimenti dopo la registrazione</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Adempimento (codice)</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Entro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Regime ordinario</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Cedolare secca</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Annualit&agrave; successiva (1)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">30 giorni dall&rsquo;inizio dell&rsquo;annualit&agrave;</td><td class="px-1.5 sm:px-3 py-2 align-top">2% del canone di quell&rsquo;anno, anche sotto i 67 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente da pagare</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Proroga (2)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">30 giorni dalla scadenza</td><td class="px-1.5 sm:px-3 py-2 align-top">Registro della proroga, tutto insieme o anno per anno</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente da pagare, ma l&rsquo;opzione va confermata</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Cessione (3)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">30 giorni</td><td class="px-1.5 sm:px-3 py-2 align-top">67 &euro; fissi se senza corrispettivo (contratti di pi&ugrave; anni su immobili urbani)</td><td class="px-1.5 sm:px-3 py-2 align-top">Il registro &egrave; dovuto: la cedolare non lo sostituisce</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Risoluzione (4, oppure 7 con il corrispettivo pagato insieme)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">30 giorni</td><td class="px-1.5 sm:px-3 py-2 align-top">67 &euro; fissi se senza corrispettivo (contratti di pi&ugrave; anni su immobili urbani)</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente, se tutti i locatori avevano la cedolare</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Rinegoziazione che riduce soltanto il canone (8)</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Nessun obbligo</td><td class="px-1.5 sm:px-3 py-2 align-top">Esente da registro e bollo</td><td class="px-1.5 sm:px-3 py-2 align-top">Esente</td></tr>
+    </tbody>
+  </table>
+</div>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li><strong>Le annualit&agrave; successive</strong> si pagano con l&rsquo;addebito sul conto tramite i servizi online, oppure con <a href="/cittadino-tasse/f24-editabile/f24-elide/" class="text-indigo-700 underline">l&rsquo;F24 ELIDE</a>. Nel campo &laquo;annualit&agrave;&raquo; si scrive l&rsquo;anno in cui l&rsquo;annualit&agrave; comincia: per quella dal 1&deg; luglio 2024 al 30 giugno 2025, 2024.</li>
+  <li><strong>Una risoluzione oltre l&rsquo;anno</strong> non si pu&ograve; pi&ugrave; comunicare online: bisogna andare all&rsquo;ufficio dove il contratto &egrave; registrato.</li>
+  <li><strong>Il subentro</strong> (per esempio quando la casa viene venduta o ereditata) si comunica con il codice 6; il nuovo proprietario pu&ograve; scegliere la cedolare entro 30 giorni dal subentro.</li>
+  <li><strong>La proroga con la cedolare:</strong> l&rsquo;opzione va confermata nella stessa comunicazione. Se la comunicazione manca, l&rsquo;opzione non si perde se hai continuato a versare e dichiarare la cedolare.</li>
+</ul>
+<h3 id="ritardi" class="text-lg font-bold text-gray-900 pt-3">Se registri in ritardo</h3>
+<p>Per le violazioni dal 1&deg; settembre 2024 la registrazione tardiva costa il 45% dell&rsquo;imposta di registro, con un minimo di 150 &euro;, se il ritardo non supera 30 giorni, e il 120%, con un minimo di 250 &euro;, oltre. Mettendoti in regola da solo prima di un controllo (ravvedimento operoso) la sanzione si riduce, e si aggiungono gli interessi legali giorno per giorno:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Sanzioni per la registrazione tardiva e riduzioni con il ravvedimento</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Ritardo</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Sanzione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Con il ravvedimento</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Fino a 30 giorni</td><td class="px-1.5 sm:px-3 py-2 align-top">45% dell&rsquo;imposta, almeno 150 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">1/10: almeno 15 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Da 31 a 90 giorni</td><td class="px-1.5 sm:px-3 py-2 align-top">120% dell&rsquo;imposta, almeno 250 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">1/9: almeno 27,78 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Da 91 giorni a un anno</td><td class="px-1.5 sm:px-3 py-2 align-top">120%, almeno 250 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">1/8: almeno 31,25 &euro;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Oltre un anno</td><td class="px-1.5 sm:px-3 py-2 align-top">120%, almeno 250 &euro;</td><td class="px-1.5 sm:px-3 py-2 align-top">1/7: almeno 35,71 &euro;</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Esempio 6 &mdash; Venti giorni di ritardo.</strong> Il bilocale dell&rsquo;esempio 1, con 192 &euro; di registro: il 45% sarebbe 86,40 &euro;, quindi si applica il minimo di 150 &euro;, ridotto a un decimo con il ravvedimento: 15 &euro;, pi&ugrave; gli interessi. Anche con la cedolare secca la registrazione tardiva &egrave; sanzionata: il riepilogo qui sopra fa il conto, e RLI web propone il calcolo delle sanzioni prima dell&rsquo;invio.</p>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 1&deg; gennaio 2027</h3>
+<p>Dal 2027 le regole citate in questa pagina passano in testi unici nuovi: il D.P.R. 131/1986 lascia il posto al testo unico dell&rsquo;imposta di registro e degli altri tributi indiretti (D.Lgs. 123/2025), la cedolare secca passa all&rsquo;art. 203 del nuovo testo unico delle imposte sui redditi (D.Lgs. 117/2026), con le stesse aliquote del 21% e del 10%, e la sanzione per la mancata registrazione all&rsquo;art. 41 del testo unico delle sanzioni (D.Lgs. 173/2024). Quando l&rsquo;Agenzia aggiorner&agrave; modello e istruzioni, aggiorneremo anche questa pagina.</p>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Con la cedolare secca devo presentare lo stesso il modello RLI?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: &egrave; proprio con il modello RLI che si sceglie la cedolare secca. La cedolare evita di pagare registro e bollo, non la registrazione.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi deve registrare il contratto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">L&rsquo;obbligo &egrave; di entrambe le parti: di solito se ne occupa il proprietario o l&rsquo;agenzia immobiliare. All&rsquo;inquilino conviene controllare che sia fatto, perch&eacute; senza registrazione non pu&ograve; avere le detrazioni per l&rsquo;affitto.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa faccio se il contratto finisce prima?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Comunichi la risoluzione con il modello RLI entro 30 giorni. In regime ordinario si paga un&rsquo;imposta fissa di 67 &euro;; con la cedolare secca la comunicazione &egrave; gratuita.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il contratto ha una decorrenza passata: da quando contano i 30 giorni?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Dalla data pi&ugrave; vecchia fra firma e decorrenza. Se registri oggi un contratto iniziato mesi fa sei gi&agrave; in ritardo e devi pagare anche le sanzioni.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si gestisce la proroga?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Va comunicata con il modello RLI entro 30 giorni dalla scadenza. In regime ordinario si paga il registro della nuova annualit&agrave;; con la cedolare secca la comunicazione serve a confermare la scelta.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se l&rsquo;immobile ha pi&ugrave; proprietari?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Si indicano tutti. Ognuno pu&ograve; scegliere per la sua quota se usare la cedolare secca o il regime ordinario.</p>
-        </details>
-        <details class="group border-b border-gray-100 py-3">
-          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove vanno a finire i dati che inserisco?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Da nessuna parte: calcoli e PDF si fanno sul tuo dispositivo. Codici fiscali e IBAN non vengono salvati nemmeno nel browser.</p>
-        </details>
-        <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
-        <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131</a>: testo unico dell&rsquo;imposta di registro.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2011-03-14;23~art3" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 14 marzo 2011, n. 23, art. 3</a>: cedolare secca.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 9 dicembre 1998, n. 431</a>: contratti di locazione abitativa e canone concordato.</li>
-          <li><a href="https://www.agenziaentrate.gov.it/portale/schede/pagamenti/registrazione-atti/modelli-e-istruzioni-registrazione-atti" class="text-indigo-700 underline" target="_blank" rel="noopener">Modello RLI</a> e istruzioni, Agenzia delle Entrate.</li>
-        </ul>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Con la cedolare secca devo registrare lo stesso il contratto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. La cedolare sostituisce IRPEF, addizionali, registro e bollo, ma il contratto va registrato comunque: l&rsquo;opzione si esercita proprio nel quadro D del modello RLI, alla registrazione o in un&rsquo;annualit&agrave; successiva.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi deve registrare il contratto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le parti, proprietario e inquilino, e l&rsquo;agente immobiliare per i contratti conclusi con la sua mediazione. Basta la firma di uno dei locatori o dei conduttori, ma per l&rsquo;imposta rispondono in solido tutti e due; le spese di registrazione si dividono a met&agrave;.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando va registrato il contratto?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Entro 30 giorni dalla firma o dalla decorrenza, se &egrave; anteriore. Firmato il 20 marzo con decorrenza 1&deg; aprile: entro il 19 aprile. Firmato il 10 aprile con decorrenza 1&deg; aprile: entro il 1&deg; maggio.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Un affitto di 20 giorni va registrato?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se &egrave; un&rsquo;abitazione e con lo stesso inquilino non si superano 30 giorni complessivi nell&rsquo;anno: si registra solo in caso d&rsquo;uso. La cedolare secca si pu&ograve; applicare anche ai contratti che non vanno registrati.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Cosa faccio se il contratto finisce prima?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Comunichi la risoluzione con il modello RLI entro 30 giorni. Per un contratto di pi&ugrave; anni su un immobile urbano, senza corrispettivo, si pagano 67 &euro; fissi; con la cedolare secca niente, se tutti i locatori l&rsquo;avevano scelta. Se avevi pagato il registro per tutta la durata, ti spetta il rimborso delle annualit&agrave; successive.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si paga il registro degli anni successivi?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Entro 30 giorni dall&rsquo;inizio di ogni annualit&agrave;: il 2% del canone di quell&rsquo;anno, con gli aumenti ISTAT, anche se &egrave; meno di 67 &euro;. Si paga con l&rsquo;addebito sul conto dei servizi online (codice 1) oppure con l&rsquo;F24 ELIDE.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si gestisce la proroga?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Si comunica con il modello RLI entro 30 giorni dalla scadenza e si paga il registro della proroga, tutto insieme o anno per anno. Con la cedolare secca non si paga nulla, ma l&rsquo;opzione va confermata nella stessa comunicazione.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Se l&rsquo;immobile ha pi&ugrave; proprietari?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Si indicano tutti nel quadro B e il canone si scrive per intero. Nel quadro D ognuno sceglie per s&eacute;: chi non opta per la cedolare paga il registro sulla sua quota di canone, e il bollo sul contratto resta dovuto.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Perch&eacute; la registrazione online &egrave; stata scartata?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Subito dopo l&rsquo;invio l&rsquo;Agenzia controlla i dati, e le sue FAQ richiamano l&rsquo;attenzione soprattutto sui dati catastali del quadro C. Copiali dalla visura catastale, che il proprietario consulta gratis con i servizi online: La mia scrivania, Servizi ipotecari e catastali.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Ridurre il canone costa qualcosa?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. L&rsquo;atto con cui le parti riducono soltanto il canone di un contratto in corso &egrave; esente da registro e bollo; si pu&ograve; comunicare con il modello RLI, codice 8, per pagare meno registro e meno imposte sul reddito.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/registrazione-di-un-nuovo-contratto/modello_istruzioni-regime-ordinario" class="text-indigo-700 underline" target="_blank" rel="noopener">Modello RLI e istruzioni</a> (Agenzia delle Entrate, 20 ottobre 2025): tabella dei codici, compilazione dei quadri, adempimenti successivi.</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/registrazione-di-un-nuovo-contratto/schedainfo-regime-ordinario" class="text-indigo-700 underline" target="_blank" rel="noopener">Contratto di locazione o affitto di beni immobili &ndash; RLI: che cos&rsquo;&egrave;</a>, <a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/registrazione-di-un-nuovo-contratto/quanto-si-paga-regime-ordinario" class="text-indigo-700 underline" target="_blank" rel="noopener">quanto si paga</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/registrazione-di-un-nuovo-contratto/faq" class="text-indigo-700 underline" target="_blank" rel="noopener">risposte alle domande pi&ugrave; frequenti</a>, schede dell&rsquo;Agenzia delle Entrate.</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/cedolare-secca/scheda-informativa-cedolare-secca" class="text-indigo-700 underline" target="_blank" rel="noopener">Cedolare secca &ndash; che cos&rsquo;&egrave;</a>, scheda dell&rsquo;Agenzia delle Entrate aggiornata al 29 maggio 2026.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131~art10" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131, art. 10</a>: chi deve chiedere la registrazione.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131, art. 13</a>: termini, anche per i contratti verbali.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131~art17" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131, art. 17</a>: pagamento, annualit&agrave; e comunicazione di cessioni, risoluzioni e proroghe.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131~art69" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 26 aprile 1986, n. 131, art. 69</a>: sanzioni per la registrazione omessa o tardiva.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131:1~art5" class="text-indigo-700 underline" target="_blank" rel="noopener">Tariffa parte I, art. 5, del D.P.R. 131/1986</a>: aliquote e minimo di 67 euro; <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-04-26;131:2~art2bis" class="text-indigo-700 underline" target="_blank" rel="noopener">Tariffa parte II, art. 2-bis</a>: contratti fino a 30 giorni.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2011-03-14;23~art3" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 14 marzo 2011, n. 23, art. 3</a>: cedolare secca.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1998-12-09;431~art8" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 9 dicembre 1998, n. 431, art. 8</a>: base del 70% per il canone concordato.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1978-07-27;392~art8" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 luglio 1978, n. 392, art. 8</a>: spese di registrazione divise a met&agrave;.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:1997-12-18;472~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 18 dicembre 1997, n. 472, art. 13</a>: ravvedimento operoso.</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-06-19;117:1~art203" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 19 giugno 2026, n. 117, art. 203</a>: la cedolare secca dal 1&deg; gennaio 2027.</li>
+</ul>
         <p class="mt-6 text-xs text-gray-500 leading-relaxed">Il PDF &egrave; un aiuto alla compilazione: prima dell&rsquo;invio controlla i dati con le istruzioni ufficiali del modello.</p>
       </section>
 
