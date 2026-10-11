@@ -70,5 +70,6 @@ test('la pagina usa il modulo e non la vecchia sanzione del 25%', () => {
   const pagina = fs.readFileSync(path.join(__dirname, '..', 'cittadino-tasse', 'modello-rli', 'index.html'), 'utf8');
   const ordine = [...pagina.matchAll(/<script defer src="\/js\/([^"]+)"/g)].map((m) => m[1]);
   assert.ok(ordine.indexOf('rli-sanzioni.js') >= 0 && ordine.indexOf('rli-sanzioni.js') < ordine.indexOf('rli.js'));
-  assert.match(pagina, /il 45% dell&rsquo;imposta di registro \(minimo 150 &euro;\)/);
+  assert.match(pagina, /il 45% dell&rsquo;imposta di registro, con un minimo di 150 &euro;/);
+  assert.match(pagina, /il 120%, con un minimo di 250 &euro;/);
 });

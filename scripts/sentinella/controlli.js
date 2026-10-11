@@ -207,12 +207,17 @@ function paginaErrore(html) {
  * Delle schede degli enti si tengono le righe con cifre (importi, date,
  * soglie, percentuali): sono quelle da cui dipendono i calcoli, e cosi' un
  * menu ridisegnato non fa scattare l'allarme. Le righe che sembrano codice
- * restano fuori.
+ * restano fuori, e cosi' gli avvisi che il portale dell'Agenzia mette in
+ * fondo a tutte le pagine («La dichiarazione precompilata 2026 è online»):
+ * cambiano ogni anno e farebbero scattare tutte le schede insieme.
  */
+const AVVISI_DEL_PORTALE = /^La dichiarazione precompilata \d{4} è online$/i;
+
 function righeConCifre(righe) {
   return righe.filter((r) => /\d/.test(r)
     && (r.match(/\p{L}{2,}/gu) || []).length >= 3
-    && !/[{};=]|\\x|function\b|\bvar\b|\breturn\b|https?:\/\//.test(r));
+    && !/[{};=]|\\x|function\b|\bvar\b|\breturn\b|https?:\/\//.test(r)
+    && !AVVISI_DEL_PORTALE.test(r));
 }
 
 /**

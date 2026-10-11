@@ -237,7 +237,15 @@
       case 'ateco':
         return /^[0-9]{4,6}$/.test(v) ? null : 'Il codice ATECO va scritto in cifre, senza punti (per esempio 620100).';
       case 'importo':
-        return /^[0-9]{1,11}$/.test(v.replace(/[.,\s]/g, '')) ? null : 'Indica un importo in euro, senza decimali.';
+        // euro interi: il punto delle migliaia va bene, la virgola no. Prima la
+        // virgola si toglieva e «650,74» nel PDF diventava 65074.
+        return /^([0-9]{1,3}(\.[0-9]{3})+|[0-9]{1,11})$/.test(v.replace(/\s/g, ''))
+          ? null : 'Indica un importo in euro senza decimali (per esempio 9600).';
+      case 'percentuale': {
+        const m = /^([0-9]{1,3})(?:[.,]([0-9]{1,2}))?$/.exec(v.replace(/[\s%]/g, ''));
+        return m && Number(m[1] + '.' + (m[2] || '0')) <= 100
+          ? null : 'Indica una percentuale fino a 100, con al massimo due decimali (per esempio 50 o 33,33).';
+      }
       case 'numero':
         return /^[0-9]{1,4}$/.test(v) ? null : 'Indica solo cifre.';
       case 'importoEuro':
@@ -321,6 +329,7 @@
       case 'ibanCompleto': return 'type="text" maxlength="32" class="mp-input mp-maiuscolo"';
       case 'ateco': return 'type="text" maxlength="6" inputmode="numeric" class="mp-input"';
       case 'importo': return 'type="text" inputmode="numeric" class="mp-input"';
+      case 'percentuale': return 'type="text" inputmode="decimal" maxlength="7" class="mp-input"';
       case 'numero': return 'type="text" inputmode="numeric" maxlength="4" class="mp-input"';
       case 'importoEuro':
       case 'euro': return 'type="text" inputmode="decimal" class="mp-input"';
@@ -709,6 +718,7 @@
       case 'ibanCompleto': return v.replace(/\s/g, '').toUpperCase();
       case 'importo': case 'numero': case 'anno': return v.replace(/[^\d]/g, '');
       case 'euro': return unisciImporto(v);
+      case 'percentuale': return v.replace(/[\s%]/g, '').replace('.', ',');
       case 'cap': case 'piva': case 'cfNum': case 'ateco': return v.replace(/[^\dA-Za-z]/g, '');
       default: return v;
     }
@@ -838,6 +848,8 @@
     const testi = new Map();
     const spunte = new Set();
     const quadri = new Set();
+    // i campi di testo libero (un numero civico, un nome): niente zero davanti
+    const liberi = new Set();
 
     const segnaQuadro = (passo, campo) => {
       const q = (campo && campo.quadro) || passo.quadro;
@@ -881,6 +893,7 @@
       const testo = perModello(valore, campo.type);
       if (!testo) return;
       testi.set(campo.pdf, testo);
+      if (!campo.type || campo.type === 'testo') liberi.add(campo.pdf);
       segnaQuadro(passo, campo);
     };
 
@@ -931,6 +944,7 @@
             const testo = perModello(valore, sotto.type);
             if (!testo) return;
             testi.set(nomePdf, testo);
+            if (!sotto.type || sotto.type === 'testo') liberi.add(nomePdf);
             segnaQuadro(passo, null);
           });
         }
@@ -987,7 +1001,7 @@
       });
     }
 
-    return { testi, spunte };
+    return { testi, spunte, liberi };
   }
 
   // pdf-lib (circa 520 KB) si scarica solo quando si genera il PDF: aprire la
@@ -1042,7 +1056,7 @@
 
       const documento = await PDFLib.PDFDocument.load(originale);
       const modulo = documento.getForm();
-      const { testi, spunte } = raccogli();
+      const { testi, spunte, liberi } = raccogli();
       const mancanti = [];
 
       testi.forEach((testo, nome) => {
@@ -1056,8 +1070,9 @@
           fissaCorpoDelCampo(campo);
           // Nelle caselline da due cifre (giorno, mese, codici a due cifre)
           // una cifra sola va preceduta da uno zero: 6 diventa 06. Senza,
-          // finirebbe nella prima casellina e la data si leggerebbe male.
-          const scritto = max === 2 && /^\d$/.test(valore) ? '0' + valore : valore;
+          // finirebbe nella prima casellina e la data si leggerebbe male. Non
+          // nel testo libero: il numero civico 1 resta 1, non 01.
+          const scritto = max === 2 && /^\d$/.test(valore) && !liberi.has(nome) ? '0' + valore : valore;
           campo.setText(max && scritto.length > max ? scritto.slice(0, max) : scritto);
           return;
         } catch (e) { /* non e' una casella di testo: si prova col menu */ }
@@ -1275,6 +1290,10 @@
   // Permette a uno strumento della stessa pagina (per esempio il simulatore
   // delle imposte) di travasare i propri dati dentro al modulo.
   window.CompilatoreModuli = {
+    // Il controllo e la scrittura di un valore, senza pagina: li usano i test.
+    controllaValore,
+    perModello,
+
     /**
      * @param {Object} mappa  chiavi "passo.campo" oppure "passo.gruppo.indice.sottocampo"
      * @param {Object} [opzioni]  { attiva: ["passoOpzionale", ...] }

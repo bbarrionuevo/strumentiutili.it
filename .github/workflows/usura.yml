@@ -39,8 +39,10 @@ jobs:
         with:
           node-version: '20'
 
+      # prima l'update: l'elenco dei pacchetti dell'immagine puo' essere
+      # vecchio e lo specchio risponde 404 sulle versioni sparite (ottobre 2026)
       - name: Strumenti per leggere i PDF
-        run: sudo apt-get install -y -qq poppler-utils > /dev/null
+        run: sudo apt-get update -qq > /dev/null && sudo apt-get install -y -qq poppler-utils > /dev/null
 
       - name: Leggi i decreti del MEF
         env:

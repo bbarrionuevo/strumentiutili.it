@@ -4,11 +4,18 @@
 // (js/rli.js), la guida sulla registrazione dell'affitto (scripts/guide/) e
 // i test.
 //
-// Regole (data/regole-fiscali-2026.json, rli_parametri; D.P.R. 131/1986):
-//   - registro: 2% del canone annuo (L2, canone concordato: sul 70%); per i
-//     fondi rustici (T2, T3) lo 0,5%; mai meno di 67 euro;
+// Regole (data/regole-fiscali-2026.json, rli_parametri): la tabella dei
+// codici del quadro A nelle istruzioni del modello RLI e la Tariffa parte I,
+// art. 5, del D.P.R. 131/1986.
+//   - registro in percentuale (codiciContratto): 2% per L1, S1 e T3, 2% sul
+//     70% del canone per L2, 1% per S2, 0,50% per T1 (fondo rustico); mai
+//     meno di 67 euro (nota II dell'art. 5);
+//   - imposta fissa (codiciImpostaFissa): 67 euro per L3, T2 e T4, 200 euro
+//     per L4 e S3, qualunque sia il canone;
 //   - bollo: 16 euro ogni quattro facciate, per ogni copia;
 //   - con la cedolare secca non si pagano ne' registro ne' bollo.
+// Per i codici T l'importo da indicare e' il corrispettivo dell'intera
+// durata (istruzioni RLI, «Importo del canone»): il conto non cambia.
 //
 // Funziona nel browser (window.RliImposte) e in Node.
 (function (root, factory) {
@@ -24,26 +31,33 @@
   }
 
   /**
-   * @param {object} dati   { canone (annuo), tipo: 'L1'|'L2'|'S1'|'T2'|'T3', cedolare, pagine, copie }
+   * @param {object} dati   { canone (annuo; per i codici T il corrispettivo
+   *                          dell'intera durata), tipo: uno degli undici codici
+   *                          L1-L4, S1-S3, T1-T4, cedolare, pagine, copie }
    * @param {object} regole rli_parametri
-   * @returns {{registro:number, bollo:number, fogli:number, base:number, minimoApplicato:boolean}}
+   * @returns {{registro:number, bollo:number, fogli:number, base:number, minimoApplicato:boolean, fissa:boolean}}
    */
   function calcola(dati, regole) {
     var canone = parseFloat(dati.canone) || 0;
-    if (dati.cedolare) return { registro: 0, bollo: 0, fogli: 0, base: 0, minimoApplicato: false };
+    if (dati.cedolare) return { registro: 0, bollo: 0, fogli: 0, base: 0, minimoApplicato: false, fissa: false };
 
-    var calcolato = 0;
-    var base = canone;
-    if (dati.tipo === 'T2' || dati.tipo === 'T3') {
-      calcolato = canone * 0.005;
-    } else {
-      var p = regole.codiciContratto[dati.tipo];
-      if (p) {
-        base = canone * p.moltiplicatoreImponibile;
-        calcolato = base * p.aliquota;
-      }
+    var fisse = regole.codiciImpostaFissa || {};
+    var p = regole.codiciContratto[dati.tipo];
+    if (!p && !Object.prototype.hasOwnProperty.call(fisse, dati.tipo)) {
+      throw new Error('Codice del contratto sconosciuto: ' + dati.tipo);
     }
-    var registro = Math.max(regole.impostaRegistroMinima, calcolato);
+
+    var fissa = !p;
+    var base = canone;
+    var calcolato = 0;
+    var registro;
+    if (fissa) {
+      registro = fisse[dati.tipo];
+    } else {
+      base = canone * p.moltiplicatoreImponibile;
+      calcolato = base * p.aliquota;
+      registro = Math.max(regole.impostaRegistroMinima, calcolato);
+    }
 
     var pagine = parseInt(dati.pagine, 10) || 4;
     var copie = parseInt(dati.copie, 10) || 2;
@@ -54,7 +68,8 @@
       bollo: centesimi(fogli * regole.impostaBolloFoglio * copie),
       fogli: fogli,
       base: centesimi(base),
-      minimoApplicato: calcolato < regole.impostaRegistroMinima
+      minimoApplicato: !fissa && calcolato < regole.impostaRegistroMinima,
+      fissa: fissa
     };
   }
 

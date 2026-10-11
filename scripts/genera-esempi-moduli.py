@@ -326,6 +326,227 @@ ESEMPI = {
         "etichetta_y": 0.219,
         "larghezza": 1100,
     },
+    # Prima registrazione di un contratto 4+4 a canone libero (codice L1) con
+    # la cedolare secca: un proprietario, un'inquilina, un appartamento a
+    # Genova (codice comune D969, l'esempio delle FAQ dell'Agenzia sul
+    # quadro C). Con la cedolare non si pagano registro e bollo; fogli e copie
+    # si indicano lo stesso. Persone, dati catastali e importi sono inventati.
+    "rli-cedolare-l1": {
+        "pagina": "/cittadino-tasse/modello-rli/",
+        "modello": "RLI",
+        "passi": [
+            {"passo": "Il contratto", "campi": {
+                "contratto.tipologiaContratto": "L1",
+                "contratto.durataDal": "2026-11-01",
+                "contratto.durataAl": "2030-10-31",
+                "contratto.importoCanone": "9600",
+            }},
+            {"passo": "Registrazione del contratto", "attiva": "registrazione", "campi": {
+                "registrazione.nPagine": "2",
+                "registrazione.nCopie": "2",
+                "registrazione.dataStipula": "2026-10-20",
+            }},
+            {"passo": "Chi presenta", "campi": {
+                "richiedente.cfRichiedente": "RSSMRA58T10H501L",
+                "richiedente.tipoSoggetto": "1",
+                "richiedente.cognomeRichiedente": "ROSSI",
+                "richiedente.nomeRichiedente": "MARIO",
+                "richiedente.nModuli": "1",
+                "richiedente.firmaRichiedente": "MARIO ROSSI",
+            }},
+            {"passo": "Locatori", "campi": {
+                "locatori.locatore.0.numero": "1",
+                "locatori.locatore.0.cf": "RSSMRA58T10H501L",
+                "locatori.locatore.0.cognome": "ROSSI",
+                "locatori.locatore.0.nome": "MARIO",
+                "locatori.locatore.0.dataNascita": "1958-12-10",
+                "locatori.locatore.0.sesso": "M",
+                "locatori.locatore.0.comuneNascita": "ROMA",
+                "locatori.locatore.0.provinciaNascita": "RM",
+            }},
+            {"passo": "Conduttori", "campi": {
+                "conduttori.conduttore.0.numero": "1",
+                "conduttori.conduttore.0.cf": "BNCLRA60H55F205G",
+                "conduttori.conduttore.0.cognome": "BIANCHI",
+                "conduttori.conduttore.0.nome": "LAURA",
+                "conduttori.conduttore.0.dataNascita": "1960-06-15",
+                "conduttori.conduttore.0.sesso": "F",
+                "conduttori.conduttore.0.comuneNascita": "MILANO",
+                "conduttori.conduttore.0.provinciaNascita": "MI",
+                "conduttori.conduttore.0.qualifica": "3",
+            }},
+            {"passo": "Gli immobili", "campi": {
+                "immobili.immobile.0.numero": "1",
+                "immobili.immobile.0.tipologia": "1",
+                "immobili.immobile.0.codiceComune": "D969",
+                "immobili.immobile.0.tu": "U",
+                "immobili.immobile.0.ip": "I",
+                "immobili.immobile.0.foglio": "12",
+                "immobili.immobile.0.particella": "345",
+                "immobili.immobile.0.subalterno": "7",
+                "immobili.immobile.0.categoriaCatastale": "A3",
+                "immobili.immobile.0.renditaCatastale": "650,74",
+                "immobili.immobile.0.comune": "GENOVA",
+                "immobili.immobile.0.provincia": "GE",
+                "immobili.immobile.0.tipologiaVia": "VIA",
+                "immobili.immobile.0.indirizzo": "DI ESEMPIO",
+                "immobili.immobile.0.civico": "1",
+            }},
+            {"passo": "Cedolare secca", "attiva": "cedolare", "campi": {
+                "cedolare.riga.0.immobile": "1",
+                "cedolare.riga.0.locatore": "1",
+                "cedolare.riga.0.possesso": "100",
+                "cedolare.riga.0.si": True,
+                "cedolare.dichiarazione.0.cf": "RSSMRA58T10H501L",
+                "cedolare.dichiarazione.0.firma": "MARIO ROSSI",
+            }},
+        ],
+        "ritaglio": [
+            (2, 0.0, 0.0, 1.0, 0.42),      # titolo, quadro A e sezione I
+            (2, 0.0, 0.565, 1.0, 0.70),    # sezione III, il richiedente
+            (3, 0.0, 0.095, 1.0, 0.195),   # quadro B, il locatore
+            (3, 0.0, 0.435, 1.0, 0.535),   # quadro B, la conduttrice
+            (4, 0.0, 0.095, 1.0, 0.215),   # quadro C, l'immobile
+            (4, 0.0, 0.505, 1.0, 0.575),   # quadro D, la prima riga
+            (4, 0.0, 0.735, 1.0, 0.80),    # la dichiarazione del locatore
+        ],
+        "salto": [
+            "Sezione II (adempimenti successivi): vuota alla prima registrazione",
+            "Rappresentante, delega e imposte: vuoti (con la cedolare secca niente registro e bollo)",
+            "Altri locatori: righe vuote",
+            "Altri conduttori: righe vuote",
+            "Altri immobili: righe vuote",
+            "Righe 2-10 del quadro D: vuote",
+        ],
+        # il timbro nel riquadro «Riservato all'Agenzia delle Entrate»
+        "etichetta_y": 0.17,
+        "larghezza": 1100,
+    },
+    # Comodato scritto di un appartamento dal padre al figlio, che ci va a
+    # vivere: e' il caso della riduzione IMU del 50% (L. 160/2019, c. 747,
+    # lett. c), che vale solo se il contratto e' registrato. A tempo
+    # indeterminato, firmato il 20 ottobre 2026, un foglio in due copie.
+    # Persone, codici fiscali e dati catastali sono inventati.
+    "rap-comodato-figlio": {
+        "pagina": "/cittadino-tasse/modello-rap/",
+        "modello": "RAP",
+        "passi": [
+            {"passo": "Dati generali", "campi": {
+                "atto.cfTestata": "RSSMRA58T10H501L",
+                "atto.moduloN": "001",
+                "atto.ufficioTerritoriale": "GENOVA",
+                "atto.tipologiaAtto": "1",
+                "atto.dataAtto": "2026-10-20",
+                "atto.nFogli": "1",
+                "atto.nCopie": "1",
+            }},
+            {"passo": "Chi chiede", "campi": {
+                "richiedente.cognome": "ROSSI",
+                "richiedente.nome": "MARIO",
+                "richiedente.cf": "RSSMRA58T10H501L",
+                "richiedente.firma": "MARIO ROSSI",
+            }},
+            {"passo": "Le parti", "campi": {
+                "soggetti.dante.0.cf": "RSSMRA58T10H501L",
+                "soggetti.dante.0.cognome": "ROSSI",
+                "soggetti.dante.0.nome": "MARIO",
+                "soggetti.dante.0.dataNascita": "1958-12-10",
+                "soggetti.dante.0.sesso": "M",
+                "soggetti.dante.0.comuneNascita": "ROMA",
+                "soggetti.dante.0.provincia": "RM",
+                "soggetti.avente.0.cf": "RSSLCU90C15D969J",
+                "soggetti.avente.0.cognome": "ROSSI",
+                "soggetti.avente.0.nome": "LUCA",
+                "soggetti.avente.0.dataNascita": "1990-03-15",
+                "soggetti.avente.0.sesso": "M",
+                "soggetti.avente.0.comuneNascita": "GENOVA",
+                "soggetti.avente.0.provincia": "GE",
+            }},
+            {"passo": "Contratto di comodato", "attiva": "comodato", "campi": {
+                "comodato.tempoIndeterminato": True,
+                "comodato.durataDal": "2026-11-01",
+                "comodato.tipo": "2",
+                "comodato.immobile": True,
+                "comodato.descrizione": "APPARTAMENTO A USO ABITATIVO",
+                "comodato.immobile.0.codiceComune": "D969",
+                "comodato.immobile.0.tu": "U",
+                "comodato.immobile.0.foglio": "12",
+                "comodato.immobile.0.particella": "345",
+                "comodato.immobile.0.subalterno": "7",
+                "comodato.immobile.0.comune": "GENOVA",
+                "comodato.immobile.0.provincia": "GE",
+                "comodato.immobile.0.tipologia": "VIA",
+                "comodato.immobile.0.indirizzo": "DI ESEMPIO",
+                "comodato.immobile.0.civico": "1",
+            }},
+        ],
+        # la prima facciata e' l'informativa sulla privacy; il quadro del
+        # comodato e degli immobili sta sulla quarta
+        "ritaglio": [
+            (2, 0.0, 0.0, 1.0, 0.418),     # dati generali e richiedente
+            (3, 0.0, 0.085, 1.0, 0.232),   # il comodante, dante causa
+            (3, 0.0, 0.49, 1.0, 0.618),    # il figlio, avente causa
+            (4, 0.0, 0.085, 1.0, 0.408),   # quadro del comodato e immobile
+        ],
+        "salto": [
+            "Rappresentante legale, invio telematico e imposte: vuoti",
+            "Altri danti causa: righe vuote",
+            "Altri aventi causa: righe vuote",
+        ],
+        # il timbro fra il titolo e i dati generali
+        "etichetta_y": 0.178,
+        "larghezza": 1100,
+    },
+    # Una scrittura privata non autenticata da registrare in ufficio: quadro A
+    # (ufficio, data, tipologia, Reg) e quadro B con le due parti. Il quadro C
+    # lo compila l'ufficio; persone e codici fiscali sono inventati
+    "modello-69-scrittura-privata": {
+        "pagina": "/cittadino-tasse/modello-69/",
+        "modello": "MOD69",
+        "passi": [
+            {"passo": "L'atto", "campi": {
+                "atto.ufficioDi": "GENOVA",
+                "atto.adempimento": "reg",
+                "atto.tipologiaAtto": "SCRITTURA PRIVATA",
+                "atto.cfRichiedente": "RSSMRA58T10H501L",
+                "atto.dataStipula": "2026-10-12",
+            }},
+            {"passo": "Soggetti", "campi": {
+                "soggetti.riga.0.nOrd": "1",
+                "soggetti.riga.0.cf": "RSSMRA58T10H501L",
+                "soggetti.riga.0.cognome": "ROSSI",
+                "soggetti.riga.0.nome": "MARIO",
+                "soggetti.riga.0.comuneNascita": "ROMA",
+                "soggetti.riga.0.provinciaNascita": "RM",
+                "soggetti.riga.0.dataNascita": "1958-12-10",
+                "soggetti.riga.0.sesso": "M",
+                "soggetti.riga.0.domicilio": "GENOVA",
+                "soggetti.riga.0.provinciaDomicilio": "GE",
+                "soggetti.riga.0.via": "VIA DI ESEMPIO",
+                "soggetti.riga.0.civico": "1",
+            }},
+            {"passo": "Soggetti", "aggiungi": "soggetti|riga", "campi": {
+                "soggetti.riga.1.nOrd": "2",
+                "soggetti.riga.1.cf": "BNCLRA60H55F205G",
+                "soggetti.riga.1.cognome": "BIANCHI",
+                "soggetti.riga.1.nome": "LAURA",
+                "soggetti.riga.1.comuneNascita": "MILANO",
+                "soggetti.riga.1.provinciaNascita": "MI",
+                "soggetti.riga.1.dataNascita": "1960-06-15",
+                "soggetti.riga.1.sesso": "F",
+                "soggetti.riga.1.domicilio": "GENOVA",
+                "soggetti.riga.1.provinciaDomicilio": "GE",
+                "soggetti.riga.1.via": "VIA DI PROVA",
+                "soggetti.riga.1.civico": "2",
+            }},
+        ],
+        # il titolo, poi i quadri A e B: la parte riservata all'ufficio e' vuota;
+        # l'etichetta va sulla terza riga del quadro B, vuota
+        "ritaglio": [(1, 0.0, 0.0, 1.0, 0.085), (1, 0.0, 0.308, 1.0, 0.672)],
+        "salto": ["Parte riservata all'ufficio: la compila l'ufficio"],
+        "etichetta_y": 0.582,
+        "larghezza": 1100,
+    },
 }
 
 
