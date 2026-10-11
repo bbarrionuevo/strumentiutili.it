@@ -1,6 +1,6 @@
 {
- "versione": "2026-09",
- "nota": "Mappatura dei campi del modello per la richiesta di pagamento dei rimborsi fiscali tramite bonifico, creati da scripts/prepara-modello-accredito-rimborsi.py. I testi di aiuto sono tratti dalle istruzioni stampate nello stesso PDF ufficiale.",
+ "versione": "2026-10",
+ "nota": "Mappatura dei campi del modello per la richiesta di pagamento dei rimborsi fiscali tramite bonifico, creati da scripts/prepara-modello-accredito-rimborsi.py. I testi di aiuto sono tratti dalle istruzioni stampate nello stesso PDF ufficiale, dall'informativa sul servizio Check IBAN e dalle schede dell'Agenzia «Accredito rimborsi su conto corrente» e «Modalita' erogazione rimborsi».",
  "tabelle": {},
  "modelli": {
   "RIMBORSI": {
@@ -17,7 +17,7 @@
     {
      "id": "richiesta",
      "titolo": "Che cosa chiedi",
-     "descrizione": "Con questo modello si chiede che i rimborsi fiscali arrivino con bonifico sul proprio conto, oppure si annulla una richiesta gia' presentata.",
+     "descrizione": "Con questo modello una persona fisica chiede che i rimborsi fiscali arrivino con bonifico sul proprio conto, oppure annulla una richiesta gia' presentata. Chi ha SPID, CIE o CNS puo' fare lo stesso online, dall'area riservata del sito dell'Agenzia.",
      "campi": [
       {
        "id": "tipo",
@@ -37,7 +37,7 @@
          "pdf": "tipo_annullamento"
         }
        ],
-       "help": "Con l'annullamento il riquadro delle coordinate bancarie non va compilato."
+       "help": "Casella 1: per ricevere i rimborsi con bonifico; si usa anche per indicare un conto nuovo. Casella 2: per annullare la richiesta fatta in precedenza; il riquadro delle coordinate bancarie non va compilato e, se possibile, l'Agenzia paghera' i rimborsi con assegno vidimato di Poste Italiane."
       },
       {
        "id": "cognome",
@@ -192,7 +192,7 @@
     {
      "id": "conto",
      "titolo": "Il conto su cui ricevere il rimborso",
-     "descrizione": "Il conto puo' essere italiano o estero, purche' gestito nel circuito SEPA. Deve essere intestato a te: l'Agenzia non accredita su conti di terzi.",
+     "descrizione": "Il conto puo' essere italiano o estero, purche' gestito nel circuito SEPA, e deve essere intestato o cointestato a te: l'Agenzia puo' verificarlo con il servizio Check IBAN. Se il conto non e' tuo o e' chiuso, l'accredito non va a buon fine e la somma torna all'Erario finche' i dati non vengono corretti.",
      "campi": [
       {
        "id": "iban",
@@ -200,7 +200,7 @@
        "type": "ibanCompleto",
        "label": "IBAN del conto italiano",
        "width": "full",
-       "help": "I 27 caratteri dell'IBAN italiano, IT compreso. Lo trovi sull'estratto conto o lo chiedi alla tua banca. Un carattere sbagliato qui significa un rimborso che non arriva: il compilatore verifica le cifre di controllo mentre scrivi."
+       "help": "I 27 caratteri dell'IBAN italiano, IT compreso. Lo trovi sull'estratto conto o lo chiedi alla tua banca. Un carattere sbagliato qui significa un rimborso che non arriva: il compilatore verifica le cifre di controllo mentre scrivi. Se hai solo un conto all'estero lascialo vuoto e compila il passo «Conto estero»."
       }
      ]
     },
@@ -208,7 +208,7 @@
      "id": "estero",
      "titolo": "Conto estero",
      "opzionale": true,
-     "descrizione": "Da compilare solo se il conto e' all'estero. Per i conti nell'area euro servono BIC e IBAN; fuori dall'area euro, le coordinate bancarie locali.",
+     "descrizione": "Da compilare solo se il conto e' all'estero, sempre nel circuito SEPA: la banca, l'intestatario, BIC e IBAN se il paese usa l'euro (UEM), oppure le coordinate bancarie se e' fuori dall'area euro, e l'indirizzo della banca.",
      "campi": [
       {
        "id": "banca",
@@ -264,7 +264,8 @@
        "pdf": "firma_giorno",
        "type": "numero",
        "label": "Data · giorno",
-       "width": "quarter"
+       "width": "quarter",
+       "help": "La data in cui presenti il modello."
       },
       {
        "id": "mese",
@@ -294,7 +295,7 @@
      "id": "delega",
      "titolo": "Delega alla presentazione",
      "opzionale": true,
-     "descrizione": "Si puo' delegare un'altra persona a consegnare il modello, ma solo per la consegna allo sportello: con l'invio via PEC la delega non e' ammessa.",
+     "descrizione": "Si puo' delegare un'altra persona a consegnare il modello, ma solo per la consegna allo sportello: con l'invio via PEC la delega non e' ammessa. Il delegato mostra all'ufficio un suo documento d'identita' e al modello si allegano le fotocopie dei documenti di delegante e delegato, in corso di validita'.",
      "campi": [
       {
        "id": "sottoscritto",
@@ -366,7 +367,7 @@
        "type": "testo",
        "label": "Firma del dichiarante (nome da stampare)",
        "width": "half",
-       "help": "Vanno allegate le fotocopie dei documenti d'identita' di delegante e delegato, entrambi in corso di validita'."
+       "help": "Firma chi chiede l'accredito, cioe' il delegante."
       }
      ]
     }

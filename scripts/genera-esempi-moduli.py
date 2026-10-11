@@ -547,6 +547,61 @@ ESEMPI = {
         "etichetta_y": 0.582,
         "larghezza": 1100,
     },
+    # Una pensionata senza SPID comunica l'IBAN e manda la figlia allo sportello
+    # con la delega (istruzioni del modello: la delega vale solo per la consegna
+    # in ufficio). Persone, codici fiscali e indirizzo sono inventati; l'IBAN e'
+    # quello d'esempio che si trova nelle guide delle banche italiane.
+    "accredito-rimborsi-iban": {
+        "pagina": "/cittadino-tasse/accredito-rimborsi/",
+        "modello": "RIMBORSI",
+        "passi": [
+            {"campi": {
+                "richiesta.tipo": "1",
+                "richiesta.cognome": "ROSSI",
+                "richiesta.nome": "ANNA",
+                "richiesta.codiceFiscale": "RSSNNA55A41D969P",
+                "richiesta.comuneNascita": "GENOVA",
+                "richiesta.provinciaNascita": "GE",
+                "richiesta.nascitaGiorno": "01",
+                "richiesta.nascitaMese": "01",
+                "richiesta.nascitaAnno": "1955",
+            }},
+            {"passo": "Dove abiti", "campi": {
+                "residenza.comune": "GENOVA",
+                "residenza.provincia": "GE",
+                "residenza.via": "VIA DI ESEMPIO",
+                "residenza.civico": "1",
+                "residenza.cap": "16121",
+            }},
+            {"passo": "Il conto su cui", "campi": {
+                "conto.iban": "IT60X0542811101000000123456",
+            }},
+            {"passo": "Data e firma", "campi": {
+                "firma.giorno": "19",
+                "firma.mese": "10",
+                "firma.anno": "2026",
+                "firma.firma": "ANNA ROSSI",
+            }},
+            {"passo": "Delega", "attiva": "delega", "campi": {
+                "delega.sottoscritto": "ANNA ROSSI",
+                "delega.delegato": "GIULIA BIANCHI",
+                "delega.cfDelegato": "BNCGLI82C52D969T",
+                "delega.natoA": "GENOVA",
+                "delega.provinciaDelegato": "GE",
+                "delega.il": "12/03/1982",
+                "delega.giorno": "19",
+                "delega.mese": "10",
+                "delega.anno": "2026",
+                "delega.firmaDichiarante": "ANNA ROSSI",
+            }},
+        ],
+        # il modello e' la terza facciata (le prime due sono le informative): dal
+        # titolo all'IBAN, poi sottoscrizione e delega; il conto estero, vuoto, e
+        # lo spazio riservato all'ufficio restano fuori
+        "ritaglio": [(3, 0.0, 0.0, 1.0, 0.4995), (3, 0.0, 0.6414, 1.0, 0.828)],
+        "salto": ["Conto estero: vuoto (conto italiano)"],
+        "larghezza": 1100,
+    },
 }
 
 
