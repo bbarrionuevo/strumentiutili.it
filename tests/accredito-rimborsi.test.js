@@ -108,8 +108,15 @@ test('accredito: le cartelle, con le due regole e le loro norme', () => {
   // 31) e regola dei 500 euro della riforma, legata a un regolamento del MEF
   assert.match(t, /Hai sessanta giorni per dire se la accetti/);
   assert.match(t, /non opera per i ruoli fino a 1\.500 euro \(D\.L\. 78\/2010, art\. 31\)/);
-  assert.match(t, /\(D\.Lgs\. 110\/2024\) la lega invece ai rimborsi oltre 500 euro/);
   assert.match(t, /regolamento del Ministero dell’economia e delle finanze/);
+  // la riforma aggiunge la soglia dei 500 euro, non toglie quella dei 1.500:
+  // l'art. 108 del testo unico (D.Lgs. 33/2025, allegato) le tiene insieme
+  // (commi 1 e 8) e prende il posto del 28-ter, abrogato dal 1° gennaio 2027
+  assert.doesNotMatch(t, /la lega invece ai rimborsi/);
+  assert.match(t, /aggiunge altre condizioni[^.]*: il rimborso deve superare 500 euro, interessi compresi/);
+  assert.match(t, /dal 1° gennaio 2027 quell’articolo è abrogato e la regola passa nell’articolo 108 del testo unico/);
+  assert.match(t, /L’articolo 108 del testo unico tiene insieme le due soglie/);
+  assert.match(leggi(PAGINA), /decreto\.legislativo:2025-03-24;33:1~art108/);
 });
 
 test('accredito: i numeri dell\'assistenza come nelle FAQ dell\'Agenzia', () => {
