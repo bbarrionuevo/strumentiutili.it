@@ -1,13 +1,15 @@
 """Prova end-to-end del compilatore per l'accredito dei rimborsi fiscali.
 
 Avvia un server locale sulla cartella del sito, guida il browser sulla pagina
-vera, verifica il banner che riprende l'IBAN dal validatore, controlla che un
-IBAN sbagliato venga rifiutato, compila il modulo, scarica il PDF e confronta i
-valori finiti nel modello.
+vera, controlla che un IBAN sbagliato venga rifiutato, compila il modulo,
+scarica il PDF e confronta i valori finiti nel modello. Controlla anche che
+l'IBAN non resti nella memoria del browser (regola SENSIBILE di
+js/storage-helper.js): per questo non c'e' piu' il banner che lo riprendeva
+dal validatore.
 
 Uso:  python scripts/prova-modello-accredito-rimborsi.py
 """
-import sys, os, pathlib, tempfile, threading, http.server, functools, socketserver, json
+import sys, os, pathlib, tempfile, threading, http.server, functools, socketserver
 
 ROOT = str(pathlib.Path(__file__).resolve().parent.parent)
 SCARICATI = tempfile.mkdtemp(prefix="prova-rimborsi-")
@@ -24,9 +26,6 @@ URL = f"http://127.0.0.1:{PORTA}/cittadino-tasse/accredito-rimborsi/"
 IBAN = "IT60X0542811101000000123456"
 esito = 0
 errori = []
-
-STATO_VALIDATORE = {"iban-input": IBAN}
-
 
 class Silenzioso(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a):
@@ -64,9 +63,6 @@ def main():
     with sync_playwright() as pw:
         b = pw.chromium.launch(channel="msedge", headless=True)
         ctx = b.new_context(accept_downloads=True, viewport={"width": 1280, "height": 1100})
-        ctx.add_init_script(
-            "try { localStorage.setItem('su_form_data__identita_burocrazia_validatore_iban_', "
-            + json.dumps(json.dumps(STATO_VALIDATORE)) + "); } catch (e) {}")
 
         pag = ctx.new_page()
         pag.on("pageerror", lambda e: errori.append(str(e)))
@@ -79,12 +75,9 @@ def main():
         print("passi:", passi)
 
         pag.wait_for_timeout(500)
-        visibile = pag.is_visible("#ponte-iban")
-        print("\nbanner dal validatore IBAN:", "visibile" if visibile else "ASSENTE")
-        if not visibile:
+        if pag.locator("#ponte-iban").count():
+            print("\nNO c'e' ancora il banner che riprende l'IBAN dal validatore")
             esito = 1
-        else:
-            print("  mostrato a gruppi:", pag.inner_text("#ponte-iban-valore"))
 
         def riempi(chiave, valore):
             sel = f'[data-campo="RIMBORSI.{chiave}"]'
@@ -129,16 +122,19 @@ def main():
             print("  NO l'IBAN sbagliato e' passato")
             esito = 1
 
-        # --- il ponte mette quello giusto ----------------------------------
-        pag.click("#ponte-iban-usa")
+        # --- quello giusto passa e non resta nella memoria del browser -----
+        riempi("conto.iban", IBAN)
+        pag.dispatch_event('[data-campo="RIMBORSI.conto.iban"]', "change")
         pag.wait_for_timeout(700)
-        voci.nth(2).click()
-        pag.wait_for_timeout(300)
-        dal_ponte = pag.input_value('[data-campo="RIMBORSI.conto.iban"]')
-        print("IBAN messo dal ponte:", dal_ponte)
-        if dal_ponte != IBAN:
-            print("  NO il ponte non ha scritto l'IBAN")
+        memoria = pag.evaluate("() => Object.keys(localStorage).map((k) => localStorage.getItem(k)).join(' ')")
+        if "VIA NAZIONALE" not in memoria:
+            print("NO i dati del modello non risultano salvati: controllo della memoria non valido")
             esito = 1
+        elif IBAN in memoria or "RSSMRA85T10A562S" in memoria:
+            print("NO IBAN o codice fiscale salvati nella memoria del browser")
+            esito = 1
+        else:
+            print("IBAN e codice fiscale non salvati nel browser, gli altri dati si': ok")
 
         # --- ultimo passo ---------------------------------------------------
         indice_firma = [i for i, t in enumerate(passi) if "firma" in t.lower()][0]
