@@ -438,7 +438,7 @@ ESEMPI = {
                 "atto.tipologiaAtto": "1",
                 "atto.dataAtto": "2026-10-20",
                 "atto.nFogli": "1",
-                "atto.nCopie": "2",
+                "atto.nCopie": "1",
             }},
             {"passo": "Chi chiede", "campi": {
                 "richiedente.cognome": "ROSSI",
@@ -495,6 +495,56 @@ ESEMPI = {
         ],
         # il timbro fra il titolo e i dati generali
         "etichetta_y": 0.178,
+        "larghezza": 1100,
+    },
+    # Una scrittura privata non autenticata da registrare in ufficio: quadro A
+    # (ufficio, data, tipologia, Reg) e quadro B con le due parti. Il quadro C
+    # lo compila l'ufficio; persone e codici fiscali sono inventati
+    "modello-69-scrittura-privata": {
+        "pagina": "/cittadino-tasse/modello-69/",
+        "modello": "MOD69",
+        "passi": [
+            {"passo": "L'atto", "campi": {
+                "atto.ufficioDi": "GENOVA",
+                "atto.adempimento": "reg",
+                "atto.tipologiaAtto": "SCRITTURA PRIVATA",
+                "atto.cfRichiedente": "RSSMRA58T10H501L",
+                "atto.dataStipula": "2026-10-12",
+            }},
+            {"passo": "Soggetti", "campi": {
+                "soggetti.riga.0.nOrd": "1",
+                "soggetti.riga.0.cf": "RSSMRA58T10H501L",
+                "soggetti.riga.0.cognome": "ROSSI",
+                "soggetti.riga.0.nome": "MARIO",
+                "soggetti.riga.0.comuneNascita": "ROMA",
+                "soggetti.riga.0.provinciaNascita": "RM",
+                "soggetti.riga.0.dataNascita": "1958-12-10",
+                "soggetti.riga.0.sesso": "M",
+                "soggetti.riga.0.domicilio": "GENOVA",
+                "soggetti.riga.0.provinciaDomicilio": "GE",
+                "soggetti.riga.0.via": "VIA DI ESEMPIO",
+                "soggetti.riga.0.civico": "1",
+            }},
+            {"passo": "Soggetti", "aggiungi": "soggetti|riga", "campi": {
+                "soggetti.riga.1.nOrd": "2",
+                "soggetti.riga.1.cf": "BNCLRA60H55F205G",
+                "soggetti.riga.1.cognome": "BIANCHI",
+                "soggetti.riga.1.nome": "LAURA",
+                "soggetti.riga.1.comuneNascita": "MILANO",
+                "soggetti.riga.1.provinciaNascita": "MI",
+                "soggetti.riga.1.dataNascita": "1960-06-15",
+                "soggetti.riga.1.sesso": "F",
+                "soggetti.riga.1.domicilio": "GENOVA",
+                "soggetti.riga.1.provinciaDomicilio": "GE",
+                "soggetti.riga.1.via": "VIA DI PROVA",
+                "soggetti.riga.1.civico": "2",
+            }},
+        ],
+        # il titolo, poi i quadri A e B: la parte riservata all'ufficio e' vuota;
+        # l'etichetta va sulla terza riga del quadro B, vuota
+        "ritaglio": [(1, 0.0, 0.0, 1.0, 0.085), (1, 0.0, 0.308, 1.0, 0.672)],
+        "salto": ["Parte riservata all'ufficio: la compila l'ufficio"],
+        "etichetta_y": 0.582,
         "larghezza": 1100,
     },
 }

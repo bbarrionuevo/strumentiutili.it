@@ -1,5 +1,5 @@
 {
- "versione": "2026-09",
+ "versione": "2026-10",
  "nota": "Mappatura dei campi del modello RAP creati da scripts/prepara-modello-rap.py. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-rap.pdf.",
  "tabelle": {
   "sesso": [
@@ -371,7 +371,8 @@
        "pdfCentesimi": "imposta_registro_cent",
        "type": "importoEuro",
        "label": "Imposta di registro (euro)",
-       "width": "third"
+       "width": "third",
+       "help": "Per comodato, preliminare e verbale degli utili la parte fissa è di 200 euro; per il preliminare si aggiungono lo 0,5% su caparra confirmatoria e acconti non soggetti a IVA e il 3% sulla caparra penitenziale. Con RAP web il calcolo lo fa il servizio."
       },
       {
        "id": "sanzioniRegistro",
@@ -396,7 +397,8 @@
        "pdfCentesimi": "imposta_bollo_cent",
        "type": "importoEuro",
        "label": "Imposta di bollo (euro)",
-       "width": "third"
+       "width": "third",
+       "help": "16 euro ogni 4 facciate scritte e comunque ogni 100 righe. Per il comodato verbale non è dovuto."
       },
       {
        "id": "sanzioniBollo",
@@ -589,7 +591,7 @@
      "id": "comodato",
      "titolo": "Contratto di comodato",
      "opzionale": true,
-     "descrizione": "Da attivare se la tipologia di atto è 1. Il comodato è il prestito gratuito di un bene: registrarlo è anche la condizione per avere la riduzione del 50% dell'IMU quando il bene è un'abitazione data a un figlio o a un genitore.",
+     "descrizione": "Da attivare se la tipologia di atto è 1. Il comodato è il prestito gratuito di un bene: costa 200 euro di registro, più il bollo se è scritto. Registrarlo è una delle condizioni per la riduzione del 50% dell'IMU sulla casa data a un figlio o a un genitore che ci abita: le altre sono nella guida sotto il compilatore.",
      "campi": [
       {
        "id": "tempoIndeterminato",
@@ -855,7 +857,7 @@
      "id": "preliminare",
      "titolo": "Contratto preliminare di compravendita",
      "opzionale": true,
-     "descrizione": "Da attivare se la tipologia di atto è 2. È il compromesso: l'imposta di registro si paga in misura fissa sull'atto, più lo 0,50% sulla caparra confirmatoria e il 3% sugli acconti non soggetti a IVA.",
+     "descrizione": "Da attivare se la tipologia di atto è 2. È il compromesso: si pagano 200 euro di imposta di registro, più lo 0,5% sulla caparra confirmatoria e sugli acconti non soggetti a IVA (o la minore imposta del contratto definitivo) e il 3% sull'eventuale caparra penitenziale. L'imposta dello 0,5% si scala poi da quella del rogito.",
      "campi": [
       {
        "id": "beneImmobile",
