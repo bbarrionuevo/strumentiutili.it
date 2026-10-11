@@ -1,5 +1,5 @@
 {
- "versione": "2026-09",
+ "versione": "2026-10",
  "nota": "Mappatura dei campi del modello AA4/8. Il PDF dell'Agenzia e' gia' compilabile: scripts/prepara-modelli-codice-fiscale.py ne sistema i pettini e il codice tipologia richiedente. I testi di aiuto sono tratti dalle istruzioni ufficiali in assets/pdf/istruzioni-aa4-8.pdf.",
  "tabelle": {},
  "modelli": {
@@ -37,7 +37,7 @@
          "pdf": "richiesta per soggetto terzo"
         }
        ],
-       "help": "La richiesta diretta si presenta con un documento d'identità valido. Quella per un soggetto terzo vale per esempio per il genitore che chiede il codice fiscale del figlio, per l'erede di un deceduto o per chi indica in dichiarazione un familiare a carico. In entrambi i casi puoi delegare un'altra persona a presentare il modello."
+       "help": "La richiesta diretta si presenta con un documento d'identità valido. Quella per un soggetto terzo vale per esempio per il genitore che chiede il codice fiscale del figlio, per l'erede di un deceduto o per chi indica in dichiarazione un familiare a carico. Per un soggetto terzo serve anche una dichiarazione che spiega il motivo della richiesta. In entrambi i casi puoi delegare un'altra persona a presentare il modello."
       },
       {
        "id": "codiceTipologiaD",
@@ -129,7 +129,7 @@
        "type": "check",
        "label": "1 · Attribuzione del codice fiscale",
        "width": "half",
-       "help": "Per chi il codice fiscale non ce l'ha ancora. Di norma viene attribuito in automatico: dal Comune per i neonati, dallo Sportello Unico per l'Immigrazione o dalla Questura per i cittadini stranieri. Questo modello serve quando quel passaggio non è avvenuto."
+       "help": "Per chi il codice fiscale non ce l'ha ancora. Di norma viene attribuito in automatico: dal Comune per i neonati, dallo Sportello Unico per l'Immigrazione o dalla Questura per i cittadini stranieri. Questo modello serve quando quel passaggio non è avvenuto. Per il primo codice fiscale di un cittadino straniero si va di persona allo sportello, con un appuntamento."
       },
       {
        "id": "tesserino",
@@ -157,6 +157,7 @@
        "type": "cf",
        "label": "Codice fiscale di cui variare i dati",
        "width": "half",
+       "help": "Quello già attribuito dall'Agenzia, scritto sulla tessera sanitaria, sul tesserino o sul certificato: un codice calcolato non vale.",
        "required": true,
        "showIf": {
         "campo": "variazione",
@@ -177,7 +178,26 @@
        "type": "cf",
        "label": "Codice fiscale del deceduto",
        "width": "half",
+       "help": "Il codice già attribuito al defunto. Se sei l'erede e chiedi proprio l'attribuzione del suo codice (casella 1, codice 13), qui non c'è niente da scrivere: le istruzioni chiedono la casella 3 con la sola data del decesso.",
        "required": true,
+       "facoltativoSe": [
+        {
+         "campo": "tipologia",
+         "in": [
+          "T"
+         ]
+        },
+        {
+         "campo": "attribuzione",
+         "vero": true
+        },
+        {
+         "campo": "codiceTipologiaT",
+         "in": [
+          "13"
+         ]
+        }
+       ],
        "showIf": {
         "campo": "decesso",
         "vero": true
@@ -209,7 +229,14 @@
        "type": "cf",
        "label": "Codice fiscale per cui chiedi il certificato",
        "width": "half",
+       "help": "Quello già attribuito dall'Agenzia, scritto sulla tessera sanitaria, sul tesserino o sul certificato: un codice calcolato non vale. Se chiedi il certificato insieme all'attribuzione (casella 1), il codice non c'è ancora e qui non scrivi niente.",
        "required": true,
+       "facoltativoSe": [
+        {
+         "campo": "attribuzione",
+         "vero": true
+        }
+       ],
        "showIf": {
         "campo": "certificato",
         "vero": true
@@ -221,7 +248,7 @@
        "type": "check",
        "label": "5 · Duplicato del tesserino o della Tessera Sanitaria",
        "width": "half",
-       "help": "Attenzione: il duplicato della Tessera Sanitaria in scadenza non va richiesto. La nuova tessera viene emessa in automatico e recapitata alla residenza, se il diritto all'assistenza non è decaduto."
+       "help": "Attenzione: il duplicato della Tessera Sanitaria in scadenza non va richiesto. La nuova tessera viene emessa in automatico e recapitata alla residenza, se il diritto all'assistenza non è decaduto. Con SPID, CIE o CNS la nuova tessera o il nuovo tesserino si chiedono online, senza modello."
       },
       {
        "id": "cfDuplicato",
@@ -229,6 +256,7 @@
        "type": "cf",
        "label": "Codice fiscale per cui chiedi il duplicato",
        "width": "half",
+       "help": "Quello già attribuito dall'Agenzia, scritto sulla tessera sanitaria, sul tesserino o sul certificato: un codice calcolato non vale.",
        "required": true,
        "showIf": {
         "campo": "duplicato",
@@ -511,7 +539,7 @@
     {
      "id": "sottoscrizione",
      "titolo": "Sottoscrizione e delega",
-     "descrizione": "Il modello va firmato dal richiedente, a pena di nullità. Se lo presenta un delegato, va compilata anche la delega e firmata dal delegante.",
+     "descrizione": "Il modello va firmato dal richiedente, a pena di nullità. Se lo presenta un delegato, va compilata anche la delega e firmata dal delegante. Via PEC si manda con la copia di un documento d'identità, che non serve se lo firmi digitalmente.",
      "campi": [
       {
        "id": "cfRichiedenteEnte",

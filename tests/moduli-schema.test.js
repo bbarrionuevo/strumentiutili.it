@@ -64,3 +64,30 @@ test('ci sono tutti gli schemi dei compilatori', () => {
   assert.ok(SCHEMI.length >= 15, 'trovati solo ' + SCHEMI.length + ' schemi');
   assert.ok(SCHEMI.includes('modello-canone-tv-schema.json'));
 });
+
+// Le condizioni di un campo (showIf, facoltativoSe) leggono altri campi dello
+// stesso passo: un nome sbagliato le renderebbe sempre false, e un campo
+// obbligatorio resterebbe obbligatorio anche quando non deve.
+test('le condizioni dei campi citano campi dello stesso passo', () => {
+  const sbagliate = [];
+  for (const file of SCHEMI) {
+    const schema = JSON.parse(fs.readFileSync(path.join(RADICE, 'data', file), 'utf8'));
+    for (const [id, modello] of Object.entries(schema.modelli)) {
+      for (const passo of modello.passi || []) {
+        const ids = new Set();
+        const raccogli = (c) => { ids.add(c.id); (c.campi || []).forEach(raccogli); };
+        (passo.campi || []).forEach(raccogli);
+        const controlla = (c) => {
+          for (const chiave of ['showIf', 'facoltativoSe']) {
+            for (const cond of [].concat(c[chiave] || [])) {
+              if (!ids.has(cond.campo)) sbagliate.push(`${file} ${id}.${passo.id}.${c.id} ${chiave}: ${cond.campo}`);
+            }
+          }
+          (c.campi || []).forEach(controlla);
+        };
+        (passo.campi || []).forEach(controlla);
+      }
+    }
+  }
+  assert.deepStrictEqual(sbagliate, []);
+});

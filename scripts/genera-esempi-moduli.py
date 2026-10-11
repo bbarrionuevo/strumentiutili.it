@@ -547,6 +547,45 @@ ESEMPI = {
         "etichetta_y": 0.582,
         "larghezza": 1100,
     },
+    # Il caso piu' comune dell'AA4/8: il duplicato della Tessera Sanitaria
+    # smarrita, chiesto per se stessi (richiesta diretta, motivazione 1) da chi
+    # non usa il servizio online. Persona, codice fiscale e indirizzo inventati.
+    "aa4-8-duplicato-tessera": {
+        "pagina": "/identita-burocrazia/richiesta-codice-fiscale/",
+        "modello": "AA48",
+        "passi": [
+            {"campi": {
+                "richiesta.tipologia": "D",
+                "richiesta.duplicato": "X",
+                "richiesta.cfDuplicato": "BNCLRA60H55F205G",
+                "richiesta.motivazione": "1",
+            }},
+            {"passo": "Dati anagrafici", "campi": {
+                "anagrafica.cognome": "BIANCHI",
+                "anagrafica.nome": "LAURA",
+                "anagrafica.sesso": "F",
+                "anagrafica.dataNascita": "1960-06-15",
+                "anagrafica.comuneNascita": "MILANO",
+                "anagrafica.provinciaNascita": "MI",
+            }},
+            {"passo": "Residenza in Italia", "attiva": "residenza", "campi": {
+                "residenza.comune": "MILANO",
+                "residenza.provincia": "MI",
+                "residenza.cap": "20121",
+                "residenza.tipologiaVia": "Via",
+                "residenza.indirizzo": "DI ESEMPIO",
+                "residenza.civico": "1",
+            }},
+            {"passo": "Sottoscrizione", "campi": {
+                "sottoscrizione.dataFirma": "2026-10-20",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa): dal titolo al quadro
+        # C, poi la sottoscrizione; quadri D ed E, allegati e delega restano vuoti
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.4848), (2, 0.0, 0.7115, 1.0, 0.7845)],
+        "salto": ["Quadri D ed E e allegati: vuoti"],
+        "larghezza": 1100,
+    },
     # Una pensionata senza SPID comunica l'IBAN e manda la figlia allo sportello
     # con la delega (istruzioni del modello: la delega vale solo per la consegna
     # in ufficio). Persone, codici fiscali e indirizzo sono inventati; l'IBAN e'

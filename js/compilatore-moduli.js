@@ -151,17 +151,36 @@
    */
   function visibile(campo, passo) {
     if (!campo.showIf) return true;
-    return [].concat(campo.showIf).every((cond) => {
-      const valore = leggi(chiave(passo.id, cond.campo));
+    return condizioni(campo.showIf, valoriDel(passo));
+  }
+
+  /** I valori dei campi di un passo, letti per id. */
+  const valoriDel = (passo) => (id) => leggi(chiave(passo.id, id));
+
+  /** Vero se valgono tutte le condizioni (una sola o un elenco); valoreDi(id) legge un campo. */
+  function condizioni(elenco, valoreDi) {
+    return [].concat(elenco).every((cond) => {
+      const valore = valoreDi(cond.campo);
       if (cond.vero !== undefined) return Boolean(valore) === cond.vero;
       if (Array.isArray(cond.in)) return cond.in.includes(valore);
       return true;
     });
   }
 
-  function obbligatorio(campo, passo) {
+  /**
+   * Un campo obbligatorio smette di esserlo quando valgono le condizioni di
+   * "facoltativoSe": nel modello AA4/8 l'erede che chiede il codice fiscale di
+   * un defunto (casella 1, codice 13) barra anche la casella 3 con la sola data
+   * del decesso, perche' un codice fiscale da scrivere ancora non c'e'.
+   */
+  function obbligatorioCon(campo, valoreDi) {
     if (campo.required !== true) return false;
-    return visibile(campo, passo);
+    if (campo.facoltativoSe && condizioni(campo.facoltativoSe, valoreDi)) return false;
+    return !campo.showIf || condizioni(campo.showIf, valoreDi);
+  }
+
+  function obbligatorio(campo, passo) {
+    return obbligatorioCon(campo, valoriDel(passo));
   }
 
   /* ------------------------------------------------------------- validazione */
@@ -1293,6 +1312,7 @@
     // Il controllo e la scrittura di un valore, senza pagina: li usano i test.
     controllaValore,
     perModello,
+    obbligatorioCon,
 
     /**
      * @param {Object} mappa  chiavi "passo.campo" oppure "passo.gruppo.indice.sottocampo"
