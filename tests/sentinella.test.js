@@ -175,7 +175,7 @@ const SCHEDA = (token, importo = '90') => `<html><head><title>Schede - Canone TV
 <p>L&rsquo;importo del canone TV &egrave; di ${importo} euro l'anno e si paga in 10 rate mensili.</p>
 <p>Le rate sono addebitate nelle fatture da gennaio a ottobre.</p>
 <p>Agenzia delle Entrate - via Giorgione n. 106 - 00147 Roma</p></main>
-<footer>Partita IVA 06363391001</footer></body></html>`;
+<footer>Partita IVA 06363391001<p>La dichiarazione precompilata 2026 &egrave; online</p></footer></body></html>`;
 
 test('schede: si tengono le righe con cifre, uguali anche se cambia il codice della pagina', () => {
   const righe = C.righeConCifre(C.testoDaHtml(SCHEDA('x1')));
@@ -184,6 +184,9 @@ test('schede: si tengono le righe con cifre, uguali anche se cambia il codice de
     'Agenzia delle Entrate - via Giorgione n. 106 - 00147 Roma'
   ]);
   assert.deepStrictEqual(C.righeConCifre(C.testoDaHtml(SCHEDA('y2'))), righe);
+  // l'avviso in fondo a tutte le pagine dell'Agenzia cambia ogni anno: fuori
+  assert.ok(C.testoDaHtml(SCHEDA('x1')).includes('La dichiarazione precompilata 2026 è online'));
+  assert.ok(!righe.some((r) => /precompilata/.test(r)));
   // l'espressione attesa si trova anche con l'apostrofo tipografico della pagina
   assert.deepStrictEqual(C.espressioniMancanti(C.testoDaHtml(SCHEDA('x1')), ["90 euro l'anno", '10 rate']), []);
   assert.deepStrictEqual(C.espressioniMancanti(C.testoDaHtml(SCHEDA('x1', '95')), ["90 euro l'anno", '10 rate']), ["90 euro l'anno"]);
