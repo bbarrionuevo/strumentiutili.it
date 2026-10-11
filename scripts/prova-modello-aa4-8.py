@@ -64,7 +64,10 @@ def main():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
 
     with sync_playwright() as pw:
-        b = pw.chromium.launch(channel="msedge", headless=True)
+        if os.environ.get("PROVA_CHROMIUM"):
+            b = pw.chromium.launch(executable_path=os.environ["PROVA_CHROMIUM"], headless=True)
+        else:
+            b = pw.chromium.launch(channel="msedge", headless=True)
         ctx = b.new_context(accept_downloads=True, viewport={"width": 1280, "height": 1100})
 
         # Si finge che la persona abbia gia' usato il generatore di codice fiscale:
@@ -115,11 +118,15 @@ def main():
 
         pag.check('[data-campo="AA48.richiesta.attribuzione"]')
         pag.wait_for_timeout(250)
+        # l'erede che chiede il codice del defunto (casella 1, codice 13) barra
+        # anche la casella 3 con la sola data: un codice da scrivere non c'e'
+        # ancora. Lo stesso per il certificato chiesto insieme all'attribuzione.
         pag.check('[data-campo="AA48.richiesta.decesso"]')
         pag.wait_for_timeout(300)
-        riempi("richiesta.cfDecesso", "BNCGNN50A01H501N")
         pag.fill('[data-campo="AA48.richiesta.dataDecesso"]', "2026-03-07")
         pag.dispatch_event('[data-campo="AA48.richiesta.dataDecesso"]', "input")
+        pag.check('[data-campo="AA48.richiesta.certificato"]')
+        pag.wait_for_timeout(300)
 
         pag.check('[data-campo="AA48.richiesta.duplicato"]')
         pag.wait_for_timeout(300)
@@ -186,8 +193,8 @@ def main():
         "codice_tipologia_richiedente": "13",
         "attribuzione codice fiscale": "/Sì",
         "comunicazione decesso": "/Sì",
-        "codice fiscale_2": "BNCGNN50A01H501N",
         "data decesso": "07032026",
+        "richiesta certificato": "/Sì",
         "richiesta duplicato": "/Sì",
         "codice fiscale_4": "BNCGNN50A01H501N",
         "motivazione": "1",
@@ -204,8 +211,8 @@ def main():
         "quadroC_numero civico": "10 PAL. A",
         "cf_sottoscrittore": "RSSMRA85T10A562S",
         "data sottoscrizione": "20092026",
-    }, vuoti=("richiesta diretta", "variazione dati", "codice fiscale_1",
-              "richiesta certificato", "quadroD_stato estero", "cf_delega"))
+    }, vuoti=("richiesta diretta", "variazione dati", "codice fiscale_1", "codice fiscale_2",
+              "codice fiscale_3", "quadroD_stato estero", "cf_delega"))
 
     if errori:
         print("\nErrori JavaScript:", errori[:4])

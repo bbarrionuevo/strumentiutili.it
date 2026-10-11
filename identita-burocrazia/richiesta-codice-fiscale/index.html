@@ -13,7 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Modello AA4/8 online: richiesta codice fiscale e duplicato tessera sanitaria — StrumentiUtili.it</title>
-  <meta name="description" content="Compila il modello AA4/8 dell'Agenzia delle Entrate direttamente nel browser: attribuzione del codice fiscale, variazione dati, duplicato della tessera sanitaria e comunicazione di decesso. Guida campo per campo e PDF ufficiale pronto da stampare." />
+  <meta name="description" content="Modello AA4/8 compilato nel browser: attribuzione del codice fiscale, variazione dati, duplicato della tessera sanitaria. Quando non serve, PEC o sportello, codici ed esempi." />
   <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/" />
   <meta property="og:locale" content="it_IT" />
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png" />
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Modello AA4/8 online: richiesta codice fiscale e duplicato tessera sanitaria — StrumentiUtili.it" />
-  <meta property="og:description" content="Attribuzione del codice fiscale, variazione dati e duplicato della tessera sanitaria: il modello AA4/8 compilato nel browser, senza inviare nulla a un server." />
+  <meta property="og:description" content="Spesso il codice fiscale arriva da solo: ecco quando serve il modello AA4/8, come presentarlo via PEC o allo sportello e come compilarlo, con il PDF ufficiale." />
   <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/" />
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
@@ -71,24 +71,31 @@
       },
       {
         "@type": "WebApplication",
-        "name": "Compilatore Modello AA4/8",
+        "@id": "https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/#app",
+        "name": "Compilatore del modello AA4/8 (codice fiscale e tessera sanitaria)",
         "url": "https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Compila nel browser il modello AA4/8 dell'Agenzia delle Entrate per l'attribuzione del codice fiscale, la variazione dei dati, il certificato, il duplicato della tessera sanitaria o del tesserino e la comunicazione di decesso. Con i casi in cui il modello non serve, PEC, sportello, consolato, codici tipologia ed esempi. I dati non lasciano il dispositivo.",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Qualsiasi browser moderno",
         "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "EUR"
         },
-        "description": "Compila nel browser il modello AA4/8 dell'Agenzia delle Entrate per l'attribuzione del codice fiscale, la variazione dei dati, il duplicato della tessera sanitaria e la comunicazione di decesso. I dati non lasciano il dispositivo.",
         "featureList": [
-          "Procedura guidata campo per campo",
-          "Spiegazioni tratte dalle istruzioni ufficiali",
-          "Compilazione del PDF ministeriale originale",
-          "Elaborazione interamente nel browser, senza server"
+          "Procedura guidata sul modello AA4/8 ufficiale, con le spiegazioni delle istruzioni",
+          "Codici tipologia richiedente mostrati solo quando servono, per la richiesta diretta o per un altro soggetto",
+          "Quadri della residenza in Italia e all'estero, altri codici fiscali, allegati e delega",
+          "Compilazione del PDF ufficiale nel browser, senza salvare i codici fiscali"
         ],
-        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/modello-e-istruzioni",
+        "isBasedOn": [
+          "https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/modello-e-istruzioni",
+          "https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/che-cos-",
+          "https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/la-tessera-sanitaria-che-cos-e-e-come-si-ottiene"
+        ],
         "author": {
           "@type": "Person",
           "name": "Brian Barrionuevo",
@@ -102,73 +109,136 @@
       },
       {
         "@type": "HowTo",
-        "name": "Come richiedere il codice fiscale con il modello AA4/8",
+        "@id": "https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/#howto",
+        "name": "Come compilare e presentare il modello AA4/8",
         "inLanguage": "it-IT",
         "totalTime": "PT10M",
         "step": [
           {
             "@type": "HowToStep",
-            "name": "Scegli il tipo di richiesta",
-            "text": "Indica se presenti la domanda per te stesso (tipo D) o per un'altra persona (tipo T) e barra la casella corrispondente: attribuzione, variazione dati, decesso, certificato o duplicato."
+            "position": 1,
+            "name": "Scegli chi chiede e che cosa",
+            "text": "Nel Quadro A indica D se chiedi per te o T se chiedi per un'altra persona, poi barra le caselle da 1 a 5 con il codice fiscale già attribuito; il codice tipologia richiedente si scrive solo per l'attribuzione."
           },
           {
             "@type": "HowToStep",
-            "name": "Inserisci i dati anagrafici",
-            "text": "Cognome, nome, sesso, data di nascita, comune e provincia di nascita della persona a cui si riferisce il codice fiscale. Il quadro B va compilato sempre."
+            "position": 2,
+            "name": "Compila i dati anagrafici",
+            "text": "Nel Quadro B scrivi cognome e nome come sul documento, senza abbreviazioni, sesso, comune o Stato estero di nascita, sigla della provincia (EE per l'estero) e data di nascita."
           },
           {
             "@type": "HowToStep",
-            "name": "Indica la residenza",
-            "text": "Chi risiede in Italia indica la residenza anagrafica; chi risiede all'estero indica il domicilio fiscale e compila anche il quadro della residenza estera."
+            "position": 3,
+            "name": "Indica residenza o domicilio fiscale",
+            "text": "Chi vive in Italia scrive la residenza anagrafica nel Quadro C; chi vive all'estero il domicilio fiscale o il luogo di dimora, se ci sono, e sempre la residenza estera nel Quadro D."
           },
           {
             "@type": "HowToStep",
-            "name": "Scarica, stampa e firma",
-            "text": "Il compilatore riempie il PDF ufficiale dell'Agenzia delle Entrate. Stampalo, firmalo a penna e presentalo a un qualunque ufficio dell'Agenzia con un documento d'identità valido."
+            "position": 4,
+            "name": "Firma e presenta",
+            "text": "Firma il modello e mandalo via PEC a un ufficio dell'Agenzia con la copia di un documento d'identità, che non serve con la firma digitale, oppure portalo allo sportello con un appuntamento; chi vive all'estero può presentarlo al consolato."
           }
         ]
       },
       {
         "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/richiesta-codice-fiscale/#faq",
+        "inLanguage": "it-IT",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Chi deve presentare il modello AA4/8?",
+            "name": "Quanto costa chiedere il codice fiscale o la tessera sanitaria?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Chi non ha ancora il codice fiscale e non l'ha ricevuto in automatico dal Comune, dallo Sportello Unico per l'Immigrazione o dalla Questura. Serve anche a chi il codice ce l'ha già ma deve comunicare la variazione dei dati anagrafici o di residenza, chiedere il certificato di codice fiscale, chiedere il duplicato del tesserino o della Tessera Sanitaria, o comunicare un decesso."
+              "text": "Le schede dell’Agenzia sul codice fiscale non indicano costi né marche da bollo, e quella sulla tessera sanitaria dice che la tessera «è gratuita». Modello e istruzioni si scaricano gratis e si possono stampare anche in bianco e nero; anche il compilatore di questa pagina è gratuito."
             }
           },
           {
             "@type": "Question",
-            "name": "Devo chiedere il duplicato della Tessera Sanitaria in scadenza?",
+            "name": "Il codice fiscale calcolato da un sito o da un’app vale?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. La tessera in scadenza viene rinnovata in automatico e recapitata all'indirizzo di residenza, a meno che non sia decaduto il diritto all'assistenza sanitaria. Il duplicato si chiede solo per furto o smarrimento, mancato recapito o sostituzione di una tessera deteriorata."
+              "text": "No. Nelle risposte alle domande frequenti l’Agenzia avverte che i codici «calcolati con applicazioni pubblicate su siti web non hanno alcun valore e il loro utilizzo può comportare problemi ai cittadini». Vale solo il codice attribuito dall’Agenzia, che con l’omocodia può essere diverso da quello calcolato. Per controllarne uno c’è il servizio Verifica codice fiscale dell’Agenzia."
             }
           },
           {
             "@type": "Question",
-            "name": "Posso far presentare il modello a un'altra persona?",
+            "name": "Devo chiedere il duplicato della tessera sanitaria che sta per scadere?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sì. Il riquadro della delega, in fondo al modello, va compilato in tutti i suoi campi e firmato dal delegante. Il delegato deve esibire il proprio documento d'identità e la copia di quello del delegante, entrambi in corso di validità."
+              "text": "No. Le istruzioni del modello lo dicono espressamente: la nuova tessera viene emessa in automatico e spedita all’indirizzo di residenza, se il diritto all’assistenza non è decaduto. Il cittadino straniero, la cui tessera di norma dura quanto il permesso di soggiorno, con il permesso rinnovato torna alla ASL per rinnovare l’iscrizione e chiedere la tessera nuova."
             }
           },
           {
             "@type": "Question",
-            "name": "Il modello AA4/8 vale anche per le associazioni e i condomini?",
+            "name": "Quanto ci mette ad arrivare la nuova tessera sanitaria?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. L'AA4/8 è riservato alle persone fisiche. Gli enti, le associazioni e i condomini che chiedono il codice fiscale usano il modello AA5/6; chi apre una partita IVA come soggetto diverso da persona fisica usa l'AA7/10."
+              "text": "Secondo le FAQ dell’Agenzia la tessera viene spedita solo per posta e arriva in circa 3/4 settimane. Nell’attesa, con SPID, CIE o CNS, puoi vedere e stampare la copia della tessera valida nell’area riservata dell’Agenzia o del Sistema Tessera Sanitaria; la stampa vale per le prestazioni del Servizio sanitario nazionale."
             }
           },
           {
             "@type": "Question",
-            "name": "I miei dati vengono inviati da qualche parte?",
+            "name": "Posso mandare il modello AA4/8 via PEC?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. La compilazione e la creazione del PDF avvengono interamente nel browser, sul tuo dispositivo. Nessun dato anagrafico viene trasmesso a un server: puoi verificarlo staccando la connessione dopo aver aperto la pagina."
+              "text": "Sì, per l’attribuzione del codice fiscale e per una nuova tessera sanitaria o un nuovo tesserino: alleghi il modello firmato e la copia di un documento d’identità, che non serve se il modello è firmato digitalmente. Fa eccezione il primo codice fiscale di un cittadino straniero, che si chiede solo di persona, con un appuntamento allo sportello."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sono un cittadino straniero: devo andare all’Agenzia per il codice fiscale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Di solito no: a chi chiede il permesso di soggiorno, o presenta domanda di ingresso per lavoro subordinato o ricongiungimento familiare, il codice lo attribuiscono la Questura o lo Sportello unico per l’immigrazione. All’Agenzia si va se si è ricevuto un codice «provvisorio numerico», oppure per un primo codice chiesto per altri motivi: con appuntamento, di persona, e con un documento come il passaporto valido con il visto, se richiesto, o il permesso di soggiorno."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Vivo all’estero: dove chiedo il codice fiscale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Al consolato italiano del Paese in cui risiedi, con il modello AA4/8, oppure a qualunque ufficio dell’Agenzia. Gli indirizzi dei consolati sono nella pagina sulla rete diplomatica del sito del Ministero degli affari esteri. Allo stesso consolato puoi chiedere anche un nuovo tesserino del codice fiscale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il tesserino verde dà diritto all’assistenza sanitaria?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. L’Agenzia lo emette proprio a chi non ha diritto all’assistenza del Servizio sanitario nazionale e precisa che il tesserino «non dà diritto all’assistenza sanitaria». Per iscriversi al Servizio sanitario ci si rivolge alla propria ASL."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Chi corregge un dato sbagliato sulla tessera sanitaria o sul tesserino?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Per la tessera sanitaria, chi è iscritto all’ANPR si rivolge al Comune di residenza; gli altri a un qualsiasi ufficio dell’Agenzia, con un documento d’identità valido. Per il tesserino si va a un ufficio dell’Agenzia, prenotando un appuntamento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove trovo il numero della tessera sanitaria?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nella sezione «Il tuo profilo» dell’area riservata del sito dell’Agenzia, insieme alla data di scadenza; oppure sulla copia della tessera valida, che puoi stampare dall’area riservata dell’Agenzia o del Sistema Tessera Sanitaria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso far presentare il modello a un’altra persona?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sì. Compili e firmi il riquadro della delega, in fondo al modello, in tutti i campi; il delegato mostra il proprio documento d’identità e la copia del tuo, entrambi validi, e può anche ritirare l’eventuale certificato rilasciato dall’ufficio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il modello AA4/8 vale per associazioni, enti o condomini?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: è solo per le persone fisiche. Per i soggetti diversi dalle persone fisiche c’è il modello AA5/6, che fra le cariche di chi firma prevede anche l’amministratore di condominio. Chi apre una partita IVA come impresa individuale o lavoratore autonomo usa invece l’AA9/12."
             }
           }
         ]
@@ -265,12 +335,11 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Modello AA4/8: richiesta del codice fiscale online</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Il modello <strong>AA4/8</strong> &egrave; quello con cui si chiede all'Agenzia delle Entrate
-          l'attribuzione del <strong>codice fiscale</strong>, si comunica la <strong>variazione dei dati</strong>,
-          si richiede il <strong>duplicato della Tessera Sanitaria</strong> o del tesserino, si chiede il
-          certificato di codice fiscale e si comunica un decesso. Vale solo per le
-          <strong>persone fisiche</strong>. Qui lo compili passo per passo e scarichi il PDF ministeriale
-          gi&agrave; riempito, pronto da stampare e firmare.
+          Con il modello <strong>AA4/8</strong> una persona fisica chiede all&rsquo;Agenzia delle Entrate
+          l&rsquo;<strong>attribuzione del codice fiscale</strong>, comunica una <strong>variazione dei dati</strong>
+          o un decesso, chiede il certificato o il <strong>duplicato della tessera sanitaria</strong> e del tesserino.
+          Qui lo compili passo per passo e scarichi il PDF ufficiale; sotto trovi quando il modello non serve,
+          come presentarlo <strong>via PEC o allo sportello</strong>, i codici del Quadro A e sei esempi.
         </p>
         <p class="mt-3 text-xs font-semibold text-emerald-700">&#128274; Privacy garantita: nessun dato anagrafico viene inviato a server esterni.</p>
       </section>
@@ -332,7 +401,7 @@
              class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#127963;&#65039; Pagina ufficiale del modello AA4/8</a>
           <a href="/assets/pdf/istruzioni-aa4-8.pdf" target="_blank" rel="noopener"
              class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#128218; Istruzioni per la compilazione (PDF)</a>
-          <a href="/identita-burocrazia/codice-fiscale/" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#129518; Calcola prima il codice fiscale</a>
+          <a href="/identita-burocrazia/codice-fiscale/" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#129518; Generatore e verifica del codice fiscale</a>
           <button id="mp-azzera" type="button" class="text-xs font-bold text-gray-500 hover:text-red-600 transition">
             &#128465;&#65039; Cancella i dati del modello
           </button>
@@ -346,17 +415,17 @@
       </section>
 
       <div class="mb-8 rounded-xl border border-gray-200 bg-white p-5">
-        <h2 class="text-sm font-bold text-gray-900">Che cosa portare all'ufficio</h2>
+        <h2 class="text-sm font-bold text-gray-900">Dopo il PDF: come presentarlo</h2>
         <ul class="mt-2 space-y-1.5 text-xs text-gray-600 leading-relaxed list-disc list-inside">
-          <li>Il modello <strong>stampato e firmato a penna</strong>: senza firma &egrave; nullo.</li>
-          <li>Un <strong>documento d'identit&agrave; valido</strong> di chi presenta la richiesta.</li>
-          <li>Se chiedi per un'altra persona, una <strong>dichiarazione che motiva la richiesta</strong> e
-              un'attestazione d'identit&agrave; di quella persona.</li>
-          <li>Se manda un delegato, il documento del delegato e la <strong>copia di quello del delegante</strong>.</li>
+          <li><strong>Via PEC</strong> a un ufficio dell'Agenzia: il modello firmato e la copia di un documento d'identit&agrave;, che non serve se firmi digitalmente.</li>
+          <li><strong>Allo sportello</strong>, con un appuntamento: il modello firmato a penna e un documento valido. Il primo codice fiscale di un cittadino straniero si chiede solo cos&igrave;, di persona.</li>
+          <li><strong>Per un'altra persona</strong> (tipo T): il tuo documento e una dichiarazione con il motivo della richiesta.</li>
+          <li><strong>Con un delegato</strong>: il riquadro della delega firmato da te; il delegato porta il suo documento e la copia del tuo.</li>
         </ul>
         <p class="mt-3 text-xs text-gray-500">
-          Il modello si presenta a un qualunque ufficio dell'Agenzia delle Entrate. Chi risiede all'estero
-          pu&ograve; presentarlo alla rappresentanza diplomatico-consolare italiana del Paese di residenza.
+          Senza firma il modello &egrave; nullo. Nuova tessera sanitaria, nuovo tesserino e codice del neonato si
+          chiedono anche online con SPID, CIE o CNS, senza modello:
+          <a href="#come-si-presenta" class="underline font-semibold">tutte le strade nella guida</a>.
         </p>
       </div>
 
@@ -375,20 +444,20 @@
             <div><dt class="font-bold text-indigo-300">1 &middot; Attribuzione</dt>
               <dd class="text-gray-300">Non hai mai avuto un codice fiscale.</dd></div>
             <div><dt class="font-bold text-indigo-300">2 &middot; Variazione dati</dt>
-              <dd class="text-gray-300">Ce l'hai, ma sono cambiati nome, residenza o domicilio fiscale.</dd></div>
+              <dd class="text-gray-300">Ce l'hai, ma sono cambiati i dati anagrafici, il domicilio fiscale o la residenza all'estero.</dd></div>
             <div><dt class="font-bold text-indigo-300">3 &middot; Decesso</dt>
               <dd class="text-gray-300">Comunichi la morte di una persona: servono il suo codice e la data.</dd></div>
             <div><dt class="font-bold text-indigo-300">4 &middot; Certificato</dt>
               <dd class="text-gray-300">Ti serve l'attestazione scritta del codice fiscale.</dd></div>
             <div><dt class="font-bold text-indigo-300">5 &middot; Duplicato</dt>
-              <dd class="text-gray-300">Tessera Sanitaria rubata, smarrita, mai arrivata o rovinata.</dd></div>
+              <dd class="text-gray-300">Tessera sanitaria rubata, smarrita, rovinata o mai arrivata, o tesserino da rifare. Online fai prima.</dd></div>
           </dl>
           <div class="pt-3 border-t border-gray-800 space-y-2">
             <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span>&#128196;</span> Vai al compilatore
             </a>
             <p class="text-[10px] text-gray-400 text-center leading-tight">
-              Il PDF scaricato &egrave; il modello ufficiale dell'Agenzia delle Entrate e resta modificabile.
+              Scarichi il modello editabile dell'Agenzia nella versione di giugno 2025: i campi restano modificabili.
             </p>
           </div>
         </div>
@@ -396,9 +465,10 @@
         <div class="bg-white rounded-xl shadow-sm border border-indigo-100 p-5">
           <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3 border-b border-gray-100 pb-2">Prima di compilare</h3>
           <a href="/identita-burocrazia/codice-fiscale/" class="block rounded-lg bg-indigo-50 border border-indigo-100 p-3 hover:bg-indigo-100 transition">
-            <span class="text-xs font-bold text-indigo-800 flex items-center gap-2"><span aria-hidden="true">&#129518;</span> Calcola il codice fiscale</span>
+            <span class="text-xs font-bold text-indigo-800 flex items-center gap-2"><span aria-hidden="true">&#129518;</span> Generatore di codice fiscale</span>
             <span class="mt-1 block text-[11px] text-indigo-700 leading-relaxed">
-              Serve per i quadri 2, 3, 4 e 5 del modello. Calcolalo l&igrave; e te lo ritrovi qui gi&agrave; pronto.
+              Nelle caselle 2, 3, 4 e 5 va il codice gi&agrave; attribuito, quello della tessera: un codice calcolato
+              non vale. Dal generatore puoi riprendere qui solo nome, cognome e dati di nascita.
             </span>
           </a>
           <a href="/identita-burocrazia/codice-fiscale-enti/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
@@ -410,7 +480,7 @@
           <a href="/identita-burocrazia/fototessera/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
             <span class="text-xs font-bold text-gray-800 flex items-center gap-2"><span aria-hidden="true">&#128247;</span> Fototessera a norma</span>
             <span class="mt-1 block text-[11px] text-gray-600 leading-relaxed">
-              Se il documento d'identit&agrave; da allegare &egrave; scaduto, parti da qui.
+              Il documento d'identit&agrave; da allegare deve essere valido: se va rinnovato, qui prepari la foto.
             </span>
           </a>
         </div>
@@ -441,292 +511,210 @@
 
     <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
 
-      <!-- Scheda di affidabilità -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
-        <div class="mt-3 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Il modulo</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              &Egrave; il PDF ufficiale dell&rsquo;Agenzia delle Entrate, scaricato dalla pagina
-              <a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/modello-e-istruzioni" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">Codice fiscale e tessera sanitaria &mdash; Modello e istruzioni</a>.
-              Non &egrave; una riproduzione: &egrave; lo stesso file che scaricheresti dal sito dell&rsquo;Agenzia,
-              con i campi compilabili sistemati perch&eacute; il testo cada dentro ai quadretti stampati.
-            </p>
+      <!-- Scheda di affidabilit&agrave; -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Regole verificate a <time datetime="2026-10">ottobre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">&#128100; Chi lo cura</p>
+            <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente: non &egrave; un servizio dell&rsquo;Agenzia delle Entrate n&eacute; di un&rsquo;azienda sanitaria. Codice fiscale, tessera e tesserino sono spiegati con le istruzioni del modello e le schede dell&rsquo;Agenzia elencate in fondo: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Le spiegazioni</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Ogni campo riporta il testo delle
-              <a href="/assets/pdf/istruzioni-aa4-8.pdf" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">istruzioni ministeriali</a>,
-              comprese le tabelle dei codici tipologia richiedente e delle motivazioni del duplicato.
-            </p>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">&#128196; Il modello</p>
+            <p class="text-gray-600 leading-relaxed">&Egrave; il modello AA4/8 editabile pubblicato dall&rsquo;Agenzia a giugno 2025, con le istruzioni del 2013. I suoi campi c&rsquo;erano gi&agrave;: il compilatore ne ha sistemato le caselline, cos&igrave; ogni carattere del codice fiscale e della data cade nel suo quadretto. Modello, istruzioni e schede vengono ricontrollati ogni settimana in automatico.</p>
           </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">I tuoi dati</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Non escono dal dispositivo. La compilazione e la scrittura del PDF avvengono in JavaScript nel
-              browser: dopo aver aperto la pagina puoi staccare la connessione e lo strumento continua a
-              funzionare. Quello che digiti resta in memoria locale finch&eacute; non premi
-              &laquo;Cancella i dati del modello&raquo;.
-            </p>
-          </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Limiti dichiarati</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Lo strumento compila e non presenta: il modello va stampato, <strong>firmato a penna</strong> e
-              consegnato a un ufficio dell&rsquo;Agenzia. La firma non pu&ograve; essere inserita nel PDF
-              perch&eacute; il modulo ufficiale non prevede un campo firma. Questo sito non &egrave;
-              l&rsquo;Agenzia delle Entrate e non sostituisce la consulenza di un professionista.
-            </p>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF si crea sul tuo dispositivo e nessun dato arriva a un server. I codici fiscali che scrivi non vengono salvati nemmeno nel browser; il resto rimane qui finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;. La firma e l&rsquo;invio, via PEC o allo sportello, restano a te.</p>
           </div>
         </div>
       </section>
 
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 su-seo-expansion">
-        <h2 class="text-xl font-bold text-gray-900">A cosa serve il modello AA4/8</h2>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Il codice fiscale identifica ogni persona nei rapporti con la Pubblica Amministrazione. Di norma non
-          si chiede: arriva da solo. Lo attribuisce l&rsquo;Agenzia delle Entrate quando riceve i dati dal
-          <strong>Comune</strong>, per i neonati iscritti all&rsquo;anagrafe; dallo <strong>Sportello Unico per
-          l&rsquo;Immigrazione</strong>, per chi entra in Italia per lavoro subordinato o ricongiungimento
-          familiare; dalla <strong>Questura</strong>, per chi chiede o rinnova il permesso di soggiorno.
-        </p>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Il modello AA4/8 serve quando quel passaggio automatico non c&rsquo;&egrave; stato, oppure quando il
-          codice c&rsquo;&egrave; gi&agrave; ma qualcosa &egrave; cambiato. Con un solo modulo si pu&ograve;
-          chiedere l&rsquo;attribuzione del codice, comunicare la variazione dei dati anagrafici o di residenza,
-          chiedere il certificato, chiedere il duplicato del tesserino o della Tessera Sanitaria e comunicare un
-          decesso. Vale <strong>solo per le persone fisiche</strong>.
-        </p>
-
-        <details class="mt-5 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Richiesta diretta o per un&rsquo;altra persona: come si sceglie</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>
-              La <strong>richiesta diretta (tipo D)</strong> &egrave; quella che presenti per te stesso, con un
-              documento d&rsquo;identit&agrave; valido. La <strong>richiesta per soggetto terzo (tipo T)</strong>
-              vale quando chiedi per qualcun altro: il genitore per il figlio minore, il rappresentante di una
-              persona con limitata capacit&agrave; di agire, l&rsquo;erede per un deceduto, chi deve indicare in
-              dichiarazione il codice fiscale di un familiare a carico, un ente di assistenza per uno straniero
-              in condizione disagiata, un istituto di detenzione, un organo di giustizia, o un soggetto tenuto
-              per legge a indicare il codice fiscale di terzi &mdash; banche, enti previdenziali, ASD.
-            </p>
-            <p>
-              Solo quando chiedi l&rsquo;<strong>attribuzione</strong> di un nuovo codice devi anche indicare il
-              <strong>codice tipologia richiedente</strong>: due cifre che raccontano il perch&eacute; della
-              richiesta. Vanno da 01 a 04 per le richieste dirette e da 10 a 18 per quelle per conto di altri.
-              Il compilatore ti mostra solo i codici compatibili con la scelta che hai fatto.
-            </p>
-          </div>
-        </details>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Duplicato della Tessera Sanitaria: quando si chiede e quando no</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>
-              &Egrave; l&rsquo;errore pi&ugrave; comune: <strong>la tessera in scadenza non va richiesta</strong>.
-              Viene emessa in automatico e recapitata all&rsquo;indirizzo di residenza, a meno che non sia
-              decaduto il diritto all&rsquo;assistenza sanitaria. Chiedere il duplicato in quel caso significa
-              fare una coda inutile.
-            </p>
-            <p>Il duplicato si chiede in tre casi, e va indicata la motivazione corrispondente:</p>
-            <ul class="list-disc list-inside space-y-1">
-              <li><strong>1</strong> &mdash; furto o smarrimento;</li>
-              <li><strong>2</strong> &mdash; mancato recapito;</li>
-              <li><strong>3</strong> &mdash; sostituzione tecnica di una tessera deteriorata.</li>
-            </ul>
-            <p>
-              Anche la <strong>richiesta del tesserino</strong> di codice fiscale segue una regola precisa: la
-              barra solo chi <em>non</em> ha diritto all&rsquo;assistenza del Servizio Sanitario Nazionale. Chi
-              ne ha diritto riceve la Tessera Sanitaria da sola, e i neonati ricevono una tessera valida un anno.
-            </p>
-          </div>
-        </details>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Come si scrive l&rsquo;indirizzo, e perch&eacute; conta</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>
-              Il Quadro C vuole l&rsquo;indirizzo <strong>spezzato nei suoi elementi</strong>, ognuno nel proprio
-              campo. Sono gli esempi delle istruzioni ufficiali:
-            </p>
-            <ul class="list-disc list-inside space-y-1">
-              <li><code>VIA PARIGI 51/B &ndash; FRAZ. PRATOLUNGO</code> &rarr; tipologia <strong>VIA</strong>,
-                  indirizzo <strong>PARIGI</strong>, civico <strong>51/B</strong>, frazione
-                  <strong>FRAZ. PRATOLUNGO</strong>;</li>
-              <li><code>PRESSO BIANCHI &ndash; CORSO ITALIA 10 PAL. A</code> &rarr; tipologia
-                  <strong>CORSO</strong>, indirizzo <strong>ITALIA</strong>, civico
-                  <strong>10 PAL. A</strong>, frazione <strong>PRESSO BIANCHI</strong>.</li>
-            </ul>
-            <p>
-              Chi risiede all&rsquo;estero indica qui il <strong>domicilio fiscale</strong>, cio&egrave; il luogo
-              dove produce il reddito (o quello dove ne produce di pi&ugrave;), e compila anche il Quadro D della
-              residenza estera in tutti i suoi campi. Chi non ha domicilio fiscale in Italia indica
-              l&rsquo;eventuale luogo di dimora e, se non c&rsquo;&egrave;, salta il quadro.
-            </p>
-          </div>
-        </details>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Combinazioni ammesse e casi particolari</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Le caselle si possono combinare, e in due casi le istruzioni lo prevedono espressamente:</p>
-            <ul class="list-disc list-inside space-y-1">
-              <li>chiedendo l&rsquo;<strong>attribuzione</strong> (casella 1) o la <strong>variazione dati</strong>
-                  (casella 2) si pu&ograve; chiedere contestualmente il <strong>certificato</strong> (casella 4);</li>
-              <li>l&rsquo;<strong>erede che chiede il codice fiscale di un deceduto</strong> (casella 1, tipologia
-                  13) deve barrare anche la <strong>comunicazione di decesso</strong> (casella 3) e indicarne la data.</li>
-            </ul>
-            <p>
-              Il <strong>Quadro E</strong> serve nel caso, non raro, in cui la stessa persona risulti registrata
-              due volte con dati leggermente diversi: indicando l&igrave; l&rsquo;altro codice fiscale attribuito,
-              l&rsquo;ufficio collega le posizioni e le unifica su quella con i dati corretti.
-            </p>
-          </div>
-        </details>
-
-        <details class="mt-4 group border-t border-gray-100 pt-4">
-          <summary class="cursor-pointer text-base font-bold text-gray-900 flex items-center justify-between">
-            <span>Il modello sbagliato: AA4/8, AA5/6, AA9/12 o AA7/10?</span>
-            <span class="text-indigo-500 text-sm group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <div class="mt-3 text-sm text-gray-700 leading-relaxed space-y-3">
-            <p>Quattro modelli che si somigliano e che vengono confusi spesso:</p>
-            <ul class="list-disc list-inside space-y-1">
-              <li><strong>AA4/8</strong> &mdash; codice fiscale di una <em>persona fisica</em>. &Egrave; questo.</li>
-              <li><strong>AA5/6</strong> &mdash; codice fiscale di un <em>soggetto diverso da persona fisica</em>
-                  senza partita IVA: associazioni, condomini, enti.</li>
-              <li><strong>AA9/12</strong> &mdash; apertura, variazione o chiusura di <em>partita IVA</em> per le
-                  persone fisiche. Lo trovi nel
-                  <a href="/fisco-professioni/modelli-partita-iva/" class="text-indigo-600 hover:underline">compilatore dei modelli partita IVA</a>.</li>
-              <li><strong>AA7/10</strong> &mdash; le stesse operazioni per societ&agrave; ed enti.</li>
-            </ul>
-          </div>
-        </details>
-      </section>
-
-      <!-- FAQ -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Quanto costa richiedere il codice fiscale?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
-            Nulla. L&rsquo;attribuzione del codice fiscale, il duplicato della Tessera Sanitaria e il certificato
-            di codice fiscale sono gratuiti. Anche il modello e le istruzioni si scaricano gratis dal sito
-            dell&rsquo;Agenzia delle Entrate e si possono stampare in bianco e nero.
-          </p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Posso presentarlo online invece che allo sportello?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
-            Il modello si presenta a un qualunque ufficio dell&rsquo;Agenzia delle Entrate, anche tramite un
-            delegato. Chi risiede all&rsquo;estero pu&ograve; rivolgersi alla rappresentanza
-            diplomatico-consolare italiana del Paese di residenza. Per alcune casistiche l&rsquo;Agenzia mette a
-            disposizione anche canali telematici nella propria area riservata: verifica sulla pagina ufficiale
-            quale sia la via pi&ugrave; rapida nel tuo caso.
-          </p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Il codice fiscale calcolato da un sito ha valore legale?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
-            No. Un codice calcolato &mdash; anche dal nostro
-            <a href="/identita-burocrazia/codice-fiscale/" class="text-indigo-600 hover:underline">generatore</a> &mdash;
-            &egrave; solo il risultato dell&rsquo;algoritmo: vale come verifica, non come attribuzione. Il codice
-            valido &egrave; quello che l&rsquo;Agenzia delle Entrate registra in Anagrafe tributaria, ed &egrave;
-            esattamente quello che chiedi con questo modello. In caso di omocodia, poi, il codice ufficiale
-            differisce da quello calcolato.
-          </p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Il PDF scaricato resta modificabile?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
-            S&igrave;. I campi non vengono &laquo;appiattiti&raquo;: puoi riaprire il file in un lettore PDF e
-            correggere un dato senza rifare tutto. Se invece vuoi cambiare pi&ugrave; cose, conviene tornare qui:
-            i dati restano salvati nel browser finch&eacute; non li cancelli.
-          </p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Ho perso la Tessera Sanitaria all&rsquo;estero: cosa faccio?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">
-            Vale la stessa procedura: casella 5, motivazione 1 (furto o smarrimento), e il modello si pu&ograve;
-            presentare alla rappresentanza diplomatico-consolare italiana. Ricorda che la tessera porta sul retro
-            anche la Tessera Europea di Assicurazione Malattia, quindi conviene chiederne il duplicato prima di
-            ripartire.
-          </p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Chi deve presentare il modello AA4/8?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Chi non ha ancora il codice fiscale e non l'ha ricevuto in automatico dal Comune, dallo Sportello Unico per l'Immigrazione o dalla Questura. Serve anche a chi il codice ce l'ha già ma deve comunicare la variazione dei dati anagrafici o di residenza, chiedere il certificato di codice fiscale, chiedere il duplicato del tesserino o della Tessera Sanitaria, o comunicare un decesso.</p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Devo chiedere il duplicato della Tessera Sanitaria in scadenza?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. La tessera in scadenza viene rinnovata in automatico e recapitata all'indirizzo di residenza, a meno che non sia decaduto il diritto all'assistenza sanitaria. Il duplicato si chiede solo per furto o smarrimento, mancato recapito o sostituzione di una tessera deteriorata.</p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Posso far presentare il modello a un'altra persona?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sì. Il riquadro della delega, in fondo al modello, va compilato in tutti i suoi campi e firmato dal delegante. Il delegato deve esibire il proprio documento d'identità e la copia di quello del delegante, entrambi in corso di validità.</p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>Il modello AA4/8 vale anche per le associazioni e i condomini?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. L'AA4/8 è riservato alle persone fisiche. Gli enti, le associazioni e i condomini che chiedono il codice fiscale usano il modello AA5/6; chi apre una partita IVA come soggetto diverso da persona fisica usa l'AA7/10.</p>
-        </details>
-
-        <details class="mt-3 group border-t border-gray-100 pt-3">
-          <summary class="cursor-pointer text-sm font-bold text-gray-900 flex items-center justify-between">
-            <span>I miei dati vengono inviati da qualche parte?</span>
-            <span class="text-indigo-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true">&#9662;</span>
-          </summary>
-          <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. La compilazione e la creazione del PDF avvengono interamente nel browser, sul tuo dispositivo. Nessun dato anagrafico viene trasmesso a un server: puoi verificarlo staccando la connessione dopo aver aperto la pagina.</p>
-        </details>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Codice fiscale e tessera sanitaria: quando serve il modello AA4/8 e come si compila</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+<p>Il modello AA4/8 &egrave; la domanda con cui una persona fisica chiede all&rsquo;Agenzia delle Entrate il codice fiscale, comunica una variazione dei dati o un decesso, chiede il certificato del codice fiscale, una nuova tessera sanitaria o un nuovo tesserino. Molti per&ograve; non ne hanno bisogno: ai neonati il codice lo attribuisce il Comune, a buona parte dei cittadini stranieri la Questura o lo Sportello unico per l&rsquo;immigrazione, e la tessera in scadenza si rinnova da sola. Qui sotto trovi i casi uno per uno, le strade per presentarlo, i codici del Quadro A, il modello quadro per quadro e sei esempi; le schede ufficiali sono elencate in fondo.</p>
+<h3 id="quando-serve" class="text-lg font-bold text-gray-900 pt-3">Ti serve davvero il modello? Dipende dal caso</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Quando serve il modello AA4/8 e quando codice fiscale e tessera arrivano senza chiederli</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Situazione</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa succede</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa fai</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Nasce un figlio</td><td class="px-1.5 sm:px-3 py-2 align-top">Il Comune attribuisce il codice fiscale quando iscrive il neonato nell&rsquo;Anagrafe nazionale della popolazione residente (ANPR); a casa arriva la prima tessera sanitaria, valida un anno</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente. Se il codice serve subito e il Comune non l&rsquo;ha ancora rilasciato, un genitore lo chiede online o con il modello (esempio 2)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Un cittadino straniero chiede il permesso di soggiorno, o presenta domanda di ingresso per lavoro subordinato o ricongiun&shy;gimento familiare</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice lo attribuiscono la Questura o lo Sportello unico per l&rsquo;immigrazione, collegati con l&rsquo;Anagrafe tributaria</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: non serve andare all&rsquo;Agenzia. Solo chi riceve un codice &laquo;provvisorio numerico&raquo; si rivolge a un suo ufficio</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Un cittadino straniero ha bisogno del primo codice fiscale per altri motivi: studio, lavoro senza residenza, un soggiorno temporaneo</td><td class="px-1.5 sm:px-3 py-2 align-top">Lo attribuisce l&rsquo;Agenzia con il modello AA4/8 (per lo studente non residente, codice tipologia 01)</td><td class="px-1.5 sm:px-3 py-2 align-top">Appuntamento in un ufficio dell&rsquo;Agenzia: per il primo codice di un cittadino straniero, dell&rsquo;Unione europea o no, la presenza allo sportello &egrave; obbligatoria (esempio 3)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Vivi all&rsquo;estero e non hai il codice fiscale</td><td class="px-1.5 sm:px-3 py-2 align-top">Lo attribuisce il consolato italiano del Paese in cui risiedi, oppure un ufficio dell&rsquo;Agenzia</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA4/8 al consolato o all&rsquo;ufficio, con il Quadro D della residenza estera</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">La tessera sanitaria sta per scadere</td><td class="px-1.5 sm:px-3 py-2 align-top">La nuova viene emessa e spedita da sola all&rsquo;indirizzo di residenza, se il diritto all&rsquo;assistenza non &egrave; decaduto</td><td class="px-1.5 sm:px-3 py-2 align-top">Niente: il duplicato di una tessera in scadenza non va chiesto. Il cittadino straniero con il permesso rinnovato torna alla ASL</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Tessera sanitaria rubata, smarrita, rovinata o mai arrivata</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;Agenzia ne emette una nuova e la spedisce per posta, in circa 3/4 settimane</td><td class="px-1.5 sm:px-3 py-2 align-top">Servizio online con SPID, CIE o CNS; senza credenziali, modello AA4/8 con la casella 5 e la motivazione (esempio 1)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Tesserino del codice fiscale rubato, smarrito o rovinato (lo ha chi non &egrave; iscritto al Servizio sanitario nazionale)</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;Agenzia ne emette uno nuovo</td><td class="px-1.5 sm:px-3 py-2 align-top">Servizio online, anche senza credenziali con il codice fiscale o i dati anagrafici e alcuni dati della dichiarazione dei redditi; oppure modello AA4/8 con la casella 5</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Ti serve la prima tessera sanitaria</td><td class="px-1.5 sm:px-3 py-2 align-top">Gli uffici dell&rsquo;Agenzia non la emettono: la prima emissione si chiede solo alla ASL</td><td class="px-1.5 sm:px-3 py-2 align-top">Vai alla ASL di competenza</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sulla tessera sanitaria c&rsquo;&egrave; un dato sbagliato</td><td class="px-1.5 sm:px-3 py-2 align-top">Nome, cognome, codice fiscale, luogo e data di nascita o sesso si correggono dove sono registrati</td><td class="px-1.5 sm:px-3 py-2 align-top">Se sei iscritto all&rsquo;ANPR, al Comune di residenza; altrimenti a un ufficio dell&rsquo;Agenzia, con un documento d&rsquo;identit&agrave; valido</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sono cambiati i tuoi dati, ti serve il certificato o devi comunicare un decesso</td><td class="px-1.5 sm:px-3 py-2 align-top">Sono le caselle 2, 4 e 3 del modello</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA4/8 a un ufficio dell&rsquo;Agenzia; chi vive all&rsquo;estero anche al consolato (esempio 6)</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Quando l&rsquo;Agenzia attribuisce un codice fiscale rilascia il certificato di attribuzione, che si usa finch&eacute; non arriva a casa la tessera sanitaria, per chi &egrave; iscritto al Servizio sanitario nazionale, o il tesserino del codice fiscale, per tutti gli altri. Il tesserino verde, avverte l&rsquo;Agenzia, &laquo;non d&agrave; diritto all&rsquo;assistenza sanitaria&raquo;: per quella si va alla ASL.</p>
+<h3 id="come-si-presenta" class="text-lg font-bold text-gray-900 pt-3">PEC, sportello, consolato o servizio online</h3>
+<p>Il modello va sempre firmato dal richiedente: senza firma &egrave; nullo. Si compila in stampatello e in tutte le sue parti, poi si presenta in uno dei modi della tabella. Per tre richieste frequenti c&rsquo;&egrave; anche un servizio online che lo rende superfluo.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Le strade per presentare il modello AA4/8, o per farne a meno</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Strada</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa serve</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Per quali richieste</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Servizio online dell&rsquo;Agenzia</td><td class="px-1.5 sm:px-3 py-2 align-top">SPID, CIE o CNS per entrare nell&rsquo;area riservata; il modello non serve</td><td class="px-1.5 sm:px-3 py-2 align-top">Nuova tessera sanitaria, nuovo tesserino, codice fiscale del neonato chiesto da un genitore con la copia della dichiarazione o del certificato di nascita</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">PEC a un ufficio dell&rsquo;Agenzia</td><td class="px-1.5 sm:px-3 py-2 align-top">Il modello compilato e firmato, con la copia di un documento d&rsquo;identit&agrave;; se lo firmi digitalmente il documento non serve</td><td class="px-1.5 sm:px-3 py-2 align-top">Attribuzione del codice fiscale, compreso quello del neonato, e nuova tessera o nuovo tesserino quando non puoi usare il servizio online</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sportello di un ufficio territoriale</td><td class="px-1.5 sm:px-3 py-2 align-top">Un appuntamento, il modello firmato a penna e un documento d&rsquo;identit&agrave; valido; l&rsquo;ufficio acquisisce una copia di tutti i documenti</td><td class="px-1.5 sm:px-3 py-2 align-top">Tutte le richieste. &Egrave; l&rsquo;unica strada per il primo codice fiscale di un cittadino straniero. Puoi mandare un delegato</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Consolato italiano</td><td class="px-1.5 sm:px-3 py-2 align-top">Il modello firmato, presentato nel Paese in cui vivi</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi risiede all&rsquo;estero: attribuzione del codice fiscale e nuovo tesserino</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Gli <a href="https://www.agenziaentrate.gov.it/portale/siti-web-regionali" class="text-indigo-700 underline" target="_blank" rel="noopener">indirizzi PEC degli uffici</a> sono sul sito dell&rsquo;Agenzia, dove si fa anche la <a href="https://www.agenziaentrate.gov.it/portale/prenota-un-appuntamento" class="text-indigo-700 underline" target="_blank" rel="noopener">prenotazione dell&rsquo;appuntamento</a> per lo sportello.</p>
+<p><strong>Quali documenti allegare.</strong> Le schede dell&rsquo;Agenzia e le istruzioni chiedono:</p>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li>ai cittadini italiani e dell&rsquo;Unione europea, un documento d&rsquo;identit&agrave; valido;</li>
+  <li>ai cittadini di un Paese fuori dall&rsquo;Unione europea, uno a scelta fra il passaporto valido con il visto, quando &egrave; richiesto, o un altro documento riconosciuto dalle autorit&agrave; italiane, l&rsquo;attestazione d&rsquo;identit&agrave; rilasciata in Italia dalla rappresentanza diplomatica o consolare del loro Paese, con la foto, il permesso di soggiorno valido e la carta d&rsquo;identit&agrave; rilasciata dal Comune di residenza;</li>
+  <li>a chi chiede per un figlio minore, il proprio documento d&rsquo;identit&agrave;; le istruzioni aggiungono un&rsquo;attestazione d&rsquo;identit&agrave; della persona per cui si chiede, e lo stesso vale per il rappresentante di chi ha una capacit&agrave; di agire limitata;</li>
+  <li>a chi chiede per un&rsquo;altra persona (tipo T), anche una dichiarazione che spiega il motivo della richiesta;</li>
+  <li>con la firma digitale, nessun documento d&rsquo;identit&agrave;.</li>
+</ul>
+<p>Per gli stati, le qualit&agrave; personali e i fatti dell&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art46" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 46 del D.P.R. 445/2000</a> le istruzioni ammettono l&rsquo;autocertificazione. Puoi anche mandare un&rsquo;altra persona: compili il riquadro della delega in tutti i campi e lo firmi; il delegato mostra il proprio documento d&rsquo;identit&agrave; e la copia del tuo, entrambi validi. Se a chiedere &egrave; una banca o un ente, la copia &egrave; quella del suo rappresentante.</p>
+<h3 id="tipologia" class="text-lg font-bold text-gray-900 pt-3">I codici tipologia del Quadro A</h3>
+<p>Nel Quadro A scegli prima chi presenta la domanda: <strong>D</strong> se chiedi per te, di persona o con un delegato; <strong>T</strong> se chiedi per un&rsquo;altra persona. Solo quando chiedi l&rsquo;attribuzione, la casella 1, aggiungi il codice tipologia pi&ugrave; vicino al tuo caso, preso da questa tabella delle istruzioni:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">I codici tipologia richiedente del Quadro A, da indicare solo per l&rsquo;attribuzione del codice fiscale</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Tipo</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Chi presenta la domanda</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D</td><td class="px-1.5 sm:px-3 py-2 align-top">01</td><td class="px-1.5 sm:px-3 py-2 align-top">Studente non residente, per l&rsquo;iscrizione a una scuola o all&rsquo;universit&agrave;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D</td><td class="px-1.5 sm:px-3 py-2 align-top">02</td><td class="px-1.5 sm:px-3 py-2 align-top">Lavoratore non residente</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D</td><td class="px-1.5 sm:px-3 py-2 align-top">03</td><td class="px-1.5 sm:px-3 py-2 align-top">Persona presente temporaneamente nel territorio dello Stato</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D</td><td class="px-1.5 sm:px-3 py-2 align-top">04</td><td class="px-1.5 sm:px-3 py-2 align-top">Altre richieste dirette</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">10</td><td class="px-1.5 sm:px-3 py-2 align-top">Genitore, o chi ne fa le veci, per un minore</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">11</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante di una persona con limitata capacit&agrave; di agire</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">12</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi deve indicare nella dichiarazione dei redditi il codice fiscale di un familiare a carico, per le detrazioni</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">13</td><td class="px-1.5 sm:px-3 py-2 align-top">Erede per una persona deceduta (dichiarazione di successione o altro)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">14</td><td class="px-1.5 sm:px-3 py-2 align-top">Ente o associazione di assistenza sociale, per uno straniero in condizione disagiata</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">15</td><td class="px-1.5 sm:px-3 py-2 align-top">Istituto di detenzione (penitenziario, casa circondariale), per un detenuto da avviare al lavoro o per altro</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">16</td><td class="px-1.5 sm:px-3 py-2 align-top">Organo della giustizia, compresi i tribunali, o Equitalia Giustizia, per recuperare da un debitore crediti erariali per spese di giustizia</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">17</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi per legge deve indicare il codice fiscale di altre persone, per esempio enti previdenziali, banche, associazioni sportive (art. 6 del D.P.R. 605/1973)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">T</td><td class="px-1.5 sm:px-3 py-2 align-top">18</td><td class="px-1.5 sm:px-3 py-2 align-top">Altre richieste per un&rsquo;altra persona</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Il codice 17 si basa su una regola precisa: chi per legge deve indicare il codice fiscale di altre persone ha diritto di riceverlo da loro per iscritto e, se non arriva almeno dieci giorni prima della scadenza, pu&ograve; rivolgersi direttamente all&rsquo;amministrazione finanziaria, anche in via telematica (<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 6 del D.P.R. 605/1973</a>).</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Il modello quadro per quadro</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Che cosa si scrive in ogni parte del modello AA4/8</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Parte del modello</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa scrivi</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Attenzione</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A, sezione I: tipologia richiedente</td><td class="px-1.5 sm:px-3 py-2 align-top">D se chiedi per te, T se chiedi per un&rsquo;altra persona; con l&rsquo;attribuzione, il codice tipologia di due cifre</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice tipologia si scrive solo con la casella 1: negli altri casi resta vuoto.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro A, sezione II: tipo richiesta</td><td class="px-1.5 sm:px-3 py-2 align-top">Una o pi&ugrave; caselle da 1 a 5; dalla 2 alla 5 il codice fiscale gi&agrave; attribuito, per la 3 anche la data del decesso, per il duplicato della tessera la motivazione 1, 2 o 3</td><td class="px-1.5 sm:px-3 py-2 align-top">La casella 4 si pu&ograve; aggiungere alla 1 o alla 2: con la 1 il codice non c&rsquo;&egrave; ancora e non si scrive. Lo stesso per l&rsquo;erede che chiede il codice di un defunto (casella 1, codice 13), che barra anche la 3 con la sola data del decesso.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Richiesta del tesserino</td><td class="px-1.5 sm:px-3 py-2 align-top">La casella accanto all&rsquo;attribuzione</td><td class="px-1.5 sm:px-3 py-2 align-top">Solo per chi non ha diritto all&rsquo;assistenza del Servizio sanitario nazionale; non la barrano gli altri n&eacute; i neonati, che ricevono la tessera sanitaria da soli.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro B: dati anagrafici</td><td class="px-1.5 sm:px-3 py-2 align-top">Cognome e nome, sesso F o M, comune o Stato estero di nascita, sigla della provincia (EE per l&rsquo;estero), data di nascita in cifre: 7 marzo 2010 si scrive 07 03 2010</td><td class="px-1.5 sm:px-3 py-2 align-top">Obbligatorio per qualsiasi richiesta. In stampatello, come sul documento d&rsquo;identit&agrave;, senza abbreviazioni, titoli o caratteri speciali: M&uuml;ller diventa Mueller.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro C: residenza anagrafica o domicilio fiscale</td><td class="px-1.5 sm:px-3 py-2 align-top">Comune, sigla della provincia, CAP, tipologia della via, nome della via, numero civico, frazione o altro: ogni elemento nel suo campo</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi vive all&rsquo;estero scrive il domicilio fiscale, cio&egrave; dove produce il reddito, o in mancanza il luogo di dimora; senza nessuno dei due lascia vuoto. Vuoto anche se il domicilio fiscale &egrave; stato stabilito con un provvedimento dell&rsquo;ammini&shy;strazione finanziaria.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro D: residenza estera</td><td class="px-1.5 sm:px-3 py-2 align-top">Stato estero, Stato federato o provincia o contea, localit&agrave;, codice postale, indirizzo</td><td class="px-1.5 sm:px-3 py-2 align-top">Obbligatorio per chi non risiede in Italia, in tutti i campi e senza abbreviazioni.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Quadro E: altri codici fiscali</td><td class="px-1.5 sm:px-3 py-2 align-top">I codici attribuiti in passato alla stessa persona</td><td class="px-1.5 sm:px-3 py-2 align-top">Servono a collegarli al codice che corrisponde ai dati anagrafici corretti.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Allegati</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;elenco dei documenti che accompagnano il modello</td><td class="px-1.5 sm:px-3 py-2 align-top">Sono i documenti che provano quanto scrivi nel modello.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sottoscrizione</td><td class="px-1.5 sm:px-3 py-2 align-top">Data e firma; se chiedi per un&rsquo;altra persona anche il tuo codice fiscale come sottoscrittore e, se a chiedere &egrave; una banca, un ente o un tribunale, il codice fiscale dell&rsquo;ente</td><td class="px-1.5 sm:px-3 py-2 align-top">Senza la firma del richiedente il modello &egrave; nullo.</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Delega</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi delega, il delegato con luogo e data di nascita e codice fiscale, la data e la firma di chi delega</td><td class="px-1.5 sm:px-3 py-2 align-top">Il delegato presenta il modello e pu&ograve; ritirare l&rsquo;eventuale certificato rilasciato dall&rsquo;ufficio.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Le caselle del Quadro A si possono combinare: con l&rsquo;attribuzione o con la variazione dei dati puoi chiedere nello stesso modello il certificato, barrando anche la 4. Per l&rsquo;erede che chiede il codice fiscale di un defunto (casella 1, codice 13) le istruzioni impongono di barrare anche la 3, con la data del decesso; il compilatore, in questi due casi, non chiede un codice che non c&rsquo;&egrave;. L&rsquo;indirizzo va spezzato nei suoi elementi: VIA PARIGI 51/B &ndash; FRAZ. PRATOLUNGO diventa tipologia VIA, indirizzo PARIGI, civico 51/B, frazione FRAZ. PRATOLUNGO; PRESSO BIANCHI &ndash; CORSO ITALIA 10 PAL. A diventa tipologia CORSO, indirizzo ITALIA, civico 10 PAL. A, frazione PRESSO BIANCHI.</p>
+<figure class="my-6">
+  <img src="/assets/esempi/aa4-8-duplicato-tessera.webp" width="1100" height="904" loading="lazy" decoding="async"
+       alt="Il modello AA4/8 compilato con il compilatore di questa pagina: richiesta diretta per se stessa; casella 5, richiesta del duplicato della tessera sanitaria, con il codice fiscale BNCLRA60H55F205G e la motivazione 1; Quadro B: Bianchi Laura, sesso F, nata a Milano (MI) il 15 giugno 1960; Quadro C: Milano (MI), CAP 20121, via di Esempio 1; data 20 ottobre 2026."
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Il modello dell&rsquo;esempio 1, compilato qui sopra e scaricato: richiesta diretta, casella 5 con il codice fiscale e la motivazione 1, dati anagrafici, residenza e data. I quadri D ed E e gli allegati, vuoti, sono stati tolti dall&rsquo;immagine. Persona, codice fiscale e indirizzo sono inventati.</figcaption>
+</figure>
+<h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Sei esempi</h3>
+<p><strong>Esempio 1 &mdash; La tessera smarrita, senza SPID.</strong> Laura Bianchi, nata a Milano il 15 giugno 1960 e residente a Milano, ha perso la tessera sanitaria e non ha SPID, CIE o CNS. Nel Quadro A barra la richiesta diretta per se stessa e la casella 5, scrive il codice fiscale della tessera persa, BNCLRA60H55F205G, e la motivazione 1, furto o smarrimento; il codice tipologia resta vuoto, perch&eacute; serve solo per l&rsquo;attribuzione. Compila i Quadri B e C, la data e la firma, come nell&rsquo;immagine qui sopra. Manda il PDF via PEC con la copia della carta d&rsquo;identit&agrave;, oppure lo porta allo sportello con un appuntamento. La nuova tessera arriva per posta in circa 3/4 settimane; con SPID avrebbe fatto tutto online, senza modello.</p>
+<p><strong>Esempio 2 &mdash; Il codice del neonato che non arriva.</strong> Sara deve scegliere il pediatra per il figlio nato da pochi giorni, ma il Comune non ha ancora attribuito il codice fiscale. Ha SPID: nell&rsquo;area riservata usa il servizio per il codice fiscale del neonato, inserisce i dati del bambino e allega la copia digitale della dichiarazione di nascita resa in ospedale. Quando il certificato &egrave; pronto riceve un&rsquo;email e, avendo l&rsquo;app IO, una notifica; con il certificato iscrive il figlio al Servizio sanitario nazionale e sceglie il pediatra. Senza SPID avrebbe usato il modello: richiesta per soggetto terzo, codice 10, casella 1, i dati del bambino nel Quadro B e il proprio codice fiscale come sottoscrittrice, con il suo documento e la dichiarazione di nascita, via PEC o allo sportello. La casella del tesserino resta vuota: al neonato arriva da sola una tessera sanitaria valida un anno.</p>
+<p><strong>Esempio 3 &mdash; Lo studente straniero.</strong> Rafael viene da un Paese fuori dall&rsquo;Unione europea, non risiede in Italia e si iscrive a un&rsquo;universit&agrave; italiana. Per il primo codice fiscale di un cittadino straniero la presenza &egrave; obbligatoria: prenota un appuntamento in un ufficio dell&rsquo;Agenzia e porta il passaporto valido, con il visto se richiesto. Nel modello: richiesta diretta, codice tipologia 01, casella 1; se non ha diritto all&rsquo;assistenza del Servizio sanitario nazionale barra anche la richiesta del tesserino. Nel Quadro B scrive lo Stato di nascita e EE come provincia. Non ha redditi in Italia, quindi nel Quadro C indica il luogo dove dimora, la residenza universitaria, e nel Quadro D la sua residenza all&rsquo;estero, in tutti i campi. Attribuito il codice, riceve il certificato di attribuzione e lo usa finch&eacute; non gli arrivano il tesserino o, se &egrave; iscritto al Servizio sanitario, la tessera sanitaria.</p>
+<p><strong>Esempio 4 &mdash; L&rsquo;erede e la successione.</strong> Nella dichiarazione di successione va indicato il codice fiscale del defunto, ma lo zio di Marco, vissuto all&rsquo;estero, non ne ha mai avuto uno. Marco compila il modello come richiesta per soggetto terzo con il codice 13, erede per un deceduto: barra la casella 1 e, come chiedono le istruzioni per questo caso, anche la casella 3 con la data del decesso. Nel Quadro B mette i dati anagrafici dello zio; nella sottoscrizione il proprio codice fiscale, la data e la firma. Allega il suo documento e una dichiarazione che spiega il motivo della richiesta.</p>
+<p><strong>Esempio 5 &mdash; L&rsquo;associazione sportiva.</strong> Un&rsquo;associazione sportiva deve indicare in un atto il codice fiscale di un atleta straniero che non gliel&rsquo;ha comunicato. Se non lo riceve almeno dieci giorni prima della scadenza, si rivolge direttamente all&rsquo;Agenzia: richiesta per soggetto terzo, codice 17, casella 1, i dati dell&rsquo;atleta nel Quadro B. In fondo, il codice fiscale dell&rsquo;associazione va nel campo &laquo;codice fiscale richiedente diverso da persona fisica&raquo; e quello del rappresentante legale che firma nel campo &laquo;codice fiscale sottoscrittore&raquo;.</p>
+<p><strong>Esempio 6 &mdash; Chi vive all&rsquo;estero e trasloca.</strong> Giulia ha il codice fiscale, vive a Lione e si trasferisce a Bruxelles. Barra la casella 2 con il suo codice e, per avere subito un certificato aggiornato, anche la casella 4, una combinazione prevista dalle istruzioni. Nel Quadro D scrive il nuovo indirizzo in Belgio, in tutti i campi e senza abbreviazioni; il Quadro C lo compila solo se ha un domicilio fiscale in Italia, perch&eacute; vi produce un reddito, o almeno un luogo di dimora. Presenta il modello al consolato italiano o a un ufficio dell&rsquo;Agenzia.</p>
+<h3 id="codice" class="text-lg font-bold text-gray-900 pt-3">Il codice giusto &egrave; quello attribuito, non quello calcolato</h3>
+<p>Le caselle 2, 3, 4 e 5 chiedono il codice fiscale: &egrave; quello che l&rsquo;Agenzia ha gi&agrave; attribuito, scritto sulla tessera sanitaria, sul tesserino o sul certificato. Le schede ufficiali lo ripetono due volte: &laquo;l&rsquo;unico codice fiscale valido &egrave; quello rilasciato dall&rsquo;Agenzia delle Entrate e mai quello generato mediante software e procedure non gestite dall&rsquo;Agenzia&raquo;, e i codici &laquo;calcolati con applicazioni pubblicate su siti web non hanno alcun valore e il loro utilizzo pu&ograve; comportare problemi ai cittadini&raquo;. Vale anche per il <a href="/identita-burocrazia/codice-fiscale/" class="text-indigo-700 underline">generatore di questo sito</a>, che serve a leggere e controllare un codice, non a ottenerlo.</p>
+<p>Un motivo concreto &egrave; l&rsquo;omocodia: se due persone hanno dati che producono lo stesso codice, l&rsquo;Agenzia ne attribuisce a ciascuna uno nuovo, ricavato da quello generato, e il calcolo da solo non pu&ograve; saperlo. Per controllare un codice c&rsquo;&egrave; il servizio <a href="https://www.agenziaentrate.gov.it/portale/verifica-codice-fiscale" class="text-indigo-700 underline" target="_blank" rel="noopener">Verifica codice fiscale</a> dell&rsquo;Agenzia, che ne verifica la validit&agrave; e la corrispondenza con i dati anagrafici. In casi eccezionali, per esempio di presunta omocodia, il Ministero dell&rsquo;interno attribuisce a un cittadino straniero un codice &laquo;provvisorio numerico&raquo;: basta per iscriversi al Servizio sanitario nazionale, se se ne ha diritto, ma per risolvere il problema bisogna rivolgersi a un ufficio dell&rsquo;Agenzia.</p>
+<h3 id="dopo" class="text-lg font-bold text-gray-900 pt-3">Dopo la richiesta: certificato, tessera e tesserino</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li>Con l&rsquo;attribuzione arriva il certificato di attribuzione del codice fiscale. Per il neonato chiesto online il certificato compare nell&rsquo;area riservata del genitore, che riceve un&rsquo;email e, se ha l&rsquo;app IO, una notifica; il certificato serve per l&rsquo;iscrizione al Servizio sanitario nazionale, la scelta del pediatra e la farmacia.</li>
+  <li>La nuova tessera sanitaria viene spedita solo per posta e arriva in circa 3/4 settimane. Chiesta online, va al domicilio fiscale registrato in Anagrafe tributaria, che coincide con la residenza anagrafica, oppure a un altro indirizzo che indichi nel servizio.</li>
+  <li>Nell&rsquo;attesa, con SPID, CIE o CNS, vedi e <a href="https://www.agenziaentrate.gov.it/portale/stampa-tessera-sanitaria-attualmente-valida" class="text-indigo-700 underline" target="_blank" rel="noopener">stampi la copia della tessera valida</a> nell&rsquo;area riservata dell&rsquo;Agenzia o in quella del <a href="https://sistemats1.sanita.finanze.it/portale/" class="text-indigo-700 underline" target="_blank" rel="noopener">Sistema Tessera Sanitaria</a>: la stampa vale per le prestazioni del Servizio sanitario nazionale.</li>
+  <li>La prima tessera del neonato vale un anno; quella da sei anni arriva quando i genitori lo iscrivono alla ASL e scelgono il pediatra. Al cittadino straniero la tessera dura di norma quanto il permesso di soggiorno.</li>
+  <li>La tessera sanitaria &egrave; personale, vale anche per i servizi sanitari nei Paesi dell&rsquo;Unione europea e pu&ograve; funzionare come Carta nazionale dei servizi: una volta attivata, d&agrave; accesso ai servizi online delle pubbliche amministrazioni.</li>
+  <li>Il numero della tessera e la data di scadenza sono nella sezione &laquo;Il tuo profilo&raquo; dell&rsquo;area riservata del sito dell&rsquo;Agenzia.</li>
+</ul>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 2027 cambiano le norme citate dalle istruzioni</h3>
+<p>Le istruzioni del modello risalgono al 2013 e citano tre articoli che dal 1&deg; gennaio 2027 sono abrogati dal D.Lgs. 5 agosto 2026, n. 141, il testo unico in materia di adempimenti e accertamento: l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 6 del D.P.R. 605/1973</a>, nel codice tipologia 17, e gli <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art58" class="text-indigo-700 underline" target="_blank" rel="noopener">artt. 58</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art59" class="text-indigo-700 underline" target="_blank" rel="noopener">59 del D.P.R. 600/1973</a>, nelle regole sul domicilio fiscale del Quadro C.</p>
+<p>La regola del codice 17 resta la stessa: l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-05;141:1~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">articolo 6 del testo unico</a> riprende l&rsquo;art. 6 del D.P.R. 605/1973 e ripete con le stesse parole il diritto di ricevere il codice fiscale per iscritto e di rivolgersi all&rsquo;amministrazione finanziaria se non arriva almeno dieci giorni prima della scadenza. A ottobre 2026 l&rsquo;Agenzia non ha ancora aggiornato modello e istruzioni: il controllo settimanale di questo sito segnaler&agrave; la nuova versione quando sar&agrave; pubblicata, e questa pagina verr&agrave; rivista.</p>
+        </div>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto costa chiedere il codice fiscale o la tessera sanitaria?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le schede dell&rsquo;Agenzia sul codice fiscale non indicano costi n&eacute; marche da bollo, e quella sulla tessera sanitaria dice che la tessera &laquo;&egrave; gratuita&raquo;. Modello e istruzioni si scaricano gratis e si possono stampare anche in bianco e nero; anche il compilatore di questa pagina &egrave; gratuito.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice fiscale calcolato da un sito o da un&rsquo;app vale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Nelle risposte alle domande frequenti l&rsquo;Agenzia avverte che i codici &laquo;calcolati con applicazioni pubblicate su siti web non hanno alcun valore e il loro utilizzo pu&ograve; comportare problemi ai cittadini&raquo;. Vale solo il codice attribuito dall&rsquo;Agenzia, che con l&rsquo;omocodia pu&ograve; essere diverso da quello calcolato. Per controllarne uno c&rsquo;&egrave; il servizio Verifica codice fiscale dell&rsquo;Agenzia.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Devo chiedere il duplicato della tessera sanitaria che sta per scadere?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Le istruzioni del modello lo dicono espressamente: la nuova tessera viene emessa in automatico e spedita all&rsquo;indirizzo di residenza, se il diritto all&rsquo;assistenza non &egrave; decaduto. Il cittadino straniero, la cui tessera di norma dura quanto il permesso di soggiorno, con il permesso rinnovato torna alla ASL per rinnovare l&rsquo;iscrizione e chiedere la tessera nuova.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto ci mette ad arrivare la nuova tessera sanitaria?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Secondo le FAQ dell&rsquo;Agenzia la tessera viene spedita solo per posta e arriva in circa 3/4 settimane. Nell&rsquo;attesa, con SPID, CIE o CNS, puoi vedere e stampare la copia della tessera valida nell&rsquo;area riservata dell&rsquo;Agenzia o del Sistema Tessera Sanitaria; la stampa vale per le prestazioni del Servizio sanitario nazionale.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso mandare il modello AA4/8 via PEC?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;, per l&rsquo;attribuzione del codice fiscale e per una nuova tessera sanitaria o un nuovo tesserino: alleghi il modello firmato e la copia di un documento d&rsquo;identit&agrave;, che non serve se il modello &egrave; firmato digitalmente. Fa eccezione il primo codice fiscale di un cittadino straniero, che si chiede solo di persona, con un appuntamento allo sportello.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Sono un cittadino straniero: devo andare all&rsquo;Agenzia per il codice fiscale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Di solito no: a chi chiede il permesso di soggiorno, o presenta domanda di ingresso per lavoro subordinato o ricongiungimento familiare, il codice lo attribuiscono la Questura o lo Sportello unico per l&rsquo;immigrazione. All&rsquo;Agenzia si va se si &egrave; ricevuto un codice &laquo;provvisorio numerico&raquo;, oppure per un primo codice chiesto per altri motivi: con appuntamento, di persona, e con un documento come il passaporto valido con il visto, se richiesto, o il permesso di soggiorno.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Vivo all&rsquo;estero: dove chiedo il codice fiscale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Al consolato italiano del Paese in cui risiedi, con il modello AA4/8, oppure a qualunque ufficio dell&rsquo;Agenzia. Gli indirizzi dei consolati sono nella pagina sulla <a href="https://www.esteri.it/it/ministero/struttura/laretediplomatica/" class="text-indigo-700 underline" target="_blank" rel="noopener">rete diplomatica</a> del sito del Ministero degli affari esteri. Allo stesso consolato puoi chiedere anche un nuovo tesserino del codice fiscale.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il tesserino verde d&agrave; diritto all&rsquo;assistenza sanitaria?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. L&rsquo;Agenzia lo emette proprio a chi non ha diritto all&rsquo;assistenza del Servizio sanitario nazionale e precisa che il tesserino &laquo;non d&agrave; diritto all&rsquo;assistenza sanitaria&raquo;. Per iscriversi al Servizio sanitario ci si rivolge alla propria ASL.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi corregge un dato sbagliato sulla tessera sanitaria o sul tesserino?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Per la tessera sanitaria, chi &egrave; iscritto all&rsquo;ANPR si rivolge al Comune di residenza; gli altri a un qualsiasi ufficio dell&rsquo;Agenzia, con un documento d&rsquo;identit&agrave; valido. Per il tesserino si va a un ufficio dell&rsquo;Agenzia, prenotando un appuntamento.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Dove trovo il numero della tessera sanitaria?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Nella sezione &laquo;Il tuo profilo&raquo; dell&rsquo;area riservata del sito dell&rsquo;Agenzia, insieme alla data di scadenza; oppure sulla copia della tessera valida, che puoi stampare dall&rsquo;area riservata dell&rsquo;Agenzia o del Sistema Tessera Sanitaria.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Posso far presentare il modello a un&rsquo;altra persona?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;. Compili e firmi il riquadro della delega, in fondo al modello, in tutti i campi; il delegato mostra il proprio documento d&rsquo;identit&agrave; e la copia del tuo, entrambi validi, e pu&ograve; anche ritirare l&rsquo;eventuale certificato rilasciato dall&rsquo;ufficio.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il modello AA4/8 vale per associazioni, enti o condomini?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No: &egrave; solo per le persone fisiche. Per i soggetti diversi dalle persone fisiche c&rsquo;&egrave; il modello AA5/6, che fra le cariche di chi firma prevede anche l&rsquo;amministratore di condominio. Chi apre una partita IVA come impresa individuale o lavoratore autonomo usa invece l&rsquo;AA9/12.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/modello-e-istruzioni" class="text-indigo-700 underline" target="_blank" rel="noopener">Agenzia delle Entrate, &laquo;Modello e istruzioni AA4/8&raquo;</a>: modello editabile (giugno 2025) e <a href="https://www.agenziaentrate.gov.it/portale/documents/20143/278893/istruzioni+cf+AA48_istruzioni+modello+AA4+8.pdf/1c62b06c-535a-5b59-c8e0-4a329a5b4668?t=1372163197137" class="text-indigo-700 underline" target="_blank" rel="noopener">istruzioni per la compilazione</a> (2013)</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/che-cos-" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Il codice fiscale &ndash; Che cos&rsquo;&egrave; e come si ottiene&raquo;</a>, <a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/la-tessera-sanitaria-che-cos-e-e-come-si-ottiene" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;La tessera sanitaria &ndash; Che cos&rsquo;&egrave; e come si ottiene&raquo;</a> e <a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/il-tesserino-del-codice-fiscale-che-cos-e-e-come-si-ottiene" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Il tesserino del codice fiscale &ndash; Che cos&rsquo;&egrave; e come si ottiene&raquo;</a> (aggiornate al 7 marzo 2025)</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/risposte-alle-domande-piu-frequenti" class="text-indigo-700 underline" target="_blank" rel="noopener">Codice fiscale e tessera sanitaria, risposte alle domande pi&ugrave; frequenti</a></li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/richiesta-del-duplicato-della-tessera-sanitaria" class="text-indigo-700 underline" target="_blank" rel="noopener">Richiesta di riemissione della tessera sanitaria</a>, <a href="https://www.agenziaentrate.gov.it/portale/richiesta-del-duplicato-del-tesserino-del-codice-fiscale" class="text-indigo-700 underline" target="_blank" rel="noopener">richiesta di riemissione del tesserino del codice fiscale</a> e <a href="https://www.agenziaentrate.gov.it/portale/richiesta-del-codice-fiscale-del-neonato-da-parte-dei-genitori" class="text-indigo-700 underline" target="_blank" rel="noopener">richiesta del codice fiscale del neonato da parte dei genitori</a></li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/verifica-codice-fiscale" class="text-indigo-700 underline" target="_blank" rel="noopener">Verifica codice fiscale</a>, <a href="https://www.agenziaentrate.gov.it/portale/siti-web-regionali" class="text-indigo-700 underline" target="_blank" rel="noopener">indirizzi PEC degli uffici</a>, <a href="https://www.agenziaentrate.gov.it/portale/prenota-un-appuntamento" class="text-indigo-700 underline" target="_blank" rel="noopener">prenotazione degli appuntamenti</a> e <a href="https://www.agenziaentrate.gov.it/portale/stampa-tessera-sanitaria-attualmente-valida" class="text-indigo-700 underline" target="_blank" rel="noopener">stampa della tessera sanitaria valida</a></li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 605/1973, art. 6</a> (codice fiscale negli atti; abrogato dal 1&deg; gennaio 2027) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-05;141:1~art6" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 6 del testo unico allegato al D.Lgs. 141/2026</a>, che lo sostituisce</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art58" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 600/1973, art. 58</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art59" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 59</a> (domicilio fiscale; abrogati dal 1&deg; gennaio 2027)</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art46" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 445/2000, art. 46</a> (dichiarazioni sostitutive di certificazione)</li>
+</ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Il compilatore aiuta a riempire il modello: prima di firmare, ricontrolla i dati con le istruzioni ufficiali.</p>
       </section>
 
       <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->
