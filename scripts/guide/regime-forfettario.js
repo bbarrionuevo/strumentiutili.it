@@ -70,8 +70,8 @@ module.exports = function (ctx) {
     h.p('L&rsquo;artigiano con ' + euro(30000, 0) + ' di ricavi ha un reddito di ' + euro(art.baseImponibile) + ', sotto il minimale: paga solo la quota fissa, che pesa molto su redditi cos&igrave; bassi. &Egrave; il caso in cui conviene valutare la riduzione del 35%.'),
 
     h.h2('aprire', 'Come si apre e come si chiude'),
-    h.p('La partita IVA si apre con il modello AA9/12 dell&rsquo;Agenzia delle Entrate, entro 30 giorni dall&rsquo;inizio dell&rsquo;attivit&agrave;: online con SPID o CIE, in un ufficio dell&rsquo;Agenzia o tramite un intermediario. Nel modello si indica il codice ATECO, da cui dipende il coefficiente, e si dichiara di voler applicare il regime forfettario. Artigiani e commercianti devono anche iscriversi alla Camera di commercio e all&rsquo;INPS, di solito con un&rsquo;unica pratica telematica; i professionisti senza cassa si iscrivono alla gestione separata.'),
-    h.p('Per chiudere si usa lo stesso modello, entro 30 giorni dalla fine dell&rsquo;attivit&agrave;, dopo aver incassato le fatture ancora aperte: i compensi incassati dopo la chiusura vanno comunque dichiarati. Nel forfettario non c&rsquo;&egrave; un conto IVA da regolare, ma restano da pagare il saldo dell&rsquo;imposta e dei contributi dell&rsquo;ultimo anno.'),
+    h.p('La partita IVA si apre entro 30 giorni dall&rsquo;inizio dell&rsquo;attivit&agrave;. Professionisti e lavoratori autonomi senza obbligo di iscrizione al Registro delle imprese usano il modello AA9/12 dell&rsquo;Agenzia delle Entrate: via PEC, in un ufficio, per raccomandata oppure online, da soli o tramite un intermediario. Artigiani, commercianti e le altre imprese individuali usano invece la Comunicazione Unica al Registro delle imprese, che vale anche ai fini previdenziali e per la partita IVA. Nel modello si indica il codice ATECO, da cui dipende il coefficiente, e si sceglie il regime forfettario con il codice 2 dei regimi fiscali agevolati. I professionisti senza cassa si iscrivono alla gestione separata.'),
+    h.p('Per chiudere si usa lo stesso modello, o la Comunicazione Unica per le imprese, entro 30 giorni: per la cessazione decorrono dalla fine delle operazioni di liquidazione dell&rsquo;attivit&agrave;, e fino ad allora restano gli obblighi di fatturazione, registrazione e dichiarazione. Nel forfettario non c&rsquo;&egrave; un conto IVA da regolare, ma restano da pagare il saldo dell&rsquo;imposta e dei contributi dell&rsquo;ultimo anno.'),
     h.p('Il regime si applica anno per anno: se un anno perdi un requisito, dall&rsquo;anno dopo passi al regime ordinario, con IVA, ritenute e contabilit&agrave; semplificata. Se poi i requisiti tornano, puoi rientrare nel forfettario.'),
 
     h.h2('fatture', 'Fatture, bollo e pagamenti'),
@@ -92,7 +92,7 @@ module.exports = function (ctx) {
     titoloBreve: 'Regime forfettario 2026: requisiti, tasse ed esempi',
     descrizione: 'Chi può usare il regime forfettario nel 2026, come si calcolano reddito, imposta sostitutiva al 15% o al 5% e contributi INPS, cosa cambia in fattura, con esempi per consulenti, artigiani e commercianti.',
     pubblicata: '2026-09-27',
-    aggiornata: '2026-09-27',
+    aggiornata: '2026-10-12',
     introduzione: 'Il regime forfettario &egrave; il modo pi&ugrave; semplice ed economico per avere una partita IVA, ma ha regole precise su chi pu&ograve; entrare, su come si calcola il reddito e su quando se ne esce. Questa guida spiega requisiti, tasse e contributi con esempi per tre attivit&agrave; diverse, e cosa cambia in fattura.',
     riassunto: [
       'Si entra con ricavi fino a ' + euro(P.limitiFatturato.ordinarioAnnuo, 0) + ' e redditi da lavoro dipendente fino a 35.000 &euro;; oltre ' + euro(P.limitiFatturato.uscitaImmediata, 0) + ' si esce subito.',
@@ -123,7 +123,9 @@ module.exports = function (ctx) {
       'Legge 29 dicembre 2022, n. 197: soglia di 85.000 &euro; e uscita immediata oltre 100.000 &euro;.',
       'Legge 30 dicembre 2024, n. 207: limite di 35.000 &euro; per i redditi da lavoro dipendente.',
       'D.P.R. 26 ottobre 1972, n. 642: imposta di bollo sulle fatture.',
-      'Modelli AA9/12 e AA7/10 e relative istruzioni, Agenzia delle Entrate.'
+      'Modelli AA9/12 e AA7/10 e relative istruzioni, Agenzia delle Entrate.',
+      'D.P.R. 26 ottobre 1972, n. 633, art. 35: dichiarazione di inizio, variazione e cessazione attivit&agrave;; dal 1&deg; gennaio 2027 le stesse regole sono nell&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-01-19;10:1~art68" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 68 del testo unico IVA</a> (D.Lgs. 19 gennaio 2026, n. 10, allegato).',
+      'D.L. 31 gennaio 2007, n. 7, art. 9: Comunicazione Unica per la nascita dell&rsquo;impresa.'
     ]
   };
 };

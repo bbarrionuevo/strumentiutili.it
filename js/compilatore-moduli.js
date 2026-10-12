@@ -183,6 +183,26 @@
     return obbligatorioCon(campo, valoriDel(passo));
   }
 
+  /**
+   * Il valore del primo riferimento («passo.campo», uno o un elenco) compilato in
+   * un campo visibile; valoreDi(passo, campo) legge un campo. In alto su ogni
+   * pagina dell'AA7/10 va il codice fiscale del soggetto, ma con l'inizio
+   * attivita' e l'attribuzione del codice fiscale (casella 1) quello del
+   * rappresentante del quadro C: il codice del soggetto non c'e' ancora, e uno
+   * rimasto da una scelta precedente non deve finire nel modello.
+   */
+  function primoValore(riferimenti, modello, valoreDi) {
+    for (const riferimento of [].concat(riferimenti || []).filter(Boolean)) {
+      const [passoId, campoId] = riferimento.split('.');
+      const passo = (modello.passi || []).find((p) => p.id === passoId);
+      const campo = passo && (passo.campi || []).find((c) => c.id === campoId);
+      if (campo && campo.showIf && !condizioni(campo.showIf, (id) => valoreDi(passoId, id))) continue;
+      const valore = valoreDi(passoId, campoId);
+      if (valore) return valore;
+    }
+    return '';
+  }
+
   /* ------------------------------------------------------------- validazione */
 
   function luhnPartitaIva(piva) {
@@ -246,7 +266,10 @@
         return codiceFiscaleValido(v) ? null : 'Inserisci una partita IVA (11 cifre) oppure un codice fiscale (16 caratteri).';
       case 'cap':
         if (!/^[0-9]{5}$/.test(v)) return 'Il C.A.P. è composto da 5 cifre.';
-        if (stato.capVietati.includes(v)) return 'Questo è il C.A.P. generico della città: l\'Agenzia delle Entrate non lo accetta. Indica il C.A.P. specifico della via.';
+        // Le istruzioni dei modelli chiedono un indirizzo completo, che individui il
+        // luogo senza ambiguita': il C.A.P. generico di una citta' divisa in zone
+        // postali non indica la via.
+        if (stato.capVietati.includes(v)) return 'Questo è il C.A.P. generico della città, non quello di una via: le istruzioni chiedono un indirizzo completo. Indica il C.A.P. della via.';
         return null;
       case 'provincia':
         return /^[A-Z]{2}$/.test(v) ? null : 'La provincia va indicata con la sigla di due lettere (RM, MI, EE per l\'estero).';
@@ -1001,8 +1024,7 @@
     (testata.copie || []).forEach((regola) => {
       let valore = regola.valore;
       if (!valore && regola.da) {
-        const [passoId, campoId] = regola.da.split('.');
-        valore = perModello(leggi(chiave(passoId, campoId)) || '', regola.tipo || 'testo');
+        valore = perModello(primoValore(regola.da, modello, (p, c) => leggi(chiave(p, c))) || '', regola.tipo || 'testo');
       }
       if (!valore) return;
       regola.a.forEach((nome) => testi.set(nome, valore));
@@ -1126,10 +1148,8 @@
 
       const byte = await documento.save();
       const rifNome = (modello.testata && modello.testata.riferimentoNomeFile) || '';
-      const [passoRif, campoRif] = rifNome.split('.');
-      const identificativo = passoRif
-        ? String(leggi(chiave(passoRif, campoRif)) || '').toUpperCase().replace(/[^A-Z0-9]/g, '')
-        : '';
+      const identificativo = String(primoValore(rifNome, modello, (p, c) => leggi(chiave(p, c))) || '')
+        .toUpperCase().replace(/[^A-Z0-9]/g, '');
       const nomeFile = `${modello.codice.replace(/[^A-Za-z0-9]+/g, '_')}${identificativo ? '_' + identificativo : ''}_compilato.pdf`;
       scarica(byte, nomeFile);
 
@@ -1313,6 +1333,7 @@
     controllaValore,
     perModello,
     obbligatorioCon,
+    primoValore,
 
     /**
      * @param {Object} mappa  chiavi "passo.campo" oppure "passo.gruppo.indice.sottocampo"

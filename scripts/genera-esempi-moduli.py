@@ -641,6 +641,107 @@ ESEMPI = {
         "salto": ["Conto estero: vuoto (conto italiano)"],
         "larghezza": 1100,
     },
+    # Una traduttrice apre la partita IVA come lavoratrice autonoma (non e'
+    # tenuta all'iscrizione al Registro delle imprese) e sceglie il regime
+    # forfetario, casella «2» del quadro B. Il codice 74.30.00 «Attivita' di
+    # traduzione e interpretariato» e' quello dell'ATECO 2025 (ISTAT, «Struttura e
+    # note esplicative»). Persona, codice fiscale e indirizzo sono inventati.
+    "aa9-12-inizio-forfetario": {
+        "pagina": "/fisco-professioni/modelli-partita-iva/",
+        "modello": "AA9",
+        "passi": [
+            {"campi": {
+                "quadroA.tipoDichiarazione": "1",
+                "quadroA.cfContribuente": "VRDGLI90C55A944A",
+                "quadroA.dataInizio": "2026-10-19",
+            }},
+            {"passo": "Chi sei", "campi": {
+                "quadroB1.dittaNome": "VERDI GIULIA",
+            }},
+            {"passo": "Attività e luogo", "campi": {
+                "quadroB2.codiceAteco": "743000",
+                "quadroB2.descrizioneAttivita": "ATTIVITÀ DI TRADUZIONE E INTERPRETARIATO",
+                "quadroB2.indirizzoSede": "VIA DI ESEMPIO 1",
+                "quadroB2.capSede": "40121",
+                "quadroB2.comuneSede": "BOLOGNA",
+                "quadroB2.provinciaSede": "BO",
+                "quadroB2.scrittureSede": "X",
+                "quadroB2.regimeAgevolato": "2",
+            }},
+            {"passo": "Titolare", "campi": {
+                "quadroC.dataNascita": "1990-03-15",
+                "quadroC.comuneNascita": "BOLOGNA",
+                "quadroC.provNascita": "BO",
+                "quadroC.indirizzoRes": "VIA DI ESEMPIO 1",
+                "quadroC.capRes": "40121",
+                "quadroC.comuneRes": "BOLOGNA",
+                "quadroC.provRes": "BO",
+            }},
+            {"passo": "Firma", "campi": {
+                "firma.dataFirma": "2026-10-20",
+                "firma.cfFirmatario": "VRDGLI90C55A944A",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa) fino al quadro C, poi
+        # il riquadro dei quadri compilati e della firma, a penna, dell'ultima
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.845), (5, 0.0, 0.083, 1.0, 0.258)],
+        "salto": ["Quadri D-I: vuoti (pagine 3 e 4)"],
+        "etichetta_y": 0.168,
+        "larghezza": 1100,
+    },
+    # Un'associazione culturale non riconosciuta (natura giuridica 12) appena
+    # costituita chiede il codice fiscale, casella 1. In alto va il codice di chi
+    # firma, il presidente (codice carica 01), perche' l'ente non ce l'ha ancora.
+    # Il codice 94.99.20 «Attivita' di organizzazioni associative culturali e
+    # ricreative» e' quello dell'ATECO 2025 (ISTAT, «Struttura e note
+    # esplicative»). Associazione, persona, codice fiscale e indirizzo inventati.
+    "aa5-6-associazione-culturale": {
+        "pagina": "/identita-burocrazia/codice-fiscale-enti/",
+        "modello": "AA5_6",
+        "passi": [
+            {"campi": {
+                "richiesta.tipo": "1",
+                "richiesta.dataCostituzione": "2026-10-05",
+                "richiesta.cfTestata": "FRRPLA75D08A944J",
+            }},
+            {"passo": "L'ente", "campi": {
+                "ente.denominazione": "ASSOCIAZIONE CULTURALE AMICI DELLA LETTURA",
+                "ente.naturaGiuridica": "12",
+                "ente.codiceAttivita": "949920",
+                "ente.descrizioneAttivita": "INCONTRI DI LETTURA E PRESENTAZIONI DI LIBRI PER I SOCI",
+                "ente.termineGiorno": "30",
+                "ente.termineMese": "04",
+            }},
+            {"passo": "Dove ha sede", "campi": {
+                "sede.indirizzo": "VIA DI ESEMPIO 10",
+                "sede.cap": "40121",
+                "sede.comune": "BOLOGNA",
+                "sede.provincia": "BO",
+            }},
+            {"passo": "Chi rappresenta", "campi": {
+                "rappresentante.cognome": "FERRARI",
+                "rappresentante.nome": "PAOLO",
+                "rappresentante.sesso": "M",
+                "rappresentante.carica": "01",
+                "rappresentante.comuneNascita": "BOLOGNA",
+                "rappresentante.provinciaNascita": "BO",
+                "rappresentante.dataNascita": "1975-04-08",
+                "rappresentante.codiceFiscale": "FRRPLA75D08A944J",
+            }},
+            {"passo": "Allegati e firma", "campi": {
+                "allegati.elenco": "ATTO COSTITUTIVO E STATUTO DEL 05/10/2026",
+                "allegati.data": "2026-10-19",
+                "allegati.codiceFiscale": "FRRPLA75D08A944J",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa) fino al quadro C, poi
+        # allegati e sottoscrizione della terza; quadro D, delega e impegno
+        # dell'intermediario restano vuoti
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.6705), (3, 0.0, 0.0823, 1.0, 0.2995)],
+        "salto": ["Quadro D: vuoto (nessuna fusione, concentrazione o trasformazione)"],
+        "etichetta_y": 0.009,
+        "larghezza": 1100,
+    },
 }
 
 
