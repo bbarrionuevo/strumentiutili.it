@@ -83,6 +83,35 @@ test('ogni strumento con leggi citate ne collega almeno una', () => {
   assert.deepStrictEqual(senza, []);
 });
 
+// Dal 1° gennaio 2027 i testi unici prendono il posto di articoli che il sito
+// cita (la sentinella li elenca in una issue; se ne chiude una parte a
+// settimana). Chi cita il vecchio articolo collega anche il nuovo, cosi' la
+// pagina resta giusta il 2 gennaio: una riga per ogni parte chiusa.
+const DAL_2027 = [
+  // testo unico delle sanzioni tributarie (D.Lgs. 173/2024, allegato)
+  ['stato:decreto.legislativo:1997-12-18;472~art13', 'stato:decreto.legislativo:2024-11-05;173:1~art14'],
+  ['stato:decreto.legislativo:1997-12-18;471~art13', 'stato:decreto.legislativo:2024-11-05;173:1~art38'],
+  ['stato:decreto.legislativo:1997-12-18;471~art5', 'stato:decreto.legislativo:2024-11-05;173:1~art30'],
+  // testo unico IVA (D.Lgs. 10/2026, allegato)
+  ['presidente.repubblica:decreto:1972-10-26;633~art21', 'stato:decreto.legislativo:2026-01-19;10:1~art72'],
+  ['presidente.repubblica:decreto:1972-10-26;633~art35', 'stato:decreto.legislativo:2026-01-19;10:1~art68'],
+];
+
+test('chi cita un articolo sostituito dal 2027 collega anche quello nuovo', () => {
+  const NT = '"https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
+  const mancano = [];
+  let citazioni = 0;
+  for (const p of PAGINE) {
+    for (const [vecchio, nuovo] of DAL_2027) {
+      if (!p.html.includes(NT + vecchio + '"')) continue;
+      citazioni++;
+      if (!p.html.includes(NT + nuovo + '"')) mancano.push(p.percorso + ': ' + vecchio + ' senza ' + nuovo);
+    }
+  }
+  assert.deepStrictEqual(mancano, []);
+  assert.ok(citazioni >= 10, 'solo ' + citazioni + ' citazioni: il controllo non trova piu\' le pagine');
+});
+
 test('il curatore del sito ha un nome, nelle pagine legali e su ogni scheda di affidabilita', () => {
   assert.match(testoVisibile(leggi('contatti.html')), new RegExp('curato da ' + NOME));
   assert.match(testoVisibile(leggi('politica-sulla-privacy.html')), new RegExp('titolare del trattamento è ' + NOME));

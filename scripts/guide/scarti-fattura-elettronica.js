@@ -122,7 +122,7 @@ module.exports = function (ctx) {
     titoloBreve: 'Fattura elettronica scartata: codici di errore SdI',
     descrizione: 'Cosa vuol dire la ricevuta di scarto del Sistema di Interscambio, come si leggono i codici di errore (00404, 00423, 00421, 00400, 00305…) e come correggere e rimandare la fattura entro cinque giorni con lo stesso numero.',
     pubblicata: '2026-09-27',
-    aggiornata: '2026-09-27',
+    aggiornata: '2026-10-12',
     introduzione: 'Quando il Sistema di Interscambio scarta una fattura elettronica, nella ricevuta c&rsquo;&egrave; un codice di cinque cifre che dice che cosa non va. Questa guida spiega i codici che capitano pi&ugrave; spesso, con esempi di calcolo fatti con le regole ufficiali, e come rimandare la fattura senza perdere la data.',
     riassunto: [
       'Una fattura scartata non &egrave; emessa: va corretta e rimandata entro cinque giorni dalla notifica di scarto, preferibilmente con lo stesso numero e la stessa data.',
@@ -154,7 +154,7 @@ module.exports = function (ctx) {
       { href: 'https://www.fatturapa.gov.it/export/documenti/Specifiche-tecniche-relative-al-Sistema-di-Interscambio-versione-1.8.4.pdf', testo: 'Specifiche tecniche relative al Sistema di Interscambio, versione 1.8.4', dopo: ': nome del file, ricevute e notifiche.' },
       { href: 'https://www.agenziaentrate.gov.it/portale/documents/20143/297470/Circolare+n+13+del+02+luglio+2018_Circolare_13_02072018.pdf/da0b0db7-64eb-ac7b-c925-4fdbc776279d', testo: 'Agenzia delle Entrate, circolare n. 13/E del 2 luglio 2018', dopo: ', paragrafo 1.6: come rimandare una fattura scartata.' },
       { href: 'https://www.agenziaentrate.gov.it/portale/controlli-sdi-motivi-di-errore', testo: 'Agenzia delle Entrate, FAQ &laquo;Controlli SdI / Motivi di errore&raquo;', dopo: ': sconti e partita IVA cessata.' },
-      'D.P.R. 26 ottobre 1972, n. 633, art. 21: contenuto e numerazione della fattura.',
+      'D.P.R. 26 ottobre 1972, n. 633, art. 21: contenuto e numerazione della fattura; dal 1&deg; gennaio 2027 le stesse regole sono nell&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-01-19;10:1~art72" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 72 del testo unico IVA</a> (D.Lgs. 19 gennaio 2026, n. 10, allegato).',
       'D.Lgs. 5 agosto 2015, n. 127, art. 1: obbligo della fattura elettronica.'
     ]
   };

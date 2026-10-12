@@ -124,7 +124,7 @@ module.exports = function (ctx) {
       'Legge 30 dicembre 2024, n. 207: limite di 35.000 &euro; per i redditi da lavoro dipendente.',
       'D.P.R. 26 ottobre 1972, n. 642: imposta di bollo sulle fatture.',
       'Modelli AA9/12 e AA7/10 e relative istruzioni, Agenzia delle Entrate.',
-      'D.P.R. 26 ottobre 1972, n. 633, art. 35: dichiarazione di inizio, variazione e cessazione attivit&agrave;.',
+      'D.P.R. 26 ottobre 1972, n. 633, art. 35: dichiarazione di inizio, variazione e cessazione attivit&agrave;; dal 1&deg; gennaio 2027 le stesse regole sono nell&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-01-19;10:1~art68" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 68 del testo unico IVA</a> (D.Lgs. 19 gennaio 2026, n. 10, allegato).',
       'D.L. 31 gennaio 2007, n. 7, art. 9: Comunicazione Unica per la nascita dell&rsquo;impresa.'
     ]
   };
