@@ -378,11 +378,155 @@
         </div>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">L&#39;atto e l&#39;adempimento</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">Soggetti dell&#39;atto</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Dati descrittivi dell&#39;atto</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="3"
+        >
+        <span class="mp-passo-numero">4</span>
+        <span class="mp-passo-nome">Dati catastali degli immobili</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="4"
+        >
+        <span class="mp-passo-numero">5</span>
+        <span class="mp-passo-nome">Delega alla presentazione</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="5"
+        >
+        <span class="mp-passo-numero">6</span>
+        <span class="mp-passo-nome">Immobili e pertinenze</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="6"
+        >
+        <span class="mp-passo-numero">7</span>
+        <span class="mp-passo-nome">Ulteriori dati e cedolare secca</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">L&#39;atto e l&#39;adempimento</h2>
+      <p class="mp-descrizione">Il Quadro A. Questi dati compaiono in alto su tutte e tre le pagine del modello: li scrivi una volta sola.</p>
+      
+      <div class="mp-griglia"><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-ufficioDi">All&#39;ufficio di <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-ufficioDi"
+      aria-expanded="false" aria-controls="g-atto-ufficioDi" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="MOD69.atto.ufficioDi" data-tipo="testo"
+        data-guida="g-atto-ufficioDi" aria-labelledby="l-atto-ufficioDi" aria-describedby="g-atto-ufficioDi"
+        value="">
+      <div id="g-atto-ufficioDi" role="note" hidden class="mp-guida">L&#39;ufficio dell&#39;Agenzia delle Entrate a cui presenti la richiesta. Le scritture private non autenticate si possono registrare in qualunque ufficio; ma una volta registrato il contratto, tutti gli adempimenti successivi vanno comunicati sempre allo stesso ufficio.</div>
+      
+    </div><fieldset class="mp-campo mp-c12 mp-fieldset">
+        <legend class="mp-legenda">Che cosa stai chiedendo <span class="mp-obb">*</span></legend>
+        <p class="mp-nota">Reg per registrare un atto nuovo. Pro, Ces e Ris riguardano i contratti di locazione e affitto già registrati: la proroga (anche tacita), la cessione a un altro soggetto e la risoluzione anticipata. Per questi adempimenti oggi la scheda dell&#39;Agenzia indica il modello RLI.</p>
+        <div class="mp-radio-gruppo">
+        <label class="mp-radio">
+          <input type="radio" name="r-MOD69.atto.adempimento" value="reg" data-campo="MOD69.atto.adempimento" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>Reg — registrazione di un atto</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-MOD69.atto.adempimento" value="pro" data-campo="MOD69.atto.adempimento" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>Pro — proroga di una locazione o di un affitto</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-MOD69.atto.adempimento" value="ces" data-campo="MOD69.atto.adempimento" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>Ces — cessione del contratto</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-MOD69.atto.adempimento" value="ris" data-campo="MOD69.atto.adempimento" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>Ris — risoluzione del contratto</strong>
+            
+          </span>
+        </label></div>
+        
+      </fieldset><div class="mp-campo mp-c12">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-tipologiaAtto">Tipologia dell&#39;atto <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-tipologiaAtto"
+      aria-expanded="false" aria-controls="g-atto-tipologiaAtto" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="MOD69.atto.tipologiaAtto" data-tipo="testo"
+        data-guida="g-atto-tipologiaAtto" aria-labelledby="l-atto-tipologiaAtto" aria-describedby="g-atto-tipologiaAtto"
+        value="">
+      <div id="g-atto-tipologiaAtto" role="note" hidden class="mp-guida">Se chiedi la registrazione, scrivi che tipo di atto è: vendita, permuta, costituzione o cessione di usufrutto, divisione, denuncia di contratto verbale, locazione, comodato. Se invece comunichi un adempimento successivo, riporta qui l&#39;identificativo telematico del contratto oppure gli estremi di registrazione: codice ufficio, anno, serie, numero e sottonumero.</div>
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-cfRichiedente">Codice fiscale di chi chiede la registrazione <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-cfRichiedente"
+      aria-expanded="false" aria-controls="g-atto-cfRichiedente" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="16" class="mp-input mp-maiuscolo" data-campo="MOD69.atto.cfRichiedente" data-tipo="cfOpiva"
+        data-guida="g-atto-cfRichiedente" aria-labelledby="l-atto-cfRichiedente" aria-describedby="g-atto-cfRichiedente"
+        value="">
+      <div id="g-atto-cfRichiedente" role="note" hidden class="mp-guida">Compare in alto su tutte e tre le pagine: lo scrivi una volta sola e il compilatore lo ripete.</div>
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-dataStipula">Data di stipula o dell&#39;adempimento <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-dataStipula"
+      aria-expanded="false" aria-controls="g-atto-dataStipula" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="date" class="mp-input" data-campo="MOD69.atto.dataStipula" data-tipo="data"
+        data-guida="g-atto-dataStipula" aria-labelledby="l-atto-dataStipula" aria-describedby="g-atto-dataStipula"
+        value="">
+      <div id="g-atto-dataStipula" role="note" hidden class="mp-guida">A seconda del caso: la data di stipula dell&#39;atto se stai registrando, la data di inizio della proroga, la data della cessione o quella della risoluzione.</div>
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-nRepertorio">Numero di repertorio</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-nRepertorio"
+      aria-expanded="false" aria-controls="g-atto-nRepertorio" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="MOD69.atto.nRepertorio" data-tipo="testo"
+        data-guida="g-atto-nRepertorio" aria-labelledby="l-atto-nRepertorio" aria-describedby="g-atto-nRepertorio"
+        value="">
+      <div id="g-atto-nRepertorio" role="note" hidden class="mp-guida">Solo se l&#39;atto è annotato a repertorio: è il numero con cui lo classifica il notaio o l&#39;ufficiale rogante, per esempio il Segretario comunale.</div>
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-foglio">Foglio n. / di tot.</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-foglio"
+      aria-expanded="false" aria-controls="g-atto-foglio" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="MOD69.atto.foglio" data-tipo="testo"
+        data-guida="g-atto-foglio" aria-labelledby="l-atto-foglio" aria-describedby="g-atto-foglio"
+        value="">
+      <div id="g-atto-foglio" role="note" hidden class="mp-guida">Se i righi di un quadro non bastano si usano più fogli: qui si scrive per esempio «1/2» sul primo e «2/2» sul secondo. Con un foglio solo puoi lasciare vuoto oppure scrivere 1/1.</div>
+      
+    </div><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="MOD69.atto.usoAbitativo" data-tipo="check" >
+          <span>Uso abitativo</span>
+        </label>
+        <p class="mp-nota">Da barrare se c&#39;è almeno un negozio con codice 7202 (locazione non finanziaria di fabbricato) su un&#39;abitazione i cui canoni potrebbero andare a cedolare secca. È la casella che apre i quadri E ed F e la sezione della delega.</p>
+      </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 7</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 

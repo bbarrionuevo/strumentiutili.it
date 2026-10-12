@@ -404,11 +404,186 @@
         </div>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">Dati generali dell&#39;atto</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">Chi chiede la registrazione</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Invio telematico e imposte</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="3"
+        >
+        <span class="mp-passo-numero">4</span>
+        <span class="mp-passo-nome">Le parti del contratto</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="4"
+        >
+        <span class="mp-passo-numero">5</span>
+        <span class="mp-passo-nome">Contratto di comodato</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="5"
+        >
+        <span class="mp-passo-numero">6</span>
+        <span class="mp-passo-nome">Contratto preliminare di compravendita</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="6"
+        >
+        <span class="mp-passo-numero">7</span>
+        <span class="mp-passo-nome">Verbale di distribuzione utili</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">Dati generali dell&#39;atto</h2>
+      <p class="mp-descrizione">Che atto stai registrando, dove lo presenti e da quanti fogli è composto. Il codice fiscale di chi chiede la registrazione compare in alto su ogni pagina del modello: lo scrivi una volta sola.</p>
+      
+      <div class="mp-griglia"><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-cfTestata">Codice fiscale di chi chiede la registrazione <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-cfTestata"
+      aria-expanded="false" aria-controls="g-atto-cfTestata" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="16" class="mp-input mp-maiuscolo" data-campo="RAP.atto.cfTestata" data-tipo="cfOpiva"
+        data-guida="g-atto-cfTestata" aria-labelledby="l-atto-cfTestata" aria-describedby="g-atto-cfTestata"
+        value="">
+      <div id="g-atto-cfTestata" role="note" hidden class="mp-guida">Se a chiedere la registrazione è un soggetto diverso da una persona fisica, va il codice fiscale della società o dell&#39;ente.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-moduloN">Modulo n.</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-moduloN"
+      aria-expanded="false" aria-controls="g-atto-moduloN" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="RAP.atto.moduloN" data-tipo="testo"
+        data-guida="g-atto-moduloN" aria-labelledby="l-atto-moduloN" aria-describedby="g-atto-moduloN"
+        value="">
+      <div id="g-atto-moduloN" role="note" hidden class="mp-guida">Scrivi 001. Se i righi di un quadro non bastano servono più moduli, numerati 002, 003 e così via.</div>
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-ufficioTerritoriale">Ufficio territoriale di <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-ufficioTerritoriale"
+      aria-expanded="false" aria-controls="g-atto-ufficioTerritoriale" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="RAP.atto.ufficioTerritoriale" data-tipo="testo"
+        data-guida="g-atto-ufficioTerritoriale" aria-labelledby="l-atto-ufficioTerritoriale" aria-describedby="g-atto-ufficioTerritoriale"
+        value="">
+      <div id="g-atto-ufficioTerritoriale" role="note" hidden class="mp-guida">Gli atti privati si registrano presso qualunque ufficio territoriale dell&#39;Agenzia delle Entrate. Quello che scegli resta competente per tutti gli adempimenti successivi.</div>
+      
+    </div><div class="mp-campo mp-c6">
+        <div class="mp-etichetta-riga">
+          <span class="mp-etichetta" id="l-atto-tipologiaAtto">Tipologia di atto <span class="mp-obb">*</span></span>
+          <button type="button" class="mp-info" data-guida-toggle="g-atto-tipologiaAtto"
+      aria-expanded="false" aria-controls="g-atto-tipologiaAtto" title="Che cosa devo scrivere qui?">i</button>
+        </div>
+        <select class="mp-input" data-campo="RAP.atto.tipologiaAtto" data-tipo="select"
+          data-guida="g-atto-tipologiaAtto" aria-labelledby="l-atto-tipologiaAtto" aria-describedby="g-atto-tipologiaAtto"><option value="" >— Seleziona —</option><option value="1" >1 — Contratto di comodato d&#39;uso gratuito</option><option value="2" >2 — Contratto preliminare di compravendita</option><option value="3" >3 — Verbale di distribuzione degli utili societari</option></select>
+        <div id="g-atto-tipologiaAtto" role="note" hidden class="mp-guida">È la scelta che decide quale quadro compilare più avanti: uno solo dei tre.</div>
+        
+      </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-dataAtto">Data dell&#39;atto <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-dataAtto"
+      aria-expanded="false" aria-controls="g-atto-dataAtto" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="date" class="mp-input" data-campo="RAP.atto.dataAtto" data-tipo="data"
+        data-guida="g-atto-dataAtto" aria-labelledby="l-atto-dataAtto" aria-describedby="g-atto-dataAtto"
+        value="">
+      <div id="g-atto-dataAtto" role="note" hidden class="mp-guida">La data di stipula, la stessa che compare sull&#39;atto originale. Per un verbale di distribuzione utili è la data di approvazione del verbale, o del bilancio se la distribuzione è deliberata lì.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-nFogli">N. fogli dell&#39;atto</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-nFogli"
+      aria-expanded="false" aria-controls="g-atto-nFogli" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="RAP.atto.nFogli" data-tipo="numero"
+        data-guida="g-atto-nFogli" aria-labelledby="l-atto-nFogli" aria-describedby="g-atto-nFogli"
+        value="">
+      <div id="g-atto-nFogli" role="note" hidden class="mp-guida">Un foglio è al massimo 4 facciate e non più di 100 righe. Quattro facciate con 101 righe contano come due fogli.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-nCopie">N. copie dell&#39;atto</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-nCopie"
+      aria-expanded="false" aria-controls="g-atto-nCopie" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="RAP.atto.nCopie" data-tipo="numero"
+        data-guida="g-atto-nCopie" aria-labelledby="l-atto-nCopie" aria-describedby="g-atto-nCopie"
+        value="">
+      <div id="g-atto-nCopie" role="note" hidden class="mp-guida">Gli esemplari cartacei firmati dalle parti di cui chiedi la registrazione: almeno uno.</div>
+      
+    </div><div class="mp-campo mp-c4">
+        <div class="mp-etichetta-riga">
+          <span class="mp-etichetta" id="l-atto-esenzioni">Esenzioni</span>
+          <button type="button" class="mp-info" data-guida-toggle="g-atto-esenzioni"
+      aria-expanded="false" aria-controls="g-atto-esenzioni" title="Che cosa devo scrivere qui?">i</button>
+        </div>
+        <select class="mp-input" data-campo="RAP.atto.esenzioni" data-tipo="select"
+          data-guida="g-atto-esenzioni" aria-labelledby="l-atto-esenzioni" aria-describedby="g-atto-esenzioni"><option value="" >— Seleziona —</option><option value="1" >1 — Esente dall&#39;imposta di bollo</option><option value="2" >2 — Esente da imposta di registro e di bollo</option><option value="3" >3 — Esente dalla sola imposta di registro</option></select>
+        <div id="g-atto-esenzioni" role="note" hidden class="mp-guida">Per esempio gli atti degli Enti del Terzo Settore sono esenti dall&#39;imposta di bollo.</div>
+        
+      </div><div class="mp-campo mp-c4">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="RAP.atto.condizioneSospensiva" data-tipo="check" >
+          <span>Condizione sospensiva</span>
+        </label>
+        <p class="mp-nota">Un evento futuro e incerto indicato nell&#39;atto che ne sospende l&#39;efficacia. Barrandola, l&#39;imposta su quella parte resta sospesa; quando la condizione si avvera hai 30 giorni per comunicarlo all&#39;ufficio con il Modello 2 e versare l&#39;imposta.</p>
+      </div><div class="mp-campo mp-c4">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="RAP.atto.eventiEccezionali" data-tipo="check" >
+          <span>Eventi eccezionali</span>
+        </label>
+        <p class="mp-nota">Si barra (codice 1) quando si fruisce di agevolazioni per calamità naturali o altri eventi eccezionali che sospendono i termini.</p>
+      </div><div class="mp-campo mp-c4">
+        <div class="mp-etichetta-riga">
+          <span class="mp-etichetta" id="l-atto-casiParticolari">Casi particolari</span>
+          
+        </div>
+        <select class="mp-input" data-campo="RAP.atto.casiParticolari" data-tipo="select"
+          data-guida="g-atto-casiParticolari" aria-labelledby="l-atto-casiParticolari" aria-describedby="g-atto-casiParticolari"><option value="" >— Seleziona —</option><option value="1" >1 — Imposta di registro calcolata con regole diverse da quelle ordinarie</option><option value="2" >2 — Agevolazioni per gli Enti del Terzo Settore (art. 82 c. 3 d.lgs. 117/2017)</option></select>
+        
+        
+      </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-allegatiScritture">Allegati · scritture private e inventari</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-allegatiScritture"
+      aria-expanded="false" aria-controls="g-atto-allegatiScritture" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="RAP.atto.allegatiScritture" data-tipo="numero"
+        data-guida="g-atto-allegatiScritture" aria-labelledby="l-atto-allegatiScritture" aria-describedby="g-atto-allegatiScritture"
+        value="">
+      <div id="g-atto-allegatiScritture" role="note" hidden class="mp-guida">Il numero di fogli del documento allegato, con la stessa regola dei fogli dell&#39;atto: massimo 4 facciate e 100 righe per foglio.</div>
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-allegatiRicevute">Allegati · ricevute e quietanze</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-allegatiRicevute"
+      aria-expanded="false" aria-controls="g-atto-allegatiRicevute" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="RAP.atto.allegatiRicevute" data-tipo="numero"
+        data-guida="g-atto-allegatiRicevute" aria-labelledby="l-atto-allegatiRicevute" aria-describedby="g-atto-allegatiRicevute"
+        value="">
+      <div id="g-atto-allegatiRicevute" role="note" hidden class="mp-guida">Il numero di esemplari.</div>
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-atto-allegatiMappe">Allegati · mappe, planimetrie e disegni</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-atto-allegatiMappe"
+      aria-expanded="false" aria-controls="g-atto-allegatiMappe" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="RAP.atto.allegatiMappe" data-tipo="numero"
+        data-guida="g-atto-allegatiMappe" aria-labelledby="l-atto-allegatiMappe" aria-describedby="g-atto-allegatiMappe"
+        value="">
+      <div id="g-atto-allegatiMappe" role="note" hidden class="mp-guida">Il numero di esemplari: un elemento grafico fino a 4 facciate è un esemplare; oltre, se ne conta uno ogni 4 facciate.</div>
+      
+    </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 7</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 

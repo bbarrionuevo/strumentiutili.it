@@ -31,6 +31,7 @@ Sitio estático italiano de herramientas (Vanilla JS, Tailwind v4, PWA), publica
   - `scripts/prepara-*.py` crea los campos → `assets/pdf/*-compilabile.pdf`;
   - `data/modello*-schema.json` describe los campos;
   - `js/compilatore-moduli.js` los rellena en el navegador.
+  - `scripts/prerendi-compilatori.js` escribe el primer paso en la página, así el panel no salta cuando llega el JS (CLS): se regenera si cambia un esquema.
 - Widgets para otros sitios: `widget/<nombre>/` con `js/widget.js` y los mismos motores de la herramienta. Están fuera del layout, sin anuncios y con `noindex`. El código para insertar está en la página de la herramienta (`tests/widget.test.js`).
 - `data/fonti-monitorate.json`: fuentes y plazos que vigila la sentinella. Las copias de referencia están en `fonti/archivio/`.
 
@@ -86,7 +87,7 @@ El sandbox no llega a agenziaentrate.gov.it, normattiva.it, aci.gov.it, inps.it,
 ```
 TZ=UTC npm test && TZ=America/Los_Angeles npm test && TZ=Pacific/Kiritimati npm test
 python3 scripts/genera-indice-strumenti.py
-for s in applica-layout genera-sitemap genera-calendario copia-vendor genera-santi genera-mappa collega-fonti genera-guide; do node scripts/$s.js --check || echo "DA RIGENERARE: $s"; done
+for s in applica-layout genera-sitemap genera-calendario copia-vendor genera-santi genera-mappa collega-fonti genera-guide prerendi-compilatori; do node scripts/$s.js --check || echo "DA RIGENERARE: $s"; done
 npm run build:css && git diff --exit-code css/styles.css
 ```
 - Si un `--check` falla, se regenera sin `--check` (o con `npm run build`) y se revisa el diff.

@@ -279,11 +279,110 @@
         </div>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">I tuoi dati</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">Se chiedi il rimborso come erede</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Anno e bollette</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="3"
+        >
+        <span class="mp-passo-numero">4</span>
+        <span class="mp-passo-nome">Il motivo</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="4"
+        >
+        <span class="mp-passo-numero">5</span>
+        <span class="mp-passo-nome">Data e firma</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">I tuoi dati</h2>
+      <p class="mp-descrizione">I dati di chi chiede il rimborso: il titolare del contratto della luce su cui e&#39; stato addebitato il canone, oppure l&#39;erede.</p>
+      
+      <div class="mp-griglia"><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-cognome">Cognome <span class="mp-obb">*</span></span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="RIMBORSO.richiedente.cognome" data-tipo="testo"
+        data-guida="g-richiedente-cognome" aria-labelledby="l-richiedente-cognome" aria-describedby="g-richiedente-cognome"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-nome">Nome <span class="mp-obb">*</span></span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="RIMBORSO.richiedente.nome" data-tipo="testo"
+        data-guida="g-richiedente-nome" aria-labelledby="l-richiedente-nome" aria-describedby="g-richiedente-nome"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-dataNascita">Data di nascita <span class="mp-obb">*</span></span>
+        
+      </div>
+      <input type="date" class="mp-input" data-campo="RIMBORSO.richiedente.dataNascita" data-tipo="data"
+        data-guida="g-richiedente-dataNascita" aria-labelledby="l-richiedente-dataNascita" aria-describedby="g-richiedente-dataNascita"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-comuneNascita">Comune o Stato estero di nascita <span class="mp-obb">*</span></span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="RIMBORSO.richiedente.comuneNascita" data-tipo="testo"
+        data-guida="g-richiedente-comuneNascita" aria-labelledby="l-richiedente-comuneNascita" aria-describedby="g-richiedente-comuneNascita"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c4">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-provinciaNascita">Provincia (sigla)</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-richiedente-provinciaNascita"
+      aria-expanded="false" aria-controls="g-richiedente-provinciaNascita" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="2" class="mp-input mp-maiuscolo" data-campo="RIMBORSO.richiedente.provinciaNascita" data-tipo="provincia"
+        data-guida="g-richiedente-provinciaNascita" aria-labelledby="l-richiedente-provinciaNascita" aria-describedby="g-richiedente-provinciaNascita"
+        value="">
+      <div id="g-richiedente-provinciaNascita" role="note" hidden class="mp-guida">La sigla di due lettere della provincia di nascita: per Roma, RM.</div>
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-codiceFiscale">Codice fiscale <span class="mp-obb">*</span></span>
+        
+      </div>
+      <input type="text" maxlength="16" inputmode="text" class="mp-input mp-maiuscolo" data-campo="RIMBORSO.richiedente.codiceFiscale" data-tipo="cf"
+        data-guida="g-richiedente-codiceFiscale" aria-labelledby="l-richiedente-codiceFiscale" aria-describedby="g-richiedente-codiceFiscale"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiedente-email">E-mail</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-richiedente-email"
+      aria-expanded="false" aria-controls="g-richiedente-email" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="email" class="mp-input" data-campo="RIMBORSO.richiedente.email" data-tipo="email"
+        data-guida="g-richiedente-email" aria-labelledby="l-richiedente-email" aria-describedby="g-richiedente-email"
+        value="">
+      <div id="g-richiedente-email" role="note" hidden class="mp-guida">Il modello chiede un indirizzo e-mail di chi presenta la richiesta.</div>
+      
+    </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 5</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 

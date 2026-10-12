@@ -79,7 +79,7 @@ class Pagina:
         self.p.on("dialog", lambda d: d.accept())
         self.p.route("**/pagead2.googlesyndication.com/**", lambda r: r.abort())
         self.p.goto(BASE + percorso, wait_until="load")
-        self.p.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+        self.p.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
         self.modello = modello
 
     def passo(self, testo):

@@ -60,7 +60,7 @@ def apri(ctx, percorso, errori):
     pag.on("pageerror", lambda e: errori.append(f"{percorso}: {e}"))
     pag.on("dialog", lambda d: d.accept())
     pag.goto(f"http://127.0.0.1:{PORTA}{percorso}", wait_until="domcontentloaded")
-    pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+    pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
     return pag
 
 

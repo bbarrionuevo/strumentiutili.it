@@ -411,11 +411,135 @@
         </div>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">Che cosa chiedi</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">L&#39;ente</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Dove ha sede</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="3"
+        >
+        <span class="mp-passo-numero">4</span>
+        <span class="mp-passo-nome">Domicilio fiscale in Italia</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="4"
+        >
+        <span class="mp-passo-numero">5</span>
+        <span class="mp-passo-nome">Chi rappresenta l&#39;ente</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="5"
+        >
+        <span class="mp-passo-numero">6</span>
+        <span class="mp-passo-nome">Fusione, concentrazione o trasformazione</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="6"
+        >
+        <span class="mp-passo-numero">7</span>
+        <span class="mp-passo-nome">Il soggetto risultante dall&#39;operazione</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="7"
+        >
+        <span class="mp-passo-numero">8</span>
+        <span class="mp-passo-nome">Allegati e firma</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="8"
+        >
+        <span class="mp-passo-numero">9</span>
+        <span class="mp-passo-nome">Delega alla consegna</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="9"
+        >
+        <span class="mp-passo-numero">10</span>
+        <span class="mp-passo-nome">Impegno alla presentazione telematica</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">Che cosa chiedi</h2>
+      <p class="mp-descrizione">Il modello AA5/6 serve ai soggetti diversi dalle persone fisiche non obbligati alla dichiarazione di inizio attività IVA: enti, associazioni, fondazioni, condomini, parrocchie. Si barra una delle cinque caselle.</p>
+      
+      <div class="mp-griglia"><fieldset class="mp-campo mp-c12 mp-fieldset">
+        <legend class="mp-legenda">Tipo di richiesta <span class="mp-obb">*</span></legend>
+        <p class="mp-nota">Le date indicate qui non possono essere successive al giorno in cui presenti il modello. Estinzione, fusione, concentrazione e trasformazione si comunicano entro trenta giorni e solo per via telematica: per quei casi il PDF serve a preparare i dati.</p>
+        <div class="mp-radio-gruppo">
+        <label class="mp-radio">
+          <input type="radio" name="r-AA5_6.richiesta.tipo" value="1" data-campo="AA5_6.richiesta.tipo" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>1 — Richiesta di attribuzione del numero di codice fiscale</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-AA5_6.richiesta.tipo" value="2" data-campo="AA5_6.richiesta.tipo" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>2 — Comunicazione di variazione dei dati</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-AA5_6.richiesta.tipo" value="3" data-campo="AA5_6.richiesta.tipo" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>3 — Comunicazione di estinzione</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-AA5_6.richiesta.tipo" value="4" data-campo="AA5_6.richiesta.tipo" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>4 — Richiesta di duplicato del certificato</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-AA5_6.richiesta.tipo" value="5" data-campo="AA5_6.richiesta.tipo" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>5 — Richiesta di attribuzione del codice fiscale di terzi</strong>
+            
+          </span>
+        </label></div>
+        
+      </fieldset><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiesta-cfTestata">Codice fiscale da stampare in testa alle pagine</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-richiesta-cfTestata"
+      aria-expanded="false" aria-controls="g-richiesta-cfTestata" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="16" class="mp-input mp-maiuscolo" data-campo="AA5_6.richiesta.cfTestata" data-tipo="cfOpiva"
+        data-guida="g-richiesta-cfTestata" aria-labelledby="l-richiesta-cfTestata" aria-describedby="g-richiesta-cfTestata"
+        value="">
+      <div id="g-richiesta-cfTestata" role="note" hidden class="mp-guida">Va ripetuto in alto su ogni pagina. Se stai chiedendo l&#39;attribuzione del codice fiscale, qui va quello di chi firma il modello, non quello dell&#39;ente (che ancora non esiste). Lo scrivi una volta sola: finisce su tutte e due le pagine.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiesta-numeroPagina">Numero della prima pagina</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-richiesta-numeroPagina"
+      aria-expanded="false" aria-controls="g-richiesta-numeroPagina" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="AA5_6.richiesta.numeroPagina" data-tipo="numero"
+        data-guida="g-richiesta-numeroPagina" aria-labelledby="l-richiesta-numeroPagina" aria-describedby="g-richiesta-numeroPagina"
+        value="01">
+      <div id="g-richiesta-numeroPagina" role="note" hidden class="mp-guida">Serve solo se il quadro D non ti basta e stampi più copie: allora le pagine si numerano in ordine. Presentando il modello una volta sola, lascia 01 e 02.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-richiesta-numeroPagina2">Numero della seconda pagina</span>
+        
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="AA5_6.richiesta.numeroPagina2" data-tipo="numero"
+        data-guida="g-richiesta-numeroPagina2" aria-labelledby="l-richiesta-numeroPagina2" aria-describedby="g-richiesta-numeroPagina2"
+        value="02">
+      
+      
+    </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 10</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 

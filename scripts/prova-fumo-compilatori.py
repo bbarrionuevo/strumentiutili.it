@@ -45,7 +45,7 @@ with sync_playwright() as pw:
         pag.on("pageerror", lambda e: errori.append(str(e)))
         try:
             pag.goto("http://127.0.0.1:%d%s" % (PORTA, percorso), wait_until="load")
-            pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+            pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
             passi = pag.locator("#mp-passi .mp-passo-voce").count()
             campi = pag.locator("#mp-corpo [data-campo]").count()
             # si arriva fino in fondo cliccando l'ultima voce
