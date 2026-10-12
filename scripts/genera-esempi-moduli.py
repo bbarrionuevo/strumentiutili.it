@@ -641,6 +641,54 @@ ESEMPI = {
         "salto": ["Conto estero: vuoto (conto italiano)"],
         "larghezza": 1100,
     },
+    # Una traduttrice apre la partita IVA come lavoratrice autonoma (non e'
+    # tenuta all'iscrizione al Registro delle imprese) e sceglie il regime
+    # forfetario, casella «2» del quadro B. Il codice 74.30.00 «Attivita' di
+    # traduzione e interpretariato» e' quello dell'ATECO 2025 (ISTAT, «Struttura e
+    # note esplicative»). Persona, codice fiscale e indirizzo sono inventati.
+    "aa9-12-inizio-forfetario": {
+        "pagina": "/fisco-professioni/modelli-partita-iva/",
+        "modello": "AA9",
+        "passi": [
+            {"campi": {
+                "quadroA.tipoDichiarazione": "1",
+                "quadroA.cfContribuente": "VRDGLI90C55A944A",
+                "quadroA.dataInizio": "2026-10-19",
+            }},
+            {"passo": "Chi sei", "campi": {
+                "quadroB1.dittaNome": "VERDI GIULIA",
+            }},
+            {"passo": "Attività e luogo", "campi": {
+                "quadroB2.codiceAteco": "743000",
+                "quadroB2.descrizioneAttivita": "ATTIVITÀ DI TRADUZIONE E INTERPRETARIATO",
+                "quadroB2.indirizzoSede": "VIA DI ESEMPIO 1",
+                "quadroB2.capSede": "40121",
+                "quadroB2.comuneSede": "BOLOGNA",
+                "quadroB2.provinciaSede": "BO",
+                "quadroB2.scrittureSede": "X",
+                "quadroB2.regimeAgevolato": "2",
+            }},
+            {"passo": "Titolare", "campi": {
+                "quadroC.dataNascita": "1990-03-15",
+                "quadroC.comuneNascita": "BOLOGNA",
+                "quadroC.provNascita": "BO",
+                "quadroC.indirizzoRes": "VIA DI ESEMPIO 1",
+                "quadroC.capRes": "40121",
+                "quadroC.comuneRes": "BOLOGNA",
+                "quadroC.provRes": "BO",
+            }},
+            {"passo": "Firma", "campi": {
+                "firma.dataFirma": "2026-10-20",
+                "firma.cfFirmatario": "VRDGLI90C55A944A",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa) fino al quadro C, poi
+        # il riquadro dei quadri compilati e della firma, a penna, dell'ultima
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.845), (5, 0.0, 0.083, 1.0, 0.258)],
+        "salto": ["Quadri D-I: vuoti (pagine 3 e 4)"],
+        "etichetta_y": 0.168,
+        "larghezza": 1100,
+    },
 }
 
 

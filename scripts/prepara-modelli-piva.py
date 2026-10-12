@@ -77,6 +77,46 @@ DA_CENTRARE = {
     **{f"sezione_2_tipo_sede_{n}-QUADRO G": 1 for n in range(1, 9)},
 }
 
+# Campi con le caselline stampate (un carattere per casella) che nei PDF
+# dell'Agenzia non sono «a pettine»: il testo usciva tutto a sinistra, fuori
+# dalle caselle (il codice attivita' dell'AA9, la data di inizio dell'AA7, il
+# codice fiscale in alto alle pagine 3-5 dell'AA7). Il valore e' il numero di
+# caselle, contato sulle stanghette stampate dentro il riquadro del campo.
+A_PETTINE = {
+    # --- AA9/12 -------------------------------------------------------------
+    "partita_iva_richiesta_duplicato_8g9q": 11,
+    "codice_attivita_8i2j": 6,
+    "volume_d_affari_presunto_7l7g": 11,
+    "c_a_p_1_5a6z": 5,                                              # quadro F
+    "c_a_p_3_5e8v": 5,
+    "estremi_registrazione_contratto_di_locazione_o_di_comodato_data_di_registrazione_1c4m": 8,
+    # --- AA7/10 -------------------------------------------------------------
+    "data_inizio_4k5m-QUADRO A": 8,                                 # casella 1
+    "data_inizio_4k5m-QUADRO A__2": 8,                              # casella 2
+    "codice_attivita_1v0n-QUADRO B": 6,
+    "volume_d_affari_presunto_5p4a-QUADRO B": 11,
+    "codice_fiscale_4z9s": 16,                                      # testata pag. 3
+    "codice_fiscale_3m6a": 16,                                      # testata pag. 4
+    "codice_fiscale_5i8h": 16,                                      # testata pag. 5
+    "partita_iva_codice_fiscale_1_6f3l-QUADRO D": 11,
+    "partita_iva_codice_fiscale_2_5f6z-QUADRO D": 11,
+    "partita_iva_codice_fiscale_3_0b9h-QUADRO D": 11,
+    "partita_iva_codice_fiscale_4_4y1k-QUADRO D": 11,
+    "partita_iva_codice_fiscale_5_3z5q-QUADRO D": 11,
+    "partita_iva_codice_fiscale_6_2b9x-QUADRO D": 11,
+    "partita_iva_o_codice_fiscale_del_conferitario_o_cessionario_6r7z-QUADRO D-SEZIONE 2": 11,
+    "sezione_2_pl_codice_9f8d-QUADRO D-SEZIONE 2": 11,
+    "partita_iva_o_codice_fiscale_del_locatore_8z6r-QUADRO D-SEZIONE 3": 11,
+    "c_a_p_1_3y0t-QUADRO E": 5,
+    **{f"sezione_1_codice_attivita_{n}-QUADRO G": 6 for n in range(1, 10)},
+    "sezione_1_volume_d_affari_presunto_5-QUADRO G": 9,
+    **{f"sezione_2_c_a_p_{n}-QUADRO G": 5 for n in range(6, 9)},
+    "partita_iva_o_codice_fiscale_del_rappresentante_2g2h-QUADRO H": 11,
+    "operazioni_intracomunitarie_volume_acquisti_presunto_7c4z-QUADRO I": 11,
+    "operazioni_intracomunitarie_volume_cessioni_presunto_7s9z--QUADRO I": 11,
+    "quadri_compilati_codice_fiscale_4q7q-QUADRO I": 16,
+}
+
 # Caselle di spunta che devono invece accogliere un codice.
 DA_CONVERTIRE_IN_TESTO = {
     "codice_carica_4w9n-QUADRO C": 2,  # AA7 quadro C: codici 1-15
@@ -178,6 +218,12 @@ def sistema_tipi_campo(writer: PdfWriter) -> None:
             campo[NameObject("/Q")] = NumberObject(1)
             campo[NameObject("/MaxLen")] = NumberObject(lunghezza)
             print(f"    {nome}: testo centrato ({lunghezza} caratteri)")
+
+        if nome in A_PETTINE and campo.get("/FT") == "/Tx":
+            caselle = A_PETTINE[nome]
+            campo[NameObject("/Ff")] = NumberObject(int(campo.get("/Ff", 0)) | (1 << 24))
+            campo[NameObject("/MaxLen")] = NumberObject(caselle)
+            print(f"    {nome}: a pettine ({caselle} caselle)")
 
         if nome in RIQUADRI_CORRETTI:
             nuovo = RIQUADRI_CORRETTI[nome]

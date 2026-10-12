@@ -1,5 +1,5 @@
 {
-  "versione": "2026-09",
+  "versione": "2026-10",
   "nota": "Mappatura dei campi AcroForm dei modelli AA9/12 e AA7/10 preparati da scripts/prepara-modelli-piva.py. I testi di aiuto sono tratti dalle istruzioni ufficiali dell'Agenzia delle Entrate allegate in assets/pdf.",
   "tabelle": {
     "codiceCaricaAA9": [
@@ -111,7 +111,7 @@
     "titolaritaImmobile": [
       {
         "value": "P",
-        "label": "P — Possesso (l'immobile è di proprietà)"
+        "label": "P — Possesso"
       },
       {
         "value": "D",
@@ -488,7 +488,7 @@
                   "1"
                 ]
               },
-              "help": "Il giorno in cui hai effettivamente iniziato (o inizierai) l'attività. Il modello va presentato entro 30 giorni da questa data."
+              "help": "Il giorno in cui hai iniziato l'attività. Non può essere successivo al giorno in cui presenti il modello, che va presentato entro 30 giorni da questa data."
             },
             {
               "id": "pivaVariazione",
@@ -562,7 +562,7 @@
                   "3"
                 ]
               },
-              "help": "L'ultimo giorno di attività. Il modello va presentato entro 30 giorni."
+              "help": "La data in cui cessa l'attività. I 30 giorni per presentare il modello decorrono dalla fine delle operazioni di liquidazione dell'azienda (art. 35, comma 4, del D.P.R. 633/1972); la data non può essere successiva al giorno in cui presenti il modello."
             },
             {
               "id": "pivaDuplicato",
@@ -654,7 +654,7 @@
               "required": true,
               "width": "third",
               "placeholder": "620100",
-              "help": "Le 6 cifre della classificazione ATECO vigente, senza punti. Deve corrispondere all'attività che genera il maggior volume d'affari. Lo trovi sul sito dell'Agenzia delle Entrate; se non sei sicuro, chiedi conferma al tuo commercialista: da questo codice dipendono contributi, studi di settore e adempimenti."
+              "help": "Le 6 cifre, senza punti, del codice dell'attività prevalente per volume d'affari, preso dalla classificazione delle attività economiche in vigore quando presenti il modello: le schede dell'Agenzia rimandano alla classificazione ATECO 2025 dell'ISTAT."
             },
             {
               "id": "descrizioneAttivita",
@@ -697,7 +697,7 @@
               "label": "C.A.P.",
               "required": true,
               "width": "quarter",
-              "help": "Il CAP specifico della via. Per le grandi città NON si può usare il CAP generico (00100 per Roma, 20100 per Milano e simili): l'Agenzia delle Entrate scarta le dichiarazioni che lo riportano."
+              "help": "Il CAP della via. Le istruzioni chiedono un indirizzo completo, che individui il luogo senza ambiguità: il CAP generico delle città divise in zone postali (00100 per Roma, 20100 per Milano e simili) non è quello di una via, e il compilatore lo segnala."
             },
             {
               "id": "comuneSede",
@@ -732,7 +732,7 @@
               "label": "Regime fiscale agevolato",
               "options": "regimeAgevolato",
               "width": "full",
-              "help": "Scegli «2» se ritieni di avere i requisiti del regime forfetario (art. 1, c. 54, legge 190/2014): è il regime della maggior parte delle nuove partite IVA individuali. Il codice «1» riguarda il vecchio regime di vantaggio, ormai chiuso a nuovi ingressi. Chi aderisce a un regime agevolato non deve compilare il volume d'affari presunto."
+              "help": "Si sceglie solo se ritieni di avere i requisiti: «2» per il regime forfetario (art. 1, comma 54, della legge 190/2014), «1» per il regime di vantaggio (art. 27, commi 1 e 2, del D.L. 98/2011). Chi aderisce a un regime agevolato non compila il volume d'affari presunto. Le opzioni e le revoche successive non si comunicano con questo modello, ma nel quadro VO della dichiarazione IVA."
             }
           ]
         },
@@ -1545,7 +1545,7 @@
               "type": "email",
               "label": "Indirizzo di posta elettronica",
               "width": "half",
-              "help": "L'e-mail a cui l'Agenzia può contattarti."
+              "help": "Il tuo indirizzo di posta elettronica."
             },
             {
               "id": "telPrefisso",
@@ -1590,7 +1590,7 @@
               "label": "Titolarità dell'immobile",
               "options": "titolaritaImmobile",
               "width": "third",
-              "help": "«P» se l'immobile in cui eserciti l'attività è di tua proprietà, «D» se lo detieni in locazione o comodato. Con «D» devi indicare anche gli estremi di registrazione del contratto."
+              "help": "«P» se possiedi l'immobile in cui eserciti l'attività prevalente, «D» se lo detieni in locazione o comodato: con «D» servono anche gli estremi di registrazione del contratto."
             },
             {
               "id": "tipoCatasto",
@@ -1702,7 +1702,7 @@
               "type": "importo",
               "label": "Operazioni intracomunitarie · volume acquisti presunto (euro)",
               "width": "half",
-              "help": "Compila questi due campi se vuoi effettuare operazioni con l'estero e ottenere l'inclusione nell'archivio VIES. Senza VIES non puoi emettere né ricevere fatture intracomunitarie senza IVA."
+              "help": "Per fare operazioni intracomunitarie bisogna essere inclusi nell'archivio VIES: la volontà si esprime compilando il campo «operazioni intracomunitarie» (provvedimento del 15 dicembre 2014). Chi non lo fa ora può chiedere l'inclusione più avanti con i servizi telematici dell'Agenzia."
             },
             {
               "id": "viesCessioni",
@@ -1719,7 +1719,7 @@
               "label": "Tipologia della clientela",
               "options": "tipologiaClientela",
               "width": "third",
-              "help": "Questi ultimi campi vanno compilati solo se l'attività indicata nel quadro B rientra fra quelle individuate dal provvedimento del 21 dicembre 2006 (attività considerate a maggior rischio). Nel dubbio compilali: non è un errore."
+              "help": "Questi ultimi campi si compilano esclusivamente se l'attività del quadro B è fra quelle del provvedimento del 21 dicembre 2006, modificato il 14 gennaio 2008: per le altre attività restano vuoti."
             },
             {
               "id": "luogoPubblico",
@@ -1764,7 +1764,7 @@
               "type": "testo",
               "label": "Allegati · riga 1",
               "width": "full",
-              "help": "Elenca qui i documenti che consegni insieme alla dichiarazione, se l'ufficio te li ha richiesti (per esempio copia del contratto di locazione, visura catastale, documento d'identità)."
+              "help": "I documenti che l'ufficio ha richiesto e che consegni insieme alla dichiarazione, per attestare i dati indicati nel modello."
             },
             {
               "id": "allegati2",
@@ -1797,7 +1797,7 @@
             {
               "id": "dataFirma",
               "pdf": "data_7n1n",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Data della dichiarazione",
               "width": "third",
               "help": "Il giorno in cui firmi. Ricorda che la data di inizio, variazione o cessazione indicata nel quadro A non può essere successiva a questa."
@@ -1843,14 +1843,14 @@
             {
               "id": "delegatoNatoIl",
               "pdf": "il_1m7z",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Delega · il",
               "width": "third"
             },
             {
               "id": "delegaData",
               "pdf": "data_7n1n__2",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Delega · data",
               "width": "third"
             },
@@ -1919,14 +1919,17 @@
       "codice": "AA7/10",
       "nome": "Modello AA7/10",
       "sottotitolo": "Soggetti diversi dalle persone fisiche",
-      "descrizione": "Domanda di attribuzione del codice fiscale e dichiarazione di inizio attività, variazione dati o cessazione attività ai fini IVA per società, enti, associazioni e condomini.",
+      "descrizione": "Domanda di attribuzione del codice fiscale e dichiarazione di inizio attività, variazione dati o cessazione attività ai fini IVA per società, enti e associazioni.",
       "pdf": "/assets/pdf/modello-aa7-10-compilabile.pdf",
       "istruzioni": "/assets/pdf/istruzioni-aa7-10.pdf",
       "paginaIniziale": 2,
       "testata": {
         "copie": [
           {
-            "da": "quadroA.cfContribuente",
+            "da": [
+              "quadroA.cfContribuente",
+              "quadroC.cfRappr"
+            ],
             "tipo": "cf",
             "a": [
               "codice_fiscale_7y2c",
@@ -2017,7 +2020,7 @@
                   "5"
                 ]
               },
-              "help": "Le 11 cifre del codice fiscale della società o dell'ente. Viene riportato automaticamente in alto su tutte le pagine del modello. Con la casella 1 non va indicato: è proprio il codice fiscale che stai chiedendo."
+              "help": "Le 11 cifre del codice fiscale della società o dell'ente: il compilatore le ripete in alto su tutte le pagine. Con la casella 1 il codice non c'è ancora: in alto sulle pagine va quello del rappresentante indicato nel quadro C, e il compilatore lo riporta da solo."
             },
             {
               "id": "dataInizio1",
@@ -2032,7 +2035,7 @@
                   "1"
                 ]
               },
-              "help": "Il giorno di effettivo inizio dell'attività. Il modello va presentato entro 30 giorni."
+              "help": "Il giorno in cui è iniziata l'attività rilevante ai fini IVA. Non può essere successivo al giorno in cui presenti il modello, che va presentato entro 30 giorni da questa data."
             },
             {
               "id": "attoData",
@@ -2113,7 +2116,7 @@
                   "2"
                 ]
               },
-              "help": "Il giorno di effettivo inizio dell'attività rilevante ai fini IVA."
+              "help": "Il giorno in cui è iniziata l'attività rilevante ai fini IVA. Non può essere successivo al giorno in cui presenti il modello, che va presentato entro 30 giorni da questa data."
             },
             {
               "id": "casellaC",
@@ -2187,7 +2190,7 @@
                   "4"
                 ]
               },
-              "help": "L'ultimo giorno di attività."
+              "help": "La data in cui cessa l'attività. I 30 giorni per presentare il modello decorrono dalla fine delle operazioni di liquidazione dell'azienda (art. 35, comma 4, del D.P.R. 633/1972); la data non può essere successiva al giorno in cui presenti il modello."
             },
             {
               "id": "casellaP",
@@ -2266,7 +2269,7 @@
           "id": "quadroB2",
           "quadro": "B",
           "titolo": "Quadro B — Sede legale e domicilio fiscale",
-          "descrizione": "Due blocchi distinti: la sede legale (o amministrativa, o in mancanza quella effettiva) e il domicilio fiscale, che si compila solo se è diverso dalla sede.",
+          "descrizione": "La sede legale (o amministrativa, o in mancanza quella effettiva) e, solo per i soggetti non residenti, il domicilio fiscale in Italia.",
           "campi": [
             {
               "id": "sedeIndirizzo",
@@ -2284,7 +2287,7 @@
               "label": "Sede legale · C.A.P.",
               "required": true,
               "width": "quarter",
-              "help": "Il CAP specifico della via. I CAP generici delle grandi città (00100, 20100 e simili) non sono accettati."
+              "help": "Il CAP della via. Le istruzioni chiedono un indirizzo completo, che individui il luogo senza ambiguità: il CAP generico delle città divise in zone postali (00100 per Roma, 20100 per Milano e simili) non è quello di una via, e il compilatore lo segnala."
             },
             {
               "id": "sedeComune",
@@ -2315,9 +2318,9 @@
             {
               "id": "domicilioDiverso",
               "type": "toggle",
-              "label": "Il domicilio fiscale è diverso dalla sede legale",
+              "label": "Soggetto non residente: domicilio fiscale in Italia",
               "width": "full",
-              "help": "I soggetti diversi dalle persone fisiche hanno il domicilio fiscale nel comune della sede legale o, in mancanza, della sede amministrativa. Compila questo blocco solo se il domicilio fiscale non coincide con la sede appena indicata."
+              "help": "Società ed enti hanno il domicilio fiscale nel comune della sede legale o, in mancanza, della sede amministrativa (art. 58 del D.P.R. 600/1973). Per questo le istruzioni fanno compilare questo blocco solo ai soggetti non residenti con sede all'estero: la sede della stabile organizzazione in Italia o il domicilio fiscale del rappresentante fiscale."
             },
             {
               "id": "domIndirizzo",
@@ -2380,7 +2383,7 @@
           "id": "quadroB3",
           "quadro": "B",
           "titolo": "Quadro B — Attività e luogo di esercizio",
-          "descrizione": "L'attività prevalente per volume d'affari e il luogo in cui viene esercitata. Le altre attività e le altre sedi vanno nel quadro G.",
+          "descrizione": "L'attività prevalente per volume d'affari e, solo se è diverso dalla sede legale, il luogo in cui viene esercitata. Le altre attività e le altre sedi vanno nel quadro G.",
           "campi": [
             {
               "id": "codiceAteco",
@@ -2390,7 +2393,7 @@
               "required": true,
               "width": "third",
               "placeholder": "620100",
-              "help": "Le 6 cifre della classificazione ATECO vigente, senza punti, riferite all'attività prevalente per volume d'affari."
+              "help": "Le 6 cifre, senza punti, del codice dell'attività prevalente per volume d'affari, preso dalla classificazione delle attività economiche in vigore quando presenti il modello: le schede dell'Agenzia rimandano alla classificazione ATECO 2025 dell'ISTAT."
             },
             {
               "id": "descrizioneAttivita",
@@ -2422,16 +2425,14 @@
               "pdf": "indirizzo_completo_via_o_piazza_numero_civico_scala_interno_palazzina_ecc_5c0n-QUADRO B__3",
               "type": "testo",
               "label": "Luogo di esercizio · indirizzo completo",
-              "required": true,
               "width": "full",
-              "help": "L'indirizzo in cui viene svolta l'attività prevalente. Gli eventuali altri luoghi vanno indicati nel quadro G, sezione 2."
+              "help": "Solo se l'attività si esercita principalmente in un luogo diverso dalla sede legale, amministrativa o effettiva (per una stabile organizzazione, anche dal domicilio fiscale): altrimenti questo blocco resta vuoto. Gli altri luoghi vanno nel quadro G, sezione 2."
             },
             {
               "id": "eserCap",
               "pdf": "c_a_p_9m2a-QUADRO B__3",
               "type": "cap",
               "label": "Luogo di esercizio · C.A.P.",
-              "required": true,
               "width": "quarter"
             },
             {
@@ -2439,7 +2440,6 @@
               "pdf": "comune_senza_abbreviazione_6m2f-QUADRO B__2",
               "type": "testo",
               "label": "Luogo di esercizio · comune",
-              "required": true,
               "width": "half"
             },
             {
@@ -2447,7 +2447,6 @@
               "pdf": "provincia_5l4x-QUADRO B__3",
               "type": "provincia",
               "label": "Luogo di esercizio · provincia",
-              "required": true,
               "width": "quarter"
             },
             {
@@ -2506,7 +2505,7 @@
           "id": "quadroC",
           "quadro": "C",
           "titolo": "Quadro C — Rappresentante",
-          "descrizione": "I dati della persona fisica che rappresenta il soggetto: amministratore, legale rappresentante, curatore, liquidatore. Questo quadro è quasi sempre obbligatorio, perché una società firma tramite una persona.",
+          "descrizione": "Il rappresentante legale o, in mancanza, un socio amministratore; per un soggetto fallito, in liquidazione giudiziale o in liquidazione, il curatore, il commissario o il liquidatore. Se i rappresentanti sono più d'uno, qui ne va uno solo: gli altri nel quadro F.",
           "campi": [
             {
               "id": "cognomeRappr",
@@ -3531,7 +3530,7 @@
               "label": "Tipologia della clientela",
               "options": "tipologiaClientela",
               "width": "third",
-              "help": "Questi ultimi campi si compilano solo se l'attività del quadro B rientra fra quelle individuate dal provvedimento del 21 dicembre 2006."
+              "help": "Questi ultimi campi si compilano esclusivamente se l'attività del quadro B è fra quelle del provvedimento del 21 dicembre 2006, modificato il 14 gennaio 2008: per le altre attività restano vuoti."
             },
             {
               "id": "luogoPubblico",
@@ -3574,7 +3573,8 @@
               "pdf": "investimenti_effettuati_dai_costruttori_7q8x-QUADRO I",
               "type": "importo",
               "label": "Investimenti effettuati dai costruttori (euro)",
-              "width": "half"
+              "width": "half",
+              "help": "Solo per chi lavora nel macrosettore costruzioni: il valore degli investimenti in beni strumentali già effettuati. Con l'aggiornamento delle istruzioni del 1° gennaio 2026, qui gli enti del Terzo settore che avviano un'attività d'impresa commerciale esercitano l'opzione per la determinazione forfetaria del reddito (artt. 80 e 86 del D.Lgs. 117/2017), scrivendo il valore convenzionale 9999999999, dieci volte il 9."
             },
             {
               "id": "allegati1",
@@ -3615,7 +3615,7 @@
             {
               "id": "dataFirma",
               "pdf": "quadri_compilati_data_4b1x-QUADRO I",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Data della dichiarazione",
               "width": "third",
               "help": "Il giorno in cui viene firmata. La data indicata nel quadro A non può essere successiva a questa."
@@ -3626,7 +3626,7 @@
               "type": "cf",
               "label": "Codice fiscale di chi firma",
               "width": "half",
-              "help": "Il codice fiscale del soggetto che sottoscrive, già indicato nel quadro C. La sottoscrizione spetta a chi ha la rappresentanza legale o negoziale."
+              "help": "Il codice fiscale di chi sottoscrive, già indicato nel quadro C o nel quadro F. Firma il rappresentante legale, il socio amministratore o, in mancanza, chi ha l'amministrazione anche di fatto, oppure un rappresentante negoziale."
             },
             {
               "id": "firmaDichiarante",
@@ -3661,14 +3661,14 @@
             {
               "id": "delegatoNatoIl",
               "pdf": "delega_il_0v3v-QUADRO I",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Delega · il",
               "width": "third"
             },
             {
               "id": "delegaData",
               "pdf": "delega_data_5j6w-QUADRO I",
-              "type": "data",
+              "type": "dataEstesa",
               "label": "Delega · data",
               "width": "third"
             },
