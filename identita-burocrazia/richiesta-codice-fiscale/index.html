@@ -387,11 +387,93 @@
         </div>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">Che cosa chiedi</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">Dati anagrafici</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Residenza in Italia</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="3"
+        >
+        <span class="mp-passo-numero">4</span>
+        <span class="mp-passo-nome">Residenza estera</span>
+      </button><button type="button" class="mp-passo-voce mp-passo-saltato" data-vai="4"
+        >
+        <span class="mp-passo-numero">5</span>
+        <span class="mp-passo-nome">Altri codici fiscali e allegati</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="5"
+        >
+        <span class="mp-passo-numero">6</span>
+        <span class="mp-passo-nome">Sottoscrizione e delega</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">Che cosa chiedi</h2>
+      <p class="mp-descrizione">Il Quadro A del modello. Si indica chi presenta la domanda e che cosa si chiede: le richieste si possono anche combinare.</p>
+      
+      <div class="mp-griglia"><fieldset class="mp-campo mp-c12 mp-fieldset">
+        <legend class="mp-legenda">Chi presenta la domanda <span class="mp-obb">*</span></legend>
+        <p class="mp-nota">La richiesta diretta si presenta con un documento d&#39;identità valido. Quella per un soggetto terzo vale per esempio per il genitore che chiede il codice fiscale del figlio, per l&#39;erede di un deceduto o per chi indica in dichiarazione un familiare a carico. Per un soggetto terzo serve anche una dichiarazione che spiega il motivo della richiesta. In entrambi i casi puoi delegare un&#39;altra persona a presentare il modello.</p>
+        <div class="mp-radio-gruppo">
+        <label class="mp-radio">
+          <input type="radio" name="r-AA48.richiesta.tipologia" value="D" data-campo="AA48.richiesta.tipologia" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>D — per me stesso (richiesta diretta)</strong>
+            
+          </span>
+        </label>
+        <label class="mp-radio">
+          <input type="radio" name="r-AA48.richiesta.tipologia" value="T" data-campo="AA48.richiesta.tipologia" data-tipo="radio"
+            >
+          <span class="mp-radio-testo">
+            <strong>T — per un&#39;altra persona (soggetto terzo)</strong>
+            
+          </span>
+        </label></div>
+        
+      </fieldset><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="AA48.richiesta.attribuzione" data-tipo="check" >
+          <span>1 · Attribuzione del codice fiscale</span>
+        </label>
+        <p class="mp-nota">Per chi il codice fiscale non ce l&#39;ha ancora. Di norma viene attribuito in automatico: dal Comune per i neonati, dallo Sportello Unico per l&#39;Immigrazione o dalla Questura per i cittadini stranieri. Questo modello serve quando quel passaggio non è avvenuto. Per il primo codice fiscale di un cittadino straniero si va di persona allo sportello, con un appuntamento.</p>
+      </div><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="AA48.richiesta.variazione" data-tipo="check" >
+          <span>2 · Variazione dei dati</span>
+        </label>
+        <p class="mp-nota">Per comunicare che sono cambiati i dati anagrafici, il domicilio fiscale o la residenza estera di chi il codice fiscale ce l&#39;ha già.</p>
+      </div><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="AA48.richiesta.decesso" data-tipo="check" >
+          <span>3 · Comunicazione di decesso</span>
+        </label>
+        <p class="mp-nota">Serve il codice fiscale del deceduto e la data del decesso.</p>
+      </div><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="AA48.richiesta.certificato" data-tipo="check" >
+          <span>4 · Richiesta del certificato di codice fiscale</span>
+        </label>
+        <p class="mp-nota">Si può chiedere anche insieme all&#39;attribuzione del codice fiscale o alla variazione dei dati.</p>
+      </div><div class="mp-campo mp-c6">
+        <label class="mp-checkbox">
+          <input type="checkbox" data-campo="AA48.richiesta.duplicato" data-tipo="check" >
+          <span>5 · Duplicato del tesserino o della Tessera Sanitaria</span>
+        </label>
+        <p class="mp-nota">Attenzione: il duplicato della Tessera Sanitaria in scadenza non va richiesto. La nuova tessera viene emessa in automatico e recapitata alla residenza, se il diritto all&#39;assistenza non è decaduto. Con SPID, CIE o CNS la nuova tessera o il nuovo tesserino si chiedono online, senza modello.</p>
+      </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 6</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 

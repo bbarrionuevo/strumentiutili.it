@@ -84,7 +84,7 @@ def main():
         pag.on("pageerror", lambda e: errori.append(str(e)))
         pag.on("dialog", lambda d: d.accept())
         pag.goto(URL, wait_until="domcontentloaded")
-        pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+        pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
 
         passi = [t.replace(chr(10), " ").strip() for t in
                  pag.locator("#mp-passi .mp-passo-voce").all_inner_texts()]

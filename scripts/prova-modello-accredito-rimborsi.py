@@ -61,14 +61,18 @@ def main():
     threading.Thread(target=srv.serve_forever, daemon=True).start()
 
     with sync_playwright() as pw:
-        b = pw.chromium.launch(channel="msedge", headless=True)
+        # PROVA_CHROMIUM=/percorso/chromium per un Chromium preciso (senza: Edge)
+        if os.environ.get("PROVA_CHROMIUM"):
+            b = pw.chromium.launch(executable_path=os.environ["PROVA_CHROMIUM"], headless=True)
+        else:
+            b = pw.chromium.launch(channel="msedge", headless=True)
         ctx = b.new_context(accept_downloads=True, viewport={"width": 1280, "height": 1100})
 
         pag = ctx.new_page()
         pag.on("pageerror", lambda e: errori.append(str(e)))
         pag.on("dialog", lambda d: d.accept())
         pag.goto(URL, wait_until="load")
-        pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+        pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
 
         passi = [t.replace(chr(10), " ").strip() for t in
                  pag.locator("#mp-passi .mp-passo-voce").all_inner_texts()]

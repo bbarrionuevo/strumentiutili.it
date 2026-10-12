@@ -594,6 +594,17 @@
     if (nuovo) nuovo.focus({ preventScroll: true });
   }
 
+  function renderNav() {
+    const passi = modelloCorrente().passi;
+    const ultimo = stato.passo === passi.length - 1;
+    return `
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" ${stato.passo === 0 ? 'disabled' : ''}>← Indietro</button>
+      <span class="mp-conta">Passo ${stato.passo + 1} di ${passi.length}</span>
+      ${ultimo
+        ? '<button type="button" class="mp-btn mp-btn-forte" data-nav="genera">Genera e scarica il modello compilato</button>'
+        : '<button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button>'}`;
+  }
+
   function render() {
     const modello = modelloCorrente();
     const passi = modello.passi;
@@ -602,14 +613,7 @@
 
     riquadroPassi.innerHTML = renderElencoPassi();
     riquadroCorpo.innerHTML = renderPasso(passo);
-
-    const ultimo = stato.passo === passi.length - 1;
-    riquadroNav.innerHTML = `
-      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" ${stato.passo === 0 ? 'disabled' : ''}>← Indietro</button>
-      <span class="mp-conta">Passo ${stato.passo + 1} di ${passi.length}</span>
-      ${ultimo
-        ? '<button type="button" class="mp-btn mp-btn-forte" data-nav="genera">Genera e scarica il modello compilato</button>'
-        : '<button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button>'}`;
+    riquadroNav.innerHTML = renderNav();
 
     const badge = document.getElementById('mp-badge-modello');
     if (badge) badge.textContent = modello.codice;
@@ -1205,6 +1209,29 @@
     }
   }
 
+  /**
+   * Il primo passo e' gia' scritto nella pagina (scripts/prerendi-compilatori.js)
+   * e si puo' cominciare a riempirlo prima che arrivino lo script e lo schema:
+   * quello che c'e' gia' nei campi si tiene, invece di perderlo quando il
+   * passo viene ridisegnato.
+   */
+  function tieniScrittiPrima() {
+    riquadroCorpo.querySelectorAll('[data-campo]').forEach((elemento) => {
+      const k = elemento.dataset.campo;
+      if (elemento.type === 'radio') {
+        if (elemento.checked && !elemento.defaultChecked) scrivi(k, elemento.value);
+      } else if (elemento.type === 'checkbox') {
+        if (elemento.checked !== elemento.defaultChecked) scrivi(k, elemento.checked);
+      } else if (elemento.tagName === 'SELECT') {
+        const scelta = elemento.options[elemento.selectedIndex];
+        if (scelta && !scelta.defaultSelected && scelta.value !== '') scrivi(k, elemento.value);
+      } else if (elemento.value !== elemento.defaultValue) {
+        normalizzaInput(elemento, elemento.dataset.tipo);
+        scrivi(k, elemento.value);
+      }
+    });
+  }
+
   function collega() {
     app.addEventListener('input', (evento) => {
       const elemento = evento.target;
@@ -1336,6 +1363,30 @@
     primoValore,
 
     /**
+     * Il pannello come lo vede chi apre la pagina la prima volta: elenco dei
+     * passi, primo passo e pulsanti, con i valori preimpostati dello schema.
+     * Lo usa scripts/prerendi-compilatori.js per scriverlo nell'HTML, cosi'
+     * il pannello ha gia' la sua altezza quando la pagina compare. Solo per i
+     * generatori, fuori dal browser: azzera lo stato del compilatore.
+     * @returns {{passi: string, corpo: string, nav: string}}
+     */
+    htmlIniziale(schema, modello) {
+      stato.schema = schema;
+      stato.modello = modello || Object.keys(schema.modelli)[0];
+      stato.passo = 0;
+      stato.dati = Object.create(null);
+      stato.attivi = Object.create(null);
+      stato.righe = Object.create(null);
+      stato.errori = Object.create(null);
+      applicaValoriIniziali();
+      return {
+        passi: renderElencoPassi(),
+        corpo: renderPasso(modelloCorrente().passi[0]),
+        nav: renderNav()
+      };
+    },
+
+    /**
      * @param {Object} mappa  chiavi "passo.campo" oppure "passo.gruppo.indice.sottocampo"
      * @param {Object} [opzioni]  { attiva: ["passoOpzionale", ...] }
      * @returns {number} quanti valori sono stati effettivamente riportati
@@ -1440,7 +1491,11 @@
 
     ripristina();
     applicaValoriIniziali();
+    tieniScrittiPrima();
     collega();
-    render();
+    renderMantenendoFuoco();
+    // il primo passo c'era gia' nella pagina: chi lo pilota (le prove, il
+    // generatore delle immagini di esempio) aspetta questo segnale
+    app.dataset.pronto = '1';
   });
 })();

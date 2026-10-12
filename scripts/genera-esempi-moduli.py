@@ -773,7 +773,7 @@ def compila(ctx, esempio):
     pag.on("pageerror", lambda e: errori.append(str(e)))
     pag.on("dialog", lambda d: d.accept())
     pag.goto(f"http://127.0.0.1:{PORTA}{esempio['pagina']}", wait_until="domcontentloaded")
-    pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+    pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
     m = esempio["modello"]
     for i, passo in enumerate(esempio["passi"]):
         if passo.get("passo"):

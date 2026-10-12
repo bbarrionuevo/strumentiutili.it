@@ -137,7 +137,7 @@ def main():
         pag.on("pageerror", lambda e: errori.append(str(e)))
         pag.on("dialog", lambda d: d.accept())
         pag.goto(URL, wait_until="domcontentloaded")
-        pag.wait_for_selector("#mp-corpo .mp-titolo", timeout=20000)
+        pag.wait_for_selector("#mp-app[data-pronto] #mp-corpo .mp-titolo", timeout=20000)
 
         # --- AA9/12 --------------------------------------------------------
         print("--- AA9/12: inizio attivita' nel regime forfetario")

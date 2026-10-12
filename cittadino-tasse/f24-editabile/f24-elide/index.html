@@ -343,11 +343,174 @@
         <h2 class="mb-4 text-xl sm:text-2xl font-bold text-gray-900">Compila il modello F24 Elide</h2>
 
         <div class="mp-guscio">
-          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"></nav>
+          <nav class="mp-passi" id="mp-passi" aria-label="Passi della compilazione"><button type="button" class="mp-passo-voce mp-passo-attivo" data-vai="0"
+        aria-current="step">
+        <span class="mp-passo-numero">1</span>
+        <span class="mp-passo-nome">Chi versa</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="1"
+        >
+        <span class="mp-passo-numero">2</span>
+        <span class="mp-passo-nome">Sezione Erario ed altro</span>
+      </button><button type="button" class="mp-passo-voce" data-vai="2"
+        >
+        <span class="mp-passo-numero">3</span>
+        <span class="mp-passo-nome">Saldo finale e firma</span>
+      </button></nav>
           <div class="mp-pannello">
             <div id="mp-stato" class="mp-avviso" role="status" aria-live="polite" hidden></div>
-            <div id="mp-corpo"></div>
-            <div id="mp-nav" class="mp-nav"></div>
+            <div id="mp-corpo"><!-- scritto da scripts/prerendi-compilatori.js: non modificare a mano --><h2 class="mp-titolo">Chi versa</h2>
+      <p class="mp-descrizione">I dati di chi effettua il pagamento. Il contribuente è tenuto a riportare codice fiscale, dati anagrafici e domicilio fiscale.</p>
+      
+      <div class="mp-griglia"><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-cf">Codice fiscale <span class="mp-obb">*</span></span>
+        <button type="button" class="mp-info" data-guida-toggle="g-contribuente-cf"
+      aria-expanded="false" aria-controls="g-contribuente-cf" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="16" class="mp-input mp-maiuscolo" data-campo="ELIDE.contribuente.cf" data-tipo="cfOpiva"
+        data-guida="g-contribuente-cf" aria-labelledby="l-contribuente-cf" aria-describedby="g-contribuente-cf"
+        value="">
+      <div id="g-contribuente-cf" role="note" hidden class="mp-guida">I 16 caratteri del codice fiscale, oppure le 11 cifre della partita IVA. È il dato che collega il versamento alla tua posizione: un errore qui produce un pagamento che non ti viene attribuito.</div>
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-cognome">Cognome, denominazione o ragione sociale</span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.cognome" data-tipo="testo"
+        data-guida="g-contribuente-cognome" aria-labelledby="l-contribuente-cognome" aria-describedby="g-contribuente-cognome"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-nome">Nome</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-contribuente-nome"
+      aria-expanded="false" aria-controls="g-contribuente-nome" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.nome" data-tipo="testo"
+        data-guida="g-contribuente-nome" aria-labelledby="l-contribuente-nome" aria-describedby="g-contribuente-nome"
+        value="">
+      <div id="g-contribuente-nome" role="note" hidden class="mp-guida">Solo per le persone fisiche.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-nascitaGiorno">Data di nascita · giorno</span>
+        
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="ELIDE.contribuente.nascitaGiorno" data-tipo="numero"
+        data-guida="g-contribuente-nascitaGiorno" aria-labelledby="l-contribuente-nascitaGiorno" aria-describedby="g-contribuente-nascitaGiorno"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-nascitaMese">Mese</span>
+        
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="ELIDE.contribuente.nascitaMese" data-tipo="numero"
+        data-guida="g-contribuente-nascitaMese" aria-labelledby="l-contribuente-nascitaMese" aria-describedby="g-contribuente-nascitaMese"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-nascitaAnno">Anno</span>
+        
+      </div>
+      <input type="text" inputmode="numeric" maxlength="4" class="mp-input" data-campo="ELIDE.contribuente.nascitaAnno" data-tipo="anno"
+        data-guida="g-contribuente-nascitaAnno" aria-labelledby="l-contribuente-nascitaAnno" aria-describedby="g-contribuente-nascitaAnno"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c3">
+        <div class="mp-etichetta-riga">
+          <span class="mp-etichetta" id="l-contribuente-sesso">Sesso</span>
+          
+        </div>
+        <select class="mp-input" data-campo="ELIDE.contribuente.sesso" data-tipo="select"
+          data-guida="g-contribuente-sesso" aria-labelledby="l-contribuente-sesso" aria-describedby="g-contribuente-sesso"><option value="" >— Seleziona —</option><option value="M" >M — maschile</option><option value="F" >F — femminile</option></select>
+        
+        
+      </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-comuneNascita">Comune (o Stato estero) di nascita</span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.comuneNascita" data-tipo="testo"
+        data-guida="g-contribuente-comuneNascita" aria-labelledby="l-contribuente-comuneNascita" aria-describedby="g-contribuente-comuneNascita"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-provinciaNascita">Provincia</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-contribuente-provinciaNascita"
+      aria-expanded="false" aria-controls="g-contribuente-provinciaNascita" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="2" class="mp-input mp-maiuscolo" data-campo="ELIDE.contribuente.provinciaNascita" data-tipo="provincia"
+        data-guida="g-contribuente-provinciaNascita" aria-labelledby="l-contribuente-provinciaNascita" aria-describedby="g-contribuente-provinciaNascita"
+        value="">
+      <div id="g-contribuente-provinciaNascita" role="note" hidden class="mp-guida">Sigla di due lettere; EE per chi è nato all&#39;estero.</div>
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-domicilioComune">Domicilio fiscale · comune</span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.domicilioComune" data-tipo="testo"
+        data-guida="g-contribuente-domicilioComune" aria-labelledby="l-contribuente-domicilioComune" aria-describedby="g-contribuente-domicilioComune"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-domicilioProvincia">Provincia</span>
+        
+      </div>
+      <input type="text" maxlength="2" class="mp-input mp-maiuscolo" data-campo="ELIDE.contribuente.domicilioProvincia" data-tipo="provincia"
+        data-guida="g-contribuente-domicilioProvincia" aria-labelledby="l-contribuente-domicilioProvincia" aria-describedby="g-contribuente-domicilioProvincia"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-domicilioVia">Via e numero civico</span>
+        
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.domicilioVia" data-tipo="testo"
+        data-guida="g-contribuente-domicilioVia" aria-labelledby="l-contribuente-domicilioVia" aria-describedby="g-contribuente-domicilioVia"
+        value="">
+      
+      
+    </div><div class="mp-campo mp-c6">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-cfCoobbligato">Codice fiscale del coobbligato, erede, genitore, tutore o curatore</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-contribuente-cfCoobbligato"
+      aria-expanded="false" aria-controls="g-contribuente-cfCoobbligato" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" maxlength="16" class="mp-input mp-maiuscolo" data-campo="ELIDE.contribuente.cfCoobbligato" data-tipo="cfOpiva"
+        data-guida="g-contribuente-cfCoobbligato" aria-labelledby="l-contribuente-cfCoobbligato" aria-describedby="g-contribuente-cfCoobbligato"
+        value="">
+      <div id="g-contribuente-cfCoobbligato" role="note" hidden class="mp-guida">Da compilare insieme al codice identificativo, quando il versamento è effettuato da un soggetto diverso dal contribuente: chi paga per conto altrui deve anche firmare il modello. Per l&#39;imposta di registro di un affitto qui va il codice fiscale dell&#39;altra parte del contratto (o di una delle altre parti), con il codice identificativo 63.</div>
+      
+    </div><div class="mp-campo mp-c3">
+      <div class="mp-etichetta-riga">
+        <span class="mp-etichetta" id="l-contribuente-codiceIdentificativo">Codice identificativo</span>
+        <button type="button" class="mp-info" data-guida-toggle="g-contribuente-codiceIdentificativo"
+      aria-expanded="false" aria-controls="g-contribuente-codiceIdentificativo" title="Che cosa devo scrivere qui?">i</button>
+      </div>
+      <input type="text" class="mp-input" data-campo="ELIDE.contribuente.codiceIdentificativo" data-tipo="testo"
+        data-guida="g-contribuente-codiceIdentificativo" aria-labelledby="l-contribuente-codiceIdentificativo" aria-describedby="g-contribuente-codiceIdentificativo"
+        value="">
+      <div id="g-contribuente-codiceIdentificativo" role="note" hidden class="mp-guida">Dalla tabella «codici identificativi» dell&#39;Agenzia delle Entrate: per esempio 02 per genitore o tutore, 03 per curatore fallimentare, 07 per erede. Per i contratti di affitto 63, «controparte» (risoluzione 14/E del 2014).</div>
+      
+    </div></div>
+      </div>
+            <div id="mp-nav" class="mp-nav">
+      <button type="button" class="mp-btn mp-btn-lieve" data-nav="indietro" disabled>← Indietro</button>
+      <span class="mp-conta">Passo 1 di 3</span>
+      <button type="button" class="mp-btn mp-btn-forte" data-nav="avanti">Avanti →</button></div>
           </div>
         </div>
 
