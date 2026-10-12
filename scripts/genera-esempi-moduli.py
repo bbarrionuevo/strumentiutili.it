@@ -689,6 +689,59 @@ ESEMPI = {
         "etichetta_y": 0.168,
         "larghezza": 1100,
     },
+    # Un'associazione culturale non riconosciuta (natura giuridica 12) appena
+    # costituita chiede il codice fiscale, casella 1. In alto va il codice di chi
+    # firma, il presidente (codice carica 01), perche' l'ente non ce l'ha ancora.
+    # Il codice 94.99.20 «Attivita' di organizzazioni associative culturali e
+    # ricreative» e' quello dell'ATECO 2025 (ISTAT, «Struttura e note
+    # esplicative»). Associazione, persona, codice fiscale e indirizzo inventati.
+    "aa5-6-associazione-culturale": {
+        "pagina": "/identita-burocrazia/codice-fiscale-enti/",
+        "modello": "AA5_6",
+        "passi": [
+            {"campi": {
+                "richiesta.tipo": "1",
+                "richiesta.dataCostituzione": "2026-10-05",
+                "richiesta.cfTestata": "FRRPLA75D08A944J",
+            }},
+            {"passo": "L'ente", "campi": {
+                "ente.denominazione": "ASSOCIAZIONE CULTURALE AMICI DELLA LETTURA",
+                "ente.naturaGiuridica": "12",
+                "ente.codiceAttivita": "949920",
+                "ente.descrizioneAttivita": "INCONTRI DI LETTURA E PRESENTAZIONI DI LIBRI PER I SOCI",
+                "ente.termineGiorno": "30",
+                "ente.termineMese": "04",
+            }},
+            {"passo": "Dove ha sede", "campi": {
+                "sede.indirizzo": "VIA DI ESEMPIO 10",
+                "sede.cap": "40121",
+                "sede.comune": "BOLOGNA",
+                "sede.provincia": "BO",
+            }},
+            {"passo": "Chi rappresenta", "campi": {
+                "rappresentante.cognome": "FERRARI",
+                "rappresentante.nome": "PAOLO",
+                "rappresentante.sesso": "M",
+                "rappresentante.carica": "01",
+                "rappresentante.comuneNascita": "BOLOGNA",
+                "rappresentante.provinciaNascita": "BO",
+                "rappresentante.dataNascita": "1975-04-08",
+                "rappresentante.codiceFiscale": "FRRPLA75D08A944J",
+            }},
+            {"passo": "Allegati e firma", "campi": {
+                "allegati.elenco": "ATTO COSTITUTIVO E STATUTO DEL 05/10/2026",
+                "allegati.data": "2026-10-19",
+                "allegati.codiceFiscale": "FRRPLA75D08A944J",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa) fino al quadro C, poi
+        # allegati e sottoscrizione della terza; quadro D, delega e impegno
+        # dell'intermediario restano vuoti
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.6705), (3, 0.0, 0.0823, 1.0, 0.2995)],
+        "salto": ["Quadro D: vuoto (nessuna fusione, concentrazione o trasformazione)"],
+        "etichetta_y": 0.009,
+        "larghezza": 1100,
+    },
 }
 
 

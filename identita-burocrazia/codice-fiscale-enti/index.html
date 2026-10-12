@@ -13,7 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Modello AA5/6 online: codice fiscale per associazioni, enti e condomini — StrumentiUtili.it</title>
-  <meta name="description" content="Compila nel browser il modello AA5/6 dell'Agenzia delle Entrate per chiedere il codice fiscale di un'associazione, un ente o un condominio. Tabelle ufficiali gia' dentro e PDF editabile." />
+  <meta name="description" content="Modello AA5/6 compilato nel browser: codice fiscale di associazioni, enti e condomini, variazioni, cambio del rappresentante, estinzione. PEC, sportello ed esempi." />
   <link rel="canonical" href="https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/" />
   <meta property="og:locale" content="it_IT" />
   <meta name="twitter:image" content="https://strumentiutili.it/assets/og-image.png" />
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="StrumentiUtili.it" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Modello AA5/6 online: codice fiscale per associazioni, enti e condomini — StrumentiUtili.it" />
-  <meta property="og:description" content="Il modello AA5/6 compilato passo per passo nel browser: nessun dato esce dal tuo dispositivo." />
+  <meta property="og:description" content="Codice fiscale di associazioni, enti e condomini: quando serve il modello AA5/6, come presentarlo, quali documenti allegare e come compilarlo, con il PDF ufficiale." />
   <meta property="og:url" content="https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/" />
   <meta property="og:image" content="https://strumentiutili.it/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image" />
@@ -71,25 +71,32 @@
       },
       {
         "@type": "WebApplication",
-        "name": "Compilatore del modello AA5/6",
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/#app",
+        "name": "Compilatore del modello AA5/6 (codice fiscale di enti, associazioni e condomini)",
         "url": "https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/",
+        "image": "https://strumentiutili.it/assets/og-image.png",
+        "description": "Compila nel browser il modello AA5/6 dell'Agenzia delle Entrate con cui enti, associazioni, fondazioni e condomini chiedono il codice fiscale, comunicano una variazione dei dati, il cambio del rappresentante, l'estinzione o una fusione. Con le strade per presentarlo, i documenti da allegare, le tabelle ufficiali ed esempi. I dati non lasciano il dispositivo.",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Qualsiasi browser moderno",
         "inLanguage": "it-IT",
+        "isAccessibleForFree": true,
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "EUR"
         },
-        "description": "Compila nel browser il modello AA5/6 dell'Agenzia delle Entrate, con cui gli enti, le associazioni e i condomini chiedono il codice fiscale o comunicano una variazione. I dati non lasciano il dispositivo.",
         "featureList": [
-          "Procedura guidata campo per campo",
-          "Tabella ufficiale della natura giuridica gia' dentro",
-          "Tabella ufficiale dei codici di carica gia' dentro",
-          "Compilazione del PDF ministeriale originale, che resta modificabile",
-          "Elaborazione interamente nel browser, senza server"
+          "Procedura guidata sul modello AA5/6 ufficiale, con le spiegazioni delle istruzioni",
+          "Tabelle ufficiali della natura giuridica (55 voci) e dei codici di carica (15 voci)",
+          "Codice fiscale scritto una volta sola in alto su tutte le pagine",
+          "Compilazione del PDF ufficiale nel browser, senza salvare i codici fiscali"
         ],
-        "isBasedOn": "https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/modello-e-istruzioni-cf-aa5_6",
+        "isBasedOn": [
+          "https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/modello-e-istruzioni-cf-aa5_6",
+          "https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/scheda-info-cf-aa5_6",
+          "https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/come-si-richiede-cf-aa5_6",
+          "https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/come-comunicare-variazioni-dati-e-operazioni-straord-aa5_6"
+        ],
         "author": {
           "@type": "Person",
           "name": "Brian Barrionuevo",
@@ -103,65 +110,128 @@
       },
       {
         "@type": "HowTo",
-        "name": "Come chiedere il codice fiscale di un'associazione o di un condominio",
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/#howto",
+        "name": "Come compilare e presentare il modello AA5/6",
         "inLanguage": "it-IT",
         "totalTime": "PT10M",
         "step": [
           {
             "@type": "HowToStep",
-            "name": "Scegli il tipo di richiesta",
-            "text": "Barra una sola delle cinque caselle del quadro A: attribuzione del codice fiscale, variazione dei dati, estinzione, duplicato del certificato o codice fiscale di terzi."
+            "position": 1,
+            "name": "Scegli la casella del quadro A",
+            "text": "Barra una delle cinque caselle: attribuzione del codice fiscale, variazione dei dati, estinzione, duplicato del certificato o codice fiscale di terzi. In alto su ogni pagina va il codice fiscale dell'ente, o quello di chi firma se chiedi l'attribuzione."
           },
           {
             "@type": "HowToStep",
+            "position": 2,
             "name": "Descrivi l'ente",
-            "text": "Denominazione per esteso, natura giuridica presa dalla tabella ufficiale (51 per i condomini, 12 per le associazioni non riconosciute) e sede legale."
+            "text": "Nel quadro B scrivi la denominazione senza abbreviazioni, la natura giuridica dalla tabella ufficiale (51 per i condomini, 12 per le associazioni non riconosciute e i comitati), il codice ATECO dell'attività prevalente e la sede."
           },
           {
             "@type": "HowToStep",
+            "position": 3,
             "name": "Indica il rappresentante",
-            "text": "Dati anagrafici e codice fiscale del rappresentante legale, con il codice di carica: 01 per il rappresentante legale, 13 per l'amministratore di condominio."
+            "text": "Nel quadro C metti i dati di un solo rappresentante legale, con il codice carica (1 per il rappresentante legale, 13 per l'amministratore di condominio) e il codice fiscale che gli è stato attribuito."
           },
           {
             "@type": "HowToStep",
+            "position": 4,
             "name": "Allega, firma e presenta",
-            "text": "Elenca i documenti allegati, firma il modello — senza firma e' nullo — e presentalo a un ufficio dell'Agenzia, per raccomandata, via PEC o con il servizio Consegna documenti e istanze dell'area riservata."
+            "text": "Elenca gli allegati, come l'atto costitutivo e lo statuto, e firma: senza firma il modello è nullo. La richiesta del codice fiscale si presenta con Consegna documenti e istanze, via PEC, allo sportello o per raccomandata; estinzione, fusione, concentrazione e trasformazione solo per via telematica, entro trenta giorni."
           }
         ]
       },
       {
         "@type": "FAQPage",
+        "@id": "https://strumentiutili.it/identita-burocrazia/codice-fiscale-enti/#faq",
+        "inLanguage": "it-IT",
         "mainEntity": [
           {
             "@type": "Question",
             "name": "Chi deve usare il modello AA5/6?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "I soggetti diversi dalle persone fisiche che non sono obbligati alla dichiarazione di inizio attivita' IVA: associazioni, fondazioni, comitati, condomini, enti che non svolgono un'attivita' rilevante ai fini IVA. Una persona fisica usa invece l'AA4/8; chi apre la partita IVA usa l'AA7/10."
+              "text": "I soggetti diversi dalle persone fisiche che non sono obbligati alla dichiarazione di inizio attività ai fini IVA: la scheda dell’Agenzia cita enti, associazioni, fondazioni, condomini e parrocchie che non esercitano un’attività rilevante ai fini IVA ma devono indicare il codice fiscale. Una persona fisica usa l’AA4/8; chi inizia un’attività rilevante ai fini IVA usa l’AA7/10 o la Comunicazione Unica."
             }
           },
           {
             "@type": "Question",
-            "name": "Che codice di natura giuridica mette un condominio?",
+            "name": "Quanto costa chiedere il codice fiscale di un’associazione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il 51. Le associazioni riconosciute sono 08, quelle non riconosciute e i comitati 12, le fondazioni 09. La tabella completa e' gia' dentro al compilatore, con la descrizione ufficiale di ogni voce."
+              "text": "Le schede dell’Agenzia non indicano costi. Modello e istruzioni si scaricano gratuitamente dal sito dell’Agenzia e si possono stampare anche in bianco e nero; anche il compilatore di questa pagina è gratuito."
             }
           },
           {
             "@type": "Question",
-            "name": "Che codice di carica mette l'amministratore di condominio?",
+            "name": "Si può chiedere il codice fiscale dell’associazione senza andare in ufficio?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Il 13, «amministratore di condominio». Il rappresentante legale di un'associazione mette invece 01."
+              "text": "Sì: con il servizio «Consegna documenti e istanze» dell’area riservata, nella categoria «Richiesta certificati, copie e codici fiscali», oppure via PEC a una qualunque Direzione provinciale, o ancora per raccomandata. Il modello si firma digitalmente, o a mano allegando la copia del documento di chi firma. Il servizio web «Comunicazione modello AA5/6» invece serve solo per variazioni, estinzioni, fusioni, concentrazioni e trasformazioni."
             }
           },
           {
             "@type": "Question",
-            "name": "Il modello si puo' mandare per via telematica?",
+            "name": "Che codice di natura giuridica mette un condominio? E un’associazione?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Per la comunicazione di estinzione, fusione, concentrazione o trasformazione la via telematica e' obbligatoria ed e' l'unica ammessa, entro trenta giorni. Per le altre variazioni e' facoltativa, tranne quando cambia il rappresentante: in quel caso il modello va consegnato all'ufficio o spedito."
+              "text": "Il condominio il 51. Le associazioni non riconosciute e i comitati il 12, quelle riconosciute l’8, le fondazioni il 9. Nel compilatore la tabella c’è tutta, con la descrizione ufficiale di ogni voce."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che codice carica mette l’amministratore di condominio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il 13, «amministratore di condominio». Il rappresentante legale di un’associazione mette invece l’1, «rappresentante legale, negoziale o di fatto, socio amministratore»."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Che codice fiscale va scritto in alto nelle pagine?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quello dell’ente. Se però chiedi proprio l’attribuzione del codice fiscale, l’ente non ce l’ha ancora: in alto va quello della persona che firma il modello. Nel compilatore lo scrivi una volta e finisce su tutte e due le pagine."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il codice fiscale dell’ente cambia se cambia la sede?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Il numero attribuito dall’ufficio resta lo stesso anche se cambia il domicilio fiscale, fino all’estinzione; anche la trasformazione non comporta un nuovo codice fiscale. Il cambio di sede si comunica con la casella 2."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Come si comunica il cambio del presidente o del legale rappresentante?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Con la casella 2 e il modello compilato per intero, allegando i documenti che lo provano e la dichiarazione sostitutiva con cui chi firma comprova la sua qualità. Non si trasmette con i servizi telematici del modello: si consegna in duplice esemplare all’ufficio del domicilio fiscale dell’ente, oppure gli si manda in unico esemplare per raccomandata con ricevuta di ritorno, PEC o «Consegna documenti e istanze», con la copia del documento del rappresentante."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L’associazione si scioglie: che cosa bisogna fare con il codice fiscale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Comunicare l’estinzione con la casella 3, il codice fiscale e la data di estinzione, entro trenta giorni e solo per via telematica: con il servizio web «Comunicazione modello AA5/6», se si è registrati a Fisconline o Entratel, oppure tramite un intermediario abilitato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Chi firma il modello AA5/6?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il rappresentante legale o negoziale dell’ente; per il codice fiscale di un terzo (casella 5), il richiedente o il suo rappresentante. La firma serve a pena di nullità e accanto va il codice fiscale della persona fisica che firma."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Il codice fiscale calcolato da un sito vale per il quadro C?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Nel quadro C va il codice fiscale già attribuito al rappresentante, quello della tessera sanitaria o del tesserino. Nelle risposte alle domande frequenti sul codice fiscale l’Agenzia avverte che i codici calcolati con applicazioni pubblicate su siti web «non hanno alcun valore e il loro utilizzo può comportare problemi ai cittadini». Il nostro generatore riporta nel quadro C solo nome, cognome, sesso e dati di nascita."
             }
           },
           {
@@ -169,7 +239,7 @@
             "name": "I dati che scrivo qui finiscono su qualche server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. La compilazione e la creazione del PDF avvengono interamente nel browser, sul tuo dispositivo. Puoi staccare la connessione dopo aver aperto la pagina e lo strumento continua a funzionare."
+              "text": "No. La compilazione e la creazione del PDF avvengono nel browser. I codici fiscali non vengono salvati nemmeno sul dispositivo; il resto rimane qui finché non premi «Cancella i dati del modello»."
             }
           }
         ]
@@ -266,13 +336,12 @@
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Modello AA5/6: codice fiscale per associazioni, enti e condomini</h1>
         <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-          Il modello <strong>AA5/6</strong> &egrave; quello con cui un ente, un'associazione, una
-          fondazione o un <strong>condominio</strong> chiede all'Agenzia delle Entrate l'attribuzione del
-          <strong>codice fiscale</strong>, comunica la <strong>variazione dei dati</strong> o la propria
-          <strong>estinzione</strong>, oppure segnala una fusione, una concentrazione o una
-          trasformazione. Vale per i <strong>soggetti diversi dalle persone fisiche</strong> che non aprono
-          la partita IVA. Qui lo compili passo per passo, con le tabelle ufficiali gi&agrave; dentro, e
-          scarichi il PDF ministeriale riempito e <strong>ancora modificabile</strong>.
+          Con il modello <strong>AA5/6</strong> un ente, un&rsquo;associazione, una fondazione o un
+          <strong>condominio</strong> che non esercita attivit&agrave; rilevanti ai fini IVA chiede all&rsquo;Agenzia delle
+          Entrate il <strong>codice fiscale</strong>, comunica una <strong>variazione dei dati</strong> o il cambio del
+          rappresentante, l&rsquo;<strong>estinzione</strong>, una fusione, una concentrazione o una trasformazione.
+          Qui lo compili passo per passo e scarichi il PDF ufficiale; sotto trovi quale modello usare, come presentarlo
+          <strong>via PEC, allo sportello o online</strong>, i documenti da allegare, le tabelle ufficiali e cinque esempi.
         </p>
         <p class="mt-3 text-xs font-semibold text-emerald-700">&#128274; Privacy garantita: nessun dato dell'ente viene inviato a server esterni.</p>
       </section>
@@ -289,8 +358,9 @@
                   rilevante ai fini IVA.</li>
               <li>&#128072; Se si tratta di una <strong>persona fisica</strong>, il modello &egrave; l'AA4/8:
                   <a href="/identita-burocrazia/richiesta-codice-fiscale/" class="underline font-bold">compilalo qui</a>.</li>
-              <li>&#128072; Se l'ente <strong>apre la partita IVA</strong>, servono l'AA7/10 o l'AA9/12:
-                  <a href="/fisco-professioni/modelli-partita-iva/" class="underline font-bold">li trovi qui</a>.</li>
+              <li>&#128072; Se l'ente inizia un'<strong>attivit&agrave; rilevante ai fini IVA</strong>, serve l'AA7/10, o la
+                  Comunicazione Unica se deve iscriversi al Registro delle imprese:
+                  <a href="/fisco-professioni/modelli-partita-iva/" class="underline font-bold">la partita IVA qui</a>.</li>
             </ul>
           </div>
         </div>
@@ -333,11 +403,10 @@
           <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Compila il modello AA5/6</h2>
           <p class="text-sm text-gray-600 mt-2 leading-relaxed">
             Procedura guidata campo per campo, con le spiegazioni prese dalle istruzioni ufficiali
-            dell'Agenzia delle Entrate. Le due tabelle che fanno perdere pi&ugrave; tempo &mdash; la
-            <strong>natura giuridica</strong> e il <strong>codice di carica</strong> &mdash; sono gi&agrave;
-            dentro, con la descrizione per esteso di ogni codice. Alla fine scarichi il
-            <strong>modello ministeriale gi&agrave; compilato</strong>: resta modificabile, cos&igrave; puoi
-            correggerlo anche dopo averlo scaricato.
+            dell'Agenzia delle Entrate. Le tabelle della <strong>natura giuridica</strong> e dei
+            <strong>codici di carica</strong> sono gi&agrave; dentro, con la descrizione per esteso di ogni codice.
+            Alla fine scarichi il <strong>modello ufficiale gi&agrave; compilato</strong>: resta modificabile, cos&igrave;
+            puoi correggerlo anche dopo averlo scaricato.
           </p>
         </div>
 
@@ -356,7 +425,7 @@
              class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#127963;&#65039; Pagina ufficiale del modello AA5/6</a>
           <a href="/assets/pdf/istruzioni-aa5-6.pdf" target="_blank" rel="noopener"
              class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#128218; Istruzioni per la compilazione (PDF)</a>
-          <a href="/identita-burocrazia/codice-fiscale/" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#129518; Calcola il codice fiscale del rappresentante</a>
+          <a href="/identita-burocrazia/codice-fiscale/" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">&#129518; Generatore e verifica del codice fiscale</a>
           <button id="mp-azzera" type="button" class="text-xs font-bold text-gray-500 hover:text-red-600 transition">
             &#128465;&#65039; Cancella i dati del modello
           </button>
@@ -376,36 +445,33 @@
           <div class="flex-1">
             <h2 class="text-sm font-bold text-emerald-900">E dopo, con il codice fiscale in mano</h2>
             <ul class="mt-2 space-y-1.5 text-xs text-emerald-900 leading-relaxed">
-              <li>Per versare imposte, contributi o la tassa sui rifiuti dell'ente serve l'
-                  <a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="underline font-bold">F24 ordinario</a>;
-                  per i tributi locali basta il
-                  <a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="underline font-bold">F24 semplificato</a>.</li>
+              <li>Per i versamenti dell'ente con il modello F24 ci sono l'
+                  <a href="/cittadino-tasse/f24-editabile/f24-ordinario/" class="underline font-bold">F24 ordinario</a>
+                  e l'<a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="underline font-bold">F24 semplificato</a>.</li>
               <li>Se l'ente registra un contratto d'affitto, il modello &egrave; l'
                   <a href="/cittadino-tasse/modello-rli/" class="underline font-bold">RLI</a>, e l'imposta di
                   registro si paga con l'
                   <a href="/cittadino-tasse/f24-editabile/f24-elide/" class="underline font-bold">F24 ELIDE</a>.</li>
-              <li>Un condominio che deve verificare il codice fiscale di un fornitore lo controlla con il
-                  <a href="/identita-burocrazia/codice-fiscale/" class="underline font-bold">verificatore di codice fiscale</a>.</li>
+              <li>Per sapere se un codice fiscale &egrave; valido c'&egrave; il servizio
+                  <a href="https://www.agenziaentrate.gov.it/portale/verifica-codice-fiscale" target="_blank" rel="noopener" class="underline font-bold">Verifica codice fiscale</a>
+                  dell'Agenzia.</li>
             </ul>
           </div>
         </div>
       </aside>
 
       <div class="mb-8 rounded-xl border border-gray-200 bg-white p-5">
-        <h2 class="text-sm font-bold text-gray-900">Come si presenta il modello</h2>
+        <h2 class="text-sm font-bold text-gray-900">Dopo il PDF: come presentarlo</h2>
         <ul class="mt-2 space-y-1.5 text-xs text-gray-600 leading-relaxed list-disc list-inside">
-          <li>Il modello va <strong>sottoscritto a pena di nullit&agrave;</strong> dal rappresentante legale
-              o negoziale, oppure dal richiedente se si chiede il codice fiscale di un terzo.</li>
-          <li>Nel caso di <strong>variazione dei dati con cambio del rappresentante</strong>: in
-              <strong>duplice copia</strong> all'ufficio dell'Agenzia del domicilio fiscale dell'ente,
-              oppure in copia unica per raccomandata con ricevuta di ritorno, per PEC o con il servizio
-              <em>Consegna documenti e istanze</em> dell'area riservata, allegando copia del documento
-              d'identit&agrave; del rappresentante.</li>
-          <li>Per <strong>estinzione, fusione, concentrazione e trasformazione</strong>: solo per via
-              telematica, entro <strong>trenta giorni</strong>, da parte di ciascun soggetto coinvolto.</li>
-          <li>Negli altri casi, compresa la <strong>prima richiesta del codice fiscale</strong>, va bene
-              qualunque ufficio dell'Agenzia delle Entrate, anche per raccomandata.</li>
+          <li><strong>Richiesta del codice fiscale</strong>: con il servizio &laquo;Consegna documenti e istanze&raquo; dell'area riservata, via PEC a una Direzione provinciale, allo sportello con appuntamento in duplice esemplare o per raccomandata.</li>
+          <li><strong>Firma</strong>: digitale, oppure a penna con la copia del documento di chi firma. Senza firma il modello &egrave; nullo.</li>
+          <li><strong>Cambio del rappresentante</strong>: all'ufficio del domicilio fiscale dell'ente, in duplice esemplare, o allo stesso ufficio per raccomandata A/R, PEC o Consegna documenti, con la dichiarazione sostitutiva.</li>
+          <li><strong>Estinzione, fusione, concentrazione, trasformazione</strong>: solo per via telematica, entro trenta giorni. Il PDF serve a preparare i dati.</li>
         </ul>
+        <p class="mt-3 text-xs text-gray-500">
+          Le altre variazioni si possono trasmettere online con il servizio dell'Agenzia o tramite un intermediario:
+          <a href="#come-si-presenta" class="underline font-semibold">tutte le strade nella guida</a>.
+        </p>
       </div>
 
     </main>
@@ -417,26 +483,26 @@
         <div class="bg-gray-900 text-white rounded-xl p-6 shadow-md space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
             <h3 class="text-xs font-semibold tracking-wider uppercase text-gray-400">Quale casella barrare</h3>
-            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">AA4/8</span>
+            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-0.5 rounded text-white">AA5/6</span>
           </div>
           <dl class="space-y-3 text-xs leading-relaxed">
             <div><dt class="font-bold text-indigo-300">1 &middot; Attribuzione</dt>
-              <dd class="text-gray-300">Non hai mai avuto un codice fiscale.</dd></div>
+              <dd class="text-gray-300">L'ente non ha ancora un codice fiscale. In alto va quello di chi firma.</dd></div>
             <div><dt class="font-bold text-indigo-300">2 &middot; Variazione dati</dt>
-              <dd class="text-gray-300">Ce l'hai, ma sono cambiati nome, residenza o domicilio fiscale.</dd></div>
-            <div><dt class="font-bold text-indigo-300">3 &middot; Decesso</dt>
-              <dd class="text-gray-300">Comunichi la morte di una persona: servono il suo codice e la data.</dd></div>
-            <div><dt class="font-bold text-indigo-300">4 &middot; Certificato</dt>
-              <dd class="text-gray-300">Ti serve l'attestazione scritta del codice fiscale.</dd></div>
-            <div><dt class="font-bold text-indigo-300">5 &middot; Duplicato</dt>
-              <dd class="text-gray-300">Tessera Sanitaria rubata, smarrita, mai arrivata o rovinata.</dd></div>
+              <dd class="text-gray-300">Cambiano sede, denominazione, rappresentante o altri dati comunicati.</dd></div>
+            <div><dt class="font-bold text-indigo-300">3 &middot; Estinzione</dt>
+              <dd class="text-gray-300">L'ente si estingue: solo per via telematica, entro trenta giorni.</dd></div>
+            <div><dt class="font-bold text-indigo-300">4 &middot; Duplicato</dt>
+              <dd class="text-gray-300">Il certificato di attribuzione del codice fiscale &egrave; andato perso.</dd></div>
+            <div><dt class="font-bold text-indigo-300">5 &middot; Codice di terzi</dt>
+              <dd class="text-gray-300">Devi indicare il codice di un soggetto che non ce l'ha: si presenta in ufficio.</dd></div>
           </dl>
           <div class="pt-3 border-t border-gray-800 space-y-2">
             <a href="#mp-app" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
               <span>&#128196;</span> Vai al compilatore
             </a>
             <p class="text-[10px] text-gray-400 text-center leading-tight">
-              Il PDF scaricato &egrave; il modello ufficiale dell'Agenzia delle Entrate e resta modificabile.
+              Scarichi il modello AA5/6 editabile dell'Agenzia: i campi restano modificabili.
             </p>
           </div>
         </div>
@@ -444,9 +510,10 @@
         <div class="bg-white rounded-xl shadow-sm border border-indigo-100 p-5">
           <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3 border-b border-gray-100 pb-2">Prima di compilare</h3>
           <a href="/identita-burocrazia/codice-fiscale/" class="block rounded-lg bg-indigo-50 border border-indigo-100 p-3 hover:bg-indigo-100 transition">
-            <span class="text-xs font-bold text-indigo-800 flex items-center gap-2"><span aria-hidden="true">&#129518;</span> Codice fiscale del rappresentante</span>
+            <span class="text-xs font-bold text-indigo-800 flex items-center gap-2"><span aria-hidden="true">&#129518;</span> Generatore di codice fiscale</span>
             <span class="mt-1 block text-[11px] text-indigo-700 leading-relaxed">
-              Il quadro C lo vuole per esteso. Calcolalo l&igrave; e te lo ritrovi qui gi&agrave; pronto.
+              Nel quadro C va il codice gi&agrave; attribuito al rappresentante, quello della tessera: un codice
+              calcolato non vale. Dal generatore puoi riprendere qui solo nome, cognome e dati di nascita.
             </span>
           </a>
           <a href="/identita-burocrazia/richiesta-codice-fiscale/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
@@ -458,7 +525,7 @@
           <a href="/fisco-professioni/modelli-partita-iva/" class="mt-3 block rounded-lg bg-gray-50 border border-gray-100 p-3 hover:bg-gray-100 transition">
             <span class="text-xs font-bold text-gray-800 flex items-center gap-2"><span aria-hidden="true">&#128188;</span> L'ente apre la partita IVA?</span>
             <span class="mt-1 block text-[11px] text-gray-600 leading-relaxed">
-              Allora servono l'AA7/10 o l'AA9/12, non l'AA5/6.
+              Allora serve l'AA7/10, o la Comunicazione Unica se l'ente si iscrive al Registro delle imprese.
             </span>
           </a>
         </div>
@@ -488,254 +555,267 @@
 
     <div class="w-full lg:col-span-8 xl:col-span-9 lg:col-start-1 block mt-4">
 
-      <!-- Scheda di affidabilità -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
-        <div class="mt-3 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Il modulo</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              &Egrave; il PDF ufficiale dell&rsquo;Agenzia delle Entrate, scaricato dalla pagina
-              <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/modello-e-istruzioni-cf-aa5_6" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">Modello AA5/6 &mdash; Modello e istruzioni</a>.
-              Non &egrave; una riproduzione: &egrave; lo stesso file che scaricheresti dal sito dell&rsquo;Agenzia.
-              Il file dell&rsquo;Agenzia &egrave; per&ograve; cifrato e non si apre da JavaScript, e il riquadro
-              del sesso &egrave; uno solo per due persone diverse: la copia usata qui &egrave; riscritta in
-              chiaro e con quel riquadro sdoppiato.
-            </p>
+      <!-- Scheda di affidabilit&agrave; -->
+      <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Da dove vengono i dati di questo strumento</h2>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">&#128197; Regole verificate a <time datetime="2026-10">ottobre 2026</time></span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">&#128100; Chi lo cura</p>
+            <p class="text-gray-600 leading-relaxed">Curato da <a href="/contatti/#chi-cura-il-sito" class="text-indigo-700 underline">Brian Barrionuevo</a> per StrumentiUtili.it, progetto indipendente: non &egrave; un servizio dell&rsquo;Agenzia delle Entrate. Il modello &egrave; spiegato con le istruzioni e le schede dell&rsquo;Agenzia elencate in fondo: <a href="/metodo/" class="text-indigo-700 underline">come verifichiamo i dati</a>. Hai trovato un errore? <a href="/contatti/" class="text-indigo-700 underline">Scrivici</a>.</p>
           </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Le spiegazioni</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Ogni campo riporta il testo delle
-              <a href="/assets/pdf/istruzioni-aa5-6.pdf" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">istruzioni ministeriali</a>,
-              comprese per intero la tabella generale di classificazione della natura giuridica (55 voci) e
-              quella dei codici di carica (15 voci).
-            </p>
+          <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
+            <p class="font-bold text-gray-900 mb-1">&#128196; Il modello</p>
+            <p class="text-gray-600 leading-relaxed">&Egrave; il modello AA5/6 editabile dell&rsquo;Agenzia, con le istruzioni aggiornate al 18 novembre 2025. Il file originale &egrave; cifrato e non si apre da JavaScript, e il riquadro del sesso &egrave; uno solo per due persone diverse: la copia usata qui &egrave; riscritta in chiaro, con quel riquadro sdoppiato. Modello, istruzioni e schede vengono ricontrollati ogni settimana in automatico.</p>
           </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">I tuoi dati</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Non escono dal dispositivo. La compilazione e la scrittura del PDF avvengono in JavaScript nel
-              browser: dopo aver aperto la pagina puoi staccare la connessione e lo strumento continua a
-              funzionare. Quello che digiti resta in memoria locale finch&eacute; non premi
-              &laquo;Cancella i dati del modello&raquo;.
-            </p>
-          </div>
-          <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">Limiti dichiarati</h3>
-            <p class="mt-1 text-sm text-gray-700 leading-relaxed">
-              Lo strumento compila e non presenta. Nei riquadri della firma puoi scrivere il nome, ma la
-              firma vera va messa a penna sulla copia stampata oppure digitalmente sul file. Per
-              estinzione, fusione, concentrazione e trasformazione la legge impone la
-              <strong>via telematica</strong>: il PDF ti serve a preparare i dati, non a presentarli.
-              Questo sito non &egrave; l&rsquo;Agenzia delle Entrate e non sostituisce la consulenza di un
-              professionista.
-            </p>
+          <div class="rounded-lg bg-emerald-50 border border-emerald-100 p-4">
+            <p class="font-bold text-emerald-900 mb-1">&#128274; I tuoi dati</p>
+            <p class="text-emerald-900 leading-relaxed">Il PDF si crea sul tuo dispositivo e nessun dato arriva a un server. I codici fiscali che scrivi non vengono salvati nemmeno nel browser; il resto rimane qui finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;. Firma e presentazione restano a te: per estinzione, fusione, concentrazione e trasformazione la via &egrave; solo telematica.</p>
           </div>
         </div>
       </section>
 
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 su-seo-expansion">
-        <h2 class="text-xl font-bold text-gray-900">A cosa serve il modello AA5/6</h2>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          In Italia il codice fiscale non ce l'hanno solo le persone: ce l'hanno anche le associazioni
-          sportive, le parrocchie, i comitati di quartiere, le fondazioni e i condomini. Serve per aprire
-          un conto corrente, per stipulare un contratto di fornitura, per fare da sostituto d'imposta
-          quando si paga un professionista. Il modello con cui lo si chiede &egrave; l'<strong>AA5/6</strong>,
-          previsto dal D.M. 28 dicembre 1987 n. 539 e dall'articolo 7, comma 8, del D.P.R. 605/1973.
-        </p>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          La condizione &egrave; una sola: il soggetto non deve essere <em>obbligato alla dichiarazione di
-          inizio attivit&agrave; IVA</em>. Un'associazione che si limita a incassare le quote dei soci sta
-          nell'AA5/6; la stessa associazione, il giorno in cui apre un bar aperto al pubblico, passa
-          all'AA7/10 e ottiene una partita IVA. &Egrave; l'errore pi&ugrave; comune, e costa un viaggio
-          all'ufficio a vuoto.
-        </p>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">Le cinque caselle del quadro A</h3>
-        <div class="mt-3 overflow-x-auto">
-          <table class="w-full text-sm border-collapse">
-            <thead>
-              <tr class="bg-gray-50 text-left">
-                <th class="border border-gray-200 px-3 py-2 font-bold text-gray-700">Casella</th>
-                <th class="border border-gray-200 px-3 py-2 font-bold text-gray-700">Quando si barra</th>
-                <th class="border border-gray-200 px-3 py-2 font-bold text-gray-700">Che cosa serve indicare</th>
-              </tr>
-            </thead>
-            <tbody class="text-gray-700">
-              <tr><td class="border border-gray-200 px-3 py-2 font-semibold">1</td><td class="border border-gray-200 px-3 py-2">L'ente non ha ancora un codice fiscale</td><td class="border border-gray-200 px-3 py-2">La data di costituzione, se la conosci</td></tr>
-              <tr class="bg-gray-50"><td class="border border-gray-200 px-3 py-2 font-semibold">2</td><td class="border border-gray-200 px-3 py-2">Cambia qualcosa: sede, denominazione, rappresentante</td><td class="border border-gray-200 px-3 py-2">Codice fiscale e data della variazione</td></tr>
-              <tr><td class="border border-gray-200 px-3 py-2 font-semibold">3</td><td class="border border-gray-200 px-3 py-2">L'ente si estingue</td><td class="border border-gray-200 px-3 py-2">Codice fiscale e data di estinzione &mdash; solo per via telematica</td></tr>
-              <tr class="bg-gray-50"><td class="border border-gray-200 px-3 py-2 font-semibold">4</td><td class="border border-gray-200 px-3 py-2">Il certificato di attribuzione &egrave; andato perso</td><td class="border border-gray-200 px-3 py-2">Il codice fiscale, se lo si conosce</td></tr>
-              <tr><td class="border border-gray-200 px-3 py-2 font-semibold">5</td><td class="border border-gray-200 px-3 py-2">Devi indicare il codice fiscale di un terzo che ne &egrave; sprovvisto</td><td class="border border-gray-200 px-3 py-2">Il tuo codice fiscale &mdash; e il modello va consegnato a uno sportello</td></tr>
-            </tbody>
-          </table>
+      <section id="guida" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sm:p-8 mb-6" aria-labelledby="guida-titolo">
+        <h2 id="guida-titolo" class="text-2xl font-bold text-gray-900 mb-4">Codice fiscale di enti, associazioni e condomini: il modello AA5/6 passo per passo</h2>
+        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+<p>Il modello AA5/6 &egrave; la domanda con cui un soggetto diverso dalle persone fisiche chiede all&rsquo;Agenzia delle Entrate il codice fiscale, comunica la variazione dei dati o l&rsquo;estinzione, chiede il duplicato del certificato di attribuzione oppure comunica una fusione, una concentrazione o una trasformazione. Secondo la scheda dell&rsquo;Agenzia lo usano &laquo;i soggetti diversi dalle persone fisiche non obbligati alla dichiarazione di inizio attivit&agrave; Iva (enti, associazioni, fondazioni, condomini, parrocchie, ecc.), che non esercitano un&rsquo;attivit&agrave; rilevante ai fini dell&rsquo;Iva ma sono comunque obbligati a indicare il codice fiscale&raquo;.</p>
+<p>Le istruzioni, aggiornate al 18 novembre 2025, richiamano il D.M. 28 dicembre 1987, n. 539, per l&rsquo;attribuzione del codice e l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 7 del D.P.R. 605/1973</a> per estinzione, fusione, concentrazione e trasformazione. Il codice fiscale di questi soggetti &egrave; formato da 11 cifre: le prime 7 sono un numero progressivo, le 3 successive il codice dell&rsquo;ufficio, l&rsquo;ultima un carattere di controllo. Una volta attribuito resta lo stesso anche se cambia il domicilio fiscale, fino all&rsquo;estinzione dell&rsquo;ente.</p>
+<h3 id="quale-modello" class="text-lg font-bold text-gray-900 pt-3">AA5/6, AA7/10, Comunicazione Unica o AA4/8?</h3>
+<p>La condizione per usare l&rsquo;AA5/6 &egrave; una: il soggetto non &egrave; obbligato alla dichiarazione di inizio attivit&agrave; ai fini IVA. Negli altri casi il modello &egrave; un altro.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Quale modello usare: AA5/6, AA7/10, Comunicazione Unica o AA4/8</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Chi sei</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa usi</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Da sapere</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Ente, associazione, fondazione, comitato, condominio o parrocchia che non esercita un&rsquo;attivit&agrave; rilevante ai fini IVA</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA5/6, all&rsquo;Agenzia delle Entrate</td><td class="px-1.5 sm:px-3 py-2 align-top">Ottiene il codice fiscale di 11 cifre, senza partita IVA (esempi da 1 a 5)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Lo stesso soggetto quando inizia un&rsquo;attivit&agrave; rilevante ai fini IVA, senza obbligo di iscrizione al Registro delle imprese o al REA</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA7/10</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi ha gi&agrave; il codice fiscale barra la casella &laquo;Inizio attivit&agrave; con attribuzione della sola partita IVA&raquo;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Soggetto tenuto all&rsquo;iscrizione al Registro delle imprese o al REA</td><td class="px-1.5 sm:px-3 py-2 align-top">Comunicazione Unica (ComUnica)</td><td class="px-1.5 sm:px-3 py-2 align-top">Dal 1&deg; aprile 2010, anche quando la dichiarazione ai fini IVA &egrave; l&rsquo;unico adempimento da svolgere</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Persona fisica</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA4/8</td><td class="px-1.5 sm:px-3 py-2 align-top">Per il codice fiscale, la tessera sanitaria e il tesserino</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Societ&agrave; di capitali che risulta da una trasforma&shy;zione eterogenea (art. 2500-octies del codice civile)</td><td class="px-1.5 sm:px-3 py-2 align-top">Modello AA7 per la partita IVA, non l&rsquo;AA5/6</td><td class="px-1.5 sm:px-3 py-2 align-top">Indica il codice fiscale, se il soggetto trasformato lo aveva gi&agrave;</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>La regola della Comunicazione Unica &egrave; nella <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/aa7_10/schedainfo-aa7_10" class="text-indigo-700 underline" target="_blank" rel="noopener">scheda dell&rsquo;Agenzia sul modello AA7/10</a>; per la partita IVA trovi il compilatore dei <a href="/fisco-professioni/modelli-partita-iva/" class="text-indigo-700 underline">modelli AA9/12 e AA7/10</a>, per le persone fisiche quello del <a href="/identita-burocrazia/richiesta-codice-fiscale/" class="text-indigo-700 underline">modello AA4/8</a>.</p>
+<h3 id="caselle" class="text-lg font-bold text-gray-900 pt-3">Le cinque caselle del quadro A</h3>
+<p>Si barra una delle cinque caselle. Le date del quadro A non possono essere successive al giorno in cui il modello viene presentato, e in una variazione il modello va compilato per intero: le istruzioni lo chiedono per registrare correttamente i dati nell&rsquo;Anagrafe tributaria.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Le cinque caselle del quadro A del modello AA5/6</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Casella</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando si barra</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa si scrive</th><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Come si presenta</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">1</td><td class="px-1.5 sm:px-3 py-2 align-top">Attribuzione del numero di codice fiscale, per chi non ce l&rsquo;ha</td><td class="px-1.5 sm:px-3 py-2 align-top">La data di costituzione, &laquo;ove possibile&raquo;; in alto, il codice fiscale di chi firma il modello</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Consegna documenti, PEC, sportello o raccoman&shy;data</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">2</td><td class="px-1.5 sm:px-3 py-2 align-top">Variazione dei dati gi&agrave; comunicati, anche dopo una fusione, una concentra&shy;zione o una trasforma&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale dell&rsquo;ente e data della variazione; il modello va compilato per intero</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Anche online o a un ufficio; se cambia il rappresen&shy;tante, con le regole della tabella sotto</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">3</td><td class="px-1.5 sm:px-3 py-2 align-top">Estinzione</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale e data di estinzione</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Solo per via telematica</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">4</td><td class="px-1.5 sm:px-3 py-2 align-top">Duplicato del certificato di attribuzione smarrito</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice fiscale, &laquo;ove possibile&raquo;</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">A un qualsiasi ufficio, anche per raccoman&shy;data; oppure via PEC o Consegna documenti all&rsquo;ufficio del domicilio fiscale</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">5</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale di un terzo, quando devi indicarlo e il terzo non ce l&rsquo;ha</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice fiscale del richiedente</td><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Presso un ufficio dell&rsquo;Agenzia</td></tr>
+    </tbody>
+  </table>
+</div>
+<h3 id="come-si-presenta" class="text-lg font-bold text-gray-900 pt-3">PEC, sportello, raccomandata o servizio online</h3>
+<p>Il modello va firmato dal rappresentante legale o negoziale: senza firma &egrave; nullo. Si pu&ograve; firmare con la firma digitale; con la firma autografa si allega la copia di un documento d&rsquo;identit&agrave; di chi firma. Le strade cambiano con quello che comunichi:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Come si presenta il modello AA5/6, caso per caso</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa comunichi</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Come</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quando si considera presentato</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Richiesta del codice fiscale (casella 1)</td><td class="px-1.5 sm:px-3 py-2 align-top">Servizio &laquo;Consegna documenti e istanze&raquo; dell&rsquo;area riservata, categoria &laquo;Richiesta certificati, copie e codici fiscali&raquo;; PEC a una qualunque Direzione provinciale; consegna in duplice esemplare a un qualunque ufficio, con appuntamento; raccoman&shy;data in unica copia</td><td class="px-1.5 sm:px-3 py-2 align-top">PEC e raccoman&shy;data: il giorno in cui sono spedite</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Duplicato del certificato (casella 4)</td><td class="px-1.5 sm:px-3 py-2 align-top">A un qualsiasi ufficio, anche per raccoman&shy;data; oppure all&rsquo;ufficio del domicilio fiscale dell&rsquo;ente, in duplice esemplare o in unico esemplare via PEC, raccoman&shy;data con ricevuta di ritorno o &laquo;Consegna documenti e istanze&raquo;</td><td class="px-1.5 sm:px-3 py-2 align-top">PEC e raccoman&shy;data: il giorno in cui sono spedite</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Variazione dei dati senza cambio del rappresen&shy;tante</td><td class="px-1.5 sm:px-3 py-2 align-top">Online, con il servizio &laquo;Comunicazione modello AA5/6&raquo; (serve la registrazione a Fisconline o Entratel) o tramite un interme&shy;diario abilitato; in alternativa a un qualsiasi ufficio, anche per raccoman&shy;data</td><td class="px-1.5 sm:px-3 py-2 align-top">Online: il giorno in cui l&rsquo;Agenzia conclude la ricezione dei dati</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Variazione con cambio del rappresen&shy;tante</td><td class="px-1.5 sm:px-3 py-2 align-top">In duplice esemplare all&rsquo;ufficio del domicilio fiscale dell&rsquo;ente, anche tramite un delegato; oppure, allo stesso ufficio, in unico esemplare per raccoman&shy;data con ricevuta di ritorno, PEC o &laquo;Consegna documenti e istanze&raquo;, con la copia del documento del rappresen&shy;tante</td><td class="px-1.5 sm:px-3 py-2 align-top">Per raccoman&shy;data, PEC o Consegna documenti: il giorno in cui &egrave; spedito</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Estinzione, fusione, concentra&shy;zione, trasforma&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">Solo per via telematica, entro trenta giorni, direttamente o tramite un interme&shy;diario</td><td class="px-1.5 sm:px-3 py-2 align-top">Il giorno in cui l&rsquo;Agenzia conclude la ricezione dei dati</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale di terzi (casella 5)</td><td class="px-1.5 sm:px-3 py-2 align-top">Presso un ufficio dell&rsquo;Agenzia</td><td class="px-1.5 sm:px-3 py-2 align-top">&mdash;</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Gli <a href="https://www.agenziaentrate.gov.it/portale/web/guest/agenzia/uffici-e-pec/posta-elettronica-certificata-entrate/pec-direzioni-provinciali" class="text-indigo-700 underline" target="_blank" rel="noopener">indirizzi PEC delle Direzioni provinciali</a> sono sul sito dell&rsquo;Agenzia, dove si fa anche la <a href="https://www.agenziaentrate.gov.it/portale/prenota-un-appuntamento" class="text-indigo-700 underline" target="_blank" rel="noopener">prenotazione dell&rsquo;appuntamento</a> e si entra nel servizio <a href="https://www.agenziaentrate.gov.it/portale/consegna-documenti" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Consegna documenti e istanze&raquo;</a>. Il servizio <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/swcompilazione-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Comunicazione modello AA5/6&raquo;</a> compila e trasmette online variazioni, estinzioni, fusioni, concentrazioni e trasformazioni, senza programmi da installare, ma non la prima richiesta del codice fiscale.</p>
+<p>Il modello si pu&ograve; far consegnare da un&rsquo;altra persona, compilando la delega in fondo: il delegato mostra il proprio documento e uno del delegante; se quello del delegante &egrave; una fotocopia, la lascia all&rsquo;ufficio.</p>
+<h3 id="documenti" class="text-lg font-bold text-gray-900 pt-3">Quali documenti allegare</h3>
+<p>Al modello si allegano i documenti che provano i dati dichiarati. Le istruzioni e le schede citano, &laquo;a titolo esemplificativo e non esaustivo&raquo;, gli atti costitutivi o istitutivi dell&rsquo;ente, gli atti collegiali e i dispositivi dell&rsquo;Autorit&agrave; giudiziaria; si elencano nel riquadro &laquo;Allegati&raquo; del modello.</p>
+<p>Se cambia il rappresentante legale, i documenti devono attestare denominazione e codice fiscale dell&rsquo;ente e nome, cognome e codice fiscale del nuovo rappresentante; se il rappresentante non &egrave; una persona fisica, anche la sua denominazione e il suo codice fiscale, con quelli della persona che firma per lui. In pi&ugrave; serve una dichiarazione sostitutiva, ai sensi degli <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art46" class="text-indigo-700 underline" target="_blank" rel="noopener">artt. 46</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art47" class="text-indigo-700 underline" target="_blank" rel="noopener">47 del D.P.R. 445/2000</a>, con cui chi firma comprova la propria qualit&agrave; rispetto all&rsquo;ente. Accanto al modello l&rsquo;Agenzia pubblica il <a href="https://www.agenziaentrate.gov.it/portale/documents/20143/9459643/Dichiarazione+sostitutiva+certificazione_Atto+di+notoriet%C3%A0.pdf/e4da998b-2651-2bb4-c722-f1a6a90ed0ee?t=1763405987995" class="text-indigo-700 underline" target="_blank" rel="noopener">modulo di dichiarazione sostitutiva</a>, con una sezione per ogni tipo di soggetto:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Il modulo di dichiarazione sostitutiva dell&rsquo;Agenzia: che cosa dichiara e che cosa allega chi firma</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Soggetto</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa dichiara chi firma</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa allega</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Associazione riconosciuta, fondazione, ente eccle&shy;siastico, istituto di patronato e assistenza sociale, organizza&shy;zione di volontariato</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;iscrizione nel Registro delle persone giuridiche presso la Prefettura o la Regione, con numero e data dell&rsquo;atto</td><td class="px-1.5 sm:px-3 py-2 align-top">Il proprio documento d&rsquo;identit&agrave; e il provvedimento o l&rsquo;atto di nomina del legale rappresen&shy;tante</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Associazione non riconosciuta, comitato, trust</td><td class="px-1.5 sm:px-3 py-2 align-top">Di esercitare attualmente le funzioni di rappresen&shy;tante</td><td class="px-1.5 sm:px-3 py-2 align-top">Il proprio documento d&rsquo;identit&agrave; e la copia dell&rsquo;atto costitutivo o istitutivo, dello statuto e dell&rsquo;atto di nomina</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Condominio</td><td class="px-1.5 sm:px-3 py-2 align-top">Di esercitare attualmente le funzioni di amministratore</td><td class="px-1.5 sm:px-3 py-2 align-top">Il proprio documento d&rsquo;identit&agrave; e la copia del verbale dell&rsquo;assemblea che lo ha nominato</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Il modulo ricorda le sanzioni penali previste dall&rsquo;art. 76 dello stesso decreto per le dichiarazioni mendaci e per la formazione o l&rsquo;uso di atti falsi.</p>
+<h3 id="campo-per-campo" class="text-lg font-bold text-gray-900 pt-3">Il modello quadro per quadro</h3>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Il modello AA5/6 quadro per quadro</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quadro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Che cosa contiene</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Da sapere</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">In alto, su ogni pagina</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale e numero di pagina</td><td class="px-1.5 sm:px-3 py-2 align-top">Il codice dell&rsquo;ente; se chiedi l&rsquo;attribuzione, quello di chi firma. Se il quadro D non basta si usano pi&ugrave; pagine, numerate in ordine</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">A &mdash; Tipo richiesta</td><td class="px-1.5 sm:px-3 py-2 align-top">Le cinque caselle e le date</td><td class="px-1.5 sm:px-3 py-2 align-top">Una casella sola; le date non possono essere successive alla presenta&shy;zione</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">B &mdash; Soggetto d&rsquo;imposta</td><td class="px-1.5 sm:px-3 py-2 align-top">Denomina&shy;zione, natura giuri&shy;dica, sigla, codice e descri&shy;zione dell&rsquo;attivit&agrave;, termine di approva&shy;zione del bilancio o rendiconto, sede, domicilio fiscale</td><td class="px-1.5 sm:px-3 py-2 align-top">Denomina&shy;zione senza abbrevia&shy;zioni; se &egrave; molto lunga si tolgono titoli onorifici e professionali. Il domicilio fiscale lo compilano solo i soggetti non residenti con sede estera</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">C &mdash; Rappresentante</td><td class="px-1.5 sm:px-3 py-2 align-top">Dati anagrafici, codice carica e codice fiscale del rappresen&shy;tante legale</td><td class="px-1.5 sm:px-3 py-2 align-top">Uno solo, anche se i rappresentanti sono pi&ugrave; di uno</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">D &mdash; Fusione, concentra&shy;zione, trasforma&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">Tipo di operazione, codici fiscali dei partecipanti, dati del soggetto non estinto o risultante e del suo rappresen&shy;tante</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi lo compila presenta il modello solo per via telematica</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Allegati</td><td class="px-1.5 sm:px-3 py-2 align-top">L&rsquo;elenco dei documenti allegati</td><td class="px-1.5 sm:px-3 py-2 align-top">Vedi &laquo;Quali documenti allegare&raquo;</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Sottoscri&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">Data, codice fiscale e firma</td><td class="px-1.5 sm:px-3 py-2 align-top">A pena di nullit&agrave;, dal rappresen&shy;tante legale o negoziale; con la casella 5, dal richiedente o dal suo rappresen&shy;tante</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Delega</td><td class="px-1.5 sm:px-3 py-2 align-top">Chi consegna il modello al posto di chi firma</td><td class="px-1.5 sm:px-3 py-2 align-top">Solo se lo porta un&rsquo;altra persona</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Impegno alla presenta&shy;zione telematica</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale dell&rsquo;interme&shy;diario, numero di iscrizione all&rsquo;albo se &egrave; un CAF, data dell&rsquo;impegno</td><td class="px-1.5 sm:px-3 py-2 align-top">Lo compila l&rsquo;interme&shy;diario che trasmette il modello</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Il modello si compila a macchina o in stampatello, senza abbreviazioni: SANTA MARIA CAPUA VETERE, non S. MARIA C.V. Le date si scrivono in cifre, giorno, mese e anno (07 03 2010); gli indirizzi per intero, con via o piazza, numero civico, palazzina, scala, interno, localit&agrave;, frazione e chilometro; la provincia con la sigla della targa, EE per uno Stato estero. Se la sede &egrave; all&rsquo;estero, nel campo del Comune va lo Stato e nell&rsquo;indirizzo anche la citt&agrave;.</p>
+<p>La natura giuridica si sceglie nella tabella generale dell&rsquo;Agenzia, unica per tutta la modulistica: le istruzioni avvertono che chi compila deve individuare il codice &laquo;in relazione alla natura giuridica rivestita&raquo;. Queste sono le voci che descrivono enti, associazioni, fondazioni e condomini; nel compilatore c&rsquo;&egrave; la tabella intera, 55 voci, e i codici di una cifra compaiono con lo zero davanti (08), perch&eacute; il riquadro del modello ha due caselle.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Natura giuridica: le voci della tabella ufficiale per enti, associazioni, fondazioni e condomini</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Voce della tabella dell&rsquo;Agenzia</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">8</td><td class="px-1.5 sm:px-3 py-2 align-top">Associazioni riconosciute</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">9</td><td class="px-1.5 sm:px-3 py-2 align-top">Fondazioni</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">10</td><td class="px-1.5 sm:px-3 py-2 align-top">Altri enti ed istituti con persona&shy;lit&agrave; giuri&shy;dica</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">12</td><td class="px-1.5 sm:px-3 py-2 align-top">Associazioni non riconosciute e comitati</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">13</td><td class="px-1.5 sm:px-3 py-2 align-top">Altre organizza&shy;zioni di persone o di beni senza persona&shy;lit&agrave; giuri&shy;dica (escluse le comunioni)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">15</td><td class="px-1.5 sm:px-3 py-2 align-top">Enti pubblici non economici</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">51</td><td class="px-1.5 sm:px-3 py-2 align-top">Condom&igrave;ni</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">54</td><td class="px-1.5 sm:px-3 py-2 align-top">Trust</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">55</td><td class="px-1.5 sm:px-3 py-2 align-top">Ammini&shy;strazioni pubbliche</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">56</td><td class="px-1.5 sm:px-3 py-2 align-top">Fondazioni bancarie</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">39, 40, 41, 43, 44</td><td class="px-1.5 sm:px-3 py-2 align-top">Soggetti non residenti: altri enti ed istituti; associazioni riconosciute, non riconosciute e di fatto; fondazioni; altre organizza&shy;zioni di persone e di beni; trust</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Nel quadro C il codice carica dice a che titolo firma il rappresentante. Anche questa tabella &egrave; generale, con 15 voci: per il presidente di un&rsquo;associazione rappresentante legale &egrave; il codice 1, per l&rsquo;amministratore di condominio il 13.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">La tabella generale dei codici di carica</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Codice</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Carica</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">1</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante legale, negoziale o di fatto, socio amministratore</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">2</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante di minore, inabilitato o interdetto, amministratore di sostegno, curatore dell&rsquo;eredit&agrave; giacente, amministratore di eredit&agrave; devoluta sotto condizione sospensiva o in favore di nascituro non ancora concepito</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">3</td><td class="px-1.5 sm:px-3 py-2 align-top">Curatore fallimentare / curatore della liquidazione giudiziale</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">4</td><td class="px-1.5 sm:px-3 py-2 align-top">Commissario liquidatore (liquidazione coatta amministrativa o ammini&shy;strazione straordinaria)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">5</td><td class="px-1.5 sm:px-3 py-2 align-top">Custode giudiziario, amministratore giudiziario dei beni sequestrati o commissario giudiziale (ammini&shy;strazione controllata)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">6</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante fiscale di soggetto non residente</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">7</td><td class="px-1.5 sm:px-3 py-2 align-top">Erede</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">8</td><td class="px-1.5 sm:px-3 py-2 align-top">Liquidatore (liquidazione volontaria)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">9</td><td class="px-1.5 sm:px-3 py-2 align-top">Soggetto tenuto a presentare la dichiarazione ai fini IVA per conto del soggetto estinto a seguito di operazioni straordinarie o altre trasformazioni sostanziali soggettive; ai fini delle imposte sui redditi, rappresen&shy;tante della societ&agrave; beneficiaria o risultante dalla fusione o incorporazione</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">10</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante fiscale di soggetto non residente, con i limiti dell&rsquo;art. 44, comma 3, del D.L. 331/1993</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">11</td><td class="px-1.5 sm:px-3 py-2 align-top">Soggetto che esercita l&rsquo;attivit&agrave; tutoria del minore o interdetto per la funzione istituzionale rivestita</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">12</td><td class="px-1.5 sm:px-3 py-2 align-top">Liquidatore (liquidazione volontaria di ditta individuale, periodo prima della messa in liquidazione)</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">13</td><td class="px-1.5 sm:px-3 py-2 align-top">Amministratore di condominio</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">14</td><td class="px-1.5 sm:px-3 py-2 align-top">Soggetto che sottoscrive la dichiarazione per conto di una pubblica ammini&shy;strazione</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">15</td><td class="px-1.5 sm:px-3 py-2 align-top">Commissario liquidatore di una pubblica ammini&shy;strazione</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Il codice attivit&agrave; &egrave; quello dell&rsquo;attivit&agrave; svolta in via prevalente, preso dalla classificazione vigente quando presenti il modello: le pagine dell&rsquo;Agenzia sul modello rimandano alla <a href="https://www.istat.it/classificazione/classificazione-delle-attivita-economiche-ateco/" class="text-indigo-700 underline" target="_blank" rel="noopener">classificazione ATECO 2025 dell&rsquo;ISTAT</a>. Per esempio 94.99.20 &laquo;Attivit&agrave; di organizzazioni associative culturali e ricreative&raquo;, 93.12.00 &laquo;Attivit&agrave; dei club sportivi&raquo;, 94.91.00 &laquo;Attivit&agrave; delle organizzazioni religiose&raquo;; nel riquadro, di sei caselle, il codice va senza punti (949920). La descrizione dell&rsquo;attivit&agrave; &egrave; una sintesi di quella esercitata davvero. Il riquadro del termine di approvazione del bilancio o rendiconto ha due caselle per il giorno e due per il mese; le istruzioni non ne parlano.</p>
+<figure class="my-6">
+  <img src="/assets/esempi/aa5-6-associazione-culturale.webp" width="1100" height="1418" loading="lazy" decoding="async"
+       alt="Il modello AA5/6 compilato con il compilatore di questa pagina: casella 1, attribuzione del codice fiscale, con la data di costituzione 05/10/2026; in alto il codice fiscale del presidente FRRPLA75D08A944J; quadro B: Associazione culturale Amici della lettura, natura giuridica 12, codice attività 949920, termine di approvazione 30/04, sede in via di Esempio 10, 40121 Bologna; quadro C: Ferrari Paolo, codice carica 01; allegati: atto costitutivo e statuto; sottoscrizione del 19/10/2026."
+       class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">Il modello dell&rsquo;esempio 1, compilato qui sopra e scaricato: quadri A, B e C della seconda facciata, poi allegati e sottoscrizione della terza. Il quadro D, la delega e l&rsquo;impegno dell&rsquo;intermediario, vuoti, sono stati tolti dall&rsquo;immagine. Associazione, persona, codice fiscale e indirizzo sono inventati; il codice 94.99.20 &egrave; quello della classificazione ATECO 2025.</figcaption>
+</figure>
+<h3 id="esempi" class="text-lg font-bold text-gray-900 pt-3">Cinque esempi</h3>
+<p>Le persone e gli enti degli esempi sono inventati; codici e regole vengono dalle istruzioni e dalle schede dell&rsquo;Agenzia.</p>
+<p><strong>Esempio 1 &mdash; L&rsquo;associazione culturale appena costituita.</strong> Il 5 ottobre 2026 un gruppo di amici costituisce l&rsquo;Associazione culturale Amici della lettura, che organizza incontri di lettura per i soci e non esercita attivit&agrave; rilevanti ai fini IVA. Non &egrave; iscritta nel Registro delle persone giuridiche: nella tabella &egrave; un&rsquo;associazione non riconosciuta, codice 12. Il presidente, Paolo Ferrari, compila l&rsquo;AA5/6 con la casella 1 e la data di costituzione; in alto su ogni pagina scrive il proprio codice fiscale, perch&eacute; l&rsquo;associazione non ne ha ancora uno. Il codice dell&rsquo;attivit&agrave; nell&rsquo;ATECO 2025 &egrave; 94.99.20; lo statuto prevede l&rsquo;approvazione del rendiconto entro il 30 aprile. Nel quadro C indica se stesso con il codice carica 1, allega atto costitutivo e statuto, firma a penna e manda tutto via PEC a una Direzione provinciale con la copia della sua carta d&rsquo;identit&agrave;: il modello si considera presentato il giorno dell&rsquo;invio.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Esempio 1: i dati del modello AA5/6 per il codice fiscale di un&rsquo;associazione culturale</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="hidden sm:table-cell px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Quadro</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Campo</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Valore</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">In alto</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice fiscale</td><td class="px-1.5 sm:px-3 py-2 align-top">FRRPLA75D08A944J, quello del presidente che firma</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">A</td><td class="px-1.5 sm:px-3 py-2 align-top">Tipo richiesta</td><td class="px-1.5 sm:px-3 py-2 align-top">Casella 1, attribuzione; data di costituzione 05 10 2026</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Denomina&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">ASSOCIA&shy;ZIONE CULTURALE AMICI DELLA LETTURA</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Natura giuri&shy;dica</td><td class="px-1.5 sm:px-3 py-2 align-top">12, associazioni non riconosciute e comitati</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Codice e descri&shy;zione dell&rsquo;attivit&agrave;</td><td class="px-1.5 sm:px-3 py-2 align-top">949920; INCONTRI DI LETTURA E PRESENTA&shy;ZIONI DI LIBRI PER I SOCI</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Termine approva&shy;zione bilancio o rendiconto</td><td class="px-1.5 sm:px-3 py-2 align-top">Giorno 30, mese 04</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">B</td><td class="px-1.5 sm:px-3 py-2 align-top">Sede</td><td class="px-1.5 sm:px-3 py-2 align-top">Via di Esempio 10, 40121 Bologna (BO)</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">C</td><td class="px-1.5 sm:px-3 py-2 align-top">Rappresentante</td><td class="px-1.5 sm:px-3 py-2 align-top">Ferrari Paolo, M, codice carica 1, nato a Bologna (BO) l&rsquo;8 aprile 1975, FRRPLA75D08A944J</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Allegati</td><td class="px-1.5 sm:px-3 py-2 align-top">Documenti</td><td class="px-1.5 sm:px-3 py-2 align-top">Atto costitutivo e statuto del 5 ottobre 2026</td></tr>
+      <tr class="border-t border-gray-100"><td class="hidden sm:table-cell px-1.5 sm:px-3 py-2 align-top">Sottoscri&shy;zione</td><td class="px-1.5 sm:px-3 py-2 align-top">Data, codice fiscale e firma</td><td class="px-1.5 sm:px-3 py-2 align-top">19/10/2026; FRRPLA75D08A944J; firma a penna</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Esempio 2 &mdash; Il condominio.</strong> L&rsquo;assemblea di un condominio nomina amministratrice Sara Colombo, che chiede il codice fiscale del condominio. Compila l&rsquo;AA5/6 con la casella 1: natura giuridica 51, condom&igrave;ni; in alto il proprio codice fiscale; nel quadro C se stessa con il codice carica 13, amministratore di condominio. Fra gli allegati elenca il verbale dell&rsquo;assemblea che l&rsquo;ha nominata, un atto collegiale. Prenota un appuntamento e consegna il modello in duplice esemplare a un ufficio dell&rsquo;Agenzia.</p>
+<p><strong>Esempio 3 &mdash; Il nuovo presidente.</strong> L&rsquo;assemblea dell&rsquo;associazione dell&rsquo;esempio 1 elegge un nuovo presidente. &Egrave; una variazione dei dati con modifica del rappresentante: casella 2, con il codice fiscale dell&rsquo;associazione e la data della variazione, il modello compilato per intero e, nel quadro C, il nuovo presidente. Allega il verbale dell&rsquo;assemblea e la dichiarazione sostitutiva con cui il nuovo presidente comprova la sua qualit&agrave;. Questa variazione non passa dai servizi telematici del modello: si consegna in duplice esemplare all&rsquo;ufficio dell&rsquo;Agenzia nella cui circoscrizione l&rsquo;associazione ha il domicilio fiscale, oppure si manda allo stesso ufficio in unico esemplare, per raccomandata con ricevuta di ritorno, via PEC o con &laquo;Consegna documenti e istanze&raquo;, con la copia del documento del presidente.</p>
+<p><strong>Esempio 4 &mdash; Il comitato di quartiere cambia sede.</strong> Un comitato di quartiere, codice 12 nella tabella della natura giuridica e 94.99.10 nell&rsquo;ATECO 2025 (&laquo;Attivit&agrave; di organizzazioni associative per la tutela degli interessi e dei diritti dei cittadini&raquo;), sposta la sede in un altro Comune. &Egrave; una variazione senza cambio del rappresentante: casella 2, con la data del trasferimento e il modello compilato per intero con la nuova sede. Il presidente, registrato a Fisconline, la trasmette con il servizio web &laquo;Comunicazione modello AA5/6&raquo;; poteva anche affidarla a un intermediario abilitato o portarla a un qualsiasi ufficio. Il codice fiscale del comitato non cambia.</p>
+<p><strong>Esempio 5 &mdash; La fusione di due associazioni.</strong> Due associazioni si fondono: una prosegue, l&rsquo;altra si estingue. Entro trenta giorni ognuna presenta il proprio AA5/6, solo per via telematica: quella che prosegue barra la casella 2, quella che si estingue la casella 3, tutte e due con la data della fusione. Nel quadro D barrano &laquo;fusione&raquo;, scrivono i codici fiscali di tutti i partecipanti e i dati del soggetto non estinto, con il suo rappresentante.</p>
+<h3 id="dopo" class="text-lg font-bold text-gray-900 pt-3">Dopo la richiesta</h3>
+<ul class="list-disc pl-5 space-y-1.5">
+  <li>L&rsquo;ufficio attribuisce il codice fiscale; se il certificato di attribuzione va perso, il duplicato si chiede con la casella 4.</li>
+  <li>Il codice resta lo stesso fino all&rsquo;estinzione, anche se cambia il domicilio fiscale; nemmeno la trasformazione porta un codice nuovo.</li>
+  <li>Ogni variazione successiva dei dati comunicati si comunica con lo stesso modello, casella 2; estinzione, fusione, concentrazione e trasformazione entro trenta giorni e solo per via telematica.</li>
+  <li>Quando l&rsquo;ente inizia un&rsquo;attivit&agrave; rilevante ai fini IVA chiede la partita IVA con l&rsquo;AA7/10, o con la Comunicazione Unica se deve iscriversi al Registro delle imprese o al REA.</li>
+</ul>
+<p>Per i condomini l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 7 del D.P.R. 605/1973</a> prevede anche che gli amministratori comunichino ogni anno all&rsquo;anagrafe tributaria l&rsquo;ammontare dei beni e servizi acquistati dal condominio e i dati identificativi dei fornitori. Per sapere se un codice fiscale &egrave; valido c&rsquo;&egrave; il servizio <a href="https://www.agenziaentrate.gov.it/portale/verifica-codice-fiscale" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Verifica codice fiscale&raquo;</a> dell&rsquo;Agenzia.</p>
+<h3 id="dal-2027" class="text-lg font-bold text-gray-900 pt-3">Dal 2027 cambiano le norme citate dalle istruzioni</h3>
+<p>Le istruzioni citano l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 7 del D.P.R. 605/1973</a> (la comunicazione entro trenta giorni di estinzione, trasformazione, concentrazione e fusione, solo per via telematica) e gli <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art58" class="text-indigo-700 underline" target="_blank" rel="noopener">artt. 58</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art59" class="text-indigo-700 underline" target="_blank" rel="noopener">59 del D.P.R. 600/1973</a> (il domicilio fiscale). Dal 1&deg; gennaio 2027 il D.Lgs. 5 agosto 2026, n. 141, il testo unico in materia di adempimenti e accertamento, abroga gli artt. 58 e 59; Normattiva riporta il testo dell&rsquo;art. 7 del D.P.R. 605/1973 come in vigore fino al 31 dicembre 2026.</p>
+<p>La regola dei trenta giorni resta: l&rsquo;<a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-05;141:1~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 7 del testo unico</a>, al comma 11, la ripete per i rappresentanti legali dei soggetti diversi dalle persone fisiche &laquo;che non siano tenuti a presentare la dichiarazione od a fornire le notizie previste&raquo; dall&rsquo;art. 68 del testo unico IVA o dall&rsquo;art. 178 dello stesso testo unico: entro trenta giorni comunicano all&rsquo;anagrafe tributaria l&rsquo;avvenuta estinzione e le operazioni di trasformazione, concentrazione o fusione. Il comma 14 vuole queste comunicazioni solo per via telematica. A ottobre 2026 l&rsquo;Agenzia non ha ancora aggiornato modello e istruzioni.</p>
         </div>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">La natura giuridica: i codici che servono davvero</h3>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          La tabella ufficiale &egrave; unica per tutta la modulistica dell'Agenzia e contiene 55 voci, molte
-          delle quali per soggetti che non useranno mai questo modello. Per chi compila un AA5/6 i codici
-          ricorrenti sono pochi:
-        </p>
-        <ul class="mt-3 space-y-2 text-sm text-gray-700 leading-relaxed">
-          <li><strong>51</strong> &mdash; Condomini. &Egrave; il codice dell'amministratore che chiede il
-              codice fiscale del condominio, il caso pi&ugrave; frequente in assoluto.</li>
-          <li><strong>12</strong> &mdash; Associazioni non riconosciute e comitati. La maggior parte delle
-              associazioni sportive, culturali e di volontariato sta qui.</li>
-          <li><strong>08</strong> &mdash; Associazioni riconosciute, cio&egrave; quelle iscritte nel registro
-              delle persone giuridiche.</li>
-          <li><strong>09</strong> &mdash; Fondazioni. <strong>54</strong> &mdash; Trust.</li>
-          <li><strong>15</strong> &mdash; Enti pubblici non economici; <strong>55</strong> &mdash;
-              amministrazioni pubbliche.</li>
-        </ul>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Nel compilatore la tabella c'&egrave; tutta, con la descrizione per esteso accanto al numero: non
-          devi tenere aperto il PDF delle istruzioni per cercare il codice.
-        </p>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">Il codice di carica di chi firma</h3>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Nel quadro C va indicato con che titolo firma chi firma. Anche qui la tabella &egrave; generale, ma
-          nella pratica si usano tre codici: <strong>01</strong> per il rappresentante legale, negoziale o
-          di fatto e per il socio amministratore; <strong>13</strong> per l'amministratore di condominio;
-          <strong>08</strong> per il liquidatore in una liquidazione volontaria. Se i rappresentanti sono
-          pi&ugrave; d'uno, nel quadro se ne indica uno soltanto.
-        </p>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">Fusione, concentrazione, trasformazione</h3>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Il quadro D riguarda le operazioni straordinarie. La regola &egrave; che il modello va presentato
-          da <em>tutti</em> i soggetti che hanno partecipato all'operazione, ciascuno per conto proprio,
-          entro trenta giorni e <strong>solo per via telematica</strong>. Nel quadro A il soggetto che non
-          si estingue barra la casella 2, quello che si estingue la casella 3; in entrambi i casi la data
-          &egrave; quella dell'operazione. La trasformazione non fa cambiare il codice fiscale: resta lo
-          stesso. Fa eccezione la trasformazione eterogenea dell'articolo 2500-octies del codice civile,
-          per la quale l'AA5/6 non si usa affatto e la societ&agrave; di capitali risultante presenta un
-          AA7 per la partita IVA.
-        </p>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">Gli allegati, e perch&eacute; contano</h3>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Nel riquadro degli allegati vanno elencati i documenti che provano quello che hai dichiarato:
-          atti costitutivi o istitutivi dell'ente, atti collegiali, dispositivi dell'Autorit&agrave;
-          Giudiziaria. Se stai comunicando il <strong>cambio del rappresentante legale</strong> la
-          documentazione &egrave; pi&ugrave; pesante: deve attestare denominazione e codice fiscale
-          dell'ente, e nome, cognome e codice fiscale del nuovo rappresentante. Va aggiunta una
-          dichiarazione sostitutiva ai sensi degli articoli 46 e 47 del D.P.R. 445/2000 in cui chi firma
-          comprova la propria qualit&agrave; rispetto all'ente.
-        </p>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">Le regole di scrittura del modulo</h3>
-        <ul class="mt-3 space-y-2 text-sm text-gray-700 leading-relaxed">
-          <li>Niente abbreviazioni: <em>SANTA MARIA CAPUA VETERE</em>, non <em>S. MARIA C.V.</em>;
-              <em>GIAN CARLO</em>, non <em>G.CARLO</em>.</li>
-          <li>Le date in cifre, nell'ordine giorno-mese-anno: il 7 marzo 2010 si scrive 07 03 2010. Il
-              compilatore lo fa da s&eacute;, tu scegli la data dal calendario.</li>
-          <li>Gli indirizzi completi: via o piazza, civico, palazzina, scala, interno, localit&agrave;,
-              frazione, chilometro. Tutto quello che serve a individuarli senza equivoci.</li>
-          <li>La provincia con la sigla della targa: Roma &egrave; <strong>RM</strong>, uno Stato estero
-              &egrave; <strong>EE</strong>.</li>
-          <li>Il codice fiscale va ripetuto in testa a ogni pagina. Qui lo scrivi una volta sola e finisce
-              su entrambe, anche nel PDF scaricato: se lo correggi in Acrobat si aggiorna da tutte e due
-              le parti.</li>
-        </ul>
-
-        <h3 class="mt-6 text-base font-bold text-gray-900">La via pi&ugrave; rapida, quando c'&egrave;</h3>
-        <p class="mt-3 text-sm text-gray-700 leading-relaxed">
-          Per le variazioni che <strong>non</strong> toccano il rappresentante, il modello si pu&ograve;
-          trasmettere per via telematica direttamente o tramite un intermediario abilitato, e si considera
-          presentato nel giorno in cui l'Agenzia conclude la ricezione dei dati. Per la prima richiesta del
-          codice fiscale, invece, si va allo sportello o si spedisce: in quel caso il modello si considera
-          presentato nel giorno della spedizione.
-        </p>
-      </section>
-
-      <!-- FAQ -->
-      <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Domande frequenti</h2>
-        <div class="divide-y divide-gray-100">
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Chi deve usare il modello AA5/6?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              I soggetti diversi dalle persone fisiche che non sono obbligati alla dichiarazione di inizio
-              attivit&agrave; IVA: associazioni, fondazioni, comitati, condomini, enti che non svolgono
-              un'attivit&agrave; rilevante ai fini IVA. Una persona fisica usa invece l'
-              <a href="/identita-burocrazia/richiesta-codice-fiscale/" class="text-indigo-600 hover:underline">AA4/8</a>;
-              chi apre la partita IVA usa l'
-              <a href="/fisco-professioni/modelli-partita-iva/" class="text-indigo-600 hover:underline">AA7/10</a>.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Che codice di natura giuridica mette un condominio?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              Il <strong>51</strong>. Le associazioni riconosciute sono 08, quelle non riconosciute e i
-              comitati 12, le fondazioni 09. La tabella completa &egrave; gi&agrave; dentro al compilatore,
-              con la descrizione ufficiale di ogni voce.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Che codice di carica mette l'amministratore di condominio?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              Il <strong>13</strong>, &laquo;amministratore di condominio&raquo;. Il rappresentante legale di
-              un'associazione mette invece 01.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Il modello si pu&ograve; mandare per via telematica?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              Per la comunicazione di <strong>estinzione, fusione, concentrazione o trasformazione</strong>
-              la via telematica &egrave; obbligatoria ed &egrave; l'unica ammessa, entro trenta giorni. Per
-              le altre variazioni &egrave; facoltativa, tranne quando cambia il rappresentante: in quel caso
-              il modello va consegnato all'ufficio o spedito.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Il codice fiscale dell'ente cambia se cambia la sede?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              No. Il numero attribuito dall'ufficio resta lo stesso anche in caso di variazione del
-              domicilio fiscale, fino al momento dell'estinzione. Anche la trasformazione non comporta
-              l'attribuzione di un nuovo codice fiscale.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Che codice fiscale va scritto in testa alla pagina?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              Quello dell'ente. Ma se stai chiedendo proprio l'attribuzione del codice fiscale, l'ente
-              ancora non ce l'ha: in testa va allora quello della <strong>persona che sottoscrive</strong>
-              il modello.
-            </p>
-          </details>
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>I dati che scrivo qui finiscono su qualche server?</span><span class="text-indigo-500 group-open:rotate-45 transition-transform text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
-              No. La compilazione e la creazione del PDF avvengono interamente nel browser, sul tuo
-              dispositivo. Puoi staccare la connessione dopo aver aperto la pagina e lo strumento continua
-              a funzionare.
-            </p>
-          </details>
-
-          <details class="py-3 group">
-            <summary class="cursor-pointer font-semibold text-gray-800 text-sm list-none flex justify-between items-center">
-              <span>Il modello si puo' mandare per via telematica?</span>
-            </summary>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">Per la comunicazione di estinzione, fusione, concentrazione o trasformazione la via telematica e' obbligatoria ed e' l'unica ammessa, entro trenta giorni. Per le altre variazioni e' facoltativa, tranne quando cambia il rappresentante: in quel caso il modello va consegnato all'ufficio o spedito.</p>
-          </details>
-        </div>
+<h3 class="text-lg font-bold text-gray-900 mt-8 mb-1">Domande frequenti</h3>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi deve usare il modello AA5/6?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">I soggetti diversi dalle persone fisiche che non sono obbligati alla dichiarazione di inizio attivit&agrave; ai fini IVA: la scheda dell&rsquo;Agenzia cita enti, associazioni, fondazioni, condomini e parrocchie che non esercitano un&rsquo;attivit&agrave; rilevante ai fini IVA ma devono indicare il codice fiscale. Una persona fisica usa l&rsquo;<a href="/identita-burocrazia/richiesta-codice-fiscale/" class="text-indigo-700 underline">AA4/8</a>; chi inizia un&rsquo;attivit&agrave; rilevante ai fini IVA usa l&rsquo;<a href="/fisco-professioni/modelli-partita-iva/" class="text-indigo-700 underline">AA7/10</a> o la Comunicazione Unica.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Quanto costa chiedere il codice fiscale di un&rsquo;associazione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le schede dell&rsquo;Agenzia non indicano costi. Modello e istruzioni si scaricano gratuitamente dal sito dell&rsquo;Agenzia e si possono stampare anche in bianco e nero; anche il compilatore di questa pagina &egrave; gratuito.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Si pu&ograve; chiedere il codice fiscale dell&rsquo;associazione senza andare in ufficio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">S&igrave;: con il servizio &laquo;Consegna documenti e istanze&raquo; dell&rsquo;area riservata, nella categoria &laquo;Richiesta certificati, copie e codici fiscali&raquo;, oppure via PEC a una qualunque Direzione provinciale, o ancora per raccomandata. Il modello si firma digitalmente, o a mano allegando la copia del documento di chi firma. Il servizio web &laquo;Comunicazione modello AA5/6&raquo; invece serve solo per variazioni, estinzioni, fusioni, concentrazioni e trasformazioni.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che codice di natura giuridica mette un condominio? E un&rsquo;associazione?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il condominio il 51. Le associazioni non riconosciute e i comitati il 12, quelle riconosciute l&rsquo;8, le fondazioni il 9. Nel compilatore la tabella c&rsquo;&egrave; tutta, con la descrizione ufficiale di ogni voce.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che codice carica mette l&rsquo;amministratore di condominio?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il 13, &laquo;amministratore di condominio&raquo;. Il rappresentante legale di un&rsquo;associazione mette invece l&rsquo;1, &laquo;rappresentante legale, negoziale o di fatto, socio amministratore&raquo;.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Che codice fiscale va scritto in alto nelle pagine?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Quello dell&rsquo;ente. Se per&ograve; chiedi proprio l&rsquo;attribuzione del codice fiscale, l&rsquo;ente non ce l&rsquo;ha ancora: in alto va quello della persona che firma il modello. Nel compilatore lo scrivi una volta e finisce su tutte e due le pagine.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice fiscale dell&rsquo;ente cambia se cambia la sede?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Il numero attribuito dall&rsquo;ufficio resta lo stesso anche se cambia il domicilio fiscale, fino all&rsquo;estinzione; anche la trasformazione non comporta un nuovo codice fiscale. Il cambio di sede si comunica con la casella 2.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Come si comunica il cambio del presidente o del legale rappresentante?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Con la casella 2 e il modello compilato per intero, allegando i documenti che lo provano e la dichiarazione sostitutiva con cui chi firma comprova la sua qualit&agrave;. Non si trasmette con i servizi telematici del modello: si consegna in duplice esemplare all&rsquo;ufficio del domicilio fiscale dell&rsquo;ente, oppure gli si manda in unico esemplare per raccomandata con ricevuta di ritorno, PEC o &laquo;Consegna documenti e istanze&raquo;, con la copia del documento del rappresentante.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">L&rsquo;associazione si scioglie: che cosa bisogna fare con il codice fiscale?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Comunicare l&rsquo;estinzione con la casella 3, il codice fiscale e la data di estinzione, entro trenta giorni e solo per via telematica: con il servizio web &laquo;Comunicazione modello AA5/6&raquo;, se si &egrave; registrati a Fisconline o Entratel, oppure tramite un intermediario abilitato.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Chi firma il modello AA5/6?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il rappresentante legale o negoziale dell&rsquo;ente; per il codice fiscale di un terzo (casella 5), il richiedente o il suo rappresentante. La firma serve a pena di nullit&agrave; e accanto va il codice fiscale della persona fisica che firma.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il codice fiscale calcolato da un sito vale per il quadro C?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. Nel quadro C va il codice fiscale gi&agrave; attribuito al rappresentante, quello della tessera sanitaria o del tesserino. Nelle <a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/risposte-alle-domande-piu-frequenti" class="text-indigo-700 underline" target="_blank" rel="noopener">risposte alle domande frequenti</a> sul codice fiscale l&rsquo;Agenzia avverte che i codici calcolati con applicazioni pubblicate su siti web &laquo;non hanno alcun valore e il loro utilizzo pu&ograve; comportare problemi ai cittadini&raquo;. Il nostro generatore riporta nel quadro C solo nome, cognome, sesso e dati di nascita.</p>
+</details>
+<details class="group border-b border-gray-100 py-3">
+  <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">I dati che scrivo qui finiscono su qualche server?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+  <p class="mt-2 text-sm text-gray-700 leading-relaxed">No. La compilazione e la creazione del PDF avvengono nel browser. I codici fiscali non vengono salvati nemmeno sul dispositivo; il resto rimane qui finch&eacute; non premi &laquo;Cancella i dati del modello&raquo;.</p>
+</details>
+<h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
+<ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/modello-e-istruzioni-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">Agenzia delle Entrate, &laquo;Modello e istruzioni AA5/6&raquo;</a>: modello, modello editabile e <a href="https://www.agenziaentrate.gov.it/portale/documents/20143/9459643/AA5_istruzioni_2025.pdf/1e018876-fbd9-2f3c-2648-e46869bcef44?t=1763405985986" class="text-indigo-700 underline" target="_blank" rel="noopener">istruzioni per la compilazione</a> (aggiornate al 18 novembre 2025)</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/scheda-info-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Che cos&rsquo;&egrave;&raquo;</a> (aggiornata al 4 aprile 2025), <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/come-si-richiede-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Come si richiede il codice fiscale&raquo;</a>, <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/come-comunicare-variazioni-dati-e-operazioni-straord-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Come comunicare le variazioni dati e le operazioni straordinarie&raquo;</a> e <a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/swcompilazione-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Compilazione web&raquo;</a></li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/codice-fiscale-modello-aa5_6/np-cf-aa5_6" class="text-indigo-700 underline" target="_blank" rel="noopener">&laquo;Normativa e prassi&raquo;</a>: provvedimento del 21 dicembre 2009 che approva il modello e modifiche del 17 novembre 2025</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/documents/20143/9459643/Dichiarazione+sostitutiva+certificazione_Atto+di+notoriet%C3%A0.pdf/e4da998b-2651-2bb4-c722-f1a6a90ed0ee?t=1763405987995" class="text-indigo-700 underline" target="_blank" rel="noopener">Dichiarazione sostitutiva di certificazione / atto di notoriet&agrave;</a>, modulo dell&rsquo;Agenzia</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/schede/istanze/aa7_10/schedainfo-aa7_10" class="text-indigo-700 underline" target="_blank" rel="noopener">Partita IVA dei soggetti diversi dalle persone fisiche (AA7/10), &laquo;Che cos&rsquo;&egrave;&raquo;</a>: la Comunicazione Unica</li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/codice-fiscale-e-tessera-sanitaria/risposte-alle-domande-piu-frequenti" class="text-indigo-700 underline" target="_blank" rel="noopener">Codice fiscale e tessera sanitaria, risposte alle domande pi&ugrave; frequenti</a></li>
+  <li><a href="https://www.agenziaentrate.gov.it/portale/web/guest/agenzia/uffici-e-pec/posta-elettronica-certificata-entrate/pec-direzioni-provinciali" class="text-indigo-700 underline" target="_blank" rel="noopener">PEC delle Direzioni provinciali</a>, <a href="https://www.agenziaentrate.gov.it/portale/prenota-un-appuntamento" class="text-indigo-700 underline" target="_blank" rel="noopener">prenotazione degli appuntamenti</a>, <a href="https://www.agenziaentrate.gov.it/portale/consegna-documenti" class="text-indigo-700 underline" target="_blank" rel="noopener">Consegna documenti e istanze</a> e <a href="https://www.agenziaentrate.gov.it/portale/verifica-codice-fiscale" class="text-indigo-700 underline" target="_blank" rel="noopener">Verifica codice fiscale</a></li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;605~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 605/1973, art. 7</a> (comunicazioni all&rsquo;anagrafe tributaria; testo in vigore fino al 31 dicembre 2026) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-08-05;141:1~art7" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 7 del testo unico allegato al D.Lgs. 141/2026</a>, dal 1&deg; gennaio 2027</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art58" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 600/1973, art. 58</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1973-09-29;600~art59" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 59</a> (domicilio fiscale; abrogati dal 1&deg; gennaio 2027)</li>
+  <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art46" class="text-indigo-700 underline" target="_blank" rel="noopener">D.P.R. 445/2000, art. 46</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:2000-12-28;445~art47" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 47</a> (dichiarazioni sostitutive)</li>
+</ul>
+        <p class="mt-6 text-xs text-gray-500 leading-relaxed">Il compilatore aiuta a riempire il modello: prima di firmare, ricontrolla i dati con le istruzioni ufficiali.</p>
       </section>
 
       <!-- Pubblicit&agrave; Extra per Dispositivi Mobili -->

@@ -267,11 +267,17 @@ def togli_il_pulsante_stampa(writer: PdfWriter) -> None:
         if nome != "STAMPA":
             continue
         acroform["/Fields"].remove(riferimento)
+        # sulla pagina ci sono i due riquadri figli del campo, «STAMPA» e
+        # «CANCELLA DATI»: senza il campo restavano a schermo, inerti
         for pagina in writer.pages:
             annotazioni = pagina.get("/Annots")
-            if annotazioni and riferimento in annotazioni:
-                annotazioni.remove(riferimento)
-        print("    pulsante STAMPA rimosso")
+            if not annotazioni:
+                continue
+            for annotazione in list(annotazioni):
+                padre = annotazione.get_object().get("/Parent")
+                if annotazione == riferimento or getattr(padre, "idnum", None) == riferimento.idnum:
+                    annotazioni.remove(annotazione)
+        print("    pulsante STAMPA rimosso, con i suoi riquadri")
 
 
 # Il riquadro del sesso e' uno solo per due persone diverse: quello del
