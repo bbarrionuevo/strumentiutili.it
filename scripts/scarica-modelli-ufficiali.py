@@ -188,6 +188,17 @@ MODELLI = {
         "documents/20143/2302621/TV_rimborso_75_istr.pdf/11b4926b-8001-4996-52bc-d3114c202a97?t=1742281105241",
         "schede/agevolazioni/canone-tv/modelli-e-istruzioni-canone-tv",
     ),
+
+    # --- Opposizione all'uso delle spese sanitarie nella precompilata ---------
+    # Spese del 2026 (precompilata 2027), modello caricato il 7 ottobre 2026.
+    "modello-opposizione-spese-sanitarie-ufficiale.pdf": (
+        "documents/20143/10373920/730+opposizione+spese+sanitarie_2027.pdf/47f37137-1ebb-cd46-8c18-5bd11f8e6672?t=1791364821978",
+        "schede/comunicazioni/opposizioni-utilizzo-delle-spese/opposizione-utilizzo-dati-spesesanitarie-730-precompilato/modello-2017-opposizione-730-precompilato",
+    ),
+    "modello-opposizione-spese-sanitarie-editabile.pdf": (
+        "documents/20143/10373920/730+opposizione+spese+sanitarie_editabile_2027.pdf/671efd5d-d428-4fbf-3835-3dc6e35d9529?t=1791364823858",
+        "schede/comunicazioni/opposizioni-utilizzo-delle-spese/opposizione-utilizzo-dati-spesesanitarie-730-precompilato/modello-2017-opposizione-730-precompilato",
+    ),
 }
 
 

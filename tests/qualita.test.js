@@ -257,5 +257,5 @@ test('contenuti del nucleo: frasi ripetute fra pagine e punteggio', () => {
   assert.strictEqual(m.tabelle, 1);
   assert.strictEqual(m.esempi, 1);
   assert.ok(K.punteggio(m) < K.punteggio(Object.assign({}, m, { parole: 1500, esempi: 5, faq: 5, fonti: 5, immagini: 1, quotaInSerie: 0 })));
-  assert.strictEqual(K.NUCLEO.length, 25);
+  assert.strictEqual(K.NUCLEO.length, 26);
 });

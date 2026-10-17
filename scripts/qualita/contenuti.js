@@ -18,7 +18,7 @@ const C = require('../../tests/helpers/contenuti.js');
 
 const RADICE = path.join(__dirname, '..', '..');
 
-// Le pagine del nucleo: i 15 compilatori di modelli ufficiali, l'indice dei
+// Le pagine del nucleo: i 16 compilatori di modelli ufficiali, l'indice dei
 // modelli F24 e i calcolatori fiscali e del lavoro con impressioni.
 const NUCLEO = [
   '/cittadino-tasse/f24-editabile/f24-elide/',
@@ -34,6 +34,7 @@ const NUCLEO = [
   '/cittadino-tasse/disdetta-canone-rai/',
   '/cittadino-tasse/esenzione-canone-rai-over-75/',
   '/cittadino-tasse/rimborso-canone-rai/',
+  '/cittadino-tasse/opposizione-spese-sanitarie/',
   '/fisco-professioni/modelli-partita-iva/',
   '/identita-burocrazia/richiesta-codice-fiscale/',
   '/identita-burocrazia/codice-fiscale-enti/',
