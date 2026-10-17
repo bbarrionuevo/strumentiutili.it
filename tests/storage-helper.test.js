@@ -16,12 +16,14 @@ test('codici fiscali, IBAN e password si riconoscono in ogni forma di nome', () 
     'cf', 'f24-cf', 'codice_fiscale', 'codiceFiscale', 'iban', 'ibanEstero', 'password',
     'f24-ordinario.contribuente.cf', 'f24-ordinario.contribuente.cfCoobbligato',
     'modello-rli.garanti.cfSecondoGarante', 'aa4-8.altri.altroCf2', 'aa5-6.soci.cf3',
-    'rappCf', 'delegatoCf', 'cfRichiedenteEnte', 'numero-carta', 'pinCode'
+    'rappCf', 'delegatoCf', 'cfRichiedenteEnte', 'numero-carta', 'pinCode',
+    'opposizione.sottoscritto.tessera', 'opposizione.rappresentato.tesseraSanitaria'
   ]) assert.ok(sensibile(k), k);
 });
 
 test('i campi normali si salvano', () => {
-  for (const k of ['cfu', 'reddito', 'f24-ordinario.erario.0.importo', 'cartella', 'spinta', 'anzianita', 'nome', 'cognome', 'capoluogo'])
+  for (const k of ['cfu', 'reddito', 'f24-ordinario.erario.0.importo', 'cartella', 'spinta', 'anzianita', 'nome', 'cognome', 'capoluogo',
+    'fototessera', 'tesseract'])
     assert.ok(!sensibile(k), k);
 });
 

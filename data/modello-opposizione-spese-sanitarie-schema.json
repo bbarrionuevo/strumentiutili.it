@@ -1,0 +1,217 @@
+{
+  "versione": "2026-10",
+  "nota": "Mappatura dei campi del modello per l'opposizione all'utilizzo dei dati delle spese sanitarie per la dichiarazione dei redditi precompilata (spese del 2026, precompilata 2027), versione editabile pubblicata dall'Agenzia delle Entrate nella pagina Opposizione all'utilizzo delle spese sanitarie - Modelli. Il PDF compilabile e' preparato da scripts/prepara-modello-opposizione-spese-sanitarie.py. I testi delle tipologie di spesa sono quelli stampati sul modello; tempi e modi di invio sono quelli della scheda «Che cos'e'» dell'Agenzia (aggiornata il 7 ottobre 2026).",
+  "tabelle": {},
+  "modelli": {
+    "OPPOSIZIONE": {
+      "codice": "Opposizione spese sanitarie",
+      "nome": "Opposizione all'utilizzo dei dati delle spese sanitarie per la dichiarazione precompilata",
+      "sottotitolo": "Spese sanitarie del 2026 - dichiarazione precompilata 2027",
+      "descrizione": "Il modello con cui l'assistito chiede all'Agenzia delle Entrate che i dati di alcune tipologie di spese sanitarie (con gli eventuali rimborsi) non entrino nella dichiarazione precompilata relativa all'anno d'imposta 2026.",
+      "pdf": "/assets/pdf/modello-opposizione-spese-sanitarie-compilabile.pdf",
+      "ufficiale": "https://www.agenziaentrate.gov.it/portale/schede/comunicazioni/opposizioni-utilizzo-delle-spese/opposizione-utilizzo-dati-spesesanitarie-730-precompilato/modello-2017-opposizione-730-precompilato",
+      "testata": {
+        "riferimentoNomeFile": "sottoscritto.codiceFiscale"
+      },
+      "passi": [
+        {
+          "id": "spese",
+          "titolo": "Quali spese escludere",
+          "descrizione": "Barra le tipologie di spesa che non vuoi far entrare nella dichiarazione precompilata 2027 (spese del 2026). Con il modello l'opposizione vale per tutta la tipologia barrata, rimborsi compresi: per escludere solo alcune spese c'e' il sito del Sistema Tessera Sanitaria, dal 9 febbraio all'8 marzo 2027.",
+          "almenoUno": {
+            "campi": ["a", "b", "c", "d", "e", "f"],
+            "messaggio": "Barra almeno una tipologia di spesa: senza, il modello non esclude niente."
+          },
+          "campi": [
+            {
+              "id": "a",
+              "type": "check",
+              "pdf": "A",
+              "label": "A - Ticket",
+              "width": "full",
+              "help": "Ticket per l'acquisto di farmaci e per le prestazioni fruite nell'ambito del Servizio sanitario nazionale."
+            },
+            {
+              "id": "b",
+              "type": "check",
+              "pdf": "B",
+              "label": "B - Farmaci",
+              "width": "full",
+              "help": "Spese per l'acquisto di farmaci, anche omeopatici."
+            },
+            {
+              "id": "c",
+              "type": "check",
+              "pdf": "C",
+              "label": "C - Dispositivi medici con marcatura CE",
+              "width": "full",
+              "help": "Spese per l'acquisto o l'affitto di dispositivi medici con marcatura CE."
+            },
+            {
+              "id": "d",
+              "type": "check",
+              "pdf": "D",
+              "label": "D - Servizi sanitari erogati dalle farmacie",
+              "width": "full",
+              "help": "Per esempio ecocardiogramma, spirometria, test per la glicemia, misurazione della pressione sanguigna."
+            },
+            {
+              "id": "e",
+              "type": "check",
+              "pdf": "E",
+              "label": "E - Prestazioni sanitarie",
+              "width": "full",
+              "help": "Escluse chirurgia e medicina estetica: assistenza specialistica ambulatoriale, visite mediche generiche e specialistiche, prestazioni diagnostiche e strumentali, prestazioni chirurgiche, certificati medici, ricoveri legati a interventi chirurgici o degenze (al netto del comfort), prestazioni di chi esercita una professione sanitaria."
+            },
+            {
+              "id": "f",
+              "type": "check",
+              "pdf": "F",
+              "label": "F - Spese agevolabili solo a particolari condizioni",
+              "width": "full",
+              "help": "Protesi che non rientrano fra i dispositivi medici con marcatura CE e assistenza integrativa (acquisto o affitto), cure termali, prestazioni di chirurgia estetica e di medicina estetica, ambulatoriali o ospedaliere."
+            }
+          ]
+        },
+        {
+          "id": "sottoscritto",
+          "titolo": "Chi firma il modello",
+          "descrizione": "Il riquadro «Il sottoscritto»: i dati di chi firma. Se fai opposizione per le tue spese, sono i tuoi dati e il passo successivo resta vuoto. Se firmi come rappresentante o tutore di un'altra persona, qui vanno i tuoi dati e quelli dell'altra persona nel passo successivo. Il modello chiede tutti i dati: senza, la richiesta non puo' essere accolta.",
+          "campi": [
+            {
+              "id": "codiceFiscale",
+              "type": "cf",
+              "pdf": "Codice Fiscale",
+              "label": "Codice fiscale",
+              "required": true,
+              "width": "half",
+              "help": "I 16 caratteri del codice fiscale, come sono scritti sulla tessera sanitaria."
+            },
+            {
+              "id": "cognomeNome",
+              "type": "testo",
+              "pdf": "Cognome e Nome",
+              "label": "Cognome e nome",
+              "required": true,
+              "width": "full",
+              "help": "Prima il cognome, poi il nome, come nei documenti."
+            },
+            {
+              "id": "luogoNascita",
+              "type": "testo",
+              "pdf": "Luogo di nascita",
+              "label": "Luogo di nascita",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "dataNascita",
+              "type": "dataEstesa",
+              "pdf": "Data di nascita",
+              "label": "Data di nascita",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "tessera",
+              "type": "tessera",
+              "pdf": "Tessera sanitaria n",
+              "label": "Numero della tessera sanitaria",
+              "required": true,
+              "width": "half",
+              "help": "Il numero stampato sulla tessera sanitaria. Non si salva in questo browser, come il codice fiscale."
+            },
+            {
+              "id": "scadenza",
+              "type": "dataEstesa",
+              "pdf": "Data di scadenza",
+              "label": "Data di scadenza della tessera",
+              "required": true,
+              "width": "half"
+            }
+          ]
+        },
+        {
+          "id": "rappresentato",
+          "titolo": "Se firmi per un'altra persona",
+          "descrizione": "Il riquadro «In qualita' di rappresentante/tutore di»: solo se firmi come rappresentante o tutore. Per chi non ha compiuto 16 anni l'opposizione la fa il tutore o il rappresentante legale. Qui vanno i dati della persona rappresentata, cioe' di chi ha sostenuto le spese da escludere.",
+          "opzionale": true,
+          "campi": [
+            {
+              "id": "codiceFiscale",
+              "type": "cf",
+              "pdf": "Codice Fiscale rappresentante/tutore",
+              "label": "Codice fiscale della persona rappresentata",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "cognomeNome",
+              "type": "testo",
+              "pdf": "Cognome e Nome rappresentante/tutore",
+              "label": "Cognome e nome",
+              "required": true,
+              "width": "full"
+            },
+            {
+              "id": "luogoNascita",
+              "type": "testo",
+              "pdf": "Luogo di nascita rappresentante/tutore",
+              "label": "Luogo di nascita",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "dataNascita",
+              "type": "dataEstesa",
+              "pdf": "Data di nascita rappresentante / tutore",
+              "label": "Data di nascita",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "tessera",
+              "type": "tessera",
+              "pdf": "Tessera sanitaria rappresentante/tutore",
+              "label": "Numero della sua tessera sanitaria",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "scadenza",
+              "type": "dataEstesa",
+              "pdf": "Datadi scadenza rappresentante/tutore",
+              "label": "Data di scadenza della tessera",
+              "required": true,
+              "width": "half"
+            }
+          ]
+        },
+        {
+          "id": "firma",
+          "titolo": "Luogo e data",
+          "descrizione": "Il riquadro della firma resta vuoto: si firma sul modello stampato, per esteso e in modo leggibile, come chiede il modello. Con il modello va allegata la copia del documento d'identita' di chi lo presenta e, se c'e', di chi firma come rappresentante o tutore.",
+          "campi": [
+            {
+              "id": "luogo",
+              "type": "testo",
+              "pdf": "luogo_firma",
+              "label": "Luogo",
+              "required": true,
+              "width": "half"
+            },
+            {
+              "id": "data",
+              "type": "dataEstesa",
+              "pdf": "data_firma",
+              "label": "Data",
+              "required": true,
+              "width": "half",
+              "help": "Il modello va inviato all'Agenzia entro il 2 febbraio 2027."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

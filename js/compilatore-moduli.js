@@ -298,6 +298,9 @@
         return /^(19|20)\d{2}$/.test(v) ? null : 'Indica un anno di quattro cifre (per esempio 2026).';
       case 'email':
         return /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(String(valore).trim()) ? null : 'Indirizzo e-mail non valido.';
+      case 'tessera':
+        return /^[0-9A-Z]{1,20}$/.test(v.replace(/\s/g, ''))
+          ? null : 'Scrivi il numero della tessera sanitaria come è stampato, senza spazi: al massimo 20 caratteri.';
       case 'data':
       case 'dataEstesa':
         return /^\d{4}-\d{2}-\d{2}$/.test(String(valore)) ? null : 'Data non valida.';
@@ -329,6 +332,13 @@
       const msg = controlla(campo, passo);
       if (msg) errori[chiave(passo.id, campo.id)] = msg;
     });
+
+    // Caselle di cui va barrata almeno una: nel modello di opposizione alle
+    // spese sanitarie le tipologie di spesa da escludere. Senza nessuna il
+    // modello non chiede niente. L'errore compare sotto la prima casella.
+    if (passo.almenoUno && !passo.almenoUno.campi.some((id) => leggi(chiave(passo.id, id)))) {
+      errori[chiave(passo.id, passo.almenoUno.campi[0])] = passo.almenoUno.messaggio;
+    }
 
     (passo.ripetibili || []).forEach((gruppo) => {
       const totale = righeVisibili(passo, gruppo);
@@ -378,6 +388,9 @@
       case 'anno': return 'type="text" inputmode="numeric" maxlength="4" class="mp-input"';
       case 'data': case 'dataEstesa': return 'type="date" class="mp-input"';
       case 'email': return 'type="email" class="mp-input"';
+      // il numero della tessera sanitaria: il riquadro del modello di
+      // opposizione alle spese sanitarie ne tiene al massimo 20 caratteri
+      case 'tessera': return 'type="text" maxlength="24" autocomplete="off" class="mp-input mp-maiuscolo"';
       default: return 'type="text" class="mp-input"';
     }
   }
@@ -417,7 +430,7 @@
           <input type="checkbox" data-campo="${esc(k)}" data-tipo="check" ${valore ? 'checked' : ''}>
           <span>${esc(campo.label)}${stella}</span>
         </label>
-        ${campo.help ? `<p class="mp-nota">${esc(campo.help)}</p>` : ''}
+        ${campo.help ? `<p class="mp-nota">${esc(campo.help)}</p>` : ''}${errore ? `<p class="mp-errore">${esc(errore)}</p>` : ''}
       </div>`;
     }
 
@@ -761,7 +774,7 @@
       // caselline e il prefisso va tolto. Altrove, come nel modello per
       // l'accredito dei rimborsi, il pettine ne ha 27 e l'IBAN si scrive tutto.
       case 'iban': return v.replace(/\s/g, '').toUpperCase().replace(/^IT/, '');
-      case 'ibanCompleto': return v.replace(/\s/g, '').toUpperCase();
+      case 'ibanCompleto': case 'tessera': return v.replace(/\s/g, '').toUpperCase();
       case 'importo': case 'numero': case 'anno': return v.replace(/[^\d]/g, '');
       case 'euro': return unisciImporto(v);
       case 'percentuale': return v.replace(/[\s%]/g, '').replace('.', ',');
@@ -1202,7 +1215,7 @@
   /* -------------------------------------------------------------- interazioni */
 
   function normalizzaInput(elemento, tipo) {
-    if (['cf', 'cfOpiva', 'provincia', 'iban', 'ibanCompleto'].includes(tipo)) {
+    if (['cf', 'cfOpiva', 'provincia', 'iban', 'ibanCompleto', 'tessera'].includes(tipo)) {
       const posizione = elemento.selectionStart;
       elemento.value = elemento.value.toUpperCase();
       try { elemento.setSelectionRange(posizione, posizione); } catch (e) { /* input date e simili */ }
@@ -1230,6 +1243,15 @@
         scrivi(k, elemento.value);
       }
     });
+  }
+
+  /** Barrata una casella di un gruppo «almeno uno», l'errore del gruppo non vale piu'. */
+  function togliErroreAlmenoUno() {
+    const passo = modelloCorrente().passi[stato.passo];
+    const gruppo = passo && passo.almenoUno;
+    if (gruppo && gruppo.campi.some((id) => leggi(chiave(passo.id, id)))) {
+      delete stato.errori[chiave(passo.id, gruppo.campi[0])];
+    }
   }
 
   function collega() {
@@ -1272,6 +1294,7 @@
           || elemento.tagName === 'SELECT') {
         const valore = elemento.type === 'checkbox' ? elemento.checked : elemento.value;
         scrivi(elemento.dataset.campo, valore);
+        togliErroreAlmenoUno();
         renderMantenendoFuoco();
       }
     });

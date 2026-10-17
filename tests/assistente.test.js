@@ -62,6 +62,7 @@ const DOMANDE = [
   ['togliere la posizione gps dalle foto', '/utilita-web/rimuovi-dati-foto/'],
   ['aprire un allegato p7m', '/pdf/apri-file-p7m/'],
   ['disdire il canone tv', '/cittadino-tasse/disdetta-canone-rai/'],
+  ['non far vedere le spese mediche ai genitori', '/cittadino-tasse/opposizione-spese-sanitarie/'],
   ['quanto costa la benzina oggi', '/utilita-web/prezzi-carburanti-oggi/'],
   ['calcolare la rata del mutuo', '/fisco-professioni/calcolo-rata-mutuo/'],
   ['tassa di possesso auto', '/cittadino-tasse/calcolo-bollo-auto/'],
