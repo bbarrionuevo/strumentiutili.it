@@ -127,6 +127,20 @@ test('partita IVA: sanzione, chiusura d\'ufficio e testo unico dal 2027', () => 
   assert.ok(s.includes(NT + 'stato:decreto.legislativo:1997-12-18;471~art5'));
   assert.match(t, /nelle tre annualità precedenti/);
   assert.match(t, /«Risposta a comunicazione di chiusura della Partita IVA»/);
+  // le schede «La chiusura d'ufficio» dell'Agenzia, riscritte a ottobre 2026
+  // (la sentinella le ha segnalate il 17/10, issue #100): prima arriva una
+  // comunicazione preventiva, entro 60 giorni ci si rivolge a un ufficio per
+  // evitare la chiusura, dopo si chiede la riattivazione. Prima la pagina
+  // parlava solo di «una comunicazione» a cui rispondere.
+  assert.match(t, /comunicazione preventiva/);
+  assert.match(t, /Entro 60 giorni dal ricevimento/);
+  assert.match(t, /qualsiasi ufficio territoriale dell’Agenzia con i chiarimenti per evitarla/);
+  assert.match(t, /richiesta motivata di riattivazione/);
+  assert.match(t, /la riattivazione vale dalla data originaria di apertura della partita IVA/);
+  assert.doesNotMatch(t, /Il contribuente riceve una comunicazione\. Chi ritiene di essere ancora attivo/);
+  const faq = JSON.parse(s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph']
+    .find((n) => n['@type'] === 'FAQPage').mainEntity.find((q) => /chiudere d’ufficio/.test(q.name));
+  assert.match(faq.acceptedAnswer.text, /comunicazione preventiva: entro 60 giorni/);
   // dal 1° gennaio 2027 l'art. 35 è abrogato (D.Lgs. 10/2026) e la sanzione
   // passa nel testo unico delle sanzioni tributarie
   assert.ok(s.includes(NT + 'stato:decreto.legislativo:2026-01-19;10:1~art68'));
