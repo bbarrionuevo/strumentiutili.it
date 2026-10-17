@@ -17,6 +17,7 @@ PAGINE = [
     "/cittadino-tasse/disdetta-canone-rai/",
     "/cittadino-tasse/esenzione-canone-rai-over-75/",
     "/cittadino-tasse/rimborso-canone-rai/",
+    "/cittadino-tasse/opposizione-spese-sanitarie/",
     "/cittadino-tasse/f24-editabile/f24-ordinario/",
     "/cittadino-tasse/f24-editabile/f24-semplificato/",
     "/cittadino-tasse/f24-editabile/f24-elide/",

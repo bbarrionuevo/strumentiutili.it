@@ -1,5 +1,5 @@
 // sw.js — Service Worker per StrumentiUtili.it
-const CACHE_NAME = 'strumentiutili-v103';
+const CACHE_NAME = 'strumentiutili-v104';
 
 // I file condivisi verso l'app installata (share_target nel manifest) arrivano
 // qui con un POST: si mettono in IndexedDB con js/condivisi.js e si passa alla
@@ -38,6 +38,7 @@ const APP_SHELL = [
   '/cittadino-tasse/disdetta-canone-rai/',
   '/cittadino-tasse/esenzione-canone-rai-over-75/',
   '/cittadino-tasse/rimborso-canone-rai/',
+  '/cittadino-tasse/opposizione-spese-sanitarie/',
   '/cittadino-tasse/imposte-acquisto-casa/',
   '/cittadino-tasse/calcolo-bollo-auto/',
   '/cittadino-tasse/lettore-multa-codice-strada/',
@@ -313,6 +314,7 @@ const APP_SHELL = [
   '/data/modello-canone-tv-75-schema.json',
   '/data/modello-rimborso-canone-tv-schema.json',
   '/data/modello-aa5-6-schema.json',
+  '/data/modello-opposizione-spese-sanitarie-schema.json',
   '/assets/icon.svg',
   '/assets/icon.png',
   '/assets/og-image.png',

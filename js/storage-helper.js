@@ -53,8 +53,10 @@
 
   // Nomi di campo che contengono dati da non lasciare in un browser che
   // magari e' condiviso: si confronta la parola intera, cosi' "cf" colpisce
-  // "f24-cf" ma non "cfu".
-  const SENSIBILE = /(^|[-_])(iban|cf|codice[-_]?fiscale|password|pwd|pin|cvv|carta|card)([-_]|$)/i;
+  // "f24-cf" ma non "cfu". Anche il numero della tessera sanitaria, che
+  // insieme al codice fiscale identifica l'assistito (modello di opposizione
+  // all'uso delle spese sanitarie).
+  const SENSIBILE = /(^|[-_])(iban|cf|codice[-_]?fiscale|tessera|password|pwd|pin|cvv|carta|card)([-_]|$)/i;
   // I modelli (js/compilatore-moduli.js) chiamano i campi in camelCase e con i
   // punti ("f24.contribuente.cfCoobbligato", "ibanEstero", "altroCf2"): si
   // separano le parole prima del confronto.

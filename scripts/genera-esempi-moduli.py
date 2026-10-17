@@ -742,6 +742,38 @@ ESEMPI = {
         "etichetta_y": 0.009,
         "larghezza": 1100,
     },
+    # Una studentessa a carico dei genitori esclude dalla precompilata farmaci e
+    # prestazioni sanitarie (scheda «Che cos'e'» dell'Agenzia: chi e' a carico
+    # di un familiare non gli fa vedere le spese per cui fa opposizione). Firma
+    # per se': il riquadro del rappresentante resta vuoto. Persona, codice
+    # fiscale e numero della tessera sono inventati.
+    "opposizione-spese-sanitarie-studentessa": {
+        "pagina": "/cittadino-tasse/opposizione-spese-sanitarie/",
+        "modello": "OPPOSIZIONE",
+        "passi": [
+            {"campi": {
+                "spese.b": "X",
+                "spese.e": "X",
+            }},
+            {"passo": "Chi firma", "campi": {
+                "sottoscritto.codiceFiscale": "BNCCHR04C52L219I",
+                "sottoscritto.cognomeNome": "BIANCHI CHIARA",
+                "sottoscritto.luogoNascita": "TORINO",
+                "sottoscritto.dataNascita": "2004-03-12",
+                "sottoscritto.tessera": "12345678901234567890",
+                "sottoscritto.scadenza": "2030-03-12",
+            }},
+            {"passo": "Luogo e data", "campi": {
+                "firma.luogo": "TORINO",
+                "firma.data": "2026-10-19",
+            }},
+        ],
+        # la seconda facciata (la prima e' l'informativa): il riquadro di chi
+        # firma, poi tipologie, luogo e data; quello del rappresentante e' vuoto
+        "ritaglio": [(2, 0.0, 0.0, 1.0, 0.325), (2, 0.0, 0.488, 1.0, 0.962)],
+        "salto": ["Riquadro del rappresentante o tutore: vuoto (firma per se stessa)"],
+        "larghezza": 1100,
+    },
 }
 
 
