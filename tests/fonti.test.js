@@ -95,6 +95,17 @@ const DAL_2027 = [
   // testo unico IVA (D.Lgs. 10/2026, allegato)
   ['presidente.repubblica:decreto:1972-10-26;633~art21', 'stato:decreto.legislativo:2026-01-19;10:1~art72'],
   ['presidente.repubblica:decreto:1972-10-26;633~art35', 'stato:decreto.legislativo:2026-01-19;10:1~art68'],
+  // testo unico versamenti e riscossione (D.Lgs. 33/2025, allegato), letto il
+  // 19/10/2026 con il testo in vigore dal 2027: cambia solo il numero
+  ['stato:decreto.legislativo:1997-07-09;241~art17', 'stato:decreto.legislativo:2025-03-24;33:1~art3'],
+  ['stato:decreto.legislativo:1997-07-09;241~art20', 'stato:decreto.legislativo:2025-03-24;33:1~art10'],
+  ['stato:legge:2000-12-23;388~art34', 'stato:decreto.legislativo:2025-03-24;33:1~art3'],
+  ['stato:decreto.legge:2014-04-24;66~art11', 'stato:decreto.legislativo:2025-03-24;33:1~art5'],
+  ['stato:decreto.legge:2006-07-04;223~art37', 'stato:decreto.legislativo:2025-03-24;33:1~art5'],
+  ['stato:decreto.legge:2010-05-31;78~art31', 'stato:decreto.legislativo:2025-03-24;33:1~art6'],
+  ['presidente.repubblica:decreto:1973-09-29;600~art23', 'stato:decreto.legislativo:2025-03-24;33:1~art33'],
+  ['presidente.repubblica:decreto:1973-09-29;600~art25', 'stato:decreto.legislativo:2025-03-24;33:1~art38'],
+  ['presidente.repubblica:decreto:1973-09-29;602~art28ter', 'stato:decreto.legislativo:2025-03-24;33:1~art108'],
 ];
 
 test('chi cita un articolo sostituito dal 2027 collega anche quello nuovo', () => {
