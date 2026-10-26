@@ -44,16 +44,22 @@ test('AA4/8: nel modello va il codice attribuito, non quello calcolato', () => {
   assert.deepStrictEqual(chiavi.sort(), ['cognome', 'comuneNascita', 'dataNascita', 'nome', 'provinciaNascita', 'sesso']);
 });
 
-test('AA4/8: PEC, sportello con appuntamento e stranieri di persona', () => {
+test('AA4/8: PEC, sportello con appuntamento, anche per gli stranieri', () => {
   const t = C.testoVisibile(leggi(PAGINA));
   // prima: «Il modello si presenta a un qualunque ufficio» e, per i canali
   // telematici, «verifica sulla pagina ufficiale quale sia la via più rapida»
   assert.doesNotMatch(t, /quale sia la via più rapida/);
   assert.match(t, /Via PEC a un ufficio dell'Agenzia: il modello firmato e la copia di un documento d'identità, che non serve se firmi digitalmente/);
   assert.match(t, /PEC a un ufficio dell’Agenzia\s+Il modello compilato e firmato, con la copia di un documento d’identità; se lo firmi digitalmente il documento non serve/);
-  // scheda «Il codice fiscale - Che cos'è»: primo codice ai cittadini
-  // stranieri, UE o extra UE, solo con appuntamento in presenza
-  assert.match(t, /per il primo codice di un cittadino straniero, dell’Unione europea o no, la presenza allo sportello è obbligatoria/);
+  // scheda «Il codice fiscale - Che cos'è» aggiornata il 20 ottobre 2026: il
+  // modello si manda via PEC anche per il primo codice di un cittadino
+  // straniero; chi viene da un Paese extra Ue allega, in alternativa, uno dei
+  // quattro documenti. Prima diceva «La presenza allo sportello è
+  // obbligatoria per consentire l'identificazione del richiedente» e la pagina
+  // mandava gli stranieri solo allo sportello.
+  assert.doesNotMatch(t, /presenza allo sportello è obbligatoria|la presenza è obbligatoria|si chiede solo di persona|si chiede solo così, di persona|l’unica strada per il primo codice fiscale di un cittadino straniero/);
+  assert.match(t, /Vale anche per il primo codice fiscale di un cittadino straniero: chi viene da un Paese fuori dall’Unione europea allega, a scelta, il passaporto valido con il visto, se richiesto, l’attestazione d’identità del suo consolato in Italia, il permesso di soggiorno valido o la carta d’identità del Comune di residenza/);
+  assert.match(t, /Può mandare il modello firmato via PEC a un ufficio dell’Agenzia, allegando il passaporto valido/);
   assert.match(t, /il passaporto valido con il visto, quando è richiesto/);
   // la tessera in scadenza non si chiede; la prima tessera solo alla ASL
   assert.match(t, /il duplicato di una tessera in scadenza non va chiesto/);
@@ -140,7 +146,8 @@ test('AA4/8: lo schema rimanda al codice attribuito e ai servizi online', () => 
     assert.match(campo('richiesta', id).help, /già attribuito dall'Agenzia.*un codice calcolato non vale/, id);
   }
   assert.match(campo('richiesta', 'duplicato').help, /Con SPID, CIE o CNS la nuova tessera o il nuovo tesserino si chiedono online/);
-  assert.match(campo('richiesta', 'attribuzione').help, /primo codice fiscale di un cittadino straniero si va di persona/);
+  assert.match(campo('richiesta', 'attribuzione').help, /primo codice fiscale di un cittadino straniero si chiede con questo modello, via PEC o allo sportello/);
+  assert.doesNotMatch(campo('richiesta', 'attribuzione').help, /di persona/);
   const firma = passi().find((p) => p.id === 'sottoscrizione');
   assert.match(firma.descrizione, /Via PEC .* che non serve se lo firmi digitalmente/);
 });
