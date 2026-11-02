@@ -106,6 +106,12 @@ const DAL_2027 = [
   ['presidente.repubblica:decreto:1973-09-29;600~art23', 'stato:decreto.legislativo:2025-03-24;33:1~art33'],
   ['presidente.repubblica:decreto:1973-09-29;600~art25', 'stato:decreto.legislativo:2025-03-24;33:1~art38'],
   ['presidente.repubblica:decreto:1973-09-29;602~art28ter', 'stato:decreto.legislativo:2025-03-24;33:1~art108'],
+  // testo unico delle imposte sui redditi (D.Lgs. 117/2026, allegato), letto il
+  // 2/11/2026 con il testo in vigore dal 2027: stessi scaglioni e detrazioni;
+  // la tassazione del TFR passa dall'art. 19 all'art. 21
+  ['presidente.repubblica:decreto:1986-12-22;917~art11', 'stato:decreto.legislativo:2026-06-19;117:1~art11'],
+  ['presidente.repubblica:decreto:1986-12-22;917~art13', 'stato:decreto.legislativo:2026-06-19;117:1~art13'],
+  ['presidente.repubblica:decreto:1986-12-22;917~art19', 'stato:decreto.legislativo:2026-06-19;117:1~art21'],
 ];
 
 test('chi cita un articolo sostituito dal 2027 collega anche quello nuovo', () => {
