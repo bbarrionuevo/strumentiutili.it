@@ -121,6 +121,7 @@ module.exports = function (ctx) {
       'Legge 5 gennaio 1953, n. 4: obbligo e contenuto del prospetto paga.',
       'D.P.R. 22 dicembre 1986, n. 917, art. 11: scaglioni IRPEF.',
       'D.P.R. 22 dicembre 1986, n. 917, art. 13: detrazioni per lavoro dipendente.',
+      'Dal 1&deg; gennaio 2027 scaglioni e detrazioni sono nel testo unico delle imposte sui redditi, con gli stessi importi: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-06-19;117:1~art11" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 19 giugno 2026, n. 117, allegato, art. 11</a> e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-06-19;117:1~art13" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 13</a>.',
       'Legge 30 dicembre 2024, n. 207: misure strutturali di riduzione del cuneo fiscale.',
       'Legge 30 dicembre 2025, n. 199: secondo scaglione IRPEF al 33% dal 2026.',
       'Codice civile, art. 2120: trattamento di fine rapporto.'

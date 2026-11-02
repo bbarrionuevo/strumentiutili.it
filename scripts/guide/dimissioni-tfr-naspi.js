@@ -126,6 +126,7 @@ module.exports = function (ctx) {
       'Codice civile, art. 2119: recesso per giusta causa.',
       'Codice civile, art. 2120: trattamento di fine rapporto.',
       'D.P.R. 22 dicembre 1986, n. 917, art. 19: tassazione del TFR.',
+      'Dal 1&deg; gennaio 2027 la tassazione del TFR &egrave; nel testo unico delle imposte sui redditi, <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2026-06-19;117:1~art21" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 19 giugno 2026, n. 117, allegato, art. 21</a>, con la stessa regola.',
       'D.Lgs. 4 marzo 2015, n. 22: disciplina della NASpI.',
       'Legge 30 dicembre 2024, n. 207, art. 1: requisito delle 13 settimane dopo le dimissioni.'
     ]
