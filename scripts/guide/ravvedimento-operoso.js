@@ -68,7 +68,7 @@ module.exports = function (ctx) {
     h.p('La tabella mostra quanto costa rimediare a un&rsquo;imposta di ' + euro(1000, 0) + ' non pagata alla scadenza del 16 gennaio 2025, a seconda di quando si paga. Anche dopo un anno il costo resta basso rispetto alla sanzione piena: il ravvedimento conviene sempre, e prima si fa meno costa.'),
     h.tabella('Ravvedimento su ' + euro(1000, 0) + ' scaduti il 16 gennaio 2025', ['Giorni di ritardo', 'Sanzione', 'Interessi', 'Totale oltre l&rsquo;imposta'],
       attese.map(({ g, r }) => [String(g), euro(r.sanzione) + ' (' + p(r.aliquota) + ')', euro(r.interessi), euro(r.sanzione + r.interessi)])),
-    h.p('Se invece si aspetta che l&rsquo;errore venga trovato dall&rsquo;Agenzia con un controllo automatico, arriva una comunicazione (il cosiddetto avviso bonario): pagando entro 30 giorni la sanzione &egrave; ridotta a un terzo, cio&egrave; circa l&rsquo;8,33% dell&rsquo;imposta. &Egrave; comunque molto pi&ugrave; di quanto costa il ravvedimento fatto per tempo.'),
+    h.p('Se invece si aspetta che l&rsquo;errore venga trovato dall&rsquo;Agenzia con un controllo automatico, arriva una comunicazione (il cosiddetto avviso bonario): pagando entro 60 giorni dal ricevimento la sanzione &egrave; ridotta a un terzo, cio&egrave; circa l&rsquo;8,33% dell&rsquo;imposta (un terzo del 25%). I 60 giorni valgono per le comunicazioni elaborate dal 1&deg; gennaio 2025; per quelle precedenti erano 30. &Egrave; comunque molto pi&ugrave; di quanto costa il ravvedimento fatto per tempo.'),
 
     h.h2('f24', 'Come si paga con l&rsquo;F24'),
     h.ol([
@@ -119,7 +119,8 @@ module.exports = function (ctx) {
       'D.Lgs. 18 dicembre 1997, n. 471, art. 13: sanzione per omesso o tardivo versamento.',
       'Dal 1&deg; gennaio 2027 le stesse regole passano al testo unico delle sanzioni tributarie: <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art14" class="text-indigo-700 underline" target="_blank" rel="noopener">D.Lgs. 5 novembre 2024, n. 173, allegato, art. 14</a> (ravvedimento) e <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-11-05;173:1~art38" class="text-indigo-700 underline" target="_blank" rel="noopener">art. 38</a> (omesso o tardivo versamento), con le stesse riduzioni.',
       'D.Lgs. 14 giugno 2024, n. 87: nuove misure delle sanzioni dal 1&deg; settembre 2024.',
-      'D.Lgs. 18 dicembre 1997, n. 462, art. 2: sanzioni ridotte a un terzo dopo la comunicazione di irregolarit&agrave;.',
+      'D.Lgs. 18 dicembre 1997, n. 462, art. 2: sanzioni ridotte a un terzo pagando entro sessanta giorni dalla comunicazione di irregolarit&agrave;.',
+      'D.Lgs. 5 agosto 2024, n. 108, art. 3: i sessanta giorni valgono per le comunicazioni elaborate dal 1&deg; gennaio 2025.',
       'Codice civile, art. 1284: saggio degli interessi legali.',
       'Agenzia delle Entrate: modello F24 e istruzioni per la compilazione.'
     ]
