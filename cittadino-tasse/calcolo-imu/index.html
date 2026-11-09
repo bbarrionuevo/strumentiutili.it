@@ -185,6 +185,30 @@
               "@type": "Answer",
               "text": "No, se è pertinenza dell’abitazione principale (al massimo una per categoria C/2, C/6 e C/7). Un secondo box, o uno che non è pertinenza, paga come gli altri fabbricati."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Il Comune ha cambiato aliquota: quanto pago a dicembre?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Il saldo è la differenza fra l’imposta del 2026, calcolata con la nuova aliquota, e l’acconto versato a giugno con quella del 2025 (L. 160/2019, art. 1, comma 762). Scrivi l’importo pagato a giugno nel campo «Acconto già versato a giugno»: il calcolatore fa il conguaglio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Entro quando il Comune deve pubblicare le aliquote dell’anno?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le aliquote valgono per l’anno se sono pubblicate sul sito del Dipartimento delle finanze entro il 28 ottobre; altrimenti si applicano quelle dell’anno precedente (comma 767). Il saldo di dicembre si calcola con il prospetto pubblicato a quella data."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A giugno ho pagato più del dovuto: cosa succede?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A dicembre non versi niente e chiedi al Comune il rimborso della differenza, entro cinque anni dal versamento; il Comune rimborsa entro centottanta giorni dalla domanda (L. 296/2006, art. 1, comma 164)."
+            }
           }
         ]
       }
@@ -356,8 +380,19 @@
                 <input data-guida="guida-imu-mesi" aria-describedby="guida-imu-mesi" type="number" id="calc-mesi" value="12" min="1" max="12" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
                 <div id="guida-imu-mesi" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
                   <p><strong class="text-indigo-900">Come contarli:</strong> un mese conta per intero se lo hai posseduto per più della metà dei giorni; il giorno del rogito è attribuito a chi compra. Con un rogito del 14 maggio l'acquirente possiede 18 giorni su 31, quindi maggio è suo: il venditore indica 4 mesi e l'acquirente 8.</p>
-                  <p><strong class="text-indigo-900">Acconto con possesso parziale:</strong> lo strumento divide il totale annuo in due rate uguali. Se hai acquistato o ereditato nel corso del primo semestre, l'acconto di giugno corrisponde invece ai soli mesi di possesso fino a giugno e il resto si versa a dicembre.</p>
+                  <p><strong class="text-indigo-900">Acconto con possesso parziale:</strong> lo strumento divide il totale annuo in due rate uguali. Se hai acquistato o ereditato nel corso del primo semestre, l'acconto di giugno corrisponde invece ai soli mesi di possesso fino a giugno e il resto si versa a dicembre: indica quanto hai versato nel campo «Acconto già versato a giugno» e il saldo diventa la differenza.</p>
                 </div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <label for="calc-acconto" class="text-sm font-bold text-gray-700">Acconto già versato a giugno (€, facoltativo)</label>
+                <button type="button" data-guida-toggle="guida-imu-acconto" aria-expanded="false" aria-controls="guida-imu-acconto" aria-label="Guida al campo Acconto già versato" class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">ⓘ</button>
+              </div>
+              <input data-guida="guida-imu-acconto" aria-describedby="guida-imu-acconto" type="number" id="calc-acconto" min="0" step="1" inputmode="numeric" placeholder="Vuoto: due rate uguali" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow" />
+              <div id="guida-imu-acconto" role="note" hidden class="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 p-3 text-xs text-gray-700 leading-relaxed space-y-1.5">
+                <p><strong class="text-indigo-900">Quando serve:</strong> per il saldo di dicembre. L'acconto di giugno si calcola con l'aliquota dell'anno prima, il saldo con quella dell'anno in corso: se il Comune l'ha cambiata, o se a giugno hai pagato un importo diverso dalla metà, il saldo non è la metà dell'imposta ma la differenza fra l'imposta dell'anno e quanto hai già versato.</p>
+                <p><strong class="text-indigo-900">Cosa scrivere:</strong> l'importo della riga IMU dell'F24 di giugno per questo immobile, in euro. Lascia vuoto per dividere l'imposta in due rate uguali; scrivi 0 se a giugno non hai pagato niente e versi tutto a dicembre.</p>
               </div>
             </div>
           </div>
@@ -445,6 +480,7 @@
               <span id="out-saldo" class="text-xl font-bold text-white font-mono">0 €</span>
             </div>
           </div>
+          <p id="out-eccedenza" hidden class="mb-4 rounded-lg bg-amber-50 border border-amber-200 p-3 text-xs text-amber-900 leading-relaxed"></p>
 
           <div class="pt-2">
             <span class="text-xs text-gray-400 uppercase block font-semibold mb-1">Totale Annuo IMU</span>
@@ -513,7 +549,7 @@
       <section aria-labelledby="trust-titolo" class="su-trust-card bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h2 id="trust-titolo" class="text-lg font-bold text-gray-900">Affidabilità di questo strumento</h2>
-          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Moltiplicatori e riduzioni aggiornati a <time datetime="2026-09">settembre 2026</time></span>
+          <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">📅 Moltiplicatori, rate e riduzioni verificati a <time datetime="2026-11">novembre 2026</time></span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div class="rounded-lg bg-gray-50 border border-gray-100 p-4">
@@ -554,6 +590,37 @@
           <p><strong>Casa ereditata da due fratelli a marzo.</strong> Appartamento A/3, rendita 520 &euro;, aliquota 10,6 per mille. Base 520 &times; 1,05 &times; 160 = 87.360 &euro;; per ciascun fratello 87.360 &times; 10,6&permil; &times; 50% &times; 10/12 = 385,84 &euro;, arrotondati a 386 &euro; l&rsquo;anno.</p>
           <p><strong>Appartamento in comodato al figlio.</strong> A/2 con rendita 780 &euro;, aliquota 9,6 per mille: la base piena di 131.040 &euro; si dimezza a 65.520 &euro; e l&rsquo;imposta scende da 1.258 a 629 &euro;. Senza comodato registrato, o con una terza casa, torna a 1.258 &euro;.</p>
           <p><strong>Negozio e box di un commerciante.</strong> Negozio C/1 con rendita 1.850 &euro;: 1.850 &times; 1,05 &times; 55 = 106.837,50 &euro;, imposta 1.132 &euro;. Box C/6 non pertinenziale con rendita 120 &euro;: imposta 214 &euro;. Totale 1.346 &euro; con il codice 3918.</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">Il saldo del 16 dicembre 2026</h3>
+          <p>Il saldo non &egrave; sempre la met&agrave; dell&rsquo;imposta. Per legge l&rsquo;acconto di giugno &egrave; l&rsquo;imposta del primo semestre calcolata con l&rsquo;aliquota e la detrazione dell&rsquo;anno precedente; il saldo di dicembre si versa <em>a conguaglio</em>, con le aliquote del prospetto pubblicato sul sito del Dipartimento delle finanze alla data del 28 ottobre (L. 160/2019, art. 1, comma 762). Se il Comune non pubblica le nuove aliquote entro il 28 ottobre, valgono quelle dell&rsquo;anno prima (comma 767). Quindi: se il tuo Comune ha cambiato aliquota per il 2026, o se a giugno hai pagato un importo diverso dalla met&agrave;, il saldo &egrave; la differenza fra l&rsquo;imposta del 2026 e quanto hai gi&agrave; versato. Nel calcolatore lo ottieni scrivendo l&rsquo;importo pagato a giugno nel campo &laquo;Acconto gi&agrave; versato a giugno&raquo;.</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Rate IMU 2026</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Rata</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Scadenza</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Come si calcola</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Acconto</td><td class="px-1.5 sm:px-3 py-2 align-top">16 giugno 2026</td><td class="px-1.5 sm:px-3 py-2 align-top">imposta del primo semestre con aliquota e detrazione dei dodici mesi del 2025</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Saldo</td><td class="px-1.5 sm:px-3 py-2 align-top">16 dicembre 2026</td><td class="px-1.5 sm:px-3 py-2 align-top">conguaglio: imposta del 2026 con le aliquote del prospetto pubblicato sul sito del Dipartimento delle finanze al 28 ottobre, meno l&rsquo;acconto versato</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Unica soluzione</td><td class="px-1.5 sm:px-3 py-2 align-top">16 giugno 2026</td><td class="px-1.5 sm:px-3 py-2 align-top">tutta l&rsquo;imposta dell&rsquo;anno in una volta, se preferisci</td></tr>
+    </tbody>
+  </table>
+</div>
+          <p><strong>Esempio: il Comune alza l&rsquo;aliquota.</strong> Seconda casa A/2 con rendita 600 &euro;. Base imponibile 600 &times; 1,05 &times; 160 = 100.800 &euro;. Nel 2025 l&rsquo;aliquota era l&rsquo;8,6 per mille: a giugno 2026 l&rsquo;acconto &egrave; 100.800 &times; 8,6&permil; : 2 = 433,44 &euro;, versati come 433 &euro;. Per il 2026 il Comune ha deliberato il 10,6 per mille: l&rsquo;imposta dell&rsquo;anno &egrave; 100.800 &times; 10,6&permil; = 1.068,48 &euro; e il saldo di dicembre &egrave; 1.068,48 &minus; 433 = 635,48 &euro;, cio&egrave; 635 &euro;, non 534.</p>
+          <p><strong>Esempio: l&rsquo;aliquota scende.</strong> Stesso appartamento, ma il Comune porta l&rsquo;aliquota dal 10,6 al 4 per mille. A giugno hai versato 534 &euro; (100.800 &times; 10,6&permil; : 2 = 534,24 &euro;), mentre l&rsquo;imposta del 2026 &egrave; 403,20 &euro;: a dicembre non paghi niente e i 131 &euro; versati in pi&ugrave; si chiedono a rimborso al Comune, entro cinque anni dal versamento; il Comune rimborsa entro centottanta giorni dalla domanda (L. 296/2006, art. 1, comma 164).</p>
+          <p>Ogni versamento si arrotonda all&rsquo;euro: per difetto se la frazione &egrave; inferiore a 49 centesimi, per eccesso se &egrave; superiore (L. 296/2006, art. 1, comma 166).</p>
+          <h3 class="text-lg font-bold text-gray-900 pt-3">I coefficienti per categoria</h3>
+          <p>La rendita della visura, rivalutata del 5%, si moltiplica per il coefficiente della categoria catastale (comma 745). Per i terreni agricoli il reddito dominicale si rivaluta del 25% e il coefficiente &egrave; 135 (comma 746).</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+  <table class="min-w-full text-xs sm:text-sm">
+    <caption class="sr-only">Coefficienti per la base imponibile IMU dei fabbricati (L. 160/2019, art. 1, comma 745)</caption>
+    <thead class="bg-gray-50"><tr><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Categoria catastale</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Coefficiente</th><th scope="col" class="px-1.5 sm:px-3 py-2 text-left font-semibold text-gray-900">Esempi</th></tr></thead>
+    <tbody>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Gruppo A (tranne A/10), C/2, C/6, C/7</td><td class="px-1.5 sm:px-3 py-2 align-top">160</td><td class="px-1.5 sm:px-3 py-2 align-top">appartamenti, cantine, box, tettoie</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Gruppo B, C/3, C/4, C/5</td><td class="px-1.5 sm:px-3 py-2 align-top">140</td><td class="px-1.5 sm:px-3 py-2 align-top">uffici pubblici, laboratori, palestre</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">A/10 e D/5</td><td class="px-1.5 sm:px-3 py-2 align-top">80</td><td class="px-1.5 sm:px-3 py-2 align-top">uffici e studi privati, banche</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">Gruppo D (tranne D/5)</td><td class="px-1.5 sm:px-3 py-2 align-top">65</td><td class="px-1.5 sm:px-3 py-2 align-top">capannoni, alberghi</td></tr>
+      <tr class="border-t border-gray-100"><td class="px-1.5 sm:px-3 py-2 align-top">C/1</td><td class="px-1.5 sm:px-3 py-2 align-top">55</td><td class="px-1.5 sm:px-3 py-2 align-top">negozi e botteghe</td></tr>
+    </tbody>
+  </table>
+</div>
           <h3 class="text-lg font-bold text-gray-900 pt-3">Come si paga</h3>
           <p>Con il modello F24, anche il <a href="/cittadino-tasse/f24-editabile/f24-semplificato/" class="text-indigo-700 underline">semplificato</a>: sezione IMU, codice tributo (3912 abitazione principale di lusso, 3916 aree fabbricabili, 3918 altri fabbricati, 3925 e 3930 per il gruppo D), codice catastale del Comune, importo arrotondato all&rsquo;euro. Se hai immobili in pi&ugrave; Comuni, una riga per Comune.</p>
         </div>
@@ -574,11 +641,23 @@
           <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il box sotto casa paga l&rsquo;IMU?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
           <p class="mt-2 text-sm text-gray-700 leading-relaxed">No, se &egrave; pertinenza dell&rsquo;abitazione principale (al massimo una per categoria C/2, C/6 e C/7). Un secondo box, o uno che non &egrave; pertinenza, paga come gli altri fabbricati.</p>
         </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Il Comune ha cambiato aliquota: quanto pago a dicembre?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Il saldo &egrave; la differenza fra l&rsquo;imposta del 2026, calcolata con la nuova aliquota, e l&rsquo;acconto versato a giugno con quella del 2025 (L. 160/2019, art. 1, comma 762). Scrivi l&rsquo;importo pagato a giugno nel campo &laquo;Acconto gi&agrave; versato a giugno&raquo;: il calcolatore fa il conguaglio.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">Entro quando il Comune deve pubblicare le aliquote dell&rsquo;anno?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">Le aliquote valgono per l&rsquo;anno se sono pubblicate sul sito del Dipartimento delle finanze entro il 28 ottobre; altrimenti si applicano quelle dell&rsquo;anno precedente (comma 767). Il saldo di dicembre si calcola con il prospetto pubblicato a quella data.</p>
+        </details>
+        <details class="group border-b border-gray-100 py-3">
+          <summary class="cursor-pointer font-semibold text-gray-900 list-none flex justify-between items-center gap-3">A giugno ho pagato pi&ugrave; del dovuto: cosa succede?<span class="text-indigo-600 transition-transform group-open:rotate-45 text-lg leading-none" aria-hidden="true">+</span></summary>
+          <p class="mt-2 text-sm text-gray-700 leading-relaxed">A dicembre non versi niente e chiedi al Comune il rimborso della differenza, entro cinque anni dal versamento; il Comune rimborsa entro centottanta giorni dalla domanda (L. 296/2006, art. 1, comma 164).</p>
+        </details>
         <h3 class="text-base font-bold text-gray-900 mt-8 mb-2">Fonti</h3>
         <ul class="list-disc pl-5 space-y-1 text-xs text-gray-600 leading-relaxed">
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2019, n. 160, art. 1</a>, commi 738-783: disciplina dell&rsquo;IMU.</li>
-          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2006, n. 296, art. 1</a>, comma 168: importo minimo dei versamenti.</li>
-          <li>Dipartimento delle Finanze: delibere comunali e prospetto delle aliquote.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2019-12-27;160~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2019, n. 160, art. 1</a>, commi 738-783: disciplina dell&rsquo;IMU; comma 745 per i coefficienti, comma 762 per acconto e saldo, comma 767 per la pubblicazione delle aliquote entro il 28 ottobre.</li>
+          <li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2006-12-27;296~art1" class="text-indigo-700 underline" target="_blank" rel="noopener">Legge 27 dicembre 2006, n. 296, art. 1</a>, commi 164, 166 e 168: rimborsi, arrotondamento all&rsquo;euro e importo minimo dei versamenti.</li>
+          <li><a href="https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Imposta-municipale-propria-IMU/" class="text-indigo-700 underline" target="_blank" rel="noopener">Dipartimento delle finanze, Imposta municipale propria (IMU)</a>: regolamenti e aliquote dei Comuni, con la ricerca del prospetto delle aliquote.</li>
         </ul>
       </section>
 
@@ -680,7 +759,8 @@
             mesi: document.getElementById('calc-mesi').value,
             isStorico: document.getElementById('calc-storico').checked,
             isComodato: document.getElementById('calc-comodato').checked,
-            isConcordato: document.getElementById('calc-concordato').checked
+            isConcordato: document.getElementById('calc-concordato').checked,
+            accontoVersato: document.getElementById('calc-acconto').value
           };
 
           const calc = window.IMUCalculator.calcola(data);
@@ -697,6 +777,13 @@
           outAcconto.textContent = `${calc.acconto} €`;
           outSaldo.textContent = `${calc.saldo} €`;
           outTotale.textContent = `${calc.impostaAnnua} €`;
+
+          // acconto piu' alto dell'imposta dell'anno: niente saldo, la differenza si chiede al Comune
+          const outEccedenza = document.getElementById('out-eccedenza');
+          outEccedenza.hidden = !(calc.eccedenza > 0);
+          outEccedenza.textContent = calc.eccedenza > 0
+            ? `A giugno hai versato ${calc.eccedenza} € più dell'imposta dell'anno: a dicembre non paghi niente e la differenza si chiede a rimborso al Comune, entro cinque anni dal versamento.`
+            : '';
         });
       }
     });

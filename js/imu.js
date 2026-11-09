@@ -76,7 +76,7 @@
         motivo: 'abitazione principale',
         renditaRivalutata: rendita * configImu.rivalutazioneRendita.fabbricati,
         baseImponibile: 0, impostaLorda: 0, detrazione: 0, impostaNetta: 0,
-        impostaAnnua: 0, acconto: 0, saldo: 0, codiceTributo: '', ripartizione: null
+        impostaAnnua: 0, acconto: 0, saldo: 0, eccedenza: 0, codiceTributo: '', ripartizione: null
       };
     }
 
@@ -130,9 +130,16 @@
       if (impostaAnnua - stato > 0) ripartizione.push({ codice: codici.FABBRICATO_D_COMUNE || '3930', ente: 'Comune', importo: impostaAnnua - stato, lordo: impostaNetta - statoLordo });
     }
     // acconto e saldo a meta': vale quando il possesso e l'aliquota non
-    // cambiano nell'anno (comma 762)
-    const acconto = Math.round(impostaNetta / 2);
-    const saldo = impostaAnnua - acconto;
+    // cambiano nell'anno (comma 762). Se si indica l'acconto gia' versato a
+    // giugno (calcolato con l'aliquota dell'anno prima), il saldo e' il
+    // conguaglio fra l'imposta dell'anno e quanto versato, arrotondato
+    // all'euro; se l'acconto supera l'imposta, il saldo e' zero e la
+    // differenza si chiede a rimborso al Comune (L. 296/2006, comma 164).
+    const versato = data.accontoVersato === undefined || data.accontoVersato === null || data.accontoVersato === ''
+      ? null : Math.max(0, safeNum(data.accontoVersato));
+    const acconto = versato === null ? Math.round(impostaNetta / 2) : Math.round(versato);
+    const saldo = versato === null ? impostaAnnua - acconto : Math.max(0, Math.round(impostaNetta - acconto));
+    const eccedenza = versato === null ? 0 : Math.max(0, Math.round(acconto - impostaNetta));
 
     return {
       renditaRivalutata: categoria === 'TERRENO' 
@@ -145,6 +152,7 @@
       impostaAnnua: impostaAnnua,
       acconto: acconto,
       saldo: saldo,
+      eccedenza: eccedenza,
       codiceTributo: ripartizione && ripartizione.length > 1
         ? ripartizione.map((r) => r.codice + ' (' + r.ente + ', ' + r.importo + ' €)').join(' + ')
         : (principaleTassata ? (configImu.codiciTributo.ABITAZIONE_PRINCIPALE || '3912') : mapCodiceTributo(categoria, configImu.codiciTributo)),

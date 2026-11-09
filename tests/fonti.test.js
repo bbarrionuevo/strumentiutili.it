@@ -3,7 +3,7 @@
 // Un sito che fa calcoli fiscali deve dire chi ne risponde e permettere di
 // controllare le fonti: il nome del curatore nelle pagine legali e sugli
 // strumenti, la pagina sul metodo, e le leggi citate collegate al testo
-// ufficiale (Normattiva, EUR-Lex, Agenzia delle Entrate).
+// ufficiale (Normattiva, EUR-Lex, Agenzia delle Entrate, Dipartimento delle finanze).
 const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('node:fs');
@@ -65,7 +65,9 @@ test('i collegamenti alle fonti hanno la forma giusta e si aprono a parte', () =
       const href = a[1].replace(/&amp;/g, '&');
       if (!/rel="noopener"/.test(a[2])) sbagliati.push(p.percorso + ': senza rel=noopener ' + href);
       if (href.includes('normattiva.it') && !URN.test(href)) sbagliati.push(p.percorso + ': URN ' + href);
-      if (!/^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|(www1?|assistenza)\.agenziaentrate\.gov\.it|www\.comune\.[a-z-]+(\.[a-z]{2})?\.it)\//.test(href)) sbagliati.push(p.percorso + ': fonte non ufficiale ' + href);
+      // www.finanze.gov.it: il Dipartimento delle finanze del MEF, dove i Comuni
+      // pubblicano aliquote e regolamenti IMU (L. 160/2019, art. 1, comma 767)
+      if (!/^https:\/\/(www\.normattiva\.it|eur-lex\.europa\.eu|(www1?|assistenza)\.agenziaentrate\.gov\.it|www\.finanze\.gov\.it|www\.comune\.[a-z-]+(\.[a-z]{2})?\.it)\//.test(href)) sbagliati.push(p.percorso + ': fonte non ufficiale ' + href);
     }
   }
   assert.deepStrictEqual(sbagliati, []);
