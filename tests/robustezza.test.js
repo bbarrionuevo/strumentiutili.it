@@ -54,6 +54,17 @@ test('la PWA prende i dati fiscali dalla rete prima che dalla cache', () => {
   assert.ok(i > 0 && i < j, 'i dati vanno gestiti prima degli statici (che rispondono dalla cache)');
 });
 
+test('assistente documenti: web-llm si scarica solo quando si avvia il modello', () => {
+  // il 2/11/2026 la pagina pesava 2153 KB perche' importava web-llm (circa 2 MB
+  // compressi) appena aperta, anche senza WebGPU e senza premere «Avvia»
+  const s = leggi('ia/assistente-documenti/index.html');
+  assert.doesNotMatch(s, /import\s*\{[^}]*\}\s*from\s*"https:\/\/esm\.run/);
+  const avvio = s.indexOf('await import(WEB_LLM)');
+  assert.ok(avvio > 0, 'manca l\'import dinamico');
+  assert.ok(avvio < s.indexOf('await CreateWebWorkerMLCEngine('), 'l\'import va prima della creazione del motore');
+  assert.ok(avvio > s.indexOf('if (!navigator.gpu) return;'), 'senza WebGPU non si scarica');
+});
+
 test('versioni fissate e valori salvati letti con prudenza', () => {
   for (const f of ['js/workers/llm-worker.js', 'ia/assistente-documenti/index.html']) {
     assert.ok(!/esm\.run\/@mlc-ai\/web-llm"/.test(leggi(f)), f + ': web-llm senza versione');

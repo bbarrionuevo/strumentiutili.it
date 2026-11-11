@@ -617,8 +617,10 @@
 
   <!-- SCRIPT DELL'APPLICATIVO IA (LOCALSTORAGE + WEBGPU) -->
   <script type="module">
-    import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm@0.2.85";
     import * as Comlink from "/vendor/comlink@4.4.2/comlink.mjs";
+    // web-llm (circa 2 MB compressi) si scarica solo quando si avvia il modello:
+    // chi legge la pagina o non ha WebGPU non lo carica mai
+    const WEB_LLM = "https://esm.run/@mlc-ai/web-llm@0.2.85";
     document.addEventListener("DOMContentLoaded", () => {
       const loadBtn = document.getElementById("load-btn");
       const modelSelector = document.getElementById("model-selector");
@@ -898,8 +900,11 @@
         progContainer.classList.remove("hidden");
 
         const selectedModel = modelSelector.value;
+        let motoreScaricato = false;
 
         try {
+          const { CreateWebWorkerMLCEngine } = await import(WEB_LLM);
+          motoreScaricato = true;
           const worker = new Worker(new URL("/js/workers/llm-worker.js", window.location.origin), { type: "module" });
           engine = await CreateWebWorkerMLCEngine(
             worker,
@@ -927,7 +932,9 @@
           setTimeout(() => { progContainer.classList.add("hidden"); }, 2000);
 
         } catch (err) {
-          progText.innerText = "❌ Errore: Memoria GPU esaurita o modello incompatibile.";
+          progText.innerText = motoreScaricato
+            ? "❌ Errore: Memoria GPU esaurita o modello incompatibile."
+            : "❌ Errore: non è stato possibile scaricare il motore. Controlla la connessione e riprova.";
           resetLoadButton();
         }
       });

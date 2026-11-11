@@ -5,6 +5,8 @@ Lo usa la skill `laboratorio`: cada idea con su puntaje (Demanda, Originalidad, 
 ## En curso
 - (nada)
 
+**4/11/2026: sin herramienta nueva.** Google indexa 3 de 122 páginas, sin causa técnica (73 «scansionata ma non indicizzata», 46 «sconosciuta»): con la mitad o más fuera del índice no se suman páginas (skill, calidad, punto 6). La mejora de la semana fue para una página fuera del índice con plazo cercano: la calculadora IMU para el saldo del 16/12.
+
 ## En espera (con la condición para retomarlas)
 - **Impuesto de sucesión en autoliquidación** (burocrática) — D3 · O3 · F1 · Fa3 · M2 = 12, pero **descartada por ahora**:
   - **Motivo:** los arts. 7 (tasas y franquicias) y 38 (pago a plazos) del D.Lgs. 346/1990 (`;346:1~art7`, `~art38`) **quedan derogados desde el 1/1/2027** por el D.Lgs. 1 agosto 2025, n. 123 (texto único de registro y otros tributos indirectos), modificado por el D.L. 200/2025.
@@ -16,12 +18,17 @@ Lo usa la skill `laboratorio`: cada idea con su puntaje (Demanda, Originalidad, 
     - pago a 90 días; anticipo del 20 %; hasta 8 o 12 cuotas trimestrales.
   - **Ejemplos oficiales** para los tests: nuda propiedad 200.000 € × 50 % − 200.000 € × 50 % × 2,5 % × 20 = 50.000 €; usufructos 47.500 € y 45.000 €, nuda propiedad 7.500 €.
 - **Rateización de cartelle** (burocrática): el art. 19 del D.P.R. 602/1973 cambia con el D.Lgs. 33/2025 desde el 1/1/2027. Esperar el texto vigente en 2027 y el modelo nuevo de AdER.
-- **Oposición a los gastos sanitarios de la precompilada, año 2026** (burocrática, tarea PR H): ventana desde octubre. Primero comprobar con `leggi-fonti` si la Agenzia ya publicó el modelo del año de impuesto 2026.
 - **Compresor de video en el navegador (WebCodecs)** (tecnológica) — D3 · O3 · F3 · Fa1 · M3 = 13.
   - **Riesgo:** el Chromium de pruebas no tiene H.264 ni AAC, así que no se puede probar en CI.
   - **Retomar** con una salida VP9/AV1 en WebM, que sí se puede probar, y H.264 solo donde el navegador lo ofrezca.
 
 ## Por evaluar
+- **Acconto IVA del 27 de diciembre** (burocrática) — D2 · O2 · F2 · Fa3 · M2 = 11, no llega.
+  - Método histórico (88 %), de previsión y analítico. Hay calculadoras en muchos sitios: la originalidad sería rellenar el F24 con el código 6013 o 6035.
+  - **Fuente:** falta leer la norma (L. 405/1990, art. 6) y comprobar si desde el 1/1/2027 pasa a un texto único (D.Lgs. 33/2025 o D.Lgs. 10/2026).
+- **Tredicesima netta** (burocrática) — D3 · O1 · F2 · Fa3 · M2 = 11, no llega: la hacen todos los sitios de sueldos.
+  - Mejor como modo del calculador de sueldo neto (`lavoro-contratti/stipendio-netto/`, 59 puntos en la auditoría), que necesita una revisión con fuentes.
+- **Exportar el cálculo del TFR a Excel** (mejora, no herramienta nueva): Google mostró el sitio para «calcolo tfr excel gratis» (3 impresiones en octubre). `lavoro-contratti/calcolo-tfr/` no exporta nada. Un CSV o XLSX con los años, la revalorización y el neto respondería a esa búsqueda.
 - **Más años en los umbrales de usura** (mejora): el modo `storico` de `usura.yml` (03/10/2026) solo encontró por nombre habitual 2025-04 y 2025-10.
   - Faltan 2025-07 y los años anteriores, que tienen otros nombres de archivo o maquetaciones distintas.
   - Leer con `leggi-fonti` la página del MEF de cada año (el filtro por año no va por URL: buscar el enlace al archivo) y probar el parser con un decreto viejo antes de ampliarlo.
@@ -34,6 +41,7 @@ Lo usa la skill `laboratorio`: cada idea con su puntaje (Demanda, Originalidad, 
 - **Quitar el fondo de fotos** (tecnológica): solo con un modelo de licencia comercial compatible; descartar los modelos «non-commercial».
 
 ## Hechas
+- **Oposición a los gastos sanitarios de la precompilada, año 2026** (`cittadino-tasse/opposizione-spese-sanitarie/`, PR #104): compilador del modelo de la Agenzia con el plazo del 2/2/2027.
 - **Convertir HEIC a JPG** (`utilita-web/convertire-heic-jpg/`, 03/10/2026) — D3 · O3 · F3 · Fa3 · M2 = 14.
   - `libheif-js` 1.23.2 en `vendor/` (LGPL-3.0, wasm), un Web Worker por procesador libre (hasta 4), OffscreenCanvas, ZIP con fflate.
   - Probado en Playwright: 3 fotos de 12 MP más archivos de prueba en 1,1 s (computadora) y 2,3 s (móvil emulado).
